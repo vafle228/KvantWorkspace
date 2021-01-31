@@ -8,28 +8,37 @@ button, input{
     outline: none;
 }
 /* Настройка шрифтов */
-body{
+h3, h4, p{
+    font-family: "Helvetica";
+}
+h1, h2{
     font-family: "Poppins";
+}
+h3, h5, h6, p{
+    line-height: 1.15;
 }
 h1{
     font-size: 50px;
     font-weight: bold;
     color: #111926;
+    line-height: 1;
 }
 h2{
     font-size: 40px;
     font-weight: bold;
     color: #111926;
+    line-height: 1.75;
 }
 h3{
     font-size: 30px;
-    font-weight: lighter;
+    font-weight: 400;
     color: #6A6F78;
 }
 h4{
     font-size: 25px;
-    font-weight: lighter;
+    font-weight: 400;
     color: #6A6F78;
+    line-height: 1.5;
 }
 p{
     font-size: 16px;
@@ -44,7 +53,7 @@ body{
 .item{
     background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0 0 5px 5px #111926;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Навигационное меню */
@@ -93,15 +102,45 @@ aside nav button:not(.user-img):hover, aside nav .active{
 
     display: flex;
 }
-#widgets #mini-task-manager{
+#widgets > div{
     height: 100%;
-    width: 50%;
     padding: 50px;
+    position: relative;
+}
+#widgets > div h1{
+    margin-bottom: 50px;
+}
+#widgets #mini-task-manager{
+    width: 46%;
+}
+#widgets #mini-task-manager::after{
+    content: url(../Templates/img/mini_task_manager.png);
+    position: absolute;
+    right: 0;
+    bottom: -25px;
 }
 #widgets #courses-manager{
-    height: 100%;
-    width: 50%;
     background-color: #85BBFF;
     border-radius: 0 0 0 40px;
-    padding: 50px;
+    width: 54%;
+}
+#widgets #courses-manager > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#widgets #courses-manager > div > div{
+    width: 30%;
+    height: 300px;
+    box-shadow: none;
+}
+#widgets #courses-manager > div > div img{
+    object-fit: cover;
+    width: 100%;
+    height: 128px;
+    border-radius: 15px 15px 0 0;
+}
+#widgets #courses-manager > div > div h2, #widgets #courses-manager > div > div h4{
+    margin: 0 0 0 25px;
 }
