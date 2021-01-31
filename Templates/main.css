@@ -12,10 +12,10 @@ button, input{
     outline: none;
 }
 /* Настройка шрифтов */
-h3, h4, p{
+h4, p{
     font-family: "Helvetica";
 }
-h1, h2{
+h1, h2, h3{
     font-family: "Poppins";
 }
 h3, h5, h6, p{
@@ -35,12 +35,12 @@ h2{
 }
 h3{
     font-size: 30px;
-    font-weight: 400;
+    font-weight: 300;
     color: #6A6F78;
 }
 h4{
     font-size: 25px;
-    font-weight: 400;
+    font-weight: 300;
     color: #6A6F78;
     line-height: 1.5;
 }
@@ -79,7 +79,6 @@ aside #logo{
 
     margin-bottom: 30px;
 }
-
 aside nav button{
     width: 60px;
     height: 60px;
@@ -97,6 +96,7 @@ aside nav button:not(.user-img):hover, aside nav .active{
 }
 
 /* Главная */
+
 /* Виджеты */
 #widgets{
     width: 100%;
@@ -114,8 +114,13 @@ aside nav button:not(.user-img):hover, aside nav .active{
 #widgets > div h1{
     margin-bottom: 50px;
 }
+/* Виджет "Список дел" */
 #widgets #mini-task-manager{
     width: 46%;
+}
+#widgets #mini-task-manager h3{
+    margin-top: -40px;
+    margin-bottom: 30px;
 }
 #widgets #mini-task-manager::after{
     content: url(../Templates/img/mini_task_manager.png);
@@ -123,6 +128,40 @@ aside nav button:not(.user-img):hover, aside nav .active{
     right: 0;
     bottom: -25px;
 }
+#widgets #mini-task-manager > div ul{
+    list-style: none;
+}
+#widgets #mini-task-manager > div ul input{
+    height: 20px;
+    width: 20px;
+    margin: 0 10px 0 0;
+}
+#widgets #mini-task-manager > div ul li h4{
+    display: inline-block;
+    vertical-align: baseline;
+}
+#widgets #mini-task-manager > div #new-task{
+    padding: 6px 15px;
+    border-radius: 10px;
+    background-color: #22B975;
+    color: #fff;
+
+    position: absolute;
+    bottom: 50px;
+}
+#widgets #mini-task-manager > div #new-task:hover{
+    filter: brightness(1.1);
+}
+#widgets #mini-task-manager > div #new-task p{
+    display: inline-block;
+    margin-left: 10px;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+
+/* Виджет "Твои курсы" */
 #widgets #courses-manager{
     background-color: #85BBFF;
     border-radius: 0 0 0 40px;
@@ -139,6 +178,20 @@ aside nav button:not(.user-img):hover, aside nav .active{
     height: 300px;
     box-shadow: none;
     margin-right: 3.5%;
+    transition-duration: .5s;
+    transition-property: transform, box-shadow;
+}
+#widgets #courses-manager > div > div:hover{
+    box-shadow:
+        -1px 1px #65a9fc,
+        -2px 2px #65a9fc,
+        -3px 3px #65a9fc,
+        -4px 4px #65a9fc,
+        -5px 5px #65a9fc,
+        -6px 6px #65a9fc,
+        -7px 7px #65a9fc;
+    -webkit-transform: translateX(7px) translateY(-7px);
+    transform: translateX(7px) translateY(-7px);
 }
 #widgets #courses-manager div:last-child{
     margin-right: 0;
