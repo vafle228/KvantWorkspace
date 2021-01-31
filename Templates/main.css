@@ -3,7 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+button, input{
+    border: none;
+    outline: none;
+}
 /* Настройка шрифтов */
 body{
     font-family: "Poppins";
@@ -32,4 +35,73 @@ p{
     font-size: 16px;
     font-weight: normal;
     color: #70757D;
+}
+
+/* Основные элементы страницы */
+body{
+    background-color: #FAFAFA;
+}
+.item{
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 5px #111926;
+}
+
+/* Навигационное меню */
+aside{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100px;
+    background-color: #111926;
+    border-radius: 0 40px 0 0;
+
+    padding: 25px;
+}
+aside #logo{
+    width: 50px;
+    height: 50px;
+
+    margin-bottom: 30px;
+}
+
+aside nav button{
+    width: 60px;
+    height: 60px;
+
+    padding: 15px;
+    margin: 10px -5px;
+    background-color: unset;
+    border-radius: 15px;
+
+    font-size: 30px;
+    color: #EFF1F3;
+}
+aside nav button:not(.user-img):hover, aside nav .active{
+    background-color: #2C3B4F;
+}
+
+/* Главная */
+/* Виджеты */
+#widgets{
+    width: 100%;
+    height: 500px;
+    background-color: #EFF1F3;
+    padding-left: 150px;
+
+    display: flex;
+}
+#widgets #mini-task-manager{
+    height: 100%;
+    width: 50%;
+    padding: 50px;
+}
+#widgets #courses-manager{
+    height: 100%;
+    width: 50%;
+    background-color: #85BBFF;
+    border-radius: 0 0 0 40px;
+    padding: 50px;
 }
