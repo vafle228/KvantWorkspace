@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Настройка шрифтов */
+body{
+    font-family: "Poppins";
+}
+h1{
+    font-size: 50px;
+    font-weight: bold;
+    color: #111926;
+}
+h2{
+    font-size: 40px;
+    font-weight: bold;
+    color: #111926;
+}
+h3{
+    font-size: 30px;
+    font-weight: lighter;
+    color: #6A6F78;
+}
+h4{
+    font-size: 25px;
+    font-weight: lighter;
+    color: #6A6F78;
+}
+p{
+    font-size: 16px;
+    font-weight: normal;
+    color: #70757D;
+}
