@@ -130,6 +130,20 @@ aside nav button:not(.user-img):hover, aside nav .active{
 }
 #widgets #mini-task-manager > div ul{
     list-style: none;
+    overflow-y: scroll;
+
+    height: 190px;
+    width: 400px;
+}
+#widgets #mini-task-manager > div ul::-webkit-scrollbar{
+    width: 10px;
+    background-color: #d0d1d3;
+    border-radius: 5px;
+}
+#widgets #mini-task-manager > div ul::-webkit-scrollbar-thumb{
+    background-color: #70757D;
+    border-radius: 5px;
+    border: #d0d1d3 solid 2px;
 }
 #widgets #mini-task-manager > div ul input{
     height: 20px;
@@ -158,8 +172,6 @@ aside nav button:not(.user-img):hover, aside nav .active{
     color: #fff;
     font-size: 20px;
 }
-
-
 
 /* Виджет "Твои курсы" */
 #widgets #courses-manager{
