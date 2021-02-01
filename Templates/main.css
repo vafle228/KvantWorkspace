@@ -56,6 +56,10 @@ body{
     background-color: #FAFAFA;
     height: 100vh;
 }
+body > section{
+    padding: 50px 0 0 150px;
+    display: none;
+}
 .item{
     background-color: #fff;
     border-radius: 15px;
@@ -93,12 +97,17 @@ aside nav button{
     font-size: 30px;
     color: #EFF1F3;
 }
-aside nav button:not(.user-img):hover, aside nav .active{
+aside nav button:not(.user-img):hover{
+    background-color: #2C3B4F;
+}
+aside nav .active{
     background-color: #2C3B4F;
 }
 
 /* Главная */
-
+#main{
+    padding: 0;
+}
 /* Виджеты */
 #widgets{
     width: 100%;
