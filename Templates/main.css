@@ -270,23 +270,23 @@ aside nav button:not(.user-img):hover, aside nav .active{
 }
 
 /* Адаптивность */
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1610px){
     body{
         zoom: 83%;
     }
 }
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1376px){
     body{
-        zoom: 75%;
+        zoom: 70%;
     }
 }
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1290px){
     body{
-        zoom: 67%;
+        zoom: 65%;
     }
 }
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1034px){
     body{
-        zoom: 50%;
+        zoom: 55%;
     }
 }
