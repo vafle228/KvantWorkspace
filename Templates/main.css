@@ -125,8 +125,10 @@ aside nav button:not(.user-img):hover, aside nav .active{
 #widgets #mini-task-manager::after{
     content: url(../Templates/img/mini_task_manager.png);
     position: absolute;
-    right: 0;
-    bottom: -25px;
+    left: 100px;
+    bottom: -50px;
+
+    transform: scale(0.75);
 }
 #widgets #mini-task-manager > div ul{
     list-style: none;
@@ -264,3 +266,10 @@ aside nav button:not(.user-img):hover, aside nav .active{
 #news > div .item h2, #news > div .item p{
     margin: 0 25px;
 }
+
+/* Адаптивность */
+/* @media screen and (max-width: 1280px){
+    #widgets #mini-task-manager::after{
+        display: none;
+    }
+} */
