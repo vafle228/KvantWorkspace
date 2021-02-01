@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
 ::-webkit-scrollbar{
     width: 0;
 }
@@ -13,7 +15,7 @@ button, input{
 }
 /* Настройка шрифтов */
 h4, p{
-    font-family: "Helvetica";
+    font-family: 'Ubuntu';
 }
 h1, h2, h3{
     font-family: "Poppins";
@@ -279,6 +281,46 @@ aside nav .active{
 }
 #news > div .item h2, #news > div .item p{
     margin: 0 25px;
+}
+
+/* Дневник */
+#diary main{
+    width: 800px;
+}
+#diary main .day > h3{
+    text-align: right;
+    margin-top: 10px;
+}
+#diary main .day .item{
+    padding: 10px 25px 25px;
+    margin-top: 10px;
+}
+#diary main .day .item .item-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#diary main .day .item .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+#diary main .day .item .item-header .lesson-title h3{
+    color: #0E58B5;
+    font-weight: bold;
+    margin-top: 22px;
+    float: right;
+}
+#diary main .day .item .item-header .lesson-teacher{
+    display: flex;
+    align-items: center;
+}
+#diary main .day .item .item-header .lesson-teacher img{
+    width: 30px;
+    height: 30px;
+}
+#diary main .day .item .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
 }
 
 /* Адаптивность */
