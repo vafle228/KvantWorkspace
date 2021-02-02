@@ -284,8 +284,36 @@ aside nav .active{
 }
 
 /* Дневник */
+#diary header{
+    display: flex;
+    justify-content: space-between;
+
+    width: 800px;
+    margin-bottom: 30px;
+}
+#diary header .week-selector{
+    height: 50px;
+    width: 220px;
+
+    background-color: #22B975;
+    border-radius: 15px;
+    padding: 0 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #fff;
+}
+#diary header .week-selector span{
+    font-size: 32px;
+    margin-top: 6px;
+}
 #diary main{
     width: 800px;
+    height: 900px;
+
+    overflow-y: scroll;
 }
 #diary main .day > h3{
     text-align: right;
@@ -294,6 +322,8 @@ aside nav .active{
 #diary main .day .item{
     padding: 10px 25px 25px;
     margin-top: 10px;
+
+    position: relative;
 }
 #diary main .day .item .item-header{
     display: flex;
@@ -322,6 +352,23 @@ aside nav .active{
     display: inline-block;
     margin-right: 10px;
 }
+
+/* Псевдоэлемент оценки */
+.day > .item::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    height: 100%;
+    width: 15px;
+    border-radius: 0 15px 15px 0;
+}
+.four::after{ background-color: #00D575 } /* Идеально */
+.three::after{ background-color: #FE9C4A } /* С замечаниями */
+.two::after{ background-color: #FFCB3A } /* Сойдет */
+.one::after{ background-color: #FF3A3A }  /* Плохо */
+.absence::after{ background-color: #4C50B8 }  /* Отсутствие */
 
 /* Адаптивность */
 @media screen and (max-width: 1610px){
