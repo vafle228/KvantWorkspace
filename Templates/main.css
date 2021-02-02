@@ -3,6 +3,9 @@
 ::-webkit-scrollbar{
     width: 0;
 }
+
+/* Стилизация курсора */
+
 *{
     margin: 0;
     padding: 0;
@@ -56,7 +59,7 @@ p{
 /* Основные элементы страницы */
 body{
     background-color: #FAFAFA;
-    height: 100vh;
+    position: relative;
 }
 body > section{
     padding: 50px 0 0 150px;
@@ -65,7 +68,7 @@ body > section{
 .item{
     background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
 }
 
 /* Навигационное меню */
@@ -153,13 +156,13 @@ aside nav .active{
 }
 #widgets #mini-task-manager > div ul::-webkit-scrollbar{
     width: 10px;
-    background-color: #d0d1d3;
+    background-color: #DEDFE1;
     border-radius: 5px;
 }
 #widgets #mini-task-manager > div ul::-webkit-scrollbar-thumb{
-    background-color: #70757D;
+    background-color: #d0d1d3;
     border-radius: 5px;
-    border: #d0d1d3 solid 2px;
+    border: #DEDFE1 solid 2px;
 }
 #widgets #mini-task-manager > div ul input{
     height: 20px;
@@ -284,19 +287,23 @@ aside nav .active{
 }
 
 /* Дневник */
+#diary{
+    padding-left: 140px;
+}
 #diary header{
     display: flex;
     justify-content: space-between;
 
     width: 800px;
     margin-bottom: 30px;
+    padding: 0 10px;
 }
 #diary header .week-selector{
-    height: 50px;
-    width: 220px;
+    height: 40px;
+    width: 200px;
 
     background-color: #22B975;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 0 10px;
 
     display: flex;
@@ -312,6 +319,7 @@ aside nav .active{
 #diary main{
     width: 800px;
     height: 900px;
+    padding: 0 10px 50px 10px;
 
     overflow-y: scroll;
 }
@@ -320,7 +328,7 @@ aside nav .active{
     margin-top: 10px;
 }
 #diary main .day .item{
-    padding: 10px 25px 25px;
+    padding: 10px 40px 25px 25px;
     margin-top: 10px;
 
     position: relative;
@@ -328,7 +336,6 @@ aside nav .active{
 #diary main .day .item .item-header{
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 #diary main .day .item .item-header .lesson-title h2{
     display: inline-block;
@@ -345,12 +352,22 @@ aside nav .active{
     align-items: center;
 }
 #diary main .day .item .item-header .lesson-teacher img{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 #diary main .day .item .item-header .lesson-teacher h4{
     display: inline-block;
     margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Фон */
+.bg{
+    position: fixed;
+    height: 90%;
+    right: -20%;
+    top: 5%;
+    animation: you_spin_me_right_round 200s infinite;
 }
 
 /* Псевдоэлемент оценки */
@@ -394,10 +411,10 @@ aside nav .active{
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
-    0%{
+    from{
         transform: rotate(0deg);
     }
-    100%{
+    to{
         transform: rotate(720deg);
     }
 }
