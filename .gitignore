@@ -144,3 +144,6 @@ cython_debug/
 *.dat
 *.bak
 *.dir
+
+#JSON
+ApiKey.json
