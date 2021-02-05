@@ -63,7 +63,6 @@ body{
 }
 body > section{
     padding: 50px 0 0 150px;
-    display: none;
 }
 .item{
     background-color: #fff;
@@ -107,6 +106,10 @@ aside nav button:not(.user-img):hover{
 }
 aside nav .active{
     background-color: #2C3B4F;
+}
+.user-img{
+    font-size: 50px;
+    padding: 0;
 }
 
 /* Главная */
