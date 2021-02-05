@@ -63,6 +63,7 @@ body{
 }
 body > section{
     padding: 50px 0 0 150px;
+    display: none;
 }
 .item{
     background-color: #fff;
