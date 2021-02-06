@@ -369,6 +369,7 @@ aside nav .active{
 #diary main .day .item .item-header{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
 }
 #diary main .day .item .item-header .lesson-title h2{
     display: inline-block;
@@ -394,15 +395,6 @@ aside nav .active{
     font-size: 16px;
 }
 
-/* Фон */
-.bg{
-    position: fixed;
-    height: 90%;
-    right: -20%;
-    top: 5%;
-    animation: you_spin_me_right_round 200s infinite;
-}
-
 /* Псевдоэлемент оценки */
 .day > .item::after{
     content: '';
@@ -419,6 +411,173 @@ aside nav .active{
 .two::after{ background-color: #FFCB3A } /* Сойдет */
 .one::after{ background-color: #FF3A3A }  /* Плохо */
 .absence::after{ background-color: #4C50B8 }  /* Отсутствие */
+
+
+/* Почта */
+#mail{
+    padding-left: 140px;
+}
+#mail header{
+    display: flex;
+    justify-content: space-between;
+
+    width: 800px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+#mail header .week-selector{
+    height: 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#mail header .week-selector h3{
+    background-color: #22B975;
+    border-radius: 10px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    margin: 0 5px;
+}
+#mail header .week-selector button{
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    background-color: #22B975;
+    border-radius: 10px;
+    color: #fff;
+}
+#mail header .week-selector span{
+    font-size: 32px;
+    margin-top: 6px;
+}
+#mail main{
+    width: 800px;
+    height: 800px;
+    padding: 0 10px 200px 10px;
+
+    overflow-y: scroll;
+}
+#mail main .day > h3{
+    text-align: right;
+    margin-top: 10px;
+}
+#mail main .day .item{
+    padding: 10px 25px 25px 25px;
+    margin-top: 10px;
+
+    position: relative;
+}
+#mail main .day .item .item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+#mail main .day .item .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+#mail main .day .item .item-header .lesson-teacher{
+    display: flex;
+    align-items: center;
+}
+#mail main .day .item .item-header .lesson-teacher img{
+    width: 40px;
+    height: 40px;
+}
+#mail main .day .item .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Почта */
+#statistics{
+    padding-left: 140px;
+}
+#statistics header{
+    display: flex;
+    justify-content: space-between;
+
+    width: 800px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+#statistics header .week-selector{
+    height: 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#statistics header .week-selector h3{
+    background-color: #22B975;
+    border-radius: 10px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    margin: 0 5px;
+}
+#statistics header .week-selector button{
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    background-color: #22B975;
+    border-radius: 10px;
+    color: #fff;
+}
+#statistics header .week-selector span{
+    font-size: 32px;
+    margin-top: 6px;
+}
+#statistics main{
+    width: 800px;
+    height: 800px;
+    padding: 0 10px 200px 10px;
+
+    overflow-y: scroll;
+}
+#statistics main .day > h3{
+    text-align: right;
+    margin-top: 10px;
+}
+#statistics main .day .item{
+    padding: 10px 25px 25px 25px;
+    margin-top: 10px;
+
+    position: relative;
+}
+#statistics main .day .item .item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+#statistics main .day .item .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+#statistics main .day .item .item-header .lesson-teacher{
+    display: flex;
+    align-items: center;
+}
+#statistics main .day .item .item-header .lesson-teacher img{
+    width: 40px;
+    height: 40px;
+}
+#statistics main .day .item .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+/* Фон */
+.bg{
+    position: fixed;
+    height: 90%;
+    right: -20%;
+    top: 5%;
+    animation: you_spin_me_right_round 200s infinite;
+}
 
 /* Адаптивность */
 @media screen and (max-width: 1610px){
@@ -451,3 +610,4 @@ aside nav .active{
         transform: rotate(720deg);
     }
 }
+
