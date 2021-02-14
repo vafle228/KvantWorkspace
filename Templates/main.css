@@ -11,14 +11,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-button, input{
+button, input, textarea{
     border: none;
     outline: none;
     cursor: pointer;
 }
 /* Настройка шрифтов */
 h4, p{
-    font-family: 'Ubuntu';
+    font-family: 'Helvetica';
 }
 h1, h2, h3{
     font-family: "Poppins";
@@ -570,6 +570,118 @@ aside nav .active{
     margin-right: 10px;
     font-size: 16px;
 }
+
+/* Формы */
+.form{
+    display: none;
+}
+.form .filter{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #00000088;
+}
+.form-wrapper{
+    position: fixed;
+    height: 100%;
+    top: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    
+}
+.form-wrapper form{
+    height: min-content;
+    width: 822px;
+    background-color: #fff;
+    padding: 10px 40px 25px 25px;
+    border-radius: 15px;
+}
+.form-wrapper form .add-some{
+    color: #fff;
+    font-family: "Poppins";
+    font-size: 20px;
+
+    background-color: #111926;
+    padding: 0 25px;
+    height: 51px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+.form-wrapper form .add-some span{
+    margin-right: 10px;
+}
+/* Форма просмотра домашнего задания */
+.form-wrapper #homework-details .item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.form-wrapper #homework-details .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+.form-wrapper #homework-details .item-header .lesson-title h3{
+    color: #0E58B5;
+    font-weight: bold;
+    margin-top: 22px;
+    float: right;
+}
+.form-wrapper #homework-details .item-header .lesson-teacher{
+    display: flex;
+    align-items: center;
+}
+.form-wrapper #homework-details .item-header .lesson-teacher img{
+    width: 40px;
+    height: 40px;
+}
+.form-wrapper #homework-details .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+.form-wrapper #homework-details .text-field{
+    height: 115px;
+    width: 761px;
+    border-radius: 10px;
+    border: #00000022 solid 1px;
+    padding: 10px 25px;
+}
+
+
+/* Файлы */
+.files{
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+}
+.file{
+    min-width: 200px;
+    height: 51px;
+    border-radius: 10px;
+    border: #00000022 solid 1px;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 0 25px;
+
+    font-family: "Poppins";
+    font-size: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.file span{
+    margin-right: 10px;
+}
+
 /* Фон */
 .bg{
     position: fixed;
