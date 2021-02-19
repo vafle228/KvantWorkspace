@@ -1,11 +1,8 @@
 ::-webkit-scrollbar{
     width: 0;
 }
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
+*{ margin: 0; padding: 0; box-sizing: border-box }
 
 h1, h4{
     font-size: 2.5rem;
@@ -15,30 +12,24 @@ h1, h4{
     font-family: "Poppins";
     margin-bottom: 15px;
 }
-
 body{
     background-color: #FAFAFA;
     position: relative;
     overflow-y: hidden;
 }
-
 aside{
     position: fixed;
     top: 0;
     left: 0;
-
     height: 100%;
     width: 800px;
     background-color: #111926;
     border-radius: 0 40px 0 0;
-
     padding: 25px;
 }
-
 aside #logo{
     width: 60px;
     height: 60px;
-
     margin: 0 -5px;
     margin-bottom: 30px;
 }
@@ -46,6 +37,7 @@ aside #logo{
 aside form{
     display: flex;
     flex-direction: column;
+    margin-top: 200px;
 }
 aside form h1{
     margin-left: 75px;
@@ -60,6 +52,11 @@ aside form input{
     width: 600px;
     padding: 0 25px;
     margin-left: 75px;
+    outline: none;
+
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Poppins";
 }
 aside form input::placeholder{
     font-size: 20px;
@@ -79,34 +76,23 @@ aside form button h4{
     margin: auto 0;
 }
 
+/* Фон */
+.bg{
+    position: fixed;
+    height: 90%;
+    right: -20%;
+    top: 5%;
+    animation: you_spin_me_right_round 200s infinite;
+}
+
 /* Адаптивность */
-@media screen and (max-width: 1610px){
-    body{
-        zoom: 83%;
-    }
-}
-@media screen and (max-width: 1376px){
-    body{
-        zoom: 70%;
-    }
-}
-@media screen and (max-width: 1290px){
-    body{
-        zoom: 65%;
-    }
-}
-@media screen and (max-width: 1034px){
-    body{
-        zoom: 55%;
-    }
-}
+@media screen and (max-width: 1600px){ body{ zoom: 83% }}
+@media screen and (max-width: 1356px){ body{ zoom: 70% }}
+@media screen and (max-width: 1280px){ body{ zoom: 65% }}
+@media screen and (max-width: 1024px){ body{ zoom: 55% }}
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(720deg);
-    }
+    from{ transform: rotate(0deg) }
+    to{ transform: rotate(720deg) }
 }
