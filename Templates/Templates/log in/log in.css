@@ -23,9 +23,9 @@ aside{
     left: 0;
     height: 100%;
     width: 800px;
-    background-color: #111926;
     border-radius: 0 40px 0 0;
     padding: 25px;
+    background-color: #111926;
 }
 aside #logo{
     width: 60px;
@@ -80,9 +80,10 @@ aside form button h4{
 .bg{
     position: fixed;
     height: 90%;
-    right: -20%;
+    right: -10%;
     top: 5%;
     animation: you_spin_me_right_round 200s infinite;
+    stroke: indianred;
 }
 
 /* Адаптивность */
@@ -95,4 +96,20 @@ aside form button h4{
 @keyframes you_spin_me_right_round{
     from{ transform: rotate(0deg) }
     to{ transform: rotate(720deg) }
+}
+
+/* Анимация фона */
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+    background:#000;
+    width:100%;
+    height: 100%;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
