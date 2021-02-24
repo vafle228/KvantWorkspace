@@ -3,19 +3,19 @@
 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
-
-h1, h4{
+h1{
     font-size: 2.5rem;
+}
+h1, h4{
     font-weight: bold;
     color: #fff;
     line-height: 1;
-    font-family: "Poppins";
-    margin-bottom: 15px;
 }
 body{
     background-color: #FAFAFA;
     position: relative;
     overflow-y: hidden;
+    font-family: "Poppins";
 }
 aside{
     position: fixed;
@@ -75,6 +75,16 @@ aside form button h4{
     font-weight: 500;
     margin: auto 0;
 }
+#flash-error{
+    padding: 15px 25px;
+    width: 600px;
+    margin-left: 75px;
+    font-size: 30px;
+    font-weight: 500;
+    font-family: "Calibri";;
+    background-color: #f16e6e;
+    text-align: center;
+}
 
 /* Фон */
 .bg{
@@ -83,7 +93,6 @@ aside form button h4{
     right: -10%;
     top: 5%;
     animation: you_spin_me_right_round 200s infinite;
-    stroke: indianred;
 }
 
 /* Адаптивность */
