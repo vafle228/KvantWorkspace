@@ -4,19 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' href='{% static "LoginPage/style.css" %}'/>
+    <link rel="shortcut icon" href='{% static "LoginPage/img/logo.png" %}' type="image/png"/>
+    <link rel="stylesheet" href='{% static "LoginPage/fonts/Poppins/poppins.css" %}'>
     <title>Вход</title>
 </head>
 <body>
-    {% if messages %}
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-    {% endif %}
     <aside>
         <img src='{% static "LoginPage/img/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <h1>KvantJournal</h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div id='flash-error'><h4>{{ message }}</h4></div>
+                {% endfor %}
+            {% endif %}
+
             <input placeholder="username" name='username' autocomplete="off" />
             <input placeholder="password" name="password" type="password" autocomplete="off" />
             <button type="submit"><h4>Log in</h4></button>
