@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 permission = (("Ученик", "Ученик"),
               ("Учитель", "Учитель"),
               ("Администратор", "Администратор")
