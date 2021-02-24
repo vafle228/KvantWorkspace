@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'MainPage.apps.MainPageConfig',
+    'StudentPage.apps.StudentPageConfig',
+    'LoginPage.apps.LoginPageConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'KvantJournal.wsgi.application'
-AUTH_USER_MODEL = 'MainPage.KvantUser'
+AUTH_USER_MODEL = 'LoginPage.KvantUser'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

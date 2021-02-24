@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='{% static "LoginPage/style.css" %}'/>
+    <title>Вход</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+    <aside>
+        <img src='{% static "LoginPage/img/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h1>KvantJournal</h1>
+            <input placeholder="username" name='username' autocomplete="off" />
+            <input placeholder="password" name="password" type="password" autocomplete="off" />
+            <button type="submit"><h4>Log in</h4></button>
+        </form>
+    </aside>
+    <canvas id="stars"></canvas>
+    <img src='{% static "LoginPage/img/atom.png" %}' class='bg'/>
+    <script src='{% static "LoginPage/sections_manager.js" %}'>
+    </script> <!-- Здесь нужен для анимации перезагрузки -->
+    <script src="http://atuin.ru/js/art/stars.js" type="text/javascript"></script>
+</body>
+</html>

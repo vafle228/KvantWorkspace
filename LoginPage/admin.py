@@ -24,6 +24,4 @@ class KvantUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
-admin.site.register(models.FileStorage)
-admin.site.register(models.ImageStorage)
 admin.site.register(models.KvantUser, KvantUserAdmin)
