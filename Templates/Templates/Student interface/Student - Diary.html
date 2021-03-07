@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
+    <link rel='stylesheet' href='Student interface.css' /> <!-- Стили страницы -->
+    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
+    <link rel="shortcut icon" href="../../img/logo.png" type="image/png" />
+    <title>Дневник</title>
+</head>
+
+<body>
+    <!-- Навигационное меню -->
+    <aside>
+        <img src='../../img/logo.png' id='logo' alt='logo' onclick="reload(this)"/>
+        <nav>
+            <button><a href='/student/main'><span class="fi fi-rr-apps"></a></button>
+            <button class='active'><a href='student/diary'><span class="fi fi-rr-book-alt"></a></button>
+            <button><a href='student/mail'><span class="fi fi-rr-envelope"></a></button>
+            <button><a href='student/stat'><span class="fi fi-rr-stats"></a></button>
+        </nav>
+        <nav style='position: absolute; bottom: 15px'>
+            <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->
+            <button><span class="fi fi-rr-bell"></button> <!-- Notifications -->
+            <button class='user-img'><span class="fi fi-rr-circle"></button>
+        </nav>
+    </aside>
+    
+    <!-- Дневник -->
+    <section id="diary">
+        <header>
+            <h1>Diary</h1>
+            <div class="week-selector">
+                <button><span class="fi-rr-angle-double-small-left"></span></button>
+                <h3 style='color: #fff'>01.02 - 07.02</h3>
+                <button><span class="fi-rr-angle-double-small-right"></span></button>
+            </div>
+        </header>
+        <main>
+            <div class='day'>
+                <h3>BT 02.02.2021</h3>
+                <div class="item four">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Зарывных П. С</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
+                    </p>
+                </div>
+            </div>
+            <div class='day'>
+                <h3>BT 02.02.2021</h3>
+                <div class="item absence">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+                <div class="item one">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+            </div>
+            <div class='day'>
+                <h3>BT 02.02.2021</h3>
+                <div class="item four">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+                <div class="item two">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+            </div>
+            <div class='day'>
+                <h3>BT 02.02.2021</h3>
+                <div class="item absence">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+                <div class="item one">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+            </div>
+        </main>
+        <img src='../../img/atom.png' class='bg'/>
+        <!-- Форма просмотра домашнего задания -->
+        <div class='form'>
+            <div class='filter' onclick="close_form(this)"></div>
+            <div class="form-wrapper">
+                <form id='homework-details'>
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>IT</h2>
+                            <h3>18:20</h3>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Зарывных П. С</h4>
+                            <img src='../../img/unnamed.png'/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                    <hr style='margin: 25px 0'/>
+                    <h2>Homework</h2>
+                    <textarea name="Homework-text" class='text-field' autocomplete="off"></textarea>
+                    <div class="item-header">
+                        <div class='files'>
+                            <div class='file'><span class="fi-rr-document"></span>homework IT(2-4) 8.02.docx</div>
+                            <div class='file'><span class="fi-rr-document"></span>homework.docx</div>
+                            <div class='file'><span class="fi-rr-document"></span>homework.docx</div>
+                        </div>
+                        <button class='add-file'><span class="fi-rr-clip"></span>Add file</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src='../../JS/sections_manager.js'></script> <!-- Менеджер секций-->
+</body>
+
+</html>

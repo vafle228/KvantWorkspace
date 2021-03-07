@@ -2,20 +2,17 @@
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-button, input, textarea{ border: none; outline: none; cursor: pointer }
-button:hover{
-    filter: brightness(1.1);
-}
-.item:hover{
-    filter: brightness(0.98);
-}
+button, input, textarea{ border: none; outline: none; cursor: pointer; resize: none; }
+a{ text-decoration: none; color: unset; }
+button:hover{ filter: brightness(1.1); }
+.item:hover{ filter: brightness(0.98); }
 
 /* Настройка шрифтов */
 h4, p{ font-family: 'Helvetica' }
 h1, h2, h3{ font-family: "Poppins"; cursor: default }
 h3, h5, h6, p{ line-height: 1.15 }
 h1{ font-size: 2.5rem; font-weight: bold; color: #111926; line-height: 1 }
-h2{ font-size: 2rem; font-weight: bold; color: #111926; line-height: 1.75 }
+h2, h2 *{ font-size: 2rem; font-weight: bold; color: #111926; line-height: 1.75 }
 h3{ font-size: 1.3; font-weight: 300; color: #6A6F78 }
 h4{ font-size: 1.3rem; font-weight: 300; color: #6A6F78; line-height: 1.5 }
 p{ font-size: 1rem; font-weight: normal; color: #70757D }
@@ -26,14 +23,13 @@ body{
     position: relative;
     overflow-y: hidden;
 }
-body > section{
-    padding: 50px 0 0 150px;
-    display: none;
-}
+body > section{ padding: 50px 0 0 150px; }
+
 .item{
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
 }
 
 /* Навигационное меню */
@@ -203,28 +199,26 @@ aside nav .active{ background-color: #2C3B4F }
 }
 #news > div{
     width: 100%;
-    height: 300px;
     margin-top: 20px;
     padding: 0 5px;
     display: flex;
-    justify-content: flex-start;
-    overflow: auto;
-    overflow-y: hidden;
+    flex-wrap: wrap;
+    gap: 2%;
 }
-#news > div::-webkit-scrollbar{
+/* #news > div::-webkit-scrollbar{
     height: 10px;
     background-color: #d0d1d3;
     border-radius: 5px;
-}
-#news > div::-webkit-scrollbar-thumb{
+} */
+/* #news > div::-webkit-scrollbar-thumb{
     background-color: #70757D;
     border-radius: 5px;
     border: #d0d1d3 solid 2px;
-}
+} */
 #news > div .item{
-    min-width: 500px;
+    max-width: 32%;
     height: 280px;
-    margin-right: 30px;
+    margin-bottom: 2%;
 }
 #news > div .item:last-child{ margin-right: 0 }
 #news > div .item img{
@@ -329,6 +323,7 @@ aside nav .active{ background-color: #2C3B4F }
 .two::after{ background-color: #FFCB3A } /* Сойдет */
 .one::after{ background-color: #FF3A3A }  /* Плохо */
 .absence::after{ background-color: #4C50B8 }  /* Отсутствие */
+.disease::after{ background-color: #9c48c4 }  /* Отсутствие по болезни */
 
 
 /* Почта */
@@ -339,6 +334,14 @@ aside nav .active{ background-color: #2C3B4F }
     width: 800px;
     margin-bottom: 30px;
     padding: 0 10px;
+}
+#mail header > button h3{
+    background-color: #0E58B5;
+    border-radius: 10px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    color: #fff;
 }
 #mail header .week-selector{
     height: 40px;
@@ -500,11 +503,11 @@ aside nav .active{ background-color: #2C3B4F }
     height: min-content;
     width: 822px;
     background-color: #fff;
-    padding: 10px 40px 25px 25px;
+    padding: 10px 40px 10px 25px;
     border-radius: 15px;
     margin: 0 auto;
 }
-.form-wrapper form .add-some{
+.form-wrapper form .add-file{
     color: #fff;
     font-family: "Poppins";
     font-size: 20px;
@@ -515,7 +518,7 @@ aside nav .active{ background-color: #2C3B4F }
     margin-left: 10px;
     border-radius: 10px;
 }
-.form-wrapper form .add-some span{ margin-right: 10px }
+.form-wrapper form .add-file span{ margin-right: 10px }
 
 /* Форма просмотра домашнего задания */
 .form-wrapper #homework-details .item-header{
@@ -547,26 +550,37 @@ aside nav .active{ background-color: #2C3B4F }
     font-size: 16px;
 }
 .form-wrapper #homework-details .text-field{
-    height: 115px;
     width: 761px;
     border-radius: 10px;
     border: #00000022 solid 1px;
     padding: 10px 25px;
 }
-
+/* Форма создания письма */
+.form-wrapper #homework-details .item-header .send-email{
+    color: #fff;
+    font-family: "Poppins";
+    font-size: 20px;
+    background-color: #111926;
+    padding: 0 25px;
+    height: 41px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
 
 /* Файлы */
 .files{
     display: flex;
     flex-wrap: wrap;
     width: 75%;
+    margin-top: 10px;
 }
 .file{
     min-width: 200px;
     height: 51px;
     border-radius: 10px;
     border: #00000022 solid 1px;
-    margin: 10px 10px;
+    margin: 5px 10px 5px 0;
     padding: 0 25px;
     font-family: "Poppins";
     font-size: 20px;
