@@ -33,6 +33,20 @@ body > section{ padding: 50px 0 0 150px; }
     border-radius: 15px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
     cursor: pointer;
+    transition-duration: .5s;
+    transition-property: transform, box-shadow;
+}
+.item:hover{
+    box-shadow:
+    -1px 1px #65a9fc,
+    -2px 2px #65a9fc,
+    -3px 3px #65a9fc,
+    -4px 4px #65a9fc,
+    -5px 5px #65a9fc,
+    -6px 6px #65a9fc,
+    -7px 7px #65a9fc;
+    -webkit-transform: translateX(7px) translateY(-7px);
+    transform: translateX(7px) translateY(-7px);
 }
 
 /* Навигационное меню */
