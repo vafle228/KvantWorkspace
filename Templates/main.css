@@ -561,7 +561,10 @@ aside nav .active{ background-color: #2C3B4F }
     border-radius: 10px;
     border: #00000022 solid 1px;
     padding: 10px;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen Cantarell, 'Open Sans', sans-serif;
 }
+.form-wrapper form .text-field::placeholder{ font-size: 1rem }
 
 /* Файлы */
 .files{
