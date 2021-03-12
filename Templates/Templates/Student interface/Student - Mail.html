@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
-    <link rel='stylesheet' href='Student interface.css' /> <!-- Стили страницы -->
+    <link rel='stylesheet' href='../../fonts/Poppins/poppins.css' /> <!-- Шрифт Poppins -->
     <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
     <link rel="shortcut icon" href="../../img/logo.png" type="image/png" />
     <title>Почта</title>
@@ -31,11 +31,6 @@
     <section id="mail">
         <header>
             <h1>Mail</h1>
-            <div class="week-selector">
-                <button><span class="fi-rr-angle-double-small-left"></span></button>
-                <h3 style='color: #fff'>01.02 - 07.02</h3>
-                <button><span class="fi-rr-angle-double-small-right"></span></button>
-            </div>
             <button onclick="open_create_mail_form()"><h3>Compose</h3></button>
         </header>
         <main>
@@ -167,7 +162,7 @@
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
-                <form id='homework-details'>
+                <form>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>Title</h2>
@@ -199,14 +194,22 @@
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
-                <form id='homework-details'>
+                <form>
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2><input placeholder="To"/></h2>
+                            <div class="dropdown" style="width: 100%">
+                                <input placeholder="To" onkeyup="filterFunction(this)" class='dropdown-input'>
+                                <div class="dropdown-content" style="display: none;">
+                                    <a onclick="search_fill(this)" style='display: block'><p>Смышляев Дмитрий Ильич</p></a>
+                                    <a onclick="search_fill(this)" style='display: block'><p>Каратаев Вадим Алексеевич</p></a>
+                                    <a onclick="search_fill(this)" style='display: block'><p>Сыч Эрнест Евгеньевич</p></a>
+                                    <a onclick="search_fill(this)" style='display: block'><p>IT квантум</p></a>
+                                    <a onclick="search_fill(this)" style='display: block'><p>Промдизайн квантум</p></a>
+                                </div>
+                              </div>
                         </div>
-                        <button class='send-email' type="submit">Send</button>
+                        <button class='form-btn' type="submit">Send</button>
                     </div>
-                    <hr style='margin: 25px 0'/>
                     <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Заголовок" style='height: 41px;'></textarea>
                     <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Сообщение" style='height: 115px;'></textarea>
                     <div class="item-header">
@@ -214,11 +217,8 @@
                             <div class='file'><span class="fi-rr-document"></span>document.docx</div>
                             <div class='file'><span class="fi-rr-document"></span>document.docx</div>
                             <div class='file'><span class="fi-rr-document"></span>document.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>document.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>document.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>document.docx</div>
                         </div>
-                        <button class='add-file'><span class="fi-rr-clip"></span>Add file</button>
+                        <button class='form-btn'><span class="fi-rr-clip"></span>Add file</button>
                     </div>
                 </form>
             </div>

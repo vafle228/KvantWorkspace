@@ -33,3 +33,26 @@ $("#mail .item").click(function(){
 function open_create_mail_form(){
     $('#mail .form')[1].style.display = 'block';
 }
+
+// Поиск получателя
+function filterFunction(input) {
+	input.nextElementSibling.style.display = 'block';
+	var filter = input.value.toUpperCase();
+	var drops = input.nextElementSibling;
+	var a = drops.getElementsByTagName("a");
+	for (var i = 0; i < a.length; i++) {
+		txtValue = a[i].textContent || a[i].innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			a[i].style.display = "block";
+		} else {
+			a[i].style.display = "none";
+		}
+	}
+}
+
+// Выбор получателя
+function search_fill(a) {
+	var input = a.parentElement.previousElementSibling;
+	input.value = a.textContent;
+	a.parentElement.style.display = 'none';
+}
