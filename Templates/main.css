@@ -5,7 +5,6 @@
 button, input, textarea{ border: none; outline: none; cursor: pointer; resize: none; }
 a{ text-decoration: none; color: unset; }
 button:hover{ filter: brightness(1.1); }
-.item:hover{ filter: brightness(0.98); }
 
 /* Настройка шрифтов */
 ::placeholder{ font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen Cantarell, 'Open Sans', sans-serif }
