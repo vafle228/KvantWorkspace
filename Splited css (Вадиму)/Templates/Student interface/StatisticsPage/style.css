@@ -1,0 +1,73 @@
+/* Статистика */
+#statistics{ padding-left: 140px }
+#statistics header{
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+#statistics header .week-selector{
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#statistics header .week-selector h3{
+    background-color: #22B975;
+    border-radius: 10px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    margin: 0 5px;
+}
+#statistics header .week-selector button{
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    background-color: #22B975;
+    border-radius: 10px;
+    color: #fff;
+}
+#statistics header .week-selector span{
+    font-size: 32px;
+    margin-top: 6px;
+}
+#statistics main::-webkit-scrollbar {width: 0;}
+#statistics main{
+    width: 800px;
+    height: 800px;
+    padding: 0 10px 200px 10px;
+    overflow-y: scroll;
+}
+#statistics main .day > h3{
+    text-align: right;
+    margin-top: 10px;
+}
+#statistics main .day .item{
+    padding: 10px 25px 25px 25px;
+    margin-top: 10px;
+    position: relative;
+}
+#statistics main .day .item .item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+#statistics main .day .item .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+#statistics main .day .item .item-header .lesson-teacher{
+    display: flex;
+    align-items: center;
+}
+#statistics main .day .item .item-header .lesson-teacher img{
+    width: 40px;
+    height: 40px;
+}
+#statistics main .day .item .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}

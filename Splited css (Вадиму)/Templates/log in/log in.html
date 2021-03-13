@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../log in/log in.css'/>
+    <link rel='stylesheet' href='../../fonts/Poppins/poppins.css' /> <!-- Шрифт Poppins -->
+    <link rel="shortcut icon" href="../../img/logo.svg" type="image/svg" />
+    <title>Вход</title>
+</head>
+<body>
+    <aside>
+        <img src='../../img/logo.png' id='logo' alt='logo' onclick="reload(this)"/>
+        <form>
+            <h1>KvantJournal</h1>
+            <div id='flash-error'><h4>Данные введены неверно</h4></div>
+            <input placeholder="login" name='login'/>
+            <input placeholder="password" name="password" type="password"/>
+            <button type="submit"><h4>log in</h4></button>
+        </form>
+    </aside>
+    <canvas id="stars"></canvas>
+    <img src='../../img/atom.png' class='bg'/>
+    <script src='../../JS/sections_manager.js'></script> <!-- Здесь нужен для анимации перезагрузки -->
+    <script src="http://atuin.ru/js/art/stars.js" type="text/javascript"></script>
+</body>
+</html>
