@@ -11,4 +11,6 @@ def login_user(request):
     if request.method == 'POST':
         form = KvantUserLoginForm(request.POST)
         user = form.save(request) if form.is_valid() else None
-    return redirect('/auth/' if user is None else '/admin/')
+    return redirect('/auth/' if user is None else
+                    '/student/' if user.permission == 'Ученик' else
+                    '/teacher/' if user.permission == 'Учитель' else '/administration/')

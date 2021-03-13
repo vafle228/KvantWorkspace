@@ -15,4 +15,4 @@ class KvantUser(AbstractUser):
     permission = models.CharField(choices=permission, max_length=100)
 
     def __str__(self):
-        return f'{self.permission} {self.surname} {self.name[0]}.{self.patronymic[0]}'
+        return f'{self.permission} {self.surname} {self.name[0]}.{self.patronymic[0]}.'

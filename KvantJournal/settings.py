@@ -118,9 +118,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#
+
 # Google Drive Storage Settings
-#
 
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'ApiKey.json')
 GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'media'

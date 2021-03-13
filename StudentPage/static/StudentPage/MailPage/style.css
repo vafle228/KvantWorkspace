@@ -1,0 +1,108 @@
+/* Почта */
+#mail{ padding-left: 140px }
+#mail header{
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+#mail header > button h3{
+    background-color: #0E58B5;
+    border-radius: 10px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    color: #fff;
+}
+#mail header .week-selector{
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#mail header .week-selector h3{
+    background-color: #22B975;
+    border-radius: 10px;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px;
+    margin: 0 5px;
+}
+#mail header .week-selector button{
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    background-color: #22B975;
+    border-radius: 10px;
+    color: #fff;
+}
+#mail header .week-selector span{
+    font-size: 32px;
+    margin-top: 6px;
+}
+#mail main::-webkit-scrollbar {width: 0;}
+#mail main{
+    width: 800px;
+    height: 800px;
+    padding: 0 10px 200px 10px;
+    overflow-y: scroll;
+}
+#mail main .day > h3{
+    text-align: right;
+    margin-top: 10px;
+}
+#mail main .day .item{
+    padding: 10px 25px 25px 25px;
+    margin-top: 10px;
+    position: relative;
+}
+#mail main .day .item .item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+#mail main .day .item .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+#mail main .day .item .item-header .lesson-teacher{
+    display: flex;
+    align-items: center;
+}
+#mail main .day .item .item-header .lesson-teacher img{
+    width: 40px;
+    height: 40px;
+}
+#mail main .day .item .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Стилизация выпадающего списка */
+
+.dropdown-input{
+    font-size: 1.5rem;
+    color: #111926;
+    font-weight: bold;
+    margin-top: 10px;
+    min-width: 400px;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    display: block;
+}
+.dropdown-content a:hover{ background-color: #f1f1f1 }
