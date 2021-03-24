@@ -7,35 +7,16 @@
     margin-bottom: 30px;
     padding: 0 10px;
 }
+#mail header > button{
+    background-color: unset;
+}
 #mail header > button h3{
     background-color: #0E58B5;
     border-radius: 10px;
     height: 40px;
-    vertical-align: middle;
     padding: 10px;
     color: #fff;
-}
-#mail header .week-selector{
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#mail header .week-selector h3{
-    background-color: #22B975;
-    border-radius: 10px;
-    height: 40px;
-    vertical-align: middle;
-    padding: 10px;
-    margin: 0 5px;
-}
-#mail header .week-selector button{
-    height: 40px;
-    width: 40px;
-    padding: 4px;
-    background-color: #22B975;
-    border-radius: 10px;
-    color: #fff;
+    filter: none;
 }
 #mail header .week-selector span{
     font-size: 32px;

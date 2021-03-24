@@ -130,12 +130,12 @@
 #news{
     width: 100%;
     background-color: #fff;
-    padding: 50px 45px 0 195px;
+    padding: 50px 45px 100px 195px;
 }
 #news > div{
     width: 100%;
     margin-top: 20px;
-    padding: 0 5px 5px;
+    padding: 0 5px 10px;
     display: flex;
     gap: 2%;
 }
@@ -143,7 +143,7 @@
     max-width: 32%;
     height: auto;
     margin-bottom: 2%;
-    max-height: 320px;
+    max-height: 400px;
 }
 #news > div .item:last-child{ margin-right: 0 }
 #news > div .item img{

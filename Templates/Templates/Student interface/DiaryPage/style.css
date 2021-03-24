@@ -61,7 +61,7 @@
 #diary main .day .item .item-header .lesson-title h3{
     color: #0E58B5;
     font-weight: bold;
-    margin-top: 22px;
+    margin-top: 10px;
     float: right;
 }
 #diary main .day .item .item-header .lesson-teacher{

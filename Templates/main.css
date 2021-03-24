@@ -337,7 +337,7 @@ aside nav .active{ background-color: #2C3B4F }
 
 
 /* Почта */
-#mail{ padding-left: 140px }
+/* #mail{ padding-left: 140px }
 #mail header{
     display: flex;
     justify-content: space-between;
@@ -417,8 +417,8 @@ aside nav .active{ background-color: #2C3B4F }
     font-size: 16px;
 }
 
-/* Статистика */
-#statistics{ padding-left: 140px }
+Статистика */
+/* #statistics{ padding-left: 140px }
 #statistics header{
     display: flex;
     justify-content: space-between;
@@ -488,7 +488,7 @@ aside nav .active{ background-color: #2C3B4F }
     display: inline-block;
     margin-right: 10px;
     font-size: 16px;
-}
+} */
 
 /* Формы */
 .form{ display: none }
@@ -530,7 +530,7 @@ aside nav .active{ background-color: #2C3B4F }
     transition-duration: .2s;
 }
 .form-wrapper form .form-btn span{ margin-right: 10px }
-.form-wrapper form .form-btn:hover{ color: #111926; background-color: #fff; box-shadow: 0 2px 10px 10px #2c3b4f2f; }
+.form-wrapper form .form-btn:hover{ box-shadow: 0 2px 10px 10px #2c3b4f2f; }
 
 /* Форма */
 .form-wrapper form .item-header{
