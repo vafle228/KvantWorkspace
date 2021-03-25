@@ -511,7 +511,7 @@ aside nav .active{ background-color: #2C3B4F }
 .form-wrapper form .text-field::placeholder{ font-size: 1rem }
 .form-wrapper form .preview{
     width: 822px;
-    margin: -25px -25px 0 -25px;
+    margin: -25px -25px 10px -25px;
     border-radius: 15px 15px 0 0;
 }
 
