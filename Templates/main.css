@@ -1,6 +1,13 @@
+
+/* Основной шрифт */
 @font-face{
 	font-family: 'Arsenal'; 
 	src: url('Arsenal-Regular.otf'); 
+}
+/* Курсивный шрифт */
+@font-face{
+	font-family: 'Awesome'; 
+	src: url('fontawesome-webfont.woff'); 
 }
 
 ::-webkit-scrollbar{ width: 0 }
