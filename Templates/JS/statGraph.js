@@ -14,7 +14,7 @@ function drawChart() {
   var view = new google.visualization.DataView(data);
   view.setColumns([0, 1, { calc: "stringify", sourceColumn: 1, type: "string", role: "annotation" }, 2]);
 
-  var options = { width: 430, height: 200, bar: {groupWidth: "100%"}, legend: { position: "none" }, fontSize: 16 };
+  var options = { width: 630, height: 200, bar: {groupWidth: "100%"}, legend: { position: "none" }, fontSize: 16 };
 
   // Graph1
   var chart = new google.visualization.ColumnChart(document.getElementById("graph1"));
