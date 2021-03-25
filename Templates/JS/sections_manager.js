@@ -29,6 +29,11 @@ $("#mail .item").click(function(){
     $('#mail .form')[0].style.display = 'block';
 });
 
+// Открытие формы по нажатию на новость
+$("#news .item").click(function(){
+    $('#news .form')[0].style.display = 'block';
+});
+
 // Открытие формы создания письма
 function open_create_mail_form(){
     $('#mail .form')[1].style.display = 'block';

@@ -1,68 +1,34 @@
 /* Почта */
 #mail{ padding-left: 140px }
 #mail header{
-    display: flex;
-    justify-content: space-between;
+    display: flex; justify-content: space-between;
     width: 800px;
     margin-bottom: 30px;
     padding: 0 10px;
 }
-#mail header > button{
-    background-color: unset;
-}
+#mail header > button{ background-color: unset }
 #mail header > button h3{
     background-color: #0E58B5;
-    border-radius: 10px;
+    border-radius: 20px;
     height: 40px;
-    padding: 10px;
+    padding: 0 20px;
     color: #fff;
-    filter: none;
+    display: flex; align-items: center;
 }
-#mail header .week-selector span{
-    font-size: 32px;
-    margin-top: 6px;
-}
-#mail main::-webkit-scrollbar {width: 0;}
+#mail main::-webkit-scrollbar { width: 0 }
 #mail main{
-    width: 800px;
-    height: 800px;
-    padding: 0 10px 200px 10px;
+    width: 800px; height: 800px; padding: 0 10px 200px 10px;
     overflow-y: scroll;
 }
-#mail main .day > h3{
-    text-align: right;
-    margin-top: 10px;
-}
-#mail main .day .item{
-    padding: 10px 25px 25px 25px;
-    margin-top: 10px;
-    position: relative;
-}
-#mail main .day .item .item-header{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-#mail main .day .item .item-header .lesson-title h2{
-    display: inline-block;
-    margin-right: 10px;
-}
-#mail main .day .item .item-header .lesson-teacher{
-    display: flex;
-    align-items: center;
-}
-#mail main .day .item .item-header .lesson-teacher img{
-    width: 40px;
-    height: 40px;
-}
-#mail main .day .item .item-header .lesson-teacher h4{
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 16px;
-}
+#mail main .day > h3{ text-align: right; margin-top: 10px }
+#mail main .day .item{ padding: 10px 25px 15px 25px; margin-top: 10px; position: relative }
+#mail main .day .item .item-header{ display: flex; justify-content: space-between; margin-bottom: 5px }
+#mail main .day .item .item-header .lesson-title h2{ display: inline-block; margin-right: 10px }
+#mail main .day .item .item-header .lesson-teacher{ display: flex; align-items: center }
+#mail main .day .item .item-header .lesson-teacher img{ width: 40px; height: 40px }
+#mail main .day .item .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
 
 /* Стилизация выпадающего списка */
-
 .dropdown-input{
     font-size: 1.5rem;
     color: #111926;

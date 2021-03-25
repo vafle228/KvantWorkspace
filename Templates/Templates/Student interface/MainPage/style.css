@@ -137,6 +137,7 @@
     margin-top: 20px;
     padding: 0 5px 10px;
     display: flex;
+    flex-wrap: wrap;
     gap: 2%;
 }
 #news > div .item{
@@ -153,3 +154,6 @@
     border-radius: 15px 15px 0 0;
 }
 #news > div .item h2, #news > div .item p{ margin: 10px 25px }
+
+/* Форма просмотра новости */
+
