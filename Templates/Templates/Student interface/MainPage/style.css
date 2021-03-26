@@ -155,5 +155,23 @@
 }
 #news > div .item h2, #news > div .item p{ margin: 10px 25px }
 
+#more-news{
+    width: 100%;
+    display: flex; justify-content: center;
+}
+#more-news button{
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #0E58B5;
+    color: #fff;
+    font-size: 24px;
+    transition-duration: .2s;
+    transition-property: transform box-shadow;
+}
+#more-news button:hover{
+    box-shadow: 0 5px 0 0 #0b458b;
+    transform: scale(1.05);
+}
+
 /* Форма просмотра новости */
 

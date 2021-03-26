@@ -486,6 +486,9 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex; justify-content: space-between;
     margin-bottom: 5px;
 }
+.form-wrapper form .item-header .lesson-title{
+    max-width: 75%;
+}
 .form-wrapper form .item-header .lesson-title h2{
     display: inline-block;
     margin-right: 10px;
@@ -494,7 +497,7 @@ aside nav .active{ background-color: #2C3B4F }
     color: #0E58B5; font-weight: bold;
     margin-top: 10px; float: right;
 }
-.form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
+.form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center; align-self: flex-start; }
 .form-wrapper form .item-header .lesson-teacher img{ width: 40px; height: 40px }
 .form-wrapper form .item-header .lesson-teacher h4{
     display: inline-block;
