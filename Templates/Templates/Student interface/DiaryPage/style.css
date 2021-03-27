@@ -1,19 +1,22 @@
 /* Дневник */
-#diary{ padding-left: 140px }
-#diary header{
+
+#diary {
+    padding-left: 140px
+}
+#diary header {
     display: flex;
     justify-content: space-between;
     width: 800px;
     margin-bottom: 30px;
     padding: 0 10px;
 }
-#diary header .week-selector{
+#diary header .week-selector {
     height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-#diary header .week-selector h3{
+#diary header .week-selector h3 {
     background-color: #22B975;
     border-radius: 10px;
     height: 40px;
@@ -21,7 +24,7 @@
     padding: 10px;
     margin: 0 5px;
 }
-#diary header .week-selector button{
+#diary header .week-selector button {
     height: 40px;
     width: 40px;
     padding: 4px;
@@ -29,65 +32,100 @@
     border-radius: 10px;
     color: #fff;
 }
-#diary header .week-selector span{
+#diary header .week-selector span {
     font-size: 32px;
     margin-top: 6px;
 }
-#diary main::-webkit-scrollbar { width: 0; }
-#diary main{
+#diary main::-webkit-scrollbar {
+    width: 0;
+}
+#diary main {
     width: 800px;
     height: 800px;
     padding: 0 10px 200px 10px;
     overflow-y: scroll;
 }
-#diary main .day > h3{
+#diary main .day>h3 {
     text-align: right;
     margin-top: 10px;
 }
-#diary main .day .item{
+#diary main .day .item {
     padding: 10px 40px 15px 25px;
     margin-top: 10px;
     position: relative;
 }
-#diary main .day .item .item-header{
+#diary main .day .item .item-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
 }
-#diary main .day .item .item-header .lesson-title h2{
+#diary main .day .item .item-header .lesson-title h2 {
     display: inline-block;
     margin-right: 10px;
 }
-#diary main .day .item .item-header .lesson-title h3{
+#diary main .day .item .item-header .lesson-title h3 {
     color: #0E58B5;
     font-weight: bold;
     margin-top: 10px;
     float: right;
 }
-#diary main .day .item .item-header .lesson-teacher{
+#diary main .day .item .item-header .lesson-teacher {
     display: flex;
     align-items: center;
 }
-#diary main .day .item .item-header .lesson-teacher img{
+#diary main .day .item .item-header .lesson-teacher img {
     width: 40px;
     height: 40px;
 }
-#diary main .day .item .item-header .lesson-teacher h4{
+#diary main .day .item .item-header .lesson-teacher h4 {
     display: inline-block;
     margin-right: 10px;
     font-size: 16px;
 }
 
 /* Псевдоэлемент оценки */
-.day > .item::after, form::after{
+
+.day>.item::after, form::after {
     content: '';
-    position: absolute; right: 0; top: 0;
-    height: 100%; width: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 15px;
     border-radius: 0 15px 15px 0;
 }
-.four::after{ background-color: #00D575 } /* Идеально */
-.three::after{ background-color: #FE9C4A } /* С замечаниями */
-.two::after{ background-color: #FFCB3A } /* Сойдет */
-.one::after{ background-color: #FF3A3A }  /* Плохо */
-.absence::after{ background-color: #4C50B8 }  /* Отсутствие */
-.disease::after{ background-color: #9c48c4 }  /* Отсутствие по болезни */
+.four::after {
+    background-color: #00D575
+}
+
+/* Идеально */
+
+.three::after {
+    background-color: #FE9C4A
+}
+
+/* С замечаниями */
+
+.two::after {
+    background-color: #FFCB3A
+}
+
+/* Сойдет */
+
+.one::after {
+    background-color: #FF3A3A
+}
+
+/* Плохо */
+
+.absence::after {
+    background-color: #4C50B8
+}
+
+/* Отсутствие */
+
+.disease::after {
+    background-color: #9c48c4
+}
+
+/* Отсутствие по болезни */
