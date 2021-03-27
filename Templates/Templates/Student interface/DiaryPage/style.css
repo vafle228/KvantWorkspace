@@ -79,13 +79,10 @@
 }
 
 /* Псевдоэлемент оценки */
-.day > .item::after{
+.day > .item::after, form::after{
     content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 15px;
+    position: absolute; right: 0; top: 0;
+    height: 100%; width: 15px;
     border-radius: 0 15px 15px 0;
 }
 .four::after{ background-color: #00D575 } /* Идеально */
