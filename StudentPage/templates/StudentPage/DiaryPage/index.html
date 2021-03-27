@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' href='{% static "StudentPage/.main/main.css" %}' /> <!-- Основные стили -->
-    <link rel='stylesheet' href='{% static "StudentPage/.main/Poppins/poppins.css" %}' /> <!-- Шрифт Poppins -->
     <link rel='stylesheet' href='{% static "StudentPage/.main/uicons-regular-rounded.css" %}' /> <!-- Иконки -->
     <link rel="shortcut icon" href='{% static "StudentPage/.main/logo.png" %}' type="image/png" /> <!-- Лого -->
     <link rel="stylesheet" href='{% static "StudentPage/DiaryPage/style.css" %}'> <!-- Стили страницы -->
@@ -17,18 +16,30 @@
                  url("{% static 'StudentPage/.main/uicons-regular-rounded.woff2' %} ") format("woff2"),
                  url("{% static 'StudentPage/.main/uicons-regular-rounded.woff' %}") format("woff");
         }
+        /* Основной шрифт */
+        @font-face{
+            font-family: 'Arsenal'; 
+            src: url("{% static 'StudentPage/.main/Arsenal-Regular.otf' %}"); 
+        }
+        /* Курсивный шрифт */
+        @font-face{
+            font-family: 'Awesome'; 
+            src: url("{% static 'StudentPage/.main/fontawesome-webfont.woff' %}"); 
+        }
     </style>
 </head>
 
 <body>
     <!-- Навигационное меню -->
     <aside>
-        <img src='{% static "StudentPage/.main/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
+        <img src="{% static 'StudentPage/.main/logo.png' %}" id='logo' alt='logo' onclick="reload(this)"/>
         <nav>
-            <button><a href='{% url "student_page" %}'><span class="fi fi-rr-apps"></a></button>
-            <button class='active'><a href='{% url "student_diary" %}'><span class="fi fi-rr-book-alt"></a></button>
-            <button><a href='{% url "student_mail" %}'><span class="fi fi-rr-envelope"></a></button>
-            <button><a href='{% url "student_statistics" %}'><span class="fi fi-rr-stats"></a></button>
+            <button><a href="{% url 'student_page' %}"><span class="fi fi-rr-apps"></a></button>
+            <button class='active'>
+                <a href="{% url 'student_diary' %}"><span class="fi fi-rr-book-alt"></a>
+            </button>
+            <button><a href="{% url 'student_mail' %}"><span class="fi fi-rr-envelope"></a></button>
+            <button><a href="{% url 'student_statistics' %}"><span class="fi fi-rr-stats"></a></button>
         </nav>
         <nav style='position: absolute; bottom: 15px'>
             <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->
@@ -40,7 +51,7 @@
     <!-- Дневник -->
     <section id="diary">
         <header>
-            <h1>Diary</h1>
+            <span class="fi fi-rr-book-alt" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Дневник</h1></span>
             <div class="week-selector">
                 <button><span class="fi-rr-angle-double-small-left"></span></button>
                 <h3 style='color: #fff'>01.02 - 07.02</h3>
@@ -58,11 +69,12 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Зарывных П. С</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
             </div>
@@ -76,13 +88,12 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
                 <div class="item one">
@@ -93,13 +104,12 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
             </div>
@@ -113,14 +123,18 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
+                    <hr style='margin: 10px 0'/>
+                    <div class="files">
+                        <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                        <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                    </div>
                 </div>
                 <div class="item two">
                     <div class='item-header'>
@@ -130,13 +144,12 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
             </div>
@@ -150,13 +163,12 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
                 <div class="item one">
@@ -167,18 +179,17 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
             </div>
         </main>
-        <img src='{% static "StudentPage/.main/atom.png" %}' class='bg'/>
+        <img src="{% static 'StudentPage/.main/atom.png' %}" class='bg'/>
         <!-- Форма просмотра домашнего задания -->
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
@@ -191,28 +202,27 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Зарывных П. С</h4>
-                            <img src='{% static "StudentPage/DiaryPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/DiaryPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. 
+                        И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                     <hr style='margin: 25px 0'/>
-                    <h2>Homework</h2>
+                    <h2>Домашнее задание</h2>
                     <textarea name="Homework-text" class='text-field' autocomplete="off"></textarea>
                     <div class="item-header">
                         <div class='files'>
-                            <div class='file'><span class="fi-rr-document"></span>homework IT(2-4) 8.02.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>homework.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>homework.docx</div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
                         </div>
-                        <button class='form-btn'><span class="fi-rr-clip"></span>Add file</button>
+                        <div style='display: flex; flex-direction: column;'>
+                            <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Документ</h4></button>
+                            <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Отправить</h4></button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -220,7 +230,8 @@
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='{% static "StudentPage/DiaryPage/sections_manager.js" %}'></script> <!-- Менеджер секций-->
+    <!-- Менеджер секций-->
+    <script src="{% static 'StudentPage/DiaryPage/sections_manager.js' %}"></script> 
 </body>
 
 </html>

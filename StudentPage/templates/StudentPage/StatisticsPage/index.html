@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' href='{% static "StudentPage/.main/main.css" %}' /> <!-- Основные стили -->
-    <link rel='stylesheet' href='{% static "StudentPage/.main/Poppins/poppins.css" %}' /> <!-- Шрифт Poppins -->
     <link rel='stylesheet' href='{% static "StudentPage/.main/uicons-regular-rounded.css" %}' /> <!-- Иконки -->
     <link rel="shortcut icon" href='{% static "StudentPage/.main/logo.png" %}' type="image/png" />
     <link rel="stylesheet" href='{% static "StudentPage/StatisticsPage/style.css" %}'> <!-- Стили страницы -->
@@ -16,6 +15,16 @@
             src: url("{% static 'StudentPage/.main/uicons-regular-rounded.eot' %}#iefix") format("embedded-opentype"),
                  url("{% static 'StudentPage/.main/uicons-regular-rounded.woff2' %} ") format("woff2"),
                  url("{% static 'StudentPage/.main/uicons-regular-rounded.woff' %}") format("woff");
+        }
+        /* Основной шрифт */
+        @font-face{
+            font-family: 'Arsenal'; 
+            src: url("{% static 'StudentPage/.main/Arsenal-Regular.otf' %}"); 
+        }
+        /* Курсивный шрифт */
+        @font-face{
+            font-family: 'Awesome'; 
+            src: url("{% static 'StudentPage/.main/fontawesome-webfont.woff' %}"); 
         }
     </style>
 </head>
@@ -40,9 +49,9 @@
     <!-- Статистика -->
     <section id="statistics">
         <header>
-            <h1>Statistics</h1>
+            <span class="fi fi-rr-stats" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Статистика</h1></span>
         </header>
-                <main>
+        <main>
             <div class='day'>
                 <div class="item">
                     <div class='item-header'>
@@ -51,7 +60,7 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Зарывных П. С</h4>
-                            <img src='{% static "StudentPage/StatisticsPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/StatisticsPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <div class='graph' id="graph1"></div>
@@ -63,7 +72,7 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/StatisticsPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/StatisticsPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <div class="graph" id='graph2'></div>
@@ -75,15 +84,16 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/StatisticsPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/StatisticsPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <div class="graph" id='graph3'></div>
                 </div>
             </div>
         </main>
-        <img src='{% static "StudentPage/.main/atom.png" %}' class='bg'/>
+        <img src="{% static 'StudentPage/.main/atom.png' %}" class='bg'/>
     </section>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='{% static "StudentPage/StatisticsPage/sections_manager.js" %}'></script> <!-- Менеджер секций-->

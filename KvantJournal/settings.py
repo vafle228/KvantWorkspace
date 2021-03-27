@@ -30,15 +30,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'gdstorage',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'StudentPage.apps.StudentPageConfig',
     'LoginPage.apps.LoginPageConfig',
+    'StudentPage.apps.StudentPageConfig',
+    'TeacherPage.apps.TeacherPageConfig',
+    'AdminPage.apps.AdminPageConfig',
+    'GeneralPage.apps.GeneralPageConfig'
 ]
 
 MIDDLEWARE = [
@@ -118,8 +121,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Media setup
 
-# Google Drive Storage Settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'ApiKey.json')
-GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'media'
+# AWS S3 Set up
+AWS_STORAGE_BUCKET_NAME = 'kvant-journal'
+AWS_ACCESS_KEY_ID = 'AKIAZTAFQGAIYRYMOODR'
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_REGION_NAME = "eu-west-2"
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

@@ -45,7 +45,7 @@
     margin-top: 10px;
 }
 #diary main .day .item{
-    padding: 10px 40px 25px 25px;
+    padding: 10px 40px 15px 25px;
     margin-top: 10px;
     position: relative;
 }
@@ -61,7 +61,7 @@
 #diary main .day .item .item-header .lesson-title h3{
     color: #0E58B5;
     font-weight: bold;
-    margin-top: 22px;
+    margin-top: 10px;
     float: right;
 }
 #diary main .day .item .item-header .lesson-teacher{

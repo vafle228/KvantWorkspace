@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' href='{% static "StudentPage/.main/main.css" %}' /> <!-- Основные стили -->
-    <link rel='stylesheet' href='{% static "StudentPage/.main/Poppins/poppins.css" %}' /> <!-- Шрифт Poppins -->
     <link rel='stylesheet' href='{% static "StudentPage/.main/uicons-regular-rounded.css" %}' /> <!-- Иконки -->
     <link rel="shortcut icon" href='{% static "StudentPage/.main/logo.png" %}' type="image/png" />
     <link rel="stylesheet" href='{% static "StudentPage/MailPage/style.css" %}'> <!-- Стили страницы -->
@@ -17,18 +16,30 @@
                  url("{% static 'StudentPage/.main/uicons-regular-rounded.woff2' %} ") format("woff2"),
                  url("{% static 'StudentPage/.main/uicons-regular-rounded.woff' %}") format("woff");
         }
+        /* Основной шрифт */
+        @font-face{
+            font-family: 'Arsenal'; 
+            src: url("{% static 'StudentPage/.main/Arsenal-Regular.otf' %}"); 
+        }
+        /* Курсивный шрифт */
+        @font-face{
+            font-family: 'Awesome'; 
+            src: url("{% static 'StudentPage/.main/fontawesome-webfont.woff' %}"); 
+        }
     </style>
 </head>
 
 <body>
     <!-- Навигационное меню -->
     <aside>
-        <img src='{% static "StudentPage/.main/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
+        <img src="{% static 'StudentPage/.main/logo.png' %}" id='logo' alt='logo' onclick="reload(this)"/>
         <nav>
-            <button><a href='{% url "student_page" %}'><span class="fi fi-rr-apps"></a></button>
-            <button><a href='{% url "student_diary" %}'><span class="fi fi-rr-book-alt"></a></button>
-            <button class='active'><a href='{% url "student_mail" %}'><span class="fi fi-rr-envelope"></a></button>
-            <button><a href='{% url "student_statistics" %}'><span class="fi fi-rr-stats"></a></button>
+            <button><a href="{% url 'student_page' %}"><span class="fi fi-rr-apps"></a></button>
+            <button><a href="{% url 'student_diary' %}"><span class="fi fi-rr-book-alt"></a></button>
+            <button class='active'>
+                <a href="{% url 'student_mail' %}"><span class="fi fi-rr-envelope"></a>
+            </button>
+            <button><a href="{% url 'student_statistics' %}"><span class="fi fi-rr-stats"></a></button>
         </nav>
         <nav style='position: absolute; bottom: 15px'>
             <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->
@@ -37,11 +48,10 @@
         </nav>
     </aside>
     
-    <!-- Почта -->
     <section id="mail">
         <header>
-            <h1>Mail</h1>
-            <button onclick="open_create_mail_form()"><h3>Compose</h3></button>
+            <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
+            <button onclick="open_create_mail_form()"><h3>Написать</h3></button>
         </header>
         <main>
             <div class='day'>
@@ -49,11 +59,11 @@
                 <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2>Title</h2>
+                            <h2>Заголовок</h2>
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Зарывных П. С</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
@@ -66,11 +76,11 @@
                 <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2>Title</h2>
+                            <h2>Заголовок</h2>
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
@@ -78,50 +88,20 @@
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </p>
-                </div>
-                <div class="item">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Title</h2>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
-                        </div>
+                    <hr style='margin: 10px 0'/>
+                    <div class="files">
+                        <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                        <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
                     </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-            </div>
-            <div class='day'>
-                <h3>BT 02.02.2021</h3>
-                <div class="item">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Title</h2>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
                 </div>
                 <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2>Title</h2>
+                            <h2>Заголовок</h2>
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
@@ -136,11 +116,11 @@
                 <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2>Title</h2>
+                            <h2>Заголовок</h2>
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
@@ -152,11 +132,46 @@
                 <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2>Title</h2>
+                            <h2>Заголовок</h2>
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Педагог</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+            </div>
+            <div class='day'>
+                <h3>BT 02.02.2021</h3>
+                <div class="item">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>Заголовок</h2>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
+                        </div>
+                    </div>
+                    <p class='item-text'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                </div>
+                <div class="item">
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <h2>Заголовок</h2>
+                        </div>
+                        <div class='lesson-teacher'>
+                            <h4>Педагог</h4>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
@@ -167,7 +182,7 @@
                 </div>
             </div>
         </main>
-        <img src='{% static "StudentPage/.main/atom.png" %}' class='bg'/>
+        <img src="{% static 'StudentPage/.main/atom.png' %}" class='bg'/>
         <!-- Форма просмотра письма -->
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
@@ -175,11 +190,11 @@
                 <form>
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <h2>Title</h2>
+                            <h2>Заголовок</h2>
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Отправитель</h4>
-                            <img src='{% static "StudentPage/MailPage/unnamed.png" %}'/>
+                            <img src="{% static 'StudentPage/MailPage/unnamed.png' %}"/>
                         </div>
                     </div>
                     <p class='item-text'>
@@ -193,8 +208,8 @@
                     </p>
                     <div class="item-header">
                         <div class='files'>
-                            <div class='file'><span class="fi-rr-document"></span>homework IT(2-4) 8.02.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>homework.docx</div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
                         </div>
                     </div>
                 </form>
@@ -208,7 +223,7 @@
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <div class="dropdown" style="width: 100%">
-                                <input placeholder="To" onkeyup="filterFunction(this)" class='dropdown-input'>
+                                <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input'>
                                 <div class="dropdown-content" style="display: none;">
                                     <a onclick="search_fill(this)" style='display: block'><p>Смышляев Дмитрий Ильич</p></a>
                                     <a onclick="search_fill(this)" style='display: block'><p>Каратаев Вадим Алексеевич</p></a>
@@ -218,17 +233,17 @@
                                 </div>
                               </div>
                         </div>
-                        <button class='form-btn' type="submit">Send</button>
+                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Отправить</h3></button>
                     </div>
                     <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Заголовок" style='height: 41px;'></textarea>
                     <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Сообщение" style='height: 115px;'></textarea>
                     <div class="item-header">
                         <div class='files'>
-                            <div class='file'><span class="fi-rr-document"></span>document.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>document.docx</div>
-                            <div class='file'><span class="fi-rr-document"></span>document.docx</div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
+                            <div class='file'><span class="fi-rr-file"></span><h4>document.docx</h4></div>
                         </div>
-                        <button class='form-btn'><span class="fi-rr-clip"></span>Add file</button>
+                        <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Документ</h3></button>
                     </div>
                 </form>
             </div>

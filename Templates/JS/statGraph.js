@@ -3,12 +3,12 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ["Element", "Оценка", { role: "style" } ],
-    ["4", 12, "#00D575"],
-    ["3", 5, "#FE9C4A"],
-    ["2", 3, "#FFCB3A"],
-    ["1", 6, "#FF3A3A"],
-    ["ОТ", 4, "#4C50B8"],
-    ["УП", 2, "#9c48c4"],
+    ["4", 100, "#00D575"],
+    ["3", 50, "#FE9C4A"],
+    ["2", 30, "#FFCB3A"],
+    ["1", 60, "#FF3A3A"],
+    ["ОТ", 40, "#4C50B8"],
+    ["УП", 20, "#9c48c4"],
   ]);
 
   var view = new google.visualization.DataView(data);
