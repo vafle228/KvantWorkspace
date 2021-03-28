@@ -13,3 +13,4 @@ function close_form(bg){
 $("#diary .item").click(function(){
     $('#diary .form')[0].style.display = 'block';
 });
+

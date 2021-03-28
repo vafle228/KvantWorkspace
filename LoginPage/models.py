@@ -21,10 +21,19 @@ class KvantUser(AbstractUser):
 class KvantStudent(models.Model):
     student = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.student.__str__()
+
 
 class KvantTeacher(models.Model):
     teacher = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.teacher.__str__()
+
 
 class KvantAdmin(models.Model):
     admin = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.admin.__str__()

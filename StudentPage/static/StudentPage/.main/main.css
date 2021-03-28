@@ -73,10 +73,11 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex; align-items: center;
 }
 .form-wrapper form{
-    height: min-content; width: 822px;
+    height: auto; width: 822px;
     background-color: #fff;
     padding: 15px 40px 15px 25px; margin: 0 auto;
     border-radius: 15px;
+    position: relative;
 }
 .form-wrapper form .form-btn{
     color: #fff; font-size: 20px;

@@ -42,11 +42,11 @@
         <img src='{% static "StudentPage/.main/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
         <nav>
             <button class='active'>
-                <a href='{% url "student_page" %}'><span class="fi fi-rr-apps"></a>
+                <a href='{% url "student_page" user.id %}'><span class="fi fi-rr-apps"></a>
             </button>
-            <button><a href='{% url "student_diary" %}'><span class="fi fi-rr-book-alt"></a></button>
-            <button><a href='{% url "student_mail" %}'><span class="fi fi-rr-envelope"></a></button>
-            <button><a href='{% url "student_statistics" %}'><span class="fi fi-rr-stats"></a></button>
+            <button><a href='{% url "student_diary" user.id %}'><span class="fi fi-rr-book-alt"></a></button>
+            <button><a href='{% url "student_mail" user.id %}'><span class="fi fi-rr-envelope"></a></button>
+            <button><a href='{% url "student_statistics" user.id %}'><span class="fi fi-rr-stats"></a></button>
         </nav>
         <nav style='position: absolute; bottom: 15px'>
             <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->

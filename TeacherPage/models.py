@@ -1,6 +1,6 @@
 from django.db import models
-from LoginPage.models import KvantUser
 from StudentPage.models import FileStorage
+from LoginPage.models import KvantUser, KvantStudent
 
 marks = (
     ('1', '1'), ('2', '2'),
@@ -11,10 +11,11 @@ marks = (
 
 class KvantLessonHomeWork(models.Model):
     task = models.TextField()
-    file = models.ManyToManyField(FileStorage)
+    file = models.ManyToManyField(FileStorage, blank=True)
+    students = models.ManyToManyField(KvantStudent, blank=True)
 
     def __str__(self):
-        return f'Задание на {str(self.kvantlesson)}'
+        return f'Задание для: ' + ', '.join([student.student.__str__() for student in self.students.all()])
 
 
 class KvantLessonMark(models.Model):

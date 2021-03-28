@@ -24,4 +24,7 @@ class KvantUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
+admin.site.register(models.KvantAdmin)
+admin.site.register(models.KvantTeacher)
+admin.site.register(models.KvantStudent)
 admin.site.register(models.KvantUser, KvantUserAdmin)

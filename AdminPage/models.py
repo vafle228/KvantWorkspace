@@ -16,7 +16,7 @@ class KvantLesson(models.Model):
     date = models.DateField()
     mark = models.ManyToManyField(KvantLessonMark, blank=True)
     course = models.ForeignKey(KvantCourse, on_delete=models.CASCADE)
-    task = models.OneToOneField(KvantLessonHomeWork, on_delete=models.CASCADE, blank=True, default=None)
+    task = models.ManyToManyField(KvantLessonHomeWork, blank=True)
 
     def __str__(self):
         return f'Урок {self.date}'
