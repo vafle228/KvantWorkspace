@@ -10,6 +10,7 @@
 	src: url('fontawesome-webfont.woff'); 
 }
 
+/* Скрываем скролбар */
 ::-webkit-scrollbar{ width: 0 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
@@ -133,8 +134,14 @@ aside nav .active{ background-color: #2C3B4F }
     border-radius: 10px; border: #00000022 solid 1px;
     padding: 10px;
     font-size: 1rem;
+    height: auto;
+}
+.form-wrapper form .text-field-title{
+    font-size: 1.3rem;
 }
 .form-wrapper form .text-field::placeholder{ font-size: 1rem }
+.form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
+
 .form-wrapper form .preview{
     width: 822px;
     margin: -25px -25px 10px -25px;

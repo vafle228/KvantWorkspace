@@ -2,7 +2,6 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
     width: 24px; height: 24px;
     background-size: cover;
     display: block;
-    /* background-image: url('./svg/default.svg'); */
 }
 
 /* Archive */

@@ -34,12 +34,17 @@ $("#news .item").click(function(){
     $('#news .form')[0].style.display = 'block';
 });
 
+// Открытие формы создания новости
+function open_add_news_form(){
+    $('#news #add-news-form')[0].style.display = 'block';
+}
+
 // Открытие формы создания письма
 function open_create_mail_form(){
     $('#mail .form')[1].style.display = 'block';
 }
 
-// Поиск получателя
+// Поиск получателя письма
 function filterFunction(input) {
 	input.nextElementSibling.style.display = 'block';
 	var filter = input.value.toUpperCase();
@@ -55,7 +60,7 @@ function filterFunction(input) {
 	}
 }
 
-// Выбор получателя
+// Выбор получателя письма
 function search_fill(a) {
 	var input = a.parentElement.previousElementSibling;
 	input.value = a.textContent;
