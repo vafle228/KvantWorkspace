@@ -41,7 +41,7 @@
                 <h3>Место обучения</h3>
                 <div>
                     <!-- Цитата -->
-                    <h6 style='width: 75%; font-size: 1.5rem; font-weight: 200; font-family: Awesome'><i
+                    <h6 style='width: 60%; font-size: 1.5rem; font-weight: 200; font-family: Awesome'><i
                             id='quote'>«Оценивать эффективность процесса программирования
                             количеством написанных строк кода — то же самое,
                             что оценивать процесс создания самолёта по его весу»</i></h6>
@@ -151,7 +151,8 @@
                 </div>
             </div>
             <!-- Кнопка "Больше новостей" -->
-            <div id="more-news" class='main-btn'> <button>Больше новостей</button> </div>
+            <div id="more-news" class='main-btn'>
+                <button>Больше новостей</button>
             </div>
         </section>
     </section>
@@ -160,6 +161,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- Менеджер секций-->
     <script src='../../../JS/sections_manager.js'></script>
+    <script>
+        $(document).ready(function () {
+            $('#next').click(function () {
+                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() + 290 }, 400);
+            });
+            $('#prev').click(function () {
+                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() - 290 }, 400);
+            });
+        });
+    </script>
 </body>
 
 </html>
