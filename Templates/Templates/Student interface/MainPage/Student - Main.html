@@ -6,12 +6,13 @@
     <link rel='stylesheet' href='../../../main.css' /> <!-- Основные стили -->
     <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
     <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' />
+    <!-- Иконки расширений файлов -->
     <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Лого -->
     <title>Главная</title>
 </head>
 
-<body style="overflow-y: auto">
+<body style="overflow: auto">
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -73,6 +74,55 @@
                         <h4>Время занятий</h4>
                         <h4>Педагог</h4>
                     </div>
+                </div>
+            </div>
+            <!-- Форма просмотра курса -->
+            <div class='form' style='padding: 0'>
+                <div class='filter' onclick="close_form(this)"></div>
+                <div class="form-wrapper">
+                    <form class='four'>
+                        <div class='item-header'>
+                            <div class='lesson-title'>
+                                <h2>IT</h2>
+                            </div>
+                            <div class='lesson-teacher'>
+                                <h4>Зарывных П. С</h4>
+                                <img src='../../../img/unnamed.png' />
+                            </div>
+                        </div>
+                        <p class='item-text'>
+                            Краткое описание курса. Если его не надо уберем
+                        </p>
+                        <hr style='margin: 25px 0' />
+                        <h2>Расписание</h2>
+                        <div class="calendar__timetable">
+                            <div class="day">пн</div>
+                            <div class="day day-active">вт<time>18:20</time></div>
+                            <div class="day">ср</div>
+                            <div class="day day-active">чт<time>18:20</time></div>
+                            <div class="day">пт</div>
+                            <div class="day">сб</div>
+                            <div class="day">вс</div>
+                        </div>
+                        <hr style='margin: 25px 0' />
+                        <h2>Участники курса</h2>
+                        <div class="item-header">
+                            <div class='files' style='width: 100%'>
+                                <div class='file'><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div>
+                                <div class='file'><i class='file-student'></i><h4>Каратаев Вадим</h4></div>
+                                <div class='file'><i class='file-student'></i><h4>Сыч Эрнест</h4></div>
+                                <div class='file'><i class='file-student'></i><h4>Тасаков Антон</h4></div>
+                                <div class='file'><i class='file-student'></i><h4>Бочаров Александр</h4></div>
+                                <div class='file'><i class='file-student'></i><h4>Сивков Максим</h4></div>
+                            </div>
+                        </div>
+                        <div style='display: flex; flex-direction: column;'>
+                            <button class='form-btn'>
+                                <span class="fi-rr-undo" style='font-size: 1rem; margin-right: 5px'></span>
+                                <h3 style='display: inline-block; color: #fff'>Назад</h3>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

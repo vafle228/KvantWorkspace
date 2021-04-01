@@ -24,6 +24,11 @@ $("#diary .item").click(function(){
     $('#diary .form')[0].style.display = 'block';
 });
 
+// Открытие формы по нажатию на курс
+$("#widgets .item").click(function(){
+    $('#widgets .form')[0].style.display = 'block';
+});
+
 // Открытие формы по нажатию на письмо
 $("#mail .item").click(function(){
     $('#mail .form')[0].style.display = 'block';
