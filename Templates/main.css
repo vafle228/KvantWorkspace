@@ -35,6 +35,14 @@ body{
     overflow-y: hidden;
     height: 100%; width: 100%;
     font-family: 'Arsenal';
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 body > section{ padding: 50px 0 0 150px; }
 
@@ -70,6 +78,8 @@ aside nav button{
     background-color: unset;
     border-radius: 15px;
     font-size: 30px; color: #EFF1F3;
+    transition-property: background-color;
+    transition-duration: .2s;
 }
 aside nav button:not(.user-img):hover{ background-color: #2C3B4F }
 aside nav .active{ background-color: #2C3B4F }

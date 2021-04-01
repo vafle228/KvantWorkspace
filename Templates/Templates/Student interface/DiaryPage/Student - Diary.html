@@ -168,8 +168,8 @@
         <!-- Форма просмотра домашнего задания -->
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
-            <div class="form-wrapper">
-                <form class='four'>
+            <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0'>
+                <form class='four' style='margin: auto 0'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -188,18 +188,10 @@
                     <textarea name="Homework-text" class='text-field' autocomplete="off"></textarea>
                     <div class="item-header">
                         <div class='files'>
-                            <div class='file'><span class="fi-rr-file"></span>
-                                <h4>document.docx</h4>
-                            </div>
-                            <div class='file'><span class="fi-rr-file"></span>
-                                <h4>document.docx</h4>
-                            </div>
-                            <div class='file'><span class="fi-rr-file"></span>
-                                <h4>document.docx</h4>
-                            </div>
-                            <div class='file'><span class="fi-rr-file"></span>
-                                <h4>document.docx</h4>
-                            </div>
+                            <div class='file'><i class='file-java'></i><h4>java prog.java</h4></div>
+                            <div class='file'><i class='file-xml'></i><h4>excel document.xml</h4></div>
+                            <div class='file'><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
+                            <div class='file'><i class='file-doc'></i><h4>document.doc</h4></div>
                         </div>
                         <div style='display: flex; flex-direction: column;'>
                             <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Документ</h4></button>

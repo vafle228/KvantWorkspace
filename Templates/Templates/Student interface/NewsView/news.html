@@ -33,7 +33,6 @@
         <section id='news'>
             <!-- Форма просмотра новости -->
             <div class='form'>
-                <!-- Затемняющий фильтр -->
                 <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0;'>
                     <form style='margin: auto 0'>
                         <img src="../../../img/default_bg.jpg" alt="Превью" class='preview'>
@@ -68,7 +67,7 @@
                         </div>
                         <hr style='margin: 25px 0'/>
                         <div class="item-header">
-                            <div class='files'>
+                            <div class='files' style='width: 100%'>
                                 <div class='file'><i class='file-7z'></i><h4>archive.7z</h4></div>
                                 <div class='file'><i class='file-cpp'></i><h4>c++ prog.cpp</h4></div>
                                 <div class='file'><i class='file-mov'></i><h4>video.mov</h4></div>
@@ -83,7 +82,9 @@
                                 <div class='file'><i class='file-cs'></i><h4>C# prog.cs</h4></div>
                                 <div class='file'><i class='file-qwerty'></i><h4>undefineded.qwerty</h4></div>
                             </div>
-                            <button class='form-btn' type="submit">
+                        </div>
+                        <div style='display: flex; flex-direction: column;'>
+                            <button class='form-btn'>
                                 <span class="fi-rr-undo" style='font-size: 1rem; margin-right: 5px'></span>
                                 <h3 style='display: inline-block; color: #fff'>Назад</h3>
                             </button>
