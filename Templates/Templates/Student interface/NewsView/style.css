@@ -1,0 +1,44 @@
+/* Главная */
+#main{ padding: 0 }
+/* Новости */
+#news{
+    width: 100%;
+    background-color: #FAFAFA;
+    padding: 50px 45px 100px 195px;
+}
+#news > div{
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+#news > div .item{
+    max-width: 32%;
+    height: auto;
+    margin-bottom: 2%;
+    max-height: 500px;
+}
+#news > div .item:last-child{ margin-right: 0 }
+#news > div .item img{
+    object-fit: cover;
+    width: 100%;
+    height: 228px;
+    border-radius: 15px 15px 0 0;
+}
+#news > div .item h2{
+    margin: 10px 25px;
+}
+#news > div .item p{
+    margin: 10px 25px 25px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    font-size: 1.2rem;
+}
+#author{
+    margin-top: 10px;
+}
+
