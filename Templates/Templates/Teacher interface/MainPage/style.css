@@ -37,11 +37,10 @@
 #widgets #courses-manager{
     background-color: #85BBFF;
     border-radius: 0 0 0 32px;
-    width: 960px;
+    min-width: 960px;
 }
 #widgets #courses-manager > div{
-    width: 95%; 
-    height: 100%;
+    width: 860px;
     display: flex; 
     justify-content: flex-start;
 }
@@ -49,7 +48,7 @@
     min-width: 260px;
     height: 240px;
     box-shadow: none;
-    margin-right: 3.5%;
+    margin-right: 40px;
     transition-duration: .5s;
     transition-property: transform, box-shadow;
 }
@@ -59,7 +58,6 @@
     -webkit-transform: translateX(7px) translateY(-7px);
     transform: translateX(7px) translateY(-7px);
 }
-#widgets #courses-manager div:last-child{ margin-right: 50px }
 #widgets #courses-manager > div > div img{
     object-fit: cover;
     width: 100%;
@@ -154,4 +152,4 @@
 }
 #next span{ margin: 3px 0 0 3px }
 #prev span{ margin: 3px 3px 0 0 }
-#next{ right: 65px }
+#next{ right: 50px }
