@@ -17,7 +17,7 @@ function reload(logo){
 // Закрытие формы
 function close_form(bg){
     bg.parentElement.style.display = 'none';
-	$("body").css("position", "relative")
+	$("body").css("position", "relative");
 }
 
 // Открытие формы по нажатию на урок

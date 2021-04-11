@@ -6,6 +6,9 @@
     background-color: #FAFAFA;
     padding: 50px 45px 100px 195px;
 }
+#news form{
+    border: #0001 solid 1px;
+}
 #news > div{
     width: 100%;
     margin-top: 20px;

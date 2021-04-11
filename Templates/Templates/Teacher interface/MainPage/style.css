@@ -110,6 +110,7 @@
     width: 100%;
     display: flex; justify-content: center;
     margin: 5px;
+    z-index: 5;
 }
 .main-btn button{
     padding: 5px 10px;

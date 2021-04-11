@@ -66,7 +66,6 @@ aside{
     background-color: #111926;
     border-radius: 0 32px 0 0;
     padding: 25px;
-    z-index: 1000;
 }
 aside #logo{
     width: 60px; height: 60px;
@@ -94,6 +93,7 @@ aside nav .active{ background-color: #2C3B4F }
     background-color: #00000088;
 }
 .form-wrapper{
+    z-index: 100;
     position: fixed; top: 0; left: 150px;
     height: 100%; width: auto;
     display: flex; align-items: center;
