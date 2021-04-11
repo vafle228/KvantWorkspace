@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' href='../log in/log in.css'/>
-    <link rel='stylesheet' href='../../fonts/Poppins/poppins.css' /> <!-- Шрифт Poppins -->
-    <link rel="shortcut icon" href="../../img/logo.svg" type="image/svg" />
+    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
+    <link rel="shortcut icon" href="../../img/logo.png" type="image/png" /> <!-- Лого -->
     <title>Вход</title>
 </head>
 <body>
@@ -12,10 +12,16 @@
         <img src='../../img/logo.png' id='logo' alt='logo' onclick="reload(this)"/>
         <form>
             <h1>KvantJournal</h1>
-            <div id='flash-error'><h4>Данные введены неверно</h4></div>
-            <input placeholder="login" name='login'/>
-            <input placeholder="password" name="password" type="password"/>
-            <button type="submit"><h4>log in</h4></button>
+            <div id='flash-error'>
+                <h4>Данные введены неверно</h4>
+                <i class="fi-rr-shield-exclamation"></i>
+            </div>
+            <input placeholder="Логин" name='login'/>
+            <input placeholder="Пароль" name="password" type="password"/>
+            <button type="submit">
+                <span class="fi-rr-sign-in" style='font-size: 1.3rem; margin: 10px 5px 0 0'></span>
+                <h4 style='display: inline-block;'>Войти</h4>
+            </button>
         </form>
     </aside>
     <canvas id="stars"></canvas>
