@@ -17,31 +17,37 @@ function reload(logo){
 // Закрытие формы
 function close_form(bg){
     bg.parentElement.style.display = 'none';
+	$("body").css("position", "relative")
 }
 
 // Открытие формы по нажатию на урок
 $("#diary .item").click(function(){
     $('#diary .form')[0].style.display = 'block';
+	$("body").css("position", "fixed");
 });
 
 // Открытие формы по нажатию на курс
 $("#widgets .item").click(function(){
     $('#widgets .form')[0].style.display = 'block';
+	$("body").css("position", "fixed");
 });
 
 // Открытие формы по нажатию на письмо
 $("#mail .item").click(function(){
     $('#mail .form')[0].style.display = 'block';
+	$("body").css("position", "fixed");
 });
 
 // Открытие формы создания новости
 function open_add_news_form(){
     $('#news #add-news-form')[0].style.display = 'block';
+	$("body").css("position", "fixed");
 }
 
 // Открытие формы создания письма
 function open_create_mail_form(){
     $('#mail .form')[1].style.display = 'block';
+	$("body").css("position", "fixed");
 }
 
 // Поиск получателя письма
