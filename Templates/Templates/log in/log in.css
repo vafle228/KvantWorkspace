@@ -38,10 +38,12 @@ aside form h1{
     font-size: 30px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    color: #fff;
+    justify-content: center;
+    background-color: #f16e6e55;
+    border-radius: 10px;
+    color: #f16e6e;
 }
-#flash-error i{ margin: 10px 5px 0; color: #f16e6e }
+#flash-error i{ margin: 10px 5px 0 }
 aside form input{
     height: 60px;
     border-radius: 10px;

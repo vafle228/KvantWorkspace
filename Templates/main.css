@@ -232,6 +232,7 @@ aside nav .active{ background-color: #2C3B4F }
     cursor: help;
 }
 
+/* Расписание */
 .calendar__timetable .day{
     border-radius: 10px;
     padding: 10px 15px;
