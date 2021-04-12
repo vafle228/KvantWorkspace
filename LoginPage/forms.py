@@ -1,6 +1,7 @@
 from django import forms
 from .models import KvantUser
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -28,6 +29,7 @@ class KvantUserLoginForm(forms.Form):
         if KvantUser.objects.filter(username=username).exists():
             user = authenticate(username=username, password=password)
             if user is not None:
+                login(request, user)
                 return user
             else:
                 messages.error(request, 'Ошибка авторизации! Неверный пароль!')

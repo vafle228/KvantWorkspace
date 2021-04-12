@@ -1,14 +1,14 @@
 from django import forms
-from .models import FileStorage
+from .models import FileStorage, ImageStorage
 
 
-class FileStorageSaveForm(forms.Form):
-    file = forms.FileField()
+class FileStorageSaveForm(forms.ModelForm):
+    class Meta:
+        model = FileStorage
+        fields = ('file', 'upload_path')
 
-    def save(self):
-        file = self.cleaned_data['file']
-        obj = FileStorage.objects.create(file)
-        obj.save()
 
-        return obj
-
+class ImageStorageSaveForm(forms.ModelForm):
+    class Meta:
+        model = ImageStorage
+        fields = ('image', 'upload_path')

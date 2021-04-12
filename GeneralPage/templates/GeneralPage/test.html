@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'create_news' user.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="title">
+    <input type="text" name="content">
+    <input type="file" name="files" multiple>
+    <input type="file" name="image">
+    <button type="submit">FUCK</button>
+</form>
+</body>
+</html>

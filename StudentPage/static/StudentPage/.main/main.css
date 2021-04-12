@@ -1,3 +1,4 @@
+/* Скрываем скролбар */
 ::-webkit-scrollbar{ width: 0 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
@@ -22,6 +23,14 @@ body{
     overflow-y: hidden;
     height: 100%; width: 100%;
     font-family: 'Arsenal';
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 body > section{ padding: 50px 0 0 150px; }
 
@@ -45,6 +54,7 @@ aside{
     background-color: #111926;
     border-radius: 0 32px 0 0;
     padding: 25px;
+    z-index: 1000;
 }
 aside #logo{
     width: 60px; height: 60px;
@@ -56,10 +66,14 @@ aside nav button{
     background-color: unset;
     border-radius: 15px;
     font-size: 30px; color: #EFF1F3;
+    transition-property: background-color;
+    transition-duration: .2s;
 }
 aside nav button:not(.user-img):hover{ background-color: #2C3B4F }
 aside nav .active{ background-color: #2C3B4F }
 .user-img{ font-size: 50px; padding: 0 }
+
+
 /* Формы */
 .form{ display: none }
 .form .filter{
@@ -68,7 +82,7 @@ aside nav .active{ background-color: #2C3B4F }
     background-color: #00000088;
 }
 .form-wrapper{
-    position: fixed; top: 0;
+    position: fixed; top: 0; left: 150px;
     height: 100%; width: auto;
     display: flex; align-items: center;
 }
@@ -95,6 +109,9 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex; justify-content: space-between;
     margin-bottom: 5px;
 }
+.form-wrapper form .item-header .lesson-title{
+    max-width: 75%;
+}
 .form-wrapper form .item-header .lesson-title h2{
     display: inline-block;
     margin-right: 10px;
@@ -103,7 +120,7 @@ aside nav .active{ background-color: #2C3B4F }
     color: #0E58B5; font-weight: bold;
     margin-top: 10px; float: right;
 }
-.form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
+.form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center; align-self: flex-start; }
 .form-wrapper form .item-header .lesson-teacher img{ width: 40px; height: 40px }
 .form-wrapper form .item-header .lesson-teacher h4{
     display: inline-block;
@@ -116,8 +133,14 @@ aside nav .active{ background-color: #2C3B4F }
     border-radius: 10px; border: #00000022 solid 1px;
     padding: 10px;
     font-size: 1rem;
+    height: auto;
+}
+.form-wrapper form .text-field-title{
+    font-size: 1.3rem;
 }
 .form-wrapper form .text-field::placeholder{ font-size: 1rem }
+.form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
+
 .form-wrapper form .preview{
     width: 822px;
     margin: -25px -25px 10px -25px;
@@ -129,7 +152,7 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex; flex-wrap: wrap;
     width: 75%;
 }
-.files span{ font-size: 1rem; margin-right: 5px }
+.files i{ margin-right: 5px }
 .files h4{ display: inline-block; color: #000 }
 .file{
     height: 51px;
@@ -147,7 +170,7 @@ aside nav .active{ background-color: #2C3B4F }
     animation: you_spin_me_right_round 200s infinite;
 }
 
-/* Адаптивность */
+/* Адаптивность от бога */
 @media screen and (max-width: 1600px){ body{ zoom: 83% }}
 @media screen and (max-width: 1356px){ body{ zoom: 70% }}
 @media screen and (max-width: 1280px){ body{ zoom: 65% }}
@@ -157,4 +180,59 @@ aside nav .active{ background-color: #2C3B4F }
 @keyframes you_spin_me_right_round{
     from{ transform: rotate(0deg) }
     to{ transform: rotate(720deg) }
+}
+
+
+/* Стилизация выпадающего списка */
+.dropdown-input{
+    font-size: 1.5rem; color: #111926; font-weight: bold;
+    margin-top: 10px;
+    min-width: 400px;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    display: block;
+}
+.dropdown-content a:hover{ background-color: #f1f1f1 }
+  
+
+/* Стилизация расписания */
+.calendar__timetable{
+    border-radius: 10px;
+    height: 40px;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    background-color: #FFEAEC;
+    font-weight: 800;
+    cursor: help;
+}
+
+.calendar__timetable .day{
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #FF374B;
+}
+.calendar__timetable .day-active{
+    background-color: #FF374B;
+    color: #fff;
+}
+.calendar__timetable .day-active time{
+    background-color: #fff;
+    color: #000;
+    padding: 2px 5px;
+    margin: 2px 5px;
+    border-radius: 5px;
 }

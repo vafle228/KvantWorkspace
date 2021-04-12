@@ -23,6 +23,14 @@ body{
     overflow-y: hidden;
     height: 100%; width: 100%;
     font-family: 'Arsenal';
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 body > section{ padding: 50px 0 0 150px; }
 
@@ -57,6 +65,8 @@ aside nav button{
     background-color: unset;
     border-radius: 15px;
     font-size: 30px; color: #EFF1F3;
+    transition-property: background-color;
+    transition-duration: .2s;
 }
 aside nav button:not(.user-img):hover{ background-color: #2C3B4F }
 aside nav .active{ background-color: #2C3B4F }
@@ -71,7 +81,8 @@ aside nav .active{ background-color: #2C3B4F }
     background-color: #00000088;
 }
 .form-wrapper{
-    position: fixed; top: 0;
+    z-index: 100;
+    position: fixed; top: 0; left: 150px;
     height: 100%; width: auto;
     display: flex; align-items: center;
 }
@@ -195,3 +206,34 @@ aside nav .active{ background-color: #2C3B4F }
     display: block;
 }
 .dropdown-content a:hover{ background-color: #f1f1f1 }
+  
+
+/* Стилизация расписания */
+.calendar__timetable{
+    border-radius: 10px;
+    height: 40px;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    background-color: #FFEAEC;
+    font-weight: 800;
+    cursor: help;
+}
+
+/* Расписание */
+.calendar__timetable .day{
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #FF374B;
+}
+.calendar__timetable .day-active{
+    background-color: #FF374B;
+    color: #fff;
+}
+.calendar__timetable .day-active time{
+    background-color: #fff;
+    color: #000;
+    padding: 2px 5px;
+    margin: 2px 5px;
+    border-radius: 5px;
+}

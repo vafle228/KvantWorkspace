@@ -1,15 +1,25 @@
 let page = 0;
 
+// Открытие формы по нажатию на курс
+$("#widgets .item").click(function(){
+    $('#widgets .form')[0].style.display = 'block';
+	$("body").css("position", "fixed");
+});
 // Перезагрузка старницы с анимацией логотипа
 function reload(logo){
     logo.style.animation = 'you_spin_me_right_round 1s';
     setTimeout("location.reload()", 800);
 }
 
+function close_form(bg){
+    bg.parentElement.style.display = 'none';
+	$("body").css("position", "relative");
+}
+
 function getNewNews(){
 	$.ajax({
 		type: "POST",
-		url: "/general/send/news",
+		url: "/general/" + String(id) + "/send/news",
 		data: {
 			page: page,
 			csrfmiddlewaretoken: csrf_token

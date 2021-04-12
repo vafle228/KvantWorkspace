@@ -64,3 +64,8 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
     content: "";
     background-image: url('./svg/picture.svg');
 }
+
+.file-student:before{
+    content: "";
+    background-image: url('./svg/student.png');
+}

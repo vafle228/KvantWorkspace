@@ -3,33 +3,51 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel='stylesheet' href='{% static "LoginPage/style.css" %}'/>
-    <link rel="shortcut icon" href='{% static "LoginPage/img/logo.png" %}' type="image/png"/>
-    <link rel="stylesheet" href='{% static "LoginPage/fonts/Poppins/poppins.css" %}'>
+    <link rel='stylesheet' href="{% static 'LoginPage/style.css' %}"/>
+    <link rel='stylesheet' href="{% static 'LoginPage/uicons-regular-rounded.css' %}" /> <!-- Иконки -->
+    <link rel="shortcut icon" href="{% static 'LoginPage/img/logo.png' %}" type="image/png" /> <!-- Лого -->
     <title>Вход</title>
+    <style>
+        @font-face {
+            font-family: "uicons-regular-rounded";
+            src: url("{% static 'LoginPage/icons/uicons-regular-rounded.eot' %}#iefix") format("embedded-opentype"),
+                 url("{% static 'LoginPage/icons/uicons-regular-rounded.woff2' %}") format("woff2"),
+                 url("{% static 'LoginPage/icons/uicons-regular-rounded.woff' %}") format("woff");
+        }
+        @font-face{
+            font-family: 'Arsenal'; 
+            src: url("{% static 'LoginPage/Arsenal-Regular.otf' %}"); 
+        }
+    </style>
 </head>
 <body>
     <aside>
-        <img src='{% static "LoginPage/img/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
+        <img src="{% static 'LoginPage/img/logo.png' %}" id='logo' alt='logo' onclick="reload(this)"/>
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <h1>KvantJournal</h1>
-
+            
             {% if messages %}
                 {% for message in messages %}
-                    <div id='flash-error'><h4>{{ message }}</h4></div>
+                    <div id='flash-error'>
+                        <i class="fi-rr-shield-exclamation"></i>
+                        <h4>{{ message }}</h4>
+                    </div>
                 {% endfor %}
             {% endif %}
 
             <input placeholder="username" name='username' autocomplete="off" />
             <input placeholder="password" name="password" type="password" autocomplete="off" />
-            <button type="submit"><h4>Log in</h4></button>
+            <button type="submit">
+                <span class="fi-rr-sign-in" style='font-size: 1.3rem; margin: 10px 5px 0 0'></span>
+                <h4 style='display: inline-block;'>Войти</h4>
+            </button>
         </form>
     </aside>
     <canvas id="stars"></canvas>
-    <img src='{% static "LoginPage/img/atom.png" %}' class='bg'/>
-    <script src='{% static "LoginPage/sections_manager.js" %}'>
-    </script> <!-- Здесь нужен для анимации перезагрузки -->
+    <img src="{% static 'LoginPage/img/atom.png' %}" class='bg'/>
+    <script src="{% static 'LoginPage/sections_manager.js' %}"></script> <!-- Здесь нужен для анимации перезагрузки -->
     <script src="http://atuin.ru/js/art/stars.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>

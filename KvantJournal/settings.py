@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +40,8 @@ INSTALLED_APPS = [
     'StudentPage.apps.StudentPageConfig',
     'TeacherPage.apps.TeacherPageConfig',
     'AdminPage.apps.AdminPageConfig',
-    'GeneralPage.apps.GeneralPageConfig'
+    'GeneralPage.apps.GeneralPageConfig',
+    'django_cleanup', 'storages',
 ]
 
 MIDDLEWARE = [
@@ -108,13 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
+USE_TZ = True
 
 USE_I18N = True
 
 USE_L10N = True
-
-USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

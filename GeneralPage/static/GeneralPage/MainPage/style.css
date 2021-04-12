@@ -27,29 +27,22 @@
     height: 20px; width: 20px;
     margin-right: 10px; margin-left: -30px;
 }
-#widgets #quote-widget::after{
-    content: url('../../../img/bg.png');
-    position: absolute; right: 0; bottom: -28px;
-    transform: scale(0.8);
-}
-
 /* Виджет "Твои курсы" */
 #widgets #courses-manager{
     background-color: #85BBFF;
     border-radius: 0 0 0 32px;
-    width: 960px;
+    min-width: 960px;
 }
 #widgets #courses-manager > div{
-    width: 100%;
-    height: 100%;
-    display: flex;
+    width: 860px;
+    display: flex; 
     justify-content: flex-start;
 }
 #widgets #courses-manager > div > div{
-    width: 260px;
+    min-width: 260px;
     height: 240px;
     box-shadow: none;
-    margin-right: 3.5%;
+    margin-right: 40px;
     transition-duration: .5s;
     transition-property: transform, box-shadow;
 }
@@ -59,7 +52,6 @@
     -webkit-transform: translateX(7px) translateY(-7px);
     transform: translateX(7px) translateY(-7px);
 }
-#widgets #courses-manager div:last-child{ margin-right: 0 }
 #widgets #courses-manager > div > div img{
     object-fit: cover;
     width: 100%;
@@ -111,6 +103,8 @@
 .main-btn{
     width: 100%;
     display: flex; justify-content: center;
+    margin: 5px;
+    z-index: 5;
 }
 .main-btn button{
     padding: 5px 10px;
@@ -121,14 +115,39 @@
     transition-duration: .2s;
     transition-property: transform box-shadow;
     box-shadow: 0 5px 0 0 #0b458b;
-    transform: scale(1.03);
+    transform: translate(0, -3px);
 }
 .main-btn button:hover{
     box-shadow: 0 3px 0 0 #0b458b;
-    transform: scale(1);
+    transform: translate(0, 0);
 }
 
-#author{
-    margin-top: 10px;
-}
+#author{ margin-top: 10px; }
 
+/* Слайдер */
+#slider-controller{
+    width: 860px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#next{
+    margin-left: auto;
+}
+#slider{
+    position: relative;
+    overflow-x: auto;
+    padding-top: 7px;
+}
+#next, #prev{
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s transform;
+}
+#next:hover, #prev:hover{ transform: scale(1.2) }
+#next span{ margin: 3px 0 0 3px }
+#prev span{ margin: 3px 3px 0 0 }

@@ -1,89 +1,73 @@
-::-webkit-scrollbar{
-    width: 0;
-}
-
+::-webkit-scrollbar{ width: 0 }
 *{ margin: 0; padding: 0; box-sizing: border-box }
-h1{
-    font-size: 2.5rem;
-}
-h1, h4{
-    font-weight: bold;
-    color: #fff;
-    line-height: 1;
-}
-body{
-    background-color: #FAFAFA;
-    position: relative;
-    overflow-y: hidden;
-    font-family: "Poppins";
-}
+
+body{ font-family: "Arsenal" }
 aside{
     position: fixed;
-    top: 0;
-    left: 0;
     height: 100%;
-    width: 800px;
-    border-radius: 0 40px 0 0;
+    width: 1000px;
+    border-radius: 0 32px 0 0;
     padding: 25px;
-    background-color: #111926;
+    background-color: #111926ee;
+    display: flex;
+    align-items: center;
+    clip-path: circle(80% at 0% 50%)
 }
 aside #logo{
+    position: fixed;
+    top: 20px;
+    left: 20px;
     width: 60px;
     height: 60px;
-    margin: 0 -5px;
-    margin-bottom: 30px;
 }
-
 aside form{
     display: flex;
     flex-direction: column;
-    margin-top: 200px;
+    gap: 10px;
+    margin-left: 75px;
+    width: 500px;
 }
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 aside form h1{
-    margin-left: 75px;
-}
-aside form > *{
-    height: 60px;
-    margin-top: 10px;
-    border-radius: 15px;
-    border: none;
-}
-aside form input{
-    width: 600px;
-    padding: 0 25px;
-    margin-left: 75px;
-    outline: none;
-
-    font-size: 20px;
-    font-weight: 500;
     font-family: "Poppins";
+    font-size: 2.5rem;
+    color: #fff;
+}
+#flash-error{
+    width: 100%;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f16e6e55;
+    border-radius: 10px;
+    color: #f16e6e;
+}
+#flash-error i{ margin: 10px 5px 0 }
+aside form input{
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    padding: 0 25px;
+    outline: none;
+    font-size: 20px;
 }
 aside form input::placeholder{
     font-size: 20px;
-    font-weight: 500;
-    font-family: "Poppins";
     opacity: 0.5;
 }
 aside form button{
-    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
     background-color:#0E58B5;
     color: #fff;
-    margin-left: 525px;
 }
 aside form button h4{
     font-size: 25px;
     font-weight: 500;
-    margin: auto 0;
-}
-#flash-error{
-    padding: 15px 25px;
-    width: 600px;
-    margin-left: 75px;
-    font-size: 30px;
-    font-weight: 500;
-    font-family: "Calibri";;
-    background-color: #f16e6e;
-    text-align: center;
 }
 
 /* Фон */
@@ -110,15 +94,9 @@ aside form button h4{
 /* Анимация фона */
 #stars {
     position: fixed;
-    top: 0;
-    left: 0;
     z-index: -1; 
-    background:#000;
-    width:100%;
+    background: #000;
+    width: 100%;
     height: 100%;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }

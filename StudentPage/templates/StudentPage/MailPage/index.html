@@ -34,7 +34,7 @@
     <aside>
         <img src="{% static 'StudentPage/.main/logo.png' %}" id='logo' alt='logo' onclick="reload(this)"/>
         <nav>
-            <button><a href="{% url 'student_page' user.id %}"><span class="fi fi-rr-apps"></a></button>
+            <button><a href='{% url "main_page" user.id %}'><span class="fi fi-rr-apps"></a></button>
             <button><a href="{% url 'student_diary' user.id %}"><span class="fi fi-rr-book-alt"></a></button>
             <button class='active'>
                 <a href="{% url 'student_mail' user.id %}"><span class="fi fi-rr-envelope"></a>
