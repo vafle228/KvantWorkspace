@@ -167,10 +167,6 @@ aside nav .active{ background-color: #2C3B4F }
 .files h4{
     display: inline-block;
     color: #000;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 .file{
     height: 51px;
@@ -184,6 +180,12 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex;
     align-items: center;
     margin-right: 25px;
+}
+.file .file-info h4{
+    max-width: 128px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 /* Кнопка удаления и скачивания */
 .file .file-btns{
