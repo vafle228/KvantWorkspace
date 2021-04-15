@@ -186,7 +186,7 @@
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0'>
-                <form class='four' style='margin: auto 0'>
+                <form class='four' style='margin: auto 0; padding-right: 40px;'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -201,7 +201,10 @@
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                     <hr style='margin: 25px 0' />
-                    <h2>Домашнее задание</h2>
+                    <div class="item-header">
+                        <h2>Домашнее задание</h2>
+                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane"></span><h4 style='display: inline-block'>Сдать</h4></button>
+                    </div>  
                     <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Комментарий"></textarea>
                     <div class="item-header">
                         <div class='files'>
@@ -243,8 +246,7 @@
                             </div>
                         </div>
                         <div style='display: flex; flex-direction: column;'>
-                            <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Документ</h4></button>
-                            <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Отправить</h4></button>
+                            <button class='form-btn' type="submit"><span class="fi-rr-clip"></span><h4 style='display: inline-block'>Документ</h4></button>
                         </div>
                     </div>
                 </form>

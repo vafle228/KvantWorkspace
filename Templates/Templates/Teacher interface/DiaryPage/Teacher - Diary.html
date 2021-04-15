@@ -23,10 +23,8 @@
             <button><a href='student/portfolio'><span class="fi-rr-trophy"></a></button>
         </nav>
         <nav style='position: absolute; bottom: 15px'>
-            <button><span class="fi fi-rr-list-check"></button>
-            <!-- TaskManager -->
-            <button><span class="fi fi-rr-bell"></button>
-            <!-- Notifications -->
+            <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->
+            <button><span class="fi fi-rr-bell"></button> <!-- Notifications -->
             <button class='user-img'><span class="fi fi-rr-circle"></button>
         </nav>
     </aside>
@@ -44,7 +42,7 @@
         <main>
             <div class='day'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item disease">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -62,7 +60,7 @@
             </div>
             <div class='day'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item absence">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -77,7 +75,7 @@
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
-                <div class="item one">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -95,7 +93,7 @@
             </div>
             <div class='day'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item four">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -109,7 +107,7 @@
                     <p class='item-text'>
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
-                    <hr style='margin: 10px 0' />
+                    <hr style='margin: 10px 0; opacity: .5;'/>
                     <div class="files" style='width: 100%'>
                         <div class="file">
                             <div class="file-info">
@@ -131,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item two">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -149,7 +147,7 @@
             </div>
             <div class='day'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item absence">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -164,7 +162,7 @@
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
-                <div class="item one">
+                <div class="item">
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -186,65 +184,39 @@
         <div class='form'>
             <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0'>
-                <form class='four' style='margin: auto 0'>
+                <form>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
                             <h3>18:20</h3>
                         </div>
-                        <div class='lesson-teacher'>
-                            <h4>Зарывных П. С</h4>
-                            <img src='../../../img/unnamed.png' />
+                        <div>
+                            <button class='form-btn' type="submit"><span class="fi-rr-book"></span><h4>Перейти к оцениванию</h4></button>
+                            <button class='form-btn' type="submit"><span class="fi-rr-disk"></span><h4>Сохранить</h4></button>
                         </div>
                     </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                    <hr style='margin: 25px 0' />
-                    <h2>Домашнее задание</h2>
-                    <textarea name="Homework-text" class='text-field' autocomplete="off"></textarea>
+                    <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Задание" style='min-height: 256px'>Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php</textarea>
                     <div class="item-header">
                         <div class='files'>
                             <div class="file">
-                                <div class="file-info">
-                                    <i class='file-java'></i>
-                                    <h4>java prog.java</h4>
-                                </div>
-                                <div class="file-btns">
-                                    <button class="del-file"></button>
-                                </div>
+                                <div class="file-info"><i class='file-java'></i><h4>java prog.java</h4></div>
+                                <div class="file-btns"><button class="del-file"></button></div>
                             </div>
                             <div class="file">
-                                <div class="file-info">
-                                    <i class='file-xml'></i>
-                                    <h4>excel document.xml</h4>
-                                </div>
-                                <div class="file-btns">
-                                    <button class="del-file"></button>
-                                </div>
+                                <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
+                                <div class="file-btns"><button class="del-file"></button></div>
                             </div>
                             <div class="file">
-                                <div class="file-info">
-                                    <i class='file-pptx'></i>
-                                    <h4>presentation.pptx</h4>
-                                </div>
-                                <div class="file-btns">
-                                    <button class="del-file"></button>
-                                </div>
+                                <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
+                                <div class="file-btns"><button class="del-file"></button></div>
                             </div>
                             <div class="file">
-                                <div class="file-info">
-                                    <i class='file-doc'></i>
-                                    <h4>document.doc</h4>
-                                </div>
-                                <div class="file-btns">
-                                    <button class="del-file"></button>
-                                </div>
+                                <div class="file-info"><i class='file-doc'></i><h4>document.doc</h4></div>
+                                <div class="file-btns"><button class="del-file"></button></div>
                             </div>
                         </div>
-                        <div style='display: flex; flex-direction: column;'>
-                            <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Документ</h4></button>
-                            <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span><h4 style='display: inline-block; color: #fff'>Отправить</h4></button>
+                        <div>
+                            <button class='form-btn' type="submit"><span class="fi-rr-clip"></span><h4>Документ</h4></button>
                         </div>
                     </div>
                 </form>
