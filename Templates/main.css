@@ -165,7 +165,14 @@ aside nav .active{ background-color: #2C3B4F }
     width: 75%;
 }
 .files i{ margin-right: 5px }
-.files h4{ display: inline-block; color: #000 }
+.files h4{
+    display: inline-block;
+    color: #000;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .file{
     height: 51px;
     border-radius: 100px; border: #00000022 solid 1px;
