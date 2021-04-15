@@ -170,10 +170,54 @@ aside nav .active{ background-color: #2C3B4F }
     height: 51px;
     border-radius: 100px; border: #00000022 solid 1px;
     margin: 5px 10px 5px 0; padding: 0 25px;
-    display: flex; align-items: center;
+    display: flex; align-items: center; justify-content: space-between;
     transition-duration: .2s; transition-property: box-shadow;
+    position: relative;
 }
-.file:hover{ box-shadow: 0 2px 2px 2px #2c3b4f23 }
+.file .file-info{
+    display: flex;
+    align-items: center;
+}
+.file .file-btns{
+    display: none;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    background-color: #fefefe;
+    border: inherit;
+    border-radius: 25px;
+    gap: 10px;
+    padding: 5px 10px;
+}
+.file button{
+    background-color: unset;
+    transition-duration: .4s;
+    transition-property: color background-color;
+    clip-path: circle();
+    padding: 10px;
+}
+.file .del-file::before{
+    content: '\f24a';
+    font-family: "uicons-regular-rounded";
+}
+.file .del-file:hover{
+    background-color: #FF374B;
+    color: #fff;
+}
+.file .download-file::before{
+    content: '\f171';
+    font-family: "uicons-regular-rounded";
+}
+.file .download-file:hover{
+    background-color: #0E58B5;
+    color: #fff;
+}
+.file:hover .file-btns{
+    display: block;
+}
+.file:hover{
+    box-shadow: 0 2px 2px 2px #2c3b4f23;
+}
 
 /* Фон */
 .bg{

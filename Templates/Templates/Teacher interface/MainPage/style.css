@@ -37,10 +37,10 @@
 #widgets #courses-manager{
     background-color: #85BBFF;
     border-radius: 0 0 0 32px;
-    min-width: 960px;
+    min-width: 967px;
 }
 #widgets #courses-manager > div{
-    width: 860px;
+    width: 867px;
     display: flex; 
     justify-content: flex-start;
 }
@@ -132,17 +132,19 @@
 
 /* Слайдер */
 #slider-controller{
-    width: 860px;
-    display: flex;
-    justify-content: space-evenly;
+    width: 867px;
 }
 #next{
     margin-left: auto;
+    margin-right: 7px;
 }
 #slider{
     position: relative;
     overflow-x: auto;
-    padding-top: 7px;
+    padding-top: 10px;
+}
+#slider::-webkit-scrollbar{
+    height: 0;
 }
 #next, #prev{
     height: 30px;
