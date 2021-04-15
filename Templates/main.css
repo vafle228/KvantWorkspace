@@ -141,7 +141,7 @@ aside nav .active{ background-color: #2C3B4F }
 }
 .form-wrapper form > h2{ margin-bottom: 5px }
 .form-wrapper form .text-field{
-    width: 761px;
+    width: 100%;
     border-radius: 10px; border: #00000022 solid 1px;
     padding: 10px;
     font-size: 1rem;
