@@ -163,7 +163,7 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex; flex-wrap: wrap;
     width: 75%;
 }
-.files i{ margin-right: 5px }
+.file-info i{ margin-right: 5px }
 .files h4{
     display: inline-block;
     color: #000;
