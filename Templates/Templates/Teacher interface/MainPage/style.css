@@ -159,3 +159,8 @@
 #next:hover, #prev:hover{ transform: scale(1.2) }
 #next span{ margin: 3px 0 0 3px }
 #prev span{ margin: 3px 3px 0 0 }
+
+/* Костыль */
+.item-header div .file .file-info h4{
+    max-width: 128px;
+}

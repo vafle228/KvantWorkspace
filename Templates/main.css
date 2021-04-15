@@ -182,7 +182,7 @@ aside nav .active{ background-color: #2C3B4F }
     margin-right: 25px;
 }
 .file .file-info h4{
-    max-width: 128px;
+    max-width: 256px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
