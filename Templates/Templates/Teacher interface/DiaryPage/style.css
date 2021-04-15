@@ -35,7 +35,7 @@
     margin-top: 10px;
 }
 #diary main .day .item {
-    padding: 10px 40px 15px 25px;
+    padding: 10px 25px 15px 25px;
     margin-top: 10px;
     position: relative;
 }
@@ -84,20 +84,3 @@
     box-shadow: 0 3px 0 0 #0b458b;
     transform: translate(0, 3px);
 }
-
-/* Псевдоэлемент оценки */
-.day>.item::after, form::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 15px;
-    border-radius: 0 15px 15px 0;
-}
-.four::after { background-color: #00D575 } /* Идеально */
-.three::after { background-color: #FE9C4A } /* С замечаниями */
-.two::after { background-color: #FFCB3A } /* Сойдет */
-.one::after { background-color: #FF3A3A } /* Плохо */
-.absence::after { background-color: #4C50B8 } /* Отсутствие */
-.disease::after { background-color: #9c48c4 } /* Отсутствие по болезни */

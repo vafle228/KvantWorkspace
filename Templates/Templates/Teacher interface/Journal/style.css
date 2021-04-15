@@ -37,10 +37,10 @@
 #widgets #courses-manager{
     background-color: #85BBFF;
     border-radius: 0 0 0 32px;
-    min-width: 960px;
+    min-width: 967px;
 }
 #widgets #courses-manager > div{
-    width: 860px;
+    width: 867px;
     display: flex; 
     justify-content: flex-start;
 }
@@ -54,9 +54,9 @@
 }
 #widgets #courses-manager > div > div:hover{
     box-shadow:
-        -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc;
-    -webkit-transform: translateX(5px) translateY(-5px);
-    transform: translateX(5px) translateY(-5px);
+        -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc, -6px 6px #65a9fc, -7px 7px #65a9fc;
+    -webkit-transform: translateX(7px) translateY(-7px);
+    transform: translateX(7px) translateY(-7px);
 }
 #widgets #courses-manager > div > div img{
     object-fit: cover;
@@ -110,6 +110,7 @@
     width: 100%;
     display: flex; justify-content: center;
     margin: 5px;
+    z-index: 5;
 }
 .main-btn button{
     padding: 5px 10px;
@@ -131,17 +132,19 @@
 
 /* Слайдер */
 #slider-controller{
-    width: 860px;
-    display: flex;
-    justify-content: space-evenly;
+    width: 867px;
 }
 #next{
     margin-left: auto;
+    margin-right: 7px;
 }
 #slider{
     position: relative;
     overflow-x: auto;
-    padding-top: 7px;
+    padding-top: 10px;
+}
+#slider::-webkit-scrollbar{
+    height: 0;
 }
 #next, #prev{
     height: 30px;

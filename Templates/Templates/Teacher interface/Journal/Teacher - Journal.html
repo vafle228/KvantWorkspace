@@ -6,10 +6,9 @@
     <link rel='stylesheet' href='../../../main.css' /> <!-- Основные стили -->
     <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
     <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' />
-    <!-- Иконки расширений файлов -->
+    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /><!-- Иконки расширений файлов -->
     <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Лого -->
-    <title>Главная</title>
+    <title>Журнал</title>
 </head>
 
 <body style="overflow: auto">
@@ -22,7 +21,6 @@
             <button><a href='student/diary'><span class="fi fi-rr-book-alt"></a></button>
             <button><a href='student/mail'><span class="fi fi-rr-envelope"></a></button>
             <button><a href='student/stat'><span class="fi fi-rr-stats"></a></button>
-            <button><a href='student/portfolio'><span class="fi-rr-trophy"></a></button>
         </nav>
         <nav style='position: absolute; bottom: 15px'>
             <button><span class="fi fi-rr-bell"></button> <!-- Уведомления -->
@@ -52,27 +50,94 @@
                 </div>
             </div>
             <!-- Виджет "Твои курсы" -->
-            <div id='courses-manager'>
+            <div id='courses-manager' style='padding-right: 0'>
                 <!-- Заголовок виджета -->
                 <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; margin-right: 5px'></span>
-                <h1 style='display: inline-block;'>Направления обучения</h1>
-                <div>
+                <h1 style='display: inline-block; margin-bottom: 13px;'>Группы</h1>
+
+                <!-- Кнопки слайдера -->
+                <div id="slider-controller">
+                    <button id='prev'><span class='fi-rr-angle-left'></span></button>
+                    <button id='next'><span class='fi-rr-angle-right'></span></button>
+                </div>
+
+                <div id='slider'>
                     <div class='item'>
                         <img src="../../../img/default_bg.jpg" alt="Превью" />
-                        <h2>IT</h2>
-                        <h4>ВТ 18:20 ЧТ 18:20</h4>
-                        <h4>Зарывных П. С</h4>
-                    </div>
-                    <div class='item'>
-                        <img src="../../../img/default_bg.jpg" alt="Превью" />
-                        <h2>Math</h2>
-                        <h4>Время занятий</h4>
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
                         <h4>Педагог</h4>
                     </div>
                     <div class='item'>
                         <img src="../../../img/default_bg.jpg" alt="Превью" />
-                        <h2>English</h2>
-                        <h4>Время занятий</h4>
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
+                        <h4>Педагог</h4>
+                    </div>
+                    <div class='item'>
+                        <img src="../../../img/default_bg.jpg" alt="Превью" />
+                        <h2>Предмет</h2>
+                        <h4>Время занятия</h4>
                         <h4>Педагог</h4>
                     </div>
                 </div>
@@ -115,18 +180,6 @@
                                 <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
                                 <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
                                 <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
                             </div>
                         </div>
                     </form>
@@ -135,33 +188,17 @@
         </section>
         <!-- Новости -->
         <section id='news'>
-            <!-- Заголовок секции -->
-            <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
-            <h1 style='display: inline-block;'>Новости</h1>
+            <!-- Шапка секции -->
+            <div style='display: flex; justify-content: flex-start; height: 60px;'>
+                <!-- Заголовок секции -->
+                <div>
+                    <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
+                    <h1 style='display: inline-block;'>Новости</h1>
+                </div>
+                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_add_news_form()">Добавить новость</button></div>
+            </div>
             <!-- Блок новостей -->
             <div>
-                <div class="item">
-                    <img src="../../../img/default_bg.jpg" alt="Превью">
-                    <h2>Заголовок</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                        dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                        similique blanditiis! Minus, aut.</p>
-                </div>
-                <div class="item">
-                    <img src="../../../img/default_bg.jpg" alt="Превью">
-                    <h2>Заголовок</h2>
-                    <p>Molestias, eum mollitia? Rem labore nobis expedita similique quia non nostrum, dolores porro
-                        dignissimos animi temporibus pariatur voluptates provident fugit totam enim qui eligendi
-                        officiis. Iusto laudantium iure nostrum asperiores?</p>
-                </div>
-                <div class="item">
-                    <img src="../../../img/default_bg.jpg" alt="Превью">
-                    <h2>Заголовок</h2>
-                    <p>Necessitatibus et nesciunt dicta harum. Pariatur ratione ipsa sint amet ea, porro impedit! Ad
-                        doloribus enim, laboriosam saepe perspiciatis dolorem totam eaque vitae, facilis sapiente unde,
-                        accusantium cum quis odio. Necessitatibus
-                        et nesciunt dicta harum.</p>
-                </div>
                 <div class="item">
                     <img src="../../../img/default_bg.jpg" alt="Превью">
                     <h2>Заголовок</h2>
@@ -210,6 +247,34 @@
             <!-- Кнопка "Больше новостей" -->
             <div id="more-news" class='main-btn'>
                 <button>Больше новостей</button>
+            </div>
+            <!-- Форма создания новости -->
+            <div class='form' id='add-news-form' style='display: none'>
+                <!-- Затемняющий фильтр -->
+                <div class='filter' onclick="close_form(this)"></div>
+                <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0'>
+                    <form class='four' style='margin: auto 0'>
+                        <div class='item-header'>
+                            <h2 style='margin: auto 0'>Добавление новости</h2>
+                            <div>
+                                <button class='form-btn' type="submit"><span class="fi-rr-picture" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Добавить обложку</h3></button>
+                                |
+                                <button class='form-btn' type="submit"><span class="fi-rr-world" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Опубликовать</h3></button>
+                            </div>
+                            
+                        </div>
+                        <textarea name="Homework-text" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок" style='min-height: 48px;'></textarea>
+                        <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Текст..." style='min-height: 256px;'></textarea>
+                        <div class="item-header">
+                            <div class='files'>
+                                <div class='file'><i class='file-xml'></i><h4>excel document.xml</h4></div>
+                                <div class='file'><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
+                                <div class='file'><i class='file-doc'></i><h4>document.doc</h4></div>
+                            </div>
+                            <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Документ</h3></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
     </section>
