@@ -42,7 +42,6 @@
 #diary main .day .item .item-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
 }
 #diary main .day .item .item-header .lesson-title h2 {
     display: inline-block;
@@ -59,8 +58,8 @@
     align-items: center;
 }
 #diary main .day .item .item-header .lesson-teacher img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 }
 #diary main .day .item .item-header .lesson-teacher h4 {
     display: inline-block;
