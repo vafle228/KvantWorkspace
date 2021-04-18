@@ -1,20 +1,85 @@
 /* Почта */
-#mail{ padding-left: 140px }
-#mail header{
-    display: flex; justify-content: space-between;
+#mail { padding-left: 140px }
+
+/* Шапка секции */
+#mail header {
+    display: flex;
+    justify-content: space-between;
     width: 800px;
     margin-bottom: 30px;
     padding: 0 10px;
 }
-#mail main::-webkit-scrollbar { width: 0 }
-#mail main{ width: 800px; height: 800px; padding: 0 10px 200px 10px; overflow-y: scroll }
-#mail main .day > h3{ text-align: right; margin-top: 10px }
-#mail main .day .item{ padding: 10px 25px 15px 25px; margin-top: 10px; position: relative }
-#mail main .day .item .item-header{ display: flex; justify-content: space-between; margin-bottom: 5px }
-#mail main .day .item .item-header .lesson-title h2{ display: inline-block; margin-right: 10px }
-#mail main .day .item .item-header .lesson-teacher{ display: flex; align-items: center }
-#mail main .day .item .item-header .lesson-teacher img{ width: 40px; height: 40px }
-#mail main .day .item .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
+#mail header .week-selector {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#mail header .week-selector .weeks {
+    height: 40px;
+    margin: 0 5px;
+    font-size: 24px;
+}
+#mail header .week-selector .btn {
+    width: 40px;
+    padding: 4px;
+}
+#mail header .week-selector span { font-size: 32px }
+
+/* Письма */
+#mail main {
+    width: 800px;
+    height: 800px;
+    padding: 0 10px 100px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#mail main .day{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#mail main .day > h3 {
+    text-align: right;
+}
+#mail main .day .item {
+    padding: 10px 25px 15px 25px;
+    position: relative;
+}
+#mail main .day .item .item-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 5px;
+    height: 40px;
+}
+#mail main .day .item .item-header .lesson-title h2 {
+    display: inline-block;
+    margin-right: 10px;
+}
+#mail main .day .item .item-header .lesson-title h3 {
+    color: #0E58B5;
+    font-weight: bold;
+    display: inline-block;
+}
+#mail main .day .item .item-header .lesson-teacher {
+    display: flex; align-items: center;
+    height: 100%;
+}
+#mail main .day .item .item-header .lesson-teacher img {
+    width: 32px; height: 32px;
+}
+#mail main .day .item .item-header .lesson-teacher h4 {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+#mail main .day .item .item-text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 
 /* Стилизация выпадающего списка */
 .dropdown-input{ font-size: 1.5rem; color: #111926; font-weight: bold; margin-top: 10px; min-width: 400px }

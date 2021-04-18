@@ -159,9 +159,8 @@ aside nav .active{ background-color: #2C3B4F }
 
 /* Файлы */
 .files{
-    display: flex; flex-wrap: wrap;
+    display: flex; flex-wrap: wrap; gap: 8px;
     width: 80%;
-    gap: 8px;
 }
 .file-info i{ margin-right: 5px }
 .files h4{ display: inline-block; color: #000 }
@@ -172,7 +171,7 @@ aside nav .active{ background-color: #2C3B4F }
     display: flex; align-items: center;
     transition-duration: .2s; transition-property: box-shadow;
 }
-/* Название и иконка */
+/* Название и иконка файла */
 .file .file-info{
     display: flex;
     align-items: center;
@@ -184,7 +183,7 @@ aside nav .active{ background-color: #2C3B4F }
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-/* Кнопка удаления и скачивания */
+/* Кнопка удаления и скачивания файла*/
 .file .file-btns{
     align-items: center;
     gap: 10px;
@@ -198,6 +197,7 @@ aside nav .active{ background-color: #2C3B4F }
     clip-path: circle();
     padding: 10px;
 }
+/* Кнопка "Удалить файл" */
 .file .del-file::before{
     content: '\f24a';
     font-family: "uicons-regular-rounded";
@@ -206,6 +206,7 @@ aside nav .active{ background-color: #2C3B4F }
     background-color: #FF374B;
     color: #fff;
 }
+/* Кнопка "Скачать файл" */
 .file .download-file::before{
     content: '\f171';
     font-family: "uicons-regular-rounded";
@@ -221,6 +222,7 @@ aside nav .active{ background-color: #2C3B4F }
     position: fixed; right: -20%; top: 5%;
     height: 90%;
     animation: you_spin_me_right_round 200s infinite;
+    z-index: -1000;
 }
 
 /* Адаптивность от бога */

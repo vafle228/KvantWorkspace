@@ -1,5 +1,7 @@
 /* Дневник */
 #diary { padding-left: 140px }
+
+/* Шапка секции */
 #diary header {
     display: flex;
     justify-content: space-between;
@@ -24,24 +26,32 @@
 }
 #diary header .week-selector span { font-size: 32px }
 
+/* Занятия */
 #diary main {
     width: 800px;
     height: 800px;
-    padding: 0 10px 200px 10px;
+    padding: 0 10px 100px;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#diary main .day{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 #diary main .day > h3 {
     text-align: right;
-    margin-top: 10px;
 }
 #diary main .day .item {
-    padding: 10px 25px 15px 25px;
-    margin-top: 10px;
+    padding: 10px 25px 15px;
     position: relative;
 }
 #diary main .day .item .item-header {
-    display: flex;
-    justify-content: space-between;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 5px;
+    height: 40px;
 }
 #diary main .day .item .item-header .lesson-title h2 {
     display: inline-block;
@@ -50,21 +60,25 @@
 #diary main .day .item .item-header .lesson-title h3 {
     color: #0E58B5;
     font-weight: bold;
-    margin-top: 10px;
-    float: right;
+    display: inline-block;
 }
 #diary main .day .item .item-header .lesson-teacher {
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
+    height: 100%;
 }
 #diary main .day .item .item-header .lesson-teacher img {
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
 }
 #diary main .day .item .item-header .lesson-teacher h4 {
     display: inline-block;
     margin-right: 10px;
     font-size: 16px;
+}
+#diary main .day .item .item-text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* Кнопки "<<" и ">>" */
