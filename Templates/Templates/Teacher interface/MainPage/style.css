@@ -54,9 +54,9 @@
 }
 #widgets #courses-manager > div > div:hover{
     box-shadow:
-        -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc, -6px 6px #65a9fc, -7px 7px #65a9fc;
-    -webkit-transform: translateX(7px) translateY(-7px);
-    transform: translateX(7px) translateY(-7px);
+        -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc;
+    -webkit-transform: translateX(5px) translateY(-5px);
+    transform: translateX(5px) translateY(-5px);
 }
 #widgets #courses-manager > div > div img{
     object-fit: cover;

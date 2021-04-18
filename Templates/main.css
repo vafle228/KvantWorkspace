@@ -112,6 +112,7 @@ aside nav .active{ background-color: #2C3B4F }
     font-size: 20px;
     background-color: #111926;
     padding: 0 15px;
+    margin: 3px 0;
     height: 45px;
     border-radius: 10px;
     transition-property: color background-color box-shadow; transition-duration: .2s;
@@ -126,6 +127,7 @@ aside nav .active{ background-color: #2C3B4F }
 /* Форма */
 .form-wrapper form .item-header{
     display: flex; justify-content: space-between;
+    min-height: 51px;
 }
 .form-wrapper form .item-header .lesson-title{
     max-width: 75%;
