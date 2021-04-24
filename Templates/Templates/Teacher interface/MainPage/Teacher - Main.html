@@ -42,7 +42,7 @@
                 <h3>Место обучения</h3>
                 <div>
                     <!-- Цитата -->
-                    <h6 style='width: 60%; font-size: 1.5rem; font-weight: 200; font-family: Awesome'><i
+                    <h6 style='width: 60%; font-size: 1.2rem; font-weight: 200'><i
                             id='quote'>«Оценивать эффективность процесса программирования
                             количеством написанных строк кода — то же самое,
                             что оценивать процесс создания самолёта по его весу»</i></h6>
@@ -54,7 +54,7 @@
             <div id='courses-manager' style='padding-right: 0'>
                 <!-- Заголовок виджета -->
                 <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; margin-right: 5px'></span>
-                <h1 style='display: inline-block; margin-bottom: 13px;'>Группы</h1>
+                <h1 style='display: inline-block; margin-bottom: 13px;'>Расписание</h1>
 
                 <!-- Кнопки слайдера -->
                 <div id="slider-controller">
@@ -200,11 +200,11 @@
         <!-- Новости -->
         <section id='news'>
             <!-- Шапка секции -->
-            <div style='display: flex; justify-content: flex-start; height: 60px;'>
+            <div style='display: flex; align-items: center'>
                 <!-- Заголовок секции -->
                 <div>
                     <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
-                    <h1 style='display: inline-block;'>Новости</h1>
+                    <h1 style='display: inline-block'>Новости</h1>
                 </div>
                 <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_add_news_form()">Добавить новость</button></div>
             </div>
@@ -268,34 +268,32 @@
                         <div class='item-header'>
                             <h2 style='margin: auto 0'>Добавление новости</h2>
                             <div style='display: flex; justify-content: flex-end; gap: 10px'>
-                                <button class='form-btn' type="submit"><span class="fi-rr-picture" style='font-size: 1rem; margin-right: 5px'></span>Добавить обложку</button>
-                                <button class='form-btn' type="submit"><span class="fi-rr-world" style='font-size: 1rem; margin-right: 5px'></span>Опубликовать</button>
+                                <button class='form-btn' type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
+                                <button class='form-btn' type="submit"><span class="fi-rr-world" style='margin-right: 5px'></span>Опубликовать</button>
                             </div>
                         </div>
-                        <textarea name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок" style='height: 48px'></textarea>
+                        <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок"></input>
                         <textarea name="news-text" class='text-field' autocomplete="off" style='min-height: 256px'></textarea>
-                        <div class="item-header">
-                            <div class='files'>
-                                <div class='file'>
-                                    <div class="file-info">
-                                        <i class='file-xml'></i>
-                                        <h4>excel document.xml</h4>
-                                    </div>
-                                    <div class="file-btns">
-                                        <button class='del-file'></button>
-                                    </div>
+                        <button class='form-btn' type="submit"><span class="fi-rr-clip" style='margin-right: 5px'></span>Документ</button>
+                        <div class='files'>
+                            <div class='file'>
+                                <div class="file-info">
+                                    <i class='file-xml'></i>
+                                    <h4>excel document.xml</h4>
                                 </div>
-                                <div class='file'>
-                                    <div class="file-info">
-                                        <i class='file-pptx'></i>
-                                        <h4>presentation.pptx</h4>
-                                    </div>
-                                    <div class="file-btns">
-                                        <button class='del-file'></button>
-                                    </div>
+                                <div class="file-btns">
+                                    <button class='del-file'></button>
                                 </div>
                             </div>
-                            <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Документ</h3></button>
+                            <div class='file'>
+                                <div class="file-info">
+                                    <i class='file-pptx'></i>
+                                    <h4>presentation.pptx</h4>
+                                </div>
+                                <div class="file-btns">
+                                    <button class='del-file'></button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

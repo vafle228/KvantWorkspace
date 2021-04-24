@@ -229,9 +229,9 @@
                 <form>
                     <div class='item-header'>
                         <div class='lesson-title'>
-                            <div class="dropdown" style="width: 100%">
+                            <div class="dropdown">
                                 <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input'>
-                                <div class="dropdown-content" style="display: none;">
+                                <div class="dropdown-content" style="display: none">
                                     <a onclick="search_fill(this)"><p>Смышляев Дмитрий Ильич</p></a>
                                     <a onclick="search_fill(this)"><p>Каратаев Вадим Алексеевич</p></a>
                                     <a onclick="search_fill(this)"><p>Сыч Эрнест Евгеньевич</p></a>
@@ -240,22 +240,20 @@
                                 </div>
                               </div>
                         </div>
-                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Отправить</h3></button>
+                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
                     </div>
                     <textarea name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема" style='height: 48px'></textarea>
                     <textarea name="news-text" class='text-field' autocomplete="off" style='min-height: 256px' placeholder="Сообщение"></textarea>
-                    <div class="item-header">
-                        <div class='files'>
-                            <div class="file">
-                                <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
-                                <div class="file-btns"><button class="del-file"></button></div>
-                            </div>
-                            <div class="file">
-                                <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
-                                <div class="file-btns"><button class="del-file"></button></div>
-                            </div>
+                    <button class='form-btn' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
+                    <div class='files'>
+                        <div class="file">
+                            <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
+                            <div class="file-btns"><button class="del-file"></button></div>
                         </div>
-                        <button class='form-btn' type="submit"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff'>Документ</h3></button>
+                        <div class="file">
+                            <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
+                            <div class="file-btns"><button class="del-file"></button></div>
+                        </div>
                     </div>
                 </form>
             </div>

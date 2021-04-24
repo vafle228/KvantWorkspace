@@ -1,3 +1,4 @@
+@import url("fonts/Google font/stylesheet.css");
 
 /* Основной шрифт */
 @font-face{
@@ -15,16 +16,15 @@
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-button, input, textarea{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Arsenal'; }
+button, input, textarea{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
 a{ text-decoration: none; color: unset; }
-button:hover{ filter: brightness(1.1); }
 
 /* Настройка шрифтов */
-::placeholder{ font-family: 'Arsenal' }
-h1{ font-size: 2.5rem; font-weight: bold; color: #111926}
-h2, h2 *{ font-size: 2rem; font-weight: bold; color: #111926}
-h3, .dropdown-input{ font-size: 1.3; font-weight: 500; color: #6A6F78 }
-h4{ font-size: 1.3rem; font-weight: 300; color: #6A6F78}
+::placeholder{ font-family: 'Google Sans' }
+h1{ font-size: 2rem; font-weight: bold; color: #111926}
+h2, h2 *{ font-size: 1.6rem; font-weight: bold; color: #111926}
+h3, .dropdown-input{ font-size: 1.1; font-weight: 500; color: #6A6F78 }
+h4{ font-size: 1.2rem; font-weight: 300; color: #6A6F78}
 p{ font-size: 1rem; font-weight: normal; color: #70757D }
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 
@@ -34,7 +34,8 @@ body{
     position: relative;
     overflow-y: hidden;
     height: 100%; width: 100%;
-    font-family: 'Arsenal';
+    /* font-family: 'Arsenal'; */
+    font-family: "Google Sans";
 
     /* Запрещает выделять текст */
     -webkit-touch-callout: none;
@@ -49,7 +50,7 @@ body > section{ padding: 50px 0 0 150px; }
 .item{
     background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.03);
     cursor: pointer;
     transition-duration: .5s; transition-property: transform, box-shadow;
 }
@@ -71,6 +72,7 @@ aside #logo{
     width: 60px; height: 60px;
     margin: 0 -5px 30px;
 }
+aside nav{ width: 50px }
 aside nav button{
     width: 60px; height: 60px;
     padding: 15px; margin: 10px -5px;
@@ -82,7 +84,7 @@ aside nav button{
 }
 aside nav button:not(.user-img):hover{ background-color: #2C3B4F }
 aside nav .active{ background-color: #2C3B4F }
-.user-img{ font-size: 50px; padding: 0 }
+.user-img{ font-size: 40px; padding: 10px }
 
 
 /* Формы */
@@ -102,15 +104,16 @@ aside nav .active{ background-color: #2C3B4F }
 .form-wrapper form{
     height: auto; width: 800px;
     background-color: #fff;
-    padding: 15px 25px 15px 25px; margin: auto 0;
+    padding: 10px 25px 15px 25px; margin: auto 0;
     border-radius: 15px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
 }
 .form-wrapper form .form-btn{
-    color: #fff;
-    font-size: 20px;
-    background-color: #111926;
+    color: #1967D2;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: #fff;
     padding: 0 15px;
     margin: 3px 0;
     height: 45px;
@@ -121,12 +124,16 @@ aside nav .active{ background-color: #2C3B4F }
     color: #fff;
     display: inline-block;
 }
-.form-wrapper form .form-btn span{ margin-right: 10px; font-size: 1rem }
-.form-wrapper form .form-btn:hover{ box-shadow: 0 2px 10px 10px #2c3b4f23 }
+.form-wrapper form .form-btn span{
+    margin-right: 10px; font-size: 1rem;
+}
+.form-wrapper form .form-btn:hover{
+    background-color: #E3EEFC;
+}
 
 /* Форма */
 .form-wrapper form .item-header{
-    display: flex; justify-content: space-between;
+    display: flex; justify-content: space-between; align-items: center;
     min-height: 51px;
 }
 .form-wrapper form .item-header .lesson-title{
@@ -138,7 +145,7 @@ aside nav .active{ background-color: #2C3B4F }
 }
 .form-wrapper form .item-header .lesson-title h3{
     color: #0E58B5; font-weight: bold;
-    margin-top: 10px; float: right;
+    margin-top: 6px; float: right;
 }
 .form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
 .form-wrapper form .item-header .lesson-teacher img{ width: 32px; height: 32px }
@@ -149,7 +156,10 @@ aside nav .active{ background-color: #2C3B4F }
     padding: 10px;
     font-size: 1rem;
 }
-.form-wrapper form .text-field-title{ font-size: 1.3rem }
+.form-wrapper form .text-field-title{
+    font-size: 1.3rem;
+    white-space: nowrap;
+}
 .form-wrapper form .text-field::placeholder{ font-size: 1rem }
 .form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
 
@@ -162,7 +172,7 @@ aside nav .active{ background-color: #2C3B4F }
 /* Файлы */
 .files{
     display: flex; flex-wrap: wrap; gap: 8px;
-    width: 80%;
+    width: 100%;
 }
 .file-info i{ margin-right: 5px }
 .files h4{ display: inline-block; color: #000 }
@@ -187,6 +197,7 @@ aside nav .active{ background-color: #2C3B4F }
 }
 /* Кнопка удаления и скачивания файла*/
 .file .file-btns{
+    display: flex;
     align-items: center;
     gap: 10px;
     padding: 5px 10px;
@@ -198,10 +209,13 @@ aside nav .active{ background-color: #2C3B4F }
     transition-property: color background-color;
     clip-path: circle();
     padding: 10px;
+    display: flex; justify-content: center; align-items: center;
 }
 /* Кнопка "Удалить файл" */
 .file .del-file::before{
-    content: '\f24a';
+    content: '\f15d';
+    width: 13px;
+    height: 13px;
     font-family: "uicons-regular-rounded";
 }
 .file .del-file:hover{

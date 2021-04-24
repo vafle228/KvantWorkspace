@@ -11,7 +11,7 @@ aside{
     background-color: #111926ee;
     display: flex;
     align-items: center;
-    clip-path: circle(80% at 0% 50%)
+    clip-path: circle(80% at 0% 50%);
 }
 aside #logo{
     position: fixed;
@@ -45,10 +45,8 @@ aside form h1{
 }
 #flash-error i{ margin: 10px 5px 0 }
 aside form input{
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    width: 100%;
+    height: 60px; width: 100%;
+    border-radius: 10px; border: none;
     padding: 0 25px;
     outline: none;
     font-size: 20px;
@@ -61,9 +59,19 @@ aside form button{
     height: 60px;
     border-radius: 10px;
     border: none;
+    margin: 0 auto;
     width: 100%;
     background-color:#0E58B5;
     color: #fff;
+    transition-duration: .2s;
+    transition-property: transform box-shadow;
+    box-shadow: 0 5px 0 0 #0b458b;
+    transform: translate(0, 0);
+    cursor: pointer;
+}
+aside form button:hover{
+    box-shadow: 0 3px 0 0 #0b458b;
+    transform: translate(0, 3px);
 }
 aside form button h4{
     font-size: 25px;
