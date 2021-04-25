@@ -12,7 +12,6 @@
 #diary header .week-selector {
     height: 40px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 #diary header .week-selector .weeks {
@@ -23,8 +22,8 @@
 #diary header .week-selector .btn {
     width: 40px;
     padding: 4px;
+    font-size: 32px;
 }
-#diary header .week-selector span { font-size: 32px }
 
 /* Занятия */
 #diary main {
@@ -45,13 +44,15 @@
     text-align: right;
 }
 #diary main .day .item {
-    padding: 10px 25px 15px;
+    padding: 10px 40px 15px 25px;
     position: relative;
+    border: #0001 solid 1px;
 }
 #diary main .day .item .item-header {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
     margin-bottom: 5px;
-    height: 40px;
 }
 #diary main .day .item .item-header .lesson-title h2 {
     display: inline-block;
@@ -63,8 +64,8 @@
     display: inline-block;
 }
 #diary main .day .item .item-header .lesson-teacher {
-    display: flex; align-items: center;
-    height: 100%;
+    display: flex; 
+    align-items: center;
 }
 #diary main .day .item .item-header .lesson-teacher img {
     width: 32px; height: 32px;

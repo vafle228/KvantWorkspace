@@ -1,16 +1,5 @@
 @import url("fonts/Google font/stylesheet.css");
 
-/* Основной шрифт */
-@font-face{
-	font-family: 'Arsenal'; 
-	src: url('Arsenal-Regular.otf'); 
-}
-/* Курсивный шрифт */
-@font-face{
-	font-family: 'Awesome'; 
-	src: url('fontawesome-webfont.woff'); 
-}
-
 /* Скрываем скролбар */
 ::-webkit-scrollbar{ width: 0 }
 
@@ -30,11 +19,10 @@ h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 
 /* Основные элементы страницы */
 body{
-    background-color: #FAFAFA;
+    background-color: #FeFeFe;
     position: relative;
     overflow-y: hidden;
     height: 100%; width: 100%;
-    /* font-family: 'Arsenal'; */
     font-family: "Google Sans";
 
     /* Запрещает выделять текст */
