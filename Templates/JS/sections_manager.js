@@ -38,9 +38,9 @@ $("#mail .item").click(function(){
 	$("body").css("position", "fixed");
 });
 
-// Открытие формы создания новости
+// Открытие форму создания новости
 function open_add_news_form(){
-    $('#news #add-news-form')[0].style.display = 'block';
+	$('#news #add-news-form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 }
 

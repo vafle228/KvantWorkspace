@@ -51,32 +51,36 @@ body > section{ padding: 50px 0 0 150px; }
 /* Навигационное меню */
 aside{
     position: fixed; top: 0; left: 0;
-    height: 100%; width: 100px;
-    background-color: #111926;
-    border-radius: 0 32px 0 0;
-    padding: 25px;
+    height: 100%; width: 120px;
+    background-color: #fff;
+    box-shadow: 1px 0 1px 0 #0001;
+    padding: 15px;
 }
 aside #logo{
     width: 60px; height: 60px;
-    margin: 0 -5px 30px;
+    margin: 15px;
 }
-aside nav{ width: 50px }
+aside nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 aside nav button{
-    width: 60px; height: 60px;
-    padding: 15px; margin: 10px -5px;
     background-color: unset;
-    border-radius: 15px;
-    font-size: 30px; color: #EFF1F3;
-    transition-property: background-color;
-    transition-duration: .2s;
+    border-radius: 5px;
+    transition-property: background-color; transition-duration: .2s;
+    display: flex; align-items: center; flex-direction: column;
+    padding: 10px 0;
 }
-aside nav button:not(.user-img):hover{ background-color: #2C3B4F }
-aside nav .active{ background-color: #2C3B4F }
-.user-img{ font-size: 40px; padding: 10px }
+aside nav button span{ font-size: 20px }
+aside nav button p{ font-size: 14px; color: #000; font-weight: 500; }
+aside nav button:hover{ background-color: #F6F6F6 }
+aside nav .active{ background-color: #F6F6F6; color: #1967D2 }
+aside nav .active p{ color: #1967D2 }
 
 
 /* Формы */
-.form{ display: none }
+.form{ display: none}
 .form .filter{
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
@@ -85,7 +89,7 @@ aside nav .active{ background-color: #2C3B4F }
 .form-wrapper{
     overflow-y: scroll; padding: 100px 0;
     z-index: 100;
-    position: fixed; top: 0; left: 150px;
+    position: fixed; top: 0; left: calc(50% - 400px);
     height: 100%;
     display: flex; align-items: center;
 }
@@ -240,6 +244,11 @@ aside nav .active{ background-color: #2C3B4F }
     from{ transform: rotate(0deg) }
     to{ transform: rotate(720deg) }
 }
+@keyframes form_translate{
+    from{ transform: rotate(0deg) }
+    to{ transform: rotate(720deg) }
+}
+
 
 
 /* Стилизация выпадающего списка */

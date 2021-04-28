@@ -51,7 +51,7 @@ header .profile img{
 /* Виджеты */
 #widgets{
     width: 100%;
-    background-color: #fff;
+    background-color: aliceblue;
     padding: 25px 45px 25px 195px;
     display: flex;
     height: 350px;
@@ -69,6 +69,7 @@ header .profile img{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background-color: #fff;
 }
 #widgets #quote-widget div h6{
     width: 50%;
