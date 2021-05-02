@@ -1,25 +1,24 @@
 /* Дневник */
-#diary { padding-left: 140px }
+#diary { padding-left: 190px }
 
 /* Шапка секции */
-#diary header {
+header .page-header{
     display: flex;
     justify-content: space-between;
-    width: 800px;
-    margin-bottom: 30px;
+    width: 1000px;
     padding: 0 10px;
 }
-#diary header .week-selector {
+header .page-header .week-selector {
     height: 40px;
     display: flex;
     align-items: center;
 }
-#diary header .week-selector .weeks {
+header .page-header .week-selector .weeks {
     height: 40px;
     margin: 0 5px;
     font-size: 24px;
 }
-#diary header .week-selector .btn {
+header .page-header .week-selector .btn {
     width: 40px;
     padding: 4px;
     font-size: 32px;
@@ -27,7 +26,7 @@
 
 /* Занятия */
 #diary main {
-    width: 800px;
+    width: 1000px;
     height: 800px;
     padding: 0 10px 100px;
     overflow-y: scroll;
@@ -44,7 +43,7 @@
     text-align: right;
 }
 #diary main .day .item {
-    padding: 10px 40px 15px 25px;
+    padding: 10px 25px 15px 25px;
     position: relative;
     border: #0001 solid 1px;
 }

@@ -9,18 +9,18 @@
 </head>
 <body>
     <aside>
-        <img src='../../img/logo.png' id='logo' alt='logo' onclick="reload(this)"/>
+        <img src='../../img/atom.png' id='logo' alt='logo' onclick="reload(this)"/>
         <form>
             <h1>KvantJournal</h1>
             <div id='flash-error'>
                 <i class="fi-rr-shield-exclamation"></i>
                 <h4>Данные введены неверно</h4>
             </div>
-            <input placeholder="Логин" name='login'/>
-            <input placeholder="Пароль" name="password" type="password"/>
+            <input placeholder="Логин" name='login' autocomplete="off"/>
+            <input placeholder="Пароль" name="password" type="password" autocomplete="off"/>
             <button type="submit">
                 <span class="fi-rr-sign-in" style='font-size: 1.3rem; margin: 10px 5px 0 0'></span>
-                <h4 style='display: inline-block;'>Войти</h4>
+                <h4 style='display: inline-block'>Войти</h4>
             </button>
         </form>
     </aside>

@@ -1,43 +1,15 @@
 /* Статистика */
-#statistics{ padding-left: 140px }
-#statistics header{
+#statistics{ padding-left: 190px }
+header .page-header{
     display: flex;
     justify-content: space-between;
     width: 800px;
-    margin-bottom: 30px;
     padding: 0 10px;
 }
-#statistics header .week-selector{
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#statistics header .week-selector h3{
-    background-color: #22B975;
-    border-radius: 10px;
-    height: 40px;
-    vertical-align: middle;
-    padding: 10px;
-    margin: 0 5px;
-}
-#statistics header .week-selector button{
-    height: 40px;
-    width: 40px;
-    padding: 4px;
-    background-color: #22B975;
-    border-radius: 10px;
-    color: #fff;
-}
-#statistics header .week-selector span{
-    font-size: 32px;
-    margin-top: 6px;
-}
-#statistics main::-webkit-scrollbar {width: 0;}
 #statistics main{
-    width: 800px;
+    width: 1000px;
     height: 800px;
-    padding: 0 10px 200px 10px;
+    padding: 25px 10px 200px 10px;
     overflow-y: scroll;
 }
 #statistics main .day > h3{

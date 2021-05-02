@@ -1,36 +1,35 @@
 /* Почта */
-#mail { padding-left: 140px }
+#mail { padding-left: 190px }
 
 /* Шапка секции */
-#mail header {
+header .page-header  {
     display: flex;
     justify-content: space-between;
-    width: 800px;
-    margin-bottom: 30px;
+    width: 1000px;
     padding: 0 10px;
 }
-#mail header .week-selector {
+header .page-header  .week-selector {
     height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-#mail header .week-selector .weeks {
+header .page-header  .week-selector .weeks {
     height: 40px;
     margin: 0 5px;
     font-size: 24px;
 }
-#mail header .week-selector .btn {
+header .page-header  .week-selector .btn {
     width: 40px;
     padding: 4px;
 }
-#mail header .week-selector span { font-size: 32px }
+header .page-header .week-selector span { font-size: 32px }
 
 /* Письма */
 #mail main {
-    width: 800px;
+    width: 1000px;
     height: 800px;
-    padding: 0 10px 100px;
+    padding: 25px 10px 100px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;

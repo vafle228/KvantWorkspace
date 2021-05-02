@@ -1,22 +1,22 @@
+@import url("fonts/Google font/stylesheet.css");
 ::-webkit-scrollbar{ width: 0 }
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-body{ font-family: "Arsenal" }
+body{ font-family: "Google Sans" }
 aside{
     position: fixed;
     height: 100%;
-    width: 1000px;
-    border-radius: 0 32px 0 0;
-    padding: 25px;
-    background-color: #111926ee;
+    width: 600px;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 1px 0 1px 0 #0001;
     display: flex;
     align-items: center;
-    clip-path: circle(80% at 0% 50%);
 }
 aside #logo{
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 50px;
+    left: 50px;
     width: 60px;
     height: 60px;
 }
@@ -24,18 +24,16 @@ aside form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-left: 75px;
     width: 500px;
 }
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 aside form h1{
-    font-family: "Poppins";
+    font-family: "Google Sans";
     font-size: 2.5rem;
-    color: #fff;
+    color: #000;
 }
 #flash-error{
     width: 100%;
-    font-size: 30px;
+    font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,11 +44,24 @@ aside form h1{
 #flash-error i{ margin: 10px 5px 0 }
 aside form input{
     height: 60px; width: 100%;
-    border-radius: 10px; border: none;
+    border-radius: 10px;
     padding: 0 25px;
-    outline: none;
+    outline: none; border: none;
     font-size: 20px;
+    background-color: #E8E8E8;
+    position: relative;
 }
+/* aside form input::before{
+    z-index: 100000;
+    position: absolute;
+    margin: 18px;
+    content: "\f257";
+    font-family: 'uicons-regular-rounded';
+    color: #848485;
+    width: 24px;
+    height: 24px;
+    background-color: #f16e6e;
+} */
 aside form input::placeholder{
     font-size: 20px;
     opacity: 0.5;
@@ -75,7 +86,7 @@ aside form button:hover{
 }
 aside form button h4{
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* Фон */

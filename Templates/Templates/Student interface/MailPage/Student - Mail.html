@@ -14,27 +14,61 @@
 <body>
     <!-- Навигационное меню -->
     <aside>
-        <img src="../../../img/logo.png" id='logo' alt='logo' onclick="reload(this)"/>
+        <!-- Логотип -->
+        <img src='../../../img/atom.png' id='logo' alt='logo' onclick="reload(this)" />
         <nav>
-            <button><a href='/student/main'><span class="fi fi-rr-apps"></a></button>
-            <button><a href='student/diary'><span class="fi fi-rr-book-alt"></a></button>
-            <button class='active'><a href='student/mail'><span class="fi fi-rr-envelope"></a></button>
-            <button><a href='student/stat'><span class="fi fi-rr-stats"></a></button>
-            <button><a href='student/portfolio'><span class="fi-rr-trophy"></a></button>
-        </nav>
-        <nav style='position: absolute; bottom: 15px'>
-            <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->
-            <button><span class="fi fi-rr-bell"></button> <!-- Notifications -->
-            <button class='user-img'><span class="fi fi-rr-circle"></button>
+            <button>
+                <a href='/student/main'>
+                    <span class="fi fi-rr-apps">
+                    <p>Главная</p>
+                </a>
+            </button>
+            <button>
+                <a href='student/diary'>
+                    <span class="fi fi-rr-book-alt">
+                    <p>Дневник</p>
+                </a>
+            </button>
+            <button class='active'>
+                <a href='student/mail'>
+                    <span class="fi fi-rr-envelope">
+                    <p>Почта</p>
+                </a>
+            </button>
+            <button>
+                <a href='student/stat'>
+                    <span class="fi fi-rr-stats">
+                    <p>Отчеты</p>
+                </a>
+            </button>
+            <button>
+                <a href='student/portfolio'>
+                    <span class="fi-rr-trophy">
+                    <p>Портфолио</p>
+                </a>
+            </button>
         </nav>
     </aside>
-    
-    <!-- Почта -->
-    <section id="mail">
-        <header>
+    <!-- Шапка -->
+    <header>
+        <div class='page-header'>
             <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
             <button onclick="open_create_mail_form()" class='main-btn'>Написать</button>
-        </header>
+        </div>
+        <nav class='toolbar'>
+            <button><span class="fi-rr-list-check"></button>
+            <button><span class="fi fi-rr-bell"></button>
+        </nav>
+        <div class="profile">
+            <div class="info">
+                <h4>Ученик</h4>
+                <h2>Имя Фамилия</h2>
+            </div>
+            <img src='../../../img/Kaelthas.jpg'/>
+        </div>
+    </header>
+    <!-- Почта -->
+    <section id="mail">
         <main>
             <div class='day'>
                 <h3>BT 02.02.2021</h3>
