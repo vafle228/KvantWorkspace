@@ -1,52 +1,52 @@
 // Переход по вкладкам
 function switch_to(section_id, btn) {
-    for(let i = 0; i<4; i++){
-        $('body > section')[i].style.display = 'none';
-        $('aside button').removeClass('active');
-    }
-    document.getElementById(section_id).style.display = 'block';
-    btn.className += ' active';
+	for (let i = 0; i < 4; i++) {
+		$('body > section')[i].style.display = 'none';
+		$('aside button').removeClass('active');
+	}
+	document.getElementById(section_id).style.display = 'block';
+	btn.className += ' active';
 }
 
 // Перезагрузка старницы с анимацией логотипа
-function reload(logo){
-    logo.style.animation = 'you_spin_me_right_round 1s';
-    setTimeout("location.reload()", 800);
+function reload(logo) {
+	logo.style.animation = 'you_spin_me_right_round 1s';
+	setTimeout("location.reload()", 800);
 }
 
 // Закрытие формы
-function close_form(bg){
-    bg.parentElement.style.display = 'none';
+function close_form(bg) {
+	bg.parentElement.style.display = 'none';
 	$("body").css("position", "relative");
 }
 
 // Открытие формы по нажатию на урок
-$("#diary .item").click(function(){
-    $('#diary .form')[0].style.display = 'block';
+$("#diary .item").click(function () {
+	$('#diary .form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 });
 
 // Открытие формы по нажатию на курс
-$("#widgets .item").click(function(){
-    $('#widgets .form')[0].style.display = 'block';
+$("#widgets .item").click(function () {
+	$('#widgets .form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 });
 
 // Открытие формы по нажатию на письмо
-$("#mail .item").click(function(){
-    $('#mail .form')[0].style.display = 'block';
+$("#mail .item").click(function () {
+	$('#mail .form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 });
 
 // Открытие форму создания новости
-function open_add_news_form(){
+function open_add_news_form() {
 	$('#news #add-news-form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 }
 
 // Открытие формы создания письма
-function open_create_mail_form(){
-    $('#mail .form')[1].style.display = 'block';
+function open_create_mail_form() {
+	$('#mail .form')[1].style.display = 'block';
 	$("body").css("position", "fixed");
 }
 

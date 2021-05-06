@@ -2,34 +2,24 @@
 #mail { padding-left: 190px }
 
 /* Шапка секции */
-header .page-header  {
+header .page-header{
     display: flex;
     justify-content: space-between;
     width: 1000px;
     padding: 0 10px;
 }
-header .page-header  .week-selector {
+header .page-header .main-btn{
+    width: max-content;
+}
+header .page-header .main-btn button{
     height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
-header .page-header  .week-selector .weeks {
-    height: 40px;
-    margin: 0 5px;
-    font-size: 24px;
-}
-header .page-header  .week-selector .btn {
-    width: 40px;
-    padding: 4px;
-}
-header .page-header .week-selector span { font-size: 32px }
 
 /* Письма */
 #mail main {
     width: 1000px;
     height: 800px;
-    padding: 25px 10px 100px;
+    padding: 0 10px 100px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -45,6 +35,7 @@ header .page-header .week-selector span { font-size: 32px }
 }
 #mail main .day .item {
     padding: 10px 25px 15px 25px;
+    border: #0001 solid 1px;
     position: relative;
 }
 #mail main .day .item .item-header {
@@ -87,20 +78,14 @@ header .page-header .week-selector span { font-size: 32px }
 .dropdown-content a{ color: black; padding: 6px 16px; display: block }
 .dropdown-content a:hover{ background-color: #f1f1f1 }
 
-/* Кнопка "Написать" */
-.main-btn{
-    height: 40px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: #0E58B5;
-    color: #fff;
-    font-size: 24px;
-    transition-duration: .2s;
-    transition-property: transform box-shadow;
-    box-shadow: 0 5px 0 0 #0b458b;
-    transform: translate(0, 0);
+/* Псевдоэлемент письма */
+.day > .item::after, form::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0;
+    height: 100%; width: 10px;
+    border-radius: 0 10px 10px 0;
 }
-.main-btn:hover{
-    box-shadow: 0 3px 0 0 #0b458b;
-    transform: translate(0, 3px);
-}
+
+.new-mail::after { background-color: #4C50B8 } /* Непрочитанное */
+.old-mail::after { background-color: #85BBFF } /* Прочитанное */

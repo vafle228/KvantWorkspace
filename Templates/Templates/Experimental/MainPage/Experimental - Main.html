@@ -17,37 +17,14 @@
     <aside>
         <!-- Логотип -->
         <img src='../../../img/atom.png' id='logo' alt='logo' onclick="reload(this)" />
+        <!-- Навигация -->
         <nav>
-            <button class='active'>
-                <a href='/student/main'>
-                    <span class="fi fi-rr-apps">
-                    <p>Главная</p>
-                </a>
-            </button>
-            <button>
-                <a href='student/diary'>
-                    <span class="fi fi-rr-book-alt">
-                    <p>Дневник</p>
-                </a>
-            </button>
-            <button>
-                <a href='student/mail'>
-                    <span class="fi fi-rr-envelope">
-                    <p>Почта</p>
-                </a>
-            </button>
-            <button>
-                <a href='student/stat'>
-                    <span class="fi fi-rr-stats">
-                    <p>Отчеты</p>
-                </a>
-            </button>
-            <button>
-                <a href='student/portfolio'>
-                    <span class="fi-rr-trophy">
-                    <p>Портфолио</p>
-                </a>
-            </button>
+            <button class='active'><span class="fi fi-rr-apps"><p>Главная</p></button>
+            <button><span class="fi fi-rr-book-alt"><p>Дневник</p></button>
+            <button><span class="fi fi-rr-envelope"><p>Почта</p></button>
+            <button><span class="fi fi-rr-stats"><p>Отчеты</p></button>
+            <button><span class="fi-rr-trophy"><p>Портфолио</p></button>
+            <button><span class="fi-rr-palette"><p>Тема</p></button>
         </nav>
     </aside>
 
@@ -88,8 +65,8 @@
                     <span class="fi-rr-graduation-cap" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px'>Расписание</h1></span>
                     <!-- Кнопки слайдера -->
                     <div id="slider-controller">
-                        <button id='prev'><span class='fi-rr-arrow-left'></span></button>
-                        <button id='next'><span class='fi-rr-arrow-right'></span></button>
+                        <button id='prev'><span class='fi-rr-arrow-small-left'></span></button>
+                        <button id='next'><span class='fi-rr-arrow-small-right'></span></button>
                     </div>
                 </div>
                 <div id='slider'>
@@ -199,18 +176,6 @@
                         <h2>Участники курса</h2>
                         <div class="item-header">
                             <div class='files' style='width: 100%'>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
                                 <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
                                 <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
                                 <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
@@ -342,5 +307,4 @@
         });
     </script>
 </body>
-
 </html>

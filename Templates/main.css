@@ -1,4 +1,18 @@
+/* Подключение шрифтов */
 @import url("fonts/Google font/stylesheet.css");
+
+/* Светлая тема */
+:root{
+    --bg-color: #FeFeFe;
+
+    --item-bg-color: #fff;
+    --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
+
+    --button-bg-color: #fff;
+    --button-bg-hover-color: #F6F6F6;
+    --button-bg-active-color: #E3EEFC;
+    
+}
 
 /* Скрываем скролбар */
 ::-webkit-scrollbar{ width: 0 }
@@ -19,7 +33,7 @@ h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 
 /* Основные элементы страницы */
 body{
-    background-color: #FeFeFe;
+    background-color: var(--bg-color);
     position: relative;
     overflow-y: hidden;
     height: 100%; width: 100%;
@@ -33,18 +47,16 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
-/* body > section{ padding: 50px 0 0 150px; } */
 
 .item{
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.03);
+    background-color: var(--item-bg-color);
+    border-radius: 10px;
+    box-shadow: var(--item-shadow);  
     cursor: pointer;
     transition-duration: .5s; transition-property: transform, box-shadow;
 }
 .item:hover{
     box-shadow: -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc;
-    -webkit-transform: translateX(5px) translateY(-5px);
     transform: translateX(5px) translateY(-5px);
 }
 
@@ -52,7 +64,7 @@ body{
 aside{
     position: fixed; top: 0; left: 0;
     height: 100%; width: 120px;
-    background-color: #fff;
+    background-color: var(--item-bg-color);
     box-shadow: 1px 0 1px 0 #0001;
     padding: 15px;
 }
@@ -72,10 +84,15 @@ aside nav button{
     display: flex; align-items: center; flex-direction: column;
     padding: 10px 0;
 }
+aside nav button:last-child{
+    position: absolute;
+    bottom: 15px;
+    width: 90px;
+}
 aside nav button span{ font-size: 20px }
 aside nav button p{ font-size: 14px; color: #000; font-weight: 500; }
-aside nav button:hover{ background-color: #F6F6F6 }
-aside nav .active{ background-color: #F6F6F6; color: #1967D2 }
+aside nav button:hover{ background-color: var(--button-bg-hover-color) }
+aside nav .active{ background-color: var(--button-bg-hover-color); color: #1967D2 }
 aside nav .active p{ color: #1967D2 }
 
 /* Шапка */
@@ -97,17 +114,18 @@ header .toolbar button{
     margin: 5px 0; padding: 10px;
     border-radius: 5px;
     color: #1967D2; font-size: 20px;
-    background-color: #fff;
+    background-color: var(--button-bg-color);
     transition: .2s background-color;
 }
 header .toolbar button:hover{
-    background-color: #E3EEFC;
+    background-color: var(--button-bg-active-color);
 }
 /* Профиль */
 header .profile{
     display: flex;
     gap: 10px;
     align-items: center;
+    position: relative;
 }
 header .profile .info{
     display: flex;
@@ -124,10 +142,32 @@ header .profile img{
     width: 44px; height: 44px;
     border-radius: 100%;
     object-fit: cover;
+    transition-duration: .2s;
+    transition-property: filter;
+}
+header .profile::after{
+    content: '\f218';
+    font-family: "uicons-regular-rounded";
+    font-size: 20px;
+    position: absolute;
+    top: 12px; right: 12px;
+    opacity: 0;
+    color: #fff;
+    transition-duration: .2s;
+    transition-property: opacity;
+}
+header .profile:hover::after{
+    opacity: 1;
+}
+header .profile:hover img{
+    filter: brightness(0.8);
 }
 
 /* Формы */
-.form{ display: none}
+.form{
+    display: none;
+    z-index: 1000;
+}
 .form .filter{
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
@@ -144,7 +184,7 @@ header .profile img{
     height: auto; width: 800px;
     background-color: #fff;
     padding: 10px 25px 15px 25px; margin: auto 0;
-    border-radius: 15px;
+    border-radius: 10px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
 }
@@ -152,12 +192,13 @@ header .profile img{
     color: #1967D2;
     font-weight: 500;
     font-size: 1.2rem;
-    background-color: #fff;
+    background-color: var(--button-bg-color);
     padding: 0 15px;
     margin: 3px 0;
     height: 45px;
     border-radius: 10px;
-    transition-property: color background-color box-shadow; transition-duration: .2s;
+    transition-property: color background-color box-shadow;
+    transition-duration: .2s;
 }
 .form-wrapper form .form-btn h4{
     color: #fff;
@@ -167,7 +208,7 @@ header .profile img{
     margin-right: 10px; font-size: 1rem;
 }
 .form-wrapper form .form-btn:hover{
-    background-color: #E3EEFC;
+    background-color: var(--button-bg-active-color);
 }
 
 /* Форма */
@@ -205,7 +246,7 @@ header .profile img{
 .form-wrapper form .preview{
     width: 800px;
     margin: -25px -25px 10px -25px;
-    border-radius: 15px 15px 0 0;
+    border-radius: 10px 10px 0 0;
 }
 
 /* Файлы */
@@ -286,17 +327,16 @@ header .profile img{
 @media screen and (max-width: 1280px){ body{ zoom: 65% }}
 @media screen and (max-width: 1024px){ body{ zoom: 55% }}
 
+/* Адаптивность для мобильных устройств */
+/* @media screen and (max-width: 992px){
+    body{ zoom: 120% }
+} */
+
 /* Анимация */
 @keyframes you_spin_me_right_round{
     from{ transform: rotate(0deg) }
     to{ transform: rotate(720deg) }
 }
-@keyframes form_translate{
-    from{ transform: rotate(0deg) }
-    to{ transform: rotate(720deg) }
-}
-
-
 
 /* Стилизация выпадающего списка */
 .dropdown-input{
@@ -351,4 +391,23 @@ header .profile img{
     padding: 2px 5px;
     margin: 2px 5px;
     border-radius: 5px;
+}
+
+/* Кнопка с эффектом нажатия */
+.main-btn{
+    width: 100%;
+    display: flex; justify-content: center;
+}
+.main-btn button{
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #0E58B5;
+    color: #fff; font-size: 24px;
+    transition-duration: .2s; transition-property: transform box-shadow;
+    box-shadow: 0 5px 0 0 #0b458b;
+    transform: translate(0, 0);
+}
+.main-btn button:hover{
+    box-shadow: 0 3px 0 0 #0b458b;
+    transform: translate(0, 3px);
 }
