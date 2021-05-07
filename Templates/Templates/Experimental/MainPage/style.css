@@ -1,10 +1,13 @@
+
 /* Главная */
-#main{ padding: 0 }
+#main{
+    padding: 0;
+}
 
 /* Виджеты */
 #widgets{
     width: 100%;
-    background-color: aliceblue;
+    background-color: var(--bg-secondary-color);
     padding: 25px 45px 25px 195px;
     display: flex;
     height: 350px;
@@ -12,7 +15,7 @@
 #widgets > div{
     padding: 25px;
     position: relative;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--item-shadow);
     border-radius: 10px;
 }
 
@@ -22,7 +25,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #fff;
+    background-color: var(--item-bg-color);
 }
 #widgets #quote-widget div h6{
     width: 50%;
@@ -35,13 +38,22 @@
 }
 
 #widgets #quote-widget::after{
-    content: url('../../../img/illustration.png');
-    position: absolute; right: 0; bottom: -6px;
+    content: '';
+    position: absolute; right: 0; bottom: 10%;
+    width: 40%; height: 80%;
+    background: url('../../../img/illustration 2.svg');
+    background-size: cover;
 }
 
 /* Виджет "Твои курсы" */
 #widgets #courses-manager{
-    background-color: #85BBFF;
+    background-color: var(--color-scheme);
+	background-image: 
+		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
+		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(90deg, var(--color-scheme), var(--color-scheme-gradient));
+	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
     min-width: 775px;
     display: flex; flex-direction: column;
     gap: 10px;
@@ -63,7 +75,7 @@
 }
 #next, #prev{
     height: 30px; width: 30px;
-    background-color: #fff;
+    background-color: var(--button-bg-active-color);
     border-radius: 5px;
     padding: 4px;
     font-size: 22px;
@@ -72,15 +84,8 @@
 #next:hover, #prev:hover{ transform: scale(1.2) }
 #widgets #courses-manager > #slider div{
     min-width: 225px; height: 190px;
-    box-shadow: none;
     margin-right: 25px;
-    transition-duration: .5s;
-    transition-property: transform, box-shadow;
-}
-#widgets #courses-manager > #slider > div:hover{
-    box-shadow: -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc;
-    -webkit-transform: translateX(5px) translateY(-5px);
-    transform: translateX(5px) translateY(-5px);
+    border: none;
 }
 #widgets #courses-manager > #slider > div img{
     object-fit: cover;

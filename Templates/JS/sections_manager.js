@@ -72,3 +72,21 @@ function search_fill(a) {
 	input.value = a.textContent;
 	a.parentElement.style.display = 'none';
 }
+
+// Сменить тему
+function switch_theme(){
+	if($('body').hasClass('light__theme')){
+		$('.light__theme').toggleClass('light__theme dark__theme');
+	} else {
+		$('.dark__theme').toggleClass('dark__theme light__theme');
+	}
+}
+
+// Сменить цветовую гамму
+function switch_color_scheme(){
+	if($('body').hasClass('blue__color__scheme')){
+		$('.blue__color__scheme').toggleClass('blue__color__scheme orange__color__scheme');
+	} else {
+		$('.orange__color__scheme').toggleClass('orange__color__scheme blue__color__scheme');
+	}
+}
