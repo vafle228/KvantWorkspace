@@ -223,14 +223,14 @@ header .profile:hover img{
     height: 100%; width: 100%;
     background-color: #00000088;
 }
-.form-wrapper{
+.form .form-wrapper{
     overflow-y: scroll; padding: 100px 0;
     z-index: 100;
     position: fixed; top: 0; left: calc(50% - 400px);
     height: 100%;
     display: flex; align-items: center;
 }
-.form-wrapper form{
+.form .form-wrapper form{
     height: auto; width: 800px;
     background-color: var(--bg-color);
     padding: 10px 25px 15px 25px; margin: auto 0;
@@ -238,7 +238,7 @@ header .profile:hover img{
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
 }
-.form-wrapper form .form-btn{
+.form .form-wrapper form .form-btn{
     color: #1967D2;
     font-weight: 500; font-size: 1.2rem;
     background-color: var(--button-bg-color);
@@ -247,33 +247,33 @@ header .profile:hover img{
     border-radius: 10px;
     transition-property: color background-color box-shadow; transition-duration: .2s;
 }
-.form-wrapper form .form-btn span{
+.form .form-wrapper form .form-btn span{
     margin-right: 10px; font-size: 1rem; color: #1967D2;
 }
-.form-wrapper form .form-btn:hover{
+.form .form-wrapper form .form-btn:hover{
     background-color: var(--button-bg-active-color);
 }
 
 /* Форма */
-.form-wrapper form .item-header{
+.form .form-wrapper form .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 51px;
 }
-.form-wrapper form .item-header .lesson-title{
+.form .form-wrapper form .item-header .lesson-title{
     max-width: 75%;
 }
-.form-wrapper form .item-header .lesson-title h2{
+.form .form-wrapper form .item-header .lesson-title h2{
     display: inline-block;
     margin-right: 10px;
 }
-.form-wrapper form .item-header .lesson-title h3{
+.form .form-wrapper form .item-header .lesson-title h3{
     color: #0E58B5; font-weight: bold;
     margin-top: 6px; float: right;
 }
-.form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
-.form-wrapper form .item-header .lesson-teacher img{ width: 32px; height: 32px }
-.form-wrapper form .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
-.form-wrapper form .text-field{
+.form .form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
+.form .form-wrapper form .item-header .lesson-teacher img{ width: 32px; height: 32px }
+.form .form-wrapper form .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
+.form .form-wrapper form .text-field{
     width: 100%;
     border-radius: 10px; border: #00000022 solid 1px;
     padding: 10px;
@@ -281,14 +281,14 @@ header .profile:hover img{
     background-color: var(--item-bg-color);
     color: var(--text-primary-color);
 }
-.form-wrapper form .text-field-title{
+.form .form-wrapper form .text-field-title{
     font-size: 1.3rem;
     white-space: nowrap;
 }
-.form-wrapper form .text-field::placeholder{ font-size: 1rem }
-.form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
+.form .form-wrapper form .text-field::placeholder{ font-size: 1rem }
+.form .form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
 
-.form-wrapper form .preview{
+.form .form-wrapper form .preview{
     width: 800px;
     margin: -25px -25px 10px -25px;
     border-radius: 10px 10px 0 0;
@@ -299,12 +299,12 @@ header .profile:hover img{
     display: flex; flex-wrap: wrap; gap: 8px;
     width: 100%;
 }
-.file-info i{ margin-right: 5px }
+.file-info i{ margin-right: 10px }
 .files h4{ display: inline-block; color: var(--text-primary-color) }
 .file{
     height: 51px;
     border-radius: 100px; border: #0001 solid 1px;
-    padding: 0 0 0 25px;
+    padding: 0 0 0 20px;
     display: flex; align-items: center;
     transition-duration: .2s; transition-property: box-shadow;
     background-color: var(--item-bg-color);

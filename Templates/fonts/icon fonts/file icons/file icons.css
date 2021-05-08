@@ -17,12 +17,12 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
 /* Video */
 .file-mp4:before, .file-avi:before, .file-mov:before, .file-wmv:before, .file-mkv:before{
     content: "";
-    background-image: url('./svg/video.svg');
+    background-image: url('./svg/youtube.svg');
 }
 /* Audio */
 .file-mp3:before, .file-waf:before, .file-aif:before, .file-mid:before{
     content: "";
-    background-image: url('./svg/music.svg');
+    background-image: url('./svg/music-note.svg');
 }
 /* Excel */
 .file-xls:before, .file-xlsx:before, .file-csv:before, .file-xml:before{
