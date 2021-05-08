@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../../../main.css' /> <!-- Основные стили -->
+    <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
+    <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Логотип -->
+    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel="stylesheet" href="style.css">
+    <title>Оценивание</title>
+</head>
+
+<body class='light__theme orange__color__scheme'>
+    <!-- Навигационное меню -->
+    <aside>
+        <!-- Логотип -->
+        <img src='../../../img/atom.png' id='logo' alt='logo' onclick="reload(this)" />
+        <!-- Навигация -->
+        <nav>
+            <button><span class="fi fi-rr-apps"><p>Главная</p></button>
+            <button class='active'><span class="fi fi-rr-book-alt"><p>Дневник</p></button>
+            <button><span class="fi fi-rr-envelope"><p>Почта</p></button>
+            <button><span class="fi fi-rr-stats"><p>Отчеты</p></button>
+            <button><span class="fi-rr-trophy"><p>Портфолио</p></button>
+        </nav>
+        <nav>
+            <button onclick="switch_theme()"><span class="fi-rr-opacity"><p>Тема</p></button>
+            <button onclick="switch_color_scheme()"><span class="fi-rr-palette"><p>Цвет</p></button>
+        </nav>
+    </aside>
+    <!-- Шапка -->
+    <header>
+        <div class='page-header'>
+            <span class="fi-rr-book" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Оценивание</h1></span>
+            <!-- <div class="week-selector">
+                <div class='main-btn'><button class='btn'><span class="fi-rr-angle-double-small-left"></span></button></div>
+                <div class='main-btn'><button class="weeks">01.02 - 07.02</button></div>
+                <div class='main-btn'><button class='btn'><span class="fi-rr-angle-double-small-right"></span></button></div>
+            </div> -->
+        </div>
+        <nav class='toolbar'>
+            <button><span class="fi-rr-list-check"></button>
+            <button><span class="fi fi-rr-bell"></button>
+        </nav>
+        <div class="profile">
+            <div class="info">
+                <h4>Учитель</h4>
+                <h2>Имя Фамилия</h2>
+            </div>
+            <img src='../../../img/Kaelthas.jpg'/>
+        </div>
+    </header>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src='../../../JS/sections_manager.js'></script>
+</body>
+
+</html>

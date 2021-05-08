@@ -17,6 +17,7 @@
     position: relative;
     box-shadow: var(--item-shadow);
     border-radius: 10px;
+    height: 300px;
 }
 
 /* Виджет с цитатой */
@@ -27,14 +28,17 @@
     gap: 10px;
     background-color: var(--item-bg-color);
 }
+#widgets #quote-widget div{
+    /* margin: auto 0; */
+    width: 58%;
+}
 #widgets #quote-widget div h6{
-    width: 50%;
-    font-size: 1.2rem; font-weight: 300; font-style: italic;
+    font-size: 1rem; font-style: italic;
 }
 #widgets #quote-widget div h4{
     text-align: right;
-    width: 50%;
     font-size: 1rem; font-weight: 300;
+    margin-top: 5px;
 }
 
 #widgets #quote-widget::after{
@@ -54,7 +58,7 @@
 		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
 		linear-gradient(90deg, var(--color-scheme), var(--color-scheme-gradient));
 	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
-    min-width: 775px;
+    width: 775px;
     display: flex; flex-direction: column;
     gap: 10px;
 }
@@ -62,7 +66,7 @@
     display: flex; justify-content: space-between;
 }
 #widgets #courses-manager > #slider{
-    width: 730px;
+    width: calc(100% + 5px);
     display: flex; justify-content: flex-start;
     overflow-x: auto;
     padding-top: 10px;
@@ -131,8 +135,27 @@
 }
 
 /* Адаптивность для сенсорных устройств */
-/* @media screen and (max-width: 992px){
-    #news > div .item{
-        width: 100%;
+@media screen and (max-width: 992px){
+    /* Новости */
+    #news > div .item{ width: 49% }
+}
+@media screen and (max-width: 820px){
+    /* Виджеты */
+    #widgets #quote-widget::after{ display: none }
+    #widgets #quote-widget div{ width: 100% }
+}
+@media screen and (max-width: 768px){
+    /* Виджеты */
+    #widgets{ height: 675px; gap: 25px; flex-direction: column }
+    #widgets #quote-widget{ width: 100% }
+    #widgets #quote-widget div{ width: 58% }
+    #widgets #quote-widget::after{ display: block }
+    #widgets #courses-manager{ margin: 0 auto; width: 100% }
+}
+@media screen and (max-width: 576px){
+    /* Новости */
+    #news > div .item{ width: 100% }
+    #widgets, #news{
+        padding-left: 45px;
     }
-} */
+}

@@ -49,14 +49,14 @@
     --color-scheme: #83eaf1;
     --color-scheme-dark: #1967D2;
     --color-scheme-gradient: #63a4ff;
-    --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1, -5px 5px #83eaf1;
+    --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
 }
 /* Оранжевая цветовая гамма */
 .orange__color__scheme{
     --color-scheme: #f3a183;
     --color-scheme-dark: #eC6f66;
     --color-scheme-gradient: #eC6f66;
-    --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183, -5px 5px #f3a183;
+    --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
 }
 
 /* Скрываем скролбар */
@@ -104,7 +104,7 @@ body{
 }
 .item:hover{
     box-shadow: var(--color-scheme-shadow);
-    transform: translateX(5px) translateY(-5px);
+    transform: translateX(4px) translateY(-4px);
 }
 
 /* Навигационное меню */
@@ -131,11 +131,11 @@ aside nav button{
     display: flex; align-items: center; flex-direction: column;
     padding: 10px 0;
     color: var(--text-primary-color);
+    width: 90px;
 }
 aside nav:last-child{
     position: absolute;
     bottom: 15px;
-    width: 90px;
 }
 aside nav button span{ font-size: 20px }
 aside nav button p{ font-size: 14px; color: var(--text-primary-color); font-weight: 500; }
@@ -370,11 +370,6 @@ header .profile:hover img{
 @media screen and (max-width: 1280px){ body{ zoom: 65% }}
 @media screen and (max-width: 1024px){ body{ zoom: 55% }}
 
-/* Адаптивность для мобильных устройств */
-/* @media screen and (max-width: 992px){
-    body{ zoom: 120% }
-} */
-
 /* Анимация */
 @keyframes you_spin_me_right_round{
     from{ transform: rotate(0deg) }
@@ -453,4 +448,31 @@ header .profile:hover img{
 .main-btn button:hover{
     box-shadow: 0 3px 0 0 #0b458b;
     transform: translate(0, 3px);
+}
+
+
+@media screen and (max-width: 576px){
+    /* aside */
+    aside{
+        position: fixed; top: calc(100% - 92px); left: 0;
+        height: 92px; width: 100%;
+        box-shadow: 1px 0 1px 0 #0001;
+        padding: 15px;
+        display: flex;
+    }
+    aside #logo{
+        width: 50px; height: 50px;
+        position: fixed;
+        top: 25px; left: 45px;
+        margin: 0;
+    }
+    aside nav{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    aside nav:last-child{
+        position: absolute;
+        right: 15px;
+    }
 }
