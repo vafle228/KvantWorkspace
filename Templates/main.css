@@ -1,6 +1,15 @@
 /* Подключение шрифтов */
 @import url("fonts/Google font/stylesheet.css");
 
+:root{
+    /* Брейкпоинты */
+    --xsmall: 576px;
+    --small: 768px;
+    --medium: 992px;
+    --large: 1200px;
+    --xlarge: 1400px;
+}
+
 /* Светлая тема */
 .light__theme{
     --bg-color: #FeFeFe;
@@ -88,7 +97,7 @@ body{
 .item{
     background-color: var(--item-bg-color);
     border-radius: 10px;
-    /* box-shadow: var(--item-shadow); */
+    box-shadow: var(--item-shadow);
     border: #0001 solid 1px;
     cursor: pointer;
     transition-duration: .5s; transition-property: transform, box-shadow;
@@ -132,7 +141,7 @@ aside nav button span{ font-size: 20px }
 aside nav button p{ font-size: 14px; color: var(--text-primary-color); font-weight: 500; }
 aside nav button:hover{ background-color: var(--button-bg-hover-color) }
 aside nav .active{ background-color: var(--button-bg-hover-color) }
-aside nav .active p, aside nav .active span{ color: #1967D2 }
+aside nav .active p, aside nav .active span{ color: var(--color-scheme-dark) }
 
 /* Шапка */
 header{
@@ -231,15 +240,12 @@ header .profile:hover img{
 }
 .form-wrapper form .form-btn{
     color: #1967D2;
-    font-weight: 500;
-    font-size: 1.2rem;
+    font-weight: 500; font-size: 1.2rem;
     background-color: var(--button-bg-color);
-    padding: 0 15px;
-    margin: 3px 0;
+    padding: 0 15px; margin: 3px 0;
     height: 45px;
     border-radius: 10px;
-    transition-property: color background-color box-shadow;
-    transition-duration: .2s;
+    transition-property: color background-color box-shadow; transition-duration: .2s;
 }
 .form-wrapper form .form-btn span{
     margin-right: 10px; font-size: 1rem; color: #1967D2;
@@ -297,7 +303,7 @@ header .profile:hover img{
 .files h4{ display: inline-block; color: var(--text-primary-color) }
 .file{
     height: 51px;
-    border-radius: 100px; border: #00000022 solid 1px;
+    border-radius: 100px; border: #0001 solid 1px;
     padding: 0 0 0 25px;
     display: flex; align-items: center;
     transition-duration: .2s; transition-property: box-shadow;
@@ -317,16 +323,12 @@ header .profile:hover img{
 }
 /* Кнопка удаления и скачивания файла*/
 .file .file-btns{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px 10px;
-    margin-left: -25px;
+    display: flex; align-items: center; gap: 10px;
+    padding: 5px 10px; margin-left: -25px;
 }
 .file button{
     background-color: unset;
-    transition-duration: .4s;
-    transition-property: color background-color;
+    transition-duration: .4s; transition-property: color background-color;
     clip-path: circle();
     padding: 10px;
     display: flex; justify-content: center; align-items: center;
@@ -353,7 +355,7 @@ header .profile:hover img{
     color: #fff;
 }
 .file:hover{ box-shadow: 0 2px 2px 2px #2c3b4f23 }
-
+.item .file{ background-color: var(--bg-secondary-color); }
 /* Фон */
 .bg{
     position: fixed; right: -20%; top: 10%;

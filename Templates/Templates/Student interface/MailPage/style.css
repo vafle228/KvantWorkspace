@@ -17,13 +17,11 @@ header .page-header .main-btn button{
 
 /* Письма */
 #mail main {
-    width: 1000px;
-    height: 800px;
+    width: 1000px; height: 800px;
     padding: 0 10px 100px;
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 5px;
 }
 #mail main .day{
     display: flex;
@@ -33,14 +31,16 @@ header .page-header .main-btn button{
 #mail main .day > h3 {
     text-align: right;
 }
+
+/* Письмо */
 #mail main .day .item {
     padding: 10px 25px 15px 25px;
     border: #0001 solid 1px;
     position: relative;
+    display: flex; flex-direction: column; gap: 5px;
 }
 #mail main .day .item .item-header {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 5px;
     height: 40px;
 }
 #mail main .day .item .item-header .lesson-title h2 {
@@ -48,7 +48,7 @@ header .page-header .main-btn button{
     margin-right: 10px;
 }
 #mail main .day .item .item-header .lesson-title h3 {
-    color: #0E58B5;
+    color: var(--color-scheme-dark);
     font-weight: bold;
     display: inline-block;
 }
@@ -64,6 +64,9 @@ header .page-header .main-btn button{
     margin-right: 10px;
     font-size: 16px;
 }
+#mail main .day .item .files{
+    margin-top: 10px;
+}
 #mail main .day .item .item-text{
     overflow: hidden;
     display: -webkit-box;
@@ -72,10 +75,27 @@ header .page-header .main-btn button{
 }
 
 /* Стилизация выпадающего списка */
-.dropdown-input{ font-size: 1.5rem; color: #111926; font-weight: bold; margin-top: 10px; min-width: 400px }
-.dropdown{ position: relative;  display: inline-block }
-.dropdown-content{ display: none; position: absolute; background-color: #f6f6f6; min-width: 230px; z-index: 1 }
-.dropdown-content a{ color: black; padding: 6px 16px; display: block }
+.dropdown-input{
+    font-size: 1.5rem; color: #111926; font-weight: bold;
+    margin-top: 10px;
+    min-width: 400px;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    display: block;
+}
 .dropdown-content a:hover{ background-color: #f1f1f1 }
 
 /* Псевдоэлемент письма */

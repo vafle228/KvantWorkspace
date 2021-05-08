@@ -51,12 +51,14 @@ header .page-header .week-selector .main-btn .btn span{
     padding: 10px 25px 15px 25px;
     position: relative;
     border: #0001 solid 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 #diary main .day .item .item-header {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    margin-bottom: 5px;
 }
 #diary main .day .item .item-header .lesson-title h2 {
     display: inline-block;
@@ -78,6 +80,9 @@ header .page-header .week-selector .main-btn .btn span{
     display: inline-block;
     margin-right: 10px;
     font-size: 16px;
+}
+#diary main .day .item .files{
+    margin-top: 10px;
 }
 #diary main .day .item .item-text{
     overflow: hidden;
