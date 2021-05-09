@@ -75,6 +75,8 @@ header .page-header .week-selector .main-btn .btn span{
 }
 #diary main .day .item .item-header .lesson-teacher img {
     width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 #diary main .day .item .item-header .lesson-teacher h4 {
     display: inline-block;

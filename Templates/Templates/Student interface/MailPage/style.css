@@ -58,6 +58,8 @@ header .page-header .main-btn button{
 }
 #mail main .day .item .item-header .lesson-teacher img {
     width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 #mail main .day .item .item-header .lesson-teacher h4 {
     display: inline-block;

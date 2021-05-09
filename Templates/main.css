@@ -271,7 +271,11 @@ header .profile:hover img{
     margin-top: 6px; float: right;
 }
 .form .form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
-.form .form-wrapper form .item-header .lesson-teacher img{ width: 32px; height: 32px }
+.form .form-wrapper form .item-header .lesson-teacher img{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 .form .form-wrapper form .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
 .form .form-wrapper form .text-field{
     width: 100%;
@@ -293,6 +297,9 @@ header .profile:hover img{
     margin: -25px -25px 10px -25px;
     border-radius: 10px 10px 0 0;
 }
+
+/* Разделитель */
+.divider{ margin: 10px 0 }
 
 /* Файлы */
 .files{

@@ -33,10 +33,9 @@
     width: 58%;
 }
 #widgets #quote-widget div h6{
-    font-size: 1rem; font-style: italic;
+    font-size: 1.2rem; font-style: italic;
 }
 #widgets #quote-widget div h4{
-    text-align: right;
     font-size: 1rem; font-weight: 300;
     margin-top: 5px;
 }
@@ -144,11 +143,11 @@
     #widgets #quote-widget::after{ display: none }
     #widgets #quote-widget div{ width: 100% }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 720px){
     /* Виджеты */
     #widgets{ height: 675px; gap: 25px; flex-direction: column }
     #widgets #quote-widget{ width: 100% }
-    #widgets #quote-widget div{ width: 58% }
+    #widgets #quote-widget div{ width: 50% }
     #widgets #quote-widget::after{ display: block }
     #widgets #courses-manager{ margin: 0 auto; width: 100% }
 }
