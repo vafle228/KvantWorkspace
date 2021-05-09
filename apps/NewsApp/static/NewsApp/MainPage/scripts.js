@@ -108,8 +108,8 @@ function buildNews(news){
 	let news_div = document.createElement('div');
 	news_div.className = 'item';
 
-	news_url = '/news/' + user_id + '/detail/' + news['id'];
 	news_div.onclick = function(){
+		news_url = '/news/' + user_id + '/detail/' + news['id']
 		location.href = location.origin + news_url;
 	}
 
@@ -126,7 +126,7 @@ function buildNews(news){
 	news_div.appendChild(news_title);
 	news_div.appendChild(news_text);
 
-	return news_div
+	$("#news-block")[0].appendChild(news_div);
 }
 
 function getNewNews(){
@@ -139,9 +139,7 @@ function getNewNews(){
 		},
 		cache: false,
 		success: function(response){
-			for(let i in response['news']){
-				$('#news-block')[0].appendChild(buildNews(response['news'][i]))
-			}
+			for(let i in response['news']){ buildNews(response['news'][i]) }
 		}
 	})
 	page++
