@@ -11,7 +11,7 @@
     <title>Почта</title>
 </head>
 
-<body class='dark__theme orange__color__scheme' onload='getNewMails()'>
+<body class='{{ user.theme }}__theme {{ user.color }}__color__scheme' onload='getNewMails()'>
     <!-- Навигационное меню -->
     {% include "SystemModule/AsideMenu/index.html" with user=user active='mail' %}
     <!-- Шапка -->
@@ -74,10 +74,9 @@
             </div>
         </div>
     </section>
-    {% include "SystemModule/ScriptsSetup/index.html" %}
+    {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <script src='{% static "MailApp/scripts.js" %}'></script>
     <script>
-    	let csrf_token = getCookie('csrftoken');
     	let send_mail = '{% url "send_mails" user.id %}';
         let change_status = '{% url "change_status" user.id %}';
     </script>

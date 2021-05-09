@@ -9,6 +9,8 @@ urlpatterns = [
     path('news/', include('NewsApp.urls')),
     path('mail/', include('MailApp.urls')),
     path('login/', include('LoginApp.urls')),
+
+    path('change/theme', include('SystemModule.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
