@@ -1,0 +1,160 @@
+/* Главная */
+#main{ padding: 0 }
+
+/* Виджеты */
+#widgets{
+    width: 100%;
+    height: 440px;
+    background-color: #EFF1F3;
+    padding-left: 150px;
+    box-shadow: 0 2px 10px 10px #2c3b4f2f;
+    display: flex;
+}
+#widgets > div{
+    height: 100%;
+    padding: 50px;
+    position: relative;
+}
+#widgets > div h1{ margin-bottom: 50px }
+
+/* Виджет с цитатой */
+#widgets #quote-widget h3{ margin-top: -40px; margin-bottom: 30px }
+
+#widgets #quote-widget > div ul li h4::before{
+    content: '\f229';
+    font-family: "uicons-regular-rounded";
+    font-size: 16px;
+    height: 20px; width: 20px;
+    margin-right: 10px; margin-left: -30px;
+}
+/* Виджет "Твои курсы" */
+#widgets #courses-manager{
+    background-color: #85BBFF;
+    border-radius: 0 0 0 32px;
+    min-width: 967px;
+}
+#widgets #courses-manager > div{
+    width: 860px;
+    display: flex; 
+    justify-content: flex-start;
+}
+#widgets #courses-manager > div > div{
+    min-width: 260px;
+    height: 240px;
+    box-shadow: none;
+    margin-right: 40px;
+    transition-duration: .5s;
+    transition-property: transform, box-shadow;
+}
+#widgets #courses-manager > div > div:hover{
+    box-shadow:
+        -1px 1px #65a9fc, -2px 2px #65a9fc, -3px 3px #65a9fc, -4px 4px #65a9fc, -5px 5px #65a9fc;
+    -webkit-transform: translateX(5px) translateY(-5px);
+    transform: translateX(5px) translateY(-5px);
+}
+#widgets #courses-manager > div > div img{
+    object-fit: cover;
+    width: 100%;
+    height: 128px;
+    border-radius: 15px 15px 0 0;
+}
+#widgets #courses-manager > div > div h2, #widgets #courses-manager > div > div h4{ margin: 0 0 0 15px }
+
+/* Новости */
+#news{
+    width: 100%;
+    background-color: #fff;
+    padding: 50px 45px 100px 195px;
+}
+#news > div{
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+#news > div .item{
+    max-width: 32%;
+    height: auto;
+    margin-bottom: 2%;
+    max-height: 500px;
+}
+#news > div .item:last-child{ margin-right: 0 }
+#news > div .item img{
+    object-fit: cover;
+    width: 100%;
+    height: 228px;
+    border-radius: 15px 15px 0 0;
+}
+#news > div .item h2{
+    margin: 10px 25px;
+}
+#news > div .item p{
+    margin: 10px 25px 25px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    font-size: 1.2rem;
+}
+
+/* Кнопка "Больше новостей" */
+.main-btn{
+    width: 100%;
+    display: flex; justify-content: center;
+    margin: 5px;
+    z-index: 5;
+}
+.main-btn button{
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #0E58B5;
+    color: #fff;
+    font-size: 24px;
+    transition-duration: .2s;
+    transition-property: transform box-shadow;
+    box-shadow: 0 5px 0 0 #0b458b;
+    transform: translate(0, -3px);
+}
+.main-btn button:hover{
+    box-shadow: 0 3px 0 0 #0b458b;
+    transform: translate(0, 0);
+}
+
+#author{ margin-top: 10px; }
+
+/* Слайдер */
+#slider-controller{
+    width: 860px;
+}
+#next{
+    margin-left: auto;
+    margin-right: 7px;
+}
+#slider{
+    position: relative;
+    overflow-x: auto;
+    padding-top: 10px;
+}
+#slider::-webkit-scrollbar{
+    height: 0;
+}
+#next, #prev{
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s transform;
+}
+#next:hover, #prev:hover{ transform: scale(1.2) }
+#next span{ margin: 3px 0 0 3px }
+#prev span{ margin: 3px 3px 0 0 }
+
+/* Костыль */
+.item-header #news-form-btns .file .file-info h4{
+    max-width: 128px;
+}

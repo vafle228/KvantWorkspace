@@ -1,0 +1,13 @@
+<body>
+    <nav class='toolbar'>
+        <button><span class="fi-rr-list-check"></button>
+        <button><span class="fi fi-rr-bell"></button>
+    </nav>
+    <div class="profile">
+        <div class="info">
+            <h4>{{ user.permission }}</h4>
+            <h2>{{ user.surname }} {{ user.name|slice:"1" }}.{{ user.patronymic|slice:"1" }}.</h2>
+        </div>
+        <img src='{{ user.image.image.url }}'/>
+    </div>
+</body>

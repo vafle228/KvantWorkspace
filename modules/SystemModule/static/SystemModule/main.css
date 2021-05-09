@@ -1,0 +1,482 @@
+:root{
+    /* Брейкпоинты */
+    --xsmall: 576px;
+    --small: 768px;
+    --medium: 992px;
+    --large: 1200px;
+    --xlarge: 1400px;
+}
+
+/* Светлая тема */
+.light__theme{
+    --bg-color: #FeFeFe;
+    --bg-secondary-color: aliceblue;
+    --aside-bg-color: #fff;
+
+    --text-primary-color: #111926;
+    --text-secondary-color: #25262C;
+
+    --item-bg-color: #fff;
+    --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
+
+    --button-bg-color: #fff;
+    --button-bg-hover-color: #F6F6F6;
+    --button-bg-active-color: #E3EEFC;
+}
+
+/* Темная тема */
+.dark__theme{
+    --bg-color: #1B1C22;
+    --bg-secondary-color: #191A1F;
+    --aside-bg-color: #0F0F10;
+
+    --text-primary-color: #eee;
+    --text-secondary-color: #25262C;
+
+    --item-bg-color: #25262C;
+    --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
+
+    --button-bg-color: #1B1C22;
+    --button-bg-hover-color: #25262C;
+    --button-bg-active-color: #25262C;
+}
+
+/* Синяя цветовая гамма */
+.blue__color__scheme{
+    --color-scheme: #83eaf1;
+    --color-scheme-dark: #1967D2;
+    --color-scheme-gradient: #63a4ff;
+    --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
+}
+/* Оранжевая цветовая гамма */
+.orange__color__scheme{
+    --color-scheme: #f3a183;
+    --color-scheme-dark: #eC6f66;
+    --color-scheme-gradient: #eC6f66;
+    --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
+}
+
+/* Скрываем скролбар */
+::-webkit-scrollbar{ width: 0 }
+
+*{ margin: 0; padding: 0; box-sizing: border-box }
+
+button, input, textarea{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
+a{ text-decoration: none; color: unset; }
+
+/* Настройка шрифтов */
+::placeholder{ font-family: 'Google Sans' }
+h1{ font-size: 2rem; font-weight: bold; color: var(--text-primary-color)}
+h2, h2 *{ font-size: 1.6rem; font-weight: bold; color: var(--text-primary-color)}
+h3, .dropdown-input{ font-size: 1.1; font-weight: 500; color: #6A6F78 }
+h4, h6{ font-size: 1.2rem; font-weight: 300; color: #6A6F78}
+p{ font-size: 1rem; font-weight: normal; color: #70757D }
+h1, h2, h3, h4, h5, h6, p{ cursor: unset }
+span{ color: var(--text-primary-color) }
+
+/* Основные элементы страницы */
+body{
+    background-color: var(--bg-color);
+    position: relative;
+    overflow-y: hidden;
+    height: 100%; width: 100%;
+    font-family: "Google Sans";
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.item{
+    background-color: var(--item-bg-color);
+    border-radius: 10px;
+    box-shadow: var(--item-shadow);
+    border: #0001 solid 1px;
+    cursor: pointer;
+    transition-duration: .5s; transition-property: transform, box-shadow;
+}
+.item:hover{
+    box-shadow: var(--color-scheme-shadow);
+    transform: translateX(4px) translateY(-4px);
+}
+
+/* Навигационное меню */
+aside{
+    position: fixed; top: 0; left: 0;
+    height: 100%; width: 120px;
+    background-color: var(--aside-bg-color);
+    box-shadow: 1px 0 1px 0 #0001;
+    padding: 15px;
+}
+aside #logo{
+    width: 60px; height: 60px;
+    margin: 15px;
+}
+aside nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+aside nav button{
+    background-color: unset;
+    border-radius: 5px;
+    transition-property: background-color; transition-duration: .2s;
+    display: flex; align-items: center; flex-direction: column;
+    padding: 10px 0;
+    color: var(--text-primary-color);
+    width: 90px;
+}
+aside nav:last-child{
+    position: absolute;
+    bottom: 15px;
+}
+aside nav button span{ font-size: 20px }
+aside nav button p{ font-size: 14px; color: var(--text-primary-color); font-weight: 500; }
+aside nav button:hover{ background-color: var(--button-bg-hover-color) }
+aside nav .active{ background-color: var(--button-bg-hover-color) }
+aside nav .active p, aside nav .active span{ color: var(--color-scheme-dark) }
+
+/* Шапка */
+header{
+    width: 100%; height: 100px;
+    padding: 25px 45px 25px 195px;
+    display: flex;
+    align-items: center;
+}
+/* Панель инструментов */
+header .toolbar{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-left: auto;
+    gap: 5px;
+}
+header .toolbar button{
+    width: 40px; height: 40px;
+    margin: 5px 0; padding: 10px;
+    border-radius: 5px;
+    color: #1967D2; font-size: 20px;
+    background-color: var(--button-bg-color);
+    transition: .2s background-color;
+}
+header .toolbar button:hover{
+    background-color: var(--button-bg-active-color);
+}
+/* Профиль */
+header .profile{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+header .profile .info{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+header .profile .info h2{
+    font-size: 1.2rem;
+}
+header .profile .info h4{
+    font-size: 1rem;
+}
+header .profile img{
+    width: 44px; height: 44px;
+    border-radius: 100%;
+    object-fit: cover;
+    transition-duration: .2s;
+    transition-property: filter;
+}
+header .profile::after{
+    content: '\f218';
+    font-family: "uicons-regular-rounded";
+    font-size: 20px;
+    position: absolute;
+    top: 12px; right: 12px;
+    opacity: 0;
+    color: #fff;
+    transition-duration: .2s;
+    transition-property: opacity;
+}
+header .profile:hover::after{
+    opacity: 1;
+}
+header .profile:hover img{
+    filter: brightness(0.8);
+}
+
+/* Формы */
+.form{
+    display: none;
+    z-index: 1000;
+}
+.form .filter{
+    position: fixed; top: 0; left: 0;
+    height: 100%; width: 100%;
+    background-color: #00000088;
+}
+.form .form-wrapper{
+    overflow-y: scroll; padding: 100px 0;
+    z-index: 100;
+    position: fixed; top: 0; left: calc(50% - 400px);
+    height: 100%;
+    display: flex; align-items: center;
+}
+.form .form-wrapper form{
+    height: auto; width: 800px;
+    background-color: var(--bg-color);
+    padding: 10px 25px 15px 25px; margin: auto 0;
+    border-radius: 10px;
+    position: relative;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.form .form-wrapper form .form-btn{
+    color: #1967D2;
+    font-weight: 500; font-size: 1.2rem;
+    background-color: var(--button-bg-color);
+    padding: 0 15px; margin: 3px 0;
+    height: 45px;
+    border-radius: 10px;
+    transition-property: color background-color box-shadow; transition-duration: .2s;
+}
+.form .form-wrapper form .form-btn span{
+    margin-right: 10px; font-size: 1rem; color: #1967D2;
+}
+.form .form-wrapper form .form-btn:hover{
+    background-color: var(--button-bg-active-color);
+}
+
+/* Форма */
+.form .form-wrapper form .item-header{
+    display: flex; justify-content: space-between; align-items: center;
+    min-height: 51px;
+}
+.form .form-wrapper form .item-header .lesson-title{
+    max-width: 75%;
+}
+.form .form-wrapper form .item-header .lesson-title h2{
+    display: inline-block;
+    margin-right: 10px;
+}
+.form .form-wrapper form .item-header .lesson-title h3{
+    color: #0E58B5; font-weight: bold;
+    margin-top: 6px; float: right;
+}
+.form .form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
+.form .form-wrapper form .item-header .lesson-teacher img{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.form .form-wrapper form .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
+.form .form-wrapper form .text-field{
+    width: 100%;
+    border-radius: 10px; border: #00000022 solid 1px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: var(--item-bg-color);
+    color: var(--text-primary-color);
+}
+.form .form-wrapper form .text-field-title{
+    font-size: 1.3rem;
+    white-space: nowrap;
+}
+.form .form-wrapper form .text-field::placeholder{ font-size: 1rem }
+.form .form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
+
+.form .form-wrapper form .preview{
+    width: 800px;
+    margin: -25px -25px 10px -25px;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Разделитель */
+.divider{ margin: 10px 0 }
+
+/* Файлы */
+.files{
+    display: flex; flex-wrap: wrap; gap: 8px;
+    width: 100%;
+}
+.file-info i{ margin-right: 10px }
+.files h4{ display: inline-block; color: var(--text-primary-color) }
+.file{
+    height: 51px;
+    border-radius: 100px; border: #0001 solid 1px;
+    padding: 0 0 0 20px;
+    display: flex; align-items: center;
+    transition-duration: .2s; transition-property: box-shadow;
+    background-color: var(--item-bg-color);
+}
+/* Название и иконка файла */
+.file .file-info{
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+.file .file-info h4{
+    max-width: 256px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* Кнопка удаления и скачивания файла*/
+.file .file-btns{
+    display: flex; align-items: center; gap: 10px;
+    padding: 5px 10px; margin-left: -25px;
+}
+.file button{
+    background-color: unset;
+    transition-duration: .4s; transition-property: color background-color;
+    clip-path: circle();
+    padding: 10px;
+    display: flex; justify-content: center; align-items: center;
+}
+/* Кнопка "Удалить файл" */
+.file .del-file::before{
+    content: '\f15d';
+    width: 13px; height: 13px;
+    font-family: "uicons-regular-rounded";
+    color: var(--text-primary-color);
+}
+.file .del-file:hover{
+    background-color: #FF374B;
+    color: #fff;
+}
+/* Кнопка "Скачать файл" */
+.file .download-file::before{
+    content: '\f171';
+    font-family: "uicons-regular-rounded"; 
+    color: var(--text-primary-color);
+}
+.file .download-file:hover{
+    background-color: #0E58B5;
+    color: #fff;
+}
+.file:hover{ box-shadow: 0 2px 2px 2px #2c3b4f23 }
+.item .file{ background-color: var(--bg-secondary-color); }
+/* Фон */
+.bg{
+    position: fixed; right: -20%; top: 10%;
+    height: 90%;
+    animation: you_spin_me_right_round 200s infinite;
+    z-index: -1000;
+}
+
+/* Адаптивность от бога */
+@media screen and (max-width: 1600px){ body{ zoom: 83% }}
+@media screen and (max-width: 1356px){ body{ zoom: 70% }}
+@media screen and (max-width: 1280px){ body{ zoom: 65% }}
+@media screen and (max-width: 1024px){ body{ zoom: 55% }}
+
+/* Анимация */
+@keyframes you_spin_me_right_round{
+    from{ transform: rotate(0deg) }
+    to{ transform: rotate(720deg) }
+}
+
+/* Стилизация выпадающего списка */
+.dropdown-input{
+    font-size: 1.5rem; color: #111926; font-weight: bold;
+    margin-top: 10px;
+    min-width: 400px;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    display: block;
+}
+.dropdown-content a:hover{ background-color: #f1f1f1 }
+  
+
+/* Стилизация расписания */
+.calendar__timetable{
+    border-radius: 10px;
+    height: 40px;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    background-color: #FFEAEC;
+    font-weight: 800;
+    cursor: help;
+}
+
+/* Расписание */
+.calendar__timetable .day{
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #FF374B;
+}
+.calendar__timetable .day-active{
+    background-color: #FF374B;
+    color: #fff;
+}
+.calendar__timetable .day-active time{
+    background-color: #fff;
+    color: #000;
+    padding: 2px 5px;
+    margin: 2px 5px;
+    border-radius: 5px;
+}
+
+/* Кнопка с эффектом нажатия */
+.main-btn{
+    width: 100%;
+    display: flex; justify-content: center;
+}
+.main-btn button{
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #0E58B5;
+    color: #fff; font-size: 24px;
+    transition-duration: .2s; transition-property: transform box-shadow;
+    box-shadow: 0 5px 0 0 #0b458b;
+    transform: translate(0, 0);
+}
+.main-btn button:hover{
+    box-shadow: 0 3px 0 0 #0b458b;
+    transform: translate(0, 3px);
+}
+
+
+@media screen and (max-width: 576px){
+    /* aside */
+    aside{
+        position: fixed; top: calc(100% - 92px); left: 0;
+        height: 92px; width: 100%;
+        box-shadow: 1px 0 1px 0 #0001;
+        padding: 15px;
+        display: flex;
+    }
+    aside #logo{
+        width: 50px; height: 50px;
+        position: fixed;
+        top: 25px; left: 45px;
+        margin: 0;
+    }
+    aside nav{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    aside nav:last-child{
+        position: absolute;
+        right: 15px;
+    }
+}

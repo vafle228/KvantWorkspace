@@ -1,0 +1,11 @@
+#main{
+    padding: 0;
+}
+#news form{
+    border: #0001 solid 1px;
+}
+#news > div{
+    display: block;
+}
+
+

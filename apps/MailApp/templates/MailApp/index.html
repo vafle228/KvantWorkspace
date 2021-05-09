@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+     <!-- Иконки расширений файлов -->
+     {% include "SystemModule/HeadSetup/index.html" %}
+    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
+    <link rel="stylesheet" href='{% static "MailApp/style.css" %}'>
+    <title>Почта</title>
+</head>
+
+<body class='dark__theme orange__color__scheme' onload='getNewMails()'>
+    <!-- Навигационное меню -->
+    {% include "SystemModule/AsideMenu/index.html" with user=user active='mail' %}
+    <!-- Шапка -->
+    <header>
+        <div class='page-header'>
+            <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
+            <div class="main-btn"><button onclick="open_create_mail_form()">Написать</button></div>
+        </div>
+        {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
+    </header>
+    <!-- Почта -->
+    <section id="mail">
+        <main>
+            <div class='day' id='mail_container'>
+                <!-- Тут спавнятся письма -->
+            </div>
+            <!-- Кнопка "Больше писем" -->
+            {% if is_mail == True %}
+            <div id="more-news" class='main-btn' style='margin-top: 50px'>
+                <button onclick="getNewMails()">Больше писем</button>
+            </div>
+            {% endif %}
+        </main>
+        <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
+        <!-- Форма создания письма -->
+        <div class='form'>
+            <!-- Затемняющий фильтр -->
+            <div class='filter' onclick="close_form(this)"></div>
+            <div class="form-wrapper">
+                <form>
+                    <div class='item-header'>
+                        <div class='lesson-title'>
+                            <div class="dropdown">
+                                <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input'>
+                                <div class="dropdown-content" style="display: none">
+                                    <a onclick="search_fill(this)"><p>Смышляев Дмитрий Ильич</p></a>
+                                    <a onclick="search_fill(this)"><p>Каратаев Вадим Алексеевич</p></a>
+                                    <a onclick="search_fill(this)"><p>Сыч Эрнест Евгеньевич</p></a>
+                                    <a onclick="search_fill(this)"><p>IT квантум</p></a>
+                                    <a onclick="search_fill(this)"><p>Промдизайн квантум</p></a>
+                                </div>
+                              </div>
+                        </div>
+                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
+                    </div>
+                    <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
+                    <textarea name="news-text" class='text-field' autocomplete="off" style='min-height: 256px' placeholder="Сообщение"></textarea>
+                    <button class='form-btn' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
+                    <div class='files'>
+                        <div class="file">
+                            <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
+                            <div class="file-btns"><button class="del-file"></button></div>
+                        </div>
+                        <div class="file">
+                            <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
+                            <div class="file-btns"><button class="del-file"></button></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% include "SystemModule/ScriptsSetup/index.html" %}
+    <script src='{% static "MailApp/scripts.js" %}'></script>
+    <script>
+    	let csrf_token = getCookie('csrftoken');
+    	let send_mail = '{% url "send_mails" user.id %}';
+        let change_status = '{% url "change_status" user.id %}';
+    </script>
+</body>
+
+</html>

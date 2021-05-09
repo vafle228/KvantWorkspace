@@ -1,0 +1,242 @@
+{% load static %}
+{% load general_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='{% static "NewsApp/.main/main.css" %}' /> <!-- Основные стили -->
+    <link rel='stylesheet' href='{% static "NewsApp/.main/uicons-regular-rounded.css" %}' /> <!-- Иконки -->
+    <link rel="shortcut icon" href='{% static "NewsApp/.main/img/logo.png" %}' type="image/png" />
+    <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'>
+    <!-- Иконки расширений файлов -->
+    <link rel='stylesheet' href='{% static "NewsApp/.main/file-icons/file-icons.css" %}'/>
+    <title>Главная</title>
+
+    <style type='text/css'>
+        #widgets #quote-widget::after{
+            content: url({% static "NewsApp/MainPage/img/bg.png" %});
+            position: absolute; right: 0; bottom: -28px;
+            transform: scale(0.8);
+        }
+        @font-face {
+            font-family: "uicons-regular-rounded";
+            src: url("{% static 'NewsApp/.main/icons/uicons-regular-rounded.eot' %}#iefix") format("embedded-opentype"),
+                 url("{% static 'NewsApp/.main/icons/uicons-regular-rounded.woff2' %} ") format("woff2"),
+                 url("{% static 'NewsApp/.main/icons/uicons-regular-rounded.woff' %}") format("woff");
+        }
+        /* Основной шрифт */
+        @font-face{
+            font-family: 'Arsenal'; 
+            src: url("{% static 'NewsApp/.main/Arsenal-Regular.otf' %}"); 
+        }
+        /* Курсивный шрифт */
+        @font-face{
+            font-family: 'Awesome'; 
+            src: url("{% static 'NewsApp/MainPage/fontawesome-webfont.woff' %}"); 
+        }
+    </style>
+</head>
+
+<body style="overflow-y: auto" onload="getNewNews();">
+    <!-- Навигационное меню -->
+    <aside>
+        <img src='{% static "NewsApp/.main/img/logo.png" %}' id='logo' alt='logo' onclick="reload(this)"/>
+        <nav>
+            <button class='active'>
+                <a href='{% url "main_page" user.id %}'><span class="fi fi-rr-apps"></a>
+            </button>
+            <button><a href='{% url "main_page" user.id %}'><span class="fi fi-rr-book-alt"></a></button>
+            <button><a href='{% url "main_page" user.id %}'><span class="fi fi-rr-envelope"></a></button>
+            <button><a href='{% url "main_page" user.id %}'><span class="fi fi-rr-stats"></a></button>
+            <button><a href='student/portfolio'><span class="fi-rr-trophy"></a></button>
+        </nav>
+        <nav style='position: absolute; bottom: 15px'>
+            <button><span class="fi fi-rr-list-check"></button> <!-- TaskManager -->
+            <button><span class="fi fi-rr-bell"></button> <!-- Notifications -->
+            <button class='user-img'><span class="fi fi-rr-circle"></button>
+        </nav>
+    </aside>
+    
+    <section id='main' style='display: block'>
+        <!-- Виджеты -->
+        <section id='widgets'>
+            <!-- Виджет с цитатой -->
+            <div id='quote-widget'>
+                <!-- Заголвок виджета -->
+                <span class="fi-rr-user" style='font-size: 1.5rem; margin-right: 5px'></span><h1 style='display: inline-block;'>
+                {{ user.surname }} 
+                {{ user.name|slice:"1" }}. 
+                {{ user.patronymic|slice:"1" }}.</h1>
+                <h3>Место обучения</h3>
+                <div>
+                    <!-- Цитата -->
+                    <h6 style='width: 60%; font-size: 1.5rem; font-weight: 200; font-family: Awesome'><i
+                            id='quote'>«Оценивать эффективность процесса программирования
+                            количеством написанных строк кода — то же самое,
+                            что оценивать процесс создания самолёта по его весу»</i></h6>
+                    <!-- Автор цитаты -->
+                    <h4 id='author'>Билл Гейтс</h4>
+                </div>
+            </div>
+            {% if user.permission == 'Ученик' or user.permission == 'Учитель' %}
+            <!-- Виджет "Твои курсы" -->
+            <div id='courses-manager' style='padding-right: 0'>
+                <!-- Заголовок виджета -->
+                <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; margin-right: 5px'></span>
+                <h1 style='display: inline-block; margin-bottom: 13px;'>Расписание курсов</h1>
+                {% if courses|length > 3 %}
+                <div id="slider-controller">
+                    <button id='prev'><span class='fi-rr-angle-left'></span></button>
+                    <button id='next'><span class='fi-rr-angle-right'></span></button>
+                </div>
+                {% endif %}
+
+                <div id='slider'>
+                    {% for course in courses %}
+                    <div class='item'>
+                        <img src="{% static 'NewsApp/MainPage/img/default_bg.jpg' %}" alt="Превью" />
+                        <h2>{{ course.name }}</h2>
+                        <h4>ВТ 18:20 ЧТ 18:20</h4>
+                        <h4>{{ course.teacher.teacher.surname }} 
+                            {{ course.teacher.teacher.name|slice:"1" }}.
+                        	{{ course.teacher.teacher.patronymic|slice:"1" }}.</h4>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% for course in courses %}
+            <div class='form' style='padding: 0'>
+                <div class='filter' onclick="close_form(this)"></div>
+                <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0'>
+                    <form class='four' style='margin: auto 0'>
+                        <div class='item-header'>
+                            <div class='lesson-title'>
+                                <h2>{{ course.name }}</h2>
+                            </div>
+                            <div class='lesson-teacher'>
+                                <h4>{{ course.teacher.teacher.surname }} 
+                                    {{ course.teacher.teacher.name|slice:"1" }}.
+                                    {{ course.teacher.teacher.patronymic|slice:"1" }}.
+                                </h4>
+                                <img src="{% static 'NewsApp/MainPage/img/unnamed.png' %}" />
+                            </div>
+                        </div>
+                        <p class='item-text'>
+                            Краткое описание курса. Если его не надо уберем
+                        </p>
+                        <hr style='margin: 25px 0' />
+                        <h2>Расписание</h2>
+                        <div class="calendar__timetable">
+                            <div class="day">пн</div>
+                            <div class="day day-active">вт<time>18:20</time></div>
+                            <div class="day">ср</div>
+                            <div class="day day-active">чт<time>18:20</time></div>
+                            <div class="day">пт</div>
+                            <div class="day">сб</div>
+                            <div class="day">вс</div>
+                        </div>
+                        <hr style='margin: 25px 0' />
+                        <h2>Участники курса</h2>
+                        <div class="item-header">
+                            <div class='files' style='width: 100%'>
+                                {% for student in course.students|get_objects %}
+                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>
+                                    {{ student.student.surname }}
+                                    {{ student.student.name|slice:"1" }}.
+                                    {{ student.student.patronymic|slice:"1" }}.
+                                </h4></div></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        <!-- Новости -->
+        <section id='news'>
+            {% if user.permission == 'Ученик' %}
+            <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span><h1 style='display: inline-block;'>Новости</h1>
+            {% endif %}
+
+            {% if user.permission == 'Админ' or user.permission == 'Учитель' %}
+            <div style='display: flex; justify-content: flex-start; height: 60px;'>
+                <!-- Заголовок секции -->
+                <div>
+                    <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
+                    <h1 style='display: inline-block;'>Новости</h1>
+                </div>
+                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_add_news_form()">Добавить новость</button></div>
+            </div>
+            {% endif %}
+            <div id="news-container">
+            	<!-- Тут спавняться новости -->
+            </div>
+            <div id="more-news" class="main-btn">
+            	<button onclick="getNewNews();">Больше новостей</button>
+            </div>
+            {% if user.permission == 'Админ' or user.permission == 'Учитель' %}
+            <!-- Форма создания новости -->
+            <div class='form' id='add-news-form' style='display: none'>
+                <!-- Затемняющий фильтр -->
+                <div class='filter' onclick="close_form(this)"></div>
+                <div class="form-wrapper" style='overflow-y: scroll; padding: 100px 0'>
+                    <form autocomplete="off">
+                        <div class='item-header'>
+                            <h2 style='margin: auto 0'>Добавление новости</h2>
+                            <div id='news-form-btns' style='display: flex; justify-content: flex-end; gap: 10px'>
+                                <button class='form-btn' type="button" id='news-preview'><span class="fi-rr-picture" style='font-size: 1rem; margin-right: 5px'></span>Добавить обложку</button>
+                                <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
+                                
+                                <button class='form-btn' type="button" id='news-upload'><span class="fi-rr-world" style='font-size: 1rem; margin-right: 5px'></span>Опубликовать</button>
+                            </div>
+                        </div>
+                        <textarea name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок" style='height: 48px' id='news-title'></textarea>
+                        <textarea name="news-text" class='text-field' autocomplete="off"style='min-height: 256px' id='news-content'></textarea>
+                        <div class="item-header">
+                            <div class='files' id='file-container'>
+                                <!-- Здесь спавняться файлы -->
+                            </div>
+                            <button class='form-btn' type='button' id='file-button'><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span><h3 style='display: inline-block; color: #fff;'>Документ</h3></button>
+                            <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)'/>
+                        </div>
+                    </form>
+                </div>
+            </form>
+            {% endif %}
+        </section>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src='{% static "NewsApp/MainPage/sections_manager.js" %}'></script> <!-- Менеджер секций-->
+    <script>
+    	const csrf_token = getCookie('csrftoken');
+    	let id = '{{ user.id }}';
+
+        let get_news = '{% url "send_news" user.id %}';
+        {% if user.permission == 'Учитель' or user.permission == 'Администратор' %}
+        let send_news_form = '{% url "create_news" user.id %}';
+        {% endif %}
+    </script>
+    {% if user.permission == 'Учитель' or user.permission == 'Ученик' %}
+    <script>
+        $(document).ready(function () {
+            $('#next').click(function () {
+                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() + 900 }, 400);
+            });
+            $('#prev').click(function () {
+                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() - 900 }, 400);
+            });
+        });
+        function open_add_news_form(){
+            $('#news #add-news-form')[0].style.display = 'block';
+            $("body").css("position", "fixed");
+        }
+    </script>
+    {% endif %}
+</body>
+
+</html>

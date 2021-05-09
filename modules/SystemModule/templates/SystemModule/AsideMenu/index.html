@@ -1,0 +1,64 @@
+{% load static %}
+<body class='dark__theme orange__color__scheme'>
+    <aside>
+        <!-- Логотип -->
+        <img src='{% static "SystemModule/atom.png" %}' id='logo' alt='logo' onclick="reload(this)" />
+        <!-- Навигация -->
+        <nav>
+            
+            {% if active == 'main' %}
+            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-apps"><p>Главная</p>
+            </button>
+            {% else %}
+            <button onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-apps"><p>Главная</p>
+            </button>
+            {% endif %}
+
+            {% if active == 'diary' %}
+            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-book-alt"><p>Дневник</p>
+            </button>
+            {% else %}
+            <button onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-book-alt"><p>Дневник</p>
+            </button>
+            {% endif %}
+
+            {% if active == 'mail' %}
+            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-envelope"><p>Почта</p>
+            </button>
+            {% else %}
+            <button onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-envelope"><p>Почта</p>
+            </button>
+            {% endif %}
+
+            {% if active == 'statistics' %}
+            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-stats"><p>Отчеты</p>
+            </button>
+            {% else %}
+            <button onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi fi-rr-stats"><p>Отчеты</p>
+            </button>
+            {% endif %}
+
+            {% if active == 'portfolio' %}
+            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi-rr-trophy"><p>Портфолио</p>
+            </button>
+            {% else %}
+            <button onclick="location.href='{% url 'main_page' user.id %}'">
+                <span class="fi-rr-trophy"><p>Портфолио</p>
+            </button>
+            {% endif %}
+        </nav>
+        <nav>
+            <button onclick="switch_theme()"><span class="fi-rr-opacity"><p>Тема</p></button>
+            <button onclick="switch_color_scheme()"><span class="fi-rr-palette"><p>Цвет</p></button>
+        </nav>
+    </aside>
+</body>
