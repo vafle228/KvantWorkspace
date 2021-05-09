@@ -1,17 +1,14 @@
 from .models import KvantNews
 from django.http import JsonResponse
-from .forms import KvantNewsSaveForm
 from LoginApp.models import KvantUser
 from AdminModule.models import KvantCourse
 from SystemModule.views import is_available
+from .forms import KvantNewsSaveForm, SendNewNews
 from django.shortcuts import render, HttpResponse, redirect
 
 
 def main_page(request, identifier):
-    """
-        Метод для отображени главной страницы приложения.
-        Интерфейс выдается по permission пользователя из html.
-    """
+    # Метод для отображени главной страницы приложения.
     if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 
@@ -27,47 +24,30 @@ def main_page(request, identifier):
 
 
 def news_detail_view(request, identifier, news_identifier):
-    """
-        Функция просмотра деталей новостей.
-        Возращает страницу детального просмотра с представлением новости, по ее id
-    """
+    # Функция просмотра деталей новостей.
     if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 
     if KvantNews.objects.filter(id=news_identifier).exists():  # Проверка существования новости
-        news = KvantNews.objects.filter(id=news_identifier)[0]  # Получили запрашиваемую новость
+        news = KvantNews.objects.filter(id=news_identifier)[0]  # Получаем запрашиваемую новость
         return render(request, 'NewsApp/NewsView/index.html', {'news': news})
     return redirect(f'/news/{identifier}/main')
 
 
 def send_new_news(request, identifier):
-    """
-        Функция условной пагинации новостей
-        Предназначена для ответа на AJAX запрос с FrontEnd
-    """
+    # Функция условной пагинации новостей
     if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 
     if request.method == 'POST':  # Проверка на POST запрос
-        response = []
-        news_count = int(request.POST['page']) * 6  # Получаем идекс первой новой новости
-        while len(response) != 6 and news_count < len(KvantNews.objects.all()):  # Перебираем до 6 или конца новостей
-            news = KvantNews.objects.all()[::-1][news_count]  # Получаем новую новость
-            new_news = {
-                'id': news.id, 'title': news.title,
-                'content': news.content, 'image': news.image.image.url,
-            }  # Формирования представления новости
-            response.append(new_news)
-            news_count += 1
+        form = SendNewNews(request.POST)
+        response = form.save() if form.is_valid() else []
         return JsonResponse({'news': response})
     return HttpResponse('Error')  # Если был отправлен другой запрос
 
 
 def create_new_news(request, identifier):
-    """
-        Функция создает новость на основе формы с FrontEnd.
-        Для больших подробностей механизма создания смотри forms.py
-    """
+    # Функция создает новость на основе формы с FrontEnd.
     if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 

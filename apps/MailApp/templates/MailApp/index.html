@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
      <!-- Иконки расширений файлов -->
-     {% include "SystemModule/HeadSetup/index.html" %}
+    {% include "SystemModule/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
     <link rel="stylesheet" href='{% static "MailApp/style.css" %}'>
     <title>Почта</title>
 </head>
 
-<body class='{{ user.theme }}__theme {{ user.color }}__color__scheme' onload='getNewMails()'>
+<body onload='getNewMails()'>
     <!-- Навигационное меню -->
     {% include "SystemModule/AsideMenu/index.html" with user=user active='mail' %}
     <!-- Шапка -->

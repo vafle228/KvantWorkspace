@@ -40,3 +40,21 @@ class KvantNewsSaveForm(forms.Form):
                 news.files.add(file_form.save())  # Добавление нового файла
 
         return news
+
+
+class SendNewNews(forms.Form):
+    page = forms.IntegerField()
+
+    def save(self):
+        response = []  # Массив объектов новости
+        news_count = self.cleaned_data['page'] * 6  # Получаем идекс первой новой новости
+        while len(response) != 6 and news_count < len(KvantNews.objects.all()):
+            # Перебираем до 6 или конца новостей
+            news = KvantNews.objects.all()[::-1][news_count]  # Получаем новую новость
+            new_news = {
+                'id': news.id, 'title': news.title,
+                'content': news.content, 'image': news.image.image.url,
+            }  # Формирования представления новости
+            news_count += 1
+            response.append(new_news)
+        return response

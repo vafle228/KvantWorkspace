@@ -1,5 +1,5 @@
 {% load static %}
-<body class='dark__theme orange__color__scheme'>
+<body class='{{ user.theme }}__theme {{ user.color }}__color__scheme'>
     <aside>
         <!-- Логотип -->
         <img src='{% static "SystemModule/atom.png" %}' id='logo' alt='logo' onclick="reload(this)" />
@@ -27,11 +27,11 @@
             {% endif %}
 
             {% if active == 'mail' %}
-            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+            <button class='active' onclick="location.href='{% url 'mail_box' user.id %}'">
                 <span class="fi fi-rr-envelope"><p>Почта</p>
             </button>
             {% else %}
-            <button onclick="location.href='{% url 'main_page' user.id %}'">
+            <button onclick="location.href='{% url 'mail_box' user.id %}'">
                 <span class="fi fi-rr-envelope"><p>Почта</p>
             </button>
             {% endif %}
