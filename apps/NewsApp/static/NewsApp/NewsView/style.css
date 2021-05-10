@@ -1,0 +1,14 @@
+.form .form-wrapper{
+    position: fixed; top: 0; left: 190px;
+}
+.form .form-wrapper form{
+    background-color: var(--item-bg-color);
+    width: 1000px;
+    border: #0001 solid 1px;
+}
+.form .form-wrapper form .preview{
+    width: 1000px;
+}
+.form .form-wrapper form .files .file{
+    background-color: var(--bg-secondary-color);
+}

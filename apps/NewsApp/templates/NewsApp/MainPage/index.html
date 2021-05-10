@@ -1,0 +1,192 @@
+{% load static %}
+{% load news_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    {% include "SystemModule/HeadSetup/index.html" %}
+    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
+    <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'> <!-- Стили страницы -->
+    <title>Главная</title>
+    <style>
+        #widgets #quote-widget::after{
+            content: '';
+            position: absolute; right: 0; bottom: 10%;
+            width: 40%; height: 80%;
+            background: url('{% static "NewsApp/MainPage/img/illustration.svg" %}');
+            background-size: cover;
+        }
+
+    </style>
+</head>
+
+<body style="overflow: auto" onload="getNewNews()">
+    <!-- Навигационное меню -->
+    {% include "SystemModule/AsideMenu/index.html" with user=user active='main' %}
+
+    <!-- Главная -->
+    <section id='main' style='display: block'>
+        <header>
+            {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
+        </header>
+        <!-- Виджеты -->
+        <section id='widgets'>
+            <!-- Виджет с цитатой -->
+            <div id='quote-widget'>
+                <!-- Заголвок виджета -->
+                <span class="fi-rr-quote-right" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px'>Цитата дня</h1></span>
+                <!-- Подзаголовок виджета -->
+                <h3>Читай высказывания великих людей</h3>
+                <div>
+                    <!-- Цитата -->
+                    <h6>«Оценивать эффективность процесса программирования количеством написанных строк кода — то же самое, что оценивать процесс создания самолёта по его весу»</h6>
+                    <!-- Автор цитаты -->
+                    <h4 id='author'>Билл Гейтс</h4>
+                </div>
+            </div>
+            <!-- Виджет "Твои курсы" -->
+            <div id='courses-manager'>
+                <div class='widget-header'>
+                    <!-- Заголовок виджета -->
+                    <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; color: #000'><h1 style='display: inline-block; margin-left: 10px; color: #000'>Расписание</h1></span>
+                    <!-- Кнопки слайдера -->
+                    <div id="slider-controller">
+                        <button id='prev'><span class='fi-rr-arrow-small-left'></span></button>
+                        <button id='next'><span class='fi-rr-arrow-small-right'></span></button>
+                    </div>
+                </div>
+                <div id='slider'>
+                    {% for course in courses %}
+                    <div class='item'>
+                        <img src="{% static 'NewsApp/MainPage/img/default.jpg' %}" alt="Превью" />
+                        <h2>{{ course.name }}</h2>
+                        <h4>ВТ 18:20 ЧТ 18:20</h4>
+                        <h4>
+                            {{ course.teacher.teacher.surname }}
+                            {{ course.teacher.teacher.name|slice:"1" }}.
+                            {{ course.teacher.teacher.patronymic|slice:"1" }}.
+                        </h4>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Форма просмотра курса -->
+            {% for course in courses %}
+            <div class='form' style='padding: 0; display: none;'>
+                <div class='filter' onclick="close_form(this)"></div>
+                <div class="form-wrapper">
+                    <form>
+                        <div class='item-header'>
+                            <div class='lesson-title'>
+                                <h2>{{ course.name }}</h2>
+                            </div>
+                            <div class='lesson-teacher'>
+                                <h4>{{ course.teacher.teacher.surname }}
+                                    {{ course.teacher.teacher.name|slice:"1" }}.
+                                    {{ course.teacher.teacher.patronymic|slice:"1" }}.
+                                </h4>
+                                <img src='{{ course.teacher.teacher.image.image.url }}' />
+                            </div>
+                        </div>
+                        <p class='item-text'>
+                            Краткое описание курса. Если его не надо уберем
+                        </p>
+                        <hr class='divider'/>
+                        <h2>Расписание</h2>
+                        <div class="calendar__timetable">
+                            <div class="day">пн</div>
+                            <div class="day day-active">вт<time>18:20</time></div>
+                            <div class="day">ср</div>
+                            <div class="day day-active">чт<time>18:20</time></div>
+                            <div class="day">пт</div>
+                            <div class="day">сб</div>
+                            <div class="day">вс</div>
+                        </div>
+                        <hr class="divider"/>
+                        <h2>Участники курса</h2>
+                        <div class="item-header">
+                            <div class='files' style='width: 100%'>
+                                {% for student in course.students|get_objects %}
+                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>
+                                    {{ student.student.surname }}
+                                    {{ student.student.name|slice:"1" }}.
+                                    {{ student.student.patronymic|slice:"1" }}.
+                                </h4></div></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        <!-- Новости -->
+        <section id='news'>
+            <!-- Шапка секции -->
+            <div style='display: flex; align-items: center'>
+                <!-- Заголовок секции -->
+                <div>
+                    <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
+                    <h1 style='display: inline-block'>Новости</h1>
+                </div>
+                {% if user.permission == 'Администратор' or user.permission == 'Учитель'  %}
+                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_add_news_form()">Добавить новость</button></div>
+                {% endif %}
+            </div>
+            <!-- Блок новостей -->
+            <div id='news-block'>
+                <!-- Тут спавняться новости -->
+            </div>
+            <!-- Кнопка "Больше новостей" -->
+            <div id="more-news" class='main-btn'>
+                <button onclick="getNewNews()">Больше новостей</button>
+            </div>
+            <!-- Форма создания новости -->
+            <div class='form' id='add-news-form' style='display: none'>
+                <!-- Затемняющий фильтр -->
+                <div class='filter' onclick="close_form(this)"></div>
+                <div class="form-wrapper">
+                    <form autocomplete="off">
+                        <div class='item-header'>
+                            <h2 style='margin: auto 0'>Добавление новости</h2>
+                            <div id="news-form-btns"style='display: flex; justify-content: flex-end; gap: 10px'>
+                                <button class='form-btn' id="news-preview" type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
+                                <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
+
+                                <button class='form-btn' id="news-upload" type="button"><span class="fi-rr-world" style='margin-right: 5px'></span>Опубликовать</button>
+                            </div>
+                        </div>
+                        <input id="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок"></input>
+                        <textarea id="news-content" class='text-field' autocomplete="off" rows="12" type="text"></textarea>
+                        <button class='form-btn' id="file-button" type="button"><span class="fi-rr-clip" style='margin-right: 5px'></span>Документ</button>
+                        <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)'/>
+                        <div class='files' id='file-container'>
+                            <!-- Тут спавнять файлы -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
+    <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
+    <script>
+        let user_id = '{{ user.id }}';
+        let max_news = {{ max_news }};
+        let send_news = '{% url "send_news" user.id %}';
+        let create_news = '{% url "create_news" user.id %}';
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#next').click(function () {
+                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() + 750 }, 400);
+            });
+            $('#prev').click(function () {
+                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() - 750 }, 400);
+            });
+        });
+    </script>
+</body>
+</html>

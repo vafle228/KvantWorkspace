@@ -1,0 +1,113 @@
+/* Почта */
+#mail { padding-left: 190px }
+
+/* Шапка секции */
+header .page-header{
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    padding: 0 10px;
+}
+header .page-header .main-btn{
+    width: max-content;
+}
+header .page-header .main-btn button{
+    height: 40px;
+}
+
+/* Письма */
+#mail main {
+    width: 1000px; height: 800px;
+    padding: 0 10px 100px;
+    overflow-y: scroll;
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 5px;
+}
+#mail main .day{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#mail main .day > h3 {
+    text-align: right;
+}
+
+/* Письмо */
+#mail main .day .item {
+    padding: 10px 25px 15px 25px;
+    border: #0001 solid 1px;
+    position: relative;
+    display: flex; flex-direction: column; gap: 5px;
+}
+#mail main .day .item .item-header {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 40px;
+}
+#mail main .day .item .item-header .lesson-title h2 {
+    display: inline-block;
+    margin-right: 10px;
+}
+#mail main .day .item .item-header .lesson-title h3 {
+    color: var(--color-scheme-dark);
+    font-weight: bold;
+    display: inline-block;
+}
+#mail main .day .item .item-header .lesson-teacher {
+    display: flex; align-items: center;
+    height: 100%;
+}
+#mail main .day .item .item-header .lesson-teacher img {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#mail main .day .item .item-header .lesson-teacher h4 {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+#mail main .day .item .files{
+    margin-top: 10px;
+}
+#mail main .day .item .item-text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Стилизация выпадающего списка */
+.dropdown-input{
+    font-size: 1.5rem; color: #111926; font-weight: bold;
+    margin-top: 10px;
+    min-width: 400px;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    display: block;
+}
+.dropdown-content a:hover{ background-color: #f1f1f1 }
+
+/* Псевдоэлемент письма */
+.day > .item::after, form::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0;
+    height: 100%; width: 10px;
+    border-radius: 0 10px 10px 0;
+}
+
+.new-mail::after { background-color: #4C50B8 } /* Непрочитанное */
+.old-mail::after { background-color: #85BBFF } /* Прочитанное */
