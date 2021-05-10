@@ -5,7 +5,7 @@ from SystemModule.models import FileStorage, ImageStorage
 
 
 def setDefaultImage():
-    """Метод для установки дефолтного изображения"""
+    # Метод для установки дефолтного изображения
     return ImageStorage.objects.filter(upload_path='default/news')[0]
 
 

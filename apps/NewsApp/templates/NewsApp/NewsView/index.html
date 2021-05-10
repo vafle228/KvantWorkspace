@@ -61,11 +61,16 @@
                         </div>
                     </div>
                     {% endif %}
-                    <button class='form-btn' onclick="window.history.go(-1)" type="button"><span class="fi-rr-undo" style='font-size: 1rem; margin-right: 5px'></span>Назад</button>
+                    <button class='form-btn' id='back-btn' type="button"><span class="fi-rr-undo" style='font-size: 1rem; margin-right: 5px'></span>На Главную</button>
                 </form>
             </div>
         </div>
         <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
     </section>
+    {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
+    <script>
+        let main_page = '{% url "main_page" user.id %}'
+    </script>
+    <script src="{% static 'NewsApp/NewsView/scripts.js' %}"></script>
 </body>
 </html>

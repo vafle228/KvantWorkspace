@@ -13,6 +13,7 @@ def main_page(request, identifier):
         return redirect('/login/')
 
     # Получаем пользователя по id из url
+    max_news = len(KvantNews.objects.all())
     user, user_course = KvantUser.objects.filter(id=identifier)[0], []
 
     if user.permission == 'Ученик':  # В случаи, если user - ученик, верни его курсы
@@ -20,7 +21,7 @@ def main_page(request, identifier):
 
     if user.permission == 'Учитель':  # В случаи, если user - учитель, верни его курсы
         user_course = KvantCourse.objects.filter(teacher__teacher=user)
-    return render(request, 'NewsApp/MainPage/index.html', {'courses': user_course})
+    return render(request, 'NewsApp/MainPage/index.html', {'courses': user_course, 'max_news': max_news})
 
 
 def news_detail_view(request, identifier, news_identifier):

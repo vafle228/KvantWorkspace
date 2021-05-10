@@ -7,23 +7,17 @@ from django.shortcuts import render, redirect, HttpResponse
 
 
 def mail_page(request, identifier):
-    """
-        Метод для отображения ящика писем.
-        Механиз отправки писем реализован через AJAX на стороне FrontEnd
-    """
+    # Метод для отображения ящика писем.
     if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 
     receiver = KvantUser.objects.filter(id=identifier)[0]
-    is_mail = bool(len(KvantMessage.objects.filter(receiver=receiver)))
-    return render(request, 'MailApp/index.html', {'is_mail': is_mail})
+    max_mails = len(KvantMessage.objects.filter(receiver=receiver))
+    return render(request, 'MailApp/index.html', {'max_mails': max_mails})
 
 
 def send_more_mails(request, identifier):
-    """
-        Метод для AJAX запроса с FrontEnd.
-        Предназначен для условной пагинации ящика с письмами
-    """
+    # Предназначен для условной пагинации ящика с письмами
     if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 
@@ -36,14 +30,14 @@ def send_more_mails(request, identifier):
 
 
 def change_mail_status(request, identifier):
-    if not is_available(request, identifier):
+    if not is_available(request, identifier):  # Проверка на доступ
         return redirect('/login/')
 
     if request.method == 'POST':
         mail_id = request.POST['mail_id']
-        mail = KvantMessage.objects.filter(id=mail_id)[0]
+        mail = KvantMessage.objects.filter(id=mail_id)[0]  # Получаем письмо по id
 
-        mail.is_read = True
-        mail.save()
+        mail.is_read = True  # Меняем статус
+        mail.save()  # Перезаписываем
         return HttpResponse('OK')
     return HttpResponse('Error')

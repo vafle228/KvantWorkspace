@@ -29,11 +29,9 @@
                 <!-- Тут спавнятся письма -->
             </div>
             <!-- Кнопка "Больше писем" -->
-            {% if is_mail == True %}
-            <div id="more-news" class='main-btn' style='margin-top: 50px'>
+            <div id="more-mails" class='main-btn' style='margin-top: 50px'>
                 <button onclick="getNewMails()">Больше писем</button>
             </div>
-            {% endif %}
         </main>
         <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
         <!-- Форма создания письма -->
@@ -77,6 +75,7 @@
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <script src='{% static "MailApp/scripts.js" %}'></script>
     <script>
+        let max_mails = {{ max_mails }};
     	let send_mail = '{% url "send_mails" user.id %}';
         let change_status = '{% url "change_status" user.id %}';
     </script>

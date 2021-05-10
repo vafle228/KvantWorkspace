@@ -139,10 +139,15 @@ function getNewNews(){
 		},
 		cache: false,
 		success: function(response){
-			for(let i in response['news']){ buildNews(response['news'][i]) }
+			for(let i in response['news']){ 
+				buildNews(response['news'][i]) 
+			}
 		}
 	})
 	page++
+	if(page * 6 >= max_news){
+		$('#more-news')[0].style.display = 'none';
+	}
 }
 
 

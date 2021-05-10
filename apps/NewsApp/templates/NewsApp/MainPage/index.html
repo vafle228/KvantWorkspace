@@ -140,7 +140,7 @@
             </div>
             <!-- Кнопка "Больше новостей" -->
             <div id="more-news" class='main-btn'>
-                <button>Больше новостей</button>
+                <button onclick="getNewNews()">Больше новостей</button>
             </div>
             <!-- Форма создания новости -->
             <div class='form' id='add-news-form' style='display: none'>
@@ -173,9 +173,10 @@
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
     <script>
-        let user_id = '{{ user.id }}'
-        let send_news = '{% url "send_news" user.id %}'
-        let create_news = '{% url "create_news" user.id %}'
+        let user_id = '{{ user.id }}';
+        let max_news = {{ max_news }};
+        let send_news = '{% url "send_news" user.id %}';
+        let create_news = '{% url "create_news" user.id %}';
     </script>
     <script>
         $(document).ready(function () {

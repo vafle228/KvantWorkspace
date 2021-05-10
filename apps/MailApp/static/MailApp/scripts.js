@@ -50,6 +50,9 @@ function getNewMails(){
 		}
 	})
 	page++
+	if(page * 8 >= max_mails){
+		$('#more-mails')[0].style.display = 'none'
+	}
 }
 
 function updateMailStatus(mail_id, mail){
