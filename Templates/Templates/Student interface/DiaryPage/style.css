@@ -88,6 +88,7 @@ header .page-header .week-selector .main-btn .btn span{
 }
 #diary main .day .item .item-text{
     overflow: hidden;
+    text-align: justify;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

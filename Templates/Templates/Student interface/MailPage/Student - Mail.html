@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
     <title>Почта</title>
 </head>
 
@@ -224,23 +225,21 @@
                         <h3 style='display: inline-block'>Дата отправки: 26.03</h3>
                     </div>
                     <hr class='divider'/>
-                    <div class="item-header">
-                        <div class='files' style='width: 100%;'>
-                            <div class="file">
-                                <div class="file-info"><i class='file-docx'></i><h4>Домашнее задание.docx</h4></div>
-                                <div class="file-btns"><button class='download-file'></button></div>
-                            </div>
-                            <div class="file">
-                                <div class="file-info"><i class='file-pptx'></i><h4>Теория.pptx</h4></div>
-                                <div class="file-btns"><button class='download-file'></button></div>
-                            </div>
+                    <div class='files' style='width: 100%;'>
+                        <div class="file">
+                            <div class="file-info"><i class='file-docx'></i><h4>Домашнее задание.docx</h4></div>
+                            <div class="file-btns"><button class='download-file'></button></div>
+                        </div>
+                        <div class="file">
+                            <div class="file-info"><i class='file-pptx'></i><h4>Теория.pptx</h4></div>
+                            <div class="file-btns"><button class='download-file'></button></div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <!-- Форма создания письма -->
-        <div class='form'>
+        <div class='form editable'>
             <!-- Затемняющий фильтр -->
             <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
@@ -278,8 +277,11 @@
         </div>
     </section>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='../../../JS/sections_manager.js'></script> <!-- Менеджер секций-->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <script>var editor = new MediumEditor('.editable');</script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@ google.charts.load("current", {packages:['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-    ["Element", "Оценка", { role: "style" } ],
+    ["Element", "Количество", { role: "style" } ],
     ["4", 100, "#00D575"],
     ["3", 50, "#FE9C4A"],
     ["2", 30, "#FFCB3A"],

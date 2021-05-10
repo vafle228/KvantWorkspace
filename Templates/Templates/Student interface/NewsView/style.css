@@ -6,6 +6,15 @@
     width: 1000px;
     border: #0001 solid 1px;
 }
+.form .form-wrapper form .form-btn{
+    background-color: var(--item-bg-color);
+}
+.dark__theme{
+    --button-bg-active-color: #1B1C22;
+}
+.form .form-wrapper form .form-btn:hover{
+    background-color: var(--button-bg-active-color);
+}
 .form .form-wrapper form .preview{
     width: 1000px;
 }
