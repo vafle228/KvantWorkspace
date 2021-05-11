@@ -115,16 +115,67 @@ function buildNews(news){
 
 	let news_image = document.createElement('img');
 	news_image.src = news['image'];
+	news_image.className = 'preview';
+
+	// Генерация шапки
+	let info_div = document.createElement('div');
+	info_div.className = 'item-header'
+
+	let title_div = document.createElement('div');
+	title_div.className = 'news-title';
 
 	let news_title = document.createElement('h2');
 	news_title.innerHTML = news['title'];
 
+	title_div.appendChild(news_title);
+
+	let author_div = document.createElement('div');
+	author_div.className = 'news-author';
+
+	let author_name = document.createElement('h4');
+	author_name.innerHTML = news['author']['name'];
+
+	let author_image = document.createElement('img');
+	author_image.src = news['author']['img'];
+	author_image.className = 'profile-img';
+
+	author_div.appendChild(author_name);
+	author_div.appendChild(author_image);
+
+	info_div.appendChild(title_div);
+	info_div.appendChild(author_div);
+	// Конец генерации шапки
+
 	let news_text = document.createElement('p');
 	news_text.innerHTML = news['content'];
 
+	// Генерация календаря
+	let calendar_div = document.createElement('div');
+	calendar_div.style.display = 'flex';
+	calendar_div.style.marginLeft = 'auto';
+	calendar_div.style.alignItems = 'center';
+
+	let date_span = document.createElement('span');
+	let news_date = document.createElement('h5');
+	news_date.style.display = 'inline-block';
+	news_date.innerHTML = news['date'];
+
+	date_span.appendChild(news_date);
+
+	let calendar_icon = document.createElement('span');
+	calendar_icon.className = 'fi-rr-calendar';
+	calendar_icon.style.fontSize = '0.8rem';
+	calendar_icon.style.marginLeft = '5px';
+
+	calendar_div.appendChild(date_span);
+	calendar_div.appendChild(calendar_icon);
+
+	// Конец генерации календаря
+
 	news_div.appendChild(news_image);
-	news_div.appendChild(news_title);
+	news_div.appendChild(info_div);
 	news_div.appendChild(news_text);
+	news_div.appendChild(calendar_div);
 
 	$("#news-block")[0].appendChild(news_div);
 }

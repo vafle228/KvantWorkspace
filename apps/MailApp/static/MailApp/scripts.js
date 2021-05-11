@@ -56,18 +56,20 @@ function getNewMails(){
 }
 
 function updateMailStatus(mail_id, mail){
-	$.ajax({
-		type: 'POST',
-		url: change_status,
-		data: {
-			mail_id: mail_id,
-			csrfmiddlewaretoken: csrf_token,
-		},
-		cache: false,
-		success: function(response){
-			mail.className = 'item old-mail';
-		}
-	})
+	if(mail.className == 'item new-mail'){
+		$.ajax({
+			type: 'POST',
+			url: change_status,
+			data: {
+				mail_id: mail_id,
+				csrfmiddlewaretoken: csrf_token,
+			},
+			cache: false,
+			success: function(){
+				mail.className = 'item old-mail';
+			}
+		})
+	}
 }
 
 function buildNewMail(mail){
@@ -75,10 +77,12 @@ function buildNewMail(mail){
 	mail_div.className = 'item new-mail';
 	if (mail['is_read']) { mail_div.className = 'item old-mail'; }
 
+	// Получение шапки и текста
 	[header_div, mail_content] = generateMail(mail, true)
 
 	mail_div.appendChild(header_div); mail_div.appendChild(mail_content)
 
+	// Генеация файлов
 	if (mail['files'].length !== 0) {
 		let files_div = document.createElement('div');
 		files_div.className = 'files';
@@ -116,19 +120,24 @@ function buildMailView(mail){
 
 	let mail_view = document.createElement('form');
 
+	// Получение шапки и текста
 	[header_div, mail_content] = generateMail(mail, false)
 	
 	let date_div = generateMailDate(mail)
 
 	mail_view.appendChild(header_div); 
 	mail_view.appendChild(mail_content);
-	mail_view.appendChild(date_div); 
+	mail_view.appendChild(date_div);
+
+	// Генерация разделительной линии
 
 	if(mail['files'].length !== 0){
 		let dividing_line = document.createElement('hr');
 		dividing_line.className = 'divider'
 		mail_view.appendChild(dividing_line);
 	}
+
+	// Генерация файлов
 
 	if (mail['files'].length !== 0) {
 		let form_item = document.createElement('div')
@@ -157,6 +166,7 @@ function generateMail(mail, is_mail){
 	let header_div = document.createElement('div');
 	header_div.className = 'item-header';
 
+	// Генерация названия
 	let title_div = document.createElement('div');
 	title_div.className = 'lesson-title';
 
@@ -165,12 +175,14 @@ function generateMail(mail, is_mail){
 
 	title_div.appendChild(mail_title);
 
+	// Костыль для исключения повторной даты в детальном просмотре
 	if(is_mail){
 		let mail_date = document.createElement('h3');
-		mail_date.innerHTML = `${mail['date'].split('-')[2]}.${mail['date'].split('-')[1]} ${mail['date'].split('-')[0]}`;	
+		mail_date.innerHTML = mail['date'];
 		title_div.appendChild(mail_date);
 	}
 
+	// Генерация отправителя
 	let sender_div = document.createElement('div');
 	sender_div.className = 'lesson-teacher';
 
@@ -184,6 +196,7 @@ function generateMail(mail, is_mail){
 
 	header_div.appendChild(title_div); header_div.appendChild(sender_div);
 
+	// Генерация текста
 	let mail_content = document.createElement('p');
 	mail_content.className = 'item-text';
 	mail_content.innerHTML = mail['text'];
@@ -194,7 +207,8 @@ function generateMail(mail, is_mail){
 function generateMailFile(file){
 	let file_div = document.createElement('div');
 	file_div.className = 'file';
-	
+
+	// Генерация информации о файле
 	let file_info = document.createElement('div');
 	file_info.className = 'file-info';
 
@@ -207,6 +221,7 @@ function generateMailFile(file){
 
 	file_info.appendChild(file_icon); file_info.appendChild(file_name);
 
+	// Генерация кнопок файла
 	let file_btns = document.createElement('div');
 	file_btns.className = 'file-btns';
 
@@ -224,16 +239,16 @@ function generateMailFile(file){
 function generateMailDate(mail){
 	let date_div = document.createElement('div');
 
+	// Генерация иконки календаря
 	let date_span = document.createElement('span');
 	date_span.className = 'fi-rr-calendar';
 	date_span.style.fontSize = '0.8rem';
 	date_span.style.marginRight = '5px';
 
-	let date = `${mail['date'].split('-')[2]}.${mail['date'].split('-')[1]} ${mail['date'].split('-')[0]}`;
-
+	// Генерация даты письма
 	let date_text = document.createElement('h3');
 	date_text.style.display = 'inline-block';
-	date_text.innerHTML = `Дата отправки ${date}`;
+	date_text.innerHTML = `Дата отправки ${mail['date']}`;
 
 	date_div.appendChild(date_span); date_div.appendChild(date_text);
 

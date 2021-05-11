@@ -21,9 +21,10 @@ class SendNewMails(forms.Form):
                 'url': file.file.url,
                 'name': file.file.name.split('/')[-1],
             } for file in mail.files.all()]  # Создание объектов файлов
+            mail_date = '.'.join(mail.date.__str__().split('-')[::-1])
 
             new_mail = {
-                'date': mail.date, 'text': mail.text,
+                'date': mail_date, 'text': mail.text,
                 'title': mail.title, 'files': files, 'id': mail.id,
                 'sender': sender, 'is_read': mail.is_read
             }  # Формирование представлении письма
