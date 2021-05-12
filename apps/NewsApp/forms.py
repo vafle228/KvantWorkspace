@@ -51,9 +51,14 @@ class SendNewNews(forms.Form):
         while len(response) != 6 and news_count < len(KvantNews.objects.all()):
             # Перебираем до 6 или конца новостей
             news = KvantNews.objects.all()[::-1][news_count]  # Получаем новую новость
+            author = {
+                'name': ' '.join(news.author.__str__().split(' ')[1::]),
+                'img': news.author.image.image.url
+            }  # Объект пользователя
+            news_date = '.'.join(news.date.__str__().split('-')[::-1])  # Формат даты
             new_news = {
-                'id': news.id, 'title': news.title,
-                'content': news.content, 'image': news.image.image.url,
+                'id': news.id, 'title': news.title, 'author': author,
+                'content': news.content, 'image': news.image.image.url, 'date': news_date,
             }  # Формирования представления новости
             news_count += 1
             response.append(new_news)

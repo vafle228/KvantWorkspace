@@ -16,6 +16,9 @@
     {% include "SystemModule/AsideMenu/index.html" with user=user active='main' %}
     <!-- Главная -->
     <section id='main'>
+        <header>
+            {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
+        </header>
         <!-- Форма просмотра новости -->
         <div class='form' style='display: block'>
             <div class="form-wrapper">
@@ -57,7 +60,6 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            
                         </div>
                     </div>
                     {% endif %}
