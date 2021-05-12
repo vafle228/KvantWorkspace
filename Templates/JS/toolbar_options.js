@@ -17,6 +17,6 @@ var quill = new Quill('#editor', {
     toolbar: toolbarOptions,
   },
   theme: 'snow',
-  spellcheck: 'true',
+  spellcheck: true,
   placeholder: 'Сообщение'
 });
