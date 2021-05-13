@@ -7,6 +7,7 @@ header .page-header{
     justify-content: space-between;
     width: 1000px;
     padding: 0 10px;
+    margin-right: auto;
 }
 header .page-header .main-btn{
     width: max-content;
@@ -17,7 +18,8 @@ header .page-header .main-btn button{
 
 /* Письма */
 #mail main {
-    width: 1000px; height: 800px;
+    width: 1000px;
+    height: max-content; max-height: 95vh; min-height: 800px;
     padding: 0 10px 100px;
     overflow-y: scroll;
     display: flex; flex-direction: column; gap: 10px;
@@ -111,3 +113,19 @@ header .page-header .main-btn button{
 
 .new-mail::after { background-color: #4C50B8 } /* Непрочитанное */
 .old-mail::after { background-color: #85BBFF } /* Прочитанное */
+
+
+@media screen and (max-width: 790px){
+    #mail main, #mail, header{
+        width: 100%;
+    }
+    #mail{
+        padding: 0 45px;
+    }
+    header{
+        padding: 25px 45px;
+    }
+    header .page-header, header .profile-header{
+        width: 100%;
+    }
+}

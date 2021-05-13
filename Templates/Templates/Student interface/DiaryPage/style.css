@@ -5,8 +5,11 @@
 header .page-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 1000px;
+    height: 50px;
     padding: 0 10px;
+    margin-right: auto;
 }
 header .page-header .week-selector {
     height: 40px;
@@ -32,7 +35,7 @@ header .page-header .week-selector .main-btn .btn span{
 /* Занятия */
 #diary main {
     width: 1000px;
-    height: 800px;
+    height: max-content; max-height: 95vh; min-height: 800px;
     padding: 0 10px 100px;
     overflow-y: scroll;
     display: flex;
@@ -108,3 +111,19 @@ header .page-header .week-selector .main-btn .btn span{
 .one::after { background-color: #FF3A3A } /* Плохо */
 .absence::after { background-color: #4C50B8 } /* Отсутствие */
 .disease::after { background-color: #9c48c4 } /* Отсутствие по болезни */
+
+
+@media screen and (max-width: 790px){
+    #diary main, #diary, header{
+        width: 100%;
+    }
+    #diary{
+        padding: 0 45px;
+    }
+    header{
+        padding: 25px 45px;
+    }
+    header .page-header, header .profile-header{
+        width: 100%;
+    }
+}
