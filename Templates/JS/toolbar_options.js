@@ -9,7 +9,8 @@ var toolbarOptions = [
     [{ 'indent': '-1'}, { 'indent': '+1' }],
     [{ 'color': [] }, { 'background': [] }],
     [{ 'align': [] }],
-    ['formula']
+    ['formula'],
+    ['link']
     ];
 var quill = new Quill('#editor', {
   modules: {
@@ -17,6 +18,5 @@ var quill = new Quill('#editor', {
     toolbar: toolbarOptions,
   },
   theme: 'snow',
-  spellcheck: true,
-  placeholder: 'Сообщение'
+  spellcheck: true
 });

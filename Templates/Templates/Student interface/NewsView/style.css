@@ -18,9 +18,6 @@
 .form .form-wrapper form .form-btn:hover{
     background-color: var(--button-bg-active-color);
 }
-/* .form .form-wrapper form .preview{
-    width: 1000px;
-} */
 .form .form-wrapper form .files .file{
     background-color: var(--bg-secondary-color);
 }

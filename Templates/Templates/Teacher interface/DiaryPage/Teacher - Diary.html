@@ -7,7 +7,11 @@
     <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
     <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+    <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
+    <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
     <title>Дневник</title>
 </head>
 
@@ -210,7 +214,7 @@
                             <button class='form-btn' type="submit"><span class="fi-rr-disk"></span>Сохранить</button>
                         </div>
                     </div>
-                    <textarea name="Homework-text" class='text-field' autocomplete="off" placeholder="Задание" style='min-height: 256px'>Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php</textarea>
+                    <div id="editor" class='text-field'>Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php</div>
                     <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
                     <div class='files'>
                         <div class="file">
@@ -238,6 +242,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='../../../JS/sections_manager.js'></script>
     <!-- Менеджер секций-->
+
+    <!-- Подсветка кода -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <!-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Отображение математических формул -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Настройки панели -->
+    <script src='../../../JS/toolbar_options.js'></script>
 </body>
 
 </html>
