@@ -2,12 +2,6 @@ let page = 0;
 let file_array = Array()
 let news_preview = undefined
 
-// Закрытие формы
-function close_form(bg) {
-	bg.parentElement.style.display = 'none';
-	$("body").css("position", "relative");
-}
-
 // Открытие формы по нажатию на курс
 $("#widgets .item").click(function(event){
 	$('#widgets .item').each(function(i, item){
@@ -30,156 +24,80 @@ $('#news-preview').on('click', function(){
 	$('#preview-input').click()
 });
 
+// Закрытие формы
+function close_form(bg) {
+	bg.parentElement.style.display = 'none';
+	$("body").css("position", "relative");
+}
+
 // Открытие формы создания новости
 function open_add_news_form() {
 	$('#news #add-news-form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 }
 
+// Генерация представлений файла
 function addFileWidget(file){
-	let file_div = document.createElement('div')
-	file_div.className = 'file'
-
-	let file_info = document.createElement('div')
-	file_info.className = 'file-info'
-
-	let file_icon = document.createElement('i')
-	splited_name = file.name.split('.')
-	file_icon.className = 'file-' + splited_name[splited_name.length - 1]
-
-	let file_name = document.createElement('h4')
-	file_name.innerHTML = file.name
-
-	file_info.appendChild(file_icon)
-	file_info.appendChild(file_name)
-
-	let file_btns = document.createElement('div')
-	file_btns.className = 'file-btns'
-
-	let delete_btn = document.createElement('button')
-	delete_btn.className = 'del-file'
-	delete_btn.type = 'button'
-
-	file_btns.appendChild(delete_btn)
-
-	file_div.appendChild(file_info)
-	file_div.appendChild(file_btns)
-
-	return file_div
+	return $(`<div class="file"><div class="file-info">
+			  <i class="file-${file.name.split('.')[file.name.split('.').length - 1]}"></i>
+			  <h4>${file.name}</h4></div><div class="file-btns">
+			  <button class="del-file" type="button"></button></div></div>`)[0]
 }
 
+// Генерация интерфейса файла
 function addNewFile(event){
 	if(event.target.files[0] != undefined){
-		let file = event.target.files[0]
-		file_array.push(file)
+		let file = event.target.files[0] // Получение файла
+		file_array.push(file)  // Помещение его в массив данных
 		let file_id = file_array.length - 1
 
-		let container = $('#file-container')[0]
-		let file_widget = addFileWidget(file)
+		let container = $('#file-container')[0] // init контейнера
+		let file_widget = addFileWidget(file) // Получение html файла
 
-		file_widget.childNodes[1].childNodes[0].onclick = function(click) {
-			file_array.splice(file_id, 1)
-			container.removeChild(file_widget)
+		// Функция по клику на "крестик"
+		$(file_widget).find('.del-file')[0].onclick = function(click) {
+			file_array.splice(file_id, 1)  // Уборка файла из массива
+			container.removeChild(file_widget) // Уборка html файла
 		}
 		
-		container.appendChild(file_widget)
+		container.appendChild(file_widget) // Добавление файла в контейнер
 	}
 }
 
+// Генерация интерфейся превью
 function addNewsPreview(event){
 	if(event.target.files[0] != undefined){
-		$('#news-preview')[0].style.display = 'none'
-		news_preview = event.target.files[0]
+		$('#news-preview')[0].style.display = 'none' // Скрытие кнопки "Загрузить картинку"
+		news_preview = event.target.files[0] // Получение превью
 
-		let btns_container = $('#news-form-btns')[0]
+		let btns_container = $('#news-form-btns')[0] // Определение контейнера
 
-		let preview_widget = addFileWidget(news_preview)
-		preview_widget.childNodes[1].childNodes[0].onclick = function(click) {
-			news_preview = undefined
-			btns_container.removeChild(preview_widget)
-			$('#news-preview')[0].style.display = 'block'
+		let preview_widget = addFileWidget(news_preview) // Получение html-а превью
+		console.log()
+
+		// Фунция по клику на "крестик"
+		$(preview_widget).find('.del-file')[0].onclick = function(click) {
+			news_preview = undefined  // Забываем превью
+			btns_container.removeChild(preview_widget) // Чистим html от превью
+			$('#news-preview')[0].style.display = 'block' // Открываем кнопку
 		}
 
-		btns_container.insertBefore(preview_widget, btns_container.firstChild)
+		btns_container.insertBefore(preview_widget, btns_container.firstChild) // Добавление превью
 	}
 }
 
+// Генерация новости
 function buildNews(news){
-	let news_div = document.createElement('div');
-	news_div.className = 'item';
-
-	news_div.onclick = function(){
-		news_url = '/news/' + user_id + '/detail/' + news['id']
-		location.href = location.origin + news_url;
-	}
-
-	let news_image = document.createElement('img');
-	news_image.src = news['image'];
-	news_image.className = 'preview';
-
-	// Генерация шапки
-	let info_div = document.createElement('div');
-	info_div.className = 'item-header'
-
-	let title_div = document.createElement('div');
-	title_div.className = 'news-title';
-
-	let news_title = document.createElement('h2');
-	news_title.innerHTML = news['title'];
-
-	title_div.appendChild(news_title);
-
-	let author_div = document.createElement('div');
-	author_div.className = 'news-author';
-
-	let author_name = document.createElement('h4');
-	author_name.innerHTML = news['author']['name'];
-
-	let author_image = document.createElement('img');
-	author_image.src = news['author']['img'];
-	author_image.className = 'profile-img';
-
-	author_div.appendChild(author_name);
-	author_div.appendChild(author_image);
-
-	info_div.appendChild(title_div);
-	info_div.appendChild(author_div);
-	// Конец генерации шапки
-
-	let news_text = document.createElement('p');
-	news_text.innerHTML = news['content'];
-
-	// Генерация календаря
-	let calendar_div = document.createElement('div');
-	calendar_div.style.display = 'flex';
-	calendar_div.style.marginLeft = 'auto';
-	calendar_div.style.alignItems = 'center';
-
-	let date_span = document.createElement('span');
-	let news_date = document.createElement('h5');
-	news_date.style.display = 'inline-block';
-	news_date.innerHTML = news['date'];
-
-	date_span.appendChild(news_date);
-
-	let calendar_icon = document.createElement('span');
-	calendar_icon.className = 'fi-rr-calendar';
-	calendar_icon.style.fontSize = '0.8rem';
-	calendar_icon.style.marginLeft = '5px';
-
-	calendar_div.appendChild(date_span);
-	calendar_div.appendChild(calendar_icon);
-
-	// Конец генерации календаря
-
-	news_div.appendChild(news_image);
-	news_div.appendChild(info_div);
-	news_div.appendChild(news_text);
-	news_div.appendChild(calendar_div);
-
-	$("#news-block")[0].appendChild(news_div);
+	return $(`<div class="item" onclick="location.href='/news/${user_id}/detail/${news.id}'">
+			  <img src="${news['image']}" class="preview"><div class="item-header"><div class="news-title">
+			  <h2>${news['title']}</h2></div><div class="news-author"><h4>${news['author']['name']}</h4>
+			  <img src="${news['author']['img']}" class="profile-img"></div></div>
+			  <p>${news['content']}</p><div style="display: flex; margin-left: auto; align-items: center;">
+	   		  <span><h5 style="display: inline-block;">${news['date']}</h5></span>
+	   		  <span class="fi-rr-calendar" style="font-size: 0.8rem; margin-left: 5px;"></span></div></div>`)[0]
 }
 
+// Запрос новостей с сервера
 function getNewNews(){
 	$.ajax({
 		type: 'POST',
@@ -191,7 +109,7 @@ function getNewNews(){
 		cache: false,
 		success: function(response){
 			for(let i in response['news']){ 
-				buildNews(response['news'][i]) 
+				$('#news-block').append(buildNews(response['news'][i]))
 			}
 		}
 	})
@@ -201,18 +119,19 @@ function getNewNews(){
 	}
 }
 
-
+// Отправка формы новости на сервер
 $('#news-upload').on('click', function(){
 	let news_form = new FormData();
 
-	news_form.append('image', news_preview)
-	for(let i = 0; i < file_array.length; i++){
-		news_form.append('files', file_array[i])
+	for(let i = 0; i < file_array.length; i++){ // Перебор файлов
+		news_form.append('files', file_array[i]) // Добавление файла в форму
 	}
 
-	news_form.append('title', $('#news-title')[0].value)
-	news_form.append('content', $('#news-content')[0].value)
-	news_form.append('csrfmiddlewaretoken', csrf_token)
+	news_form.append('image', news_preview) // Превью
+	news_form.append('content', quill.getText()) // Текст
+	news_form.append('csrfmiddlewaretoken', csrf_token) // csfr_token
+	news_form.append('title', $('#news-title')[0].value) // заголовок
+	news_form.append('style_content', $('.ql-editor')[0].innerHTML) // форматированный текст
 
 	$.ajax({
 		type: 'POST',

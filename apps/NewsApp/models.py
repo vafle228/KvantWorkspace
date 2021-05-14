@@ -10,8 +10,9 @@ def setDefaultImage():
 
 
 class KvantNews(models.Model):
-    content = models.TextField()
+    content = models.TextField(blank=True)
     title = models.CharField(max_length=100)
+    style_content = models.TextField(blank=True)
     date = models.DateField(default=timezone.now)
     files = models.ManyToManyField(FileStorage, blank=True)
     author = models.ForeignKey(KvantUser, on_delete=models.CASCADE)

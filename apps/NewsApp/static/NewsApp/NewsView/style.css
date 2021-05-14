@@ -1,3 +1,6 @@
+.profile-header{
+    margin-left: auto;
+}
 .form .form-wrapper{
     position: fixed; top: 0; left: 190px;
 }
@@ -15,9 +18,37 @@
 .form .form-wrapper form .form-btn:hover{
     background-color: var(--button-bg-active-color);
 }
-.form .form-wrapper form .preview{
-    width: 1000px;
-}
 .form .form-wrapper form .files .file{
     background-color: var(--bg-secondary-color);
+}
+
+@media screen and (max-width: 992px){
+    header{
+        flex-direction: column-reverse; gap: 25px;
+        height: 100px;
+    }
+    header .profile-header{
+        width: 1000px;
+        margin-right: auto;
+        padding: 0 10px;
+    }
+}
+@media screen and (max-width: 790px){
+    /* Формы */
+    .form .form-wrapper form{
+        width: 100%;
+    }
+    .form .form-wrapper{
+        width: calc(100% - 90px);
+        left: 45px;
+    }
+    .form .form-wrapper form .preview{
+        width: calc(100% + 50px);
+    }
+    header{
+        padding: 25px 45px;
+    }
+    header .page-header, header .profile-header{
+        width: 100%;
+    }
 }

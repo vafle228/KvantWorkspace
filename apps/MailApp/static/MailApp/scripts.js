@@ -1,4 +1,11 @@
 let page = 0;
+let file_array = Array()
+
+// Прикрепление файлов по кнопке
+$('#mail-file').on('click', function(){
+	$('#file-input')[0].value = '';
+	$('#file-input')[0].click();
+})
 
 // Закрытие формы
 function close_form(bg) {
@@ -34,6 +41,7 @@ function search_fill(a) {
 	a.parentElement.style.display = 'none';
 }
 
+// Получение письм
 function getNewMails(){
 	$.ajax({
 		type: 'POST',
@@ -55,6 +63,36 @@ function getNewMails(){
 	}
 }
 
+// Отправка письма по кнопке
+$('#send-mail').on('click', function(){
+	let mail_form = new FormData(); // Формирование формы
+
+	for(let i in file_array){ // Считывание файлов
+		mail_form.append('files', file_array[i])
+	}
+
+	mail_form.append('text', quill.getText()) // Текст
+	mail_form.append('csrfmiddlewaretoken', csrf_token) // csfr_token
+	mail_form.append('title', $('#mail-title')[0].value) // Заголовок
+	// mail_form.append('receiver', $('#mail-receiver')[0].value) // Получатель
+	mail_form.append('receiver', 2)
+	mail_form.append('style_text', $('.ql-editor')[0].innerHTML) // Форматированный текст
+
+	$.ajax({
+		type: 'POST',
+		data: mail_form,
+		url: create_mail,
+		cache: false,
+		processData: false,
+    	contentType: false,
+		enctype: "multipart/form-data",
+		success: function() { 
+			location.reload()
+		}
+	})
+})
+
+// Смена статуса на "прочитанное"
 function updateMailStatus(mail_id, mail){
 	if(mail.className == 'item new-mail'){
 		$.ajax({
@@ -72,185 +110,105 @@ function updateMailStatus(mail_id, mail){
 	}
 }
 
+// Построение нового письма
 function buildNewMail(mail){
-	let mail_div = document.createElement('div');
-	mail_div.className = 'item new-mail';
-	if (mail['is_read']) { mail_div.className = 'item old-mail'; }
+	let mail_view = generateMailView(mail) // Получение view письма
 
-	// Получение шапки и текста
-	[header_div, mail_content] = generateMail(mail, true)
-
-	mail_div.appendChild(header_div); mail_div.appendChild(mail_content)
-
-	// Генеация файлов
+	// Генерация фалового блока
 	if (mail['files'].length !== 0) {
-		let files_div = document.createElement('div');
-		files_div.className = 'files';
-		files_div.style.width = '100%'
+		let files_container = $('<div class="files" style="width: 100%"></div>')[0]
 
-		for(let i in mail['files']){
-			let file_div = generateMailFile(mail['files'][i])
-			files_div.appendChild(file_div);
+		for(let i in mail['files']){ // Перебор всех файлов письма
+			// Добавления файлового виджета
+			$(files_container).append(generateMailFile(mail['files'][i]))
 		}
-		mail_div.appendChild(files_div)
+		$(mail_view).append(files_container)
 	}
-	let mail_view = buildMailView(mail)
+	let mail_detail_view = buildMailView(mail) // Получение детального view
 
-	mail_div.onclick = function(){
-		mail_view.style.display = 'block';
+	mail_view.onclick = function(){ // Связь между view и детальным view письма
+		mail_detail_view.style.display = 'block';
 		$("body").css("position", "fixed");
-		updateMailStatus(mail['id'], mail_div)
+		updateMailStatus(mail['id'], mail_view)
 	}
 
-	$('#mail_container')[0].appendChild(mail_div)
+	$('#mail_container')[0].appendChild(mail_view)
 }
 
+// Построение детального просмотра новости
 function buildMailView(mail){
-	let div_form = document.createElement('div');
-	div_form.className = 'form';
+	let detail_view = generateMailDetailView(mail) // Получение детального образа
 
-	let div_filter = document.createElement('div');
-	div_filter.className = 'filter';
-	div_filter.onclick = function(event) { 
-		close_form(div_filter); 
-	}
-
-	let div_wrapper = document.createElement('div');
-	div_wrapper.className = 'form-wrapper';
-
-	let mail_view = document.createElement('form');
-
-	// Получение шапки и текста
-	[header_div, mail_content] = generateMail(mail, false)
-	
-	let date_div = generateMailDate(mail)
-
-	mail_view.appendChild(header_div); 
-	mail_view.appendChild(mail_content);
-	mail_view.appendChild(date_div);
-
-	// Генерация разделительной линии
-
+	// Генерация файлового блока
 	if(mail['files'].length !== 0){
-		let dividing_line = document.createElement('hr');
-		dividing_line.className = 'divider'
-		mail_view.appendChild(dividing_line);
-	}
-
-	// Генерация файлов
-
-	if (mail['files'].length !== 0) {
-		let form_item = document.createElement('div')
-		form_item.className = 'item-header';
-
-		let files_div = document.createElement('div');
-		files_div.className = 'files';
-		files_div.style.width = '100%';
-
-		for(let i in mail['files']){
-			let file_div = generateMailFile(mail['files'][i])
-			files_div.appendChild(file_div);
+		$(detail_view).find('form')[0].append($('<hr class="divider"/>')[0]) // Линия-граница
+		
+		// Генерация контейнера файлов
+		let file_div = $('<div class="files" style="width: 100%"></div>')[0]
+		for(let i in mail['files']){  // Перебор всех файлов письма
+			// Добавление файла в контейнер с добавкой кнопок "скачать"
+			$(file_div).append($(generateMailFile(mail['files'][i])).append(
+				$(`<div class="file-btns"><button onclick="window.open('${mail['files'][i]['url']}')" class="download-file" type="button"></button></div></div>`)[0]
+			))
 		}
-		form_item.appendChild(files_div); mail_view.appendChild(form_item);
+		// Добавка всех файлов в контейнер с "оберткой"
+		$(detail_view).find('form')[0].append($('<div class="item-header"></div>').append(file_div)[0])
+
 	}
-	div_wrapper.appendChild(mail_view);
-	div_form.appendChild(div_filter); 
-	div_form.appendChild(div_wrapper);
+	$('#mail').append(detail_view)
 
-	$('#mail')[0].appendChild(div_form)
-
-	return div_form
+	return detail_view
 }
 
-function generateMail(mail, is_mail){
-	let header_div = document.createElement('div');
-	header_div.className = 'item-header';
+// Генерация простого view письма
+function generateMailView(mail, is_mail){
+	return $(`<div class="item old-mail"><div class="item-header"><div class="lesson-title">
+			  <h2>${mail['title']}</h2><h3>${mail['date']}</h3></div><div class="lesson-teacher">
+			  <h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}">
+			  </div></div><p class="item-text">${mail['text']}</p></div>`)[0]
+}
 
-	// Генерация названия
-	let title_div = document.createElement('div');
-	title_div.className = 'lesson-title';
+// Генерация подробного view письма
+function generateMailDetailView(mail){
+	return $(`<div class="form"><div class="filter" onclick="close_form(this)"></div><div class="form-wrapper"><form>
+			  <div class="item-header"><div class="lesson-title"><h2>${mail['title']}</h2></div>
+			  <div class="lesson-teacher"><h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}">
+			  </div></div><div class="ql-snow"><div class="ql-editor"><p class="item-text">${mail['style_text']}</p></div>
+			  </div><div><span class="fi-rr-calendar" style="font-size: 0.8rem; margin-right: 5px;"></span>
+			  <h3 style="display: inline-block;">Дата отправки ${mail['date']}</h3></div></form></div></div>`)[0]
+}
 
-	let mail_title = document.createElement('h2');
-	mail_title.innerHTML = mail['title'];
+// Генерация файлов письма
+function generateMailFile(file, is_mail){
+	return $(`<div class="file"><div class="file-info">
+			  <i class="file-${file['name'].split('.')[file['name'].split('.').length - 1]}"></i>
+			  <h4>${file['name']}</h4></div>`)[0]
+}
 
-	title_div.appendChild(mail_title);
+// Генерация файлов в форме
+function addFileWidget(file){
+	return $(`<div class="file"><div class="file-info">
+			  <i class="file-${file.name.split('.')[file.name.split('.').length - 1]}"></i>
+			  <h4>${file.name}</h4></div><div class="file-btns">
+			  <button class="del-file" type="button"></button></div></div>`)[0]
+}
 
-	// Костыль для исключения повторной даты в детальном просмотре
-	if(is_mail){
-		let mail_date = document.createElement('h3');
-		mail_date.innerHTML = mail['date'];
-		title_div.appendChild(mail_date);
+// Генерация интерфейса файла
+function addNewFile(event){
+	if(event.target.files[0] != undefined){
+		let file = event.target.files[0] // Получение файла
+		file_array.push(file)  // Помещение его в массив данных
+		let file_id = file_array.length - 1
+
+		let container = $('#file-container')[0] // init контейнера
+		let file_widget = addFileWidget(file) // Получение html файла
+
+		// Функция по клику на "крестик"
+		$(file_widget).find('.del-file')[0].onclick = function(click) {
+			file_array.splice(file_id, 1)  // Уборка файла из массива
+			container.removeChild(file_widget) // Уборка html файла
+		}
+		
+		container.appendChild(file_widget) // Добавление файла в контейнер
 	}
-
-	// Генерация отправителя
-	let sender_div = document.createElement('div');
-	sender_div.className = 'lesson-teacher';
-
-	let mail_sender = document.createElement('h4');
-	mail_sender.innerHTML = mail['sender']['name'];
-
-	let sender_image = document.createElement('img');
-	sender_image.src = mail['sender']['image'];
-
-	sender_div.appendChild(mail_sender); sender_div.appendChild(sender_image);
-
-	header_div.appendChild(title_div); header_div.appendChild(sender_div);
-
-	// Генерация текста
-	let mail_content = document.createElement('p');
-	mail_content.className = 'item-text';
-	mail_content.innerHTML = mail['text'];
-
-	return [header_div, mail_content]
-}
-
-function generateMailFile(file){
-	let file_div = document.createElement('div');
-	file_div.className = 'file';
-
-	// Генерация информации о файле
-	let file_info = document.createElement('div');
-	file_info.className = 'file-info';
-
-	let file_icon = document.createElement('i');
-	splited_name = file['name'].split('.');
-	file_icon.className = 'file-' + splited_name[splited_name.length - 1];
-
-	let file_name = document.createElement('h4');
-	file_name.innerHTML = file['name'];
-
-	file_info.appendChild(file_icon); file_info.appendChild(file_name);
-
-	// Генерация кнопок файла
-	let file_btns = document.createElement('div');
-	file_btns.className = 'file-btns';
-
-	let download_btn = document.createElement('button');
-	download_btn.className = 'download-file';
-	download_btn.type = 'button';
-	download_btn.onclick = function(){ window.open(file[i]['url']); }
-
-	file_btns.appendChild(download_btn); 
-	file_div.appendChild(file_info); file_div.appendChild(file_btns);
-
-	return file_div
-}
-
-function generateMailDate(mail){
-	let date_div = document.createElement('div');
-
-	// Генерация иконки календаря
-	let date_span = document.createElement('span');
-	date_span.className = 'fi-rr-calendar';
-	date_span.style.fontSize = '0.8rem';
-	date_span.style.marginRight = '5px';
-
-	// Генерация даты письма
-	let date_text = document.createElement('h3');
-	date_text.style.display = 'inline-block';
-	date_text.innerHTML = `Дата отправки ${mail['date']}`;
-
-	date_div.appendChild(date_span); date_div.appendChild(date_text);
-
-	return date_div
 }

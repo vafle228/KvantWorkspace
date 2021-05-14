@@ -7,7 +7,10 @@
      <!-- Иконки расширений файлов -->
     {% include "SystemModule/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
+    <link rel="stylesheet" href='{% static "MailApp/highlight.css" %}'>
+    <link rel="stylesheet" href='{% static "MailApp/ql-editor.css" %}'>
     <link rel="stylesheet" href='{% static "MailApp/style.css" %}'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous">  <!-- Стили для отображения формул -->
     <title>Почта</title>
 </head>
 
@@ -43,7 +46,7 @@
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <div class="dropdown">
-                                <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input'>
+                                <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input' id='mail-receiver'>
                                 <div class="dropdown-content" style="display: none">
                                     <a onclick="search_fill(this)"><p>Смышляев Дмитрий Ильич</p></a>
                                     <a onclick="search_fill(this)"><p>Каратаев Вадим Алексеевич</p></a>
@@ -53,30 +56,34 @@
                                 </div>
                               </div>
                         </div>
-                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
+                        <button class='form-btn' type="button" id='send-mail'><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
                     </div>
-                    <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
-                    <textarea name="news-text" class='text-field' autocomplete="off" style='min-height: 256px' placeholder="Сообщение"></textarea>
-                    <button class='form-btn' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
-                    <div class='files'>
-                        <div class="file">
-                            <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
-                        </div>
+                    <input name="mail-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема" id='mail-title'></input>
+                    <div id="editor" class='text-field'></div>
+                    <button class='form-btn' id='mail-file' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
+                    <input type="file" style="display: none" id='file-input' onchange="addNewFile(event);">
+                    <div class='files' id='file-container'>
                     </div>
                 </form>
             </div>
         </div>
     </section>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
+    <!-- Подсветка кода -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <!-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Отображение математических формул -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    
     <script src='{% static "MailApp/scripts.js" %}'></script>
+    <script src='{% static "MailApp/toolbar_options.js" %}'></script>
     <script>
         let max_mails = {{ max_mails }};
     	let send_mail = '{% url "send_mails" user.id %}';
+        let create_mail = '{% url "create_mail" user.id %}';
         let change_status = '{% url "change_status" user.id %}';
     </script>
 </body>

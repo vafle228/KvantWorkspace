@@ -1,8 +1,8 @@
-from .forms import SendNewMails
 from .models import KvantMessage
 from django.http import JsonResponse
 from LoginApp.models import KvantUser
 from SystemModule.views import is_available
+from .forms import SendNewMails, KvantMailSaveForm
 from django.shortcuts import render, redirect, HttpResponse
 
 
@@ -27,6 +27,17 @@ def send_more_mails(request, identifier):
         response = form.save(user) if form.is_valid() else []  # Попытка получения данных
         return JsonResponse({'mails': response})  # JSON ответ
     return HttpResponse('Error')  # В случаи ошибки ранее
+
+
+def create_mail(request, identifier):
+    if not is_available(request, identifier):
+        return redirect('/login/')
+
+    if request.method == 'POST':
+        form = KvantMailSaveForm(request.POST)
+        form.save(request) if form.is_valid() else None
+        return HttpResponse('Ok')
+    return HttpResponse('Error')
 
 
 def change_mail_status(request, identifier):

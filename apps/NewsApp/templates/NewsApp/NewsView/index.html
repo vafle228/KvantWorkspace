@@ -35,9 +35,11 @@
                             <img src='{{ news.author.image.image.url }}'/>
                         </div>
                     </div>
-                    <p class='item-text'>
-                        {{ news.content }}
-                    </p>
+                    <div class='ql-snow'>
+                        <div class='ql-editor'>
+                            {{ news.style_content|safe }}
+                        </div>
+                    </div>
                     <div style='margin-top: 10px'>
                         <span class="fi-rr-calendar" style='font-size: 0.8rem; margin-right: 5px'></span>
                         <h3 style='display: inline-block'>
@@ -56,7 +58,7 @@
                                     <h4>{{ file|file_name }}</h4>
                                 </div>
                                 <div class="file-btns">
-                                    <button class='download-file' onclick="location.href = '{{ file.file.url }}'" type='button'></button>
+                                    <button class='download-file' onclick="window.open('{{ file.file.url }}')" type='button'></button>
                                 </div>
                             </div>
                             {% endfor %}

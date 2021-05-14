@@ -6,6 +6,7 @@ from SystemModule.models import FileStorage, ImageStorage
 
 class KvantMessage(models.Model):
     text = models.TextField(blank=True)
+    style_text = models.TextField(blank=True)
     is_read = models.BooleanField(default=False)
     date = models.DateField(default=timezone.now)
     files = models.ManyToManyField(FileStorage, blank=True)

@@ -61,7 +61,7 @@
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-button, input, textarea{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
+button, input, textarea, .ql-editor{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
 a{ text-decoration: none; color: unset; }
 
 /* Настройка шрифтов */
@@ -149,11 +149,15 @@ header{
     align-items: center;
 }
 /* Панель инструментов */
+header .profile-header{
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 1000px);
+}
 header .toolbar{
     display: flex;
     align-items: center;
     padding: 0 10px;
-    margin-left: auto;
     gap: 5px;
 }
 header .toolbar button{
@@ -168,46 +172,47 @@ header .toolbar button:hover{
     background-color: var(--button-bg-active-color);
 }
 /* Профиль */
-header .profile{
+header .profile-header .profile{
     display: flex;
     gap: 10px;
     align-items: center;
     position: relative;
     cursor: pointer;
 }
-header .profile .info{
+header .profile-header .profile .info{
     display: flex;
     flex-direction: column;
     text-align: right;
 }
-header .profile .info h2{
+header .profile-header .profile .info h2{
     font-size: 1.2rem;
 }
-header .profile .info h4{
+header .profile-header .profile .info h4{
     font-size: 1rem;
 }
-header .profile img{
+header .profile-header .profile img{
     width: 44px; height: 44px;
     border-radius: 100%;
     object-fit: cover;
     transition-duration: .2s;
     transition-property: filter;
+    position: relative;
 }
-header .profile::after{
+header .profile-header .profile::after{
     content: '\f218';
     font-family: "uicons-regular-rounded";
     font-size: 20px;
     position: absolute;
-    top: 12px; right: 12px;
+    top: 14px; right: 12px;
     opacity: 0;
     color: #fff;
     transition-duration: .2s;
     transition-property: opacity;
 }
-header .profile:hover::after{
+header .profile-header .profile:hover::after{
     opacity: 1;
 }
-header .profile:hover img{
+header .profile-header .profile:hover img{
     filter: brightness(0.8);
 }
 
@@ -292,7 +297,7 @@ header .profile:hover img{
 
 .form .form-wrapper form .preview{
     width: 1000px;
-    margin: -25px -25px 10px -25px;
+    margin: -10px -25px 10px -25px;
     border-radius: 10px 10px 0 0;
 }
 
@@ -380,6 +385,7 @@ header .profile:hover img{
 @media screen and (max-width: 1356px){ body{ zoom: 70% }}
 @media screen and (max-width: 1280px){ body{ zoom: 65% }}
 @media screen and (max-width: 1024px){ body{ zoom: 55% }}
+@media screen and (max-width: 992px){ body{ zoom: 65% }}
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
@@ -462,7 +468,19 @@ header .profile:hover img{
 }
 
 
-@media screen and (max-width: 576px){
+
+@media screen and (max-width: 992px){
+    header{
+        flex-direction: column-reverse; gap: 25px;
+        height: 175px;
+    }
+    header .profile-header{
+        width: 1000px;
+        margin-right: auto;
+        padding: 0 10px;
+    }
+}
+@media screen and (max-width: 790px){
     /* aside */
     aside{
         position: fixed; top: calc(100% - 92px); left: 0;
@@ -470,6 +488,7 @@ header .profile:hover img{
         box-shadow: 1px 0 1px 0 #0001;
         padding: 15px;
         display: flex;
+        z-index: 100000000000000000000;
     }
     aside #logo{
         width: 50px; height: 50px;
@@ -485,5 +504,26 @@ header .profile:hover img{
     aside nav:last-child{
         position: absolute;
         right: 15px;
+    }
+
+    /* Формы */
+    .form .form-wrapper form{
+        width: 100%;
+    }
+    .form .form-wrapper{
+        width: 90%;
+        left: 5%;
+    }
+}
+@media screen and (max-width: 468px){
+    aside nav:last-child{
+        display: none;
+    }
+    aside nav{
+        width: 100%;
+        gap: 1.2%;
+    }
+    aside nav button{
+        width: 19%;
     }
 }

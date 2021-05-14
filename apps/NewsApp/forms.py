@@ -6,22 +6,19 @@ from SystemModule.forms import ImageStorageSaveForm, FileStorageSaveForm
 
 class KvantNewsSaveForm(forms.Form):
     content = forms.CharField()
+    style_content = forms.CharField()
     title = forms.CharField(max_length=100)
 
     def save(self, request):
-        """
-            Новость создается в три этапа
-            1) Создание модельного представления картинки
-            2) Создание модельного представления файлов
-            3) Создание новости с учетом формы с FrontEnd и ранее созданными представлениями
-        """
         #  Считываем данные с запроса
         title = self.cleaned_data['title']
         content = self.cleaned_data['content']
+        style_content = self.cleaned_data['style_content']
         date = timezone.now().date()
 
         news = KvantNews.objects.create(
-            content=content, title=title, author=request.user
+            content=content, author=request.user,
+            title=title, style_content=style_content,
         )  # Создание новости
 
         image_form = ImageStorageSaveForm(

@@ -4,6 +4,11 @@
     padding: 0;
 }
 
+/* Шапка */
+.profile-header{
+    margin-left: auto;
+}
+
 /* Виджеты */
 #widgets{
     width: 100%;
