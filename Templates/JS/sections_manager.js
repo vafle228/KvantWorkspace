@@ -51,27 +51,32 @@ function open_create_mail_form() {
 let filters = [];
 // Поиск пользователя
 function filterFunction(input) {
-	var substr = input.value.toUpperCase();
+	let substr = input.value.toUpperCase();
 	if (substr.trim()) {
 		$('.unselected').show();
-		var users = $('.unselected .user');
-		var counter = 0;
-		for (var i = 0; i < users.length; i++) {
-			users[i].style.display = 'none';
+		let users = $('.unselected .user').map(function(index){
+			let user = $('.unselected .user')[index]
+			
+			user.style.display = 'none';
+			return user
+		});
+		
+		let unblocked = users.map(function(index){
+			let user = users[index]
 
-			name_ = users[i].getElementsByTagName('h2')[0].textContent;
-			category_ = users[i].getElementsByTagName('h4')[0].textContent;
-			if (name_.toUpperCase().indexOf(substr) > -1 && filters.indexOf(category_) !== -1) {
-				users[i].style.display = 'flex';
-				counter += 1;
+			let name = $(user).find('h2')[0].textContent;
+			let category = $(user).find('h4')[0].textContent;
+
+			if(name.toUpperCase().indexOf(substr) !== -1 && filters.indexOf(category) !== -1){
+				user.style.display = 'flex'
+				return user
 			}
-			if (!counter) {
-				$('.unselected').hide();
-			}
-		}
-	} else {
-		$('.unselected').hide();
-	}
+		})
+		
+		if(unblocked.length){ $('.unselected').show() }
+		else { $('.unselected').hide(); }
+	} 
+	else { $('.unselected').hide(); }
 }
 
 function filter_applying(button, filter) {
