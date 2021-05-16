@@ -16,7 +16,7 @@
     <title>Главная</title>
 </head>
 
-<body style="overflow: auto" class='light__theme orange__color__scheme'>
+<body style="overflow: auto" class='dark__theme orange__color__scheme'>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -154,7 +154,7 @@
                 </div>
             </div>
             <!-- Форма просмотра курса -->
-            <div class='form' style='padding: 0; display: none;'>
+            <div class='form' style='padding: 0; display: none'>
                 <div class='filter' onclick="close_form(this)"></div>
                 <div class="form-wrapper">
                     <form>
@@ -183,15 +183,43 @@
                         </div>
                         <hr class="divider"/>
                         <h2>Участники курса</h2>
-                        <div class="item-header">
-                            <div class='files' style='width: 100%'>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
+                        <div class="users unselected">
+                            <div class="user">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Имя Фамилия</h2>
+                                </div>
                             </div>
+                            <div class="user">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Имя Фамилия</h2>
+                                </div>
+                            </div>
+                            <div class="user">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Имя Фамилия</h2>
+                                </div>
+                            </div>
+                            <div class="user">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Имя Фамилия</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='files selected'>
+                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
+                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
+                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
+                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
+                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
+                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
                         </div>
                     </form>
                 </div>
@@ -266,7 +294,7 @@
                         similique blanditiis! Minus, aut.
                     </p>
                     <div style='margin-left: auto; display: flex; align-items: center;'>
-                        <h5 style='display: inline-block'>10.05 2021</h5>
+                        <span><h5 style='display: inline-block'>10.05 2021</h5></span>
                         <span class="fi-rr-calendar" style='font-size: 0.8rem; margin-left: 5px'></span>
                     </div>
                 </div>
@@ -277,8 +305,6 @@
             </div>
             <!-- Форма создания новости -->
             <div class='form' id='add-news-form' style='display: none'>
-                <!-- Затемняющий фильтр -->
-                <div class='filter' onclick="close_form(this)"></div>
                 <div class="form-wrapper">
                     <form>
                         <div class='item-header'>
@@ -342,5 +368,10 @@
         onload="renderMathInElement(document.body);"></script>
     <!-- Настройки панели -->
     <script src='../../../JS/toolbar_options.js'></script>
+
+    <!-- Библиотека для перетаскивания -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
+    <script src="../../../JS/draggable_options.js"></script>
 </body>
 </html>

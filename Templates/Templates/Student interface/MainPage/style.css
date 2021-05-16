@@ -39,6 +39,8 @@
 }
 #widgets #quote-widget div h6{
     font-size: 1.2rem; font-style: italic; text-align: justify;
+    overflow: hidden;
+    max-height: 200px;
 }
 #widgets #quote-widget div h4{
     font-size: 1rem; font-weight: 300;
@@ -156,28 +158,52 @@
     -webkit-box-orient: vertical;
 }
 
+.profile-header{
+    margin-left: auto;
+}
 /* Адаптивность для сенсорных устройств */
 @media screen and (max-width: 992px){
     /* Новости */
     #news > div .item{ width: 49% }
-}
-@media screen and (max-width: 840px){
+
+    /* Шапка */
+    header{
+        flex-direction: column-reverse; gap: 25px;
+        height: 100px;
+    }
+    header .profile-header{
+        width: 1000px;
+        margin-right: auto;
+        padding: 0 10px;
+    }
+
     /* Виджеты */
     #widgets #quote-widget::after{ display: none }
     #widgets #quote-widget div{ width: 100% }
 }
-@media screen and (max-width: 740px){
+
+@media screen and (max-width: 790px){
     /* Виджеты */
     #widgets{ height: 675px; gap: 25px; flex-direction: column }
     #widgets #quote-widget{ width: 100% }
     #widgets #quote-widget div{ width: 55% }
     #widgets #quote-widget::after{ display: block }
     #widgets #courses-manager{ margin: 0 auto; width: 100% }
+
+    /* Секции */
+    #widgets, #news{
+        padding-left: 45px;
+    }
+
+    /* Шапка */
+    header{
+        padding: 25px 45px;
+    }
+    header .page-header, header .profile-header{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 576px){
     /* Новости */
     #news > div .item{ width: 100% }
-    #widgets, #news{
-        padding-left: 45px;
-    }
 }

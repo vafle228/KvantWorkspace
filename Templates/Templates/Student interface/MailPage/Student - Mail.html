@@ -16,7 +16,7 @@
     <title>Почта</title>
 </head>
 
-<body class='light__theme orange__color__scheme'>
+<body class='dark__theme orange__color__scheme'>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -95,17 +95,11 @@
                                 <i class='file-docx'></i>
                                 <h4>Домашнее задание.docx</h4>
                             </div>
-                            <div class="file-btns">
-                                <button class='download-file'></button>
-                            </div>
                         </div>
                         <div class="file">
                             <div class="file-info">
                                 <i class='file-pptx'></i>
                                 <h4>Теория.pptx</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class='download-file'></button>
                             </div>
                         </div>
                     </div>
@@ -204,8 +198,6 @@
         <img src='../../../img/atom.png' class='bg'/>
         <!-- Форма просмотра письма -->
         <div class='form'>
-            <!-- Затемняющий фильтр -->
-            <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
                 <form>
                     <div class='item-header'>
@@ -246,24 +238,103 @@
         </div>
         <!-- Форма создания письма -->
         <div class='form'>
-            <!-- Затемняющий фильтр -->
-            <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
                 <form>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <div class="dropdown">
-                                <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input'>
-                                <div class="dropdown-content" style="display: none">
-                                    <a onclick="search_fill(this)"><p>Смышляев Дмитрий Ильич</p></a>
-                                    <a onclick="search_fill(this)"><p>Каратаев Вадим Алексеевич</p></a>
-                                    <a onclick="search_fill(this)"><p>Сыч Эрнест Евгеньевич</p></a>
-                                    <a onclick="search_fill(this)"><p>IT квантум</p></a>
-                                    <a onclick="search_fill(this)"><p>Промдизайн квантум</p></a>
-                                </div>
-                              </div>
+                    <div class="item-header">
+                        <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
+                    </div>
+                    <div class="users unselected" style='display: none'>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
                         </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>Смышляев Дмитрий</h2>
+                            </div>
+                        </div>
+                        
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Учитель</h4>
+                                <h2>Сыч Эрнест</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/atom.png'/>
+                            <div class="info">
+                                <h4>Группа</h4>
+                                <h2>IT квантум</h2>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h4>Администратор</h4>
+                                <h2>Каратаев Вадим</h2>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <div class='item-header'>
+                        <h1>Получатели</h1>
                         <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
+                    </div>
+                    <div class="users selected">
+                        <!-- Место для выбранных пользователей -->
                     </div>
                     <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
                     <div id="editor" class='text-field'></div>
@@ -296,6 +367,11 @@
         onload="renderMathInElement(document.body);"></script>
     <!-- Настройки панели -->
     <script src='../../../JS/toolbar_options.js'></script>
+
+    <!-- Библиотека для перетаскивания -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
+    <script src="../../../JS/draggable_options.js"></script>
 </body>
 
 </html>
