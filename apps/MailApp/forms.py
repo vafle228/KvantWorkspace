@@ -1,7 +1,7 @@
 from django import forms
-from .models import KvantMessage
 from django.utils import timezone
 from LoginApp.models import KvantUser
+from .models import KvantMessage, MailReceiver
 from SystemModule.forms import FileStorageSaveForm
 
 
@@ -13,8 +13,8 @@ class SendNewMails(forms.Form):
         mail_count = self.cleaned_data['page'] * 8  # Получаем индекс первого письма
 
         #  Перебор до конца писем или до получения 8
-        while len(response) != 8 and mail_count < len(KvantMessage.objects.filter(receiver=user)):
-            mail = KvantMessage.objects.filter(receiver=user)[::-1][mail_count]
+        while len(response) != 8 and mail_count < len(KvantMessage.objects.filter(receivers__receiver=user)):
+            mail = KvantMessage.objects.filter(receivers__receiver=user)[mail_count]
 
             sender = {
                 'image': mail.sender.image.image.url,
@@ -24,17 +24,24 @@ class SendNewMails(forms.Form):
                 'url': file.file.url,
                 'name': file.file.name.split('/')[-1],
             } for file in mail.files.all()]  # Создание объектов файлов
-            mail_date = '.'.join(mail.date.__str__().split('-')[::-1])
+            mail_date = '.'.join(mail.date.__str__().split('-')[::-1])  # Дата отправки
+            receiver = mail.receivers.all().filter(receiver=user)[0]  # Текущий получатель
 
             new_mail = {
-                'date': mail_date, 'text': mail.text,
                 'title': mail.title, 'files': files,
-                'sender': sender, 'is_read': mail.is_read,
+                'date': mail_date, 'text': mail.text,
                 'style_text': mail.style_text, 'id': mail.id,
+                'sender': sender, 'is_read': receiver.is_read,
             }  # Формирование представлении письма
             mail_count += 1
             response.append(new_mail)
         return response
+
+
+class MailReceiverSaveForm(forms.ModelForm):
+    class Meta:
+        model = MailReceiver
+        fields = ('receiver', )
 
 
 class KvantMailSaveForm(forms.Form):
@@ -43,22 +50,24 @@ class KvantMailSaveForm(forms.Form):
     title = forms.CharField(max_length=100)
 
     def save(self, request):
-        sender = request.user
         date = timezone.now().date()
-        text = self.cleaned_data['text']
-        title = self.cleaned_data['title']
-        style_text = self.cleaned_data['style_text']
-        receiver = KvantUser.objects.filter(id=request.POST['receiver'])[0]
 
         mail = KvantMessage.objects.create(
-            sender=sender, text=text, title=title,
-            receiver=receiver, style_text=style_text
+            sender=request.user, style_text=self.cleaned_data['style_text'],
+            title=self.cleaned_data['title'], text=self.cleaned_data['text'],
         )
         mail.save()
 
         for file in request.FILES.getlist('files'):
             file_form = FileStorageSaveForm(
-                {'upload_path': f'mail/files/{date}/{title}'}, {'file': file}
+                {'upload_path': f'mail/files/{date}/{mail.title}'}, {'file': file}
             )
             if file_form.is_valid():
                 mail.files.add(file_form.save())
+
+        for user_id in request.POST.getlist('receiver'):
+            user_form = MailReceiverSaveForm(
+                {'receiver': KvantUser.objects.filter(id=int(user_id))[0]}
+            )
+            if user_form.is_valid():
+                mail.receivers.add(user_form.save())

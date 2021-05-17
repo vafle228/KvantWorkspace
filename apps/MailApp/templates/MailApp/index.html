@@ -39,30 +39,46 @@
         <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
         <!-- Форма создания письма -->
         <div class='form'>
-            <!-- Затемняющий фильтр -->
-            <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
                 <form>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <div class="dropdown">
-                                <input placeholder="Кому" onkeyup="filterFunction(this)" class='dropdown-input' id='mail-receiver'>
-                                <div class="dropdown-content" style="display: none">
-                                    <a onclick="search_fill(this)"><p>Смышляев Дмитрий Ильич</p></a>
-                                    <a onclick="search_fill(this)"><p>Каратаев Вадим Алексеевич</p></a>
-                                    <a onclick="search_fill(this)"><p>Сыч Эрнест Евгеньевич</p></a>
-                                    <a onclick="search_fill(this)"><p>IT квантум</p></a>
-                                    <a onclick="search_fill(this)"><p>Промдизайн квантум</p></a>
-                                </div>
-                              </div>
+                    <div class="item-header">
+                        <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
+                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
+                    </div>
+                    <div class="users unselected" style='display: none'>
+                        {% for kvant_user in users %}
+                        {% if kvant_user != user %}
+                        <div class="user" value='{{ kvant_user.id }}'>
+                            <img src='{{ kvant_user.image.image.url }}'/>
+                            <div class="info">
+                                <h4>{{ kvant_user.permission }}</h4>
+                                <h2>{{ kvant_user.surname }}
+                                    {{ kvant_user.name|slice:"1" }}.
+                                    {{ kvant_user.patronymic|slice:"1" }}.
+                                </h2>
+                            </div>
                         </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </form>
+                <form>
+                    <div class='item-header'>
+                        <h1>Получатели</h1>
                         <button class='form-btn' type="button" id='send-mail'><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
                     </div>
-                    <input name="mail-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема" id='mail-title'></input>
+                    <div class="users selected">
+                        <!-- Место для выбранных пользователей -->
+                    </div>
+                    <input id='mail-title' class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
                     <div id="editor" class='text-field'></div>
                     <button class='form-btn' id='mail-file' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
-                    <input type="file" style="display: none" id='file-input' onchange="addNewFile(event);">
+                    <input type="file" style="display: none" id='file-input' onchange="addNewFile(event)">
                     <div class='files' id='file-container'>
+                        <!-- Спавн файлов -->
                     </div>
                 </form>
             </div>
@@ -77,9 +93,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
+
+    <!-- Библиотека для перетаскивания -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
     
     <script src='{% static "MailApp/scripts.js" %}'></script>
-    <script src='{% static "MailApp/toolbar_options.js" %}'></script>
+    <script src='{% static "MailApp/options.js" %}'></script>
     <script>
         let max_mails = {{ max_mails }};
     	let send_mail = '{% url "send_mails" user.id %}';

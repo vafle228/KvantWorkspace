@@ -80,27 +80,36 @@ header .page-header .main-btn button{
 
 /* Стилизация выпадающего списка */
 .dropdown-input{
-    font-size: 1.5rem; color: #111926; font-weight: bold;
-    margin-top: 10px;
-    min-width: 400px;
-}
-.dropdown{
+    font-size: 1.4rem; color: var(--text-primary-color); font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 10px;
+    flex-grow: 1;
+    /* background-color: #25262C; */
+    background-color: var(--item-bg-color);
     position: relative;
-    display: inline-block;
 }
-.dropdown-content{
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    z-index: 1;
+.dropdown-input::placeholder{
+    color: var(--text-primary-color);
 }
-.dropdown-content a{
-    color: black;
-    padding: 6px 16px;
-    display: block;
+.dropdown-input::after{
+    content: "\f207";
+    font-family: "uicons-regular-rounded";
+    color: #000;
+    margin: 0 10px;
 }
-.dropdown-content a:hover{ background-color: #f1f1f1 }
+.filter-button{
+    border-radius: 10px;
+    width: 48px; height: 48px;
+    background-color: var(--item-bg-color);
+}
+.filter-button > i{
+    font-size: 20px;
+    margin: auto;
+    color: #444;
+}
+.filter-button.active > i{
+    color: var(--color-scheme-dark);
+}
 
 /* Псевдоэлемент письма */
 .day > .item::after, form::after {

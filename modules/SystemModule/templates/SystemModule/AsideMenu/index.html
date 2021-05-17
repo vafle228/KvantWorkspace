@@ -17,11 +17,11 @@
             {% endif %}
 
             {% if active == 'diary' %}
-            <button class='active' onclick="location.href='{% url 'main_page' user.id %}'">
+            <button class='active' onclick="location.href='{% url 'diary_page' user.id %}'">
                 <span class="fi fi-rr-book-alt"><p>Дневник</p>
             </button>
             {% else %}
-            <button onclick="location.href='{% url 'main_page' user.id %}'">
+            <button onclick="location.href='{% url 'diary_page' user.id %}'">
                 <span class="fi fi-rr-book-alt"><p>Дневник</p>
             </button>
             {% endif %}

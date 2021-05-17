@@ -1,5 +1,6 @@
 let page = 0;
-let file_array = Array()
+let filters = Array();
+let file_array = Array();
 
 // Прикрепление файлов по кнопке
 $('#mail-file').on('click', function(){
@@ -7,38 +8,53 @@ $('#mail-file').on('click', function(){
 	$('#file-input')[0].click();
 })
 
-// Закрытие формы
-function close_form(bg) {
-	bg.parentElement.style.display = 'none';
-	$("body").css("position", "relative");
-}
+// Закрыть форму
+$(document).mouseup(function (e) {
+	var container = $("form");
+	if (container.has(e.target).length === 0) {
+		$(".form").hide();
+	}
+});
+
 // Открытие формы создания письма
 function open_create_mail_form() {
 	$('#mail .form')[0].style.display = 'block';
 	$("body").css("position", "fixed");
 }
 
-// Поиск получателя письма
+// Поиск пользователя
 function filterFunction(input) {
-	input.nextElementSibling.style.display = 'block';
-	var filter = input.value.toUpperCase();
-	var drops = input.nextElementSibling;
-	var a = drops.getElementsByTagName("a");
-	for (var i = 0; i < a.length; i++) {
-		txtValue = a[i].textContent || a[i].innerText;
-		if (txtValue.toUpperCase().indexOf(filter) > -1) {
-			a[i].style.display = "block";
-		} else {
-			a[i].style.display = "none";
-		}
-	}
+	let substr = input.value.toUpperCase();
+	if (substr.trim()) {
+		$('.unselected').show();
+
+		let users = $('.unselected .user').map(function(index){
+			let user = $('.unselected .user')[index]
+
+			let name = $(user).find('h2')[0].textContent;
+			let category = $(user).find('h4')[0].textContent;
+
+			if(name.toUpperCase().indexOf(substr) !== -1 && filters.indexOf(category) !== -1){
+				user.style.display = 'flex'
+				return user
+			} else { user.style.display = 'none'; }
+		})
+		
+		if(users.length){ $('.unselected').show() }
+		else { $('.unselected').hide(); }
+	} 
+	else { $('.unselected').hide(); }
 }
 
-// Выбор получателя письма
-function search_fill(a) {
-	var input = a.parentElement.previousElementSibling;
-	input.value = a.textContent;
-	a.parentElement.style.display = 'none';
+function filter_applying(button, filter) {
+	if ($(button).hasClass('active')) {
+		$(button).removeClass('active');
+		filters.splice(filters.indexOf(filter), 1);
+	} else {
+		$(button).addClass('active');
+		filters.push(filter);
+	}
+	filterFunction($('.dropdown-input')[0]);
 }
 
 // Получение письм
@@ -74,8 +90,11 @@ $('#send-mail').on('click', function(){
 	mail_form.append('text', quill.getText()) // Текст
 	mail_form.append('csrfmiddlewaretoken', csrf_token) // csfr_token
 	mail_form.append('title', $('#mail-title')[0].value) // Заголовок
-	// mail_form.append('receiver', $('#mail-receiver')[0].value) // Получатель
-	mail_form.append('receiver', 2)
+
+	$('.selected .user').map(function(index){
+		let user = $('.selected .user')[index]
+		mail_form.append('receiver', $(user).attr('value'))
+	})
 	mail_form.append('style_text', $('.ql-editor')[0].innerHTML) // Форматированный текст
 
 	$.ajax({
@@ -152,7 +171,7 @@ function buildMailView(mail){
 			))
 		}
 		// Добавка всех файлов в контейнер с "оберткой"
-		$(detail_view).find('form')[0].append($('<div class="item-header"></div>').append(file_div)[0])
+		$(detail_view).find('form')[0].append(file_div)
 
 	}
 	$('#mail').append(detail_view)
@@ -162,7 +181,9 @@ function buildMailView(mail){
 
 // Генерация простого view письма
 function generateMailView(mail, is_mail){
-	return $(`<div class="item old-mail"><div class="item-header"><div class="lesson-title">
+	let mail_type = 'old-mail'
+	if(!(mail.is_read)){ mail_type = 'new-mail' }
+	return $(`<div class="item ${mail_type}"><div class="item-header"><div class="lesson-title">
 			  <h2>${mail['title']}</h2><h3>${mail['date']}</h3></div><div class="lesson-teacher">
 			  <h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}">
 			  </div></div><p class="item-text">${mail['text']}</p></div>`)[0]
@@ -170,11 +191,11 @@ function generateMailView(mail, is_mail){
 
 // Генерация подробного view письма
 function generateMailDetailView(mail){
-	return $(`<div class="form"><div class="filter" onclick="close_form(this)"></div><div class="form-wrapper"><form>
-			  <div class="item-header"><div class="lesson-title"><h2>${mail['title']}</h2></div>
-			  <div class="lesson-teacher"><h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}">
-			  </div></div><div class="ql-snow"><div class="ql-editor"><p class="item-text">${mail['style_text']}</p></div>
-			  </div><div><span class="fi-rr-calendar" style="font-size: 0.8rem; margin-right: 5px;"></span>
+	return $(`<div class="form"><div class="form-wrapper"><form><div class="item-header">
+			  <div class="lesson-title"><h2>${mail['title']}</h2></div><div class="lesson-teacher">
+			  <h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}"/></div></div>
+			  <div class="ql-snow"><div class="ql-editor"><p class="item-text">${mail['style_text']}</p>
+			  </div></div><div><span class="fi-rr-calendar" style="font-size: 0.8rem; margin-right: 5px;"></span>
 			  <h3 style="display: inline-block;">Дата отправки ${mail['date']}</h3></div></form></div></div>`)[0]
 }
 

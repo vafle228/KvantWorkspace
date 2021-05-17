@@ -7,10 +7,10 @@ function reload(logo) {
 // Сменить тему
 function switch_theme(){
 	if($('body').hasClass('light__theme')){
-		themeChange('dark', user_color);
+		themeChange('dark', user_color); user_theme = 'dark';
 		$('.light__theme').toggleClass('light__theme dark__theme');
 	} else {
-		themeChange('light', user_color);
+		themeChange('light', user_color); user_theme = 'light';
 		$('.dark__theme').toggleClass('dark__theme light__theme');
 	}
 }
@@ -18,10 +18,10 @@ function switch_theme(){
 // Сменить цветовую гамму
 function switch_color_scheme(){
 	if($('body').hasClass('blue__color__scheme')){
-		themeChange(user_theme, 'orange');
+		themeChange(user_theme, 'orange'); user_color = 'orange';
 		$('.blue__color__scheme').toggleClass('blue__color__scheme orange__color__scheme');
 	} else {
-		themeChange(user_theme, 'blue');
+		themeChange(user_theme, 'blue'); user_color = 'blue';
 		$('.orange__color__scheme').toggleClass('orange__color__scheme blue__color__scheme');
 	}
 }

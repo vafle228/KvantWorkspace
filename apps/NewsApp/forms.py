@@ -11,10 +11,10 @@ class KvantNewsSaveForm(forms.Form):
 
     def save(self, request):
         #  Считываем данные с запроса
+        date = timezone.now().date()
         title = self.cleaned_data['title']
         content = self.cleaned_data['content']
         style_content = self.cleaned_data['style_content']
-        date = timezone.now().date()
 
         news = KvantNews.objects.create(
             content=content, author=request.user,

@@ -22,6 +22,9 @@
     --button-bg-color: #fff;
     --button-bg-hover-color: #F6F6F6;
     --button-bg-active-color: #E3EEFC;
+
+    /* Зеленый */
+    --green: green;
 }
 
 /* Темная тема */
@@ -37,8 +40,11 @@
     --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
 
     --button-bg-color: #1B1C22;
-    --button-bg-hover-color: #25262C;
+    --button-bg-hover-color: #1B1C22;
     --button-bg-active-color: #25262C;
+
+    /* Зеленый */
+    --green: greenyellow;
 }
 
 /* Синяя цветовая гамма */
@@ -147,6 +153,7 @@ header{
     padding: 25px 45px 25px 195px;
     display: flex;
     align-items: center;
+    background-color: var(--bg-color);
 }
 /* Панель инструментов */
 header .profile-header{
@@ -219,24 +226,26 @@ header .profile-header .profile:hover img{
 /* Формы */
 .form{
     display: none;
-    z-index: 1000;
+    z-index: 10;
 }
-.form .filter{
+.form::before{
+    content: "";
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
     background-color: #00000088;
 }
 .form .form-wrapper{
     overflow-y: scroll; padding: 100px 0;
-    z-index: 1000;
     position: fixed; top: 0; left: calc(50% - 500px);
     height: 100%;
     display: flex; align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 .form .form-wrapper form{
     height: auto; width: 1000px;
     background-color: var(--bg-color);
-    padding: 10px 25px 15px 25px; margin: auto 0;
+    padding: 10px 25px 10px 25px; margin: auto 0;
     border-radius: 10px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
@@ -261,6 +270,7 @@ header .profile-header .profile:hover img{
 .form .form-wrapper form .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 51px;
+    gap: 5px;
 }
 .form .form-wrapper form .item-header .lesson-title{
     max-width: 80%;
@@ -354,6 +364,9 @@ header .profile-header .profile:hover img{
     background-color: #FF374B;
     color: #fff;
 }
+.file .del-file:hover::before{
+    color: #fff;
+}
 /* Кнопка "Скачать файл" */
 .file .download-file::before{
     content: '\f171';
@@ -362,10 +375,72 @@ header .profile-header .profile:hover img{
 }
 .file .download-file:hover{
     background-color: #0E58B5;
+}
+.file .download-file:hover::before{
     color: #fff;
 }
 .file:hover{ box-shadow: 0 2px 2px 2px #2c3b4f23 }
 .item .file{ background-color: var(--bg-secondary-color); }
+
+
+/* Пользователи */
+.users{
+    display: flex; gap: 0.33%;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.user{
+    display: flex; gap: 10px; align-items: center;
+    width: 33%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: var(--button-bg-color);
+    margin-bottom: 0.33%;
+}
+.user:hover{
+    background-color: var(--button-bg-active-color);
+}
+.user .info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.user .info h2{
+    font-size: 1.1rem; line-height: 1;
+    max-width: 90%;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.user .info h4{
+    font-size: 0.9rem;
+    color: #6A6F78;
+}
+.user img{
+    width: 2.2rem; height: 2.2rem;
+    border-radius: 100%;
+    object-fit: cover;
+}
+/* Выбранные пользователи */
+.selected, .unselected{
+    border-radius: 10px;
+}
+.selected{
+    border: #0002 dashed 1px;
+    position: relative;
+}
+/* Костыль */
+.selected::before{
+    content: "";
+    height: 54px;
+}
+.selected .user::after{
+    content: "\f143";
+    font-family: "uicons-regular-rounded";
+    color: var(--green);
+    margin: 0 10px;
+}
 
 /* Фон */
 .bg{
@@ -392,31 +467,6 @@ header .profile-header .profile:hover img{
     from{ transform: rotate(0deg) }
     to{ transform: rotate(720deg) }
 }
-
-/* Стилизация выпадающего списка */
-.dropdown-input{
-    font-size: 1.5rem; color: #111926; font-weight: bold;
-    margin-top: 10px;
-    min-width: 400px;
-}
-.dropdown{
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content{
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    z-index: 1;
-}
-.dropdown-content a{
-    color: black;
-    padding: 6px 16px;
-    display: block;
-}
-.dropdown-content a:hover{ background-color: #f1f1f1 }
-  
 
 /* Стилизация расписания */
 .calendar__timetable{
@@ -476,7 +526,7 @@ header .profile-header .profile:hover img{
     }
     header .profile-header{
         width: 1000px;
-        margin-right: auto;
+        margin-left: auto;
         padding: 0 10px;
     }
 }
@@ -488,13 +538,14 @@ header .profile-header .profile:hover img{
         box-shadow: 1px 0 1px 0 #0001;
         padding: 15px;
         display: flex;
-        z-index: 100000000000000000000;
+        z-index: 1000000;
     }
     aside #logo{
         width: 50px; height: 50px;
         position: fixed;
         top: 25px; left: 45px;
         margin: 0;
+        z-index: -10000;
     }
     aside nav{
         display: flex;
@@ -511,8 +562,8 @@ header .profile-header .profile:hover img{
         width: 100%;
     }
     .form .form-wrapper{
-        width: 90%;
-        left: 5%;
+        width: 96%;
+        left: 2%;
     }
 }
 @media screen and (max-width: 468px){

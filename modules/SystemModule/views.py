@@ -4,10 +4,6 @@ from django.shortcuts import render, redirect, HttpResponse
 
 
 def is_available(request, identifier):
-    """
-        Метод для проверки доступа на страницу.
-        Работет по принципу сравнения запроса и пользователь, что осуществил запрос
-    """
     if KvantUser.objects.filter(id=identifier).exists():  # Проверяем существование
         request_user = request.user  # Пользователь который запросил
         requested_user = KvantUser.objects.filter(id=identifier)[0]  # Пользовательн которого запросили
