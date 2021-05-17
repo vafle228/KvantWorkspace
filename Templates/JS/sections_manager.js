@@ -9,12 +9,14 @@ $(document).mouseup(function (e) {
 	var container = $("form");
 	if (container.has(e.target).length === 0) {
 		$(".form").hide();
+		$("body").css("position", "unset");
 	}
 });
 
 // Открыть форму
-function open_form(form_class) {
-	$(form_class).show();
+function open_form(form_id) {
+	$(form_id).show();
+	$("body").css("position", "fixed");
 }
 
 // Открытие формы по нажатию на урок
@@ -35,18 +37,6 @@ $("#mail .item").click(function () {
 	$("body").css("position", "fixed");
 });
 
-// Открытие форму создания новости
-function open_add_news_form() {
-	$('#news #add-news-form')[0].style.display = 'block';
-	$("body").css("position", "fixed");
-}
-
-// Открытие формы создания письма
-function open_create_mail_form() {
-	$('#mail .form')[1].style.display = 'block';
-	$("body").css("position", "fixed");
-}
-
 
 let filters = [];
 // Поиск пользователя
@@ -54,28 +44,28 @@ function filterFunction(input) {
 	let substr = input.value.toUpperCase();
 	if (substr.trim()) {
 		$('.unselected').show();
-		let users = $('.unselected .user').map(function(index){
+		let users = $('.unselected .user').map(function (index) {
 			let user = $('.unselected .user')[index]
-			
+
 			user.style.display = 'none';
 			return user
 		});
-		
-		let unblocked = users.map(function(index){
+
+		let unblocked = users.map(function (index) {
 			let user = users[index]
 
 			let name = $(user).find('h2')[0].textContent;
 			let category = $(user).find('h4')[0].textContent;
 
-			if(name.toUpperCase().indexOf(substr) !== -1 && filters.indexOf(category) !== -1){
+			if (name.toUpperCase().indexOf(substr) !== -1 && filters.indexOf(category) !== -1) {
 				user.style.display = 'flex'
 				return user
 			}
 		})
-		
-		if(unblocked.length){ $('.unselected').show() }
+
+		if (unblocked.length) { $('.unselected').show() }
 		else { $('.unselected').hide(); }
-	} 
+	}
 	else { $('.unselected').hide(); }
 }
 
@@ -88,13 +78,6 @@ function filter_applying(button, filter) {
 		filters.push(filter);
 	}
 	filterFunction($('.dropdown-input')[0]);
-}
-
-// Выбор получателя письма
-function search_fill(a) {
-	var input = a.parentElement.previousElementSibling;
-	input.value = a.textContent;
-	a.parentElement.style.display = 'none';
 }
 
 // Сменить тему

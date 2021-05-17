@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
     <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+
     <title>Дневник</title>
 </head>
 
-<body class='light__theme orange__color__scheme'>
+<body class='dark__theme orange__color__scheme'>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -201,7 +202,6 @@
         <img src='../../../img/atom.png' class='bg' />
         <!-- Форма просмотра домашнего задания -->
         <div class='form'>
-            <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
                 <form>
                     <div class='item-header'>
@@ -218,20 +218,21 @@
                     <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
                     <div class='files'>
                         <div class="file">
-                            <div class="file-info"><i class='file-java'></i><h4>java prog.java</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
+                            <div class="file-info">
+                                <i class='file-pptx'></i>
+                                <h4>presentation.pptx</h4>
+                            </div>
+                            <div class="file-btns">
+                                <button class="del-file"></button>
+                            </div>
                         </div>
                         <div class="file">
-                            <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info"><i class='file-doc'></i><h4>document.doc</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
+                            <div class="file-info">
+                                <i class='file-doc'></i>
+                                <h4>document.doc</h4></div>
+                            <div class="file-btns">
+                                <button class="del-file"></button>
+                            </div>
                         </div>
                     </div>
                 </form>

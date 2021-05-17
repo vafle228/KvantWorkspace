@@ -7,7 +7,12 @@
     <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
     <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+    <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
+    <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+    
     <title>Дневник</title>
 </head>
 
@@ -192,9 +197,8 @@
         <img src='../../../img/atom.png' class='bg' />
         <!-- Форма просмотра домашнего задания -->
         <div class='form'>
-            <div class='filter' onclick="close_form(this)"></div>
             <div class="form-wrapper">
-                <form class='four' style='padding-right: 35px'>
+                <form class='four'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>

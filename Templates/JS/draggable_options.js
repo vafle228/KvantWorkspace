@@ -1,7 +1,6 @@
-Draggable.create(".user",{
+Draggable.create(".draggable",{
     type:"x,y",
     onRelease:dropItem,
-    autoScroll: 1
     });
 
     function dropItem(){

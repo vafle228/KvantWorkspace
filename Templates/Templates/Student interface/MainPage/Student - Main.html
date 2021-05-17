@@ -59,7 +59,6 @@
                 <!-- Заголвок виджета -->
                 <span class="fi-rr-quote-right" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px'>Цитата дня</h1></span>
                 <!-- Подзаголовок виджета -->
-                <!-- <h3>Читай высказывания великих людей</h3> -->
                 <div>
                     <!-- Цитата -->
                     <h6>«Оценивать эффективность процесса программирования количеством написанных строк кода — то же самое, что оценивать процесс создания самолёта по его весу»</h6>
@@ -67,7 +66,7 @@
                     <h4 id='author'>Билл Гейтс</h4>
                 </div>
             </div>
-            <!-- Виджет "Твои курсы" -->
+            <!-- Виджет "Расписание" -->
             <div id='courses-manager'>
                 <div class='widget-header'>
                     <!-- Заголовок виджета -->
@@ -154,8 +153,7 @@
                 </div>
             </div>
             <!-- Форма просмотра курса -->
-            <div class='form' style='padding: 0; display: none'>
-                <div class='filter' onclick="close_form(this)"></div>
+            <div class='form'>
                 <div class="form-wrapper">
                     <form>
                         <div class='item-header'>
@@ -183,7 +181,7 @@
                         </div>
                         <hr class="divider"/>
                         <h2>Участники курса</h2>
-                        <div class="users unselected">
+                        <div class="users">
                             <div class="user">
                                 <img src='../../../img/Kaelthas.jpg'/>
                                 <div class="info">
@@ -212,14 +210,20 @@
                                     <h2>Имя Фамилия</h2>
                                 </div>
                             </div>
-                        </div>
-                        <div class='files selected'>
-                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Смышляев Дмитрий</h4></div></div>
-                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Каратаев Вадим</h4></div></div>
-                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сыч Эрнест</h4></div></div>
-                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Бочаров Александр</h4></div></div>
-                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Сивков Максим</h4></div></div>
-                            <div class="file"><div class="file-info"><i class='file-student'></i><h4>Тасаков Антон</h4></div></div>
+                            <div class="user">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Имя Фамилия</h2>
+                                </div>
+                            </div>
+                            <div class="user">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Имя Фамилия</h2>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -228,18 +232,20 @@
         <!-- Новости -->
         <section id='news'>
             <!-- Шапка секции -->
-            <div style='display: flex; align-items: center'>
+            <div style='display: flex; gap: 2%'>
                 <!-- Заголовок секции -->
                 <div>
                     <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
                     <h1 style='display: inline-block'>Новости</h1>
                 </div>
-                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_add_news_form()">Добавить новость</button></div>
+                <div class='main-btn' style='width: auto'>
+                    <button style='height: 40px;' onclick="open_form('#add-news-form')">Добавить новость</button>
+                </div>
             </div>
             <!-- Блок новостей -->
-            <div>
+            <div id='news__container'>
                 <div class="item">
-                    <img src="../../../img/default_bg.jpg" alt="Превью" class='preview'>
+                    <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='news-title'>
                             <h2>Заголовок</h2>
@@ -249,17 +255,18 @@
                             <img src='../../../img/unnamed.png' class='profile-img'/>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
                         dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
                         similique blanditiis! Minus, aut.
                     </p>
-                    <div style='margin-left: auto; display: flex; align-items: center;'>
-                        <span><h5 style='display: inline-block'>10.05 2021</h5></span>
-                        <span class="fi-rr-calendar" style='font-size: 0.8rem; margin-left: 5px'></span>
+                    <div class='date__container' style='margin-left: auto'>
+                        <h5>10.05 2021</h5>
+                        <span class="fi-rr-calendar"></span>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../../../img/default_bg.jpg" alt="Превью" class='preview'>
+                    <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='news-title'>
                             <h2>Заголовок</h2>
@@ -269,17 +276,18 @@
                             <img src='../../../img/unnamed.png' class='profile-img'/>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
                         dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
                         similique blanditiis! Minus, aut.
                     </p>
-                    <div style='margin-left: auto; display: flex; align-items: center;'>
-                        <span><h5 style='display: inline-block'>10.05 2021</h5></span>
-                        <span class="fi-rr-calendar" style='font-size: 0.8rem; margin-left: 5px'></span>
+                    <div class='date__container' style='margin-left: auto'>
+                        <h5>10.05 2021</h5>
+                        <span class="fi-rr-calendar"></span>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../../../img/default_bg.jpg" alt="Превью" class='preview'>
+                    <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='news-title'>
                             <h2>Заголовок</h2>
@@ -289,27 +297,28 @@
                             <img src='../../../img/unnamed.png' class='profile-img'/>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
                         dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
                         similique blanditiis! Minus, aut.
                     </p>
-                    <div style='margin-left: auto; display: flex; align-items: center;'>
-                        <span><h5 style='display: inline-block'>10.05 2021</h5></span>
-                        <span class="fi-rr-calendar" style='font-size: 0.8rem; margin-left: 5px'></span>
+                    <div class='date__container' style='margin-left: auto'>
+                        <h5>10.05 2021</h5>
+                        <span class="fi-rr-calendar"></span>
                     </div>
                 </div>
             </div>
             <!-- Кнопка "Больше новостей" -->
-            <div id="more-news" class='main-btn'>
+            <div class='main-btn'>
                 <button>Больше новостей</button>
             </div>
             <!-- Форма создания новости -->
-            <div class='form' id='add-news-form' style='display: none'>
+            <div class='form' id='add-news-form'>
                 <div class="form-wrapper">
                     <form>
                         <div class='item-header'>
-                            <h2 style='margin: auto 0'>Добавление новости</h2>
-                            <div style='display: flex; justify-content: flex-end; gap: 10px'>
+                            <h2>Добавление новости</h2>
+                            <div>
                                 <button class='form-btn' type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
                                 <button class='form-btn' type="submit"><span class="fi-rr-world" style='margin-right: 5px'></span>Опубликовать</button>
                             </div>
@@ -368,10 +377,5 @@
         onload="renderMathInElement(document.body);"></script>
     <!-- Настройки панели -->
     <script src='../../../JS/toolbar_options.js'></script>
-
-    <!-- Библиотека для перетаскивания -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
-    <script src="../../../JS/draggable_options.js"></script>
 </body>
 </html>

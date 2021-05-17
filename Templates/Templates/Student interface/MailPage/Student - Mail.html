@@ -38,7 +38,7 @@
     <header>
         <div class='page-header'>
             <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
-            <div class="main-btn"><button onclick="open_create_mail_form()">Написать</button></div>
+            <div class="main-btn"><button onclick="open_form('#create-mail-form')">Написать</button></div>
         </div>
         <div class='profile-header'>
             <nav class='toolbar'>
@@ -89,7 +89,7 @@
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </p>
-                    <div class="files" style='width: 100%'>
+                    <div class="files">
                         <div class="file">
                             <div class="file-info">
                                 <i class='file-docx'></i>
@@ -172,26 +172,9 @@
                         ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </p>
                 </div>
-                <div class="item old-mail">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
             </div>
             <!-- Кнопка "Больше писем" -->
-            <div id="more-news" class='main-btn' style='margin-top: 50px'>
+            <div class='main-btn' style='margin-top: 25px;'>
                 <button>Больше писем</button>
             </div>
         </main>
@@ -223,133 +206,105 @@
                         <h3 style='display: inline-block'>Дата отправки: 26.03</h3>
                     </div>
                     <hr class='divider'/>
-                    <div class='files' style='width: 100%;'>
+                    <div class='files'>
                         <div class="file">
-                            <div class="file-info"><i class='file-docx'></i><h4>Домашнее задание.docx</h4></div>
-                            <div class="file-btns"><button class='download-file'></button></div>
+                            <div class="file-info">
+                                <i class='file-docx'></i>
+                                <h4>Домашнее задание.docx</h4>
+                            </div>
+                            <div class="file-btns">
+                                <button class='download-file'></button>
+                            </div>
                         </div>
                         <div class="file">
-                            <div class="file-info"><i class='file-pptx'></i><h4>Теория.pptx</h4></div>
-                            <div class="file-btns"><button class='download-file'></button></div>
+                            <div class="file-info">
+                                <i class='file-pptx'></i>
+                                <h4>Теория.pptx</h4>
+                            </div>
+                            <div class="file-btns">
+                                <button class='download-file'></button>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <!-- Форма создания письма -->
-        <div class='form'>
+        <div class='form' id='create-mail-form'>
             <div class="form-wrapper">
-                <form>
-                    <div class="item-header">
-                        <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
-                    </div>
-                    <div class="users unselected" style='display: none'>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
+                <div class="forms__container">
+                    <form>
+                        <div class="item-header">
+                            <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
+                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
+                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
+                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
+                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
+                        </div>
+                        <div class="users unselected" style='display: none'>
+                            <div class="user draggable">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Смышляев Дмитрий</h2>
+                                </div>
+                            </div>
+                            <div class="user draggable">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Учитель</h4>
+                                    <h2>Сыч Эрнест</h2>
+                                </div>
+                            </div>
+                            <div class="user draggable">
+                                <img src='../../../img/atom.png'/>
+                                <div class="info">
+                                    <h4>Группа</h4>
+                                    <h2>IT квантум</h2>
+                                </div>
+                            </div>
+                            <div class="user draggable">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Администратор</h4>
+                                    <h2>Каратаев Вадим</h2>
+                                </div>
                             </div>
                         </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
+                    </form>
+                    <form>
+                        <div class='item-header'>
+                            <h1>Получатели</h1>
+                            <button class='form-btn' type="submit"><span class="fi-rr-paper-plane"></span>Отправить</button>
+                        </div>
+                        <div class="users selected">
+                            <!-- Место для выбранных пользователей -->
+                        </div>
+                        <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
+                        <div id="editor" class='text-field'></div>
+                        <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
+                        <div class='files'>
+                            <div class="file">
+                                <div class="file-info">
+                                    <i class='file-xml'></i>
+                                    <h4>excel document.xml</h4>
+                                </div>
+                                <div class="file-btns">
+                                    <button class="del-file"></button>
+                                </div>
+                            </div>
+                            <div class="file">
+                                <div class="file-info">
+                                    <i class='file-pptx'></i>
+                                    <h4>presentation.pptx</h4>
+                                </div>
+                                <div class="file-btns">
+                                    <button class="del-file"></button>
+                                </div>
                             </div>
                         </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Учитель</h4>
-                                <h2>Сыч Эрнест</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/atom.png'/>
-                            <div class="info">
-                                <h4>Группа</h4>
-                                <h2>IT квантум</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Администратор</h4>
-                                <h2>Каратаев Вадим</h2>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <form>
-                    <div class='item-header'>
-                        <h1>Получатели</h1>
-                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
-                    </div>
-                    <div class="users selected">
-                        <!-- Место для выбранных пользователей -->
-                    </div>
-                    <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
-                    <div id="editor" class='text-field'></div>
-                    <button class='form-btn' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
-                    <div class='files'>
-                        <div class="file">
-                            <div class="file-info"><i class='file-xml'></i><h4>excel document.xml</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info"><i class='file-pptx'></i><h4>presentation.pptx</h4></div>
-                            <div class="file-btns"><button class="del-file"></button></div>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

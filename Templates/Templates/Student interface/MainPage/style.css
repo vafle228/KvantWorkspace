@@ -111,14 +111,14 @@
     padding: 25px 45px 25px 195px;
     display: flex; flex-direction: column; gap: 25px;
 }
-#news > div{
+#news > #news__container{
     width: 100%;
     padding: 0 5px;
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
 }
-#news > div .item{
+#news > #news__container .item{
     width: 32%;
     margin-bottom: 2%;
     display: flex;
@@ -126,31 +126,31 @@
     gap: 5px;
     padding: 15px 25px;
 }
-#news > div .item-header{
+#news > #news__container .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 51px;
 }
-#news > div .item-header .news-title h2{
+#news > #news__container .item-header .news-title h2{
     display: inline-block;
     margin-right: 10px;
 }
-#news > div .item-header .news-author{
+#news > #news__container .item-header .news-author{
     display: flex; align-items: center;
 }
-#news > div .item-header .news-author .profile-img{
+#news > #news__container .item-header .news-author .profile-img{
     width: 32px; height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
-#news > div .item-header .news-author h4{ display: inline-block; margin-right: 10px; font-size: 16px; white-space: nowrap; }
-#news > div .item .preview{
+#news > #news__container .item-header .news-author h4{ display: inline-block; margin-right: 10px; font-size: 16px; white-space: nowrap; }
+#news > #news__container .item .preview{
     object-fit: cover;
     width: calc(100% + 50px);
     margin: -15px -25px 10px;
     height: 228px;
     border-radius: 10px 10px 0 0;
 }
-#news > div .item p{
+#news > #news__container .item p{
     overflow: hidden;
     text-align: justify;
     display: -webkit-box;
@@ -164,7 +164,7 @@
 /* Адаптивность для сенсорных устройств */
 @media screen and (max-width: 992px){
     /* Новости */
-    #news > div .item{ width: 49% }
+    #news > #news__container .item{ width: 49% }
 
     /* Шапка */
     header{
@@ -205,5 +205,5 @@
 }
 @media screen and (max-width: 576px){
     /* Новости */
-    #news > div .item{ width: 100% }
+    #news > #news__container .item{ width: 100% }
 }
