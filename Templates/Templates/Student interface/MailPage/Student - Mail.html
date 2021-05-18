@@ -236,10 +236,10 @@
                     <form>
                         <div class="item-header">
                             <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
-                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
-                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
-                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
-                            <button class='filter-button' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
                         </div>
                         <div class="users unselected" style='display: none'>
                             <div class="user draggable">
@@ -280,7 +280,7 @@
                         <div class="users selected">
                             <!-- Место для выбранных пользователей -->
                         </div>
-                        <input name="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
+                        <input class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
                         <div id="editor" class='text-field'></div>
                         <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
                         <div class='files'>

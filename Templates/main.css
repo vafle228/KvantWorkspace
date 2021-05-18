@@ -242,7 +242,7 @@ header .profile-header .profile:hover img{
     overflow-y: scroll; padding: 100px 0;
     position: fixed; top: 0; left: calc(50% - 500px);
     height: 100%;
-    display: flex; align-items: center;
+    display: flex;
 }
 .form .forms__container{
     display: flex;
@@ -256,7 +256,7 @@ header .profile-header .profile:hover img{
 .form .form-wrapper form{
     width: 1000px;
     background-color: var(--bg-color);
-    padding: 10px 25px 10px 25px;
+    padding: 10px 25px 10px 25px; margin: auto 0;
     border-radius: 10px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
@@ -584,6 +584,8 @@ header .profile-header .profile:hover img{
         width: 1000px;
         margin-left: auto;
         padding: 0 10px;
+        margin-left: 0;
+        margin-right: auto;
     }
 }
 @media screen and (max-width: 790px){

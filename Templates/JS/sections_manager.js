@@ -6,7 +6,7 @@ function reload(logo) {
 
 // Закрыть форму
 $(document).mouseup(function (e) {
-	var container = $("form");
+	var container = $(".form-wrapper");
 	if (container.has(e.target).length === 0) {
 		$(".form").hide();
 		$("body").css("position", "unset");
@@ -38,7 +38,7 @@ $("#mail .item").click(function () {
 });
 
 
-let filters = [];
+let filters = ['Ученик', 'Ученик', 'Группа', 'Администратор'];
 // Поиск пользователя
 function filterFunction(input) {
 	let substr = input.value.toUpperCase();
