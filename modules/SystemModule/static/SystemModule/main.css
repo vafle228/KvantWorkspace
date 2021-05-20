@@ -50,7 +50,8 @@
 /* Синяя цветовая гамма */
 .blue__color__scheme{
     --color-scheme: #83eaf1;
-    --color-scheme-dark: #1967D2;
+    /* --color-scheme-dark: #1967D2; */
+    --color-scheme-dark: #06c;
     --color-scheme-gradient: #63a4ff;
     --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
 }
@@ -220,7 +221,7 @@ header .profile-header .profile:hover::after{
     opacity: 1;
 }
 header .profile-header .profile:hover img{
-    filter: brightness(0.8);
+    filter: brightness(0.5);
 }
 
 /* Формы */
@@ -238,12 +239,19 @@ header .profile-header .profile:hover img{
     overflow-y: scroll; padding: 100px 0;
     position: fixed; top: 0; left: calc(50% - 500px);
     height: 100%;
-    display: flex; align-items: center;
+    display: flex;
+}
+.form .forms__container{
+    display: flex;
     flex-direction: column;
     gap: 10px;
+    margin: auto 0;
+}
+.form .forms__container > form{
+    margin: 0;
 }
 .form .form-wrapper form{
-    height: auto; width: 1000px;
+    width: 1000px;
     background-color: var(--bg-color);
     padding: 10px 25px 10px 25px; margin: auto 0;
     border-radius: 10px;
@@ -251,11 +259,10 @@ header .profile-header .profile:hover img{
     display: flex; flex-direction: column; gap: 10px;
 }
 .form .form-wrapper form .form-btn{
-    color: #1967D2;
-    font-weight: 500; font-size: 1.2rem;
+    color: #1967D2; font-weight: 500; font-size: 1.2rem;
     background-color: var(--button-bg-color);
     padding: 0 15px; margin: 3px 0;
-    height: 45px;
+    min-height: 45px;
     border-radius: 10px;
     transition-property: color background-color box-shadow; transition-duration: .2s;
 }
@@ -312,7 +319,7 @@ header .profile-header .profile:hover img{
 }
 
 /* Разделитель */
-.divider{ margin: 10px 0 }
+.divider{ margin: 5px 0 }
 
 /* Файлы */
 .files{
@@ -383,6 +390,7 @@ header .profile-header .profile:hover img{
 .item .file{ background-color: var(--bg-secondary-color); }
 
 
+
 /* Пользователи */
 .users{
     display: flex; gap: 0.33%;
@@ -423,23 +431,54 @@ header .profile-header .profile:hover img{
     object-fit: cover;
 }
 /* Выбранные пользователи */
-.selected, .unselected{
-    border-radius: 10px;
-}
-.selected{
-    border: #0002 dashed 1px;
-    position: relative;
-}
 /* Костыль */
 .selected::before{
     content: "";
     height: 54px;
+    margin-right: -10px;
 }
 .selected .user::after{
     content: "\f143";
     font-family: "uicons-regular-rounded";
     color: var(--green);
     margin: 0 10px;
+}
+.selected .user:hover::after{
+    content: "\f15d";
+    font-family: "uicons-regular-rounded";
+    color: red;
+    margin: 0 10px;
+}
+
+
+/* Стилизация выпадающего списка */
+.dropdown-input{
+    font-size: 1.4rem; color: var(--text-primary-color); font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 10px;
+    flex-grow: 1;
+    background-color: var(--item-bg-color);
+}
+.dropdown-input::placeholder{
+    color: var(--text-primary-color);
+}
+/* .dropdown-input::after{
+    content: "\f207";
+    font-family: "uicons-regular-rounded";
+    color: #000;
+    margin: 0 10px;
+} */
+.filter-button{
+    border-radius: 10px;
+    width: 48px; height: 48px;
+    background-color: var(--item-bg-color);
+}
+.filter-button > i{
+    font-size: 20px;
+    color: #444;
+}
+.filter-button.active > i{
+    color: var(--color-scheme-dark);
 }
 
 /* Фон */
@@ -518,6 +557,20 @@ header .profile-header .profile:hover img{
 }
 
 
+/* Стилизация даты */
+.date__container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-primary-color);
+}
+.date__container h5{
+    display: inline-block;
+}
+.date__container span{
+    font-size: 0.8rem;
+}
+
 
 @media screen and (max-width: 992px){
     header{
@@ -528,6 +581,8 @@ header .profile-header .profile:hover img{
         width: 1000px;
         margin-left: auto;
         padding: 0 10px;
+        margin-left: 0;
+        margin-right: auto;
     }
 }
 @media screen and (max-width: 790px){

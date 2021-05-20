@@ -20,7 +20,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +37,7 @@ INSTALLED_APPS = [
 
     'AdminModule.apps.AdminModuleConfig',
     'SystemModule.apps.SystemModuleConfig',
-    
+
     'django_cleanup', 'storages',
 ]
 
@@ -72,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'KvantJournal.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -83,8 +81,8 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'LoginApp.KvantUser' # Переопределение модели авторизации
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage' # Переопределение сообщенией
+AUTH_USER_MODEL = 'LoginApp.KvantUser'  # Переопределение модели авторизации
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'  # Переопределение сообщенией
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -104,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -118,7 +115,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -128,11 +124,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # AWS S3 Set up
-AWS_STORAGE_BUCKET_NAME = 'kvant-journal' # Имя бакета
-AWS_ACCESS_KEY_ID = 'AKIAZTAFQGAIYRYMOODR' # Id (дается при создании бакета)
-AWS_SECRET_ACCESS_KEY = 'KEeFB52DHZfSRbarQ6fdV/RXj/6oqq5PnZogxCDW' # Key (дается при создании бакета)
+AWS_STORAGE_BUCKET_NAME = 'kvant-journal'  # Имя бакета
+AWS_ACCESS_KEY_ID = 'AKIAZTAFQGAIYRYMOODR'  # Id (дается при создании бакета)
+AWS_SECRET_ACCESS_KEY = 'KEeFB52DHZfSRbarQ6fdV/RXj/6oqq5PnZogxCDW'  # Key (дается при создании бакета)
 
-AWS_S3_FILE_OVERWRITE = False # Запретить перезапись файла
+AWS_S3_FILE_OVERWRITE = False  # Запретить перезапись файла
 
 # Костыль для адекватного подгруза из админ панели
 AWS_DEFAULT_ACL = None

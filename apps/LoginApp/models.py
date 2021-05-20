@@ -1,6 +1,13 @@
+from PIL import Image
+from io import BytesIO
+from os.path import join
+from sys import getsizeof
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from SystemModule.models import ImageStorage
+from storages.backends.s3boto3 import S3Boto3Storage
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
 
 permission = (
     ("Ученик", "Ученик"),
@@ -14,8 +21,15 @@ color = (("Оранжевый", "orange"), ("Синий", "blue"))
 
 
 def set_default_image():
-    """Метод для установки дефолтного изображения"""
-    return ImageStorage.objects.filter(upload_path='default/user')[0]
+    bucket = S3Boto3Storage()
+    if not bucket.exists('default/user/user.png'):
+        with open(join(settings.MEDIA_ROOT + '/default/user.png'), 'b+r') as f:
+            bucket.save('default/user/user.png', f)
+    return 'default/user/user.png'
+
+
+def get_path(instance, filename):
+    return f'user/{instance.username}/{filename}'
 
 
 class KvantUser(AbstractUser):
@@ -23,12 +37,39 @@ class KvantUser(AbstractUser):
     surname = models.CharField(max_length=100)
     patronymic = models.CharField(max_length=100)
     permission = models.CharField(choices=permission, max_length=100)
-    image = models.ForeignKey(ImageStorage, default=set_default_image, on_delete=models.SET(set_default_image))
-    theme = models.CharField(max_length=100, choices=theme, default='light')
     color = models.CharField(max_length=100, choices=color, default='blue')
+    theme = models.CharField(max_length=100, choices=theme, default='light')
+    image = models.ImageField(upload_to=get_path, default=set_default_image)
 
     def __str__(self):
         return f'{self.permission} {self.surname} {self.name[0]}.{self.patronymic[0]}.'
+
+    def save(self, *args, **kwargs):
+        image = Image.open(self.image)  # Открываем картинку
+        width, height = image.size  # Получаем размеры картинки
+        new_image = BytesIO()  # Создаем байтовое представление
+
+        resize = (width * (height // 10 * 5) // height, height // 10 * 5)  # Изменение по высоте
+
+        if width > height:  # Если горизонтальная картинка
+            resize = (width // 10 * 5, height * (width // 10 * 5) // width)  # Изменение по ширине
+
+        image.thumbnail(resize, resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
+        image = image.convert('RGB')  # Убираем все лишние каналы
+        image.save(new_image, format='JPEG', quality=90)  # Конвертируем в JPEG, ибо мало весит
+
+        new_image.seek(0)  # Возвращение в начало файла
+
+        name = f'{self.image.name.split(".")[0]}.jpeg'  # Имя файла
+
+        # Перезапись файла в базе данных
+        self.image = InMemoryUploadedFile(
+            new_image, 'ImageField',  # Картинка, поля сохранения
+            name, 'image/jpeg',  # Имя картинки, содержание
+            getsizeof(new_image), None  # Размер, доп инфа
+        )
+        # Сохранение через другой save класса
+        super(KvantUser, self).save()
 
 
 class KvantStudent(models.Model):

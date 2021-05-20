@@ -17,7 +17,7 @@ class SendNewMails(forms.Form):
             mail = KvantMessage.objects.filter(receivers__receiver=user)[mail_count]
 
             sender = {
-                'image': mail.sender.image.image.url,
+                'image': mail.sender.image.url,
                 'name': ' '.join(mail.sender.__str__().split(' ')[1::]),
             }  # Создание объекта пользователя
             files = [{
@@ -50,24 +50,24 @@ class KvantMailSaveForm(forms.Form):
     title = forms.CharField(max_length=100)
 
     def save(self, request):
-        date = timezone.now().date()
+        date = timezone.now().date()  # Получаем дату письма
 
         mail = KvantMessage.objects.create(
             sender=request.user, style_text=self.cleaned_data['style_text'],
             title=self.cleaned_data['title'], text=self.cleaned_data['text'],
-        )
-        mail.save()
+        )  # Создаем объект письма
+        mail.save()  # Сохраняем объект письма
 
-        for file in request.FILES.getlist('files'):
+        for file in request.FILES.getlist('files'):  # Перебираем файлы запроса
             file_form = FileStorageSaveForm(
                 {'upload_path': f'mail/files/{date}/{mail.title}'}, {'file': file}
-            )
-            if file_form.is_valid():
-                mail.files.add(file_form.save())
+            )  # Создаем объект файла
+            if file_form.is_valid():  # Проверка валидности файла
+                mail.files.add(file_form.save())  # Добавление файла в письмо
 
-        for user_id in request.POST.getlist('receiver'):
+        for user_id in request.POST.getlist('receiver'):  # Перебираем получателей
             user_form = MailReceiverSaveForm(
                 {'receiver': KvantUser.objects.filter(id=int(user_id))[0]}
-            )
-            if user_form.is_valid():
-                mail.receivers.add(user_form.save())
+            )  # Создаем объект пользователя
+            if user_form.is_valid():  # Проверка валидности
+                mail.receivers.add(user_form.save())  # Добавление получателей письма

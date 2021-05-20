@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from LoginApp.models import KvantUser
-from SystemModule.models import FileStorage, ImageStorage
+from SystemModule.models import FileStorage
 
 
 class MailReceiver(models.Model):
