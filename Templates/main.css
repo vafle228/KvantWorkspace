@@ -26,8 +26,7 @@
     --button-bg-hover-color: #F6F6F6;
     --button-bg-active-color: #E3EEFC;
 
-    /* Зеленый */
-    --green: green;
+    --special-ui-elements-color: #F1F1F1; 
 }
 
 /* Темная тема */
@@ -46,8 +45,7 @@
     --button-bg-hover-color: #1B1C22;
     --button-bg-active-color: #25262C;
 
-    /* Зеленый */
-    --green: greenyellow;
+    --special-ui-elements-color: #25262C; 
 }
 
 /* Синяя цветовая гамма */
@@ -88,9 +86,9 @@ span{ color: var(--text-primary-color) }
 body{
     background-color: var(--bg-color);
     position: relative;
-    overflow-y: hidden;
     height: 100%; width: 100%;
     font-family: "Google Sans";
+    padding-top: 100px;
 
     /* Запрещает выделять текст */
     -webkit-touch-callout: none;
@@ -107,7 +105,7 @@ body{
     box-shadow: var(--item-shadow);
     border: #0001 solid 1px;
     cursor: pointer;
-    transition-duration: .5s; transition-property: transform, box-shadow;
+    transition-duration: .5s !important; transition-property: transform, box-shadow !important;
 }
 .item:hover{
     box-shadow: var(--color-scheme-shadow);
@@ -121,7 +119,6 @@ aside{
     background-color: var(--aside-bg-color);
     box-shadow: 1px 0 1px 0 #0001;
     padding: 15px;
-    z-index: 0;
 }
 aside #logo{
     width: 60px; height: 60px;
@@ -153,8 +150,11 @@ aside nav .active p, aside nav .active span{ color: var(--color-scheme-dark) }
 
 /* Шапка */
 header{
-    width: 100%; height: 100px;
-    padding: 25px 45px 25px 195px;
+    position: fixed;
+    top: 0; left: 120px;
+    z-index: 1;
+    width: calc(100% - 100px); height: 100px;
+    padding: 25px 55px 25px 75px;
     display: flex;
     align-items: center;
     background-color: var(--bg-color);
@@ -230,24 +230,24 @@ header .profile-header .profile:hover img{
 /* Формы */
 .form{
     display: none;
-    z-index: 10;
 }
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
-    background-color: #00000088;
+    background-color: #0008;
+    z-index: 2;
 }
 .form .form-wrapper{
     overflow-y: scroll; padding: 100px 0;
     position: fixed; top: 0; left: calc(50% - 500px);
     height: 100%;
     display: flex;
+    z-index: 3;
 }
 .form .forms__container{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; gap: 10px;
     margin: auto 0;
 }
 .form .forms__container > form{
@@ -433,6 +433,7 @@ header .profile-header .profile:hover img{
     border-radius: 100%;
     object-fit: cover;
 }
+
 /* Выбранные пользователи */
 /* Костыль */
 .selected::before{
@@ -443,7 +444,7 @@ header .profile-header .profile:hover img{
 .selected .user::after{
     content: "\f143";
     font-family: "uicons-regular-rounded";
-    color: var(--green);
+    color: #A1D214;
     margin: 0 10px;
 }
 .selected .user:hover::after{
@@ -460,21 +461,27 @@ header .profile-header .profile:hover img{
     padding: 10px 20px;
     border-radius: 10px;
     flex-grow: 1;
-    background-color: var(--item-bg-color);
+    background-color: var(--special-ui-elements-color);
+    position: relative;
 }
 .dropdown-input::placeholder{
-    color: var(--text-primary-color);
+    color: #444;
 }
 /* .dropdown-input::after{
     content: "\f207";
     font-family: "uicons-regular-rounded";
-    color: #000;
+    color: #A1D214;
     margin: 0 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
 } */
 .filter-button{
     border-radius: 10px;
     width: 48px; height: 48px;
-    background-color: var(--item-bg-color);
+    background-color: var(--special-ui-elements-color);
 }
 .filter-button > i{
     font-size: 20px;
@@ -566,6 +573,7 @@ header .profile-header .profile:hover img{
     align-items: center;
     gap: 5px;
     color: var(--text-primary-color);
+    margin-left: auto;
 }
 .date__container h5{
     display: inline-block;
@@ -587,6 +595,9 @@ header .profile-header .profile:hover img{
         margin-left: 0;
         margin-right: auto;
     }
+    body{
+        padding-top: 175px;
+    }
 }
 @media screen and (max-width: 790px){
     /* aside */
@@ -596,14 +607,13 @@ header .profile-header .profile:hover img{
         box-shadow: 1px 0 1px 0 #0001;
         padding: 15px;
         display: flex;
-        z-index: 1000000;
+        z-index: 1;
     }
     aside #logo{
         width: 50px; height: 50px;
         position: fixed;
         top: 25px; left: 45px;
         margin: 0;
-        z-index: -10000;
     }
     aside nav{
         display: flex;

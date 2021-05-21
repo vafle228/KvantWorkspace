@@ -8,9 +8,7 @@ header .page-header{
 }
 #statistics main{
     width: 1000px;
-    height: 800px;
     padding: 25px 10px 200px 10px;
-    overflow-y: scroll;
 }
 #statistics main .day > h3{
     text-align: right;

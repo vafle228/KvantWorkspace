@@ -35,9 +35,7 @@ header .page-header .week-selector .main-btn .btn span{
 /* Занятия */
 #diary main {
     width: 1000px;
-    height: max-content; max-height: 95vh; min-height: 800px;
     padding: 0 10px 100px;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 10px;

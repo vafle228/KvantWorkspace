@@ -145,7 +145,6 @@
 #news > #news__container .item-header .news-author h4{ display: inline-block; margin-right: 10px; font-size: 16px; white-space: nowrap; }
 #news > #news__container .item .preview{
     object-fit: cover;
-    width: calc(100% + 50px);
     margin: -15px -25px 10px;
     height: 228px;
     border-radius: 10px 10px 0 0;

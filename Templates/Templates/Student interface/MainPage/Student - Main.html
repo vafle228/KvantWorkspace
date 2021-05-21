@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
     <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <title>Главная</title>
 </head>
 
-<body style="overflow: auto" class='dark__theme orange__color__scheme'>
+<body class='dark__theme orange__color__scheme'>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -244,7 +246,7 @@
             </div>
             <!-- Блок новостей -->
             <div id='news__container'>
-                <div class="item">
+                <div class="item" data-aos="fade-up">
                     <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='news-title'>
@@ -260,12 +262,12 @@
                         dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
                         similique blanditiis! Minus, aut.
                     </p>
-                    <div class='date__container' style='margin-left: auto'>
+                    <div class='date__container'>
                         <h5>10.05 2021</h5>
                         <span class="fi-rr-calendar"></span>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-up">
                     <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='news-title'>
@@ -281,12 +283,12 @@
                         dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
                         similique blanditiis! Minus, aut.
                     </p>
-                    <div class='date__container' style='margin-left: auto'>
+                    <div class='date__container'>
                         <h5>10.05 2021</h5>
                         <span class="fi-rr-calendar"></span>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-up">
                     <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='news-title'>
@@ -302,7 +304,70 @@
                         dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
                         similique blanditiis! Minus, aut.
                     </p>
-                    <div class='date__container' style='margin-left: auto'>
+                    <div class='date__container'>
+                        <h5>10.05 2021</h5>
+                        <span class="fi-rr-calendar"></span>
+                    </div>
+                </div>
+                <div class="item" data-aos="fade-up">
+                    <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
+                    <div class='item-header'>
+                        <div class='news-title'>
+                            <h2>Заголовок</h2>
+                        </div>
+                        <div class='news-author'>
+                            <h4>Автор новости</h4>
+                            <img src='../../../img/unnamed.png' class='profile-img'/>
+                        </div>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
+                        dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
+                        similique blanditiis! Minus, aut.
+                    </p>
+                    <div class='date__container'>
+                        <h5>10.05 2021</h5>
+                        <span class="fi-rr-calendar"></span>
+                    </div>
+                </div>
+                <div class="item" data-aos="fade-up">
+                    <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
+                    <div class='item-header'>
+                        <div class='news-title'>
+                            <h2>Заголовок</h2>
+                        </div>
+                        <div class='news-author'>
+                            <h4>Автор новости</h4>
+                            <img src='../../../img/unnamed.png' class='profile-img'/>
+                        </div>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
+                        dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
+                        similique blanditiis! Minus, aut.
+                    </p>
+                    <div class='date__container'>
+                        <h5>10.05 2021</h5>
+                        <span class="fi-rr-calendar"></span>
+                    </div>
+                </div>
+                <div class="item" data-aos="fade-up">
+                    <img src="../../../img/default_bg.jpg" alt="preview" class='preview'>
+                    <div class='item-header'>
+                        <div class='news-title'>
+                            <h2>Заголовок</h2>
+                        </div>
+                        <div class='news-author'>
+                            <h4>Автор новости</h4>
+                            <img src='../../../img/unnamed.png' class='profile-img'/>
+                        </div>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
+                        dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
+                        similique blanditiis! Minus, aut.
+                    </p>
+                    <div class='date__container'>
                         <h5>10.05 2021</h5>
                         <span class="fi-rr-calendar"></span>
                     </div>
@@ -318,7 +383,7 @@
                     <form>
                         <div class='item-header'>
                             <h2>Добавление новости</h2>
-                            <div style='display: flex'>
+                            <div style='display: flex; gap: 5px'>
                                 <button class='form-btn' type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
                                 <button class='form-btn' type="submit"><span class="fi-rr-world" style='margin-right: 5px'></span>Опубликовать</button>
                             </div>
@@ -377,5 +442,8 @@
         onload="renderMathInElement(document.body);"></script>
     <!-- Настройки панели -->
     <script src='../../../JS/toolbar_options.js'></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>AOS.init({ offset: -200 })</script>
 </body>
 </html>

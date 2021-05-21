@@ -9,32 +9,34 @@ $(document).mouseup(function (e) {
 	var container = $(".form-wrapper");
 	if (container.has(e.target).length === 0) {
 		$(".form").hide();
-		$("body").css("position", "unset");
+		// $('form_id .form-wrapper').css('transform', 'translate(0, -1000px)');
+		$("body").css("overflow-y", "scroll");
 	}
 });
 
 // Открыть форму
 function open_form(form_id) {
 	$(form_id).show();
-	$("body").css("position", "fixed");
+	// $(form_id).find('.form-wrapper').css('transform', 'translate(0, 0)');
+	$("body").css("overflow", "hidden");
 }
 
 // Открытие формы по нажатию на урок
 $("#diary .item").click(function () {
 	$('#diary .form')[0].style.display = 'block';
-	$("body").css("position", "fixed");
+	$("body").css("overflow", "hidden");
 });
 
 // Открытие формы по нажатию на курс
 $("#widgets .item").click(function () {
 	$('#widgets .form')[0].style.display = 'block';
-	$("body").css("position", "fixed");
+	$("body").css("overflow", "hidden");
 });
 
 // Открытие формы по нажатию на письмо
 $("#mail .item").click(function () {
 	$('#mail .form')[0].style.display = 'block';
-	$("body").css("position", "fixed");
+	$("body").css("overflow", "hidden");
 });
 
 
