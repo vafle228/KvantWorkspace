@@ -47,7 +47,7 @@
                     <h4 id='author'>Билл Гейтс</h4>
                 </div>
             </div>
-            <!-- Виджет "Твои курсы" -->
+            <!-- Виджет "Расписание" -->
             <div id='courses-manager'>
                 <div class='widget-header'>
                     <!-- Заголовок виджета -->
@@ -75,8 +75,7 @@
             </div>
             <!-- Форма просмотра курса -->
             {% for course in courses %}
-            <div class='form' style='padding: 0; display: none;'>
-                <div class='filter' onclick="close_form(this)"></div>
+            <div class='form'>
                 <div class="form-wrapper">
                     <form>
                         <div class='item-header'>
@@ -88,7 +87,7 @@
                                     {{ course.teacher.teacher.name|slice:"1" }}.
                                     {{ course.teacher.teacher.patronymic|slice:"1" }}.
                                 </h4>
-                                <img src='{{ course.teacher.teacher.image.image.url }}' />
+                                <img src='{{ course.teacher.teacher.image.url }}' />
                             </div>
                         </div>
                         <p class='item-text'>
@@ -107,16 +106,18 @@
                         </div>
                         <hr class="divider"/>
                         <h2>Участники курса</h2>
-                        <div class="item-header">
-                            <div class='files' style='width: 100%'>
-                                {% for student in course.students|get_objects %}
-                                <div class="file"><div class="file-info"><i class='file-student'></i><h4>
+                        <div class="users">
+                            {% for student in course.students|get_objects %}
+                            <div class="user"><img src='{{ student.student.image.url }}'/>
+                            <div class="info">
+                                <h4>Ученик</h4>
+                                <h2>
                                     {{ student.student.surname }}
                                     {{ student.student.name|slice:"1" }}.
                                     {{ student.student.patronymic|slice:"1" }}.
-                                </h4></div></div>
-                                {% endfor %}
+                                </h2>
                             </div>
+                            {% endfor %}
                         </div>
                     </form>
                 </div>
@@ -126,18 +127,18 @@
         <!-- Новости -->
         <section id='news'>
             <!-- Шапка секции -->
-            <div style='display: flex; align-items: center'>
+            <div style='display: flex; gap: 2%'>
                 <!-- Заголовок секции -->
                 <div>
                     <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
                     <h1 style='display: inline-block'>Новости</h1>
                 </div>
                 {% if user.permission == 'Администратор' or user.permission == 'Учитель'  %}
-                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_add_news_form()">Добавить новость</button></div>
+                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_form('#add-news-form')">Добавить новость</button></div>
                 {% endif %}
             </div>
             <!-- Блок новостей -->
-            <div id='news-block'>
+            <div id='news__container'>
                 <!-- Тут спавняться новости -->
             </div>
             <!-- Кнопка "Больше новостей" -->
@@ -145,14 +146,12 @@
                 <button onclick="getNewNews()">Больше новостей</button>
             </div>
             <!-- Форма создания новости -->
-            <div class='form' id='add-news-form' style='display: none'>
-                <!-- Затемняющий фильтр -->
-                <div class='filter' onclick="close_form(this)"></div>
+            <div class='form' id='add-news-form'>
                 <div class="form-wrapper">
                     <form autocomplete="off">
                         <div class='item-header'>
-                            <h2 style='margin: auto 0'>Добавление новости</h2>
-                            <div id="news-form-btns"style='display: flex; justify-content: flex-end; gap: 10px'>
+                            <h2>Добавление новости</h2>
+                            <div id="news-form-btns" style="display: flex;">
                                 <button class='form-btn' id="news-preview" type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
                                 <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
 

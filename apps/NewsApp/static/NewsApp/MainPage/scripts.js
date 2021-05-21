@@ -20,19 +20,22 @@ $('#file-button').on('click', function(){
 
 // Добавление картинки по кнопке
 $('#news-preview').on('click', function(){
-	$('#preview-input')[0].value = ''
-	$('#preview-input').click()
+	$('#preview-input')[0].value = '';
+	$('#preview-input').click();
 });
 
-// Закрытие формы
-function close_form(bg) {
-	bg.parentElement.style.display = 'none';
-	$("body").css("position", "relative");
-}
+// Закрыть форму
+$(document).mouseup(function(event) {
+	let container = $(".form-wrapper");
+    if(container.has(event.target).length === 0 && event.which == 1) {
+        $(".form").hide();
+        $("body").css("position", "unset");
+    }
+});
 
-// Открытие формы создания новости
-function open_add_news_form() {
-	$('#news #add-news-form')[0].style.display = 'block';
+// Открыть форму
+function open_form(form_id) {
+	$(form_id).show();
 	$("body").css("position", "fixed");
 }
 
@@ -89,12 +92,11 @@ function addNewsPreview(event){
 // Генерация новости
 function buildNews(news){
 	return $(`<div class="item" onclick="location.href='/news/${user_id}/detail/${news.id}'">
-			  <img src="${news['image']}" class="preview"><div class="item-header"><div class="news-title">
-			  <h2>${news['title']}</h2></div><div class="news-author"><h4>${news['author']['name']}</h4>
-			  <img src="${news['author']['img']}" class="profile-img"></div></div>
-			  <p>${news['content']}</p><div style="display: flex; margin-left: auto; align-items: center;">
-	   		  <span><h5 style="display: inline-block;">${news['date']}</h5></span>
-	   		  <span class="fi-rr-calendar" style="font-size: 0.8rem; margin-left: 5px;"></span></div></div>`)[0]
+			  <img src="${news['image']}" alt="preview" class="preview"><div class="item-header">
+			  <div class="news-title"><h2>${news['title']}</h2></div><div class="news-author">
+			  <h4>${news['author']['name']}</h4><img src="${news['author']['img']}" class="profile-img">
+			  </div></div><p>${news['content']}</p><div class='date__container' style='margin-left: auto'>
+			  <h5>${news['date']}</h5><span class="fi-rr-calendar"></span></div></div>`)[0]
 }
 
 // Запрос новостей с сервера
@@ -109,7 +111,7 @@ function getNewNews(){
 		cache: false,
 		success: function(response){
 			for(let i in response['news']){ 
-				$('#news-block').append(buildNews(response['news'][i]))
+				$('#news__container').append(buildNews(response['news'][i]))
 			}
 		}
 	})

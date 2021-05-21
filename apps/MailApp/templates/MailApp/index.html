@@ -21,7 +21,7 @@
     <header>
         <div class='page-header'>
             <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
-            <div class="main-btn"><button onclick="open_create_mail_form()">Написать</button></div>
+            <div class="main-btn"><button onclick="open_form('#mail-form')">Написать</button></div>
         </div>
         {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
     </header>
@@ -32,55 +32,57 @@
                 <!-- Тут спавнятся письма -->
             </div>
             <!-- Кнопка "Больше писем" -->
-            <div id="more-mails" class='main-btn' style='margin-top: 50px'>
+            <div id="more-mails" class='main-btn' style='margin-top: 25px;'>
                 <button onclick="getNewMails()">Больше писем</button>
             </div>
         </main>
         <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
         <!-- Форма создания письма -->
-        <div class='form'>
+        <div class='form' id='mail-form'>
             <div class="form-wrapper">
-                <form>
-                    <div class="item-header">
-                        <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
-                        <button class='filter-button' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
-                    </div>
-                    <div class="users unselected" style='display: none'>
-                        {% for kvant_user in users %}
-                        {% if kvant_user != user %}
-                        <div class="user" value='{{ kvant_user.id }}'>
-                            <img src='{{ kvant_user.image.image.url }}'/>
-                            <div class="info">
-                                <h4>{{ kvant_user.permission }}</h4>
-                                <h2>{{ kvant_user.surname }}
-                                    {{ kvant_user.name|slice:"1" }}.
-                                    {{ kvant_user.patronymic|slice:"1" }}.
-                                </h2>
-                            </div>
+                <div class="forms__container">
+                    <form>
+                        <div class="item-header">
+                            <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
                         </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </form>
-                <form>
-                    <div class='item-header'>
-                        <h1>Получатели</h1>
-                        <button class='form-btn' type="button" id='send-mail'><span class="fi-rr-paper-plane" style='font-size: 1rem; margin-right: 5px'></span>Отправить</button>
-                    </div>
-                    <div class="users selected">
-                        <!-- Место для выбранных пользователей -->
-                    </div>
-                    <input id='mail-title' class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
-                    <div id="editor" class='text-field'></div>
-                    <button class='form-btn' id='mail-file' type="button"><span class="fi-rr-clip" style='font-size: 1rem; margin-right: 5px'></span>Документ</button>
-                    <input type="file" style="display: none" id='file-input' onchange="addNewFile(event)">
-                    <div class='files' id='file-container'>
-                        <!-- Спавн файлов -->
-                    </div>
-                </form>
+                        <div class="users unselected" style='display: none'>
+                            {% for kvant_user in users %}
+                            {% if kvant_user != user %}
+                            <div class="user draggable" value='{{ kvant_user.id }}'>
+                                <img src='{{ kvant_user.image.url }}'/>
+                                <div class="info">
+                                    <h4>{{ kvant_user.permission }}</h4>
+                                    <h2>{{ kvant_user.surname }}
+                                        {{ kvant_user.name|slice:"1" }}.
+                                        {{ kvant_user.patronymic|slice:"1" }}.
+                                    </h2>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </form>
+                    <form>
+                        <div class='item-header'>
+                            <h1>Получатели</h1>
+                            <button class='form-btn' type="button" id='send-mail'><span class="fi-rr-paper-plane"></span>Отправить</button>
+                        </div>
+                        <div class="users selected">
+                            <!-- Место для выбранных пользователей -->
+                        </div>
+                        <input id='mail-title' class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
+                        <div id="editor" class='text-field'></div>
+                        <button class='form-btn' id='mail-file' type="button"><span class="fi-rr-clip"></span>Документ</button>
+                        <input type="file" style="display: none" id='file-input' onchange="addNewFile(event)">
+                        <div class='files' id='file-container'>
+                            <!-- Спавн файлов -->
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

@@ -39,18 +39,12 @@
 }
 #widgets #quote-widget div h6{
     font-size: 1.2rem; font-style: italic; text-align: justify;
+    overflow: hidden;
+    max-height: 200px;
 }
 #widgets #quote-widget div h4{
     font-size: 1rem; font-weight: 300;
     margin-top: 5px; text-align: right;
-}
-
-#widgets #quote-widget::after{
-    content: '';
-    position: absolute; right: 0; bottom: 10%;
-    width: 40%; height: 80%;
-    background: url('../../../img/illustration 2.svg');
-    background-size: cover;
 }
 
 /* Виджет "Твои курсы" */
@@ -109,14 +103,14 @@
     padding: 25px 45px 25px 195px;
     display: flex; flex-direction: column; gap: 25px;
 }
-#news > div{
+#news > #news__container{
     width: 100%;
     padding: 0 5px;
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
 }
-#news > div .item{
+#news > #news__container .item{
     width: 32%;
     margin-bottom: 2%;
     display: flex;
@@ -124,31 +118,31 @@
     gap: 5px;
     padding: 15px 25px;
 }
-#news > div .item-header{
+#news > #news__container .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 51px;
 }
-#news > div .item-header .news-title h2{
+#news > #news__container .item-header .news-title h2{
     display: inline-block;
     margin-right: 10px;
 }
-#news > div .item-header .news-author{
+#news > #news__container .item-header .news-author{
     display: flex; align-items: center;
 }
-#news > div .item-header .news-author .profile-img{
+#news > #news__container .item-header .news-author .profile-img{
     width: 32px; height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
-#news > div .item-header .news-author h4{ display: inline-block; margin-right: 10px; font-size: 16px; white-space: nowrap; }
-#news > div .item .preview{
+#news > #news__container .item-header .news-author h4{ display: inline-block; margin-right: 10px; font-size: 16px; white-space: nowrap; }
+#news > #news__container .item .preview{
     object-fit: cover;
     width: calc(100% + 50px);
     margin: -15px -25px 10px;
     height: 228px;
     border-radius: 10px 10px 0 0;
 }
-#news > div .item p{
+#news > #news__container .item p{
     overflow: hidden;
     text-align: justify;
     display: -webkit-box;
@@ -156,28 +150,52 @@
     -webkit-box-orient: vertical;
 }
 
+.profile-header{
+    margin-left: auto;
+}
 /* Адаптивность для сенсорных устройств */
 @media screen and (max-width: 992px){
     /* Новости */
-    #news > div .item{ width: 49% }
-}
-@media screen and (max-width: 840px){
+    #news > #news__container .item{ width: 49% }
+
+    /* Шапка */
+    header{
+        flex-direction: column-reverse; gap: 25px;
+        height: 100px;
+    }
+    header .profile-header{
+        width: 1000px;
+        margin-right: auto;
+        padding: 0 10px;
+    }
+
     /* Виджеты */
     #widgets #quote-widget::after{ display: none }
     #widgets #quote-widget div{ width: 100% }
 }
-@media screen and (max-width: 740px){
+
+@media screen and (max-width: 790px){
     /* Виджеты */
     #widgets{ height: 675px; gap: 25px; flex-direction: column }
     #widgets #quote-widget{ width: 100% }
     #widgets #quote-widget div{ width: 55% }
     #widgets #quote-widget::after{ display: block }
     #widgets #courses-manager{ margin: 0 auto; width: 100% }
-}
-@media screen and (max-width: 576px){
-    /* Новости */
-    #news > div .item{ width: 100% }
+
+    /* Секции */
     #widgets, #news{
         padding-left: 45px;
     }
+
+    /* Шапка */
+    header{
+        padding: 25px 45px;
+    }
+    header .page-header, header .profile-header{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 576px){
+    /* Новости */
+    #news > #news__container .item{ width: 100% }
 }

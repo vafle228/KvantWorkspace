@@ -78,39 +78,6 @@ header .page-header .main-btn button{
     -webkit-box-orient: vertical;
 }
 
-/* Стилизация выпадающего списка */
-.dropdown-input{
-    font-size: 1.4rem; color: var(--text-primary-color); font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 10px;
-    flex-grow: 1;
-    /* background-color: #25262C; */
-    background-color: var(--item-bg-color);
-    position: relative;
-}
-.dropdown-input::placeholder{
-    color: var(--text-primary-color);
-}
-.dropdown-input::after{
-    content: "\f207";
-    font-family: "uicons-regular-rounded";
-    color: #000;
-    margin: 0 10px;
-}
-.filter-button{
-    border-radius: 10px;
-    width: 48px; height: 48px;
-    background-color: var(--item-bg-color);
-}
-.filter-button > i{
-    font-size: 20px;
-    margin: auto;
-    color: #444;
-}
-.filter-button.active > i{
-    color: var(--color-scheme-dark);
-}
-
 /* Псевдоэлемент письма */
 .day > .item::after, form::after {
     content: '';
@@ -124,6 +91,7 @@ header .page-header .main-btn button{
 .old-mail::after { background-color: #85BBFF } /* Прочитанное */
 
 
+/* Адаптивность */
 @media screen and (max-width: 790px){
     #mail main, #mail, header{
         width: 100%;

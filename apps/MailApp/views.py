@@ -46,10 +46,11 @@ def change_mail_status(request, identifier):
         mail_id = request.POST['mail_id']  # id письма из запроса
         mail = KvantMessage.objects.filter(id=mail_id)[0]  # Получаем письмо по id
 
-        if mail.receivers.all().filter(receiver=request.user).exists():  # Проверка пользователя на получателя
+        # Проверка пользователя на получателя
+        if mail.receivers.all().filter(receiver=request.user).exists():
             receiver = mail.receivers.all().filter(receiver=request.user)[0]  # Получатель
 
             receiver.is_read = True  # Меняем статус
             receiver.save()  # Перезаписываем
-            return HttpResponse('OK')
+            return HttpResponse('Ok')
     return HttpResponse('Error')

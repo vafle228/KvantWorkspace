@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     {% include "SystemModule/HeadSetup/index.html" %}
     <!-- Иконки расширений файлов -->
-    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' /> 
     <link rel="stylesheet" href="{% static 'NewsApp/NewsView/style.css' %}">
+    <link rel="stylesheet" href='{% static "NewsApp/NewsView/ql-editor.css" %}'>
+    <link rel="stylesheet" href='{% static "NewsApp/NewsView/highlight.css" %}'>
+    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' /> 
     <title>Новость</title>
 </head>
 
@@ -23,7 +25,7 @@
         <div class='form' style='display: block'>
             <div class="form-wrapper">
                 <form>
-                    <img src="{{ news.image.image.url }}" alt="Обложка" class='preview'>
+                    <img src="{{ news.image.url }}" alt="preview" class='preview'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>{{ news.title }}</h2>
@@ -32,19 +34,17 @@
                             <h4>{{ news.author.surname }} 
                                 {{ news.author.name|slice:"1" }}.
                                 {{ news.author.patronymic|slice:"1" }}.</h4>
-                            <img src='{{ news.author.image.image.url }}'/>
+                            <img src='{{ news.author.image.url }}'/>
                         </div>
                     </div>
-                    <div class='ql-snow'>
-                        <div class='ql-editor'>
+                    <div class="ql-snow">
+                        <div class="ql-editor">
                             {{ news.style_content|safe }}
                         </div>
                     </div>
-                    <div style='margin-top: 10px'>
-                        <span class="fi-rr-calendar" style='font-size: 0.8rem; margin-right: 5px'></span>
-                        <h3 style='display: inline-block'>
-                        Дата публикации: {{ news.date|date:"j.m.Y" }}
-                        </h3>
+                    <div class='date__container'>
+                        <span class="fi-rr-calendar"></span>
+                        <h5>Дата публикации: {{ news.date|date:"j.m.Y" }}</h5>
                     </div>
                     {% if news.files|get_objects|length != 0 %}
                     <hr class='divider'/>

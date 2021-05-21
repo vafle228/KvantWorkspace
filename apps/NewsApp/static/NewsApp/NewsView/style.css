@@ -1,6 +1,9 @@
 .profile-header{
     margin-left: auto;
 }
+.form::before{
+    display: none;
+}
 .form .form-wrapper{
     position: fixed; top: 0; left: 190px;
 }

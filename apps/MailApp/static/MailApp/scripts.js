@@ -1,6 +1,6 @@
 let page = 0;
-let filters = Array();
 let file_array = Array();
+let filters = ['Ученик', 'Учитель', 'Группа', 'Администратор'];
 
 // Прикрепление файлов по кнопке
 $('#mail-file').on('click', function(){
@@ -9,16 +9,17 @@ $('#mail-file').on('click', function(){
 })
 
 // Закрыть форму
-$(document).mouseup(function (e) {
-	var container = $("form");
-	if (container.has(e.target).length === 0) {
-		$(".form").hide();
-	}
+$(document).mouseup(function(event) {
+	let container = $(".form-wrapper");
+    if(container.has(event.target).length === 0 && event.which == 1) {
+        $(".form").hide();
+        $("body").css("position", "unset");
+    }
 });
 
-// Открытие формы создания письма
-function open_create_mail_form() {
-	$('#mail .form')[0].style.display = 'block';
+// Открыть форму
+function open_form(form_id) {
+	$(form_id).show();
 	$("body").css("position", "fixed");
 }
 
@@ -195,8 +196,8 @@ function generateMailDetailView(mail){
 			  <div class="lesson-title"><h2>${mail['title']}</h2></div><div class="lesson-teacher">
 			  <h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}"/></div></div>
 			  <div class="ql-snow"><div class="ql-editor"><p class="item-text">${mail['style_text']}</p>
-			  </div></div><div><span class="fi-rr-calendar" style="font-size: 0.8rem; margin-right: 5px;"></span>
-			  <h3 style="display: inline-block;">Дата отправки ${mail['date']}</h3></div></form></div></div>`)[0]
+			  </div></div><div class='date__container'><span class="fi-rr-calendar"></span>
+			  <h5>Дата отправки ${mail['date']}</h5></div></form></div></div>`)[0]
 }
 
 // Генерация файлов письма

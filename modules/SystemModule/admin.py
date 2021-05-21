@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import ImageStorage, FileStorage
+from .models import FileStorage
 
 
-admin.site.register(ImageStorage)
 admin.site.register(FileStorage)

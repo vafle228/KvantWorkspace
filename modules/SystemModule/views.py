@@ -1,6 +1,6 @@
 from django.contrib import messages
 from LoginApp.models import KvantUser
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import redirect, HttpResponse
 
 
 def is_available(request, identifier):
