@@ -2,107 +2,96 @@
 ::-webkit-scrollbar{ width: 0 }
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-body{ font-family: "Google Sans" }
-aside{
-    position: fixed;
-    height: 100%;
-    width: 600px;
-    padding: 50px;
-    background-color: #fff;
-    box-shadow: 1px 0 1px 0 #0001;
-    display: flex;
-    align-items: center;
-}
-aside #logo{
-    position: fixed;
-    top: 50px;
-    left: 50px;
-    width: 60px;
-    height: 60px;
-}
-aside form{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 500px;
-}
-aside form h1{
-    font-family: "Google Sans";
-    font-size: 2.5rem;
-    color: #000;
-}
-#flash-error{
-    width: 100%;
-    font-size: 24px;
+body{ font-family: "Google Sans"; zoom: 80%; }
+.form__container{
+    height: calc(100vh * 1.25); width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f16e6e55;
-    border-radius: 10px;
-    color: #f16e6e;
 }
-#flash-error i{ margin: 10px 5px 0 }
-aside form input{
+#logo{
+    height: 50px; width: 50px;
+}
+form{
+    display: flex; flex-direction: column; gap: 10px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 16px; border: #0002 solid 1px;
+    padding: 40px;
+}
+form header{
+    display: flex; gap: 5%; align-items: center;
+    margin-bottom: 30px;
+}
+form header h1{
+    font-size: 2rem;
+}
+form header h1::after{
+    content: "Вход";
+    font-size: 1rem;
+    opacity: 0.5;
+    margin-left: 5px;
+}
+#flash-error{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px 0 0;
+}
+#flash-error h4{
+    font-size: 24px;
+    font-weight: 400;
+    color: #D93025;
+    text-align: right;
+}
+form input{
     height: 60px; width: 100%;
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 0 25px;
-    outline: none; border: none;
+    outline: none;
     font-size: 20px;
-    background-color: #E8E8E8;
+    border: #0002 solid 1px;
     position: relative;
 }
-/* aside form input::before{
-    z-index: 100000;
-    position: absolute;
-    margin: 18px;
-    content: "\f257";
-    font-family: 'uicons-regular-rounded';
-    color: #848485;
-    width: 24px;
-    height: 24px;
-    background-color: #f16e6e;
-} */
-aside form input::placeholder{
+form input::placeholder{
     font-size: 20px;
     opacity: 0.5;
 }
-aside form button{
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    margin: 0 auto;
-    width: 100%;
-    background-color:#0E58B5;
+form label{
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+/* footer */
+form footer{
+    display: flex; gap: 10px;
+    margin-top: 30px;
+} 
+form footer > h4{
+    opacity: .5;
+}
+form footer button{
+    width: 100px; height: 48px;
+    padding: 0 20px; margin-left: auto;
+    border-radius: 8px; border: none;
+    background-color: #1A73E8;
     color: #fff;
-    transition-duration: .2s;
-    transition-property: transform box-shadow;
-    box-shadow: 0 5px 0 0 #0b458b;
-    transform: translate(0, 0);
     cursor: pointer;
 }
-aside form button:hover{
-    box-shadow: 0 3px 0 0 #0b458b;
-    transform: translate(0, 3px);
-}
-aside form button h4{
-    font-size: 25px;
+form footer button h4{
+    font-size: 1.2rem;
     font-weight: 400;
+    line-height: 1;
 }
+
 
 /* Фон */
 .bg{
     position: fixed;
     height: 90%;
-    right: -10%;
+    right: 50%;
     top: 5%;
     animation: you_spin_me_right_round 200s infinite;
 }
-
-/* Адаптивность */
-@media screen and (max-width: 1600px){ body{ zoom: 83% }}
-@media screen and (max-width: 1356px){ body{ zoom: 70% }}
-@media screen and (max-width: 1280px){ body{ zoom: 65% }}
-@media screen and (max-width: 1024px){ body{ zoom: 55% }}
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
@@ -111,11 +100,10 @@ aside form button h4{
 }
 
 /* Анимация фона */
-#stars {
+#blob {
     position: fixed;
-    z-index: -1; 
-    background: #000;
-    width: 100%;
-    height: 100%;
-    transition: all 0.4s ease-in-out;
+    z-index: -1;
+    top: 0;
+    background: #111926;
+    width: 100%; height: 100%;
 }

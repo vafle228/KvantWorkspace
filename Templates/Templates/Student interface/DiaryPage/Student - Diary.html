@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
     <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <title>Дневник</title>
 </head>
 
@@ -61,9 +63,9 @@
     <!-- Дневник -->
     <section id="diary">
         <main>
-            <div class='day'>
+            <div class='day' data-aos='fade-up'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item disease">
+                <div class="item disease" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>Предмет</h2>
@@ -80,9 +82,9 @@
                     </p>
                 </div>
             </div>
-            <div class='day'>
+            <div class='day' data-aos='fade-up'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item absence">
+                <div class="item absence" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -97,7 +99,7 @@
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
-                <div class="item one">
+                <div class="item one" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -113,9 +115,9 @@
                     </p>
                 </div>
             </div>
-            <div class='day'>
+            <div class='day' data-aos='fade-up'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item four">
+                <div class="item four" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -144,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item two">
+                <div class="item two" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -160,9 +162,9 @@
                     </p>
                 </div>
             </div>
-            <div class='day'>
+            <div class='day' data-aos='fade-up'>
                 <h3>BT 02.02.2021</h3>
-                <div class="item absence">
+                <div class="item absence" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -177,7 +179,7 @@
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
                 </div>
-                <div class="item one">
+                <div class="item one" data-aos='fade-up'>
                     <div class='item-header'>
                         <div class='lesson-title'>
                             <h2>IT</h2>
@@ -264,6 +266,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='../../../JS/sections_manager.js'></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>AOS.init({ offset: -200 })</script>
 </body>
 
 </html>

@@ -108,8 +108,8 @@ body{
     transition-duration: .5s !important; transition-property: transform, box-shadow !important;
 }
 .item:hover{
-    box-shadow: var(--color-scheme-shadow);
-    transform: translateX(4px) translateY(-4px);
+    box-shadow: var(--color-scheme-shadow) !important;
+    transform: translateX(4px) translateY(-4px) !important;
 }
 
 /* Навигационное меню */
