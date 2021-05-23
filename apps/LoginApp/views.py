@@ -8,10 +8,6 @@ def login_page(request):
 
 
 def login_user(request):
-    """
-        Авторизация пользователя.
-        Для механизма авторизации смотри forms.py
-    """
     user = None  # Представление пользователя
     if request.method == 'POST':
         form = KvantUserLoginForm(request.POST)  # Форма авторизации

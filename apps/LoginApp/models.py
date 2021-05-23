@@ -8,7 +8,6 @@ from django.contrib.auth.models import AbstractUser
 from storages.backends.s3boto3 import S3Boto3Storage
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
-
 permission = (
     ("Ученик", "Ученик"),
     ("Учитель", "Учитель"),
@@ -44,33 +43,6 @@ class KvantUser(AbstractUser):
     def __str__(self):
         return f'{self.permission} {self.surname} {self.name[0]}.{self.patronymic[0]}.'
 
-    def save(self, *args, **kwargs):
-        image = Image.open(self.image)  # Открываем картинку
-        width, height = image.size  # Получаем размеры картинки
-        new_image = BytesIO()  # Создаем байтовое представление
-
-        resize = (width * (height // 10 * 5) // height, height // 10 * 5)  # Изменение по высоте
-
-        if width > height:  # Если горизонтальная картинка
-            resize = (width // 10 * 5, height * (width // 10 * 5) // width)  # Изменение по ширине
-
-        image.thumbnail(resize, resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
-        image = image.convert('RGB')  # Убираем все лишние каналы
-        image.save(new_image, format='JPEG', quality=90)  # Конвертируем в JPEG, ибо мало весит
-
-        new_image.seek(0)  # Возвращение в начало файла
-
-        name = f'{self.image.name.split(".")[0]}.jpeg'  # Имя файла
-
-        # Перезапись файла в базе данных
-        self.image = InMemoryUploadedFile(
-            new_image, 'ImageField',  # Картинка, поля сохранения
-            name, 'image/jpeg',  # Имя картинки, содержание
-            getsizeof(new_image), None  # Размер, доп инфа
-        )
-        # Сохранение через другой save класса
-        super(KvantUser, self).save()
-
 
 class KvantStudent(models.Model):
     student = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
@@ -91,3 +63,5 @@ class KvantAdmin(models.Model):
 
     def __str__(self):
         return self.admin.__str__()
+
+
