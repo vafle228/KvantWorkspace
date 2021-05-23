@@ -429,7 +429,7 @@ header .profile-header .profile:hover img{
     color: #6A6F78;
 }
 .user img{
-    width: 2.2rem; height: 2.2rem;
+    min-width: 2.2rem; max-width: 2.2rem; height: 2.2rem;
     border-radius: 100%;
     object-fit: cover;
 }
