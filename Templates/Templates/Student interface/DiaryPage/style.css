@@ -103,12 +103,12 @@ header .page-header .week-selector .main-btn .btn span{
     height: 100%; width: 10px;
     border-radius: 0 10px 10px 0;
 }
-.four::after { background-color: #00D575 } /* Идеально */
-.three::after { background-color: #FE9C4A } /* С замечаниями */
-.two::after { background-color: #FFCB3A } /* Сойдет */
-.one::after { background-color: #FF3A3A } /* Плохо */
-.absence::after { background-color: #4C50B8 } /* Отсутствие */
-.disease::after { background-color: #9c48c4 } /* Отсутствие по болезни */
+.four::after { background-color: #33B679 } /* Идеально */
+.three::after { background-color: #F4511E } /* С замечаниями */
+.two::after { background-color: #F6BF26 } /* Сойдет */
+.one::after { background-color: #D50000 } /* Плохо */
+.absence::after { background-color: #3F51B5 } /* Отсутствие */
+.disease::after { background-color: #8E24AA } /* Отсутствие по болезни */
 
 
 @media screen and (max-width: 790px){
