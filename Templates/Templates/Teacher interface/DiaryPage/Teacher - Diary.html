@@ -203,39 +203,81 @@
         <!-- Форма просмотра домашнего задания -->
         <div class='form'>
             <div class="form-wrapper">
-                <form>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
+                <div class="forms__container">
+                    <form>
+                        <div class="item-header">
+                            <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
                         </div>
-                        <div>
-                            <button class='form-btn' type="submit"><span class="fi-rr-book"></span>Перейти к оцениванию</button>
-                            <button class='form-btn' type="submit"><span class="fi-rr-disk"></span>Сохранить</button>
-                        </div>
-                    </div>
-                    <div id="editor" class='text-field'>Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php</div>
-                    <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
-                    <div class='files'>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-pptx'></i>
-                                <h4>presentation.pptx</h4>
+                        <div class="users unselected" style='display: none'>
+                            <div class="user draggable">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>Смышляев Дмитрий</h2>
+                                </div>
                             </div>
-                            <div class="file-btns">
-                                <button class="del-file"></button>
+                            <div class="user draggable">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Учитель</h4>
+                                    <h2>Сыч Эрнест</h2>
+                                </div>
+                            </div>
+                            <div class="user draggable">
+                                <img src='../../../img/atom.png'/>
+                                <div class="info">
+                                    <h4>Группа</h4>
+                                    <h2>IT квантум</h2>
+                                </div>
+                            </div>
+                            <div class="user draggable">
+                                <img src='../../../img/Kaelthas.jpg'/>
+                                <div class="info">
+                                    <h4>Администратор</h4>
+                                    <h2>Каратаев Вадим</h2>
+                                </div>
                             </div>
                         </div>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-doc'></i>
-                                <h4>document.doc</h4></div>
-                            <div class="file-btns">
-                                <button class="del-file"></button>
+                    </form>
+                    <form>
+                        <div class='item-header'>
+                            <div class='lesson-title'>
+                                <h2>IT</h2>
+                                <h3>18:20</h3>
+                            </div>
+                            <div>
+                                <button class='form-btn' type="submit"><span class="fi-rr-book"></span>Перейти к оцениванию</button>
+                                <button class='form-btn' type="submit"><span class="fi-rr-disk"></span>Сохранить</button>
                             </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="users selected">
+                            <!-- Место для выбранных пользователей -->
+                        </div>
+                        <div id="editor" class='text-field'>Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php</div>
+                        <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
+                        <div class='files'>
+                            <div class="file">
+                                <div class="file-info">
+                                    <i class='file-pptx'></i>
+                                    <h4>presentation.pptx</h4>
+                                </div>
+                                <div class="file-btns">
+                                    <button class="del-file"></button>
+                                </div>
+                            </div>
+                            <div class="file">
+                                <div class="file-info">
+                                    <i class='file-doc'></i>
+                                    <h4>document.doc</h4></div>
+                                <div class="file-btns">
+                                    <button class="del-file"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -252,8 +294,14 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
+        
     <!-- Настройки панели -->
     <script src='../../../JS/toolbar_options.js'></script>
+
+    <!-- Библиотека для перетаскивания -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
+    <script src="../../../JS/draggable_options.js"></script>
 </body>
 
 </html>

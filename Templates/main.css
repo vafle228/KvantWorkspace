@@ -25,8 +25,10 @@
     --button-bg-color: #fff;
     --button-bg-hover-color: #F6F6F6;
     --button-bg-active-color: #E3EEFC;
+    --button-bg-color-invert: #fff;
+    --button-bg-hover-color-invert: #E3EEFC;
 
-    --special-ui-elements-color: #F1F1F1; 
+    --special-ui-elements-color: #F1F1F1;
 }
 
 /* Темная тема */
@@ -44,6 +46,8 @@
     --button-bg-color: #1B1C22;
     --button-bg-hover-color: #1B1C22;
     --button-bg-active-color: #25262C;
+    --button-bg-color-invert: #25262C;
+    --button-bg-hover-color-invert: #1B1C22;
 
     --special-ui-elements-color: #25262C; 
 }
@@ -55,6 +59,7 @@
     --color-scheme-dark: #06c;
     --color-scheme-gradient: #63a4ff;
     --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
+    --color-scheme-shadow-alpha: -1px 1px #83eaf122, -2px 2px #83eaf133, -3px 3px #83eaf144, -4px 4px #83eaf155;
 }
 /* Оранжевая цветовая гамма */
 .orange__color__scheme{
@@ -62,6 +67,7 @@
     --color-scheme-dark: #eC6f66;
     --color-scheme-gradient: #eC6f66;
     --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
+    --color-scheme-shadow-alpha: -1px 1px #f3a18322, -2px 2px #f3a18333, -3px 3px #f3a18344, -4px 4px #f3a18355;
 }
 
 /* Скрываем скролбар */
@@ -111,7 +117,7 @@ body{
     transition-duration: .5s !important; transition-property: transform, box-shadow !important;
 }
 .item:hover{
-    box-shadow: var(--color-scheme-shadow) !important;
+    box-shadow: var(--color-scheme-shadow-alpha) !important;
     transform: translateX(4px) translateY(-4px) !important;
 }
 
