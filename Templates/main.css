@@ -41,7 +41,7 @@
     --text-secondary-color: #25262C;
 
     --item-bg-color: #25262C;
-    --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
+    --item-shadow: 0 0 5px 5px rgba(150, 150, 150, 0.01);
 
     --button-bg-color: #1B1C22;
     --button-bg-hover-color: #1B1C22;
@@ -326,18 +326,18 @@ menu{
     position: absolute; top: 90%;
     width: 256px; padding: 8px;
     border-radius: 8px;
-    box-shadow: 0 0 10px #0001;
+    box-shadow: var(--item-shadow);
 }
 menu > h3{
     text-align: center;
     padding: 8px 0;
 }
 menu > button{
-    width: 100%;
+    width: 100%; min-height: 32px;
     background-color: unset;
     border-radius: 4px;
     text-align: left;
-    color: var(--text-primary-color); font-size: 1rem; font-weight: 500;
+    color: var(--text-primary-color); font-size: 1rem;
     padding: 8px;
     transition: .2s;
 
@@ -351,47 +351,34 @@ menu > button:last-child:hover{
     color: #fff;
 }
 /* Toggle */
-input[type="checkbox"]{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
-}
-input[type="checkbox"]:focus{ outline: 0 }
-
 .toggle{
-    height: 32px;
-    width: 52px;
+    height: 16px;
+    width: 32px;
     border-radius: 16px;
     display: inline-block;
     position: relative;
     margin: 0;
-    border: 2px solid #474755;
-    background: linear-gradient(180deg, var(--item-bg-color) 0%, var(--item-bg-color) 100%);
+    background: linear-gradient(180deg, #eee 0%, #eee 100%);
     transition: all .2s ease;
-    transform: scale(0.8);
 }
 .toggle:after{
     content: '';
     position: absolute;
-    top: 2px; left: 2px;
-    width: 24px; height: 24px;
+    top: -2px; left: -2px;
+    width: 20px; height: 20px;
     border-radius: 50%;
-    /* background-color: var(--text-primary-color); */
-    background-color: var(--text-primary-color);
-    box-shadow: 0 1px 2px rgba(44,44,44,.2);
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(44,44,44,.4);
     transition: all .2s cubic-bezier(.5,.1,.75,1.35);
 }
 .dark__theme .toggle.theme{
-    border-color: #A1D214;
+    background: #A1D214;
 }
 .dark__theme .toggle.theme:after{
-    transform: translatex(20px);
+    transform: translatex(16px);
 }
 .toggle.color-scheme{
-    width: 32px;
-    /* border-color: var(--color-scheme-dark); */
+    width: 16px;
 }
 .toggle.color-scheme::after{
     background-color: var(--color-scheme);
@@ -686,17 +673,12 @@ input[type="checkbox"]:focus{ outline: 0 }
     /* Скрываем логотип из сайдбара */
     aside #logo{ display: none }
     aside nav{ display: flex; flex-direction: row; gap: 10px }
-    aside nav:last-child{ position: absolute; right: 15px }
 
     /* Формы во всю ширину экрана */
     .form .form-wrapper form{ width: 100% }
     .form .form-wrapper{ width: 96%; left: 2% }
 }
 @media screen and (max-width: 468px){
-
-    /* Скрываем кнопки персонализации */
-    aside nav:last-child{ display: none }
-
     /* Растягиваем кнопки на всю ширину экрана */
     aside nav{ width: 100%; gap: 1.2% }
     aside nav button{ width: 19% }

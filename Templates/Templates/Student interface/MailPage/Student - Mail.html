@@ -35,7 +35,7 @@
     <!-- Шапка -->
     <header>
         <div class='page-header'>
-            <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
+            <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px;'>Почта</h1></span>
             <div class="main-btn"><button onclick="open_form('#create-mail-form')">Написать</button></div>
         </div>
         <div class='profile-header'>
@@ -52,7 +52,8 @@
             </button>
             <menu id="settings">
                 <h3>Настройки</h3>
-                <button onclick="switch_theme()">Тема<input type="checkbox" class="toggle"></button>
+                <button onclick="switch_theme()">Тема<span class="toggle theme"></span>
+                <button onclick="switch_color_scheme()">Цветовая схема<span class="toggle color-scheme"></span>
                 <button>Выйти</button>
             </menu>
         </div>

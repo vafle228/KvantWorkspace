@@ -33,7 +33,7 @@
     <!-- Шапка -->
     <header>
         <div class='page-header'>
-            <span class="fi fi-rr-book-alt" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Дневник</h1></span>
+            <span class="fi fi-rr-book-alt" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px;'>Дневник</h1></span>
             <div class="week-selector">
                 <div class='main-btn'><button class='btn'><span class="fi-rr-angle-double-small-left"></span></button></div>
                 <div class='main-btn'><button class="weeks">01.02 - 07.02</button></div>
@@ -54,7 +54,8 @@
             </button>
             <menu id="settings">
                 <h3>Настройки</h3>
-                <button onclick="switch_theme()">Тема<input type="checkbox" class="toggle"></button>
+                <button onclick="switch_theme()">Тема<span class="toggle theme"></span>
+                <button onclick="switch_color_scheme()">Цветовая схема<span class="toggle color-scheme"></span>
                 <button>Выйти</button>
             </menu>
         </div>

@@ -28,7 +28,7 @@
     <!-- Шапка -->
     <header>
         <div class='page-header'>
-            <span class="fi fi-rr-stats" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px'>Статистика</h1></span>
+            <span class="fi fi-rr-stats" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px'>Статистика</h1></span>
         </div>
         <div class='profile-header'>
             <nav class='toolbar'>
@@ -44,7 +44,8 @@
             </button>
             <menu id="settings">
                 <h3>Настройки</h3>
-                <button onclick="switch_theme()">Тема<input type="checkbox" class="toggle"></button>
+                <button onclick="switch_theme()">Тема<span class="toggle theme"></span>
+                <button onclick="switch_color_scheme()">Цветовая схема<span class="toggle color-scheme"></span>
                 <button>Выйти</button>
             </menu>
         </div>
