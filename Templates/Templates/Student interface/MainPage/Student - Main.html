@@ -31,10 +31,6 @@
             <button><span class="fi fi-rr-stats"><p>Отчеты</p></button>
             <button><span class="fi-rr-trophy"><p>Портфолио</p></button>
         </nav>
-        <nav>
-            <button onclick="switch_theme()"><span class="fi-rr-opacity"><p>Тема</p></button>
-            <button onclick="switch_color_scheme()"><span class="fi-rr-palette"><p>Цвет</p></button>
-        </nav>
     </aside>
 
     <!-- Главная -->
@@ -45,13 +41,19 @@
                     <button><span class="fi-rr-list-check"></button>
                     <button><span class="fi fi-rr-bell"></button>
                 </nav>
-                <div class="profile">
+                <button class="profile" onclick="open_menu('#settings')">
                     <div class="info">
                         <h4>Ученик</h4>
                         <h2>Имя Фамилия</h2>
                     </div>
                     <img src='../../../img/Kaelthas.jpg'/>
-                </div>
+                </button>
+                <menu id="settings">
+                    <h3>Настройки</h3>
+                    <button onclick="switch_theme()">Тема<input type="checkbox" class="toggle theme"></button>
+                    <button onclick="switch_color_scheme()">Цветовая схема<input type="checkbox" class="toggle color-scheme"></button>
+                    <button>Выйти</button>
+                </menu>
             </div>
         </header>
         <!-- Виджеты -->
@@ -82,7 +84,10 @@
             <div id='courses-manager'>
                 <div class='widget-header'>
                     <!-- Заголовок виджета -->
-                    <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; color: #000'><h1 style='display: inline-block; margin-left: 10px; color: #000'>Расписание</h1></span>
+                    <div>
+                        <!-- <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; color: #000; margin-right: 5px'> -->
+                        <h1 style='display: inline-block; color: #000'>Расписание</h1>
+                    </div>
                     <!-- Кнопки слайдера -->
                     <div id="slider-controller">
                         <button id='prev'><span class='fi-rr-arrow-small-left'></span></button>
@@ -120,8 +125,18 @@
                                 <div class="weekday">Вт</div>
                                 <time>18:20</time>
                             </div>
+                        </div>
+                    </div>
+                    <div class='item course'>
+                        <img src="../../../img/default_bg.jpg" class='course__banner'/>
+                        <img src="../../../img/atom.png" class='teacherProfileImg'/>
+                        <div class="course__info">
+                            <h2>Направление</h2>
+                            <h4>Фамилия И. О.</h4>
+                        </div>
+                        <div class="course__timetable">
                             <div class="lessonDay">
-                                <div class="weekday">Чт</div>
+                                <div class="weekday">Вт</div>
                                 <time>18:20</time>
                             </div>
                         </div>
@@ -154,28 +169,6 @@
                         <div class="course__timetable">
                             <div class="lessonDay">
                                 <div class="weekday">Вт</div>
-                                <time>18:20</time>
-                            </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
-                                <time>18:20</time>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='item course'>
-                        <img src="../../../img/default_bg.jpg" class='course__banner'/>
-                        <img src="../../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
-                        </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
-                            </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
                                 <time>18:20</time>
                             </div>
                         </div>
@@ -281,7 +274,7 @@
             <div style='display: flex; gap: 2%'>
                 <!-- Заголовок секции -->
                 <div>
-                    <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
+                    <!-- <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span> -->
                     <h1 style='display: inline-block'>Новости</h1>
                 </div>
                 <div class='main-btn' style='width: auto'>

@@ -4,20 +4,24 @@ function reload(logo) {
 	setTimeout("location.reload()", 800);
 }
 
-// Закрыть форму
+// Закрытие форм и меню при клике вне
 $(document).mouseup(function (e) {
 	var container = $(".form-wrapper");
-	if (container.has(e.target).length === 0) {
+	if (container.has(e.target).length === 0 && $('#settings').has(e.target).length === 0) {
 		$(".form").hide();
-		// $('form_id .form-wrapper').css('transform', 'translate(0, -1000px)');
+		$("menu").hide();
 		$("body").css("overflow-y", "scroll");
 	}
 });
 
+// Открыть меню
+function open_menu(menu_id) {
+	$(menu_id).show();
+}
+
 // Открыть форму
 function open_form(form_id) {
 	$(form_id).show();
-	// $(form_id).find('.form-wrapper').css('transform', 'translate(0, 0)');
 	$("body").css("overflow", "hidden");
 }
 

@@ -87,6 +87,7 @@
     display: flex; align-items: center; gap: 16px;
     color: var(--text-primary-color);
     transition: background-color .2s;
+    cursor: pointer;
 }
 #calendar-widget .timetable .event:hover{
     background-color: var(--button-bg-hover-color-invert);
@@ -130,13 +131,13 @@
 }
 #next, #prev{
     height: 30px; width: 30px;
-    background-color: var(--button-bg-active-color);
+    background-color: var(--button-bg-color-invert);
     border-radius: 5px;
     padding: 4px;
     font-size: 22px;
     transition: .2s transform;
 }
-#next:hover, #prev:hover{ transform: scale(1.2) }
+#next:hover, #prev:hover{ transform: scale(1.2); background-color: var(--button-bg-hover-color-invert) }
 
 /* Курс */
 .course{
@@ -193,7 +194,7 @@
     display: flex; gap: 6%;
     overflow: hidden;
 }
-.course .course__timetable .lessonDay{
+.lessonDay{
     height: 100%; width: 47%;
     background-color: var(--button-bg-hover-color-invert);
     padding: 8px 12px;
@@ -272,7 +273,7 @@
 
     /* Виджеты */
     #widgets{ height: 675px; gap: 25px; flex-direction: column }
-    #widgets #courses-manager{ margin: 0 auto; width: 100% }
+    #widgets #courses-manager{ width: 100% }
     #calendar-widget{ margin-right: 0 }
 
     /* Секции */

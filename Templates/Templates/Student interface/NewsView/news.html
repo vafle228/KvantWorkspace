@@ -11,7 +11,7 @@
     <title>Новость</title>
 </head>
 
-<body class='dark__theme orange__color__scheme'>
+<body class='light__theme blue__color__scheme'>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -24,10 +24,6 @@
             <button><span class="fi fi-rr-stats"><p>Отчеты</p></button>
             <button><span class="fi-rr-trophy"><p>Портфолио</p></button>
         </nav>
-        <nav>
-            <button onclick="switch_theme()"><span class="fi-rr-opacity"><p>Тема</p></button>
-            <button onclick="switch_color_scheme()"><span class="fi-rr-palette"><p>Цвет</p></button>
-        </nav>
     </aside>
     <!-- Главная -->
     <section id='main'>
@@ -38,13 +34,18 @@
                     <button><span class="fi-rr-list-check"></button>
                     <button><span class="fi fi-rr-bell"></button>
                 </nav>
-                <div class="profile">
+                <button class="profile" onclick="open_menu('#settings')">
                     <div class="info">
                         <h4>Ученик</h4>
                         <h2>Имя Фамилия</h2>
                     </div>
                     <img src='../../../img/Kaelthas.jpg'/>
-                </div>
+                </button>
+                <menu id="settings">
+                    <h3>Настройки</h3>
+                    <button onclick="switch_theme()">Тема<input type="checkbox" class="toggle"></button>
+                    <button>Выйти</button>
+                </menu>
             </div>
         </header>
         <!-- Форма просмотра новости -->
@@ -99,7 +100,7 @@
                                     <h4>c++ prog.cpp</h4>
                                 </div>
                                 <div class="file-btns">
-                                    <button class='del-file'></button>
+                                    <button class='download-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -109,7 +110,6 @@
                                 </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -119,7 +119,6 @@
                                 </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -129,7 +128,6 @@
                                 </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -139,7 +137,6 @@
                                 </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -149,7 +146,6 @@
                                 </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -159,7 +155,6 @@
                                 </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -167,11 +162,17 @@
                                     <i class='file-doc'></i>
                                     <h4>document.doc</h4>
                                 </div>
+                                <div class="file-btns">
+                                    <button class='download-file'></button>
+                                </div>
                             </div>
                             <div class='file'>
                                 <div class="file-info">
                                     <i class='file-pdf'></i>
                                     <h4>sertificate.pdf</h4>
+                                </div>
+                                <div class="file-btns">
+                                    <button class='download-file'></button>
                                 </div>
                             </div>
                             <div class='file'>
@@ -179,21 +180,17 @@
                                     <i class='file-png'></i>
                                     <h4>image.png</h4>
                                 </div>
+                                <div class="file-btns">
+                                    <button class='download-file'></button>
+                                </div>
                             </div>
                             <div class='file'>
                                 <div class="file-info">
                                     <i class='file-cs'></i>
                                     <h4>C# prog.cs</h4>
                                 </div>
-                            </div>
-                            <div class='file'>
-                                <div class="file-info">
-                                    <i class='file-png'></i>
-                                    <h4>Очень длинное название файла.png</h4>
-                                </div>
                                 <div class="file-btns">
                                     <button class='download-file'></button>
-                                    <button class='del-file'></button>
                                 </div>
                             </div>
                         </div>

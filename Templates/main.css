@@ -75,6 +75,7 @@
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
+/* Немного обнуления */
 button, input, textarea, .ql-editor{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
 a{ text-decoration: none; color: unset; }
 
@@ -86,9 +87,9 @@ h3, .dropdown-input{ font-size: 1.1; font-weight: 500; color: #6A6F78 }
 h4, h6{ font-size: 1.2rem; font-weight: 300; color: #6A6F78}
 p{ font-size: 1rem; font-weight: normal; color: #70757D }
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
-span{ color: var(--text-primary-color) }
+span{ color: var(--text-primary-color); vertical-align: text-bottom }
 
-
+/* Плавный скрол страницы */
 html{ scroll-behavior: smooth }
   
 /* Основные элементы страницы */
@@ -117,7 +118,7 @@ body{
     transition-duration: .5s !important; transition-property: transform, box-shadow !important;
 }
 .item:hover{
-    box-shadow: var(--color-scheme-shadow-alpha) !important;
+    /* box-shadow: var(--color-scheme-shadow-alpha) !important; */
     transform: translateX(4px) translateY(-4px) !important;
 }
 
@@ -133,12 +134,9 @@ aside{
 aside #logo{
     width: 60px; height: 60px;
     margin: 15px;
-    z-index: 100;
 }
 aside nav{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: flex; flex-direction: column; gap: 10px;
 }
 aside nav button{
     background-color: unset;
@@ -148,10 +146,6 @@ aside nav button{
     padding: 10px 0;
     color: var(--text-primary-color);
     width: 90px;
-}
-aside nav:last-child{
-    position: absolute;
-    bottom: 15px;
 }
 aside nav button span{ font-size: 20px }
 aside nav button p{ font-size: 14px; color: var(--text-primary-color); font-weight: 500; }
@@ -166,19 +160,18 @@ header{
     z-index: 1;
     width: 100%; height: 100px;
     padding: 25px 55px 25px 190px;
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
     background-color: var(--bg-color);
 }
-/* Панель инструментов */
+
+/* Панель кнопок в шапке */
 header .profile-header{
     display: flex;
     justify-content: flex-end;
     width: calc(100% - 1000px);
 }
 header .toolbar{
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
     padding: 0 10px;
     gap: 5px;
 }
@@ -195,23 +188,18 @@ header .toolbar button:hover{
 }
 /* Профиль */
 header .profile-header .profile{
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    display: flex; gap: 10px; align-items: center;
     position: relative;
     cursor: pointer;
+    background-color: unset;
 }
 header .profile-header .profile .info{
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     text-align: right;
 }
-header .profile-header .profile .info h2{
-    font-size: 1.2rem;
-}
-header .profile-header .profile .info h4{
-    font-size: 1rem;
-}
+header .profile-header .profile .info h2{ font-size: 1.2rem }
+header .profile-header .profile .info h4{ font-size: 1rem }
+
 header .profile-header .profile img{
     width: 44px; height: 44px;
     border-radius: 100%;
@@ -220,8 +208,10 @@ header .profile-header .profile img{
     transition-property: filter;
     position: relative;
 }
+
+/* Иконка выхода из аккаунта при наведении */
 header .profile-header .profile::after{
-    content: '\f218';
+    content: '\f209';
     font-family: "uicons-regular-rounded";
     font-size: 20px;
     position: absolute;
@@ -239,9 +229,7 @@ header .profile-header .profile:hover img{
 }
 
 /* Формы */
-.form{
-    display: none;
-}
+.form{ display: none }
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
@@ -257,8 +245,7 @@ header .profile-header .profile:hover img{
     z-index: 3;
 }
 .form .forms__container{
-    display: flex;
-    flex-direction: column; gap: 10px;
+    display: flex; flex-direction: column; gap: 10px;
     margin: auto 0;
 }
 .form .forms__container > form{
@@ -330,6 +317,84 @@ header .profile-header .profile:hover img{
     width: 1000px;
     margin: -10px -25px 10px -25px;
     border-radius: 10px 10px 0 0;
+}
+
+/* Меню */
+menu{
+    display: none;
+    background-color: var(--item-bg-color);
+    position: absolute; top: 90%;
+    width: 256px; padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #0001;
+}
+menu > h3{
+    text-align: center;
+    padding: 8px 0;
+}
+menu > button{
+    width: 100%;
+    background-color: unset;
+    border-radius: 4px;
+    text-align: left;
+    color: var(--text-primary-color); font-size: 1rem; font-weight: 500;
+    padding: 8px;
+    transition: .2s;
+
+    display: flex; justify-content: space-between; align-items: center;
+}
+menu > button:hover{
+    background-color: var(--button-bg-hover-color-invert);
+}
+menu > button:last-child:hover{
+    background-color: #FF374B;
+    color: #fff;
+}
+/* Toggle */
+input[type="checkbox"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+input[type="checkbox"]:focus{ outline: 0 }
+
+.toggle{
+    height: 32px;
+    width: 52px;
+    border-radius: 16px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    border: 2px solid #474755;
+    background: linear-gradient(180deg, var(--item-bg-color) 0%, var(--item-bg-color) 100%);
+    transition: all .2s ease;
+    transform: scale(0.8);
+}
+.toggle:after{
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    /* background-color: var(--text-primary-color); */
+    background-color: var(--text-primary-color);
+    box-shadow: 0 1px 2px rgba(44,44,44,.2);
+    transition: all .2s cubic-bezier(.5,.1,.75,1.35);
+}
+.dark__theme .toggle.theme{
+    border-color: #A1D214;
+}
+.dark__theme .toggle.theme:after{
+    transform: translatex(20px);
+}
+.toggle.color-scheme{
+    width: 32px;
+    /* border-color: var(--color-scheme-dark); */
+}
+.toggle.color-scheme::after{
+    background-color: var(--color-scheme);
 }
 
 /* Разделитель */
@@ -511,9 +576,7 @@ header .profile-header .profile:hover img{
     opacity: .5;
 }
 @media screen and (max-width: 1200px){
-    .bg{
-        display: none;
-    }
+    .bg{ display: none }
 }
 
 /* Адаптивность от бога */
@@ -538,13 +601,12 @@ header .profile-header .profile:hover img{
     align-items: center;
     background-color: #FFEAEC;
     font-weight: 800;
-    cursor: help;
 }
 
 /* Расписание */
 .calendar__timetable .day{
     border-radius: 10px;
-    padding: 10px 15px;
+    padding: 8px;
     color: #FF374B;
 }
 .calendar__timetable .day-active{
@@ -607,51 +669,35 @@ header .profile-header .profile:hover img{
         margin-left: 0;
         margin-right: auto;
     }
-    body{
-        padding-top: 175px;
-    }
+    body{ padding-top: 175px }
 }
-@media screen and (max-width: 790px){
-    /* aside */
+@media screen and (max-width: 992px){
+
+    /* Перенос сайдбара вниз экрана */
     aside{
         position: fixed; top: calc(100% - 92px); left: 0;
         height: 92px; width: 100%;
-        box-shadow: 1px 0 1px 0 #0001;
+        border-top: 1px solid #0001;
         padding: 15px;
         display: flex;
         z-index: 1;
     }
-    aside #logo{
-        display: none;
-    }
-    aside nav{
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
-    aside nav:last-child{
-        position: absolute;
-        right: 15px;
-    }
 
-    /* Формы */
-    .form .form-wrapper form{
-        width: 100%;
-    }
-    .form .form-wrapper{
-        width: 96%;
-        left: 2%;
-    }
+    /* Скрываем логотип из сайдбара */
+    aside #logo{ display: none }
+    aside nav{ display: flex; flex-direction: row; gap: 10px }
+    aside nav:last-child{ position: absolute; right: 15px }
+
+    /* Формы во всю ширину экрана */
+    .form .form-wrapper form{ width: 100% }
+    .form .form-wrapper{ width: 96%; left: 2% }
 }
 @media screen and (max-width: 468px){
-    aside nav:last-child{
-        display: none;
-    }
-    aside nav{
-        width: 100%;
-        gap: 1.2%;
-    }
-    aside nav button{
-        width: 19%;
-    }
+
+    /* Скрываем кнопки персонализации */
+    aside nav:last-child{ display: none }
+
+    /* Растягиваем кнопки на всю ширину экрана */
+    aside nav{ width: 100%; gap: 1.2% }
+    aside nav button{ width: 19% }
 }
