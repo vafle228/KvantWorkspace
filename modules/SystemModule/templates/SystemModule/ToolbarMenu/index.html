@@ -4,12 +4,18 @@
             <button><span class="fi-rr-list-check"></span></button>
             <button><span class="fi fi-rr-bell"></span></button>
         </nav>
-        <div class="profile">
+        <button class="profile" onclick="open_menu('#settings')">
             <div class="info">
                 <h4>{{ user.permission }}</h4>
                 <h2>{{ user.surname }} {{ user.name|slice:"1" }}.{{ user.patronymic|slice:"1" }}.</h2>
             </div>
             <img src='{{ user.image.url }}'/>
-        </div>
+        </button>
+        <menu id="settings">
+            <h3>Настройки</h3>
+            <button onclick="switch_theme()">Темная тема<span class="toggle theme"></span>
+            <button onclick="switch_color_scheme()">Цветовая схема<span class="toggle color-scheme"></span>
+            <button onclick="location.href='{% url "logout_user" user.id %}'">Выйти</button>
+        </menu>
     </div>
 </body>

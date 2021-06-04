@@ -3,83 +3,92 @@
 
 /* Шапка секции */
 header .page-header{
-    display: flex;
-    justify-content: space-between;
+    display: flex; justify-content: space-between;
     width: 1000px;
-    padding: 0 10px;
-    margin-right: auto;
+    padding: 0 10px; margin-right: auto;
 }
 header .page-header .main-btn{
     width: max-content;
 }
-header .page-header .main-btn button{
-    height: 40px;
-}
 
 /* Письма */
-#mail main {
+#mail main{
     width: 1000px;
-    height: max-content; max-height: 95vh; min-height: 800px;
     padding: 0 10px 100px;
-    overflow-y: scroll;
     display: flex; flex-direction: column; gap: 10px;
     padding-top: 5px;
 }
-#mail main .day{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-#mail main .day > h3 {
-    text-align: right;
-}
 
 /* Письмо */
-#mail main .day .item {
-    padding: 10px 25px 15px 25px;
+#mail main .item{
     border: #0001 solid 1px;
     position: relative;
-    display: flex; flex-direction: column; gap: 5px;
+    display: flex;
 }
-#mail main .day .item .item-header {
-    display: flex; justify-content: space-between; align-items: center;
-    height: 40px;
+.mail-sender{
+    background-image: 
+		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
+		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(90deg, var(--color-scheme-gradient), var(--color-scheme));
+	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
+    width: 156px;
+    border-radius: 10px 0 0 10px;
+    padding: 16px;
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
 }
-#mail main .day .item .item-header .lesson-title h2 {
-    display: inline-block;
-    margin-right: 10px;
-}
-#mail main .day .item .item-header .lesson-title h3 {
-    color: var(--color-scheme-dark);
-    font-weight: bold;
-    display: inline-block;
-}
-#mail main .day .item .item-header .lesson-teacher {
-    display: flex; align-items: center;
-    height: 100%;
-}
-#mail main .day .item .item-header .lesson-teacher img {
-    width: 32px; height: 32px;
-    border-radius: 50%;
+.mail-sender img{
+    width: 96px; height: 96px;
     object-fit: cover;
+    border: #fff6 solid 4px; border-radius: 50%;
 }
-#mail main .day .item .item-header .lesson-teacher h4 {
+.mail-sender h4{
+    color: #fff; font-size: 1rem; text-align: center;
+}
+.mail-info{
+    width: calc(100% - 156px); height: 100%;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 4px;
+}
+
+/* Мини файлы */
+.mail-info .file-mini{
+    width: 54px;
+}
+.mail-info .file-mini .file-info h4{
+    display: none;
+}
+
+.mail-info .item-header{
+    display: flex; align-items: center;
+    height: 32px;
+}
+.mail-info .item-header h2{
     display: inline-block;
     margin-right: 10px;
-    font-size: 16px;
+    max-width: 84%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-#mail main .day .item .files{
-    margin-top: 10px;
+.mail-info .item-header h3{
+    color: var(--color-scheme-dark); font-weight: bold;
+    margin-top: 4px;
+    min-width: 16%;
+    white-space: nowrap;
 }
-#mail main .day .item .item-text{
+.mail-info .files{
+    margin-top: 12px;
+}
+.mail-info .files .file:hover{
+    transform: none;
+}
+.mail-info .item-text{
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
 /* Псевдоэлемент письма */
-.day > .item::after, form::after {
+.item::after, form::after{
     content: '';
     position: absolute;
     right: 0; top: 0;
@@ -87,22 +96,14 @@ header .page-header .main-btn button{
     border-radius: 0 10px 10px 0;
 }
 
-.new-mail::after { background-color: #4C50B8 } /* Непрочитанное */
-.old-mail::after { background-color: #85BBFF } /* Прочитанное */
+.new-mail::after{ background-color: #4C50B8 } /* Непрочитанное */
+.old-mail::after{ background-color: #85BBFF } /* Прочитанное */
 
 
 /* Адаптивность */
-@media screen and (max-width: 790px){
-    #mail main, #mail, header{
-        width: 100%;
-    }
-    #mail{
-        padding: 0 45px;
-    }
-    header{
-        padding: 25px 45px;
-    }
-    header .page-header, header .profile-header{
-        width: 100%;
-    }
+@media screen and (max-width: 992px){
+    #mail main, #mail, header{ width: 100% }
+    #mail{ padding: 0 45px }
+    header{ padding: 25px 45px }
+    header .page-header, header .profile-header{ width: 100% }
 }

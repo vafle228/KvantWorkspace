@@ -1,31 +1,22 @@
 from django import forms
 from .models import KvantNews
-from django.utils import timezone
-from SystemModule.forms import FileStorageSaveForm
+from SystemModule.views import format_image
 
 
-class KvantNewsSaveForm(forms.Form):
-    content = forms.CharField()
-    style_content = forms.CharField()
-    title = forms.CharField(max_length=100)
+class ImageThumbnailFormMixin:
+    def clean_image(self):
+        file = self.cleaned_data.get('image')  # Получаем картинку
 
-    def save(self, request):
-        date = timezone.now().date()  # Дата новости
+        if self.instance.image == file:  # Если картинка не менялась
+            return file
 
-        news = KvantNews.objects.create(
-            style_content=self.cleaned_data['style_content'],
-            title=self.cleaned_data['title'], author=request.user,
-            image=request.FILES['image'], content=self.cleaned_data['content'],
-        )  # Создание новости
+        return format_image(file, 0.6)
 
-        for file in request.FILES.getlist('files'):  # Добавление файлов в новость
-            file_form = FileStorageSaveForm(
-                {'upload_path': f'news/files/{date}/{news.title}'}, {'file': file}
-            )  # Создание файла
-            if file_form.is_valid():  # Проверка валидности файла
-                news.files.add(file_form.save())  # Добавление нового файла
 
-        return news
+class KvantNewsSaveForm(forms.ModelForm, ImageThumbnailFormMixin):
+    class Meta:
+        model = KvantNews
+        fields = ('title', 'content', 'style_content', 'image', 'author', 'files')
 
 
 class SendNewNews(forms.Form):

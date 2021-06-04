@@ -8,19 +8,11 @@
     {% include "SystemModule/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
     <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'> <!-- Стили страницы -->
-    <link rel="stylesheet" href='{% static "NewsApp/MainPage/highlight.css" %}'>
-    <link rel="stylesheet" href='{% static "NewsApp/MainPage/ql-editor.css" %}'>
+    <link rel="stylesheet" href='{% static "NewsApp/MainPage/text/highlight.css" %}'>
+    <link rel="stylesheet" href='{% static "NewsApp/MainPage/text/ql-editor.css" %}'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Главная</title>
-    <style>
-        #widgets #quote-widget::after{
-            content: '';
-            position: absolute; right: 0; bottom: 10%;
-            width: 40%; height: 80%;
-            background: url('{% static "NewsApp/MainPage/img/illustration.svg" %}');
-            background-size: cover;
-        }
-
-    </style>
 </head>
 
 <body style="overflow: auto" onload="getNewNews()">
@@ -34,24 +26,33 @@
         </header>
         <!-- Виджеты -->
         <section id='widgets'>
-            <!-- Виджет с цитатой -->
-            <div id='quote-widget'>
-                <!-- Заголвок виджета -->
-                <span class="fi-rr-quote-right" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px'>Цитата дня</h1></span>
-                <!-- Подзаголовок виджета -->
-                <h3>Читай высказывания великих людей</h3>
-                <div>
-                    <!-- Цитата -->
-                    <h6>«Оценивать эффективность процесса программирования количеством написанных строк кода — то же самое, что оценивать процесс создания самолёта по его весу»</h6>
-                    <!-- Автор цитаты -->
-                    <h4 id='author'>Билл Гейтс</h4>
+            <!-- Виджет "Календарь" -->
+            <div id="calendar-widget">
+                <div class="calendar-container">
+                    <div class="date-info">Июнь 2021</div>
+                    <div class="calendar">
+                        <span class='inactive'>Пн</span><span class='inactive'>Вт</span><span class='inactive'>Ср</span><span class='inactive'>Чт</span><span class='inactive'>Пт</span><span class='inactive'>Сб</span><span class='inactive'>Вс</span>
+                        <span class='inactive'>31</span><span class='active'>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                        <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                        <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                        <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+                        <span>28</span><span>29</span><span>30</span><span class='inactive'>1</span><span class='inactive'>2</span><span class='inactive'>3</span><span class='inactive'>4</span>
+                    </div>
+                </div>
+                <div class="timetable">
+                    <div class="event draggable">
+                        <span class="marker"></span>
+                        <time>10:00</time>
+                        <p class="event__name">День защиты детей</p>
+                    </div>
                 </div>
             </div>
             <!-- Виджет "Расписание" -->
             <div id='courses-manager'>
                 <div class='widget-header'>
-                    <!-- Заголовок виджета -->
-                    <span class="fi-rr-graduation-cap" style='font-size: 1.5rem; color: #000'><h1 style='display: inline-block; margin-left: 10px; color: #000'>Расписание</h1></span>
+                    <div>
+                        <h1 style='display: inline-block; color: #000'>Расписание</h1>
+                    </div>
                     <!-- Кнопки слайдера -->
                     <div id="slider-controller">
                         <button id='prev'><span class='fi-rr-arrow-small-left'></span></button>
@@ -60,22 +61,34 @@
                 </div>
                 <div id='slider'>
                     {% for course in courses %}
-                    <div class='item'>
-                        <img src="{% static 'NewsApp/MainPage/img/default.jpg' %}" alt="Превью" />
-                        <h2>{{ course.name }}</h2>
-                        <h4>ВТ 18:20 ЧТ 18:20</h4>
-                        <h4>
-                            {{ course.teacher.teacher.surname }}
-                            {{ course.teacher.teacher.name|slice:"1" }}.
-                            {{ course.teacher.teacher.patronymic|slice:"1" }}.
-                        </h4>
+                    <div class='item course'>
+                        <img src="{% static 'NewsApp/MainPage/default.jpg' %}" class='course__banner'/>
+                        <img src="{{ course.teacher.teacher.image.url }}" class='teacherProfileImg'/>
+                        <div class="course__info">
+                            <h2>{{ course.name }}</h2>
+                            <h4>
+                                {{ course.teacher.teacher.surname }}
+                                {{ course.teacher.teacher.name|slice:"1" }}.
+                                {{ course.teacher.teacher.patronymic|slice:"1" }}.
+                            </h4>
+                        </div>
+                        <div class="course__timetable">
+                            <div class="lessonDay">
+                                <div class="weekday">Вт</div>
+                                <time>18:20</time>
+                            </div>
+                            <div class="lessonDay">
+                                <div class="weekday">Чт</div>
+                                <time>18:20</time>
+                            </div>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
             <!-- Форма просмотра курса -->
             {% for course in courses %}
-            <div class='form'>
+            <div class='form' style='padding: 0'>
                 <div class="form-wrapper">
                     <form>
                         <div class='item-header'>
@@ -96,26 +109,23 @@
                         <hr class='divider'/>
                         <h2>Расписание</h2>
                         <div class="calendar__timetable">
-                            <div class="day">пн</div>
-                            <div class="day day-active">вт<time>18:20</time></div>
-                            <div class="day">ср</div>
-                            <div class="day day-active">чт<time>18:20</time></div>
-                            <div class="day">пт</div>
-                            <div class="day">сб</div>
-                            <div class="day">вс</div>
+                            <div class="day day-active">Вт<time>18:20</time></div>
+                            <div class="day day-active">Чт<time>18:20</time></div>
                         </div>
                         <hr class="divider"/>
                         <h2>Участники курса</h2>
                         <div class="users">
                             {% for student in course.students|get_objects %}
-                            <div class="user"><img src='{{ student.student.image.url }}'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>
-                                    {{ student.student.surname }}
-                                    {{ student.student.name|slice:"1" }}.
-                                    {{ student.student.patronymic|slice:"1" }}.
-                                </h2>
+                            <div class="user">
+                                <img src='{{ student.student.image.url }}'/>
+                                <div class="info">
+                                    <h4>Ученик</h4>
+                                    <h2>
+                                        {{ student.student.surname }}
+                                        {{ student.student.name|slice:"1" }}.
+                                        {{ student.student.patronymic|slice:"1" }}.
+                                    </h2>
+                                </div>
                             </div>
                             {% endfor %}
                         </div>
@@ -142,16 +152,18 @@
                 <!-- Тут спавняться новости -->
             </div>
             <!-- Кнопка "Больше новостей" -->
+            {% if max_news|add:"-6" > 0 %}
             <div id="more-news" class='main-btn'>
                 <button onclick="getNewNews()">Больше новостей</button>
             </div>
+            {% endif %}
             <!-- Форма создания новости -->
             <div class='form' id='add-news-form'>
                 <div class="form-wrapper">
                     <form autocomplete="off">
                         <div class='item-header'>
                             <h2>Добавление новости</h2>
-                            <div id="news-form-btns" style="display: flex;">
+                            <div id="news-form-btns" style="display: flex; gap: 5px">
                                 <button class='form-btn' id="news-preview" type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
                                 <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
 
@@ -181,7 +193,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
-    <script src="{% static 'NewsApp/MainPage/toolbar_options.js' %}"></script>
+    <script src="{% static 'NewsApp/MainPage/text/options.js' %}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ offset: -300 })</script>
     <script>
         let user_id = '{{ user.id }}';
         let max_news = {{ max_news }};

@@ -5,7 +5,7 @@
 }
 .hljs,
 .hljs-subst {
-    color: #444;
+    color: #aaa;
 }
 .hljs-comment {
     color: #888;
@@ -15,8 +15,13 @@
 .hljs-keyword,
 .hljs-meta-keyword,
 .hljs-name,
-.hljs-selector-tag {
+.hljs-selector-tag{
     font-weight: 700;
+    color: magenta;
+}
+.hljs-params,
+.hljs-function{
+    color: #fff;
 }
 .hljs-deletion,
 .hljs-number,

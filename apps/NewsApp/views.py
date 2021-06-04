@@ -1,9 +1,11 @@
 from .models import KvantNews
+from django.utils import timezone
 from django.http import JsonResponse
 from LoginApp.models import KvantUser
 from AdminModule.models import KvantCourse
 from SystemModule.views import is_available
 from .forms import KvantNewsSaveForm, SendNewNews
+from SystemModule.forms import FileStorageSaveForm
 from django.shortcuts import render, HttpResponse, redirect
 
 
@@ -56,9 +58,20 @@ def create_new_news(request, identifier):
         return redirect(f'/news/{identifier}/main')
 
     if request.method == 'POST':  # Проверка метода запроса
-        form = KvantNewsSaveForm(request.POST)  # Форма создания новости
-        news = form.save(request) if form.is_valid() else None  # Попытка создать новость
-        return HttpResponse(f'/news/{request.user.id}/detail/{news.id}'
-                            if news is not None else f'/news/{request.user.id}/main')
-    return HttpResponse('Error')  # Если был неверный метод
+        form = KvantNewsSaveForm(request.POST, request.FILES)  # Форма создания новости
 
+        if form.is_valid():
+            news = fill_news_files(request, form.save())  # Добавления файлов в новость
+            return HttpResponse(f'/news/{request.user.id}/detail/{news.id}')  # Переход на новость
+    return HttpResponse(f'/news/{request.user.id}/main')  # Если был неверный метод
+
+
+def fill_news_files(request, news):
+    date = timezone.now().date()
+    for file in request.FILES.getlist('files'):  # Добавление файлов в новость
+        file_form = FileStorageSaveForm(
+            {'upload_path': f'news/files/{date}/{request.POST["title"]}'}, {'file': file}
+        )  # Создание файла
+        if file_form.is_valid():  # Проверка валидности файла
+            news.files.add(file_form.save())  # Добавление нового файла
+    return news

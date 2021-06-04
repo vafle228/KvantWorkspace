@@ -22,9 +22,10 @@
     --button-bg-color: #fff;
     --button-bg-hover-color: #F6F6F6;
     --button-bg-active-color: #E3EEFC;
+    --button-bg-color-invert: #fff;
+    --button-bg-hover-color-invert: #E3EEFC;
 
-    /* Зеленый */
-    --green: green;
+    --special-ui-elements-color: #F1F1F1;
 }
 
 /* Темная тема */
@@ -37,14 +38,15 @@
     --text-secondary-color: #25262C;
 
     --item-bg-color: #25262C;
-    --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
+    --item-shadow: 0 0 5px 5px rgba(150, 150, 150, 0.01);
 
     --button-bg-color: #1B1C22;
     --button-bg-hover-color: #1B1C22;
     --button-bg-active-color: #25262C;
+    --button-bg-color-invert: #25262C;
+    --button-bg-hover-color-invert: #1B1C22;
 
-    /* Зеленый */
-    --green: greenyellow;
+    --special-ui-elements-color: #25262C; 
 }
 
 /* Синяя цветовая гамма */
@@ -54,6 +56,7 @@
     --color-scheme-dark: #06c;
     --color-scheme-gradient: #63a4ff;
     --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
+    --color-scheme-shadow-alpha: -1px 1px #83eaf122, -2px 2px #83eaf133, -3px 3px #83eaf144, -4px 4px #83eaf155;
 }
 /* Оранжевая цветовая гамма */
 .orange__color__scheme{
@@ -61,13 +64,15 @@
     --color-scheme-dark: #eC6f66;
     --color-scheme-gradient: #eC6f66;
     --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
+    --color-scheme-shadow-alpha: -1px 1px #f3a18322, -2px 2px #f3a18333, -3px 3px #f3a18344, -4px 4px #f3a18355;
 }
 
 /* Скрываем скролбар */
-::-webkit-scrollbar{ width: 0 }
+::-webkit-scrollbar{ width: 0; height: 0 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
+/* Немного обнуления */
 button, input, textarea, .ql-editor{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
 a{ text-decoration: none; color: unset; }
 
@@ -79,15 +84,22 @@ h3, .dropdown-input{ font-size: 1.1; font-weight: 500; color: #6A6F78 }
 h4, h6{ font-size: 1.2rem; font-weight: 300; color: #6A6F78}
 p{ font-size: 1rem; font-weight: normal; color: #70757D }
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
-span{ color: var(--text-primary-color) }
+span{ color: var(--text-primary-color); vertical-align: text-bottom }
 
+
+html{
+    width: 100%; height: 100%;
+    /* Плавный скрол страницы */
+    scroll-behavior: smooth;
+}
+  
 /* Основные элементы страницы */
 body{
+    cursor: default;
     background-color: var(--bg-color);
-    position: relative;
-    overflow-y: hidden;
-    height: 100%; width: 100%;
+    height: 100vh; width: 100%;
     font-family: "Google Sans";
+    padding-top: 100px;
 
     /* Запрещает выделять текст */
     -webkit-touch-callout: none;
@@ -104,11 +116,11 @@ body{
     box-shadow: var(--item-shadow);
     border: #0001 solid 1px;
     cursor: pointer;
-    transition-duration: .5s; transition-property: transform, box-shadow;
+    transition-duration: .5s !important; transition-property: transform, box-shadow !important;
 }
 .item:hover{
-    box-shadow: var(--color-scheme-shadow);
-    transform: translateX(4px) translateY(-4px);
+    /* box-shadow: var(--color-scheme-shadow-alpha) !important; */
+    transform: translateX(4px) translateY(-4px) !important;
 }
 
 /* Навигационное меню */
@@ -118,16 +130,14 @@ aside{
     background-color: var(--aside-bg-color);
     box-shadow: 1px 0 1px 0 #0001;
     padding: 15px;
-    z-index: 0;
+    z-index: 2;
 }
 aside #logo{
     width: 60px; height: 60px;
     margin: 15px;
 }
 aside nav{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: flex; flex-direction: column; gap: 10px;
 }
 aside nav button{
     background-color: unset;
@@ -138,10 +148,6 @@ aside nav button{
     color: var(--text-primary-color);
     width: 90px;
 }
-aside nav:last-child{
-    position: absolute;
-    bottom: 15px;
-}
 aside nav button span{ font-size: 20px }
 aside nav button p{ font-size: 14px; color: var(--text-primary-color); font-weight: 500; }
 aside nav button:hover{ background-color: var(--button-bg-hover-color) }
@@ -150,21 +156,23 @@ aside nav .active p, aside nav .active span{ color: var(--color-scheme-dark) }
 
 /* Шапка */
 header{
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
     width: 100%; height: 100px;
-    padding: 25px 45px 25px 195px;
-    display: flex;
-    align-items: center;
+    padding: 25px 55px 25px 190px;
+    display: flex; align-items: center;
     background-color: var(--bg-color);
 }
-/* Панель инструментов */
+
+/* Панель кнопок в шапке */
 header .profile-header{
     display: flex;
     justify-content: flex-end;
     width: calc(100% - 1000px);
 }
 header .toolbar{
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
     padding: 0 10px;
     gap: 5px;
 }
@@ -181,23 +189,18 @@ header .toolbar button:hover{
 }
 /* Профиль */
 header .profile-header .profile{
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    display: flex; gap: 10px; align-items: center;
     position: relative;
     cursor: pointer;
+    background-color: unset;
 }
 header .profile-header .profile .info{
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     text-align: right;
 }
-header .profile-header .profile .info h2{
-    font-size: 1.2rem;
-}
-header .profile-header .profile .info h4{
-    font-size: 1rem;
-}
+header .profile-header .profile .info h2{ font-size: 1.2rem }
+header .profile-header .profile .info h4{ font-size: 1rem }
+
 header .profile-header .profile img{
     width: 44px; height: 44px;
     border-radius: 100%;
@@ -206,8 +209,10 @@ header .profile-header .profile img{
     transition-property: filter;
     position: relative;
 }
+
+/* Иконка выхода из аккаунта при наведении */
 header .profile-header .profile::after{
-    content: '\f218';
+    content: '\f209';
     font-family: "uicons-regular-rounded";
     font-size: 20px;
     position: absolute;
@@ -225,26 +230,23 @@ header .profile-header .profile:hover img{
 }
 
 /* Формы */
-.form{
-    display: none;
-    z-index: 10;
-}
+.form{ display: none }
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
-    background-color: #00000088;
+    background-color: #0008;
+    z-index: 2;
 }
 .form .form-wrapper{
     overflow-y: scroll; padding: 100px 0;
     position: fixed; top: 0; left: calc(50% - 500px);
     height: 100%;
     display: flex;
+    z-index: 3;
 }
 .form .forms__container{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: flex; flex-direction: column; gap: 10px;
     margin: auto 0;
 }
 .form .forms__container > form{
@@ -253,7 +255,7 @@ header .profile-header .profile:hover img{
 .form .form-wrapper form{
     width: 1000px;
     background-color: var(--bg-color);
-    padding: 10px 25px 10px 25px; margin: auto 0;
+    padding: 15px 25px 15px 25px; margin: auto 0;
     border-radius: 10px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
@@ -318,8 +320,78 @@ header .profile-header .profile:hover img{
     border-radius: 10px 10px 0 0;
 }
 
+/* Меню */
+menu{
+    display: none;
+    background-color: var(--item-bg-color);
+    position: absolute; top: 90%;
+    width: 256px; padding: 8px;
+    border-radius: 8px;
+    box-shadow: var(--item-shadow);
+}
+menu > h3{
+    text-align: center;
+    padding: 8px 0;
+}
+menu > button{
+    width: 100%; min-height: 32px;
+    background-color: unset;
+    border-radius: 4px;
+    text-align: left;
+    color: var(--text-primary-color); font-size: 1rem;
+    padding: 8px;
+    transition: .2s;
+
+    display: flex; justify-content: space-between; align-items: center;
+}
+menu > button:hover{
+    background-color: var(--button-bg-hover-color-invert);
+}
+menu > button:last-child:hover{
+    background-color: #FF374B;
+    color: #fff;
+}
+/* Toggle */
+.toggle{
+    height: 16px;
+    width: 32px;
+    border-radius: 16px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    background: linear-gradient(180deg, #eee 0%, #eee 100%);
+    transition: all .2s ease;
+}
+.toggle:after{
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(44,44,44,.4);
+    transition: all .2s cubic-bezier(.5,.1,.75,1.35);
+}
+.dark__theme .toggle.theme{
+    background: #A1D214;
+}
+.dark__theme .toggle.theme:after{
+    transform: translatex(16px);
+}
+.toggle.color-scheme{
+    width: 16px;
+}
+.toggle.color-scheme::after{
+    background-color: var(--color-scheme);
+    box-shadow: none;
+}
+
 /* Разделитель */
-.divider{ margin: 5px 0 }
+.divider{
+    margin: 5px 0;
+    border-color: var(--text-primary-color);
+    opacity: .1;
+}
 
 /* Файлы */
 .files{
@@ -331,10 +403,10 @@ header .profile-header .profile:hover img{
 .file{
     height: 51px;
     border-radius: 100px; border: #0001 solid 1px;
-    padding: 0 0 0 20px;
+    padding-left: 13.5px;
     display: flex; align-items: center;
-    transition-duration: .2s; transition-property: box-shadow;
-    background-color: var(--item-bg-color);
+    transition-duration: .2s; transition-property: transform;
+    background-color: var(--bg-secondary-color);
 }
 /* Название и иконка файла */
 .file .file-info{
@@ -386,18 +458,13 @@ header .profile-header .profile:hover img{
 .file .download-file:hover::before{
     color: #fff;
 }
-.file:hover{ box-shadow: 0 2px 2px 2px #2c3b4f23 }
-.item .file{ background-color: var(--bg-secondary-color); }
-
-
+.file:hover{ transform: scale(1.01); }
+/* .item .file{ background-color: var(--bg-secondary-color); } */
 
 /* Пользователи */
 .users{
     display: flex; gap: 0.33%;
-    align-items: center;
-    position: relative;
     cursor: pointer;
-    width: 100%;
     flex-wrap: wrap;
 }
 .user{
@@ -412,13 +479,12 @@ header .profile-header .profile:hover img{
     background-color: var(--button-bg-active-color);
 }
 .user .info{
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     width: 100%;
 }
 .user .info h2{
-    font-size: 1.1rem; line-height: 1;
-    max-width: 90%;
+    font-size: 1.1rem; line-height: 1; font-weight: 500;
+    max-width: 80%;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .user .info h4{
@@ -426,56 +492,51 @@ header .profile-header .profile:hover img{
     color: #6A6F78;
 }
 .user img{
-    width: 2.2rem; height: 2.2rem;
+    min-width: 2.2rem; max-width: 2.2rem; height: 2.2rem;
     border-radius: 100%;
     object-fit: cover;
 }
+
 /* Выбранные пользователи */
-/* Костыль */
 .selected::before{
     content: "";
     height: 54px;
-    margin-right: -10px;
 }
 .selected .user::after{
     content: "\f143";
-    font-family: "uicons-regular-rounded";
-    color: var(--green);
+    font-family: "uicons-regular-rounded"; color: #A1D214;
     margin: 0 10px;
 }
 .selected .user:hover::after{
     content: "\f15d";
-    font-family: "uicons-regular-rounded";
-    color: red;
+    font-family: "uicons-regular-rounded"; color: red;
     margin: 0 10px;
 }
 
-
-/* Стилизация выпадающего списка */
+/* Поиск пользователей */
 .dropdown-input{
-    font-size: 1.4rem; color: var(--text-primary-color); font-weight: 500;
+    font-size: 1.4rem; color: var(--text-primary-color);
     padding: 10px 20px;
     border-radius: 10px;
     flex-grow: 1;
-    background-color: var(--item-bg-color);
+    background-color: var(--special-ui-elements-color);
+    position: relative;
 }
 .dropdown-input::placeholder{
-    color: var(--text-primary-color);
+    color: #aaa; font-weight: 100;
 }
-/* .dropdown-input::after{
+.dropdown-input::after{
     content: "\f207";
-    font-family: "uicons-regular-rounded";
-    color: #000;
+    font-family: "uicons-regular-rounded"; color: #A1D214;
     margin: 0 10px;
-} */
+}
 .filter-button{
     border-radius: 10px;
     width: 48px; height: 48px;
-    background-color: var(--item-bg-color);
+    background-color: var(--special-ui-elements-color);
 }
 .filter-button > i{
-    font-size: 20px;
-    color: #444;
+    font-size: 20px; color: #444;
 }
 .filter-button.active > i{
     color: var(--color-scheme-dark);
@@ -487,11 +548,10 @@ header .profile-header .profile:hover img{
     height: 90%;
     animation: you_spin_me_right_round 200s infinite;
     z-index: -1000;
+    opacity: .5;
 }
 @media screen and (max-width: 1200px){
-    .bg{
-        display: none;
-    }
+    .bg{ display: none }
 }
 
 /* Адаптивность от бога */
@@ -516,25 +576,6 @@ header .profile-header .profile:hover img{
     align-items: center;
     background-color: #FFEAEC;
     font-weight: 800;
-    cursor: help;
-}
-
-/* Расписание */
-.calendar__timetable .day{
-    border-radius: 10px;
-    padding: 10px 15px;
-    color: #FF374B;
-}
-.calendar__timetable .day-active{
-    background-color: #FF374B;
-    color: #fff;
-}
-.calendar__timetable .day-active time{
-    background-color: #fff;
-    color: #000;
-    padding: 2px 5px;
-    margin: 2px 5px;
-    border-radius: 5px;
 }
 
 /* Кнопка с эффектом нажатия */
@@ -563,6 +604,7 @@ header .profile-header .profile:hover img{
     align-items: center;
     gap: 5px;
     color: var(--text-primary-color);
+    margin-left: auto;
 }
 .date__container h5{
     display: inline-block;
@@ -584,52 +626,30 @@ header .profile-header .profile:hover img{
         margin-left: 0;
         margin-right: auto;
     }
+    body{ padding-top: 175px }
 }
-@media screen and (max-width: 790px){
-    /* aside */
+@media screen and (max-width: 992px){
+
+    /* Перенос сайдбара вниз экрана */
     aside{
         position: fixed; top: calc(100% - 92px); left: 0;
         height: 92px; width: 100%;
-        box-shadow: 1px 0 1px 0 #0001;
+        border-top: 1px solid #0001;
         padding: 15px;
         display: flex;
-        z-index: 1000000;
-    }
-    aside #logo{
-        width: 50px; height: 50px;
-        position: fixed;
-        top: 25px; left: 45px;
-        margin: 0;
-        z-index: -10000;
-    }
-    aside nav{
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
-    aside nav:last-child{
-        position: absolute;
-        right: 15px;
+        z-index: 1;
     }
 
-    /* Формы */
-    .form .form-wrapper form{
-        width: 100%;
-    }
-    .form .form-wrapper{
-        width: 96%;
-        left: 2%;
-    }
+    /* Скрываем логотип из сайдбара */
+    aside #logo{ display: none }
+    aside nav{ display: flex; flex-direction: row; gap: 10px }
+
+    /* Формы во всю ширину экрана */
+    .form .form-wrapper form{ width: 100% }
+    .form .form-wrapper{ width: 96%; left: 2% }
 }
 @media screen and (max-width: 468px){
-    aside nav:last-child{
-        display: none;
-    }
-    aside nav{
-        width: 100%;
-        gap: 1.2%;
-    }
-    aside nav button{
-        width: 19%;
-    }
+    /* Растягиваем кнопки на всю ширину экрана */
+    aside nav{ width: 100%; gap: 1.2% }
+    aside nav button{ width: 19% }
 }

@@ -8,13 +8,14 @@ $('#mail-file').on('click', function(){
 	$('#file-input')[0].click();
 })
 
-// Закрыть форму
-$(document).mouseup(function(event) {
-	let container = $(".form-wrapper");
-    if(container.has(event.target).length === 0 && event.which == 1) {
-        $(".form").hide();
-        $("body").css("position", "unset");
-    }
+// Закрытие меню при клике вне
+$(document).mouseup(function(e) {
+	let menu = $('#settings');
+	let form = $(".form-wrapper");
+	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0 && event.which == 1){
+		$(".form").hide(); $("menu").hide();
+		$("body").css("overflow-y", "scroll");
+	}
 });
 
 // Открыть форму
@@ -114,7 +115,7 @@ $('#send-mail').on('click', function(){
 
 // Смена статуса на "прочитанное"
 function updateMailStatus(mail_id, mail){
-	if(mail.className == 'item new-mail'){
+	if($(mail).hasClass('item new-mail')){
 		$.ajax({
 			type: 'POST',
 			url: change_status,
@@ -124,7 +125,7 @@ function updateMailStatus(mail_id, mail){
 			},
 			cache: false,
 			success: function(){
-				mail.className = 'item old-mail';
+				$(mail).toggleClass('item new-mail item old-mail');
 			}
 		})
 	}
@@ -136,13 +137,16 @@ function buildNewMail(mail){
 
 	// Генерация фалового блока
 	if (mail['files'].length !== 0) {
+		let container_class = 'file'
+		if(mail['files'].length > 2){ container_class = 'file file-mini' }
+
 		let files_container = $('<div class="files" style="width: 100%"></div>')[0]
 
 		for(let i in mail['files']){ // Перебор всех файлов письма
 			// Добавления файлового виджета
-			$(files_container).append(generateMailFile(mail['files'][i]))
+			$(files_container).append(generateMailFile(mail['files'][i], container_class))
 		}
-		$(mail_view).append(files_container)
+		$(mail_view).find('.mail-info').append(files_container)
 	}
 	let mail_detail_view = buildMailView(mail) // Получение детального view
 
@@ -167,7 +171,7 @@ function buildMailView(mail){
 		let file_div = $('<div class="files" style="width: 100%"></div>')[0]
 		for(let i in mail['files']){  // Перебор всех файлов письма
 			// Добавление файла в контейнер с добавкой кнопок "скачать"
-			$(file_div).append($(generateMailFile(mail['files'][i])).append(
+			$(file_div).append($(generateMailFile(mail['files'][i], 'file')).append(
 				$(`<div class="file-btns"><button onclick="window.open('${mail['files'][i]['url']}')" class="download-file" type="button"></button></div></div>`)[0]
 			))
 		}
@@ -184,25 +188,27 @@ function buildMailView(mail){
 function generateMailView(mail, is_mail){
 	let mail_type = 'old-mail'
 	if(!(mail.is_read)){ mail_type = 'new-mail' }
-	return $(`<div class="item ${mail_type}"><div class="item-header"><div class="lesson-title">
-			  <h2>${mail['title']}</h2><h3>${mail['date']}</h3></div><div class="lesson-teacher">
-			  <h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}">
-			  </div></div><p class="item-text">${mail['text']}</p></div>`)[0]
+	return $(`<div class="item ${mail_type}" data-aos="fade-up"><div class="mail-sender">
+			  <img src='${mail["sender"]["image"]}'/><h4>${mail['sender']['name'][1]}<br>${mail['sender']['name'][0]}
+			  </h4></div><div class="mail-info"><div class='item-header'><h2>${mail['title']}</h2>
+			  <h3>${mail['date']}</h3></div><p class='item-text'>${mail['text']}</p></div></div>`)[0]
 }
 
 // Генерация подробного view письма
 function generateMailDetailView(mail){
-	return $(`<div class="form"><div class="form-wrapper"><form><div class="item-header">
-			  <div class="lesson-title"><h2>${mail['title']}</h2></div><div class="lesson-teacher">
-			  <h4>${mail['sender']['name']}</h4><img src="${mail['sender']['image']}"/></div></div>
-			  <div class="ql-snow"><div class="ql-editor"><p class="item-text">${mail['style_text']}</p>
-			  </div></div><div class='date__container'><span class="fi-rr-calendar"></span>
-			  <h5>Дата отправки ${mail['date']}</h5></div></form></div></div>`)[0]
+	return $(`<div class='form'><div class="form-wrapper"><form><div class='item-header'><div class="user">
+			  <img src='${mail["sender"]["image"]}'/><div class="info"><h4>${mail['sender']['permission']}</h4>
+			  <h2>${mail['sender']['name'][1]} ${mail['sender']['name'][0][0]}. ${mail['sender']['name'][2][0]}.</h2>
+			  </div></div><nav><button class='form-btn'><span class='fi-rr-undo'></span>Ответить</button>
+			  <button class='form-btn'><span class='fi-rr-star'></span>Важное</button>
+			  <button class='form-btn'><span class='fi-rr-trash'></span>Удалить</button></nav></div>
+			  <hr class="divider"/><h2>${mail['title']}</h2><p class='item-text'>${mail['text']}</p>
+			  <div class='date__container'><h5>${mail['date']}</h5></div></form></div></div>`)[0]
 }
 
 // Генерация файлов письма
-function generateMailFile(file, is_mail){
-	return $(`<div class="file"><div class="file-info">
+function generateMailFile(file, class_name){
+	return $(`<div class="${class_name}"><div class="file-info">
 			  <i class="file-${file['name'].split('.')[file['name'].split('.').length - 1]}"></i>
 			  <h4>${file['name']}</h4></div>`)[0]
 }

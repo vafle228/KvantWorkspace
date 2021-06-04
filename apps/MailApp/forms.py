@@ -18,7 +18,8 @@ class SendNewMails(forms.Form):
 
             sender = {
                 'image': mail.sender.image.url,
-                'name': ' '.join(mail.sender.__str__().split(' ')[1::]),
+                'permission': mail.sender.permission,
+                'name': [mail.sender.name, mail.sender.surname, mail.sender.patronymic],
             }  # Создание объекта пользователя
             files = [{
                 'url': file.file.url,

@@ -1,12 +1,8 @@
-from PIL import Image
-from io import BytesIO
 from os.path import join
-from sys import getsizeof
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from storages.backends.s3boto3 import S3Boto3Storage
-from django.core.files.uploadedfile import InMemoryUploadedFile
 
 permission = (
     ("Ученик", "Ученик"),
@@ -63,5 +59,3 @@ class KvantAdmin(models.Model):
 
     def __str__(self):
         return self.admin.__str__()
-
-

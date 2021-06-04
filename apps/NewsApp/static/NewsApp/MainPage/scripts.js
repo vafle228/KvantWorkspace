@@ -3,13 +3,23 @@ let file_array = Array()
 let news_preview = undefined
 
 // Открытие формы по нажатию на курс
-$("#widgets .item").click(function(event){
+$("#slider .item").click(function(event){
 	$('#widgets .item').each(function(i, item){
 		if(item == event.target.parentElement || item == event.target){
 			$('#widgets .form')[i].style.display = 'block';
-			$("body").css("position", "fixed");
+			$("body").css("overflow", "hidden");
 		}
 	})
+});
+
+// Закрытие меню при клике вне
+$(document).mouseup(function(e) {
+	let menu = $('#settings');
+	let form = $(".form-wrapper");
+	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0 && event.which == 1){
+		$(".form").hide(); $("menu").hide();
+		$("body").css("overflow-y", "scroll");
+	}
 });
 
 // Добавление файлов по кнопке
@@ -24,19 +34,10 @@ $('#news-preview').on('click', function(){
 	$('#preview-input').click();
 });
 
-// Закрыть форму
-$(document).mouseup(function(event) {
-	let container = $(".form-wrapper");
-    if(container.has(event.target).length === 0 && event.which == 1) {
-        $(".form").hide();
-        $("body").css("position", "unset");
-    }
-});
-
 // Открыть форму
 function open_form(form_id) {
 	$(form_id).show();
-	$("body").css("position", "fixed");
+	$("body").css("overflow", "hidden");
 }
 
 // Генерация представлений файла
@@ -91,12 +92,12 @@ function addNewsPreview(event){
 
 // Генерация новости
 function buildNews(news){
-	return $(`<div class="item" onclick="location.href='/news/${user_id}/detail/${news.id}'">
+	return $(`<div class="item" data-aos="fade-up" onclick="location.href='/news/${user_id}/detail/${news.id}'">
 			  <img src="${news['image']}" alt="preview" class="preview"><div class="item-header">
 			  <div class="news-title"><h2>${news['title']}</h2></div><div class="news-author">
 			  <h4>${news['author']['name']}</h4><img src="${news['author']['img']}" class="profile-img">
 			  </div></div><p>${news['content']}</p><div class='date__container' style='margin-left: auto'>
-			  <h5>${news['date']}</h5><span class="fi-rr-calendar"></span></div></div>`)[0]
+			  <h5>${news['date']}</h5></div></div>`)[0]
 }
 
 // Запрос новостей с сервера
@@ -129,6 +130,7 @@ $('#news-upload').on('click', function(){
 		news_form.append('files', file_array[i]) // Добавление файла в форму
 	}
 
+	news_form.append('author', user_id)
 	news_form.append('image', news_preview) // Превью
 	news_form.append('content', quill.getText()) // Текст
 	news_form.append('csrfmiddlewaretoken', csrf_token) // csfr_token
@@ -143,7 +145,7 @@ $('#news-upload').on('click', function(){
 		processData: false,
     	contentType: false,
 		enctype: "multipart/form-data",
-		success: function(response) { 
+		success: function(response) {
 			location.href = response 
 		}
 	})

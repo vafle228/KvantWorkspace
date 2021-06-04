@@ -6,7 +6,7 @@
     <link rel='stylesheet' href="{% static 'LoginApp/style.css' %}"/>
     <link rel='stylesheet' href="{% static 'LoginApp/uicons-regular-rounded.css' %}" />
     <link rel="stylesheet" href="{% static 'LoginApp/fonts/stylesheet.css' %}">
-    <link rel="shortcut icon" href="{% static 'LoginApp/img/logo.png' %}" type="image/png" /> <!-- Лого -->
+    <link rel="shortcut icon" href="{% static 'LoginApp/logo.png' %}" type="image/png" /> <!-- Лого -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Вход</title>
     <style>
@@ -27,7 +27,7 @@
     <div class="form__container">
         <form data-aos="fade-down" data-aos-easing="ease-in-sine" method="POST" action="{% url 'auth' %}">
             <header>
-                <img src="{% static 'LoginApp/logo.png' %}" id='logo' alt='logo' onclick="reload(this)"/>
+                <img src="{% static 'LoginApp/atom.png' %}" id='logo' alt='logo' onclick="reload(this)"/>
                 <h1>KvantJournal</h1>
             </header>
 

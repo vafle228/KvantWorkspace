@@ -1,12 +1,8 @@
-from PIL import Image
-from io import BytesIO
 from django import forms
-from sys import getsizeof
 from .models import KvantUser
 from django.contrib import messages
-from django.contrib.auth import login
-from django.contrib.auth import authenticate
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from SystemModule.views import format_image
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
@@ -17,35 +13,11 @@ class ImageThumbnailFormMixin:
         if self.instance.image == file:  # Если картинка не менялась
             return file
 
-        image = Image.open(file)  # Открываем картинку
-        width, height = image.size  # Получаем размеры картинки
-        new_image = BytesIO()  # Создаем байтовое представление
-
-        resize = (width * (height // 10 * 3) // height, height // 10 * 3)  # Изменение по высоте
-
-        if width > height:  # Если горизонтальная картинка
-            resize = (width // 10 * 3, height * (width // 10 * 3) // width)  # Изменение по ширине
-
-        image.thumbnail(resize, resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
-        image = image.convert('RGB')  # Убираем все лишние каналы
-        image.save(new_image, format='JPEG', quality=90)  # Конвертируем в JPEG, ибо мало весит
-
-        new_image.seek(0)  # Возвращение в начало файла
-
-        name = f'{file.name.split(".")[0]}.jpeg'  # Имя файла
-
-        # Перезапись файла в базе данных
-        model_image = InMemoryUploadedFile(
-            new_image, 'ImageField',  # Картинка, поля сохранения
-            name, 'image/jpeg',  # Имя картинки, содержание
-            getsizeof(new_image), None  # Размер, доп инфа
-        )
-        # Сохранение через другой save класса
-        return model_image
+        return format_image(file, 0.3)
 
 
 class KvantUserCreationForm(UserCreationForm, ImageThumbnailFormMixin):
-    class Meta(UserCreationForm):
+    class Meta:
         model = KvantUser
         fields = ('username', 'email', 'password', 'name', 'surname', 'patronymic', 'image')
 

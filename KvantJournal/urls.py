@@ -11,7 +11,7 @@ urlpatterns = [
     path('login/', include('LoginApp.urls')),
     path('diary/', include('DiaryApp.urls')),
 
-    path('change/theme/', include('SystemModule.urls')),
+    path('system/', include('SystemModule.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

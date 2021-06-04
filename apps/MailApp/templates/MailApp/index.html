@@ -7,10 +7,11 @@
      <!-- Иконки расширений файлов -->
     {% include "SystemModule/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
-    <link rel="stylesheet" href='{% static "MailApp/highlight.css" %}'>
-    <link rel="stylesheet" href='{% static "MailApp/ql-editor.css" %}'>
+    <link rel="stylesheet" href='{% static "MailApp/text/highlight.css" %}'>
+    <link rel="stylesheet" href='{% static "MailApp/text/ql-editor.css" %}'>
     <link rel="stylesheet" href='{% static "MailApp/style.css" %}'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous">  <!-- Стили для отображения формул -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Почта</title>
 </head>
 
@@ -27,14 +28,15 @@
     </header>
     <!-- Почта -->
     <section id="mail">
-        <main>
-            <div class='day' id='mail_container'>
-                <!-- Тут спавнятся письма -->
-            </div>
+        <main id='mail_container'>
+            <!-- Тут спавнятся письма -->
+            
             <!-- Кнопка "Больше писем" -->
-            <div id="more-mails" class='main-btn' style='margin-top: 25px;'>
+            {% if max_mails|add:"-8" > 0 %}
+            <div id="more-mails" class='main-btn' style='margin: 25px 0;' data-aos="fade-up">
                 <button onclick="getNewMails()">Больше писем</button>
             </div>
+            {% endif %}
         </main>
         <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
         <!-- Форма создания письма -->
@@ -99,9 +101,11 @@
     <!-- Библиотека для перетаскивания -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script src='{% static "MailApp/scripts.js" %}'></script>
-    <script src='{% static "MailApp/options.js" %}'></script>
+    <script src='{% static "MailApp/text/options.js" %}'></script>
+    <script>AOS.init({ offset: -200 })</script>
     <script>
         let max_mails = {{ max_mails }};
     	let send_mail = '{% url "send_mails" user.id %}';

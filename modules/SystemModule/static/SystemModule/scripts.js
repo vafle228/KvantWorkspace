@@ -4,6 +4,11 @@ function reload(logo) {
 	setTimeout("location.reload()", 800);
 }
 
+// Открыть меню
+function open_menu(menu_id) {
+	$(menu_id).show();
+}
+
 // Сменить тему
 function switch_theme(){
 	if($('body').hasClass('light__theme')){
