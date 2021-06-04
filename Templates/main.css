@@ -258,7 +258,7 @@ header .profile-header .profile:hover img{
 .form .form-wrapper form{
     width: 1000px;
     background-color: var(--bg-color);
-    padding: 10px 25px 10px 25px; margin: auto 0;
+    padding: 15px 25px 15px 25px; margin: auto 0;
     border-radius: 10px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
@@ -390,7 +390,11 @@ menu > button:last-child:hover{
 }
 
 /* Разделитель */
-.divider{ margin: 5px 0 }
+.divider{
+    margin: 5px 0;
+    border-color: var(--text-primary-color);
+    opacity: .1;
+}
 
 /* Файлы */
 .files{
@@ -405,7 +409,6 @@ menu > button:last-child:hover{
     padding-left: 13.5px;
     display: flex; align-items: center;
     transition-duration: .2s; transition-property: transform;
-    /* background-color: var(--item-bg-color); */
     background-color: var(--bg-secondary-color);
 }
 /* Название и иконка файла */
@@ -483,8 +486,8 @@ menu > button:last-child:hover{
     width: 100%;
 }
 .user .info h2{
-    font-size: 1.1rem; line-height: 1;
-    max-width: 90%;
+    font-size: 1.1rem; line-height: 1; font-weight: 500;
+    max-width: 80%;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .user .info h4{
