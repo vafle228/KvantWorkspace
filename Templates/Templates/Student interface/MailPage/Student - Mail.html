@@ -18,7 +18,7 @@
     <title>Почта</title>
 </head>
 
-<body class='light__theme blue__color__scheme'>
+<body class='dark__theme blue__color__scheme'>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -52,7 +52,7 @@
             </button>
             <menu id="settings">
                 <h3>Настройки</h3>
-                <button onclick="switch_theme()">Тема<span class="toggle theme"></span>
+                <button onclick="switch_theme()">Темная тема<span class="toggle theme"></span>
                 <button onclick="switch_color_scheme()">Цветовая схема<span class="toggle color-scheme"></span>
                 <button>Выйти</button>
             </menu>
@@ -61,39 +61,67 @@
     <!-- Почта -->
     <section id="mail">
         <main>
-            <div class='day'>
-                <div class="item new-mail" data-aos="fade-up">
+            <div class="item new-mail" data-aos="fade-up">
+                <div class="mail-sender">
+                    <img src='../../../img/Kaelthas.jpg'/>
+                    <h4>Фамилия Имя<br>Отчество</h4>
+                </div>
+                <div class="mail-info">
                     <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
+                        <h2>Тема письма</h2>
+                        <h3>3.06 2021</h3>
                     </div>
                     <p class='item-text'>
                         Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
-                </div>
-                <div class="item new-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
+                    <div class='files'>
+                        <div class="file file-mini">
+                            <div class="file-info">
+                                <i class='file-docx'></i>
+                                <h4>Домашнее задание.docx</h4>
+                            </div>
                         </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
+                        <div class="file file-mini">
+                            <div class="file-info">
+                                <i class='file-pptx'></i>
+                                <h4>Теория.pptx</h4>
+                            </div>
+                        </div>
+                        <div class='file file-mini'>
+                            <div class="file-info">
+                                <i class='file-mov'></i>
+                                <h4>video.mov</h4>
+                            </div>
+                        </div>
+                        <div class='file file-mini'>
+                            <div class="file-info">
+                                <i class='file-mp3'></i>
+                                <h4>audio.mp3</h4>
+                            </div>
+                        </div>
+                        <div class='file file-mini'>
+                            <div class="file-info">
+                                <i class='file-pyc'></i>
+                                <h4>python prog.pyc</h4>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="item old-mail" data-aos="fade-up">
+                <div class="mail-sender">
+                    <img src='../../../img/Kaelthas.jpg'/>
+                    <h4>Фамилия Имя<br>Отчество</h4>
+                </div>
+                <div class="mail-info">
+                    <div class='item-header'>
+                        <h2>Тема письма</h2>
+                        <h3>3.06 2021</h3>
+                    </div>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
-                    <div class="files">
+                    <div class='files'>
                         <div class="file">
                             <div class="file-info">
                                 <i class='file-docx'></i>
@@ -108,125 +136,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
-                            <h3>7.05</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                </div>
             </div>
             <!-- Кнопка "Больше писем" -->
             <div class='main-btn' style='margin: 25px 0;' data-aos="fade-up">
@@ -234,33 +143,29 @@
             </div>
         </main>
         <img src='../../../img/atom.png' class='bg'/>
+
         <!-- Форма просмотра письма -->
         <div class='form'>
             <div class="form-wrapper">
                 <form>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Заголовок</h2>
+                    <div class='item-header mail-header'>
+                        <div class="sender">
+                            <img src='../../../img/Kaelthas.jpg'/>
+                            <div class="info">
+                                <h2>Фамилия Имя Отчество</h2>
+                                <h4>3.06 2021</h4>
+                            </div>
                         </div>
-                        <div class='lesson-teacher'>
-                            <h4>Отправитель</h4>
-                            <img src='../../../img/unnamed.png'/>
-                        </div>
+                        <nav>
+                            <button class='form-btn'><span class='fi-rr-undo'></span>Ответить</button>
+                            <button class='form-btn'><span class='fi-rr-star'></span>Важное</button>
+                            <button class='form-btn'><span class='fi-rr-trash'></span>Удалить</button>
+                        </nav>
                     </div>
+                    <h2>Тема письма</h2>
                     <p class='item-text'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php. Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php. Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
                     </p>
-                    <div class='date__container'>
-                        <h5>Дата отправки: 26.03</h5>
-                        <span class="fi-rr-calendar"></span>
-                    </div>
-                    <hr class='divider'/>
                     <div class='files'>
                         <div class="file">
                             <div class="file-info">
@@ -284,6 +189,7 @@
                 </form>
             </div>
         </div>
+
         <!-- Форма создания письма -->
         <div class='form' id='create-mail-form'>
             <div class="form-wrapper">
@@ -330,14 +236,14 @@
                     <form>
                         <div class='item-header'>
                             <h1>Получатели</h1>
-                            <button class='form-btn' type="submit"><span class="fi-rr-paper-plane"></span>Отправить</button>
+                            <button class='form-btn' type="submit">Отправить</button>
                         </div>
                         <div class="users selected">
                             <!-- Место для выбранных пользователей -->
                         </div>
                         <input class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
                         <div id="editor" class='text-field'></div>
-                        <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
+                        <button class='form-btn' type="button">Документ</button>
                         <div class='files'>
                             <div class="file">
                                 <div class="file-info">
@@ -385,6 +291,12 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init({ offset: -200 })</script>
+
+    <!-- <script type="module">
+        import pointers from 'https://cdn.skypack.dev/morphing-pointer@0.4.0';
+
+        new pointers.MorphingPointer().init()
+    </script> -->
 </body>
 
 </html>

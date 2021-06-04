@@ -112,7 +112,7 @@
 		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
 		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
 		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(90deg, var(--color-scheme), var(--color-scheme-gradient));
+		linear-gradient(90deg, var(--color-scheme-gradient), var(--color-scheme));
 	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
     display: flex; flex-direction: column; gap: 10px;
 }

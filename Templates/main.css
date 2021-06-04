@@ -89,14 +89,18 @@ p{ font-size: 1rem; font-weight: normal; color: #70757D }
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 span{ color: var(--text-primary-color); vertical-align: text-bottom }
 
-/* Плавный скрол страницы */
-html{ scroll-behavior: smooth }
+
+html{
+    width: 100%; height: 100%;
+    /* Плавный скрол страницы */
+    scroll-behavior: smooth;
+}
   
 /* Основные элементы страницы */
 body{
+    cursor: default;
     background-color: var(--bg-color);
-    position: relative;
-    height: 100%; width: 100%;
+    height: 100vh; width: 100%;
     font-family: "Google Sans";
     padding-top: 100px;
 
@@ -382,6 +386,7 @@ menu > button:last-child:hover{
 }
 .toggle.color-scheme::after{
     background-color: var(--color-scheme);
+    box-shadow: none;
 }
 
 /* Разделитель */
@@ -397,10 +402,11 @@ menu > button:last-child:hover{
 .file{
     height: 51px;
     border-radius: 100px; border: #0001 solid 1px;
-    padding: 0 0 0 20px;
+    padding-left: 13.5px;
     display: flex; align-items: center;
-    transition-duration: .2s; transition-property: box-shadow;
-    background-color: var(--item-bg-color);
+    transition-duration: .2s; transition-property: transform;
+    /* background-color: var(--item-bg-color); */
+    background-color: var(--bg-secondary-color);
 }
 /* Название и иконка файла */
 .file .file-info{
@@ -452,18 +458,13 @@ menu > button:last-child:hover{
 .file .download-file:hover::before{
     color: #fff;
 }
-.file:hover{ box-shadow: 0 2px 2px 2px #2c3b4f23 }
-.item .file{ background-color: var(--bg-secondary-color); }
-
-
+.file:hover{ transform: scale(1.01); }
+/* .item .file{ background-color: var(--bg-secondary-color); } */
 
 /* Пользователи */
 .users{
     display: flex; gap: 0.33%;
-    align-items: center;
-    position: relative;
     cursor: pointer;
-    width: 100%;
     flex-wrap: wrap;
 }
 .user{
@@ -478,8 +479,7 @@ menu > button:last-child:hover{
     background-color: var(--button-bg-active-color);
 }
 .user .info{
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     width: 100%;
 }
 .user .info h2{
@@ -498,29 +498,24 @@ menu > button:last-child:hover{
 }
 
 /* Выбранные пользователи */
-/* Костыль */
 .selected::before{
     content: "";
     height: 54px;
-    margin-right: -10px;
 }
 .selected .user::after{
     content: "\f143";
-    font-family: "uicons-regular-rounded";
-    color: #A1D214;
+    font-family: "uicons-regular-rounded"; color: #A1D214;
     margin: 0 10px;
 }
 .selected .user:hover::after{
     content: "\f15d";
-    font-family: "uicons-regular-rounded";
-    color: red;
+    font-family: "uicons-regular-rounded"; color: red;
     margin: 0 10px;
 }
 
-
-/* Стилизация выпадающего списка */
+/* Поиск пользователей */
 .dropdown-input{
-    font-size: 1.4rem; color: var(--text-primary-color); font-weight: 500;
+    font-size: 1.4rem; color: var(--text-primary-color);
     padding: 10px 20px;
     border-radius: 10px;
     flex-grow: 1;
@@ -528,27 +523,20 @@ menu > button:last-child:hover{
     position: relative;
 }
 .dropdown-input::placeholder{
-    color: #444;
+    color: #aaa; font-weight: 100;
 }
-/* .dropdown-input::after{
+.dropdown-input::after{
     content: "\f207";
-    font-family: "uicons-regular-rounded";
-    color: #A1D214;
+    font-family: "uicons-regular-rounded"; color: #A1D214;
     margin: 0 10px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-} */
+}
 .filter-button{
     border-radius: 10px;
     width: 48px; height: 48px;
     background-color: var(--special-ui-elements-color);
 }
 .filter-button > i{
-    font-size: 20px;
-    color: #444;
+    font-size: 20px; color: #444;
 }
 .filter-button.active > i{
     color: var(--color-scheme-dark);
@@ -588,24 +576,6 @@ menu > button:last-child:hover{
     align-items: center;
     background-color: #FFEAEC;
     font-weight: 800;
-}
-
-/* Расписание */
-.calendar__timetable .day{
-    border-radius: 10px;
-    padding: 8px;
-    color: #FF374B;
-}
-.calendar__timetable .day-active{
-    background-color: #FF374B;
-    color: #fff;
-}
-.calendar__timetable .day-active time{
-    background-color: #fff;
-    color: #000;
-    padding: 2px 5px;
-    margin: 2px 5px;
-    border-radius: 5px;
 }
 
 /* Кнопка с эффектом нажатия */
