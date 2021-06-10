@@ -1,5 +1,5 @@
 /* Дневник */
-#diary { padding-left: 190px }
+#diary { padding-left: 304px }
 
 /* Шапка секции */
 header .page-header{
@@ -35,7 +35,7 @@ header .page-header .week-selector .main-btn .btn span{
 /* Занятия */
 #diary main {
     width: 1000px;
-    padding: 0 10px 100px;
+    padding: 25px 10px 100px;
     display: flex;
     flex-direction: column;
     gap: 10px;

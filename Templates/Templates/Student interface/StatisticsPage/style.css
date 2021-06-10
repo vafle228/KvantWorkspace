@@ -1,9 +1,11 @@
 /* Статистика */
-#statistics{ padding-left: 190px }
+#statistics{ padding-left: 304px }
+
+
 header .page-header{
     display: flex;
     justify-content: space-between;
-    width: 800px;
+    width: 1000px;
     padding: 0 10px;
 }
 #statistics main{

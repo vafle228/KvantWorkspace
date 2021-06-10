@@ -8,23 +8,17 @@
 /* Виджеты */
 #widgets{
     width: 100%; height: 350px;
-    background-color: var(--bg-secondary-color);
-    padding: 25px 45px 25px 195px;
+    padding: 25px 45px 25px 304px;
     display: flex;
-}
-#widgets > div{
-    position: relative;
-    box-shadow: var(--item-shadow);
-    border-radius: 10px;
-    height: 300px;
 }
 
 /* Виджет "Календарь" */
 #calendar-widget{
-    flex: 1;
+    width: 100%;
     background-color: var(--item-bg-color);
-    margin-right: 2%;
     display: flex;
+    box-shadow: var(--item-shadow);
+    border-radius: 10px;
 }
 #calendar-widget .calendar-container{
     background-color: var(--color-scheme);
@@ -103,47 +97,56 @@
     text-overflow: ellipsis;
 }
 
-/* Виджет "Твои курсы" */
-#widgets #courses-manager{
-    width: 775px;
-    padding: 25px 20px 25px 25px;
-    background-color: var(--color-scheme);
-    background-image: 
-		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
-		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(90deg, var(--color-scheme-gradient), var(--color-scheme));
-	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
+/* ===== Расписнаие ===== */
+#schedule{
+    width: 100%;
+    padding: 25px 45px 0 304px;
+}
+#schedule .widget-header::after{
+    content: "";
+    width: 10px; height: 240px;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, var(--bg-color));
+    position: absolute; right: 0; top: 40px;
+    z-index: 1;
+}
+#schedule .widget-header::before{
+    content: "";
+    width: 10px; height: 240px;
+    background: linear-gradient(90deg, var(--bg-color) 0%, rgba(0,0,0,0));
+    position: absolute; left: 0; top: 40px;
+    z-index: 1;
+}
+#schedule .schedule-widget{
+    width: 100%;
     display: flex; flex-direction: column; gap: 10px;
 }
-#widgets #courses-manager .widget-header{
+#schedule .widget-header{
     display: flex; justify-content: space-between;
+    position: relative;
 }
-#widgets #courses-manager #slider{
-    width: calc(100% + 5px);
+#schedule #slider{
     display: flex;
     overflow-x: auto;
-    padding-top: 10px;
+    padding: 25px 25px 25px 0;
 }
 #slider-controller{
-    display: flex; align-items: center; gap: 10px;
-    margin-right: 5px;
+    display: flex; align-items: center; gap: 8px;
+    margin-right: 4px;
 }
 #next, #prev{
     height: 30px; width: 30px;
-    background-color: var(--button-bg-color-invert);
+    background-color: var(--button-bg-color);
     border-radius: 5px;
     padding: 4px;
     font-size: 22px;
     transition: .2s transform;
 }
-#next:hover, #prev:hover{ transform: scale(1.2); background-color: var(--button-bg-hover-color-invert) }
+#next:hover, #prev:hover{ transform: scale(1.2); background-color: var(--button-bg-active-color); }
 
-/* Курс */
+/* Направление */
 .course{
     min-width: 225px; max-width: 225px; height: 190px;
     margin-right: 25px;
-    border: none;
     position: relative;
 }
 .course:last-of-type{
@@ -170,7 +173,7 @@
     position: absolute;
     width: 100%; height: 100px;
     padding: 16px;
-    background-color: #0005;
+    background-color: #0003;
     border-radius: 10px 10px 0 0;
 }
 .course .course__info h2{
@@ -203,10 +206,10 @@
     display: flex; align-items: center; gap: 8px;
 }
 
-/* Новости */
+/* ===== Новости ===== */
 #news{
     width: 100%;
-    padding: 25px 45px 25px 195px;
+    padding: 25px 45px 25px 304px;
     display: flex; flex-direction: column; gap: 25px;
 }
 #news__container{
@@ -264,24 +267,17 @@
     header{
         flex-direction: column-reverse; gap: 25px;
         height: 100px;
+        padding: 25px 45px
     }
     header .profile-header{
         width: 1000px;
         margin-right: auto;
         padding: 0 10px;
     }
-
-    /* Виджеты */
-    #widgets{ height: 675px; gap: 25px; flex-direction: column }
-    #widgets #courses-manager{ width: 100% }
-    #calendar-widget{ margin-right: 0 }
+    header .page-header, header .profile-header{ width: 100% }
 
     /* Секции */
-    #widgets, #news{ padding-left: 45px }
-
-    /* Шапка */
-    header{ padding: 25px 45px }
-    header .page-header, header .profile-header{ width: 100% }
+    #widgets, #news, #schedule{ padding-left: 45px } 
 }
 @media screen and (max-width: 576px){
     /* Новости */

@@ -22,20 +22,47 @@
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
-        <img src='../../../img/atom.png' id='logo' alt='logo' onclick="reload(this)" />
+        <div id="logo">
+            <img src='../../../img/atom.png' alt='logo' onclick="reload(this)"/>
+            <h1>KvantJournal</h1>
+        </div>
         <!-- Навигация -->
         <nav>
-            <button><span class="fi fi-rr-apps"><p>Главная</p></button>
-            <button class='active'><span class="fi fi-rr-book-alt"><p>Дневник</p></button>
-            <button><span class="fi fi-rr-envelope"><p>Почта</p></button>
-            <button><span class="fi fi-rr-stats"><p>Отчеты</p></button>
-            <button><span class="fi-rr-trophy"><p>Портфолио</p></button>
+            <button>
+                <p>Главная</p>
+                <svg viewBox="0 0 24 24"><rect width="11" height="11" rx="4"/><rect x="13" width="11" height="11" rx="4"/><rect y="13" width="11" height="11" rx="4"/><rect x="13" y="13" width="11" height="11" rx="4"/></svg>
+            </button>
+            <button class='active'>
+                <p>Дневник</p>
+                <svg viewBox="0 0 24 24"><path d="M22.2,2.163a5,5,0,0,0-4.157-1.069l-1.764.432A4,4,0,0,0,13,5.461V20.928a6.909,6.909,0,0,1-2,0V5.461A3.981,3.981,0,0,0,7.774,1.538L5.9,1.082A5,5,0,0,0,0,6V16.793a5,5,0,0,0,4.105,4.919l6.286,1.143a9,9,0,0,0,3.218,0L19.9,21.712A5,5,0,0,0,24,16.793V6A4.983,4.983,0,0,0,22.2,2.163Z"/></svg>
+            </button>
+            <button>
+                <p>Почта</p>
+                <svg viewBox="0 0 24 24"><path d="M23.954,5.542,15.536,13.96a5.007,5.007,0,0,1-7.072,0L.046,5.542C.032,5.7,0,5.843,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6C24,5.843,23.968,5.7,23.954,5.542Z"/><path d="M14.122,12.546l9.134-9.135A4.986,4.986,0,0,0,19,1H5A4.986,4.986,0,0,0,.744,3.411l9.134,9.135A3.007,3.007,0,0,0,14.122,12.546Z"/></svg>
+            </button>
+            <button>
+                <p>Отчеты</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 478"><path d="M119.5,187.75H17.1c-9.4,0-17,7.6-17.1,17.1v256c0,9.5,7.7,17.1,17.1,17.1h102.4c9.5,0,17.1-7.7,17.1-17.1v-256 C136.6,195.35,128.9,187.75,119.5,187.75z"/><path d="M290.2,0.05H187.8c-9.4,0-17.1,7.6-17.1,17v443.8c0,9.5,7.7,17.1,17.1,17.1h102.4c9.5,0,17.1-7.7,17.1-17.1V17.15 C307.3,7.65,299.6,0.05,290.2,0.05z"/><path d="M460.9,136.55H358.5c-9.5,0-17.1,7.6-17.1,17.1v307.2c0,9.5,7.7,17.1,17.1,17.1h102.4c9.5,0,17.1-7.7,17.1-17.1v-307.2 C478,144.15,470.3,136.55,460.9,136.55z"/></svg>
+            </button>
+            <button>
+                <p>Портфолио</p>
+                <svg viewBox="0 0 24 24"><path d="M14.09,16H15c6.643,0,9-3.5,9-6.5a3.5,3.5,0,0,0-2.84-3.433,7.564,7.564,0,0,0,.409-1,3.887,3.887,0,0,0-.626-3.458A3.979,3.979,0,0,0,17.729,0H6.271A3.979,3.979,0,0,0,3.057,1.612,3.887,3.887,0,0,0,2.431,5.07a7.564,7.564,0,0,0,.409,1A3.5,3.5,0,0,0,0,9.5c0,3,2.357,6.5,9,6.5h.91a5.027,5.027,0,0,1,.09.921V20a1.883,1.883,0,0,1-2,2H6a1,1,0,0,0,0,2H18a1,1,0,0,0,0-2H16.006A1.885,1.885,0,0,1,14,20V16.92A5.025,5.025,0,0,1,14.09,16Zm1.636-2.851a23.486,23.486,0,0,0,4.4-5.225A1,1,0,0,0,20.5,8,1.5,1.5,0,0,1,22,9.5c0,2.176-1.839,4.5-7,4.5h-.056A4.805,4.805,0,0,1,15.726,13.149ZM9,14c-5.161,0-7-2.324-7-4.5A1.5,1.5,0,0,1,3.5,8a1,1,0,0,0,.375-.076,23.486,23.486,0,0,0,4.4,5.225A4.805,4.805,0,0,1,9.056,14Z"/></svg>
+            </button>
+        </nav>
+        <nav>
+            <button>
+                <p>Настройки</p>
+                <svg viewBox="0 0 24 24"><path d="M1.607,18a3,3,0,0,0,4.1,1.1l.445-.257A8.977,8.977,0,0,0,9,20.487V21a3,3,0,0,0,6,0v-.513a8.977,8.977,0,0,0,2.848-1.646l.447.258a3,3,0,0,0,3-5.2l-.444-.256a9.1,9.1,0,0,0,0-3.29l.444-.256a3,3,0,1,0-3-5.2l-.445.257A8.977,8.977,0,0,0,15,3.513V3A3,3,0,0,0,9,3v.513A8.977,8.977,0,0,0,6.152,5.159L5.705,4.9a3,3,0,0,0-3,5.2l.444.256a9.1,9.1,0,0,0,0,3.29l-.444.256A3.006,3.006,0,0,0,1.607,18ZM12,8a4,4,0,1,1-4,4A4,4,0,0,1,12,8Z"/></svg>
+            </button>
         </nav>
     </aside>
     <!-- Шапка -->
     <header>
         <div class='page-header'>
-            <span class="fi fi-rr-book-alt" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 10px;'>Дневник</h1></span>
+            <div>
+                <svg viewBox="0 0 24 24"><path d="M22.2,2.163a5,5,0,0,0-4.157-1.069l-1.764.432A4,4,0,0,0,13,5.461V20.928a6.909,6.909,0,0,1-2,0V5.461A3.981,3.981,0,0,0,7.774,1.538L5.9,1.082A5,5,0,0,0,0,6V16.793a5,5,0,0,0,4.105,4.919l6.286,1.143a9,9,0,0,0,3.218,0L19.9,21.712A5,5,0,0,0,24,16.793V6A4.983,4.983,0,0,0,22.2,2.163Z"/></svg>
+                <h1 style='display: inline-block; margin-left: 8px'>Дневник</h1>
+            </div>
             <div class="week-selector">
                 <div class='main-btn'><button class='btn'><span class="fi-rr-angle-double-small-left"></span></button></div>
                 <div class='main-btn'><button class="weeks">01.02 - 07.02</button></div>
@@ -44,8 +71,12 @@
         </div>
         <div class='profile-header'>
             <nav class='toolbar'>
-                <button><span class="fi-rr-list-check"></button>
-                <button><span class="fi fi-rr-bell"></button>
+                <button>
+                    <svg viewBox="0 0 24 24"><path d="M4,22a2.982,2.982,0,0,1-2.122-.879L.334,19.747a1,1,0,0,1,1.332-1.494l1.585,1.414a1,1,0,0,0,1.456.04l3.6-3.431a1,1,0,1,1,1.378,1.448L6.1,21.138A2.964,2.964,0,0,1,4,22Zm19-1H13a1,1,0,0,1,0-2H23a1,1,0,0,1,0,2ZM4,14a2.982,2.982,0,0,1-2.122-.879L.293,11.536a1,1,0,0,1,1.414-1.414l1.586,1.585a1.023,1.023,0,0,0,1.414,0l3.6-3.431A1,1,0,1,1,9.689,9.724L6.1,13.138A2.964,2.964,0,0,1,4,14Zm19-1H13a1,1,0,0,1,0-2H23a1,1,0,0,1,0,2ZM4,6a2.982,2.982,0,0,1-2.122-.879L.334,3.747A1,1,0,0,1,1.666,2.253L3.251,3.667a1,1,0,0,0,1.456.04L8.311.276A1,1,0,0,1,9.689,1.724L6.1,5.138A2.964,2.964,0,0,1,4,6ZM23,5H13a1,1,0,0,1,0-2H23a1,1,0,0,1,0,2Z"/></svg>
+                </button>
+                <button>
+                    <svg viewBox="0 0 24 24"><path d="M7.424,21a4.99,4.99,0,0,0,9.152,0Z"/><path d="M22.392,12.549,20.656,6.826A9.321,9.321,0,0,0,2.58,7.28L1.232,12.817A5,5,0,0,0,6.09,19H17.607a5,5,0,0,0,4.785-6.451Z"/></svg>
+                </button>
             </nav>
             <button class="profile" onclick="open_menu('#settings')">
                 <div class="info">
@@ -65,136 +96,96 @@
     <!-- Дневник -->
     <section id="diary">
         <main>
-            <div class='day' data-aos='fade-up'>
-                <h3>BT 02.02.2021</h3>
-                <div class="item disease" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>Предмет</h2>
-                            <h3>18:20</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                </div>
-            </div>
-            <div class='day' data-aos='fade-up'>
-                <h3>BT 02.02.2021</h3>
-                <div class="item absence" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                </div>
-                <div class="item one" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                </div>
-            </div>
-            <div class='day' data-aos='fade-up'>
-                <h3>BT 02.02.2021</h3>
-                <div class="item four" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                    <div class="files" style='width: 100%'>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-docx'></i>
-                                <h4>Домашнее задание.docx</h4>
-                            </div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-pptx'></i>
-                                <h4>Теория.pptx</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="container">
                 <div class="item two" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
+                    <div class="lesson-kvantum">
+                        <img src='../../../img/logo.png'/>
+                        <h4>Фамилия Имя<br>Отчество</h4>
+                    </div>
+                    <div class="lesson-info">
+                        <div class='item-header'>
+                            <div class='lesson-title'>
+                                <h2>Предмет</h2>
+                                <h3>18:20</h3>
+                            </div>
+                            <div class='lesson-teacher'>
+                                <h4>Фамилия И. О.</h4>
+                                <img src='../../../img/user_profile_male.jpg'/>
+                            </div>
                         </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
+                        <p class='item-text'>
+                            Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
+                            Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
+                        </p>
+                        <div class='files'>
+                            <div class="file file-mini">
+                                <div class="file-info">
+                                    <i class='file-docx'></i>
+                                    <h4>Домашнее задание.docx</h4>
+                                </div>
+                            </div>
+                            <div class="file file-mini">
+                                <div class="file-info">
+                                    <i class='file-pptx'></i>
+                                    <h4>Теория.pptx</h4>
+                                </div>
+                            </div>
+                            <div class='file file-mini'>
+                                <div class="file-info">
+                                    <i class='file-mov'></i>
+                                    <h4>video.mov</h4>
+                                </div>
+                            </div>
+                            <div class='file file-mini'>
+                                <div class="file-info">
+                                    <i class='file-mp3'></i>
+                                    <h4>audio.mp3</h4>
+                                </div>
+                            </div>
+                            <div class='file file-mini'>
+                                <div class="file-info">
+                                    <i class='file-pyc'></i>
+                                    <h4>python prog.pyc</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
                 </div>
-            </div>
-            <div class='day' data-aos='fade-up'>
-                <h3>BT 02.02.2021</h3>
-                <div class="item absence" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
+                <div class="item four" data-aos='fade-up'>
+                    <div class="lesson-kvantum">
+                        <img src='../../../img/logo.png'/>
+                        <h4>Фамилия Имя<br>Отчество</h4>
+                    </div>
+                    <div class="lesson-info">
+                        <div class='item-header'>
+                            <div class='lesson-title'>
+                                <h2>Предмет</h2>
+                                <h3>18:20</h3>
+                            </div>
+                            <div class='lesson-teacher'>
+                                <h4>Фамилия И. О.</h4>
+                                <img src='../../../img/user_profile_male.jpg'/>
+                            </div>
                         </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
+                        <p class='item-text'>
+                            Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
+                            Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
+                        </p>
+                        <div class='files'>
+                            <div class="file">
+                                <div class="file-info">
+                                    <i class='file-docx'></i>
+                                    <h4>Домашнее задание.docx</h4>
+                                </div>
+                            </div>
+                            <div class="file">
+                                <div class="file-info">
+                                    <i class='file-pptx'></i>
+                                    <h4>Теория.pptx</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                </div>
-                <div class="item three" data-aos='fade-up'>
-                    <div class='item-header'>
-                        <div class='lesson-title'>
-                            <h2>IT</h2>
-                            <h3>18:20</h3>
-                        </div>
-                        <div class='lesson-teacher'>
-                            <h4>Педагог</h4>
-                            <img src='../../../img/unnamed.png' />
-                        </div>
-                    </div>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
                 </div>
             </div>
         </main>
@@ -210,7 +201,7 @@
                         </div>
                         <div class='lesson-teacher'>
                             <h4>Зарывных П. С</h4>
-                            <img src='../../../img/unnamed.png' />
+                            <img src='../../../img/user_profile_male.jpg' />
                         </div>
                     </div>
                     <p class='item-text'>
@@ -219,45 +210,27 @@
                     <hr class='divider'/>
                     <div class="item-header">
                         <h2>Домашнее задание</h2>
-                        <button class='form-btn' type="submit"><span class="fi-rr-paper-plane"></span>Сдать</button>
+                        <button class='form-btn' type="submit">
+                            <svg height="512" viewBox="0 0 24 24" width="512"><path fill='#0066CC' d="m8.75 17.612v4.638c0 .324.208.611.516.713.077.025.156.037.234.037.234 0 .46-.11.604-.306l2.713-3.692z"/><path fill='#0066CC' d="m23.685.139c-.23-.163-.532-.185-.782-.054l-22.5 11.75c-.266.139-.423.423-.401.722.023.3.222.556.505.653l6.255 2.138 13.321-11.39-10.308 12.419 10.483 3.583c.078.026.16.04.242.04.136 0 .271-.037.39-.109.19-.116.319-.311.352-.53l2.75-18.5c.041-.28-.077-.558-.307-.722z"/></svg>
+                            <p>Сдать</p>
+                        </button>
                     </div>  
                     <textarea class='text-field' autocomplete="off" placeholder="Комментарий"></textarea>
-                    <button class='form-btn' type="button"><span class="fi-rr-clip"></span>Документ</button>
+                    <button class='form-btn' type="button">
+                        <svg viewBox="0 0 24 24"><path d="M22.95,9.6a1,1,0,0,0-1.414,0L10.644,20.539a5,5,0,1,1-7.072-7.071L14.121,2.876a3,3,0,0,1,4.243,4.242L7.815,17.71a1.022,1.022,0,0,1-1.414,0,1,1,0,0,1,0-1.414l9.392-9.435a1,1,0,0,0-1.414-1.414L4.987,14.882a3,3,0,0,0,0,4.243,3.073,3.073,0,0,0,4.243,0L19.778,8.532a5,5,0,0,0-7.071-7.07L2.158,12.054a7,7,0,0,0,9.9,9.9L22.95,11.018A1,1,0,0,0,22.95,9.6Z"/></svg>
+                        <p>Документ</p>
+                    </button>
                     <div class='files'>
                         <div class="file">
                             <div class="file-info">
-                                <i class='file-java'></i>
-                                <h4>java prog.java</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class="del-file"></button>
-                            </div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-xml'></i>
-                                <h4>excel document.xml</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class="del-file"></button>
+                                <i class='file-docx'></i>
+                                <h4>Домашнее задание.docx</h4>
                             </div>
                         </div>
                         <div class="file">
                             <div class="file-info">
                                 <i class='file-pptx'></i>
-                                <h4>presentation.pptx</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class="del-file"></button>
-                            </div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-doc'></i>
-                                <h4>document.doc</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class="del-file"></button>
+                                <h4>Теория.pptx</h4>
                             </div>
                         </div>
                     </div>

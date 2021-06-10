@@ -6,8 +6,9 @@ function reload(logo) {
 
 // Закрытие форм и меню при клике вне
 $(document).mouseup(function (e) {
-	var container = $(".form-wrapper");
-	if (container.has(e.target).length === 0 && $('#settings').has(e.target).length === 0) {
+	var form = $(".form-wrapper");
+	var menu = $("menu");
+	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0) {
 		$(".form").hide();
 		$("menu").hide();
 		$("body").css("overflow-y", "scroll");
@@ -32,8 +33,8 @@ $("#diary .item").click(function () {
 });
 
 // Открытие формы по нажатию на курс
-$("#widgets .item").click(function () {
-	$('#widgets .form')[0].style.display = 'block';
+$("#schedule .item").click(function () {
+	$('#schedule .form')[0].style.display = 'block';
 	$("body").css("overflow", "hidden");
 });
 
@@ -95,7 +96,7 @@ function switch_theme() {
 	}
 }
 
-// Сменить цветовую гамму
+// Сменить цветовую схему
 function switch_color_scheme() {
 	if ($('body').hasClass('blue__color__scheme')) {
 		$('.blue__color__scheme').toggleClass('blue__color__scheme orange__color__scheme');

@@ -1,5 +1,5 @@
 /* Дневник */
-#diary { padding-left: 190px }
+#diary { padding-left: 304px }
 
 /* Шапка секции */
 header .page-header{
@@ -35,93 +35,105 @@ header .page-header .week-selector .main-btn .btn span{
 /* Занятия */
 #diary main {
     width: 1000px;
-    padding: 0 10px 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    padding: 25px 10px 100px;
 }
-#diary main .day{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+#diary .container{
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 5px;
 }
-#diary main .day > h3 {
-    text-align: right;
-}
-#diary main .day .item {
-    padding: 10px 25px 15px 25px;
+
+#diary main .item {
     position: relative;
     border: #0001 solid 1px;
     display: flex;
-    flex-direction: column;
-    gap: 5px;
 }
-#diary main .day .item .item-header {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
+.lesson-kvantum{
+    background-image: 
+    linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
+    linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+    linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+    linear-gradient(90deg, var(--color-scheme-gradient), var(--color-scheme));
+    background-size: 100px 100px, 115px 100px, 115px 100px, auto;
+    width: 156px;
+    border-radius: 10px 0 0 10px;
+    padding: 16px;
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
 }
-#diary main .day .item .item-header .lesson-title h2 {
-    display: inline-block;
-    margin-right: 10px;
+.lesson-kvantum img{
+    width: 96px; height: 96px;
+    object-fit: cover;
+    /* border: #fff6 solid 4px; border-radius: 50%; */
 }
-#diary main .day .item .item-header .lesson-title h3 {
-    color: var(--color-scheme-dark);
-    font-weight: bold;
-    display: inline-block;
+.lesson-kvantum h4{
+    color: #fff; font-size: 1rem; text-align: center;
 }
-#diary main .day .item .item-header .lesson-teacher {
-    display: flex; 
-    align-items: center;
+.lesson-info{
+    width: calc(100% - 156px); height: 100%;
+    padding: 16px 24px 16px 16px;
+    display: flex; flex-direction: column; gap: 8px;
 }
-#diary main .day .item .item-header .lesson-teacher img {
+
+.lesson-info .item-header{
+    display: flex; align-items: center; justify-content: space-between;
+    height: 32px;
+}
+.lesson-info .item-header .lesson-title{
+    display: flex; align-items: center; gap: 8px;
+}
+.lesson-info .item-header h2{
+    max-width: 84%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lesson-info .item-header h3{
+    color: var(--color-scheme-dark); font-weight: bold;
+    margin-top: 4px;
+    min-width: 16%;
+    white-space: nowrap;
+}
+.lesson-info .item-header .lesson-teacher{
+    display: flex; align-items: center; gap: 8px;
+}
+.lesson-info .item-header .lesson-teacher img{
     width: 32px; height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
-#diary main .day .item .item-header .lesson-teacher h4 {
-    display: inline-block;
-    margin-right: 10px;
+.lesson-info .item-header .lesson-teacher h4{
     font-size: 16px;
 }
-#diary main .day .item .files{
-    margin-top: 10px;
+.lesson-info .files{
+    margin-top: 8px;
 }
-#diary main .day .item .item-text{
+.lesson-info .files .file:hover{
+    transform: none;
+}
+.lesson-info .item-text{
     overflow: hidden;
-    text-align: justify;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
+
 /* Псевдоэлемент оценки */
-.day > .item::after, form::after {
+#diary main .item::after, form::after {
     content: '';
     position: absolute;
     right: 0; top: 0;
-    height: 100%; width: 10px;
-    border-radius: 0 10px 10px 0;
+    height: 100%; width: 8px;
+    border-radius: 0 8px 8px 0;
 }
 .four::after { background-color: #33B679 } /* Идеально */
-.three::after { background-color: #F4511E } /* С замечаниями */
-.two::after { background-color: #F6BF26 } /* Сойдет */
+.three::after { background-color:  #F6BF26 } /* С замечаниями */
+.two::after { background-color: #F4511E } /* Сойдет */
 .one::after { background-color: #D50000 } /* Плохо */
 .absence::after { background-color: #3F51B5 } /* Отсутствие */
 .disease::after { background-color: #8E24AA } /* Отсутствие по болезни */
 
 
-@media screen and (max-width: 790px){
-    #diary main, #diary, header{
-        width: 100%;
-    }
-    #diary{
-        padding: 0 45px;
-    }
-    header{
-        padding: 25px 45px;
-    }
-    header .page-header, header .profile-header{
-        width: 100%;
-    }
+/* Адаптивность */
+@media screen and (max-width: 992px){
+    #diary main, #diary, header{ width: 100% }
+    #diary{ padding: 0 45px }
+    header{ padding: 25px 45px }
+    header .page-header, header .profile-header{ width: 100% }
 }

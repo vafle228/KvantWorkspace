@@ -5,7 +5,7 @@
     display: none;
 }
 .form .form-wrapper{
-    position: fixed; top: 0; left: 190px;
+    position: fixed; top: 0; left: 304px;
 }
 .form .form-wrapper form{
     background-color: var(--item-bg-color);

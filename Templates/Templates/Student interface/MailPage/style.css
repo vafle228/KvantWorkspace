@@ -1,12 +1,31 @@
 /* Почта */
-#mail { padding-left: 190px }
+#mail { padding-left: 304px }
 
 /* Шапка секции */
 header .page-header{
     display: flex; justify-content: space-between;
     width: 1000px;
     padding: 0 10px; margin-right: auto;
+    position: relative;
 }
+header .page-header > div{
+    height: 100%;
+    display: flex; align-items: center;
+}
+header .page-header > div > p{
+    background-color: var(--button-bg-color);
+    padding: 0 16px;
+    display: flex; align-items: center;
+    border-radius: 8px;
+}
+header .page-header > div > p svg{
+    margin-left: 4px;
+}
+#mail-tabs{ right: 150px }
+#mail-tabs button div{
+    display: flex; align-items: center; gap: 8px;
+}
+
 header .page-header .main-btn{
     width: max-content;
 }
@@ -14,7 +33,9 @@ header .page-header .main-btn{
 /* Письма */
 #mail main{
     width: 1000px;
-    padding: 0 10px 100px;
+    padding: 25px 10px 100px;
+}
+#mail .container{
     display: flex; flex-direction: column; gap: 10px;
     padding-top: 5px;
 }
@@ -48,15 +69,7 @@ header .page-header .main-btn{
 .mail-info{
     width: calc(100% - 156px); height: 100%;
     padding: 16px;
-    display: flex; flex-direction: column; gap: 4px;
-}
-
-/* Мини файлы */
-.mail-info .file-mini{
-    width: 54px;
-}
-.mail-info .file-mini .file-info h4{
-    display: none;
+    display: flex; flex-direction: column; gap: 8px;
 }
 
 .mail-info .item-header{
@@ -75,7 +88,7 @@ header .page-header .main-btn{
     white-space: nowrap;
 }
 .mail-info .files{
-    margin-top: 12px;
+    margin-top: 8px;
 }
 .mail-info .files .file:hover{
     transform: none;
@@ -96,9 +109,12 @@ header .page-header .main-btn{
     border-radius: 0 10px 10px 0;
 }
 
-.new-mail::after{ background-color: #4C50B8 } /* Непрочитанное */
-.old-mail::after{ background-color: #85BBFF } /* Прочитанное */
+.new-mail::after{ background-color: var(--color-scheme-gradient) } /* Непрочитанное */
+.old-mail::after{ background-color: var(--color-scheme) } /* Прочитанное */
 
+.form .form-wrapper form .user{
+    min-width: max-content;
+}
 
 /* Адаптивность */
 @media screen and (max-width: 992px){
