@@ -13,7 +13,7 @@ header .page-header > div{
     display: flex; align-items: center;
 }
 header .page-header > div > p{
-    background-color: var(--button-bg-color);
+    background-color: unset;
     padding: 0 16px;
     display: flex; align-items: center;
     border-radius: 8px;
