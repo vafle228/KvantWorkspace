@@ -14,11 +14,12 @@
 
 /* Виджет "Календарь" */
 #calendar-widget{
-    width: 100%;
+    width: 100%; height: 300px;
     background-color: var(--item-bg-color);
     display: flex;
     box-shadow: var(--item-shadow);
     border-radius: 10px;
+    margin-right: 1%;
 }
 #calendar-widget .calendar-container{
     background-color: var(--color-scheme);
@@ -97,37 +98,29 @@
     text-overflow: ellipsis;
 }
 
-/* ===== Расписнаие ===== */
-#schedule{
-    width: 100%;
-    padding: 25px 45px 0 304px;
-}
-#schedule .widget-header::after{
-    content: "";
-    width: 10px; height: 240px;
-    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, var(--bg-color));
-    position: absolute; right: 0; top: 40px;
-    z-index: 1;
-}
-#schedule .widget-header::before{
-    content: "";
-    width: 10px; height: 240px;
-    background: linear-gradient(90deg, var(--bg-color) 0%, rgba(0,0,0,0));
-    position: absolute; left: 0; top: 40px;
-    z-index: 1;
-}
-#schedule .schedule-widget{
-    width: 100%;
+/* Виджет "Расписание" */
+#schedule-widget{
+    width: 775px;
+    padding: 25px 20px 25px 25px;
+    background-color: var(--color-scheme);
+    background-image: 
+		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
+		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(90deg, var(--color-scheme), var(--color-scheme-gradient)),
+		linear-gradient(90deg, var(--color-scheme-gradient), var(--color-scheme));
+	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
     display: flex; flex-direction: column; gap: 10px;
+    border-radius: 10px;
 }
-#schedule .widget-header{
+#schedule-widget .widget-header{
     display: flex; justify-content: space-between;
     position: relative;
 }
-#schedule #slider{
+#schedule-widget #slider{
     display: flex;
     overflow-x: auto;
-    padding: 25px 25px 25px 0;
+    padding-top: 10px;
 }
 #slider-controller{
     display: flex; align-items: center; gap: 8px;
@@ -148,9 +141,10 @@
     min-width: 225px; max-width: 225px; height: 190px;
     margin-right: 25px;
     position: relative;
+    border: none;
 }
 .course:last-of-type{
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .course .course__banner{
     position: absolute;
@@ -173,7 +167,7 @@
     position: absolute;
     width: 100%; height: 100px;
     padding: 16px;
-    background-color: #0003;
+    background-color: #0004;
     border-radius: 10px 10px 0 0;
 }
 .course .course__info h2{
@@ -187,7 +181,7 @@
     font-size: 1rem;
     position: absolute;
     bottom: 8px;
-    color: #ddd;
+    color: #eee;
 }
 /* Расписание занятий */
 .course .course__timetable{
@@ -214,11 +208,11 @@
 }
 #news__container{
     width: 100%;
-    display: flex; flex-wrap: wrap; gap: 2%;
+    display: flex; flex-wrap: wrap; gap: 1%;
 }
 #news__container .item{
-    width: 32%;
-    margin-bottom: 2%; padding: 15px 25px;
+    width: 32.6666%;
+    margin-bottom: 1%; padding: 15px 25px;
     display: flex; flex-direction: column; gap: 5px;
 }
 #news__container .item-header{
@@ -260,8 +254,7 @@
 
 /* Адаптивность для сенсорных устройств */
 @media screen and (max-width: 992px){
-    /* Новости */
-    #news > #news__container .item{ width: 49% }
+    
 
     /* Шапка */
     header{
@@ -276,8 +269,20 @@
     }
     header .page-header, header .profile-header{ width: 100% }
 
-    /* Секции */
-    #widgets, #news, #schedule{ padding-left: 45px } 
+    /* Новости */
+    #news, #widgets{ padding-left: 45px }
+    #news > #news__container .item{ width: 49.5% }
+}
+@media screen and (max-width: 782px){
+    /* Виджеты */
+    #widgets{
+        padding-left: 45px;
+        height: 675px;
+        flex-direction: column; gap: 25px;
+    }
+    #schedule-widget{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 576px){
     /* Новости */

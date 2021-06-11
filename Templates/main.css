@@ -165,11 +165,14 @@ aside nav button{
     padding: 16px; margin: 0 16px;
     color: var(--text-primary-color);
 }
+aside nav button div{
+    display: flex; align-items: center; gap: 16px;
+}
 aside nav button svg{
     fill: var(--aside-text-color);
 }
 aside nav button p{
-    font-size: 16px; color: var(--aside-text-color); font-weight: 500;
+    font-size: 16px; color: var(--aside-text-color); font-weight: 500; line-height: 16px;
 }
 aside nav button:not(.active):hover{
     background-color: var(--button-bg-hover-color);
@@ -380,6 +383,8 @@ menu > button{
 menu > button:hover{
     background-color: var(--button-bg-hover-color-invert);
 }
+
+/* Меню настроек */
 #settings > button:last-child:hover{
     background-color: #FF374B;
     color: #fff;
@@ -588,11 +593,13 @@ menu > button:hover{
 }
 
 /* Адаптивность от бога */
+/* @media screen and (max-width: 1600px){ body{ zoom: 83% }}
 @media screen and (max-width: 1600px){ body{ zoom: 83% }}
 @media screen and (max-width: 1356px){ body{ zoom: 70% }}
-@media screen and (max-width: 1280px){ body{ zoom: 65% }}
-@media screen and (max-width: 1024px){ body{ zoom: 55% }}
-@media screen and (max-width: 992px){ body{ zoom: 65% }}
+@media screen and (max-width: 1280px){ body{ zoom: 67% }}
+@media screen and (max-width: 1130px){ body{ zoom: 59% }}
+@media screen and (max-width: 1024px){ body{ zoom: 53% }}
+@media screen and (max-width: 992px){ body{ zoom: 52% }} */
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
@@ -662,7 +669,6 @@ menu > button:hover{
     aside nav button{
         width: 19%;
         margin: 0;
-        flex-direction: row-reverse;
         justify-content: center; gap: 8px;
     }
 
