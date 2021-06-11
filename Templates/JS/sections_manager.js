@@ -50,7 +50,7 @@ $("#mail .item").click(function () {
 });
 
 
-let filters = ['Ученик', 'Ученик', 'Группа', 'Администратор'];
+let filters = ['Ученик', 'Учитель', 'Группа', 'Администратор'];
 // Поиск пользователя
 function filterFunction(input) {
 	let substr = input.value.toUpperCase();

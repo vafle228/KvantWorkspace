@@ -285,7 +285,7 @@ header .profile-header .profile:hover img{
 }
 .form .form-wrapper form{
     width: 1000px;
-    background-color: var(--bg-color);
+    background-color: var(--item-bg-color);
     padding: 15px 25px 15px 25px; margin: auto 0;
     border-radius: 10px;
     position: relative;
@@ -518,7 +518,7 @@ menu > button:hover{
     width: 33%;
     padding: 0.5rem;
     border-radius: 10px;
-    background-color: var(--button-bg-color);
+    background-color: unset;
     margin-bottom: 0.33%;
     transition: background-color .2s;
 }
