@@ -8,7 +8,7 @@ function drawChart() {
     ["2", 30, "#FFCB3A"],
     ["1", 60, "#FF3A3A"],
     ["ОТ", 40, "#4C50B8"],
-    ["УП", 20, "#9c48c4"],
+    ["УП", 20, "#9C48C4"],
   ]);
 
   var view = new google.visualization.DataView(data);

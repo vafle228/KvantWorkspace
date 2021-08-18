@@ -2,22 +2,29 @@
 ::-webkit-scrollbar{ width: 0 }
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-body{ font-family: "Google Sans"; zoom: 80%; }
+body{
+    font-family: "Google Sans"; zoom: 80%;
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .form__container{
     height: calc(100vh * 1.25); width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#logo{
-    height: 50px; width: 50px;
-}
 form{
     display: flex; flex-direction: column; gap: 10px;
     width: 500px;
     background-color: #fff;
-    border-radius: 16px; border: #0002 solid 1px;
-    padding: 40px;
+    border-radius: 12px;
+    padding: 32px;
 }
 form header{
     display: flex; gap: 5%; align-items: center;
@@ -35,7 +42,9 @@ form header h1::after{
 #flash-error{
     display: flex;
     justify-content: space-between;
-    padding: 0 12px 0 0;
+    padding: 8px 24px 8px 16px;
+    background-color: #D9302511;
+    border-radius: 6px;
 }
 #flash-error h4{
     font-size: 24px;
@@ -45,12 +54,18 @@ form header h1::after{
 }
 form input{
     height: 60px; width: 100%;
-    border-radius: 16px;
+    border-radius: 6px;
     padding: 0 25px;
     outline: none;
     font-size: 20px;
-    border: #0002 solid 1px;
+    border: #d2ddec solid 1px;
     position: relative;
+
+    transition: .2s border-color;
+}
+form input:focus{
+    border: #239AFF88 solid 2px;
+    box-shadow: 0px 0px 0px 4px #239aff44;
 }
 form input::placeholder{
     font-size: 20px;
@@ -72,7 +87,7 @@ form footer > h4{
 form footer button{
     width: 100px; height: 48px;
     padding: 0 20px; margin-left: auto;
-    border-radius: 8px; border: none;
+    border-radius: 6px; border: none;
     background-color: #1A73E8;
     color: #fff;
     cursor: pointer;

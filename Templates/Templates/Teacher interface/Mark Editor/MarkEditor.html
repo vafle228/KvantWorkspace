@@ -11,53 +11,274 @@
     <title>Оценивание</title>
 </head>
 
-<body class='light__theme orange__color__scheme'>
+<body class='light__theme blue__color__scheme'>
+    <script>
+        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
+    </script>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
-        <img src='../../../img/atom.png' id='logo' alt='logo' onclick="reload(this)" />
+        <div id="logo" onclick="location.href='/'">
+            <img src='../../../img/Кванториум SPACE.svg' alt='logo'/>
+            <!-- <h1>KvantJournal</h1> -->
+        </div>
+        <!-- Индикатор -->
+        <div id='indicator'>
+            <svg viewBox="0 0 24 24"><path d="M19.1 10.586l-5.289-5.293L12.4 6.707 17.689 12 12.4 17.293l1.415 1.414 5.285-5.293a2 2 0 000-2.828z"/><path d="M12.811 11.293l-6-6L5.4 6.707 10.689 12 5.4 17.293l1.415 1.414 6-6a1 1 0 00-.004-1.414z"/></svg>
+        </div>
+
         <!-- Навигация -->
         <nav>
-            <button><span class="fi fi-rr-apps"><p>Главная</p></button>
-            <button class='active'><span class="fi fi-rr-book-alt"><p>Дневник</p></button>
-            <button><span class="fi fi-rr-envelope"><p>Почта</p></button>
-            <button><span class="fi fi-rr-stats"><p>Отчеты</p></button>
-            <button><span class="fi-rr-trophy"><p>Портфолио</p></button>
+            <!-- Главная -->
+            <button>
+                <div>
+                    <svg viewBox="0 0 16 16">
+                        <g transform="translate(-4 -4)">
+                            <rect class='bright' width="7" height="7" rx="1.5" transform="translate(4 4)"/>
+                            <path class='faded' d="M5.5,13h4A1.5,1.5,0,0,1,11,14.5v4A1.5,1.5,0,0,1,9.5,20h-4A1.5,1.5,0,0,1,4,18.5v-4A1.5,1.5,0,0,1,5.5,13Zm9-9h4A1.5,1.5,0,0,1,20,5.5v4A1.5,1.5,0,0,1,18.5,11h-4A1.5,1.5,0,0,1,13,9.5v-4A1.5,1.5,0,0,1,14.5,4Zm0,9h4A1.5,1.5,0,0,1,20,14.5v4A1.5,1.5,0,0,1,18.5,20h-4A1.5,1.5,0,0,1,13,18.5v-4A1.5,1.5,0,0,1,14.5,13Z"/>
+                        </g>
+                    </svg>
+                    <p>Главная</p>
+                </div>
+            </button>
+            <!-- Дневник -->
+            <button>
+                <div>
+                    <svg viewBox="0 0 448 512">
+                        <path class='faded' d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
+                        <path class='bright' d="M96 384h328a24 24 0 0 0 24-24V32a32 32 0 0 0-32-32H96A96 96 0 0 0 0 96v320a96 96 0 0 0 96 96h328a24 24 0 0 0 24-24v-16a24 24 0 0 0-24-24H96c-19.2 0-32-12.8-32-32s16-32 32-32zm32-250a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6zm0 64a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6z"></path>
+                    </svg>
+                    <p>Задания</p>
+                </div>
+            </button>
+            <button>
+                <div>
+                    <svg viewBox="0 0 18.174 18.053">
+                        <g transform="translate(-4 -2.947)">
+                            <path class='bright' d="M5,3H6A1,1,0,0,1,7,4V20a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V4A1,1,0,0,1,5,3Zm5,0h1a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V4A1,1,0,0,1,10,3Z"/>
+                            <rect class='faded' width="3" height="18" rx="1" transform="translate(13.477 3.924) rotate(-19)"/>
+                        </g>
+                    </svg> 
+                    <p>Проекты</p>
+                </div>
+            </button>
+            <!-- Почта -->
+            <button>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16.166" height="15.333" viewBox="0 0 16.166 15.333">
+                        <g id="messages" transform="translate(-8.042 -7.833)">
+                            <path class='faded' d="M22.375,11.833h-.333V15a2.836,2.836,0,0,1-2.833,2.833H11.376v1.5a1.835,1.835,0,0,0,1.833,1.833h.833v1.5A.5.5,0,0,0,14.91,23l1.685-1.838h5.78a1.835,1.835,0,0,0,1.833-1.833V13.666A1.835,1.835,0,0,0,22.375,11.833Z"/>
+                            <path class='bright' d="M19.208,7.833H9.542a1.5,1.5,0,0,0-1.5,1.5V15a1.5,1.5,0,0,0,1.5,1.5h9.667a1.5,1.5,0,0,0,1.5-1.5V9.333A1.5,1.5,0,0,0,19.208,7.833Zm.167,2.96-4.493,2.18a1.131,1.131,0,0,1-1.014,0l-4.493-2.18V9.687L14.3,12.074a.144.144,0,0,0,.147,0l4.927-2.387v1.106Z"/>
+                        </g>
+                      </svg>
+                      <p>Почта</p>
+                </div>
+                <p>11</p>
+            </button>
+            <!-- Отчеты -->
+            <button>
+                <div>
+                    <svg viewBox="0 0 18 16">
+                        <g transform="translate(-3 -4)">
+                          <rect class='faded' width="3" height="16" rx="1.5" transform="translate(13 4)"/>
+                          <rect class='bright' width="3" height="11" rx="1.5" transform="translate(8 9)"/>
+                          <rect class='bright' width="3" height="9" rx="1.5" transform="translate(18 11)"/>
+                          <rect class='bright' width="3" height="7" rx="1.5" transform="translate(3 13)"/>
+                        </g>
+                      </svg>                      
+                    <p>Отчеты</p>
+                </div>
+            </button>
+            <!-- Портфолио -->
+            <button>
+                <div>
+                    <svg viewBox="0 0 576 512">
+                        <path class='faded' d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
+                        <path class='bright' d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
+                    </svg>
+                    <p>Портфолио</p>
+                </div>
+                <p>1</p>
+            </button>
+        </nav>
+        <hr style='margin: 8px 16px' class='divider'/>
+        <nav>
+            <button onclick="switch_theme()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <g id="eclipse" transform="translate(-8 -8)">
+                          <path class='faded' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
+                          <g>
+                            <path class='bright' d="M16.333,10.667A5.007,5.007,0,0,0,11.426,14.7,5.409,5.409,0,0,1,12,14.667,5.34,5.34,0,0,1,17.332,20a5.394,5.394,0,0,1-.033.573,5,5,0,0,0-.966-9.906Z"/>
+                            <path class='bright' d="M16.333,10a.667.667,0,0,1-.667-.667V8.667a.667.667,0,0,1,1.334,0v.667A.667.667,0,0,1,16.333,10Z"/>
+                            <path class='bright' d="M23.333,16.333h-.667a.667.667,0,1,1,0-1.333h.667a.667.667,0,0,1,0,1.333Z"/>
+                            <path class='bright' d="M20.341,11.66a.668.668,0,0,1,0-.943l.471-.472a.667.667,0,1,1,.943.943l-.471.472A.668.668,0,0,1,20.341,11.66Z"/>
+                            <path class='bright' d="M20.812,21.088l-.471-.472a.667.667,0,0,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                            <path class='bright' d="M11.383,11.66l-.471-.472a.667.667,0,1,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                          </g>
+                        </g>
+                      </svg>
+                    <p>Тема</p>
+                </div>
+                <span class="toggle theme"></span>
+            </button>
+            <button onclick="switch_color_scheme()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <g id="roller" transform="translate(-8 -8)">
+                          <path class='bright' d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
+                          <path class='faded' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
+                          <path class='bright' d="M15.5,18H13.167A1.168,1.168,0,0,0,12,19.167v3.667A1.167,1.167,0,0,0,13.167,24H15.5a1.168,1.168,0,0,0,1.167-1.167V19.166A1.168,1.168,0,0,0,15.5,18Z"/>
+                        </g>
+                      </svg>
+                      <p>Цвет</p>
+                </div>
+                <span class="toggle color-scheme"></span>
+            </button>
         </nav>
         <nav>
-            <button onclick="switch_theme()"><span class="fi-rr-opacity"><p>Тема</p></button>
-            <button onclick="switch_color_scheme()"><span class="fi-rr-palette"><p>Цвет</p></button>
+            <!-- Профиль -->
+            <div class="aside-profile">
+                <button class="profile">
+                    <img src='../../../img/Kaelthas.jpg'>
+                    <div class="info">
+                        <h2>Фамилия И.</h2>
+                        <h4>Ученик</h4>
+                    </div>
+                </button>
+                <nav class='toolbar'>
+                    <!-- Список задач -->
+                    <button class='hint'>
+                        <span style='transform: translate(-15px, -75px)'>Список задач</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13.334" viewBox="0 0 16 13.334">
+                            <g id="task" transform="translate(-8 -9.333)">
+                                <g>
+                                    <path class='faded' d="M10.167,12H8.5a.5.5,0,0,1-.5-.5V9.833a.5.5,0,0,1,.5-.5h1.667a.5.5,0,0,1,.5.5V11.5A.5.5,0,0,1,10.167,12Z"/>
+                                    <path class='faded' d="M10.167,17.333H8.5a.5.5,0,0,1-.5-.5V15.166a.5.5,0,0,1,.5-.5h1.667a.5.5,0,0,1,.5.5v1.667A.5.5,0,0,1,10.167,17.333Z"/>
+                                    <path class='faded' d="M10.167,22.667H8.5a.5.5,0,0,1-.5-.5V20.5a.5.5,0,0,1,.5-.5h1.667a.5.5,0,0,1,.5.5v1.667A.5.5,0,0,1,10.167,22.667Z"/>
+                                </g>
+                                <g>
+                                    <path class='bright' d="M23.333,11.333h-10a.667.667,0,1,1,0-1.333h10a.667.667,0,1,1,0,1.333Z"/>
+                                    <path class='bright' d="M23.333,16.667h-10a.667.667,0,1,1,0-1.334h10a.667.667,0,1,1,0,1.334Z"/>
+                                    <path class='bright' d="M23.333,22h-10a.667.667,0,1,1,0-1.334h10a.667.667,0,0,1,0,1.334Z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                    <!-- Уведомления -->
+                    <button class='hint'>
+                        <span style='transform: translate(-15px, -75px)'>Уведомления</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13.334" height="16" viewBox="0 0 13.334 16">
+                            <g id="bell" transform="translate(-9.333 -8)">
+                                <path class='bright' d="M22.253,19.275a4.466,4.466,0,0,1-1.586-3.417V14a4.67,4.67,0,0,0-4-4.613v-.72a.667.667,0,1,0-1.334,0v.72a4.669,4.669,0,0,0-4,4.613v1.859a4.472,4.472,0,0,1-1.592,3.422,1.167,1.167,0,0,0,.759,2.053h11a1.167,1.167,0,0,0,.753-2.059Z"/>
+                                <path class='faded' d="M16,24a2.5,2.5,0,0,0,2.449-2h-4.9A2.505,2.505,0,0,0,16,24Z"/>
+                            </g>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
         </nav>
     </aside>
+
     <!-- Шапка -->
     <header>
         <div class='page-header'>
-            <span class="fi-rr-book" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Оценивание</h1></span>
-            <!-- <div class="week-selector">
-                <div class='main-btn'><button class='btn'><span class="fi-rr-angle-double-small-left"></span></button></div>
-                <div class='main-btn'><button class="weeks">01.02 - 07.02</button></div>
-                <div class='main-btn'><button class='btn'><span class="fi-rr-angle-double-small-right"></span></button></div>
-            </div> -->
-        </div>
-        <div class='profile-header'>
-            <nav class='toolbar'>
-                <button><span class="fi-rr-list-check"></button>
-                <button><span class="fi fi-rr-bell"></button>
-            </nav>
-            <div class="profile">
-                <div class="info">
-                    <h4>Ученик</h4>
-                    <h2>Имя Фамилия</h2>
-                </div>
-                <img src='../../../img/Kaelthas.jpg'/>
-            </div>
+            <h1>Проверка и выставление отметок</h1>
         </div>
     </header>
 
+    <!-- Проверка и выставление отметок -->
+    <section id='markEditor'>
 
+        <section class="filteringList">
+
+            <!-- Группа -->
+            <div class="filtering">
+                <div class="dropdownSelect">
+                    <div class="dropdownSelect__trigger">
+                        <span>Группа</span>
+                        <div class="arrowDown"></div>
+                    </div>
+                    <div class="dropdownSelect__options">
+                        <span class='dropdownSelect__option'>Группа 1</span>
+                        <span class='dropdownSelect__option'>Группа 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Проектная группа -->
+            <div class="filtering disable">
+                <div class="dropdownSelect">
+                    <div class="dropdownSelect__trigger">
+                        <span>Проектная группа</span>
+                        <div class="arrowDown"></div>
+                    </div>
+                    <div class="dropdownSelect__options">
+                        <span class='dropdownSelect__option'>Проектная группа 1</span>
+                        <span class='dropdownSelect__option'>Проектная группа 2</span>
+                        <span class='dropdownSelect__option'>Проектная группа 3</span>
+                        <span class='dropdownSelect__option'>Проектная группа 4</span>
+                        <span class='dropdownSelect__option'>Проектная группа 5</span>
+                        <span class='dropdownSelect__option'>Проектная группа 6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание -->
+            <div class="filtering disable">
+                <div class="dropdownSelect">
+                    <div class="dropdownSelect__trigger">
+                        <span>Задание</span>
+                        <div class="arrowDown"></div>
+                    </div>
+                    <div class="dropdownSelect__options">
+                        <span class='dropdownSelect__option'>Задание 1</span>
+                        <span class='dropdownSelect__option'>Задание 2</span>
+                        <span class='dropdownSelect__option'>Задание 3</span>
+                        <span class='dropdownSelect__option'>Задание 4</span>
+                        <span class='dropdownSelect__option'>Задание 5</span>
+                        <span class='dropdownSelect__option'>Задание 6</span>
+                        <span class='dropdownSelect__option'>Задание 7</span>
+                        <span class='dropdownSelect__option'>Задание 8</span>
+                        <span class='dropdownSelect__option'>Задание 9</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <div id='markPalette'>
+            <button class="active hint">
+                <span>Отлично</span>
+                <div class="four"></div>
+            </button>
+            <button class='hint'>
+                <span>Хорошо</span>
+                <div class="three"></div>
+            </button>
+            <button class='hint'>
+                <span>Плохо</span>
+                <div class="two"></div>
+            </button>
+            <button class='hint'>
+                <span>Не сделано</span>
+                <div class="one"></div>
+            </button>
+            <button class='hint'>
+                <span>Отсутствие</span>
+                <div class="absence"></div>
+            </button>
+            <button class='hint'>
+                <span>Уважительная причина</span>
+                <div class="disease"></div>
+            </button>
+        </div>
+    </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='../../../JS/sections_manager.js'></script>
+
+    <script src="../../../JS/dropdownSelect.js"></script>
 </body>
 
 </html>

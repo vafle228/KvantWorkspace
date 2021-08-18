@@ -12,55 +12,15 @@
     --aside-text-color: #9B9C9E;
 }
 
-/* Светлая тема */
-.light__theme{
-    --bg-color: #FDFDFD;
-    --bg-secondary-color: #DFF0FF;
-    --aside-bg-color: #fff;
-
-    --text-primary-color: #111926;
-    --text-secondary-color: #eee;
-
-    --item-bg-color: #fff;
-    --item-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.04);
-
-    --button-bg-color: #fff;
-    --button-bg-hover-color: #F6F6F6;
-    --button-bg-active-color: #E3EEFC;
-    --button-bg-color-invert: #fff;
-    --button-bg-hover-color-invert: #E3EEFC;
-
-    --special-ui-elements-color: #F1F1F1;
-}
-
-/* Темная тема */
-.dark__theme{
-    --bg-color: #1B1C22;
-    --bg-secondary-color: #191A1F;
-    --aside-bg-color: #0F0F10;
-
-    --text-primary-color: #eee;
-    --text-secondary-color: #111926;
-
-    --item-bg-color: #25262C;
-    --item-shadow: 0 0 5px 5px rgba(150, 150, 150, 0.01);
-
-    --button-bg-color: #1B1C22;
-    --button-bg-hover-color: #1B1C22;
-    --button-bg-active-color: #25262C;
-    --button-bg-color-invert: #25262C;
-    --button-bg-hover-color-invert: #1B1C22;
-
-    --special-ui-elements-color: #25262C; 
-}
-
 /* Синяя цветовая гамма */
 .blue__color__scheme{
-    --color-scheme: #83eaf1;
+    --color-scheme: #40B9E6;
     --color-scheme-dark: #06c;
     --color-scheme-gradient: #63a4ff;
     --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
     --color-scheme-shadow-alpha: -1px 1px #83eaf122, -2px 2px #83eaf133, -3px 3px #83eaf144, -4px 4px #83eaf155;
+    /* --color-scheme-light: #bce0ff; */
+    --color-scheme-light: #5faaec55;
 }
 /* Оранжевая цветовая гамма */
 .orange__color__scheme{
@@ -69,10 +29,57 @@
     --color-scheme-gradient: #eC6f66;
     --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
     --color-scheme-shadow-alpha: -1px 1px #f3a18322, -2px 2px #f3a18333, -3px 3px #f3a18344, -4px 4px #f3a18355;
+    --color-scheme-light: #f3a18355;
 }
 
+/* Светлая тема */
+.light__theme{
+    /* --bg-color: #f6f7fb; */
+    /* --bg-color: var(--color-scheme-light); */
+    --bg-color: #cceef2;
+    /* --bg-color: #fbf9f6; */
+    --aside-bg-color: #fff;
+    --aside-bg-color-alpha: rgba(241, 240, 245, 0.8);
+
+    --text-primary-color: #111926;
+    --text-secondary-color: #eee;
+
+    --item-bg-color: #fff;
+
+    --button-bg-color: #fff;
+    --button-bg-hover-color: #f5f5f5;
+    --button-bg-active-color: var(--color-scheme-light);
+
+    --special-ui-elements-color: var(--color-scheme-light);
+
+    --theme-light: #F5F8FA;
+}
+/* Темная тема */
+.dark__theme{
+    --bg-color: #202020;
+    --aside-bg-color: #191919;
+    --aside-bg-color-alpha: rgba(25, 25, 25, 0.9);
+
+    --text-primary-color: #eee;
+    --text-secondary-color: #111926;
+
+    --item-bg-color: #25262C;
+
+    --button-bg-color: #25262C;
+    --button-bg-hover-color: #101114;
+    --button-bg-active-color: #25262C;
+
+    --special-ui-elements-color: #1B1C22;
+
+    --theme-light: #f5f8fa0e;
+}
+
+
+
 /* Скрываем скролбар */
-::-webkit-scrollbar{ width: 0; height: 0 }
+::-webkit-scrollbar{
+    width: 0;height: 0;
+}
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
@@ -94,6 +101,18 @@ svg{
     width: 20px; height: auto;
     margin: auto 0;
 }
+svg .faded{
+    fill: #868E9C;
+}
+svg .bright{
+    fill: #495B7A;
+}
+.active svg .faded{
+    fill: var(--color-scheme-light);
+}
+.active svg .bright{
+    fill: var(--color-scheme);
+}
 
 html{
     /* Плавный скрол страницы */
@@ -104,6 +123,7 @@ html{
 body{
     cursor: default;
     background-color: var(--bg-color);
+    
     font-family: "Google Sans";
 
     /* Запрещает выделять текст */
@@ -113,161 +133,217 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    /* Убирает подсветку кнопок при нажатии на смартфонах */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+body > section{
+    padding: 25px 45px 25px 121px;
 }
 
 .item{
     background-color: var(--item-bg-color);
     border-radius: 10px;
-    /* box-shadow: var(--item-shadow); */
     border: #0001 solid 1px;
     cursor: pointer;
-    transition-duration: .5s !important; transition-property: transform, box-shadow !important;
+    transition-duration: .5s; transition-property: transform, box-shadow !important;
 }
 .item:hover{
-    /* box-shadow: var(--color-scheme-shadow-alpha) !important; */
+    box-shadow: var(--color-scheme-shadow) !important;
     transform: translateX(4px) translateY(-4px) !important;
 }
 
 /* Навигационное меню */
 aside{
     position: fixed; top: 0; left: 0;
-    height: 100%; width: 256px;
+    height: 100%; width: 76px;
     background-color: var(--aside-bg-color);
-    box-shadow: 1px 0 1px 0 #0001;
+    box-shadow: rgb(0 0 0 / 8%) 0px 10px 20px 0px;
     z-index: 2;
+
+    transition-duration: .15s;
+    transition-property: width left background-color;
+    overflow: hidden;
+}
+aside:hover{
+    width: 300px;
+}
+aside:hover p, aside:hover #logo h1, aside:hover .toggle{
+    opacity: 1;
+    visibility: visible;
+}
+aside:hover #indicator svg{
+    transform: rotate(180deg);
+}
+aside .toggle{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .05s;
 }
 aside #logo{
     height: 100px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 32px;
+    display: flex; align-items: center;
+    padding: 0 14px;
+    overflow: hidden;
 }
 aside #logo img{
-    width: 32px; height: 32px;
+    height: 52px;
 }
-aside #logo h1{
-    font-size: 1.5rem; font-weight: bold;
+.dark__theme aside #logo img{
+    filter: invert(100%) hue-rotate(180deg);
 }
+aside #indicator {
+    position: fixed; left: 72px; top: 26px;
+    background-color: var(--aside-bg-color);
+    width: 40px; height: 48px;
+    border-radius: 0 50% 50% 0;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: rgb(0 0 0 / 8%) 20px 10px 20px 0px;
 
-aside nav{
-    display: flex; flex-direction: column; gap: 4px;
+    transition-duration: .15s;
+    transition-property: background-color left;
+    visibility: hidden;
 }
-aside nav:last-of-type{
+aside #indicator svg{
+    fill: var(--text-primary-color);
+    transition-duration: .2s;
+    transition-property: transform;
+}
+aside:hover #indicator{
+    left: 296px;
+}
+aside > nav{
+    display: flex; flex-direction: column; gap: 6px;
+}
+aside > nav:last-of-type{
     position: fixed; bottom: 16px;
 }
-aside nav:last-of-type button{
-    width: 224px;
-}
-aside nav button{
+aside > nav > button{
+    height: 44px;
     background-color: unset;
-    border-radius: 8px;
+    border-radius: 10px;
     transition-property: background-color; transition-duration: .2s;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px; margin: 0 16px;
+    padding: 0 12px; margin: 0 16px;
+}
+aside > nav > button div{
+    display: flex; align-items: center; gap: 12px;
+}
+aside > nav > button p{
+    opacity: 0;
+    visibility: hidden;
+    font-size: 16px; font-weight: 500; line-height: 16px;
     color: var(--text-primary-color);
+    transition-duration: .1s;
+    transition-property: opacity;
 }
-aside nav button div{
-    display: flex; align-items: center; gap: 16px;
-}
-aside nav button svg{
-    fill: var(--aside-text-color);
-}
-aside nav button p{
-    font-size: 16px; color: var(--aside-text-color); font-weight: 500; line-height: 16px;
-}
-aside nav button:not(.active):hover{
+aside > nav > button:hover{
     background-color: var(--button-bg-hover-color);
 }
-aside nav button.active{
-    background-color: var(--button-bg-active-color);
+aside > nav > button.active{
+    background-color: var(--button-bg-hover-color);
 }
-aside nav button.active p{ color: var(--color-scheme-dark) }
-aside nav button.active svg{ fill: var(--color-scheme-dark) }
+.light__theme aside > nav > button.active p{
+    color: var(--color-scheme-dark);
+}
+.light__theme aside > nav > button.active svg .bright{
+    fill: var(--color-scheme-dark);
+}
+.dark__theme aside > nav > button.active p{
+    color: var(--color-scheme);
+}
+.dark__theme aside > nav > button.active svg .bright{
+    fill: var(--color-scheme);
+}
+
+/* Профиль в навигации */
+.aside-profile{
+    display: flex; justify-content: space-between;
+    padding: 0 16px 0;
+    width: 300px;
+}
+.aside-profile .profile{
+    display: flex; gap: 8px; align-items: center;
+    position: relative;
+    cursor: pointer;
+    background-color: unset;
+}
+.aside-profile .profile .info{
+    display: flex; flex-direction: column; gap: 0; align-items: center; justify-content: left;
+}
+.aside-profile .profile .info h2{
+    font-size: 1.2rem; white-space: nowrap; opacity: 0; transition: .2s opacity;
+}
+.aside-profile .profile .info h4{
+    font-size: 1rem; text-align: left; width: 100%; opacity: 0; transition: .2s opacity;
+}
+.aside-profile .profile img{
+    width: 40px; height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+    transition-duration: .2s;
+    transition-property: filter;
+    position: relative;
+    margin: 2px;
+}
+.aside-profile svg{
+    fill: var(--text-primary-color);
+}
+.aside-profile .toolbar{
+    opacity: 0;
+    display: flex; align-items: center; gap: 8px; flex-direction: row;
+    height: 40px;
+    transition: .1s opacity;
+}
+.aside-profile .toolbar button{
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background-color: unset;
+    transition: .2s background-color;
+    display: flex; align-items: center; justify-content: center;
+}
+.aside-profile .toolbar button:hover{
+    background-color: var(--button-bg-hover-color);
+}
+aside:hover .aside-profile *{
+    opacity: 1;
+}
+aside:hover .aside-profile .profile .info h2, aside:hover .aside-profile .profile .info h4{
+    opacity: 1;
+}
+
 
 /* Шапка */
 header{
     position: relative;
     z-index: 1;
     width: 100%; height: 75px;
-    padding: 25px 55px 0 304px;
+    padding: 25px 45px 0 121px;
     display: flex; align-items: center;
-    background-color: var(--bg-color);
 }
 
-/* Панель кнопок в шапке */
-header .profile-header{
-    display: flex;
-    justify-content: flex-end;
-    width: calc(100% - 1000px);
-}
-header .toolbar{
-    display: flex; align-items: center;
-    padding: 0 10px;
-    gap: 5px;
-}
-header .toolbar button{
-    width: 40px; height: 40px;
-    border-radius: 5px;
-    background-color: unset;
-    transition: .2s background-color;
-    padding: 10px;
-}
-header .toolbar button svg{
-    fill: var(--color-scheme-dark);
-}
-header .toolbar button:hover{
-    background-color: var(--button-bg-active-color);
-}
-/* Профиль */
-header .profile-header .profile{
-    display: flex; gap: 10px; align-items: center;
-    position: relative;
-    cursor: pointer;
-    background-color: unset;
-}
-header .profile-header .profile .info{
-    display: flex; flex-direction: column;
-    text-align: right;
-}
-header .profile-header .profile .info h2{ font-size: 1.2rem }
-header .profile-header .profile .info h4{ font-size: 1rem }
-
-header .profile-header .profile img{
-    width: 44px; height: 44px;
-    border-radius: 100%;
-    object-fit: cover;
-    transition-duration: .2s;
-    transition-property: filter;
-    position: relative;
-}
-
-header .page-header svg{
-    fill: var(--text-primary-color);
-}
-
-/* Иконка настроек при наведении */
-header .profile-header .profile::after{
-    content: '\f209';
-    font-family: "uicons-regular-rounded";
-    font-size: 20px; color: #fff;
-    position: absolute; top: 11px; right: 12px;
-    opacity: 0;
-    transition-duration: .2s; transition-property: opacity;
-}
-header .profile-header .profile:hover::after{
-    opacity: 1;
-}
-header .profile-header .profile:hover img{
-    filter: brightness(0.5);
-}
 
 /* Формы */
-.form{ display: none }
+.form{
+    visibility: hidden; transition: visibility .4s;
+}
+.form.active{
+    visibility: visible;
+}
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
     background-color: #0006;
     z-index: 2;
+    visibility: hidden; opacity: 0;
+    transition-property: visibility opacity;
+    transition-duration: .4s;
+}
+.form.active::before{
+    visibility: visible; opacity: 1;
 }
 .form .form-wrapper{
     overflow-y: scroll; padding: 100px 0;
@@ -290,32 +366,41 @@ header .profile-header .profile:hover img{
     border-radius: 10px;
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
+
+    transform: translateY(2000px);
+    transition: transform .4s;
 }
-.form .form-wrapper form .form-btn{
-    background-color: unset;
-    padding: 0 16px; margin: 3px 0;
-    min-height: 45px; max-height: 45px;
-    border-radius: 10px;
-    transition-property: color background-color box-shadow; transition-duration: .2s;
-    display: flex; align-items: center;
-}
-.form .form-wrapper form .form-btn p{
-    color: #06c;
-    font-weight: 500; font-size: 1.2rem;
-    margin-left: 8px;
-}
-.form .form-wrapper form .form-btn svg{
-    fill: #06c;
-}
-.form .form-wrapper form .form-btn:hover{
-    background-color: var(--button-bg-active-color);
+.form.active .form-wrapper form{
+    transform: translateY(0px) !important;
 }
 
-/* Форма */
+/* Кнопки в форме */
+.form .form-wrapper form .form-btn{
+    background-color: unset;
+    padding: 0 12.5px; margin: 3px 0;
+    min-height: 45px; max-height: 45px;
+    border-radius: 8px;
+    transition-property: color background-color box-shadow; transition-duration: .2s;
+    display: flex; align-items: center; gap: 8px;
+}
+.form .form-wrapper form .form-btn p{
+    font-weight: 500; font-size: 1.2rem;
+}
+.dark__theme .form-btn p{
+    color: var(--color-scheme);
+}
+.light__theme .form-btn p{
+    color: var(--color-scheme-dark);
+}
+.form .form-wrapper form .form-btn:hover{
+    background-color: var(--button-bg-hover-color);
+}
+
+/* Элемент шапки формы */
 .form .form-wrapper form .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 51px;
-    gap: 5px;
+    gap: 4px;
 }
 .form .form-wrapper form .item-header .lesson-title{
     max-width: 80%;
@@ -326,30 +411,44 @@ header .profile-header .profile:hover img{
 }
 .form .form-wrapper form .item-header .lesson-title h3{
     color: var(--color-scheme-dark); font-weight: bold;
-    margin-top: 6px; float: right;
+    margin-top: 6px;
+    float: right;
 }
-.form .form-wrapper form .item-header .lesson-teacher{ display: flex; align-items: center }
+.form .form-wrapper form .item-header .lesson-teacher{
+    display: flex; align-items: center;
+}
 .form .form-wrapper form .item-header .lesson-teacher img{
     width: 32px; height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
-.form .form-wrapper form .item-header .lesson-teacher h4{ display: inline-block; margin-right: 10px; font-size: 16px }
+.form .form-wrapper form .item-header .lesson-teacher h4{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Текстовые поля в форме */
 .form .form-wrapper form .text-field{
     width: 100%;
-    border-radius: 10px; border: #00000022 solid 1px;
+    border-radius: 10px;
+    border: #0002 solid 1px;
     padding: 10px;
     font-size: 1rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--aside-bg-color);
     color: var(--text-primary-color);
 }
 .form .form-wrapper form .text-field-title{
     font-size: 1.3rem;
     white-space: nowrap;
+    border: 1px solid #0002;
 }
-.form .form-wrapper form .text-field::placeholder{ font-size: 1rem }
-.form .form-wrapper form .text-field-title::placeholder{ font-size: 1.3rem }
-
+.form .form-wrapper form .text-field::placeholder{
+    font-size: 1rem;
+}
+.form .form-wrapper form .text-field-title::placeholder{
+    font-size: 1.3rem;
+}
 .form .form-wrapper form .preview{
     width: 1000px;
     margin: -15px -25px 10px -25px;
@@ -359,18 +458,18 @@ header .profile-header .profile:hover img{
 /* Меню */
 menu{
     display: none;
-    background-color: var(--aside-bg-color);
+    background-color: var(--aside-bg-color-alpha);
+    backdrop-filter: blur(4px);
     position: absolute; top: 110%;
     width: 256px; padding: 6px 8px;
     border-radius: 8px;
-    box-shadow: var(--item-shadow);
 }
 menu > h3{
     text-align: center;
     padding: 8px 0;
 }
 menu > button{
-    width: 100%; min-height: 32px;
+    width: 100%; min-height: 40px;
     background-color: unset;
     border-radius: 4px;
     text-align: left;
@@ -381,13 +480,7 @@ menu > button{
     display: flex; justify-content: space-between; align-items: center;
 }
 menu > button:hover{
-    background-color: var(--button-bg-hover-color-invert);
-}
-
-/* Меню настроек */
-#settings > button:last-child:hover{
-    background-color: #FF374B;
-    color: #fff;
+    background-color: var(--button-bg-active-color);
 }
 
 /* Toggle */
@@ -418,12 +511,16 @@ menu > button:hover{
     transform: translatex(16px);
 }
 .toggle.color-scheme{
-    width: 16px;
+    background: var(--color-scheme-light);
 }
 .toggle.color-scheme::after{
-    background-color: var(--color-scheme);
-    box-shadow: none;
+    background-color: var(--color-scheme-dark);
 }
+.orange__color__scheme .toggle.color-scheme::after{
+    transform: translatex(16px);
+}
+
+
 
 /* Разделитель */
 .divider{
@@ -437,21 +534,43 @@ menu > button:hover{
     display: flex; flex-wrap: wrap; gap: 8px;
     width: 100%;
 }
-.file-info i{ margin-right: 10px }
-.files h4{ display: inline-block; color: var(--text-primary-color) }
+.file-info i{
+    margin-right: 10px;
+}
+.files h4{
+    display: inline-block;
+    color: var(--text-primary-color);
+}
 .file{
     height: 51px;
-    border-radius: 100px; border: #0001 solid 1px;
+    border-radius: 100px;
     padding-left: 13.5px;
     display: flex; align-items: center;
-    transition-duration: .2s; transition-property: transform;
-    background-color: var(--bg-secondary-color);
+    transition-duration: .2s; transition-property: background-color;
+    position: relative;
+}
+.file::before{
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    width: 0; height: 0;
+    opacity: 0;
+    background-color: var(--theme-light);
+    border-radius: 100px;
+	transition: all .2s ease;
+    z-index: 1;
+}
+.file:hover::before{
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    opacity: 1;
 }
 /* Название и иконка файла */
 .file .file-info{
     display: flex;
     align-items: center;
     margin-right: 25px;
+    z-index: 2;
 }
 .file .file-info h4{
     max-width: 256px;
@@ -463,6 +582,7 @@ menu > button:hover{
 .file .file-btns{
     display: flex; align-items: center; gap: 10px;
     padding: 5px 10px; margin-left: -25px;
+    z-index: 2;
 }
 .file button{
     background-color: unset;
@@ -497,21 +617,25 @@ menu > button:hover{
 .file .download-file:hover::before{
     color: #fff;
 }
-.file:hover{ transform: scale(1.01) }
 
 /* Мини файлы */
 .file-mini{
-    width: 54px;
+    width: 51px;
 }
 .file-mini .file-info h4{
+    display: none;
+}
+.file-mini .file-btns{
     display: none;
 }
 
 /* Пользователи */
 .users{
     display: flex; gap: 0.33%;
-    cursor: pointer;
     flex-wrap: wrap;
+
+    overflow: auto;
+    max-height: 162.9px;
 }
 .user{
     display: flex; gap: 10px; align-items: center;
@@ -521,9 +645,10 @@ menu > button:hover{
     background-color: unset;
     margin-bottom: 0.33%;
     transition: background-color .2s;
+    cursor: default;
 }
 .user:hover{
-    background-color: var(--button-bg-active-color);
+    background-color: var(--special-ui-elements-color);
 }
 .user .info{
     display: flex; flex-direction: column;
@@ -566,7 +691,7 @@ menu > button:hover{
     padding: 10px 20px;
     border-radius: 10px;
     flex-grow: 1;
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--button-bg-hover-color);
 }
 .dropdown-input::placeholder{
     color: #aaa; font-weight: 100;
@@ -574,11 +699,8 @@ menu > button:hover{
 .filter-button{
     border-radius: 10px;
     width: 48px; height: 48px;
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--button-bg-hover-color);
 }
-.filter-button > svg{ fill: #aaa }
-.filter-button.active{ background-color: var(--button-bg-active-color) }
-.filter-button.active > svg{ fill: #06c }
 
 /* Фон */
 .bg{
@@ -588,18 +710,6 @@ menu > button:hover{
     z-index: -1000;
     opacity: .5;
 }
-@media screen and (max-width: 1200px){
-    .bg{ display: none }
-}
-
-/* Адаптивность от бога */
-/* @media screen and (max-width: 1600px){ body{ zoom: 83% }}
-@media screen and (max-width: 1600px){ body{ zoom: 83% }}
-@media screen and (max-width: 1356px){ body{ zoom: 70% }}
-@media screen and (max-width: 1280px){ body{ zoom: 67% }}
-@media screen and (max-width: 1130px){ body{ zoom: 59% }}
-@media screen and (max-width: 1024px){ body{ zoom: 53% }}
-@media screen and (max-width: 992px){ body{ zoom: 52% }} */
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
@@ -607,13 +717,11 @@ menu > button:hover{
     to{ transform: rotate(720deg) }
 }
 
-/* Стилизация расписания */
-
 
 /* Кнопка с эффектом нажатия */
 .main-btn{
     width: 100%;
-    display: flex; justify-content: center;
+    display: flex; justify-content: center; align-items: center;
 }
 .main-btn button{
     padding: 5px 10px;
@@ -636,63 +744,184 @@ menu > button:hover{
     color: var(--text-primary-color);
     margin-left: auto;
 }
-.date__container h5{ display: inline-block }
-.date__container span{ font-size: 0.8rem }
+.date__container h5{
+    display: inline-block;
+}
+.date__container span{
+    font-size: 0.8rem;
+}
 
 
-@media screen and (max-width: 992px){
-    header{
-        flex-direction: column-reverse; gap: 25px;
-        height: auto;
-    }
-    header .profile-header{
-        width: 1000px;
-        padding: 0 10px;
-        margin-left: 0;
-        margin-right: auto;
-    }
+/* @media screen and (max-width: 992px){
+} */
 
-    /* Перенос сайдбара вниз экрана */
-    aside{
-        position: fixed; top: calc(100% - 92px); left: 0;
-        height: 92px; width: 100%;
-        border-top: 1px solid #0001;
-        padding: 15px;
-        display: flex;
-        z-index: 1;
-    }
-    aside nav{
-        display: flex; flex-direction: row; gap: 1.2%;
-        width: 100%;
-        margin: 0 auto;
-    }
-    aside nav button{
-        width: 19%;
-        margin: 0;
-        justify-content: center; gap: 8px;
-    }
-
-    /* Скрываем логотип из сайдбара */
-    aside #logo{ display: none }
-
-    /* Скрываем настройки из сайдбара */
-    aside nav:last-of-type{ display: none }
-
+@media screen and (max-width: 790px){
     /* Формы во всю ширину экрана */
     .form .form-wrapper form{ width: 100% }
     .form .form-wrapper{ width: 96%; left: 2% }
-
 }
+
 @media screen and (max-width: 576px){
-
-    /* В сайдбаре только иконки */
-    aside nav button{ justify-content: center }
-    aside nav button p{ display: none }
-
     /* Сокращенные кнопки */
     .form .form-wrapper form .form-btn p{ display: none }
 
     /* Пользователи */
     .users{ gap: 1% }
     .user{ width: 49.5% }
+}
+
+
+/* Подсказки при наведении */
+.hint{
+    position: relative;
+}
+.hint span{
+    white-space: nowrap;
+    background-color: #555;
+    color: #fff; font-size: 0.875rem; font-weight: 400;
+    text-align: center;
+    padding: 4px 0;
+    border-radius: 4px;
+
+    position: absolute;
+    z-index: 1;
+    bottom: -75%;
+    left: -50%;
+
+    visibility: hidden;
+    opacity: 0;
+}
+.hint span::before, .hint span::after{
+    content: '_';
+    opacity: 0;
+}
+.hint:hover span{
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Выпадающий список */
+.filteringList{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+.dropdownSelect{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 216px;
+}
+.dropdownSelect__trigger{
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px;
+    height: 55px;
+    border-radius: 8px;
+    background-color: var(--theme-light);
+    font-weight: 500;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.filtering.disable .dropdownSelect__trigger{
+    opacity: 0.5;
+}
+
+.dropdownSelect__options{
+    position: absolute;
+    display: block;
+    top: 110%;
+    left: 0; right: 0;
+    transition: all 0.1s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    max-height: 300px; overflow-y: auto;
+    border: var(--theme-light) solid 2px;
+}
+.dropdownSelect__options::-webkit-scrollbar{
+    width: 6px;
+}
+.dropdownSelect__options::-webkit-scrollbar-thumb{
+    background-color: var(--color-scheme-light);
+    border-radius: 3px;
+}
+.dropdownSelect.open .dropdownSelect__options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    border-radius: 8px;
+}
+.dropdownSelect__option {
+    position: relative;
+    display: block;
+    padding: 0 16px;
+    background-color: var(--button-bg-color);
+    line-height: 40px;
+    transition: all 0.1s;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.dropdownSelect__option:hover {
+    cursor: pointer;
+    background-color: var(--button-bg-hover-color);
+}
+.dropdownSelect__option.selected {
+    color: #ffffff;
+    background-color: var(--color-scheme-dark);
+}
+
+.arrowDown {
+    position: relative;
+    height: 10px; width: 10px;
+    margin-left: 16px;
+}
+.arrowDown::before, .arrowDown::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.16rem;
+    border-radius: 0.8rem;
+    height: 120%;
+    background-color: var(--aside-text-color);
+}
+.arrowDown::before {
+    left: -3.3px;
+    transform: rotate(45deg);
+}
+.arrowDown::after {
+    left: 3.3px;
+    transform: rotate(-45deg); 
+}
+.dropdownSelect__trigger.active .arrowDown::after, .dropdownSelect__trigger.active .arrowDown::before{
+    background-color: var(--color-scheme-dark);
+    width: 10px;
+    left: 0;
+    height: 100%;
+}
+.dropdownSelect__trigger.open .arrowDown::before {
+    left: -3.3px;
+    transform: rotate(-45deg);
+}
+.dropdownSelect__trigger.open .arrowDown::after {
+    left: 3.3px;
+    transform: rotate(45deg);
+}
+
+
+
+/* Вернуться в начало страницы */
+#arrowTop{
+    position: fixed;
+    bottom: 16px; right: 16px;
+    height: 48px; width: 48px;
+    background-color: var(--color-scheme);
+    border-radius: 16px;
+    padding: 14px;
+    transform: rotate(-90deg);
+    opacity: 0.5;
+}
+#arrowTop:hover{
+    opacity: 1;
+}
+#arrowTop svg{
+    fill: #fff;
 }

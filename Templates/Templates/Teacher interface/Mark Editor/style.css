@@ -1,0 +1,43 @@
+
+.user{
+    position: relative;
+    height: 56px;
+    max-width: 256px;
+}
+#markPalette{
+    position: absolute;
+    top: -100%; left: calc(256px + 76px + 45px);
+    display: flex;
+    flex-direction: row;
+    transition: top .2s;
+
+    background-color: var(--aside-bg-color-alpha);
+    backdrop-filter: blur(4px);
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+#markPalette > button{
+    width: 100%; min-height: 40px;
+    background-color: unset;
+    border-radius: 4px;
+    text-align: left;
+    color: var(--text-primary-color); font-size: 1rem;
+    padding: 8px; margin: 2px 0;
+    transition: .2s;
+
+    display: flex; justify-content: space-between; align-items: center;
+}
+#markPalette div{
+    border-radius: 4px;
+    height: 24px; width: 24px;
+}
+#markPalette > button:hover{
+    background-color: var(--button-bg-active-color);
+}
+
+.four { background-color: #33B679 } /* Идеально */
+.three { background-color:  #F6BF26 } /* С замечаниями */
+.two { background-color: #F4511E } /* Сойдет */
+.one { background-color: #D50000 } /* Плохо */
+.absence { background-color: #3F51B5 } /* Отсутствие */
+.disease { background-color: #8E24AA } /* Отсутствие по болезни */

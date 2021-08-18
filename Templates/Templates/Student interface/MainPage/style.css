@@ -1,23 +1,20 @@
 
-/* Главная */
-#main{ padding: 0 }
 
 /* Шапка */
 .profile-header{ margin-left: auto }
 
 /* Виджеты */
 #widgets{
-    width: 100%; height: 350px;
-    padding: 25px 45px 25px 304px;
+    height: 350px;
     display: flex;
 }
 
 /* Виджет "Календарь" */
 #calendar-widget{
-    width: 100%; height: 300px;
+    height: 300px; width: 100%;
     background-color: var(--item-bg-color);
     display: flex;
-    box-shadow: var(--item-shadow);
+    box-shadow: rgb(0 0 0 / 8%) 0px 10px 20px 0px;
     border-radius: 10px;
     margin-right: 1%;
 }
@@ -31,12 +28,13 @@
 	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
     width: 256px; height: 100%;
     border-radius: 10px 0 0 10px;
-    padding: 16px;
+    padding: 24px 16px;
 }
 #calendar-widget .calendar-container .date-info{
-    height: 48px; width: 100%;
+    height: 40px; width: 100%;
     display: flex; align-items: center; justify-content: space-between;
     font-weight: 800; font-size: 1.6rem;
+    margin: 0 0 24px;
 }
 
 /* Календарь */
@@ -76,8 +74,8 @@
 }
 #calendar-widget .timetable .event{
     width: 100%; min-height: 48px;
-    background-color: var(--button-bg-color-invert);
-    border-radius: 4px;
+    background-color: unset;
+    border-radius: 6px;
     padding: 0 16px;
     display: flex; align-items: center; gap: 16px;
     color: var(--text-primary-color);
@@ -85,10 +83,10 @@
     cursor: pointer;
 }
 #calendar-widget .timetable .event:hover{
-    background-color: var(--button-bg-hover-color-invert);
+    background-color: var(--button-bg-hover-color);
 }
 #calendar-widget .timetable .event .marker{
-    width: 12px; height: 12px;
+    min-width: 12px; min-height: 12px;
     border-radius: 6px;
     background-color: #F6BF26;
 }
@@ -100,8 +98,8 @@
 
 /* Виджет "Расписание" */
 #schedule-widget{
-    width: 775px;
-    padding: 25px 20px 25px 25px;
+    width: 775px; height: 300px;
+    padding: 25px 20px 15px 25px;
     background-color: var(--color-scheme);
     background-image: 
 		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
@@ -117,16 +115,11 @@
     display: flex; justify-content: space-between;
     position: relative;
 }
-#schedule-widget #slider{
-    display: flex;
-    overflow-x: auto;
-    padding-top: 10px;
-}
 #slider-controller{
     display: flex; align-items: center; gap: 8px;
     margin-right: 4px;
 }
-#next, #prev{
+.arrow{
     height: 30px; width: 30px;
     background-color: var(--button-bg-color);
     border-radius: 5px;
@@ -134,7 +127,17 @@
     font-size: 22px;
     transition: .2s transform;
 }
-#next:hover, #prev:hover{ transform: scale(1.2); background-color: var(--button-bg-active-color); }
+.arrow svg {
+    fill: var(--text-primary-color);
+}
+.arrow:hover{ transform: scale(1.2) }
+
+#schedule-widget #slider{
+    display: flex;
+    overflow-x: auto;
+    padding-top: 10px;
+    height: 200px;
+}
 
 /* Направление */
 .course{
@@ -193,90 +196,118 @@
 }
 .lessonDay{
     height: 100%; width: 47%;
-    background-color: var(--button-bg-hover-color-invert);
+    background-color: var(--special-ui-elements-color);
     padding: 8px 12px;
     border-radius: 8px;
     color: var(--text-primary-color);
     display: flex; align-items: center; gap: 8px;
 }
 
+.calendar__timetable{
+    display: flex; flex-direction: row; align-items: center; gap: 8px;
+}
+.calendar__timetable .day{
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text-primary-color);
+    display: flex; align-items: center; gap: 4px;
+}
+.calendar__timetable .day.active{
+    background-color: var(--special-ui-elements-color);
+}
+
 /* ===== Новости ===== */
 #news{
-    width: 100%;
-    padding: 25px 45px 25px 304px;
-    display: flex; flex-direction: column; gap: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 #news__container{
-    width: 100%;
-    display: flex; flex-wrap: wrap; gap: 1%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1%;
 }
 #news__container .item{
-    width: 32.6666%;
-    margin-bottom: 1%; padding: 15px 25px;
-    display: flex; flex-direction: column; gap: 5px;
-}
-#news__container .item-header{
-    display: flex; justify-content: space-between; align-items: center;
-    min-height: 51px;
-}
-#news__container .item-header .news-title h2{
-    margin-right: 10px;
-}
-#news__container .item-header .news-author{
-    display: flex; align-items: center;
-}
-#news__container .item-header .news-author .profile-img{
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-#news__container .item-header .news-author h4{
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 16px;
-    white-space: nowrap;
-}
-#news__container .item .preview{
-    object-fit: cover;
-    margin: -15px -25px 10px;
-    height: 228px;
-    border-radius: 10px 10px 0 0;
-}
-#news__container .item p{
+    width: 32.6666%; height: 400px;
+    margin-bottom: 1%;
+    padding: 32px;
+    border-radius: 16px;
     overflow: hidden;
-    text-align: justify;
+    position: relative;
+}
+#news__container .item:hover{
+    transform: none !important;
+    box-shadow: none !important;
+}
+#news__container .item:hover .item__preview{
+    transform: scale(1.05);
+}
+#news__container .item .item__preview{
+    width: calc(100% + 64px);
+    height: calc(100% + 64px);
+    filter: brightness(0.6);
+
+    object-fit: cover;
+    margin: -32px;
+    border-radius: 16px;
+
+    z-index: -1;
+
+    transition: transform .4s ease;
+}
+#news__container .item .item__content{
+    position: absolute;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 32px;
+}
+#news__container .item .item__title{
+    color: #eee;
+    font-size: 1.8rem;
+    font-weight: 500;
+    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
-.profile-header{ margin-left: auto }
+#news__container .item .item__text{
+    color: rgba(238, 238, 238, 0.8);
+    font-size: 1rem;
+    overflow: hidden;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 8px 0 16px 0;
+}
+#news__container .item__info{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    color: #eee;
+    font-size: 1.1rem;
+}
+#news__container .item .item__info .profile-img{
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#news__container .item .item__info .dot{
+    background-color: #eee;
+    width: 8px; height: 8px;
+    border-radius: 4px;
+}
 
 /* Адаптивность для сенсорных устройств */
-@media screen and (max-width: 992px){
-    
-
-    /* Шапка */
-    header{
-        flex-direction: column-reverse; gap: 25px;
-        height: 100px;
-        padding: 25px 45px
-    }
-    header .profile-header{
-        width: 1000px;
-        margin-right: auto;
-        padding: 0 10px;
-    }
-    header .page-header, header .profile-header{ width: 100% }
-
+@media screen and (max-width: 900px){
     /* Новости */
-    #news, #widgets{ padding-left: 45px }
     #news > #news__container .item{ width: 49.5% }
 }
 @media screen and (max-width: 782px){
     /* Виджеты */
     #widgets{
-        padding-left: 45px;
         height: 675px;
         flex-direction: column; gap: 25px;
     }

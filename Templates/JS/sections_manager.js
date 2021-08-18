@@ -1,6 +1,6 @@
 // Адаптивность от бога 2.0
 $(window).resize(function(){
-	$('body')[0].style.zoom = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
+	$('body')[0].style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
 });
 
 // Перезагрузка старницы с анимацией логотипа
@@ -14,7 +14,8 @@ $(document).mouseup(function (e) {
 	var form = $(".form-wrapper");
 	var menu = $("menu");
 	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0) {
-		$(".form").hide();
+		// $(".form").hide();
+		$(".form").removeClass("active");
 		$("menu").hide();
 		$("body").css("overflow-y", "scroll");
 	}
@@ -27,25 +28,26 @@ function open_menu(menu_id) {
 
 // Открыть форму
 function open_form(form_id) {
-	$(form_id).show();
+	// $(form_id).show();
 	$("body").css("overflow", "hidden");
+	$(form_id).addClass("active");
 }
 
 // Открытие формы по нажатию на урок
 $("#diary .item").click(function () {
-	$('#diary .form')[0].style.display = 'block';
+	$('#diary .form').addClass("active");
 	$("body").css("overflow", "hidden");
 });
 
 // Открытие формы по нажатию на курс
-$("#schedule .item").click(function () {
-	$('#schedule .form')[0].style.display = 'block';
+$("#schedule-widget .item").click(function () {
+	$('#schedule-widget .form').addClass("active");
 	$("body").css("overflow", "hidden");
 });
 
 // Открытие формы по нажатию на письмо
 $("#mail .item").click(function () {
-	$('#mail .form')[0].style.display = 'block';
+	$('#mail .form').first().addClass("active");
 	$("body").css("overflow", "hidden");
 });
 
@@ -109,3 +111,18 @@ function switch_color_scheme() {
 		$('.orange__color__scheme').toggleClass('orange__color__scheme blue__color__scheme');
 	}
 }
+
+function hue(range) {
+	$(".active svg").css("filter", `hue-rotate(${range.value}deg)`)
+	$("aside p").css("filter", `hue-rotate(${range.value}deg)`)
+}
+
+
+// Кнопка вернуться в начало страницы
+arrowTop.onclick = function() {
+	window.scrollTo(pageXOffset, 0);
+};
+
+window.addEventListener('scroll', function() {
+	arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
+});

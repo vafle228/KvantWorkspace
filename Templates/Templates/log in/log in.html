@@ -6,6 +6,8 @@
     <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
     <link rel="shortcut icon" href="../../img/logo.png" type="image/png" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <title>Вход</title>
@@ -15,8 +17,10 @@
     <div class="form__container">
         <form data-aos="fade-down" data-aos-easing="ease-in-sine">
             <header>
-                <img src='../../img/atom.png' id='logo' alt='logo' onclick="reload(this)"/>
-                <h1>KvantJournal</h1>
+                <!-- Логотип -->
+                <div id="logo">
+                    <img src='../../img/Кванториум SPACE.svg' alt='logo' style="height: 64px"/>
+                </div>
             </header>
 
             <div id='flash-error'>
@@ -24,9 +28,9 @@
             </div>
 
             <label for="input">Логин</label>
-            <input name='login' autocomplete="off"/>
+            <input name='login' autocomplete="off" placeholder="Введите ваш логин"/>
             <label for="input">Пароль</label>
-            <input name="password" type="password" autocomplete="off"/>
+            <input name="password" type="password" autocomplete="off" placeholder="Введите ваш пароль"/>
 
             <footer>
                 <h4>Если вы забыли пароль, обратитесь к администратору.</h4>
@@ -39,13 +43,12 @@
     </div>
 
     <div id="blob"></div>
-    <script src='../../JS/sections_manager.js'></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init()</script>
 
     <script>
         window.addEventListener("load",function() {
-        const SPEED_ANIM = 0.2;
+        const SPEED_ANIM = 0.15;
         let canv, ctx; 
         let maxx, maxy;
         let events;

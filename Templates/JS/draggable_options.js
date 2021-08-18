@@ -7,7 +7,7 @@ Draggable.create(".draggable",{
         var boundsBefore, boundsAfter;
         if (this.hitTest(".selected")){
             boundsBefore = this.target.getBoundingClientRect();
-            $(this.target).appendTo('.selected');
+            $(this.target).appendTo('.unselected');
             boundsAfter = this.target.getBoundingClientRect();
             TweenMax.fromTo(this.target, 0.2, {
                 x:"+=" + (boundsBefore.left - boundsAfter.left), 
@@ -16,7 +16,7 @@ Draggable.create(".draggable",{
         } else {
             if (this.hitTest(".unselected")){
                 boundsBefore = this.target.getBoundingClientRect();
-            $(this.target).appendTo('.unselected');
+            $(this.target).appendTo('.selected');
             boundsAfter = this.target.getBoundingClientRect();
             TweenMax.fromTo(this.target, 0.2, {
                 x:"+=" + (boundsBefore.left - boundsAfter.left), 
