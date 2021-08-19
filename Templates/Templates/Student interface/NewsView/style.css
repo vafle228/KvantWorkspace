@@ -1,43 +1,63 @@
-.profile-header{
-    margin-left: auto;
+.newsView{
+    width: 68%;
+    margin: 0 auto;
+    display: flex; flex-direction: column; gap: 16px;
 }
-.form::before{
-    display: none;
+@media screen and (max-width: 768px){
+    .newsView{
+        width: 100%;
+    }
 }
-.form .form-wrapper{
-    position: fixed; top: 0;
-}
-/* .form .form-wrapper form{
-    border: #0001 solid 1px;
-} */
 
-@media screen and (max-width: 992px){
-    header{
-        flex-direction: column-reverse; gap: 25px;
-        height: 100px;
-    }
-    header .profile-header{
-        width: 1000px;
-        margin-right: auto;
-        padding: 0 10px;
-    }
+/* Обложка новости */
+.newsView__preview{
+    height: 320px;
+    overflow: hidden;
+    border-radius: 16px;
 }
-@media screen and (max-width: 790px){
-    /* Формы */
-    /* .form .form-wrapper form{
-        width: 100%;
-    }
-    .form .form-wrapper{
-        width: calc(100% - 90px);
-        left: 45px;
-    } */
-    /* .form .form-wrapper form .preview{
-        width: calc(100% + 50px);
-    } */
-    header{
-        padding: 25px 45px;
-    }
-    header .page-header, header .profile-header{
-        width: 100%;
-    }
+.newsView__preview img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+}
+
+/* Информационный блок новости */
+.newsView__info{
+    border-radius: 16px;
+    padding: 16px 24px;
+    background-color: var(--item-bg-color);
+    display: flex; flex-direction: column; gap: 8px;
+}
+.newsView__infoTitle{
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--text-primary-color);
+}
+.newsView__infoInfo{
+    display: flex; flex-direction: row; gap: 8px; align-items: center;
+}
+.newsView__infoInfo .dot{
+    background-color: #70757D;
+    width: 6px; height: 6px;
+    border-radius: 3px;
+}
+
+.carousel {
+    color: var(--text-primary-color);
+
+    --carousel-button-bg: var(--item-bg-color);
+    --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0
+            0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+
+    --carousel-button-svg-width: 16px;
+    --carousel-button-svg-height: 16px;
+    --carousel-button-svg-stroke-width: 3;
+}
+  
+.carousel__slide {
+    height: 320px;
+    margin-right: 16px;
+    border-radius: 16px;
+    background-size: cover;
 }

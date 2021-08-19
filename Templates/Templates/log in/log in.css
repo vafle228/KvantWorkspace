@@ -48,7 +48,7 @@ form header h1::after{
 }
 #flash-error h4{
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
     color: #D93025;
     text-align: right;
 }
@@ -72,6 +72,7 @@ form input::placeholder{
     opacity: 0.5;
 }
 form label{
+    font-weight: 500;
     font-size: 1.2rem;
     margin-left: 5px;
 }
@@ -98,21 +99,6 @@ form footer button h4{
     line-height: 1;
 }
 
-
-/* Фон */
-.bg{
-    position: fixed;
-    height: 90%;
-    right: 50%;
-    top: 5%;
-    animation: you_spin_me_right_round 200s infinite;
-}
-
-/* Анимация */
-@keyframes you_spin_me_right_round{
-    from{ transform: rotate(0deg) }
-    to{ transform: rotate(720deg) }
-}
 
 /* Анимация фона */
 #blob {
