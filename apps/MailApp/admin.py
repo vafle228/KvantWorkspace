@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import KvantMessage, MailReceiver
+from .models import KvantMessage
 
 
 admin.site.register(KvantMessage)

@@ -1,8 +1,14 @@
+// Адаптивность от бога 2.0
+$(window).resize(function(){
+	$('body')[0].style.zoom = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
+});
+
 // Перезагрузка старницы с анимацией логотипа
-function reload(logo) {
-	logo.style.animation = 'you_spin_me_right_round 1s';
+function reload(logo_div) {
+	$(logo_div).find('img')[0].style.animation = 'you_spin_me_right_round 1s';
 	setTimeout("location.reload()", 800);
 }
+
 
 // Открыть меню
 function open_menu(menu_id) {

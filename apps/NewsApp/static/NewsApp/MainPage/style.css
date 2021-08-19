@@ -8,23 +8,18 @@
 /* Виджеты */
 #widgets{
     width: 100%; height: 350px;
-    background-color: var(--bg-secondary-color);
-    padding: 25px 45px 25px 195px;
+    padding: 25px 45px 25px 304px;
     display: flex;
-}
-#widgets > div{
-    position: relative;
-    box-shadow: var(--item-shadow);
-    border-radius: 10px;
-    height: 300px;
 }
 
 /* Виджет "Календарь" */
 #calendar-widget{
-    flex: 1;
+    width: 100%; height: 300px;
     background-color: var(--item-bg-color);
-    margin-right: 2%;
     display: flex;
+    box-shadow: var(--item-shadow);
+    border-radius: 10px;
+    margin-right: 1%;
 }
 #calendar-widget .calendar-container{
     background-color: var(--color-scheme);
@@ -103,8 +98,8 @@
     text-overflow: ellipsis;
 }
 
-/* Виджет "Твои курсы" */
-#widgets #courses-manager{
+/* Виджет "Расписание" */
+#schedule-widget{
     width: 775px;
     padding: 25px 20px 25px 25px;
     background-color: var(--color-scheme);
@@ -112,42 +107,44 @@
 		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
 		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
 		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
+		linear-gradient(90deg, var(--color-scheme), var(--color-scheme-gradient)),
 		linear-gradient(90deg, var(--color-scheme-gradient), var(--color-scheme));
 	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
     display: flex; flex-direction: column; gap: 10px;
+    border-radius: 10px;
 }
-#widgets #courses-manager .widget-header{
+#schedule-widget .widget-header{
     display: flex; justify-content: space-between;
+    position: relative;
 }
-#widgets #courses-manager #slider{
-    width: calc(100% + 5px);
+#schedule-widget #slider{
     display: flex;
     overflow-x: auto;
     padding-top: 10px;
 }
 #slider-controller{
-    display: flex; align-items: center; gap: 10px;
-    margin-right: 5px;
+    display: flex; align-items: center; gap: 8px;
+    margin-right: 4px;
 }
 #next, #prev{
     height: 30px; width: 30px;
-    background-color: var(--button-bg-color-invert);
+    background-color: var(--button-bg-color);
     border-radius: 5px;
     padding: 4px;
     font-size: 22px;
     transition: .2s transform;
 }
-#next:hover, #prev:hover{ transform: scale(1.2); background-color: var(--button-bg-hover-color-invert) }
+#next:hover, #prev:hover{ transform: scale(1.2); background-color: var(--button-bg-active-color); }
 
-/* Курс */
+/* Направление */
 .course{
     min-width: 225px; max-width: 225px; height: 190px;
     margin-right: 25px;
-    border: none;
     position: relative;
+    border: none;
 }
 .course:last-of-type{
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .course .course__banner{
     position: absolute;
@@ -170,7 +167,7 @@
     position: absolute;
     width: 100%; height: 100px;
     padding: 16px;
-    background-color: #0005;
+    background-color: #0004;
     border-radius: 10px 10px 0 0;
 }
 .course .course__info h2{
@@ -184,7 +181,7 @@
     font-size: 1rem;
     position: absolute;
     bottom: 8px;
-    color: #ddd;
+    color: #eee;
 }
 /* Расписание занятий */
 .course .course__timetable{
@@ -203,19 +200,19 @@
     display: flex; align-items: center; gap: 8px;
 }
 
-/* Новости */
+/* ===== Новости ===== */
 #news{
     width: 100%;
-    padding: 25px 45px 25px 195px;
+    padding: 25px 45px 25px 304px;
     display: flex; flex-direction: column; gap: 25px;
 }
 #news__container{
     width: 100%;
-    display: flex; flex-wrap: wrap; gap: 2%;
+    display: flex; flex-wrap: wrap; gap: 1%;
 }
 #news__container .item{
-    width: 32%;
-    margin-bottom: 2%; padding: 15px 25px;
+    width: 32.6666%;
+    margin-bottom: 1%; padding: 15px 25px;
     display: flex; flex-direction: column; gap: 5px;
 }
 #news__container .item-header{
@@ -257,31 +254,35 @@
 
 /* Адаптивность для сенсорных устройств */
 @media screen and (max-width: 992px){
-    /* Новости */
-    #news > #news__container .item{ width: 49% }
+    
 
     /* Шапка */
     header{
         flex-direction: column-reverse; gap: 25px;
         height: 100px;
+        padding: 25px 45px
     }
     header .profile-header{
         width: 1000px;
         margin-right: auto;
         padding: 0 10px;
     }
-
-    /* Виджеты */
-    #widgets{ height: 675px; gap: 25px; flex-direction: column }
-    #widgets #courses-manager{ width: 100% }
-    #calendar-widget{ margin-right: 0 }
-
-    /* Секции */
-    #widgets, #news{ padding-left: 45px }
-
-    /* Шапка */
-    header{ padding: 25px 45px }
     header .page-header, header .profile-header{ width: 100% }
+
+    /* Новости */
+    #news, #widgets{ padding-left: 45px }
+    #news > #news__container .item{ width: 49.5% }
+}
+@media screen and (max-width: 782px){
+    /* Виджеты */
+    #widgets{
+        padding-left: 45px;
+        height: 675px;
+        flex-direction: column; gap: 25px;
+    }
+    #schedule-widget{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 576px){
     /* Новости */

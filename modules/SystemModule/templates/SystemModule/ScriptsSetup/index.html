@@ -5,7 +5,6 @@
     <script>
     	let user_theme = '{{ user.theme }}';
     	let user_color = '{{ user.color }}';
-    	let csrf_token = getCookie('csrftoken');
     	let change_theme = '{% url "change_theme" user.id %}'
     </script>
 </body>

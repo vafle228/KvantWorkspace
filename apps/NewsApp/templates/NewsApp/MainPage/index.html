@@ -29,7 +29,7 @@
             <!-- Виджет "Календарь" -->
             <div id="calendar-widget">
                 <div class="calendar-container">
-                    <div class="date-info">Июнь 2021</div>
+                    <div class="date-info"> Июнь 2021 </div>
                     <div class="calendar">
                         <span class='inactive'>Пн</span><span class='inactive'>Вт</span><span class='inactive'>Ср</span><span class='inactive'>Чт</span><span class='inactive'>Пт</span><span class='inactive'>Сб</span><span class='inactive'>Вс</span>
                         <span class='inactive'>31</span><span class='active'>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="timetable">
-                    <div class="event draggable">
+                    <div class="event">
                         <span class="marker"></span>
                         <time>10:00</time>
                         <p class="event__name">День защиты детей</p>
@@ -48,16 +48,22 @@
                 </div>
             </div>
             <!-- Виджет "Расписание" -->
-            <div id='courses-manager'>
+            <div id='schedule-widget'>
                 <div class='widget-header'>
                     <div>
-                        <h1 style='display: inline-block; color: #000'>Расписание</h1>
+                        <h1 style='display: inline-block'>Расписание</h1>
                     </div>
+                    {% if courses|length > 3 %}
                     <!-- Кнопки слайдера -->
                     <div id="slider-controller">
-                        <button id='prev'><span class='fi-rr-arrow-small-left'></span></button>
-                        <button id='next'><span class='fi-rr-arrow-small-right'></span></button>
+                        <button id='prev'>
+                            <svg viewBox="0 0 24 24"><path d="M10.88 17.715a1 1 0 000-1.415l-3.292-3.293L18 13a1 1 0 000-2l-10.414.007 3.294-3.292A1 1 0 009.466 6.3L5.88 9.886a3 3 0 000 4.243l3.586 3.586a1 1 0 001.414 0z"/></svg>
+                        </button>
+                        <button id='next'>
+                            <svg viewBox="0 0 24 24"><path d="M13.121 6.293a1 1 0 000 1.414L16.413 11 6 11.007a1 1 0 100 2L16.414 13l-3.293 3.293a1 1 0 101.414 1.414l3.586-3.585a3 3 0 000-4.243l-3.586-3.586a1 1 0 00-1.414 0z"/></svg>
+                        </button>
                     </div>
+                    {% endif %}
                 </div>
                 <div id='slider'>
                     {% for course in courses %}
@@ -140,7 +146,6 @@
             <div style='display: flex; gap: 2%'>
                 <!-- Заголовок секции -->
                 <div>
-                    <span class="fi-rr-world" style='font-size: 1.5rem; margin-right: 5px'></span>
                     <h1 style='display: inline-block'>Новости</h1>
                 </div>
                 {% if user.permission == 'Администратор' or user.permission == 'Учитель'  %}

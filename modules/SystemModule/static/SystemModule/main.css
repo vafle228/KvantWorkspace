@@ -5,19 +5,21 @@
     --medium: 992px;
     --large: 1200px;
     --xlarge: 1400px;
+
+    --aside-text-color: #9B9C9E;
 }
 
 /* Светлая тема */
 .light__theme{
-    --bg-color: #FeFeFe;
-    --bg-secondary-color: aliceblue;
+    --bg-color: #FDFDFD;
+    --bg-secondary-color: #DFF0FF;
     --aside-bg-color: #fff;
 
     --text-primary-color: #111926;
-    --text-secondary-color: #25262C;
+    --text-secondary-color: #eee;
 
     --item-bg-color: #fff;
-    --item-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.04);
+    --item-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.04);
 
     --button-bg-color: #fff;
     --button-bg-hover-color: #F6F6F6;
@@ -35,7 +37,7 @@
     --aside-bg-color: #0F0F10;
 
     --text-primary-color: #eee;
-    --text-secondary-color: #25262C;
+    --text-secondary-color: #111926;
 
     --item-bg-color: #25262C;
     --item-shadow: 0 0 5px 5px rgba(150, 150, 150, 0.01);
@@ -52,7 +54,6 @@
 /* Синяя цветовая гамма */
 .blue__color__scheme{
     --color-scheme: #83eaf1;
-    /* --color-scheme-dark: #1967D2; */
     --color-scheme-dark: #06c;
     --color-scheme-gradient: #63a4ff;
     --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
@@ -86,9 +87,12 @@ p{ font-size: 1rem; font-weight: normal; color: #70757D }
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 span{ color: var(--text-primary-color); vertical-align: text-bottom }
 
+svg{
+    width: 20px; height: auto;
+    margin: auto 0;
+}
 
 html{
-    width: 100%; height: 100%;
     /* Плавный скрол страницы */
     scroll-behavior: smooth;
 }
@@ -97,9 +101,7 @@ html{
 body{
     cursor: default;
     background-color: var(--bg-color);
-    height: 100vh; width: 100%;
     font-family: "Google Sans";
-    padding-top: 100px;
 
     /* Запрещает выделять текст */
     -webkit-touch-callout: none;
@@ -113,7 +115,7 @@ body{
 .item{
     background-color: var(--item-bg-color);
     border-radius: 10px;
-    box-shadow: var(--item-shadow);
+    /* box-shadow: var(--item-shadow); */
     border: #0001 solid 1px;
     cursor: pointer;
     transition-duration: .5s !important; transition-property: transform, box-shadow !important;
@@ -126,41 +128,64 @@ body{
 /* Навигационное меню */
 aside{
     position: fixed; top: 0; left: 0;
-    height: 100%; width: 120px;
+    height: 100%; width: 256px;
     background-color: var(--aside-bg-color);
     box-shadow: 1px 0 1px 0 #0001;
-    padding: 15px;
     z-index: 2;
 }
 aside #logo{
-    width: 60px; height: 60px;
-    margin: 15px;
+    height: 100px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 32px;
 }
+aside #logo img{
+    width: 32px; height: 32px;
+}
+aside #logo h1{
+    font-size: 1.5rem; font-weight: bold;
+}
+
 aside nav{
-    display: flex; flex-direction: column; gap: 10px;
+    display: flex; flex-direction: column; gap: 4px;
+}
+aside nav:last-of-type{
+    position: fixed; bottom: 16px;
+}
+aside nav:last-of-type button{
+    width: 224px;
 }
 aside nav button{
     background-color: unset;
-    border-radius: 5px;
+    border-radius: 8px;
     transition-property: background-color; transition-duration: .2s;
-    display: flex; align-items: center; flex-direction: column;
-    padding: 10px 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px; margin: 0 16px;
     color: var(--text-primary-color);
-    width: 90px;
 }
-aside nav button span{ font-size: 20px }
-aside nav button p{ font-size: 14px; color: var(--text-primary-color); font-weight: 500; }
-aside nav button:hover{ background-color: var(--button-bg-hover-color) }
-aside nav .active{ background-color: var(--button-bg-hover-color) }
-aside nav .active p, aside nav .active span{ color: var(--color-scheme-dark) }
+aside nav button div{
+    display: flex; align-items: center; gap: 16px;
+}
+aside nav button svg{
+    fill: var(--aside-text-color);
+}
+aside nav button p{
+    font-size: 16px; color: var(--aside-text-color); font-weight: 500; line-height: 16px;
+}
+aside nav button:not(.active):hover{
+    background-color: var(--button-bg-hover-color);
+}
+aside nav button.active{
+    background-color: var(--button-bg-active-color);
+}
+aside nav button.active p{ color: var(--color-scheme-dark) }
+aside nav button.active svg{ fill: var(--color-scheme-dark) }
 
 /* Шапка */
 header{
-    position: absolute;
-    top: 0; left: 0;
+    position: relative;
     z-index: 1;
-    width: 100%; height: 100px;
-    padding: 25px 55px 25px 190px;
+    width: 100%; height: 75px;
+    padding: 25px 55px 0 304px;
     display: flex; align-items: center;
     background-color: var(--bg-color);
 }
@@ -178,11 +203,13 @@ header .toolbar{
 }
 header .toolbar button{
     width: 40px; height: 40px;
-    margin: 5px 0; padding: 10px;
     border-radius: 5px;
-    color: #1967D2; font-size: 20px;
-    background-color: var(--button-bg-color);
+    background-color: unset;
     transition: .2s background-color;
+    padding: 10px;
+}
+header .toolbar button svg{
+    fill: var(--color-scheme-dark);
 }
 header .toolbar button:hover{
     background-color: var(--button-bg-active-color);
@@ -210,17 +237,18 @@ header .profile-header .profile img{
     position: relative;
 }
 
-/* Иконка выхода из аккаунта при наведении */
+header .page-header svg{
+    fill: var(--text-primary-color);
+}
+
+/* Иконка настроек при наведении */
 header .profile-header .profile::after{
     content: '\f209';
     font-family: "uicons-regular-rounded";
-    font-size: 20px;
-    position: absolute;
-    top: 14px; right: 12px;
+    font-size: 20px; color: #fff;
+    position: absolute; top: 11px; right: 12px;
     opacity: 0;
-    color: #fff;
-    transition-duration: .2s;
-    transition-property: opacity;
+    transition-duration: .2s; transition-property: opacity;
 }
 header .profile-header .profile:hover::after{
     opacity: 1;
@@ -235,7 +263,7 @@ header .profile-header .profile:hover img{
     content: "";
     position: fixed; top: 0; left: 0;
     height: 100%; width: 100%;
-    background-color: #0008;
+    background-color: #0006;
     z-index: 2;
 }
 .form .form-wrapper{
@@ -261,15 +289,20 @@ header .profile-header .profile:hover img{
     display: flex; flex-direction: column; gap: 10px;
 }
 .form .form-wrapper form .form-btn{
-    color: #1967D2; font-weight: 500; font-size: 1.2rem;
-    background-color: var(--button-bg-color);
-    padding: 0 15px; margin: 3px 0;
-    min-height: 45px;
+    background-color: unset;
+    padding: 0 16px; margin: 3px 0;
+    min-height: 45px; max-height: 45px;
     border-radius: 10px;
     transition-property: color background-color box-shadow; transition-duration: .2s;
+    display: flex; align-items: center;
 }
-.form .form-wrapper form .form-btn span{
-    margin-right: 10px; font-size: 1rem; color: #1967D2;
+.form .form-wrapper form .form-btn p{
+    color: #06c;
+    font-weight: 500; font-size: 1.2rem;
+    margin-left: 8px;
+}
+.form .form-wrapper form .form-btn svg{
+    fill: #06c;
 }
 .form .form-wrapper form .form-btn:hover{
     background-color: var(--button-bg-active-color);
@@ -316,16 +349,16 @@ header .profile-header .profile:hover img{
 
 .form .form-wrapper form .preview{
     width: 1000px;
-    margin: -10px -25px 10px -25px;
+    margin: -15px -25px 10px -25px;
     border-radius: 10px 10px 0 0;
 }
 
 /* Меню */
 menu{
     display: none;
-    background-color: var(--item-bg-color);
-    position: absolute; top: 90%;
-    width: 256px; padding: 8px;
+    background-color: var(--aside-bg-color);
+    position: absolute; top: 110%;
+    width: 256px; padding: 6px 8px;
     border-radius: 8px;
     box-shadow: var(--item-shadow);
 }
@@ -339,7 +372,7 @@ menu > button{
     border-radius: 4px;
     text-align: left;
     color: var(--text-primary-color); font-size: 1rem;
-    padding: 8px;
+    padding: 8px; margin: 2px 0;
     transition: .2s;
 
     display: flex; justify-content: space-between; align-items: center;
@@ -347,10 +380,13 @@ menu > button{
 menu > button:hover{
     background-color: var(--button-bg-hover-color-invert);
 }
-menu > button:last-child:hover{
+
+/* Меню настроек */
+#settings > button:last-child:hover{
     background-color: #FF374B;
     color: #fff;
 }
+
 /* Toggle */
 .toggle{
     height: 16px;
@@ -458,8 +494,15 @@ menu > button:last-child:hover{
 .file .download-file:hover::before{
     color: #fff;
 }
-.file:hover{ transform: scale(1.01); }
-/* .item .file{ background-color: var(--bg-secondary-color); } */
+.file:hover{ transform: scale(1.01) }
+
+/* Мини файлы */
+.file-mini{
+    width: 54px;
+}
+.file-mini .file-info h4{
+    display: none;
+}
 
 /* Пользователи */
 .users{
@@ -474,6 +517,7 @@ menu > button:last-child:hover{
     border-radius: 10px;
     background-color: var(--button-bg-color);
     margin-bottom: 0.33%;
+    transition: background-color .2s;
 }
 .user:hover{
     background-color: var(--button-bg-active-color);
@@ -520,32 +564,23 @@ menu > button:last-child:hover{
     border-radius: 10px;
     flex-grow: 1;
     background-color: var(--special-ui-elements-color);
-    position: relative;
 }
 .dropdown-input::placeholder{
     color: #aaa; font-weight: 100;
-}
-.dropdown-input::after{
-    content: "\f207";
-    font-family: "uicons-regular-rounded"; color: #A1D214;
-    margin: 0 10px;
 }
 .filter-button{
     border-radius: 10px;
     width: 48px; height: 48px;
     background-color: var(--special-ui-elements-color);
 }
-.filter-button > i{
-    font-size: 20px; color: #444;
-}
-.filter-button.active > i{
-    color: var(--color-scheme-dark);
-}
+.filter-button > svg{ fill: #aaa }
+.filter-button.active{ background-color: var(--button-bg-active-color) }
+.filter-button.active > svg{ fill: #06c }
 
 /* Фон */
 .bg{
-    position: fixed; right: -20%; top: 10%;
-    height: 90%;
+    position: fixed; right: -20%; top: 15%;
+    height: 80%;
     animation: you_spin_me_right_round 200s infinite;
     z-index: -1000;
     opacity: .5;
@@ -555,11 +590,13 @@ menu > button:last-child:hover{
 }
 
 /* Адаптивность от бога */
+/* @media screen and (max-width: 1600px){ body{ zoom: 83% }}
 @media screen and (max-width: 1600px){ body{ zoom: 83% }}
 @media screen and (max-width: 1356px){ body{ zoom: 70% }}
-@media screen and (max-width: 1280px){ body{ zoom: 65% }}
-@media screen and (max-width: 1024px){ body{ zoom: 55% }}
-@media screen and (max-width: 992px){ body{ zoom: 65% }}
+@media screen and (max-width: 1280px){ body{ zoom: 67% }}
+@media screen and (max-width: 1130px){ body{ zoom: 59% }}
+@media screen and (max-width: 1024px){ body{ zoom: 53% }}
+@media screen and (max-width: 992px){ body{ zoom: 52% }} */
 
 /* Анимация */
 @keyframes you_spin_me_right_round{
@@ -568,15 +605,7 @@ menu > button:last-child:hover{
 }
 
 /* Стилизация расписания */
-.calendar__timetable{
-    border-radius: 10px;
-    height: 40px;
-    width: min-content;
-    display: flex;
-    align-items: center;
-    background-color: #FFEAEC;
-    font-weight: 800;
-}
+
 
 /* Кнопка с эффектом нажатия */
 .main-btn{
@@ -600,35 +629,25 @@ menu > button:last-child:hover{
 
 /* Стилизация даты */
 .date__container{
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    display: flex; align-items: center; gap: 5px;
     color: var(--text-primary-color);
     margin-left: auto;
 }
-.date__container h5{
-    display: inline-block;
-}
-.date__container span{
-    font-size: 0.8rem;
-}
+.date__container h5{ display: inline-block }
+.date__container span{ font-size: 0.8rem }
 
 
 @media screen and (max-width: 992px){
     header{
         flex-direction: column-reverse; gap: 25px;
-        height: 175px;
+        height: auto;
     }
     header .profile-header{
         width: 1000px;
-        margin-left: auto;
         padding: 0 10px;
         margin-left: 0;
         margin-right: auto;
     }
-    body{ padding-top: 175px }
-}
-@media screen and (max-width: 992px){
 
     /* Перенос сайдбара вниз экрана */
     aside{
@@ -639,17 +658,38 @@ menu > button:last-child:hover{
         display: flex;
         z-index: 1;
     }
+    aside nav{
+        display: flex; flex-direction: row; gap: 1.2%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    aside nav button{
+        width: 19%;
+        margin: 0;
+        justify-content: center; gap: 8px;
+    }
 
     /* Скрываем логотип из сайдбара */
     aside #logo{ display: none }
-    aside nav{ display: flex; flex-direction: row; gap: 10px }
+
+    /* Скрываем настройки из сайдбара */
+    aside nav:last-of-type{ display: none }
 
     /* Формы во всю ширину экрана */
     .form .form-wrapper form{ width: 100% }
     .form .form-wrapper{ width: 96%; left: 2% }
+
 }
-@media screen and (max-width: 468px){
-    /* Растягиваем кнопки на всю ширину экрана */
-    aside nav{ width: 100%; gap: 1.2% }
-    aside nav button{ width: 19% }
+@media screen and (max-width: 576px){
+
+    /* В сайдбаре только иконки */
+    aside nav button{ justify-content: center }
+    aside nav button p{ display: none }
+
+    /* Сокращенные кнопки */
+    .form .form-wrapper form .form-btn p{ display: none }
+
+    /* Пользователи */
+    .users{ gap: 1% }
+    .user{ width: 49.5% }
 }

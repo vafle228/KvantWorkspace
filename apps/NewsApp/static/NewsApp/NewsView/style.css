@@ -5,7 +5,7 @@
     display: none;
 }
 .form .form-wrapper{
-    position: fixed; top: 0; left: 190px;
+    position: fixed; top: 0; left: 304px;
 }
 .form .form-wrapper form{
     background-color: var(--item-bg-color);
@@ -13,13 +13,10 @@
     border: #0001 solid 1px;
 }
 .form .form-wrapper form .form-btn{
-    background-color: var(--item-bg-color);
-}
-.dark__theme{
-    --button-bg-active-color: #1B1C22;
+    background-color: var(--button-bg-color-invert);
 }
 .form .form-wrapper form .form-btn:hover{
-    background-color: var(--button-bg-active-color);
+    background-color: var(--button-bg-hover-color-invert);
 }
 .form .form-wrapper form .files .file{
     background-color: var(--bg-secondary-color);

@@ -1,5 +1,6 @@
 from django import forms
 from .models import KvantNews
+from django.core import serializers
 from SystemModule.views import format_image
 
 
@@ -29,7 +30,6 @@ class SendNewNews(forms.Form):
         # Перебираем до 6 или конца новостей
         while len(response) != 6 and news_count < len(KvantNews.objects.all()):
             news = KvantNews.objects.all()[news_count]  # Получаем новую новость
-
             author = {
                 'img': news.author.image.url,
                 'name': ' '.join(news.author.__str__().split(' ')[1::]),

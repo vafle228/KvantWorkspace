@@ -21,24 +21,61 @@
     <!-- Шапка -->
     <header>
         <div class='page-header'>
-            <span class="fi fi-rr-envelope" style='font-size: 1.5rem'><h1 style='display: inline-block; margin-left: 5px;'>Почта</h1></span>
-            <div class="main-btn"><button onclick="open_form('#mail-form')">Написать</button></div>
+            <div>
+                <svg viewBox="0 0 24 24"><path d="M23.954,5.542,15.536,13.96a5.007,5.007,0,0,1-7.072,0L.046,5.542C.032,5.7,0,5.843,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6C24,5.843,23.968,5.7,23.954,5.542Z"/><path d="M14.122,12.546l9.134-9.135A4.986,4.986,0,0,0,19,1H5A4.986,4.986,0,0,0,.744,3.411l9.134,9.135A3.007,3.007,0,0,0,14.122,12.546Z"/></svg>
+                <h1 style='display: inline-block; margin-left: 8px'>Почта</h1>
+            </div>
+            <div>
+                <p onclick="open_menu('#mail-tabs')">
+                    {% if box_type == 'sent' %}Отправленные{% else %}{% if box_type == 'received' %}
+                    Входящие{% else %}Важные{% endif %}{% endif %}
+                    <svg viewBox="0 0 24 24"><path d="M12 15.5a1.993 1.993 0 01-1.414-.585L5.293 9.621l1.414-1.414L12 13.5l5.293-5.293 1.414 1.414-5.293 5.293A1.993 1.993 0 0112 15.5z"/></svg>
+                </p>
+                <menu id='mail-tabs'>
+                    <button class="active" onclick="location.search='type=received'">
+                        <div>
+                            <svg viewBox="0 0 24 24"><path fill='#0066CC' d="M21 12h-3a2 2 0 00-2 2 2 2 0 01-2 2h-4a2 2 0 01-2-2 2 2 0 00-2-2H3a3 3 0 00-3 3v4a5.006 5.006 0 005 5h14a5.006 5.006 0 005-5v-4a3 3 0 00-3-3zM3 10h18a1 1 0 000-2H3a1 1 0 000 2zm0-4h18a1 1 0 000-2H3a1 1 0 000 2z"/></svg>
+                            Входящие
+                        </div>
+                        <p>{{ received_mails }}</p>
+                    </button>
+                    <button onclick="location.search='type=sent'">
+                        <div>
+                            <svg height="512" viewBox="0 0 24 24" width="512"><path fill='#0066CC' d="m8.75 17.612v4.638c0 .324.208.611.516.713.077.025.156.037.234.037.234 0 .46-.11.604-.306l2.713-3.692z"/><path fill='#0066CC' d="m23.685.139c-.23-.163-.532-.185-.782-.054l-22.5 11.75c-.266.139-.423.423-.401.722.023.3.222.556.505.653l6.255 2.138 13.321-11.39-10.308 12.419 10.483 3.583c.078.026.16.04.242.04.136 0 .271-.037.39-.109.19-.116.319-.311.352-.53l2.75-18.5c.041-.28-.077-.558-.307-.722z"/></svg>
+                            Отправленные
+                        </div>
+                        <p>{{ sent_mails }}</p>
+                    </button>
+                    <button onclick="location.search='type=important'">
+                        <div>
+                            <svg viewBox="0 0 24 24"><path fill='#0066CC' d="M19.467 23.316L12 17.828l-7.467 5.488L7.4 14.453-.063 9h9.214L12 .122 14.849 9h9.213L16.6 14.453z"/></svg>
+                            Важные
+                        </div>
+                        <p>{{ important_mails }}</p>
+                    </button>
+                </menu>
+                <div class="main-btn">
+                    <button onclick="open_form('#mail-form')">Написать</button>
+                </div>
+            </div>
         </div>
         {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
     </header>
     <!-- Почта -->
     <section id="mail">
-        <main id='mail_container'>
-            <!-- Тут спавнятся письма -->
+        <main>
+            <div class="container" id='mail_container'>
+                <!-- Тут спавнятся письма -->
+            </div>
             
-            <!-- Кнопка "Больше писем" -->
             {% if max_mails|add:"-8" > 0 %}
+            <!-- Кнопка "Больше писем" -->
             <div id="more-mails" class='main-btn' style='margin: 25px 0;' data-aos="fade-up">
                 <button onclick="getNewMails()">Больше писем</button>
             </div>
             {% endif %}
         </main>
-        <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
+        <img src='{% static "SystemModule/img/atom.png" %}' class='bg'/>
         <!-- Форма создания письма -->
         <div class='form' id='mail-form'>
             <div class="form-wrapper">
@@ -46,10 +83,18 @@
                     <form>
                         <div class="item-header">
                             <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Ученик')"><i class="fi-rr-backpack"></i></button>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Учитель')"><i class="fi-rr-graduation-cap"></i></button>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Группа')"><i class="fi-rr-physics"></i></button>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Администратор')"><i class="fi-rr-crown"></i></button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Ученик')">
+                                <svg viewBox="0 0 24 24"><path d="M16,24H8a3,3,0,0,1-2.886-2.225,6.993,6.993,0,0,1,13.772,0A3,3,0,0,1,16,24ZM3,21V13.424A5,5,0,0,0,0,18v1a5,5,0,0,0,3.924,4.876A4.953,4.953,0,0,1,3,21Zm18-7.576V21a4.953,4.953,0,0,1-.924,2.876A5,5,0,0,0,24,19V18A5,5,0,0,0,21,13.424ZM19,11v6.356a8.978,8.978,0,0,0-14,0V11A6.992,6.992,0,0,1,8,5.264V4a4,4,0,0,1,8,0V5.264A6.992,6.992,0,0,1,19,11ZM10,4.3a6.927,6.927,0,0,1,4,0V4a2,2,0,0,0-4,0ZM15,10h0a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1H9a1,1,0,0,0,1,1h4A1,1,0,0,0,15,10Z"/></svg>
+                            </button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Учитель')">
+                                <svg viewBox="0 0 24 24"><path d="M24,8.48V20a1,1,0,0,1-2,0V11.752l-7.4,3.536a5,5,0,0,1-2.577.694,5.272,5.272,0,0,1-2.7-.739L1.943,11.73a3.691,3.691,0,0,1-.084-6.455c.027-.016.056-.031.084-.045L9.4,1.672a5.226,5.226,0,0,1,5.282.045L22.057,5.23A3.767,3.767,0,0,1,24,8.48Zm-11.978,9.5a7.26,7.26,0,0,1-3.645-.972L4,14.919v2.7a5.007,5.007,0,0,0,3.519,4.778A15.557,15.557,0,0,0,12,23a15.557,15.557,0,0,0,4.481-.607A5.007,5.007,0,0,0,20,17.615V14.924l-4.459,2.13A6.983,6.983,0,0,1,12.022,17.982Z"/></svg>
+                            </button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Группа')">
+                                <svg viewBox="0 0 24 24"><path d="M22.563,1.437C20.189-.937,16.644-.358,12,3.137,7.357-.358,3.813-.938,1.437,1.437S-.358,7.356,3.137,12c-3.495,4.643-4.075,8.188-1.7,10.563A4.7,4.7,0,0,0,4.879,24C6.85,24,9.23,22.948,12,20.864,14.769,22.948,17.149,24,19.121,24a4.7,4.7,0,0,0,3.442-1.437c2.375-2.375,1.8-5.919-1.7-10.563C24.358,7.356,24.938,3.812,22.563,1.437Zm-3.478.591a2.806,2.806,0,0,1,2.067.819c1.746,1.747.456,4.713-1.588,7.539-.838-.988-1.782-2.015-2.858-3.092S14.6,5.273,13.612,4.434C15.51,3.061,17.472,2.028,19.085,2.028ZM18.311,12c-1.011,1.22-2.082,2.361-3.016,3.3S13.22,17.3,12,18.311C10.78,17.3,9.639,16.229,8.705,15.3S6.7,13.22,5.689,12C6.7,10.78,7.771,9.638,8.705,8.705S10.78,6.7,12,5.688c1.22,1.01,2.361,2.083,3.3,3.017S17.3,10.78,18.311,12ZM2.848,2.848a2.8,2.8,0,0,1,2.067-.82c1.613,0,3.575,1.033,5.473,2.406-.988.839-2.016,1.783-3.094,2.86s-2.02,2.1-2.859,3.092C2.392,7.56,1.1,4.594,2.848,2.848Zm0,18.3c-1.746-1.746-.456-4.713,1.587-7.538.839.988,1.783,2.015,2.859,3.092s2.1,2.023,3.089,2.861C7.558,21.609,4.592,22.9,2.848,21.152Zm18.3,0c-1.745,1.744-4.71.457-7.535-1.585.986-.838,2.014-1.787,3.089-2.861s2.02-2.1,2.858-3.092C21.608,16.44,22.9,19.406,21.152,21.152Z"/><circle cx="12" cy="12" r="2"/></svg>
+                            </button>
+                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Администратор')">
+                                <svg viewBox="0 0 24 24"><path d="M22.766,4.566A1.994,1.994,0,0,0,20.586,5L18,7.586,13.414,3a2,2,0,0,0-2.828,0L6,7.586,3.414,5A2,2,0,0,0,0,6.414V17a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6.414A2,2,0,0,0,22.766,4.566Z"/></svg>
+                            </button>
                         </div>
                         <div class="users unselected" style='display: none'>
                             {% for kvant_user in users %}
@@ -71,14 +116,20 @@
                     <form>
                         <div class='item-header'>
                             <h1>Получатели</h1>
-                            <button class='form-btn' type="button" id='send-mail'><span class="fi-rr-paper-plane"></span>Отправить</button>
+                            <button class='form-btn' type="button" id='send-mail'>
+                                <svg height="512" viewBox="0 0 24 24" width="512"><path fill='#0066CC' d="m8.75 17.612v4.638c0 .324.208.611.516.713.077.025.156.037.234.037.234 0 .46-.11.604-.306l2.713-3.692z"/><path fill='#0066CC' d="m23.685.139c-.23-.163-.532-.185-.782-.054l-22.5 11.75c-.266.139-.423.423-.401.722.023.3.222.556.505.653l6.255 2.138 13.321-11.39-10.308 12.419 10.483 3.583c.078.026.16.04.242.04.136 0 .271-.037.39-.109.19-.116.319-.311.352-.53l2.75-18.5c.041-.28-.077-.558-.307-.722z"/></svg>
+                                <p>Отправить</p>
+                            </button>
                         </div>
                         <div class="users selected">
                             <!-- Место для выбранных пользователей -->
                         </div>
                         <input id='mail-title' class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
                         <div id="editor" class='text-field'></div>
-                        <button class='form-btn' id='mail-file' type="button"><span class="fi-rr-clip"></span>Документ</button>
+                        <button class='form-btn' id='mail-file' type="button">
+                            <svg viewBox="0 0 24 24"><path d="M22.95,9.6a1,1,0,0,0-1.414,0L10.644,20.539a5,5,0,1,1-7.072-7.071L14.121,2.876a3,3,0,0,1,4.243,4.242L7.815,17.71a1.022,1.022,0,0,1-1.414,0,1,1,0,0,1,0-1.414l9.392-9.435a1,1,0,0,0-1.414-1.414L4.987,14.882a3,3,0,0,0,0,4.243,3.073,3.073,0,0,0,4.243,0L19.778,8.532a5,5,0,0,0-7.071-7.07L2.158,12.054a7,7,0,0,0,9.9,9.9L22.95,11.018A1,1,0,0,0,22.95,9.6Z"/></svg>
+                            <p>Документ</p>
+                        </button>
                         <input type="file" style="display: none" id='file-input' onchange="addNewFile(event)">
                         <div class='files' id='file-container'>
                             <!-- Спавн файлов -->
@@ -107,10 +158,14 @@
     <script src='{% static "MailApp/text/options.js" %}'></script>
     <script>AOS.init({ offset: -200 })</script>
     <script>
-        let max_mails = {{ max_mails }};
+        let max_mails = 0
+        if('{{ box_type }}' == 'sent'){ max_mails = {{ sent_mails }} }
+        if('{{ box_type }}' == 'received'){ max_mails = {{ received_mails }} }
+        if('{{ box_type }}' == 'important'){ max_mails = {{ important_mails }} }
     	let send_mail = '{% url "send_mails" user.id %}';
         let create_mail = '{% url "create_mail" user.id %}';
         let change_status = '{% url "change_status" user.id %}';
+        let change_important = '{% url "change_important" user.id %}'
     </script>
 </body>
 

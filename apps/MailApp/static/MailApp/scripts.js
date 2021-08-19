@@ -10,7 +10,7 @@ $('#mail-file').on('click', function(){
 
 // Закрытие меню при клике вне
 $(document).mouseup(function(e) {
-	let menu = $('#settings');
+	let menu = $('menu');
 	let form = $(".form-wrapper");
 	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0 && event.which == 1){
 		$(".form").hide(); $("menu").hide();
@@ -21,7 +21,7 @@ $(document).mouseup(function(e) {
 // Открыть форму
 function open_form(form_id) {
 	$(form_id).show();
-	$("body").css("position", "fixed");
+	$("body").css("overflow", "hidden");
 }
 
 // Поиск пользователя
@@ -60,25 +60,25 @@ function filter_applying(button, filter) {
 }
 
 // Получение письм
-function getNewMails(){
+function getNewMails(){	
 	$.ajax({
 		type: 'POST',
-		url: send_mail,
+		url: send_mail + location.search,
 		data: {
 			page: page,
-			csrfmiddlewaretoken: csrf_token,
+			csrfmiddlewaretoken: getCookie('csrftoken'),
 		},
 		cache: false,
 		success: function(response){
+			if(page * 8 >= max_mails && page !== 0){ 
+				$('#more-mails')[0].style.display = 'none'; 
+			}
 			for(let i in response['mails']){
 				buildNewMail(response['mails'][i]);
 			}
+			page++
 		}
 	})
-	page++
-	if(page * 8 >= max_mails){
-		$('#more-mails')[0].style.display = 'none'
-	}
 }
 
 // Отправка письма по кнопке
@@ -90,7 +90,7 @@ $('#send-mail').on('click', function(){
 	}
 
 	mail_form.append('text', quill.getText()) // Текст
-	mail_form.append('csrfmiddlewaretoken', csrf_token) // csfr_token
+	mail_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
 	mail_form.append('title', $('#mail-title')[0].value) // Заголовок
 
 	$('.selected .user').map(function(index){
@@ -121,7 +121,7 @@ function updateMailStatus(mail_id, mail){
 			url: change_status,
 			data: {
 				mail_id: mail_id,
-				csrfmiddlewaretoken: csrf_token,
+				csrfmiddlewaretoken: getCookie('csrftoken'),
 			},
 			cache: false,
 			success: function(){
@@ -129,6 +129,18 @@ function updateMailStatus(mail_id, mail){
 			}
 		})
 	}
+}
+
+function updateImportantStatus(mail_id){
+	$.ajax({
+		type: 'POST',
+		url: change_important,
+		data: {
+			mail_id: mail_id,
+			csrfmiddlewaretoken: getCookie('csrftoken'),
+		},
+		cache: false
+	})
 }
 
 // Построение нового письма
@@ -152,7 +164,7 @@ function buildNewMail(mail){
 
 	mail_view.onclick = function(){ // Связь между view и детальным view письма
 		mail_detail_view.style.display = 'block';
-		$("body").css("position", "fixed");
+		$("body").css("overflow", "hidden");
 		updateMailStatus(mail['id'], mail_view)
 	}
 
@@ -172,7 +184,7 @@ function buildMailView(mail){
 		for(let i in mail['files']){  // Перебор всех файлов письма
 			// Добавление файла в контейнер с добавкой кнопок "скачать"
 			$(file_div).append($(generateMailFile(mail['files'][i], 'file')).append(
-				$(`<div class="file-btns"><button onclick="window.open('${mail['files'][i]['url']}')" class="download-file" type="button"></button></div></div>`)[0]
+				$(`<div class="file-btns"><button onclick="window.open('${mail['files'][i]['url']}')" class="download-file" type="button"></button></div>`)[0]
 			))
 		}
 		// Добавка всех файлов в контейнер с "оберткой"
@@ -188,37 +200,76 @@ function buildMailView(mail){
 function generateMailView(mail, is_mail){
 	let mail_type = 'old-mail'
 	if(!(mail.is_read)){ mail_type = 'new-mail' }
-	return $(`<div class="item ${mail_type}" data-aos="fade-up"><div class="mail-sender">
-			  <img src='${mail["sender"]["image"]}'/><h4>${mail['sender']['name'][1]}<br>${mail['sender']['name'][0]}
-			  </h4></div><div class="mail-info"><div class='item-header'><h2>${mail['title']}</h2>
-			  <h3>${mail['date']}</h3></div><p class='item-text'>${mail['text']}</p></div></div>`)[0]
+	return $(`
+		<div class="item ${mail_type}" data-aos="fade-up">
+			<div class="mail-sender">
+				<img src='${mail["sender"]["image"]}'/>
+				<h4>${mail['sender']['surname']}<br>${mail['sender']['name']}</h4>
+			</div>
+			<div class="mail-info">
+				<div class='item-header'>
+					<h2>${mail['title']}</h2>
+					<h3>${mail['date']}</h3>
+				</div>
+				<p class='item-text'>${mail['text']}</p>
+			</div>
+		</div>`)[0]
 }
 
 // Генерация подробного view письма
 function generateMailDetailView(mail){
-	return $(`<div class='form'><div class="form-wrapper"><form><div class='item-header'><div class="user">
-			  <img src='${mail["sender"]["image"]}'/><div class="info"><h4>${mail['sender']['permission']}</h4>
-			  <h2>${mail['sender']['name'][1]} ${mail['sender']['name'][0][0]}. ${mail['sender']['name'][2][0]}.</h2>
-			  </div></div><nav><button class='form-btn'><span class='fi-rr-undo'></span>Ответить</button>
-			  <button class='form-btn'><span class='fi-rr-star'></span>Важное</button>
-			  <button class='form-btn'><span class='fi-rr-trash'></span>Удалить</button></nav></div>
-			  <hr class="divider"/><h2>${mail['title']}</h2><p class='item-text'>${mail['text']}</p>
-			  <div class='date__container'><h5>${mail['date']}</h5></div></form></div></div>`)[0]
+	return $(`
+		<div class='form'>
+			<div class="form-wrapper">
+				<form>
+					<div class='item-header'>
+						<div class="user">
+							<img src='${mail["sender"]["image"]}'/>
+							<div class="info">
+								<h4>${mail['sender']['permission']}</h4>
+			  					<h2>${mail['sender']['surname']} ${mail['sender']['name'][0]}. ${mail['sender']['patronymic'][0]}.</h2>
+			  				</div>
+			  			</div>
+			  			<nav style='display: flex; gap: 4px'>
+			  				<button class='form-btn' type='button'><svg viewBox="0 0 24 24"><path d="M15,7H10.17V5.414A2,2,0,0,0,6.756,4L.876,9.879a3,3,0,0,0,0,4.242L6.756,20a2,2,0,0,0,3.414-1.414V17H16a6.006,6.006,0,0,1,6,6,1,1,0,0,0,2,0V16A9.01,9.01,0,0,0,15,7Z"/></svg></button>
+			  				<button class='form-btn' type='button' onclick='updateImportantStatus(${mail.id})'><svg viewBox="0 0 24 24"><path d="M23.836,8.794a3.179,3.179,0,0,0-3.067-2.226H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832L4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6A3.177,3.177,0,0,0,23.836,8.794Zm-2.343,1.991-4.144,3.029a1,1,0,0,0-.362,1.116L18.562,19.8a1.227,1.227,0,0,1-1.895,1.365l-4.075-3a1,1,0,0,0-1.184,0l-4.075,3a1.227,1.227,0,0,1-1.9-1.365L7.013,14.93a1,1,0,0,0-.362-1.116L2.507,10.785a1.227,1.227,0,0,1,.724-2.217h5.1a1,1,0,0,0,.952-.694l1.55-4.831a1.227,1.227,0,0,1,2.336,0l1.55,4.831a1,1,0,0,0,.952.694h5.1a1.227,1.227,0,0,1,.724,2.217Z"/></svg></button>
+			  				<button class='form-btn' type='button'><svg viewBox="0 0 24 24"><path d="M21,4H17.9A5.009,5.009,0,0,0,13,0H11A5.009,5.009,0,0,0,6.1,4H3A1,1,0,0,0,3,6H4V19a5.006,5.006,0,0,0,5,5h6a5.006,5.006,0,0,0,5-5V6h1a1,1,0,0,0,0-2ZM11,17a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0ZM8.171,4A3.006,3.006,0,0,1,11,2h2a3.006,3.006,0,0,1,2.829,2Z"/></svg></button>
+			  			</nav>
+			  		</div>
+			  		<hr class="divider"/>
+			  		<h2>${mail['title']}</h2>
+			  		<p class='item-text'>${mail['text']}</p>
+			  		<div class='date__container'>
+			  			<h5>${mail['date']}</h5>
+			  		</div>
+				</form>
+			</div>
+		</div>`)[0]
 }
 
 // Генерация файлов письма
 function generateMailFile(file, class_name){
-	return $(`<div class="${class_name}"><div class="file-info">
-			  <i class="file-${file['name'].split('.')[file['name'].split('.').length - 1]}"></i>
-			  <h4>${file['name']}</h4></div>`)[0]
+	return $(`
+		<div class="${class_name}">
+			<div class="file-info">
+				<i class="file-${file['name'].split('.')[file['name'].split('.').length - 1]}"></i>
+				<h4>${file['name']}</h4>
+			</div>
+		</div>`)[0]
 }
 
 // Генерация файлов в форме
 function addFileWidget(file){
-	return $(`<div class="file"><div class="file-info">
-			  <i class="file-${file.name.split('.')[file.name.split('.').length - 1]}"></i>
-			  <h4>${file.name}</h4></div><div class="file-btns">
-			  <button class="del-file" type="button"></button></div></div>`)[0]
+	return $(`
+		<div class="file">
+			<div class="file-info">
+				<i class="file-${file.name.split('.')[file.name.split('.').length - 1]}"></i>
+				<h4>${file.name}</h4>
+			</div>
+			<div class="file-btns">
+				<button class="del-file" type="button"></button>
+			</div>
+		</div>`)[0]
 }
 
 // Генерация интерфейса файла

@@ -1,38 +1,53 @@
 from django import forms
 from django.utils import timezone
 from LoginApp.models import KvantUser
-from .models import KvantMessage, MailReceiver
 from SystemModule.forms import FileStorageSaveForm
+from .models import KvantMessage, MailReceiver, ImportantMail
 
 
 class SendNewMails(forms.Form):
     page = forms.IntegerField()
 
-    def save(self, user):
+    def save(self, request):
         response = []  # Массив писем
+        mail_container = []
         mail_count = self.cleaned_data['page'] * 8  # Получаем индекс первого письма
 
+        if request.GET['type'] == 'received':
+            mail_container = [mail for mail in KvantMessage.objects.filter(receivers__receiver=request.user)]
+
+        elif request.GET['type'] == 'sent':
+            mail_container = [mail for mail in KvantMessage.objects.filter(sender=request.user)]
+
+        elif request.GET['type'] == 'important':
+            mail_container = [mail.mail for mail in ImportantMail.objects.filter(user=request.user)]
+
         #  Перебор до конца писем или до получения 8
-        while len(response) != 8 and mail_count < len(KvantMessage.objects.filter(receivers__receiver=user)):
-            mail = KvantMessage.objects.filter(receivers__receiver=user)[mail_count]
+        while len(response) != 8 and mail_count < len(mail_container):
+            mail = mail_container[mail_count]
 
             sender = {
                 'image': mail.sender.image.url,
                 'permission': mail.sender.permission,
-                'name': [mail.sender.name, mail.sender.surname, mail.sender.patronymic],
+                'name': mail.sender.name,
+                'surname': mail.sender.surname,
+                'patronymic': mail.sender.patronymic
             }  # Создание объекта пользователя
             files = [{
                 'url': file.file.url,
                 'name': file.file.name.split('/')[-1],
             } for file in mail.files.all()]  # Создание объектов файлов
             mail_date = '.'.join(mail.date.__str__().split('-')[::-1])  # Дата отправки
-            receiver = mail.receivers.all().filter(receiver=user)[0]  # Текущий получатель
+
+            is_read = True
+            if request.user != mail.sender:
+                is_read = mail.receivers.all().filter(receiver=request.user)[0].is_read  # Текущий получатель
 
             new_mail = {
                 'title': mail.title, 'files': files,
                 'date': mail_date, 'text': mail.text,
                 'style_text': mail.style_text, 'id': mail.id,
-                'sender': sender, 'is_read': receiver.is_read,
+                'sender': sender, 'is_read': is_read,
             }  # Формирование представлении письма
             mail_count += 1
             response.append(new_mail)

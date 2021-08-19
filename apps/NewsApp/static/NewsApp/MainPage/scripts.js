@@ -42,10 +42,14 @@ function open_form(form_id) {
 
 // Генерация представлений файла
 function addFileWidget(file){
-	return $(`<div class="file"><div class="file-info">
-			  <i class="file-${file.name.split('.')[file.name.split('.').length - 1]}"></i>
-			  <h4>${file.name}</h4></div><div class="file-btns">
-			  <button class="del-file" type="button"></button></div></div>`)[0]
+	return $(`
+	<div class="file">
+		<div class="file-info">
+			<i class="file-${file.name.split('.')[file.name.split('.').length - 1]}"></i>
+			<h4>${file.name}</h4></div><div class="file-btns">
+			<button class="del-file" type="button"></button>
+		</div>
+	</div>`)[0]
 }
 
 // Генерация интерфейса файла
@@ -92,12 +96,23 @@ function addNewsPreview(event){
 
 // Генерация новости
 function buildNews(news){
-	return $(`<div class="item" data-aos="fade-up" onclick="location.href='/news/${user_id}/detail/${news.id}'">
-			  <img src="${news['image']}" alt="preview" class="preview"><div class="item-header">
-			  <div class="news-title"><h2>${news['title']}</h2></div><div class="news-author">
-			  <h4>${news['author']['name']}</h4><img src="${news['author']['img']}" class="profile-img">
-			  </div></div><p>${news['content']}</p><div class='date__container' style='margin-left: auto'>
-			  <h5>${news['date']}</h5></div></div>`)[0]
+	return $(`
+		<div class="item" data-aos="fade-up" onclick="location.href='/news/${user_id}/detail/${news.id}'">
+			<img src="${news['image']}" alt="preview" class="preview"/>
+			<div class="item-header">
+				<div class="news-title">
+					<h2>${news['title']}</h2>
+				</div>
+				<div class="news-author">
+					<h4>${news['author']['name']}</h4>
+					<img src="${news['author']['img']}" class="profile-img">
+				</div>
+			</div>
+			<p>${news['content']}</p>
+			<div class='date__container' style='margin-left: auto'>
+				<h5>${news['date']}</h5>
+			</div>
+		</div>`)[0]
 }
 
 // Запрос новостей с сервера
@@ -107,7 +122,7 @@ function getNewNews(){
 		url: send_news,
 		data: {
 			page: page,
-			csrfmiddlewaretoken: csrf_token,
+			csrfmiddlewaretoken: getCookie('csrftoken'),
 		},
 		cache: false,
 		success: function(response){
@@ -133,7 +148,7 @@ $('#news-upload').on('click', function(){
 	news_form.append('author', user_id)
 	news_form.append('image', news_preview) // Превью
 	news_form.append('content', quill.getText()) // Текст
-	news_form.append('csrfmiddlewaretoken', csrf_token) // csfr_token
+	news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
 	news_form.append('title', $('#news-title')[0].value) // заголовок
 	news_form.append('style_content', $('.ql-editor')[0].innerHTML) // форматированный текст
 

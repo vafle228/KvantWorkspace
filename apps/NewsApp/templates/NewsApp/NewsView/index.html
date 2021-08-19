@@ -43,7 +43,6 @@
                         </div>
                     </div>
                     <div class='date__container'>
-                        <span class="fi-rr-calendar"></span>
                         <h5>Дата публикации: {{ news.date|date:"j.m.Y" }}</h5>
                     </div>
                     {% if news.files|get_objects|length != 0 %}
@@ -65,16 +64,13 @@
                         </div>
                     </div>
                     {% endif %}
-                    <button class='form-btn' id='back-btn' type="button"><span class="fi-rr-undo" style='font-size: 1rem; margin-right: 5px'></span>На Главную</button>
+                    <button class='form-btn' type="button" onclick="location.href='{% url 'main_page' user.id %}'"><p>Назад</p></button>
                 </form>
             </div>
         </div>
         <img src='{% static "SystemModule/atom.png" %}' class='bg'/>
     </section>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
-    <script>
-        let main_page = '{% url "main_page" user.id %}'
-    </script>
     <script src="{% static 'NewsApp/NewsView/scripts.js' %}"></script>
 </body>
 </html>
