@@ -1,0 +1,16 @@
+{% for news in all_news %}
+<div class="item" data-aos="fade-up">
+    <img src="{{ news.image.url }}" alt="preview" class='item__preview'>
+
+    <div class="item__content">
+        <h2 class='item__title'>{{ news.title }}</h2>
+        <div class='item__text'>{{ news.content }}</div>
+        <div class="item__info">
+            <img src='{{ news.author.image.url }}' class='profile-img'/>
+            <div>{{ news.author.surname }} {{ news.author.name|slice:"1" }}.</div>
+            <span class="dot"></span>
+            <div>{{ news.date|date:"j.m" }}</div>
+        </div>
+    </div>
+</div>
+{% endfor %}

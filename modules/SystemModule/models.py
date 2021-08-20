@@ -7,7 +7,7 @@ def uploadFile(instance, filename):
 
 
 class FileStorage(models.Model):
-    file = models.FileField(upload_to=uploadFile)
+    file        = models.FileField(upload_to=uploadFile)
     upload_path = models.TextField(blank=True, default='files/')
 
     def __str__(self):

@@ -28,13 +28,13 @@ def get_path(instance, filename):
 
 
 class KvantUser(AbstractUser):
-    name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
-    patronymic = models.CharField(max_length=100)
-    permission = models.CharField(choices=permission, max_length=100)
-    color = models.CharField(max_length=100, choices=color, default='blue')
-    theme = models.CharField(max_length=100, choices=theme, default='light')
-    image = models.ImageField(upload_to=get_path, default=set_default_image)
+    name        = models.CharField(max_length=100)
+    surname     = models.CharField(max_length=100)
+    patronymic  = models.CharField(max_length=100)
+    permission  = models.CharField(choices=permission, max_length=100)
+    color       = models.CharField(max_length=100, choices=color, default='blue')
+    theme       = models.CharField(max_length=100, choices=theme, default='light')
+    image       = models.ImageField(upload_to=get_path, default=set_default_image)
 
     def __str__(self):
         return f'{self.permission} {self.surname} {self.name[0]}.{self.patronymic[0]}.'

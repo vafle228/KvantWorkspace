@@ -3,13 +3,6 @@ $(window).resize(function(){
 	$('body')[0].style.zoom = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
 });
 
-// Перезагрузка старницы с анимацией логотипа
-function reload(logo_div) {
-	$(logo_div).find('img')[0].style.animation = 'you_spin_me_right_round 1s';
-	setTimeout("location.reload()", 800);
-}
-
-
 // Открыть меню
 function open_menu(menu_id) {
 	$(menu_id).show();
@@ -18,10 +11,10 @@ function open_menu(menu_id) {
 // Сменить тему
 function switch_theme(){
 	if($('body').hasClass('light__theme')){
-		themeChange('dark', user_color); user_theme = 'dark';
+		themeChange('dark', getUserColorTheme());
 		$('.light__theme').toggleClass('light__theme dark__theme');
 	} else {
-		themeChange('light', user_color); user_theme = 'light';
+		themeChange('light', getUserColorTheme());
 		$('.dark__theme').toggleClass('dark__theme light__theme');
 	}
 }
@@ -29,12 +22,20 @@ function switch_theme(){
 // Сменить цветовую гамму
 function switch_color_scheme(){
 	if($('body').hasClass('blue__color__scheme')){
-		themeChange(user_theme, 'orange'); user_color = 'orange';
+		themeChange(getUserTheme(), 'orange');
 		$('.blue__color__scheme').toggleClass('blue__color__scheme orange__color__scheme');
 	} else {
-		themeChange(user_theme, 'blue'); user_color = 'blue';
+		themeChange(getUserTheme(), 'blue');
 		$('.orange__color__scheme').toggleClass('orange__color__scheme blue__color__scheme');
 	}
+}
+
+function getUserColorTheme(){
+	return $('body').hasClass('blue__color__scheme') ? 'blue' : 'orange'
+}
+
+function getUserTheme(){
+	return $('body').hasClass('light__theme') ? 'light' : 'dark'
 }
 
 function themeChange(theme, color){
@@ -44,7 +45,7 @@ function themeChange(theme, color){
 		data: {
 			theme: theme,
 			color: color,
-			csrfmiddlewaretoken: csrf_token
+			csrfmiddlewaretoken: getCookie('csrftoken')
 		},
 		cache: false
 	})

@@ -5,38 +5,60 @@
 
 <head>
     <meta charset="UTF-8">
+    
     {% include "SystemModule/HeadSetup/index.html" %}
-    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file_icons.css" %}' />
+    <link rel='stylesheet' href='{% static "SystemModule/icons/files/fileIcons.css" %}' />
     <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'> <!-- Стили страницы -->
-    <link rel="stylesheet" href='{% static "NewsApp/MainPage/text/highlight.css" %}'>
-    <link rel="stylesheet" href='{% static "NewsApp/MainPage/text/ql-editor.css" %}'>
+    <link rel="stylesheet" href='{% static "SystemModule/text/highlight.css" %}'>
+    <link rel="stylesheet" href='{% static "SystemModule/text/ql-editor.css" %}'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Главная</title>
 </head>
 
-<body style="overflow: auto" onload="getNewNews()">
+<body style="overflow: auto" onload="getNewNews('{% url "send_news" user.id %}');">
+    <script>
+        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
+    </script>
     <!-- Навигационное меню -->
     {% include "SystemModule/AsideMenu/index.html" with user=user active='main' %}
 
+    <!-- Шапка -->
+    <header>
+        <div class='page-header'>
+            <h1>Главная</h1>
+        </div>
+    </header>
+
     <!-- Главная -->
-    <section id='main' style='display: block'>
-        <header>
-            {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
-        </header>
+    <section id='main'>
         <!-- Виджеты -->
         <section id='widgets'>
             <!-- Виджет "Календарь" -->
             <div id="calendar-widget">
                 <div class="calendar-container">
-                    <div class="date-info"> Июнь 2021 </div>
+                    <div class="date-info">
+                        Июль 2021
+                        <div id="slider-controller">
+                            <button class='arrow'>
+                                <svg viewBox="0 0 24 24"><path d="M10.88 17.715a1 1 0 000-1.415l-3.292-3.293L18 13a1 1 0 000-2l-10.414.007 3.294-3.292A1 1 0 009.466 6.3L5.88 9.886a3 3 0 000 4.243l3.586 3.586a1 1 0 001.414 0z"/></svg>
+                            </button>
+                            <button class='arrow'>
+                                <svg viewBox="0 0 24 24"><path d="M13.121 6.293a1 1 0 000 1.414L16.413 11 6 11.007a1 1 0 100 2L16.414 13l-3.293 3.293a1 1 0 101.414 1.414l3.586-3.585a3 3 0 000-4.243l-3.586-3.586a1 1 0 00-1.414 0z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <hr class='divider' style='margin: 6px 0 18px;'/> -->
                     <div class="calendar">
                         <span class='inactive'>Пн</span><span class='inactive'>Вт</span><span class='inactive'>Ср</span><span class='inactive'>Чт</span><span class='inactive'>Пт</span><span class='inactive'>Сб</span><span class='inactive'>Вс</span>
-                        <span class='inactive'>31</span><span class='active'>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
-                        <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
-                        <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
-                        <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
-                        <span>28</span><span>29</span><span>30</span><span class='inactive'>1</span><span class='inactive'>2</span><span class='inactive'>3</span><span class='inactive'>4</span>
+                        <span class='inactive'>28</span><span class='inactive'>29</span><span class='inactive'>30</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                        <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span class='active'>18</span>
+                        <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                        <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class='inactive'>1</span>
                     </div>
                 </div>
                 <div class="timetable">
@@ -47,28 +69,27 @@
                     </div>
                 </div>
             </div>
+
             <!-- Виджет "Расписание" -->
             <div id='schedule-widget'>
                 <div class='widget-header'>
                     <div>
-                        <h1 style='display: inline-block'>Расписание</h1>
+                        <h1 style='display: inline-block; color: #000'>Расписание</h1>
                     </div>
-                    {% if courses|length > 3 %}
                     <!-- Кнопки слайдера -->
                     <div id="slider-controller">
-                        <button id='prev'>
+                        <button id='prev' class='arrow'>
                             <svg viewBox="0 0 24 24"><path d="M10.88 17.715a1 1 0 000-1.415l-3.292-3.293L18 13a1 1 0 000-2l-10.414.007 3.294-3.292A1 1 0 009.466 6.3L5.88 9.886a3 3 0 000 4.243l3.586 3.586a1 1 0 001.414 0z"/></svg>
                         </button>
-                        <button id='next'>
+                        <button id='next' class='arrow'>
                             <svg viewBox="0 0 24 24"><path d="M13.121 6.293a1 1 0 000 1.414L16.413 11 6 11.007a1 1 0 100 2L16.414 13l-3.293 3.293a1 1 0 101.414 1.414l3.586-3.585a3 3 0 000-4.243l-3.586-3.586a1 1 0 00-1.414 0z"/></svg>
                         </button>
                     </div>
-                    {% endif %}
                 </div>
                 <div id='slider'>
                     {% for course in courses %}
                     <div class='item course'>
-                        <img src="{% static 'NewsApp/MainPage/default.jpg' %}" class='course__banner'/>
+                        <img src="{% static 'NewsApp/MainPage/imgs/courseImg.jpg' %}" class='course__banner'/>
                         <img src="{{ course.teacher.teacher.image.url }}" class='teacherProfileImg'/>
                         <div class="course__info">
                             <h2>{{ course.name }}</h2>
@@ -115,8 +136,13 @@
                         <hr class='divider'/>
                         <h2>Расписание</h2>
                         <div class="calendar__timetable">
-                            <div class="day day-active">Вт<time>18:20</time></div>
-                            <div class="day day-active">Чт<time>18:20</time></div>
+                            <div class="day">Пн</div>
+                            <div class="day active">Вт<time>18:20</time></div>
+                            <div class="day">Ср</div>
+                            <div class="day active">Чт<time>18:20</time></div>
+                            <div class="day">Пт</div>
+                            <div class="day">Сб</div>
+                            <div class="day">Вс</div>
                         </div>
                         <hr class="divider"/>
                         <h2>Участники курса</h2>
@@ -157,11 +183,9 @@
                 <!-- Тут спавняться новости -->
             </div>
             <!-- Кнопка "Больше новостей" -->
-            {% if max_news|add:"-6" > 0 %}
             <div id="more-news" class='main-btn'>
-                <button onclick="getNewNews()">Больше новостей</button>
+                <button onclick="getNewNews('{% url "send_news" user.id %}' + `?page=${page}`)">Больше новостей</button>
             </div>
-            {% endif %}
             <!-- Форма создания новости -->
             <div class='form' id='add-news-form'>
                 <div class="form-wrapper">
@@ -169,16 +193,43 @@
                         <div class='item-header'>
                             <h2>Добавление новости</h2>
                             <div id="news-form-btns" style="display: flex; gap: 5px">
-                                <button class='form-btn' id="news-preview" type="button"><span class="fi-rr-picture" style='margin-right: 5px'></span>Добавить обложку</button>
+                                <button class='form-btn active' id="news-preview" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
+                                        <g transform="translate(-8.001 -9.667)">     
+                                            <path class='faded' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
+                                            <path class='faded' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
+                                            <path class='bright' d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
+                                        </g>
+                                    </svg>
+                                    <p>Добавить обложку</p>
+                                </button>
                                 <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
 
-                                <button class='form-btn' id="news-upload" type="button"><span class="fi-rr-world" style='margin-right: 5px'></span>Опубликовать</button>
+                                <button class='form-btn active' id="news-upload" type="button">
+                                    <svg viewBox="0 0 24 24">
+                                        <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
+                                        <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
+                                        <path class='faded' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
+                                    </svg>
+                                    <p>Опубликовать</p>
+                                </button>
                             </div>
                         </div>
                         <input id="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок"></input>
                         <div id="editor" class='text-field'></div>
-                        <button class='form-btn' id="file-button" type="button"><span class="fi-rr-clip" style='margin-right: 5px'></span>Документ</button>
-                        <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)'/>
+                        <div class="item-header">
+                            <h2>Прикрепленные файлы</h2>
+                            <button class='form-btn' id="file-button" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                                    <g transform="translate(-8.667 -8)">
+                                        <path class='faded' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                                        <path class='bright' d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                                    </g>
+                                </svg>
+                                <p>Документ</p>
+                            </button>
+                            <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)'/>
+                        </div>
                         <div class='files' id='file-container'>
                             <!-- Тут спавнять файлы -->
                         </div>
@@ -187,6 +238,15 @@
             </div>
         </section>
     </section>
+
+    <div id="arrowTop" hidden>
+        <svg viewBox="0 0 14 14">
+            <g transform="translate(-5 -5)">
+                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+            </g>
+        </svg> 
+    </div>
 
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <!-- Подсветка кода -->
@@ -200,11 +260,10 @@
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
     <script src="{% static 'NewsApp/MainPage/text/options.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ offset: -300 })</script>
+    <script>AOS.init({ offset: -9999999 })</script>
     <script>
         let user_id = '{{ user.id }}';
         let max_news = {{ max_news }};
-        let send_news = '{% url "send_news" user.id %}';
         let create_news = '{% url "create_news" user.id %}';
     </script>
     <script>

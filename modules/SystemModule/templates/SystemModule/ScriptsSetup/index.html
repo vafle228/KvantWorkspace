@@ -3,8 +3,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{% static 'SystemModule/scripts.js' %}"></script>
     <script>
-    	let user_theme = '{{ user.theme }}';
-    	let user_color = '{{ user.color }}';
     	let change_theme = '{% url "change_theme" user.id %}'
     </script>
 </body>

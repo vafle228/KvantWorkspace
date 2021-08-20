@@ -1,23 +1,24 @@
-let page = 0;
+let page = 1;
 let file_array = Array()
 let news_preview = undefined
+
+// <=== Скрипты работы страницы ===>
 
 // Открытие формы по нажатию на курс
 $("#slider .item").click(function(event){
 	$('#widgets .item').each(function(i, item){
-		if(item == event.target.parentElement || item == event.target){
-			$('#widgets .form')[i].style.display = 'block';
+		if(item == event.delegateTarget || item == event.target){
+			$($('#widgets .form')[i]).addClass("active");
 			$("body").css("overflow", "hidden");
 		}
 	})
 });
 
 // Закрытие меню при клике вне
-$(document).mouseup(function(e) {
-	let menu = $('#settings');
-	let form = $(".form-wrapper");
-	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0 && event.which == 1){
-		$(".form").hide(); $("menu").hide();
+$(document).mouseup(function (e) {
+	var form = $(".form-wrapper");
+	if (form.has(e.target).length === 0) {
+		$(".form").removeClass("active");
 		$("body").css("overflow-y", "scroll");
 	}
 });
@@ -36,9 +37,27 @@ $('#news-preview').on('click', function(){
 
 // Открыть форму
 function open_form(form_id) {
-	$(form_id).show();
 	$("body").css("overflow", "hidden");
+	$(form_id).addClass("active");
 }
+
+// Запрос новостей с сервера
+function getNewNews(link){
+	$.ajax({
+		type: 'GET',
+		url: link,
+		cache: false,
+		success: function(response){
+			$('#news__container').append(response)
+			if(page * 6 >= max_news){
+				$('#more-news')[0].style.display = 'none';
+			}
+			page++
+		}
+	})
+}
+
+// <=== Скрипты формы добавления новости ===>
 
 // Генерация представлений файла
 function addFileWidget(file){
@@ -81,7 +100,6 @@ function addNewsPreview(event){
 		let btns_container = $('#news-form-btns')[0] // Определение контейнера
 
 		let preview_widget = addFileWidget(news_preview) // Получение html-а превью
-		console.log()
 
 		// Фунция по клику на "крестик"
 		$(preview_widget).find('.del-file')[0].onclick = function(click) {
@@ -91,49 +109,6 @@ function addNewsPreview(event){
 		}
 
 		btns_container.insertBefore(preview_widget, btns_container.firstChild) // Добавление превью
-	}
-}
-
-// Генерация новости
-function buildNews(news){
-	return $(`
-		<div class="item" data-aos="fade-up" onclick="location.href='/news/${user_id}/detail/${news.id}'">
-			<img src="${news['image']}" alt="preview" class="preview"/>
-			<div class="item-header">
-				<div class="news-title">
-					<h2>${news['title']}</h2>
-				</div>
-				<div class="news-author">
-					<h4>${news['author']['name']}</h4>
-					<img src="${news['author']['img']}" class="profile-img">
-				</div>
-			</div>
-			<p>${news['content']}</p>
-			<div class='date__container' style='margin-left: auto'>
-				<h5>${news['date']}</h5>
-			</div>
-		</div>`)[0]
-}
-
-// Запрос новостей с сервера
-function getNewNews(){
-	$.ajax({
-		type: 'POST',
-		url: send_news,
-		data: {
-			page: page,
-			csrfmiddlewaretoken: getCookie('csrftoken'),
-		},
-		cache: false,
-		success: function(response){
-			for(let i in response['news']){ 
-				$('#news__container').append(buildNews(response['news'][i]))
-			}
-		}
-	})
-	page++
-	if(page * 6 >= max_news){
-		$('#more-news')[0].style.display = 'none';
 	}
 }
 

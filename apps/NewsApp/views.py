@@ -1,10 +1,10 @@
 from .models import KvantNews
 from django.utils import timezone
-from django.http import JsonResponse
+from .forms import KvantNewsSaveForm
 from LoginApp.models import KvantUser
 from AdminModule.models import KvantCourse
 from SystemModule.views import is_available
-from .forms import KvantNewsSaveForm, SendNewNews
+from django.views.generic.list import ListView
 from SystemModule.forms import FileStorageSaveForm
 from django.shortcuts import render, HttpResponse, redirect
 
@@ -26,6 +26,22 @@ def main_page(request, identifier):
     return render(request, 'NewsApp/MainPage/index.html', {'courses': user_course, 'max_news': max_news})
 
 
+# Пагинация по новостям
+class NewsListView(ListView):
+    model               = KvantNews
+    ordering            = ['-date']
+    paginate_by         = 6
+    template_name       = 'NewsApp/NewsPreview/index.html'
+    context_object_name = 'all_news'
+    
+    # Метод делегирования запроса
+    def dispatch(self, request, *args, **kwargs):
+        user_id = kwargs['identifier']
+        if not is_available(request, user_id):  # Проверяем доступ
+            return redirect('/login/')
+        return super().dispatch(request, *args, **kwargs)  # Исполняем родительский метод
+
+
 def news_detail_view(request, identifier, news_identifier):
     # Функция просмотра деталей новостей.
     if not is_available(request, identifier):  # Проверка на доступ
@@ -35,18 +51,6 @@ def news_detail_view(request, identifier, news_identifier):
         news = KvantNews.objects.filter(id=news_identifier)[0]  # Получаем запрашиваемую новость
         return render(request, 'NewsApp/NewsView/index.html', {'news': news})
     return redirect(f'/news/{identifier}/main')
-
-
-def send_new_news(request, identifier):
-    # Функция условной пагинации новостей
-    if not is_available(request, identifier):  # Проверка на доступ
-        return redirect('/login/')
-
-    if request.method == 'POST':  # Проверка на POST запрос
-        form = SendNewNews(request.POST)
-        response = form.save() if form.is_valid() else []
-        return JsonResponse({'news': response})
-    return HttpResponse('Error')  # Если был отправлен другой запрос
 
 
 def create_new_news(request, identifier):
@@ -66,6 +70,7 @@ def create_new_news(request, identifier):
     return HttpResponse(f'/news/{request.user.id}/main')  # Если был неверный метод
 
 
+# Просто функция для делегирования заполнения новости
 def fill_news_files(request, news):
     date = timezone.now().date()
     for file in request.FILES.getlist('files'):  # Добавление файлов в новость

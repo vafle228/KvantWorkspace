@@ -10,8 +10,8 @@ marks = (
 
 
 class KvantLessonHomeWork(models.Model):
-    task = models.TextField()
-    file = models.ManyToManyField(FileStorage, blank=True)
+    task     = models.TextField()
+    file     = models.ManyToManyField(FileStorage, blank=True)
     students = models.ManyToManyField(KvantStudent, blank=True)
 
     def __str__(self):
@@ -19,7 +19,7 @@ class KvantLessonHomeWork(models.Model):
 
 
 class KvantLessonMark(models.Model):
-    mark = models.CharField(max_length=150, choices=marks)
+    mark    = models.CharField(max_length=150, choices=marks)
     student = models.ForeignKey(KvantStudent, on_delete=models.CASCADE)
 
     def __str__(self):

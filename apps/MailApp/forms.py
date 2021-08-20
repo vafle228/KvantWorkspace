@@ -8,19 +8,21 @@ from .models import KvantMessage, MailReceiver, ImportantMail
 class SendNewMails(forms.Form):
     page = forms.IntegerField()
 
-    def save(self, request):
-        response = []  # Массив писем
-        mail_container = []
-        mail_count = self.cleaned_data['page'] * 8  # Получаем индекс первого письма
-
+    def get_mail_container(self, request):
         if request.GET['type'] == 'received':
-            mail_container = [mail for mail in KvantMessage.objects.filter(receivers__receiver=request.user)]
+            return [mail for mail in KvantMessage.objects.filter(receivers__receiver=request.user)]
 
         elif request.GET['type'] == 'sent':
-            mail_container = [mail for mail in KvantMessage.objects.filter(sender=request.user)]
+            return [mail for mail in KvantMessage.objects.filter(sender=request.user)]
 
         elif request.GET['type'] == 'important':
-            mail_container = [mail.mail for mail in ImportantMail.objects.filter(user=request.user)]
+            return [mail.mail for mail in ImportantMail.objects.filter(user=request.user)]
+        return []
+    
+    def save(self, request):
+        response = []  # Массив писем
+        mail_container = self.get_mail_container(request)
+        mail_count = self.cleaned_data['page'] * 8  # Получаем индекс первого письма
 
         #  Перебор до конца писем или до получения 8
         while len(response) != 8 and mail_count < len(mail_container):

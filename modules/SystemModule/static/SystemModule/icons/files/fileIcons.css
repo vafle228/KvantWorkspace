@@ -17,7 +17,7 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
 /* Video */
 .file-mp4:before, .file-avi:before, .file-mov:before, .file-wmv:before, .file-mkv:before{
     content: "";
-    background-image: url('./svg/youtube.svg');
+    background-image: url('./svg/play.svg');
 }
 /* Audio */
 .file-mp3:before, .file-waf:before, .file-aif:before, .file-mid:before{
