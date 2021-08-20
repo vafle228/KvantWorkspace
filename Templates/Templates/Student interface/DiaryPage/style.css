@@ -177,15 +177,6 @@
 .pageHeader{
     display: flex; justify-content: space-between; align-items: center;
 }
-.pageHeader__button{
-    height: 45px; margin: 3px 0; padding: 0 16px;
-    border-radius: 8px;
-    background-color: #20d489;
-    font-size: 16px; font-weight: 800; color: #fff;
-}
-.pageHeader__button:hover{
-    filter: brightness(0.96);
-}
 
 .header{
     width: 100%;
@@ -274,7 +265,7 @@
 }
 .task.active .task__info{
     margin-left: 80px;
-    width: 80%;
+    max-width: 80%;
 }
 .task__title{
     font-size: 18px; font-weight: 800;

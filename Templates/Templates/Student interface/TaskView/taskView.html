@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
     <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
     
-    <title>Заголовок новости</title>
+    <title>Просмотр задания</title>
 </head>
 
 <body class='light__theme blue__color__scheme'>
@@ -39,7 +39,7 @@
         <!-- Навигация -->
         <nav>
             <!-- Главная -->
-            <button class='active'>
+            <button>
                 <div>
                     <svg viewBox="0 0 16 16">
                         <g transform="translate(-4 -4)">
@@ -51,7 +51,7 @@
                 </div>
             </button>
             <!-- Дневник -->
-            <button>
+            <button class='active'>
                 <div>
                     <svg viewBox="0 0 448 512">
                         <path class='faded' d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
@@ -191,7 +191,7 @@
 
     
 
-    <section class="newsView">
+    <section class="taskView">
 
         <!-- Кнопки -->
         <div class="row">
@@ -204,7 +204,7 @@
                 </svg>
                 Назад
             </button>
-            <button class="secondaryButton" onclick="open_form('#editNewsItemForm')">
+            <button class="secondaryButton" onclick="open_form('#editTaskForm')">
                 <svg viewBox="0 0 576 512">
                     <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
                     <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
@@ -213,32 +213,20 @@
             </button>
         </div>
 
-        <!-- Если есть только одно изображение -->
-        <!-- <div class="newsView__preview">
-            <img src="../../../img/Kaelthas.jpg">
-        </div> -->
+        <!-- Информация задания -->
+        <div class="taskView__info">
 
-        <!-- Галерея новости -->
-        <div id="newsView__Carousel" class="carousel">
-            <div class="carousel__slide" style="background-image: url('../../../img/Kaelthas.jpg')"></div>
-            <div class="carousel__slide" style="background-image: url('../../../img/Kaelthas.jpg')"></div>
-            <div class="carousel__slide" style="background-image: url('../../../img/Kaelthas.jpg')"></div>
-        </div>
-
-        <!-- Информация новости -->
-        <div class="newsView__info">
-
-            <p class="newsView__infoTitle">Заголовок новости</p>
+            <p class="taskView__infoTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, vero!</p>
             <div class="row">
-                <p class="newsView__infoAuthor">Фамилия Имя</p>
+                <p class="taskView__infoAuthor">Фамилия Имя</p>
                 <div class="dot"></div>
-                <p class="newsView__infoDate">19.08</p>
+                <p class="taskView__infoDate">19.08</p>
             </div>
 
             <hr class="divider" noshade/>
 
             <!-- Текст новости -->
-            <p class="newsView__infoText">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quisquam saepe fugiat quam vel deleniti ullam, architecto dolor eaque pariatur cupiditate tempora ea error fugit doloremque molestiae voluptatem vitae nobis. Suscipit iure odit nam iste beatae dignissimos tenetur animi amet similique pariatur hic ea placeat repellat facilis, unde maxime dolor eligendi ipsum, fugiat quam sint! Itaque accusamus animi illum. Unde voluptas nobis ipsam accusantium asperiores ullam fugit est possimus molestias deserunt animi ducimus voluptatibus aliquid quasi, atque fuga inventore omnis nisi facilis maiores similique, ea iste voluptate. Nam, officiis aut culpa error ratione odio, voluptas vitae magni nulla quibusdam dolore ad exercitationem obcaecati perferendis distinctio doloremque soluta qui cum optio hic repellat, velit harum. Quo iure numquam ex excepturi facere eius beatae aut quibusdam quos inventore esse nesciunt officia expedita odio, earum id voluptatibus est tempora neque culpa. A dolorem, qui aspernatur dolores doloremque labore amet minima iste harum nihil tenetur obcaecati ea cum atque id soluta. Deserunt, molestias totam? Ex, corrupti dolorem maxime rem facere aperiam inventore dicta tenetur ullam, error fugit iusto consequatur fuga deserunt voluptatibus ut similique sed laboriosam repellendus. Nostrum quos, eaque eveniet aspernatur cumque dicta perferendis ab, aperiam asperiores neque soluta saepe repellendus sed! Et?</p>
+            <p class="taskView__infoText">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quisquam saepe fugiat quam vel deleniti ullam, architecto dolor eaque pariatur cupiditate tempora ea error fugit doloremque molestiae voluptatem vitae nobis. Suscipit iure odit nam iste beatae dignissimos tenetur animi amet similique pariatur hic ea placeat repellat facilis, unde maxime dolor eligendi ipsum, fugiat quam sint! Itaque accusamus animi illum. Unde voluptas nobis ipsam accusantium asperiores ullam fugit est possimus molestias deserunt animi ducimus voluptatibus aliquid quasi, atque fuga inventore omnis nisi facilis maiores similique, ea iste voluptate. Nam, officiis aut culpa error ratione odio, voluptas vitae magni nulla quibusdam dolore ad exercitationem obcaecati perferendis distinctio doloremque soluta qui cum optio hic repellat, velit harum. Quo iure numquam ex excepturi facere eius beatae aut quibusdam quos inventore esse nesciunt officia expedita odio, earum id voluptatibus est tempora neque culpa. A dolorem, qui aspernatur dolores doloremque labore amet minima iste harum nihil tenetur obcaecati ea cum atque id soluta. Deserunt, molestias totam? Ex, corrupti dolorem maxime rem facere aperiam inventore dicta tenetur ullam, error fugit iusto consequatur fuga deserunt voluptatibus ut similique sed laboriosam repellendus. Nostrum quos, eaque eveniet aspernatur cumque dicta perferendis ab, aperiam asperiores neque soluta saepe repellendus sed! Et?</p>
             
             <hr class="divider" noshade/>
 
@@ -246,110 +234,20 @@
             <div class='files'>
                 <div class='file'>
                     <div class="file-info">
-                        <i class='file-7z'></i>
-                        <h4>arcive.7z</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-cpp'></i>
-                        <h4>c++ prog.cpp</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-mov'></i>
-                        <h4>video.mov</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-mp3'></i>
-                        <h4>audio.mp3</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-pyc'></i>
-                        <h4>python prog.pyc</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-java'></i>
-                        <h4>java prog.java</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
                         <i class='file-xml'></i>
-                        <h4>excel document.xml</h4>
+                        <h4>Таблица.xml</h4>
                     </div>
                     <div class="file-btns">
-                        <button class='download-file'></button>
+                        <button class='download-file' type='button'></button>
                     </div>
                 </div>
                 <div class='file'>
                     <div class="file-info">
                         <i class='file-pptx'></i>
-                        <h4>presentation.pptx</h4>
+                        <h4>Презентация.pptx</h4>
                     </div>
                     <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-doc'></i>
-                        <h4>document.doc</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-pdf'></i>
-                        <h4>sertificate.pdf</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-png'></i>
-                        <h4>image.png</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
-                    </div>
-                </div>
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-cs'></i>
-                        <h4>C# prog.cs</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file'></button>
+                        <button class='download-file' type='button'></button>
                     </div>
                 </div>
             </div>
@@ -357,34 +255,24 @@
         </div>
     </section>
 
-    <!-- Форма редактирования новости -->
-    <div class='form' id='editNewsItemForm'>
+    <!-- Форма редактирования задания -->
+    <div class='form' id='editTaskForm'>
         <div class="form-wrapper">
             <form>
                 <div class='item-header'>
-                    <h2>Редактирование новости</h2>
+                    <h2>Редактирование задания</h2>
                     <div style='display: flex; gap: 5px'>
-                        <button class='form-btn active' type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
-                                <g transform="translate(-8.001 -9.667)">     
-                                    <path class='faded' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
-                                    <path class='faded' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
-                                    <path class='bright' d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
-                                </g>
-                            </svg>
-                            <p>Добавить обложку</p>
-                        </button>
                         <button class='form-btn active' type="submit">
                             <svg viewBox="0 0 24 24">
-                                <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
-                                <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
-                                <path class='faded' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
-                            </svg>
-                            <p>Опубликовать</p>
+                                <circle cx="12" cy="14" r="2" class='faded'/>
+                                <path class='bright' d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                                <path class='faded' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                            </svg>    
+                            <p>Сохранить</p>
                         </button>
                     </div>
                 </div>
-                <input class='text-field text-field-title' autocomplete="off" placeholder="Заголовок" value="Заголовок новости"/>
+                <input class='text-field text-field-title' autocomplete="off" placeholder="Заголовок задания" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, vero!"/>
                 <div id="editor" class='text-field'>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quisquam saepe fugiat quam vel deleniti ullam, architecto dolor eaque pariatur cupiditate tempora ea error fugit doloremque molestiae voluptatem vitae nobis. Suscipit iure odit nam iste beatae dignissimos tenetur animi amet similique pariatur hic ea placeat repellat facilis, unde maxime dolor eligendi ipsum, fugiat quam sint! Itaque accusamus animi illum. Unde voluptas nobis ipsam accusantium asperiores ullam fugit est possimus molestias deserunt animi ducimus voluptatibus aliquid quasi, atque fuga inventore omnis nisi facilis maiores similique, ea iste voluptate. Nam, officiis aut culpa error ratione odio, voluptas vitae magni nulla quibusdam dolore ad exercitationem obcaecati perferendis distinctio doloremque soluta qui cum optio hic repellat, velit harum. Quo iure numquam ex excepturi facere eius beatae aut quibusdam quos inventore esse nesciunt officia expedita odio, earum id voluptatibus est tempora neque culpa. A dolorem, qui aspernatur dolores doloremque labore amet minima iste harum nihil tenetur obcaecati ea cum atque id soluta. Deserunt, molestias totam? Ex, corrupti dolorem maxime rem facere aperiam inventore dicta tenetur ullam, error fugit iusto consequatur fuga deserunt voluptatibus ut similique sed laboriosam repellendus. Nostrum quos, eaque eveniet aspernatur cumque dicta perferendis ab, aperiam asperiores neque soluta saepe repellendus sed! Et?
                 </div>
@@ -403,110 +291,20 @@
                 <div class='files'>
                     <div class='file'>
                         <div class="file-info">
-                            <i class='file-7z'></i>
-                            <h4>arcive.7z</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-cpp'></i>
-                            <h4>c++ prog.cpp</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-mov'></i>
-                            <h4>video.mov</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-mp3'></i>
-                            <h4>audio.mp3</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-pyc'></i>
-                            <h4>python prog.pyc</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-java'></i>
-                            <h4>java prog.java</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
                             <i class='file-xml'></i>
-                            <h4>excel document.xml</h4>
+                            <h4>Таблица.xml</h4>
                         </div>
                         <div class="file-btns">
-                            <button class='download-file'></button>
+                            <button class='del-file' type='button'></button>
                         </div>
                     </div>
                     <div class='file'>
                         <div class="file-info">
                             <i class='file-pptx'></i>
-                            <h4>presentation.pptx</h4>
+                            <h4>Презентация.pptx</h4>
                         </div>
                         <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-doc'></i>
-                            <h4>document.doc</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-pdf'></i>
-                            <h4>sertificate.pdf</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-png'></i>
-                            <h4>image.png</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <div class="file-info">
-                            <i class='file-cs'></i>
-                            <h4>C# prog.cs</h4>
-                        </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
+                            <button class='del-file' type='button'></button>
                         </div>
                     </div>
                 </div>

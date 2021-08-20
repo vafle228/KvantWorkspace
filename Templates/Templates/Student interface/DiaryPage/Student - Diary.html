@@ -191,7 +191,13 @@
     <!-- Шапка -->
     <header class='pageHeader'>
         <h1 class=pageHeader__title>Задания</h1>
-        <button class="pageHeader__button" onclick="open_form('#createTaskForm')">Добавить задание</button>
+        <button class="secondaryButton" onclick="open_form('#createTaskForm')">
+            <svg viewBox="0 0 512 512">
+                <path d="M169.36 214.63l128 128L222 418.05a327 327 0 0 1-195.34 93.8A24 24 0 0 1 .15 485.34v-.23A327 327 0 0 1 94 290z" opacity='0.6'></path>
+                <path d="M485.5 154.53L320 320 192 192l98.48-98.47-19.6-19.59-87.15 87.15a16 16 0 0 1-22.63 0l-22.62-22.62a16 16 0 0 1 0-22.63L242.6 11.72a40 40 0 0 1 56.56 0l36.56 36.55 21.76-21.76a90.52 90.52 0 0 1 128 128z"></path>
+            </svg>
+            Добавить задание
+        </button>
     </header>
 
     <div class='widgetRow'>
@@ -475,7 +481,6 @@
                                 <span class='dropdownSelect__option'>Сыч Э.</span>
                                 <span class='dropdownSelect__option'>Бочаров А.</span>
                                 <span class='dropdownSelect__option'>Вернигор С.</span>
-                                <span class='dropdownSelect__option'>Назмутдинова Дария Александровна</span>
                             </div>
                         </div>
                     </div>
@@ -537,18 +542,15 @@
 	<script>AOS.init({ offset: -200 })</script>
 
     <script>
-        $(function(){
-            $(".task.inactive").on("click", function(){
-                $(this).parent().find(".task.active").toggleClass("active", "inactive");
-                $(this).toggleClass("active", "inactive");
-            });
+
+        $(".task.inactive").on("click", function(){
+            $(this).parent().find(".task.active").toggleClass("active", "inactive");
+            $(this).toggleClass("active", "inactive");
         });
 
-        $(function(){
-            $(".taskMenu__button").on("click", function(){
-                $(this).parent().find(".taskMenu__button").removeClass("active");
-                $(this).toggleClass("active", "inactive");
-            });
+        $(".taskMenu__button").on("click", function(){
+            $(this).parent().find(".taskMenu__button").removeClass("active");
+            $(this).toggleClass("active", "inactive");
         });
 
         function changeType(typeClass){

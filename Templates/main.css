@@ -578,7 +578,7 @@ menu > button:hover{
     display: flex;
     align-items: center;
     margin-right: 25px;
-    z-index: 2;
+    z-index: 1;
 }
 .file .file-info h4{
     max-width: 256px;
@@ -589,8 +589,8 @@ menu > button:hover{
 /* Кнопка удаления и скачивания файла*/
 .file .file-btns{
     display: flex; align-items: center; gap: 10px;
-    padding: 5px 10px; margin-left: -25px;
-    z-index: 2;
+    padding: 5px 10px 5px 15px; margin-left: -25px;
+    z-index: 1;
 }
 .file button{
     background-color: unset;
@@ -599,6 +599,10 @@ menu > button:hover{
     padding: 10px;
     display: flex; justify-content: center; align-items: center;
 }
+/* .file button svg{
+    width: 16px; height: 16px;
+    fill: var(--text-primary-color);
+} */
 /* Кнопка "Удалить файл" */
 .file .del-file::before{
     content: '\f15d';
