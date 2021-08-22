@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../../../main.css' /> <!-- Основные стили -->
+    <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
+    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+    <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
+    <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+    
+    <title>Личный кабинет</title>
+</head>
+
+<body class='light__theme blue__color__scheme'>
+    <script> 
+        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
+    </script>
+    <!-- Навигационное меню -->
+    <aside>
+        <!-- Логотип -->
+        <div id="logo" onclick="location.href='/'">
+            <img src='../../../img/Кванториум SPACE.svg' alt='logo'/>
+            <!-- <h1>KvantJournal</h1> -->
+        </div>
+        <!-- Индикатор -->
+        <div id='indicator'>
+            <svg viewBox="0 0 24 24"><path d="M19.1 10.586l-5.289-5.293L12.4 6.707 17.689 12 12.4 17.293l1.415 1.414 5.285-5.293a2 2 0 000-2.828z"/><path d="M12.811 11.293l-6-6L5.4 6.707 10.689 12 5.4 17.293l1.415 1.414 6-6a1 1 0 00-.004-1.414z"/></svg>
+        </div>
+
+        <!-- Навигация -->
+        <nav>
+            <!-- Главная -->
+            <button class='active'>
+                <div>
+                    <svg viewBox="0 0 16 16">
+                        <g transform="translate(-4 -4)">
+                            <rect class='bright' width="7" height="7" rx="1.5" transform="translate(4 4)"/>
+                            <path class='faded' d="M5.5,13h4A1.5,1.5,0,0,1,11,14.5v4A1.5,1.5,0,0,1,9.5,20h-4A1.5,1.5,0,0,1,4,18.5v-4A1.5,1.5,0,0,1,5.5,13Zm9-9h4A1.5,1.5,0,0,1,20,5.5v4A1.5,1.5,0,0,1,18.5,11h-4A1.5,1.5,0,0,1,13,9.5v-4A1.5,1.5,0,0,1,14.5,4Zm0,9h4A1.5,1.5,0,0,1,20,14.5v4A1.5,1.5,0,0,1,18.5,20h-4A1.5,1.5,0,0,1,13,18.5v-4A1.5,1.5,0,0,1,14.5,13Z"/>
+                        </g>
+                    </svg>
+                    <p>Главная</p>
+                </div>
+            </button>
+            <!-- Дневник -->
+            <button>
+                <div>
+                    <svg viewBox="0 0 448 512">
+                        <path class='faded' d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
+                        <path class='bright' d="M96 384h328a24 24 0 0 0 24-24V32a32 32 0 0 0-32-32H96A96 96 0 0 0 0 96v320a96 96 0 0 0 96 96h328a24 24 0 0 0 24-24v-16a24 24 0 0 0-24-24H96c-19.2 0-32-12.8-32-32s16-32 32-32zm32-250a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6zm0 64a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6z"></path>
+                    </svg>
+                    <p>Задания</p>
+                </div>
+            </button>
+            <button>
+                <div>
+                    <svg viewBox="0 0 18.174 18.053">
+                        <g transform="translate(-4 -2.947)">
+                            <path class='bright' d="M5,3H6A1,1,0,0,1,7,4V20a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V4A1,1,0,0,1,5,3Zm5,0h1a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V4A1,1,0,0,1,10,3Z"/>
+                            <rect class='faded' width="3" height="18" rx="1" transform="translate(13.477 3.924) rotate(-19)"/>
+                        </g>
+                    </svg> 
+                    <p>Проекты</p>
+                </div>
+            </button>
+            <!-- Почта -->
+            <button>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16.166" height="15.333" viewBox="0 0 16.166 15.333">
+                        <g id="messages" transform="translate(-8.042 -7.833)">
+                            <path class='faded' d="M22.375,11.833h-.333V15a2.836,2.836,0,0,1-2.833,2.833H11.376v1.5a1.835,1.835,0,0,0,1.833,1.833h.833v1.5A.5.5,0,0,0,14.91,23l1.685-1.838h5.78a1.835,1.835,0,0,0,1.833-1.833V13.666A1.835,1.835,0,0,0,22.375,11.833Z"/>
+                            <path class='bright' d="M19.208,7.833H9.542a1.5,1.5,0,0,0-1.5,1.5V15a1.5,1.5,0,0,0,1.5,1.5h9.667a1.5,1.5,0,0,0,1.5-1.5V9.333A1.5,1.5,0,0,0,19.208,7.833Zm.167,2.96-4.493,2.18a1.131,1.131,0,0,1-1.014,0l-4.493-2.18V9.687L14.3,12.074a.144.144,0,0,0,.147,0l4.927-2.387v1.106Z"/>
+                        </g>
+                      </svg>
+                      <p>Почта</p>
+                </div>
+                <p>11</p>
+            </button>
+        </nav>
+        <hr style='margin: 8px 16px' class='divider'/>
+        <nav>
+            <button onclick="switch_theme()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <g id="eclipse" transform="translate(-8 -8)">
+                          <path class='faded' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
+                          <g>
+                            <path class='bright' d="M16.333,10.667A5.007,5.007,0,0,0,11.426,14.7,5.409,5.409,0,0,1,12,14.667,5.34,5.34,0,0,1,17.332,20a5.394,5.394,0,0,1-.033.573,5,5,0,0,0-.966-9.906Z"/>
+                            <path class='bright' d="M16.333,10a.667.667,0,0,1-.667-.667V8.667a.667.667,0,0,1,1.334,0v.667A.667.667,0,0,1,16.333,10Z"/>
+                            <path class='bright' d="M23.333,16.333h-.667a.667.667,0,1,1,0-1.333h.667a.667.667,0,0,1,0,1.333Z"/>
+                            <path class='bright' d="M20.341,11.66a.668.668,0,0,1,0-.943l.471-.472a.667.667,0,1,1,.943.943l-.471.472A.668.668,0,0,1,20.341,11.66Z"/>
+                            <path class='bright' d="M20.812,21.088l-.471-.472a.667.667,0,0,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                            <path class='bright' d="M11.383,11.66l-.471-.472a.667.667,0,1,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                          </g>
+                        </g>
+                      </svg>
+                    <p>Тема</p>
+                </div>
+                <span class="toggle theme"></span>
+            </button>
+            <button onclick="switch_color_scheme()">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <g id="roller" transform="translate(-8 -8)">
+                          <path class='bright' d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
+                          <path class='faded' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
+                          <path class='bright' d="M15.5,18H13.167A1.168,1.168,0,0,0,12,19.167v3.667A1.167,1.167,0,0,0,13.167,24H15.5a1.168,1.168,0,0,0,1.167-1.167V19.166A1.168,1.168,0,0,0,15.5,18Z"/>
+                        </g>
+                      </svg>
+                      <p>Цвет</p>
+                </div>
+                <span class="toggle color-scheme"></span>
+            </button>
+        </nav>
+        <nav>
+            <!-- Профиль -->
+            <div class="aside-profile">
+                <button class="profile">
+                    <img src='../../../img/Kaelthas.jpg'>
+                    <div class="info">
+                        <h2>Фамилия И.</h2>
+                        <h4>Ученик</h4>
+                    </div>
+                </button>
+                <nav class='toolbar'>
+                    <!-- Список задач -->
+                    <button class='hint'>
+                        <span style='transform: translate(-15px, -75px)'>Список задач</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13.334" viewBox="0 0 16 13.334">
+                            <g id="task" transform="translate(-8 -9.333)">
+                                <g>
+                                    <path class='faded' d="M10.167,12H8.5a.5.5,0,0,1-.5-.5V9.833a.5.5,0,0,1,.5-.5h1.667a.5.5,0,0,1,.5.5V11.5A.5.5,0,0,1,10.167,12Z"/>
+                                    <path class='faded' d="M10.167,17.333H8.5a.5.5,0,0,1-.5-.5V15.166a.5.5,0,0,1,.5-.5h1.667a.5.5,0,0,1,.5.5v1.667A.5.5,0,0,1,10.167,17.333Z"/>
+                                    <path class='faded' d="M10.167,22.667H8.5a.5.5,0,0,1-.5-.5V20.5a.5.5,0,0,1,.5-.5h1.667a.5.5,0,0,1,.5.5v1.667A.5.5,0,0,1,10.167,22.667Z"/>
+                                </g>
+                                <g>
+                                    <path class='bright' d="M23.333,11.333h-10a.667.667,0,1,1,0-1.333h10a.667.667,0,1,1,0,1.333Z"/>
+                                    <path class='bright' d="M23.333,16.667h-10a.667.667,0,1,1,0-1.334h10a.667.667,0,1,1,0,1.334Z"/>
+                                    <path class='bright' d="M23.333,22h-10a.667.667,0,1,1,0-1.334h10a.667.667,0,0,1,0,1.334Z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                    <!-- Уведомления -->
+                    <button class='hint'>
+                        <span style='transform: translate(-15px, -75px)'>Уведомления</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13.334" height="16" viewBox="0 0 13.334 16">
+                            <g id="bell" transform="translate(-9.333 -8)">
+                                <path class='bright' d="M22.253,19.275a4.466,4.466,0,0,1-1.586-3.417V14a4.67,4.67,0,0,0-4-4.613v-.72a.667.667,0,1,0-1.334,0v.72a4.669,4.669,0,0,0-4,4.613v1.859a4.472,4.472,0,0,1-1.592,3.422,1.167,1.167,0,0,0,.759,2.053h11a1.167,1.167,0,0,0,.753-2.059Z"/>
+                                <path class='faded' d="M16,24a2.5,2.5,0,0,0,2.449-2h-4.9A2.505,2.505,0,0,0,16,24Z"/>
+                            </g>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </nav>
+    </aside>
+
+    <section class="profilePage">
+        <div class="profilePage__menu">
+            <section class="menu">
+                <button class="menu__button active" onclick="changeType('#profileTab')">
+                    <svg viewBox="0 0 18 18">
+                        <g transform="translate(-3 -3)">
+                            <path fill='#20d489' d="M12,11a4,4,0,1,1,4-4A4,4,0,0,1,12,11Z" opacity="0.3"/>
+                            <path fill='#20d489' d="M3,20.2c.388-4.773,4.261-7.2,8.983-7.2C16.771,13,20.7,15.293,21,20.2a.687.687,0,0,1-.751.8H3.727A1.107,1.107,0,0,1,3,20.2Z"/>
+                        </g>
+                    </svg> 
+                    <p>Профиль</p>
+                </button>
+                <button class="menu__button" onclick="changeType('#portfolioTab')">
+                    <svg viewBox="0 0 576 512">
+                        <path fill='#20d489' opacity="0.3" d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
+                        <path fill='#20d489' d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
+                    </svg>
+                    <p>Портфолио</p>
+                </button>
+                <button class="menu__button" onclick="changeType('#statisticsTab')">
+                    <svg viewBox="0 0 18 16">
+                        <g transform="translate(-3 -4)">
+                          <rect fill='#20d489' opacity="0.3" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
+                          <rect fill='#20d489' width="3" height="11" rx="1.5" transform="translate(8 9)"/>
+                          <rect fill='#20d489' width="3" height="9" rx="1.5" transform="translate(18 11)"/>
+                          <rect fill='#20d489' width="3" height="7" rx="1.5" transform="translate(3 13)"/>
+                        </g>
+                    </svg> 
+                    <p>Статистика</p>
+                </button>
+            </section>
+            <button class="dangerButton">
+                <svg viewBox="0 0 512 512">
+                    <path opacity='0.6' d="M180 448H96a96 96 0 0 1-96-96V160a96 96 0 0 1 96-96h84a12 12 0 0 1 12 12v40a12 12 0 0 1-12 12H96a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h84a12 12 0 0 1 12 12v40a12 12 0 0 1-12 12z"></path>
+                    <path d="M353 88.3l151.9 150.6a24 24 0 0 1 0 34.1l-152 150.8a24.08 24.08 0 0 1-33.9-.1l-21.9-21.9a24.07 24.07 0 0 1 .8-34.7l77.6-71.1H184a23.94 23.94 0 0 1-24-24v-32a23.94 23.94 0 0 1 24-24h191.5l-77.6-71.1a24 24 0 0 1-.7-34.6l21.9-21.9a24 24 0 0 1 33.9-.1z"></path>
+                </svg>
+                Выйти из аккаунта
+            </button>
+        </div>
+        <div class="profilePage__tabs">
+            <div class="profilePage__tab active" id='profileTab'>
+                <div class="profileCard">
+                    <header class='profileCard__header'>
+                        <img src="../../../img/Kaelthas.jpg" alt="profileImg" class='profileCard__profileImg'>
+                        <p class="profileCard__profileName">Имя Фамилия</p>
+                        <p class="profileCard__profileRole">Ученик</p>
+                    </header>
+                    <div class="profileCard__fields">
+                        <div class="profileCard__field">
+                            <div class="column">
+                                <p>Электронная почта</p>
+                                <p>********@gmail.com</p>
+                            </div>
+                            <button class="primaryButton">
+                                <svg viewBox="0 0 576 512">
+                                    <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
+                                    <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                                </svg>
+                                Изменить
+                            </button>
+                        </div>
+                        <div class="profileCard__field">
+                            <div class="column">
+                                <p>Пароль</p>
+                                <p>********</p>
+                            </div>
+                            <button class="primaryButton">
+                                <svg viewBox="0 0 576 512">
+                                    <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
+                                    <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                                </svg>
+                                Изменить
+                            </button>
+                        </div>
+                        <div class="profileCard__field">
+                            <div class="column">
+                                <p>Паспортные данные</p>
+                                <p>Не указаны</p>
+                            </div>
+                            <button class="primaryButton">
+                                <svg viewBox="0 0 576 512">
+                                    <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
+                                    <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                                </svg>
+                                Добавить
+                            </button>
+                        </div>
+                        <div class="profileCard__field">
+                            <div class="column">
+                                <p>Снилс</p>
+                                <p>*** *** *** **</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profilePage__tab inactive" id='portfolioTab'>
+                <div class="galleryBox">
+                    <a data-fancybox="gallery" href="../../../img/6VV4-aJ62N8.jpg">
+                        <img src="../../../img/6VV4-aJ62N8.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/DOt28hpZK0s.jpg">
+                        <img src="../../../img/DOt28hpZK0s.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/60YpHQjZrdg.jpg">
+                        <img src="../../../img/60YpHQjZrdg.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/6VV4-aJ62N8.jpg">
+                        <img src="../../../img/6VV4-aJ62N8.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/60YpHQjZrdg.jpg">
+                        <img src="../../../img/60YpHQjZrdg.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/DOt28hpZK0s.jpg">
+                        <img src="../../../img/DOt28hpZK0s.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/DOt28hpZK0s.jpg">
+                        <img src="../../../img/DOt28hpZK0s.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/60YpHQjZrdg.jpg">
+                        <img src="../../../img/60YpHQjZrdg.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/6VV4-aJ62N8.jpg">
+                        <img src="../../../img/6VV4-aJ62N8.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/60YpHQjZrdg.jpg">
+                        <img src="../../../img/60YpHQjZrdg.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/DOt28hpZK0s.jpg">
+                        <img src="../../../img/DOt28hpZK0s.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/DOt28hpZK0s.jpg">
+                        <img src="../../../img/DOt28hpZK0s.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/6VV4-aJ62N8.jpg">
+                        <img src="../../../img/6VV4-aJ62N8.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/6VV4-aJ62N8.jpg">
+                        <img src="../../../img/6VV4-aJ62N8.jpg" />
+                    </a>
+                    <a data-fancybox="gallery" href="../../../img/DOt28hpZK0s.jpg">
+                        <img src="../../../img/DOt28hpZK0s.jpg" />
+                    </a>
+                </div>
+            </div>
+            <div class="profilePage__tab inactive" id='statisticsTab'>
+                Статистика
+            </div>
+        </div>
+        
+    </section>
+
+    <div id="arrowTop" hidden>
+        <svg viewBox="0 0 14 14">
+            <g transform="translate(-5 -5)">
+                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+            </g>
+        </svg> 
+    </div>
+    
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Менеджер секций-->
+    <script src='../../../JS/sections_manager.js'></script>
+
+    <!-- Подсветка кода -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <!-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Отображение математических формул -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Настройки панели -->
+    <script src='../../../JS/toolbar_options.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+    <script>
+
+        $(".menu__button").on("click", function(){
+            $(this).parent().find(".menu__button").removeClass("active");
+            $(this).toggleClass("active", "inactive");
+        });
+
+        function changeType(tabId){
+            $('.profilePage__tabs').find(".profilePage__tab").hide();
+            $('.profilePage__tabs').find(tabId).show();
+        }
+    </script>
+</body>
+
+</html>

@@ -11,7 +11,7 @@
 
 /* Обложка новости */
 .newsView__preview{
-    height: 320px;
+    height: 384px;
     overflow: hidden;
     border-radius: 16px;
 }
@@ -53,7 +53,7 @@
 }
   
 .carousel__slide {
-    height: 320px;
+    height: 384px;
     margin-right: 16px;
     border-radius: 16px;
     background-size: cover;

@@ -132,45 +132,12 @@
     padding: 0;
 }
 
-.taskMenu{
-    background-color: var(--item-bg-color);
-    border-radius: 8px;
-    display: flex; flex-direction: row; gap: 2px;
-    /* width: calc((100% - 32px) / 5); */
-    width: max-content;
-    overflow: hidden;
-}
-.taskMenu__button{
-    display: flex; gap: 16px; align-items: center;
-    padding: 16px;
-    background-color: unset;
-    transition: all .1s;
-}
-.taskMenu__button svg{
-    transition: all .1s;
-    filter: saturate(0);
-}
-.taskMenu__button:hover, .taskMenu__button.active{
-    background-color: var(--theme-light);
-}
-.taskMenu__button:hover svg, .taskMenu__button.active svg{
-    filter: saturate(1);
-}
-.taskMenu__button p{
-    color: var(--text-primary-color);
-    font-weight: 500;
-}
-.taskMenu__button.active p{
-    display: block;
-}
-
 
 #tasks{
     display: flex; flex-direction: column; gap: 16px;
     background-color: var(--item-bg-color);
     padding: 16px;
     border-radius: 16px;
-    /* width: calc((100% - 32px) / 5 * 4); */
 }
 
 

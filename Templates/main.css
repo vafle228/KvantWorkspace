@@ -462,34 +462,6 @@ header{
     border-radius: 10px 10px 0 0;
 }
 
-/* Меню */
-menu{
-    display: none;
-    background-color: var(--aside-bg-color-alpha);
-    backdrop-filter: blur(4px);
-    position: absolute; top: 110%;
-    width: 256px; padding: 6px 8px;
-    border-radius: 8px;
-}
-menu > h3{
-    text-align: center;
-    padding: 8px 0;
-}
-menu > button{
-    width: 100%; min-height: 40px;
-    background-color: unset;
-    border-radius: 4px;
-    text-align: left;
-    color: var(--text-primary-color); font-size: 1rem;
-    padding: 8px; margin: 2px 0;
-    transition: .2s;
-
-    display: flex; justify-content: space-between; align-items: center;
-}
-menu > button:hover{
-    background-color: var(--button-bg-active-color);
-}
-
 /* Toggle */
 .toggle{
     height: 16px;
@@ -534,7 +506,7 @@ menu > button:hover{
     margin: 8px 0;
     border-color: var(--text-primary-color);
     border-width: 1px;
-    opacity: .2;
+    opacity: .05;
 }
 
 /* Файлы */
@@ -939,8 +911,10 @@ menu > button:hover{
 }
 
 
-.primaryButton{
+button.primaryButton{
     background-color: var(--button-bg-color);
+}
+.primaryButton{
     color: #7e8299;
     font-weight: 700; font-size: 1rem;
     padding: 12px 16px;
@@ -952,9 +926,10 @@ menu > button:hover{
     width: 16px; height: 16px;
     fill: #20d489;
 }
-.primaryButton:hover{
+button.primaryButton:hover{
     color: #20d489;
 }
+
 .secondaryButton{
     background-color: #20d489;
     color: #fff;
@@ -970,4 +945,77 @@ menu > button:hover{
 }
 .secondaryButton:hover{
     filter: brightness(0.9);
+}
+
+.dangerButton{
+    background-color: tomato;
+    color: #fff;
+    font-weight: 600; font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all .05s;
+    display: flex; align-items: center; gap: 8px;
+}
+.dangerButton svg{
+    width: 16px; height: 16px;
+    fill: #fff;
+}
+.dangerButton:hover{
+    filter: brightness(0.9);
+}
+
+
+.menu{
+    background-color: var(--item-bg-color);
+    border-radius: 8px;
+    display: flex; flex-direction: row; gap: 2px;
+    width: max-content;
+    overflow: hidden;
+}
+.menu__button{
+    display: flex; gap: 16px; align-items: center;
+    padding: 16px;
+    background-color: unset;
+    transition: all .1s;
+    position: relative;
+}
+.menu__button svg{
+    transition: all .1s;
+    filter: saturate(0);
+}
+.menu__button:hover, .menu__button.active{
+    background-color: var(--theme-light);
+}
+.menu__button:hover svg, .menu__button.active svg{
+    filter: saturate(1);
+}
+.menu__button p{
+    color: var(--text-primary-color);
+    font-weight: 500;
+}
+.menu__button.active p{
+    display: block;
+}
+
+.menu__button::after{
+    content: "";
+    width: 0; height: 0;
+    position: absolute; left: 50%; bottom: 0;
+    background-color: #20d489;
+    transition: all .2s;
+}
+
+.menu__button.active::after{
+    content: "";
+    width: 100%; height: 2px;
+    left: 0;
+}
+
+@media screen and (max-width: 980px){
+    .menu:first-of-type .menu__button p{
+        display: none;
+    }
+    .menu:first-of-type .menu__button.active p{
+        display: block;
+    }
 }
