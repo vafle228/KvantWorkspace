@@ -1,26 +1,34 @@
-from os.path import join
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from storages.backends.s3boto3 import S3Boto3Storage
 
-permission = (
+
+PERMISSION = (
     ("Ученик", "Ученик"),
     ("Учитель", "Учитель"),
     ("Администратор", "Администратор")
 )
 
-theme = (("Темная", "dark"), ("Светлая", "light"))
+THEME = (
+    ("dark", "dark"), 
+    ("light", "light")
+)
 
-color = (("Оранжевый", "orange"), ("Синий", "blue"))
+COLOR = (
+    ("orange", "orange"), 
+    ("blue", "blue")
+)
 
 
 def set_default_image():
+    from os.path import join
+    from django.conf import settings
+    from storages.backends.s3boto3 import S3Boto3Storage
+
     bucket = S3Boto3Storage()
-    if not bucket.exists('default/user/user.png'):
-        with open(join(settings.MEDIA_ROOT + '/default/user.png'), 'b+r') as f:
-            bucket.save('default/user/user.png', f)
-    return 'default/user/user.png'
+    if not bucket.exists(settings.USER_DEFAULT_IMAGE):
+        with open(join(settings.MEDIA_ROOT + settings.USER_DEFAULT_IMAGE), 'b+r') as f:
+            bucket.save(settings.USER_DEFAULT_IMAGE, f)
+    return settings.USER_DEFAULT_IMAGE
 
 
 def get_path(instance, filename):
@@ -31,9 +39,9 @@ class KvantUser(AbstractUser):
     name        = models.CharField(max_length=100)
     surname     = models.CharField(max_length=100)
     patronymic  = models.CharField(max_length=100)
-    permission  = models.CharField(choices=permission, max_length=100)
-    color       = models.CharField(max_length=100, choices=color, default='blue')
-    theme       = models.CharField(max_length=100, choices=theme, default='light')
+    permission  = models.CharField(choices=PERMISSION, max_length=100)
+    color       = models.CharField(max_length=100, choices=COLOR, default='blue')
+    theme       = models.CharField(max_length=100, choices=THEME, default='light')
     image       = models.ImageField(upload_to=get_path, default=set_default_image)
 
     def __str__(self):

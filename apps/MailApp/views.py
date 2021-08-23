@@ -1,15 +1,15 @@
 from django.http import JsonResponse
 from LoginApp.models import KvantUser
-from SystemModule.views import is_available
+
 from .models import KvantMessage, ImportantMail
 from .forms import SendNewMails, KvantMailSaveForm
 from django.shortcuts import render, redirect, HttpResponse
 
 
 def mail_page(request, identifier):
-    # Метод для отображения ящика писем.
-    if not is_available(request, identifier):  # Проверка на доступ
-        return redirect('/login/')
+    # # Метод для отображения ящика писем.
+    # if not is_available(request, identifier):  # Проверка на доступ
+    #     return redirect('/login/')
 
     sent_mails = len(KvantMessage.objects.filter(sender=request.user))
     important_mails = len(ImportantMail.objects.filter(user=request.user))
@@ -23,9 +23,9 @@ def mail_page(request, identifier):
 
 
 def send_more_mails(request, identifier):
-    # Предназначен для условной пагинации ящика
-    if not is_available(request, identifier):  # Проверка на доступ
-        return redirect('/login/')
+    # # Предназначен для условной пагинации ящика
+    # if not is_available(request, identifier):  # Проверка на доступ
+    #     return redirect('/login/')
 
     if request.method == 'POST':  # Проверка на POST запрос
         form = SendNewMails(request.POST)  # Формирование формы ответа
@@ -35,8 +35,8 @@ def send_more_mails(request, identifier):
 
 
 def create_mail(request, identifier):
-    if not is_available(request, identifier):  # Проверка на доступ
-        return redirect('/login/')
+    # if not is_available(request, identifier):  # Проверка на доступ
+    #     return redirect('/login/')
 
     if request.method == 'POST':
         form = KvantMailSaveForm(request.POST)  # Форма создания письма
@@ -46,8 +46,8 @@ def create_mail(request, identifier):
 
 
 def change_read_status(request, identifier):
-    if not is_available(request, identifier):  # Проверка на доступ
-        return redirect('/login/')
+    # if not is_available(request, identifier):  # Проверка на доступ
+    #     return redirect('/login/')
 
     if request.method == 'POST':
         mail_id = request.POST['mail_id']  # id письма из запроса
@@ -67,8 +67,8 @@ def change_read_status(request, identifier):
 
 
 def change_important_status(request, identifier):
-    if not is_available(request, identifier):
-        return redirect('/login/')
+    # if not is_available(request, identifier):
+    #     return redirect('/login/')
 
     if request.method == 'POST':
         mail_id = request.POST['mail_id']

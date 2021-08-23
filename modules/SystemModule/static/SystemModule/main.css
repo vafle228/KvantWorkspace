@@ -140,6 +140,13 @@ body > section{
     padding: 25px 45px 25px 121px;
 }
 
+.row{
+    display: flex; flex-direction: row; align-items: center; gap: 8px;
+}
+.column{
+    display: flex; flex-direction: column; gap: 8px;
+}
+
 .item{
     background-color: var(--item-bg-color);
     border-radius: 10px;
@@ -343,7 +350,7 @@ header{
     visibility: visible; opacity: 1;
 }
 .form .form-wrapper{
-    overflow-y: scroll; padding: 100px 0;
+    overflow-y: scroll; padding: 100px 0 100px 38px;
     position: fixed; top: 0; left: calc(50% - 500px);
     height: 100%;
     display: flex;
@@ -521,9 +528,10 @@ menu > button:hover{
 
 /* Разделитель */
 .divider{
-    margin: 5px 0;
+    margin: 8px 0;
     border-color: var(--text-primary-color);
-    opacity: .1;
+    border-width: 1px;
+    opacity: .2;
 }
 
 /* Файлы */
@@ -567,7 +575,7 @@ menu > button:hover{
     display: flex;
     align-items: center;
     margin-right: 25px;
-    z-index: 2;
+    z-index: 1;
 }
 .file .file-info h4{
     max-width: 256px;
@@ -578,8 +586,8 @@ menu > button:hover{
 /* Кнопка удаления и скачивания файла*/
 .file .file-btns{
     display: flex; align-items: center; gap: 10px;
-    padding: 5px 10px; margin-left: -25px;
-    z-index: 2;
+    padding: 5px 10px 5px 15px; margin-left: -25px;
+    z-index: 1;
 }
 .file button{
     background-color: unset;
@@ -588,6 +596,10 @@ menu > button:hover{
     padding: 10px;
     display: flex; justify-content: center; align-items: center;
 }
+/* .file button svg{
+    width: 16px; height: 16px;
+    fill: var(--text-primary-color);
+} */
 /* Кнопка "Удалить файл" */
 .file .del-file::before{
     content: '\f15d';
@@ -609,7 +621,7 @@ menu > button:hover{
     color: var(--text-primary-color);
 }
 .file .download-file:hover{
-    background-color: #0E58B5;
+    background-color: #20d489;
 }
 .file .download-file:hover::before{
     color: #fff;
@@ -921,4 +933,38 @@ menu > button:hover{
 }
 #arrowTop svg{
     fill: #fff;
+}
+
+
+.primaryButton{
+    background-color: var(--button-bg-color);
+    color: #7e8299;
+    font-weight: 700; font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all .05s;
+    display: flex; align-items: center; gap: 8px;
+}
+.primaryButton svg{
+    width: 16px; height: 16px;
+    fill: #20d489;
+}
+.primaryButton:hover{
+    color: #20d489;
+}
+.secondaryButton{
+    background-color: #20d489;
+    color: #fff;
+    font-weight: 600; font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all .05s;
+    display: flex; align-items: center; gap: 8px;
+}
+.secondaryButton svg{
+    width: 16px; height: 16px;
+    fill: #fff;
+}
+.secondaryButton:hover{
+    filter: brightness(0.9);
 }

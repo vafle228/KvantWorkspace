@@ -1,12 +1,11 @@
 from LoginApp.models import KvantUser
-from SystemModule.views import is_available
 from django.shortcuts import render, redirect
 from AdminModule.models import KvantLesson, KvantCourse
 
 
 def diary_page(request, identifier):
-    if not is_available(request, identifier):
-        return redirect('/login/')
+    # if not is_available(request, identifier):
+    #     return redirect('/login/')
 
     user = KvantUser.objects.filter(id=identifier)[0]
     if user.permission == 'Ученик':

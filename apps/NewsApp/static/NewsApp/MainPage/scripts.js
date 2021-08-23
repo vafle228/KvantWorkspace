@@ -23,6 +23,15 @@ $(document).mouseup(function (e) {
 	}
 });
 
+
+// Открыть форму
+function open_form(form_id) {
+	$("body").css("overflow", "hidden");
+	$(form_id).addClass("active");
+}
+
+// <=== Скрипты формы добавления новости ===>
+
 // Добавление файлов по кнопке
 $('#file-button').on('click', function(){
 	$('#file-input')[0].value = '';
@@ -34,30 +43,6 @@ $('#news-preview').on('click', function(){
 	$('#preview-input')[0].value = '';
 	$('#preview-input').click();
 });
-
-// Открыть форму
-function open_form(form_id) {
-	$("body").css("overflow", "hidden");
-	$(form_id).addClass("active");
-}
-
-// Запрос новостей с сервера
-function getNewNews(link){
-	$.ajax({
-		type: 'GET',
-		url: link,
-		cache: false,
-		success: function(response){
-			$('#news__container').append(response)
-			if(page * 6 >= max_news){
-				$('#more-news')[0].style.display = 'none';
-			}
-			page++
-		}
-	})
-}
-
-// <=== Скрипты формы добавления новости ===>
 
 // Генерация представлений файла
 function addFileWidget(file){
@@ -73,17 +58,20 @@ function addFileWidget(file){
 
 // Генерация интерфейса файла
 function addNewFile(event){
-	if(event.target.files[0] != undefined){
-		let file = event.target.files[0] // Получение файла
+	for(let i = 0; i < event.target.files.length; i++){
+		let file = event.target.files[i] // Получение файла
 		file_array.push(file)  // Помещение его в массив данных
-		let file_id = file_array.length - 1
 
 		let container = $('#file-container')[0] // init контейнера
 		let file_widget = addFileWidget(file) // Получение html файла
 
 		// Функция по клику на "крестик"
 		$(file_widget).find('.del-file')[0].onclick = function(click) {
-			file_array.splice(file_id, 1)  // Уборка файла из массива
+			for(let i = 0; i < array.length; i++){
+				if(array[i] == file.id){
+					array.splice(i, 1)  // Уборка файла из массива
+				}
+			} 
 			container.removeChild(file_widget) // Уборка html файла
 		}
 		
@@ -105,38 +93,9 @@ function addNewsPreview(event){
 		$(preview_widget).find('.del-file')[0].onclick = function(click) {
 			news_preview = undefined  // Забываем превью
 			btns_container.removeChild(preview_widget) // Чистим html от превью
-			$('#news-preview')[0].style.display = 'block' // Открываем кнопку
+			$('#news-preview')[0].style.display = 'flex' // Открываем кнопку
 		}
 
 		btns_container.insertBefore(preview_widget, btns_container.firstChild) // Добавление превью
 	}
 }
-
-// Отправка формы новости на сервер
-$('#news-upload').on('click', function(){
-	let news_form = new FormData();
-
-	for(let i = 0; i < file_array.length; i++){ // Перебор файлов
-		news_form.append('files', file_array[i]) // Добавление файла в форму
-	}
-
-	news_form.append('author', user_id)
-	news_form.append('image', news_preview) // Превью
-	news_form.append('content', quill.getText()) // Текст
-	news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
-	news_form.append('title', $('#news-title')[0].value) // заголовок
-	news_form.append('style_content', $('.ql-editor')[0].innerHTML) // форматированный текст
-
-	$.ajax({
-		type: 'POST',
-		url: create_news,
-		data: news_form,
-		cache: false,
-		processData: false,
-    	contentType: false,
-		enctype: "multipart/form-data",
-		success: function(response) {
-			location.href = response 
-		}
-	})
-});

@@ -1,19 +1,15 @@
 from django import forms
 from .models import KvantUser
-from django.contrib import messages
-from SystemModule.views import format_image
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class ImageThumbnailFormMixin:
     def clean_image(self):
+        from SystemModule.functions import format_image
+
         file = self.cleaned_data.get('image')  # Получаем картинку
-
-        if self.instance.image == file:  # Если картинка не менялась
-            return file
-
-        return format_image(file, 0.3)
+        # Если картинка не менялась, то не обрабатываем ее
+        return file if self.instance.image == file else format_image(file, 0.3)
 
 
 class KvantUserCreationForm(UserCreationForm, ImageThumbnailFormMixin):
@@ -33,6 +29,9 @@ class KvantUserLoginForm(forms.Form):
     password = forms.CharField(max_length=150)
 
     def save(self, request):
+        from django.contrib import messages
+        from django.contrib.auth import login, authenticate
+
         username = self.cleaned_data['username']  # Получение логина
         password = self.cleaned_data['password']  # Получение пароля
 

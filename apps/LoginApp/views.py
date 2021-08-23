@@ -1,15 +1,20 @@
 from .forms import KvantUserLoginForm
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
+from django.views.generic import TemplateView, View
 
 
-def login_page(request):
-    """Отображение страницы авторизации"""
-    return render(request, 'LoginApp/index.html')
+# View для отображения страницы авторизации
+class LoginPageTemplateView(TemplateView):
+    template_name = 'LoginApp/index.html'
 
 
-def login_user(request):
-    user = None  # Представление пользователя
-    if request.method == 'POST':
+class UserLogInView(View):
+    def post(self, request, *args, **kwargs):
+        from django.urls import reverse_lazy
+        
         form = KvantUserLoginForm(request.POST)  # Форма авторизации
         user = form.save(request) if form.is_valid() else None  # Попытка авторизации
-    return redirect('/login/' if user is None else f'/news/{user.id}/main')
+
+        if user is not None:
+            return redirect(reverse_lazy('main_page', kwargs={'identifier': user.id}))           
+        return redirect(reverse_lazy('login_page'))

@@ -137,3 +137,7 @@ AWS_S3_REGION_NAME = "eu-west-2"
 
 # Setup для django-storage
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# S3 default image location
+NEWS_DEFAULT_IMAGE = '/default/news.jpeg'
+USER_DEFAULT_IMAGE = '/default/user.png'

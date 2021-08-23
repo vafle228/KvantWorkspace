@@ -1,7 +1,7 @@
-from . import views
 from django.urls import path
+from .views import UserLogOutView, UserThemeChangeView
 
 urlpatterns = [
-    path('<int:identifier>/logout', views.logout_user, name='logout_user'),
-    path('<int:identifier>/theme', views.change_user_theme, name='change_theme'),
+    path('<int:identifier>/logout', UserLogOutView.as_view(), name='logout_user'),
+    path('<int:identifier>/theme', UserThemeChangeView.as_view(), name='change_theme'),
 ]

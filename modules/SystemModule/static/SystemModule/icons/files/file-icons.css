@@ -1,0 +1,145 @@
+i[class^="file-"]:before, i[class*=" file-"]:before{
+    width: 24px; height: 24px;
+    background-size: cover;
+    display: block;
+}
+
+/* Archive */
+.file-zip:before, .file-rar:before, .file-7z:before, .file-jar:before, .file-gz:before{
+    content: "";
+    background-image: url('./svg/035-rar.svg');
+}
+/* Python */
+.file-py:before, .file-pyw:before, .file-pyc:before, .file-pyd:before, .file-pyo:before, .file-pyz:before, .file-pyi:before{
+    content: "";
+    background-image: url('./svg/python.svg');
+}
+/* Video */
+.file-mp4:before, .file-avi:before, .file-wmv:before, .file-mkv:before{
+    content: "";
+    background-image: url('./svg/030-mp4.svg');
+}
+.file-mov::before{
+    content: "";
+    background-image: url('./svg/031-mov.svg');
+}
+.file-avi::before{
+    content: "";
+    background-image: url('./svg/018-avi.svg');
+}
+/* Audio */
+.file-mp3:before, .file-waf:before, .file-aif:before, .file-mid:before{
+    content: "";
+    background-image: url('./svg/033-mp3.svg');
+}
+/* Excel */
+.file-xls:before, .file-xlsx:before, .file-csv:before, .file-xml:before{
+    content: "";
+    background-image: url('./svg/010-xls.svg');
+}
+/* Word */
+.file-doc:before, .file-docm:before, .file-docx:before{
+    content: "";
+    background-image: url('./svg/037-doc.svg');
+}
+/* Powerpoint */
+.file-pptx:before{
+    content: "";
+    background-image: url('./svg/045-ppt.svg');
+}
+/* PDF */
+.file-pdf:before{
+    content: "";
+    background-image: url('./svg/026-pdf.svg');
+}
+/* Java */
+.file-java:before, .file-class:before, .file-jar:before, .file-jad:before, .file-jmod:before{
+    content: "";
+    background-image: url('./svg/048-jar.svg');
+}
+
+/* C++ and C#*/
+.file-csx:before, .file-cs:before, .file-cc:before, .file-cpp:before, .file-cxx:before, .file-c:before, .file-h:before, .file-hpp:before, .file-hxx:before{
+    content: "";
+    background-image: url('./svg/032-c++.svg');
+}
+/* Image */
+.file-webp:before, .file-bmp:before, .file-tiff:before{
+    content: "";
+    background-image: url('./svg/picture.svg');
+}
+.file-gif:before{
+    content: "";
+    background-image: url('./svg/012-gif.svg');
+}
+.file-png:before{
+    content: "";
+    background-image: url('./svg/028-png.svg');
+}
+.file-jpeg:before, .file-jpg:before{
+    content: "";
+    background-image: url('./svg/042-jpg.svg');
+}
+.file-svg:before{
+    content: "";
+    background-image: url('./svg/038-svg.svg');
+}
+
+.file-student:before{
+    content: "";
+    background-image: url('./svg/student.png');
+}
+
+.file-html:before{
+    content: "";
+    background-image: url('./svg/016-html.svg');
+}
+
+.file-css:before{
+    content: "";
+    background-image: url('./svg/001-css.svg');
+}
+
+.file-txt::before{
+    content: "";
+    background-image: url('./svg/024-txt.svg');
+}
+
+.file-exe::before{
+    content: "";
+    background-image: url('./svg/039-exe.svg');
+}
+
+.file-apk::before{
+    content: "";
+    background-image: url('./svg/040-apk.svg');
+}
+
+file-ai::before{
+    content: "";
+    background-image: url('./svg/027-AI.svg');
+}
+
+file-psd::before{
+    content: "";
+    background-image: url('./svg/043-psd.svg');
+}
+
+file-ttf::before{
+    content: "";
+    background-image: url('./svg/047-ttf.svg');
+}
+file-otf::before{
+    content: "";
+    background-image: url('./svg/017-otf.svg');
+}
+
+file-sql::before{
+    content: "";
+    background-image: url('./svg/034-sql.svg');
+}
+
+file-xd::before{
+    content: "";
+    background-image: url('./svg/002-xd.svg');
+}

@@ -1,18 +1,19 @@
-from os.path import join
 from django.db import models
-from django.conf import settings
 from django.utils import timezone
 from LoginApp.models import KvantUser
 from SystemModule.models import FileStorage
-from storages.backends.s3boto3 import S3Boto3Storage
 
 
 def set_default_image():
+    from os.path import join
+    from django.conf import settings
+    from storages.backends.s3boto3 import S3Boto3Storage
+
     bucket = S3Boto3Storage()
-    if not bucket.exists('default/news/news.jpg'):
-        with open(join(settings.MEDIA_ROOT + '/default/news.jpg'), 'b+r') as f:
-            bucket.save('default/news/news.jpg', f)
-    return 'default/news/news.jpg'
+    if not bucket.exists(settings.NEWS_DEFAULT_IMAGE):
+        with open(join(settings.MEDIA_ROOT + settings.NEWS_DEFAULT_IMAGE), 'b+r') as f:
+            bucket.save(settings.NEWS_DEFAULT_IMAGE, f)
+    return settings.NEWS_DEFAULT_IMAGE
 
 
 def get_path(instance, filename):
@@ -28,9 +29,6 @@ class KvantNews(models.Model):
     files           = models.ManyToManyField(FileStorage, blank=True)
     author          = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
     image           = models.ImageField(default=set_default_image, upload_to=get_path)
-
-    class Meta:
-        ordering = ['-date', '-id']
 
     def __str__(self):
         return f'Новость: {self.title}'

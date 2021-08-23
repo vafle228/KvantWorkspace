@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     
     {% include "SystemModule/HeadSetup/index.html" %}
-    <link rel='stylesheet' href='{% static "SystemModule/icons/files/fileIcons.css" %}' />
+    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file-icons.css" %}'/>
     <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'> <!-- Стили страницы -->
     <link rel="stylesheet" href='{% static "SystemModule/text/highlight.css" %}'>
     <link rel="stylesheet" href='{% static "SystemModule/text/ql-editor.css" %}'>
@@ -204,7 +204,7 @@
                                     <p>Добавить обложку</p>
                                 </button>
                                 <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
-
+            
                                 <button class='form-btn active' id="news-upload" type="button">
                                     <svg viewBox="0 0 24 24">
                                         <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
@@ -228,7 +228,7 @@
                                 </svg>
                                 <p>Документ</p>
                             </button>
-                            <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)'/>
+                            <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)' multiple/>
                         </div>
                         <div class='files' id='file-container'>
                             <!-- Тут спавнять файлы -->
@@ -261,11 +261,7 @@
     <script src="{% static 'NewsApp/MainPage/text/options.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init({ offset: -9999999 })</script>
-    <script>
-        let user_id = '{{ user.id }}';
-        let max_news = {{ max_news }};
-        let create_news = '{% url "create_news" user.id %}';
-    </script>
+    <!-- Функционал слайдера -->
     <script>
         $(document).ready(function () {
             $('#next').click(function () {
@@ -274,6 +270,55 @@
             $('#prev').click(function () {
                 $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() - 750 }, 400);
             });
+        });
+    </script>
+    <!-- Функция получения новостей -->
+    <script>
+        const news_per_page_num = 6;
+        // Запрос новостей с сервера
+        function getNewNews(link){
+            $.ajax({
+                type: 'GET',
+                url: link,
+                cache: false,
+                success: function(response){
+                    $('#news__container').append(response);
+                    if(page * news_per_page_num >= {{ max_news }}){  // Проверка наличия еще страниц пагинации
+                        $('#more-news')[0].style.display = 'none';
+                    }
+                    page++
+                }
+            })
+        }
+    </script>
+    <script>
+        // Отправка формы новости на сервер
+        $('#news-upload').on('click', function(){
+            let news_form = new FormData();
+
+            for(let i = 0; i < file_array.length; i++){ // Перебор файлов
+                news_form.append('files', file_array[i]) // Добавление файла в форму
+            }
+
+            news_form.append('author', '{{ user.id }}')
+            news_form.append('image', news_preview) // Превью
+            news_form.append('content', quill.getText()) // Текст
+            news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
+            news_form.append('title', $('#news-title')[0].value) // заголовок
+            news_form.append('style_content', $('.ql-editor')[0].innerHTML) // форматированный текст
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "create_news" user.id %}',
+                data: news_form,
+                cache: false,
+                processData: false,
+                contentType: false,
+                enctype: "multipart/form-data",
+                success: function(response) {
+                    location.href = response 
+                }
+            })
         });
     </script>
 </body>
