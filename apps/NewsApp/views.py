@@ -5,23 +5,22 @@ from django.urls import reverse_lazy
 from .forms import KvantNewsSaveForm
 from SystemModule.forms import FileStorageSaveForm
 from django.shortcuts import HttpResponse, redirect
-from SystemModule.views import KvantJournalAccessMixin
+from SystemModule.views import KvantJournalAccessMixin, ModelsFileFiller
 
 
 # View для отображения главной страницы
 class MainPageTemplateView(KvantJournalAccessMixin, generic.TemplateView):
     template_name = 'NewsApp/MainPage/index.html'
     
-    # Метод создания контекста данных
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)  # Получаем представления контекста
+        context = super().get_context_data(**kwargs) 
         user = self.request.user
         
         from AdminModule.models import KvantCourse
         
-        if user.permission == 'Ученик':  # В случаи, если user - ученик, верни его курсы
+        if user.permission == 'Ученик': 
             context['courses'] = KvantCourse.objects.filter(students__student=user)
-        elif user.permission == 'Учитель':  # В случаи, если user - учитель, верни его курсы
+        elif user.permission == 'Учитель': 
             context['courses'] = KvantCourse.objects.filter(teacher__teacher=user)
         context['max_news'] = len(KvantNews.objects.all())
 
@@ -46,58 +45,43 @@ class NewsListView(KvantJournalAccessMixin, generic.ListView):
     context_object_name = 'all_news'
 
 
-# View для создания новости
-class NewsCreateView(KvantJournalAccessMixin, generic.View):    
+# Базовый класс для манипуляцией новостями
+class _NewsManipulationBaseView(generic.View):
     def post(self, request, *args, **kwargs):
-        if request.user.permission == 'Ученик':  # Проверка на права
-            return redirect(f'/news/{request.user.id}/main')
-        
-        form = KvantNewsSaveForm(request.POST, request.FILES)  # Форма создания новости       
-        if form.is_valid():               
-            news = self.fill_news_files(form.save())  # Добавления файлов в новость
-            kwargs = {
-                'identifier': request.user.id,
-                'news_identifier': news.id,
-            }
-            return HttpResponse(reverse_lazy('detail_news', kwargs=kwargs))  # Переход на новость
-        return HttpResponse(reverse_lazy('main_page', kwargs=kwargs))  # Если был неверный метод
+        from django.urls import reverse_lazy
 
-    # Функция для делегирования заполнения новости
+        redirect_kwargs = {'identifier': request.user.id}
+        if kwargs.get('is_available'):
+            form = kwargs.get('form')
+            if form.is_valid():
+                news = self.fill_news_files(form.save())
+                redirect_kwargs['news_identifier'] = news.id
+                return HttpResponse(reverse_lazy('detail_news', kwargs=redirect_kwargs))    
+        return HttpResponse(reverse_lazy('main_page', kwargs=redirect_kwargs))
+    
     def fill_news_files(self, news):
-        date = timezone.now().date()
-        for file in self.request.FILES.getlist('files'):  # Добавление файлов в новость
-            file_form = FileStorageSaveForm(
-                {'upload_path': f'news/files/{date}/{self.request.POST["title"]}'}, {'file': file}
-            )  # Создание файла
-            if file_form.is_valid():  # Проверка валидности файла
-                news.files.add(file_form.save())  # Добавление нового файла
+        filler = ModelsFileFiller('news/', news.files)
+        filler.fill_model_files(self.request.FILES.getlist('files'), news.title)
+
         return news
+
+
+# View для создания новости
+class NewsCreateView(KvantJournalAccessMixin, _NewsManipulationBaseView, generic.View):    
+    def post(self, request, *args, **kwargs):
+        post_kwargs = {
+            'is_available': request.user.permission != 'Ученик',
+            'form': KvantNewsSaveForm(request.POST, request.FILES)
+        }
+        return super().post(request, *args, **post_kwargs)
 
 
 # View для обновления новости
-class NewsUpdateView(KvantJournalAccessMixin, generic.View):
+class NewsUpdateView(KvantJournalAccessMixin, _NewsManipulationBaseView, generic.View):
     def post(self, request, *args, **kwargs):
         news = KvantNews.objects.get(id=kwargs['news_identifier'])
-        if request.user != news.author:  # Проверка на права
-            return redirect(f'/news/{request.user.id}/main')
-        
-        form = KvantNewsSaveForm(request.POST, request.FILES, instance=news)
-        if form.is_valid():
-            news = self.fill_news_files(form.save())  # Добавления файлов в новость
-            kwargs = {
-                'identifier': request.user.id,
-                'news_identifier': news.id,
-            }
-            return HttpResponse(reverse_lazy('detail_news', kwargs=kwargs))  # Переход на новость
-        return HttpResponse(reverse_lazy('main_page', kwargs={'identifier': request.user.id}))  # Если был неверный метод
-    
-    # Функция для делегирования заполнения новости
-    def fill_news_files(self, news):
-        date = timezone.now().date()
-        for file in self.request.FILES.getlist('files'):  # Добавление файлов в новость
-            file_form = FileStorageSaveForm(
-                {'upload_path': f'news/files/{date}/{self.request.POST["title"]}'}, {'file': file}
-            )  # Создание файла
-            if file_form.is_valid():  # Проверка валидности файла
-                news.files.add(file_form.save())  # Добавление нового файла
-        return news
+        post_kwargs = {
+            'is_available': request.user.permission != news.author,
+            'form': KvantNewsSaveForm(request.POST, request.FILES, instance=news)
+        }
+        return super().post(request, *args, **post_kwargs)
