@@ -21,7 +21,7 @@
     position: absolute; top: 0; left: 0;
     width: 100%; height: 80px;
     border-radius: 12px 12px 0 0;
-    background-image: url('../../../img/stacked-waves-haikei (2).png');
+    background-image: url('../../img/stacked-waves-haikei (2).png');
     background-size: cover;
 }
 .profileCard__profileImg{

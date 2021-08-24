@@ -3,23 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel='stylesheet' href='../../../main.css' /> <!-- Основные стили -->
-    <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Логотип -->
-    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
+    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
+    <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel="shortcut icon" href="../../img/logo.png" type="image/png" />
     <link rel="stylesheet" href="style.css">
-    <title>Оценивание</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+    
+    <title>Каталог проектов</title>
 </head>
 
 <body class='light__theme blue__color__scheme'>
-    <script>
+    <script> 
         document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
     </script>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
         <div id="logo" onclick="location.href='/'">
-            <img src='../../../img/Кванториум SPACE.svg' alt='logo'/>
+            <img src='../../img/Кванториум SPACE.svg' alt='logo'/>
             <!-- <h1>KvantJournal</h1> -->
         </div>
         <!-- Индикатор -->
@@ -51,7 +56,7 @@
                     <p>Задания</p>
                 </div>
             </button>
-            <button>
+            <button class='active'>
                 <div>
                     <svg viewBox="0 0 18.174 18.053">
                         <g transform="translate(-4 -2.947)">
@@ -115,7 +120,7 @@
             <!-- Профиль -->
             <div class="aside-profile">
                 <button class="profile">
-                    <img src='../../../img/Kaelthas.jpg'>
+                    <img src='../../img/Kaelthas.jpg'>
                     <div class="info">
                         <h2>Фамилия И.</h2>
                         <h4>Ученик</h4>
@@ -155,105 +160,94 @@
         </nav>
     </aside>
 
-    <!-- Шапка -->
-    <header>
-        <div class='page-header'>
-            <h1>Проверка и выставление отметок</h1>
-        </div>
-    </header>
+    <section class="projectCatalog">
+        <header class="projectCatalog__header">
+            <h1>Каталог проектов</h1>
+        </header>
+        <div class="row projectCategory">
 
-    <!-- Проверка и выставление отметок -->
-    <section id='markEditor'>
-
-        <section class="filteringList">
-
-            <!-- Группа -->
-            <div class="filtering">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Группа</span>
-                        <div class="arrowDown"></div>
+            <div class="projectCard">
+                <img src="../../img/howtospeedupreact-thumb.jpg" class='projectCard__preview'/>
+                <img src="../../img/Kaelthas.jpg" class='projectCard__teamLeader'>
+                <svg viewBox="0 0 640 512" class='projectCard__teamLeaderBadge'>
+                    <path fill='#fff' opacity='0.6' d="M544 464v32a16 16 0 0 1-16 16H112a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h416a16 16 0 0 1 16 16z"></path>
+                    <path fill='#fff' d="M640 176a48 48 0 0 1-48 48 49 49 0 0 1-7.7-.8L512 416H128L55.7 223.2a49 49 0 0 1-7.7.8 48.36 48.36 0 1 1 43.7-28.2l72.3 43.4a32 32 0 0 0 44.2-11.6L289.7 85a48 48 0 1 1 60.6 0l81.5 142.6a32 32 0 0 0 44.2 11.6l72.4-43.4A47 47 0 0 1 544 176a48 48 0 0 1 96 0z"></path>
+                </svg>
+                <div class="projectCard__info column">
+                    <p class="projectCard__infoSubtitle">it</p>
+                    <p class="projectCard__infoTitle">Полное название проекта</p>
+                    <div class="members">
+                        <img src="../../img/user_profile_male.jpg" class='members__member'>
+                        <img src="../../img/user_profile_female.jpg" class='members__member'>
+                        <img src="../../img/user_profile_male.jpg" class='members__member'>
+                        <div class='members__member empty'></div>
+                        <div class='members__member empty'></div>
                     </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Группа 1</span>
-                        <span class='dropdownSelect__option'>Группа 2</span>
+                    <p class='projectCard__description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quisquam doloremque accusantium facere dolores quibusdam nisi officia soluta ut earum cupiditate dolorum hic error vitae magnam nesciunt, repellendus nulla fugiat.</p>
+                </div>
+            </div>
+            <div class="projectCard">
+                <img src="../../img/howtospeedupreact-thumb.jpg" class='projectCard__preview'/>
+                <img src="../../img/Kaelthas.jpg" class='projectCard__teamLeader'>
+                <svg viewBox="0 0 640 512" class='projectCard__teamLeaderBadge'>
+                    <path fill='#fff' opacity='0.6' d="M544 464v32a16 16 0 0 1-16 16H112a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h416a16 16 0 0 1 16 16z"></path>
+                    <path fill='#fff' d="M640 176a48 48 0 0 1-48 48 49 49 0 0 1-7.7-.8L512 416H128L55.7 223.2a49 49 0 0 1-7.7.8 48.36 48.36 0 1 1 43.7-28.2l72.3 43.4a32 32 0 0 0 44.2-11.6L289.7 85a48 48 0 1 1 60.6 0l81.5 142.6a32 32 0 0 0 44.2 11.6l72.4-43.4A47 47 0 0 1 544 176a48 48 0 0 1 96 0z"></path>
+                </svg>
+                <div class="projectCard__info column">
+                    <p class="projectCard__infoSubtitle">it</p>
+                    <p class="projectCard__infoTitle">Полное название проекта</p>
+                    <div class="members">
+                        <img src="../../img/user_profile_male.jpg" class='members__member'>
+                        <img src="../../img/user_profile_female.jpg" class='members__member'>
+                        <img src="../../img/user_profile_male.jpg" class='members__member'>
+                        <div class='members__member empty'></div>
+                        <div class='members__member empty'></div>
                     </div>
+                    <p class='projectCard__description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quisquam doloremque accusantium facere dolores quibusdam nisi officia soluta ut earum cupiditate dolorum hic error vitae magnam nesciunt, repellendus nulla fugiat.</p>
+                </div>
+            </div>
+            <div class="projectCard">
+                <img src="../../img/howtospeedupreact-thumb.jpg" class='projectCard__preview'/>
+                <img src="../../img/Kaelthas.jpg" class='projectCard__teamLeader'>
+                <svg viewBox="0 0 640 512" class='projectCard__teamLeaderBadge'>
+                    <path fill='#fff' opacity='0.6' d="M544 464v32a16 16 0 0 1-16 16H112a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h416a16 16 0 0 1 16 16z"></path>
+                    <path fill='#fff' d="M640 176a48 48 0 0 1-48 48 49 49 0 0 1-7.7-.8L512 416H128L55.7 223.2a49 49 0 0 1-7.7.8 48.36 48.36 0 1 1 43.7-28.2l72.3 43.4a32 32 0 0 0 44.2-11.6L289.7 85a48 48 0 1 1 60.6 0l81.5 142.6a32 32 0 0 0 44.2 11.6l72.4-43.4A47 47 0 0 1 544 176a48 48 0 0 1 96 0z"></path>
+                </svg>
+                <div class="projectCard__info column">
+                    <p class="projectCard__infoSubtitle">it</p>
+                    <p class="projectCard__infoTitle">Полное название проекта</p>
+                    <div class="members">
+                        <img src="../../img/user_profile_male.jpg" class='members__member'>
+                        <img src="../../img/user_profile_female.jpg" class='members__member'>
+                        <img src="../../img/user_profile_male.jpg" class='members__member'>
+                        <div class='members__member empty'></div>
+                        <div class='members__member empty'></div>
+                    </div>
+                    <p class='projectCard__description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quisquam doloremque accusantium facere dolores quibusdam nisi officia soluta ut earum cupiditate dolorum hic error vitae magnam nesciunt, repellendus nulla fugiat.</p>
                 </div>
             </div>
 
-            <!-- Проектная группа -->
-            <div class="filtering disable">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Проектная группа</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Проектная группа 1</span>
-                        <span class='dropdownSelect__option'>Проектная группа 2</span>
-                        <span class='dropdownSelect__option'>Проектная группа 3</span>
-                        <span class='dropdownSelect__option'>Проектная группа 4</span>
-                        <span class='dropdownSelect__option'>Проектная группа 5</span>
-                        <span class='dropdownSelect__option'>Проектная группа 6</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Задание -->
-            <div class="filtering disable">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Задание</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Задание 1</span>
-                        <span class='dropdownSelect__option'>Задание 2</span>
-                        <span class='dropdownSelect__option'>Задание 3</span>
-                        <span class='dropdownSelect__option'>Задание 4</span>
-                        <span class='dropdownSelect__option'>Задание 5</span>
-                        <span class='dropdownSelect__option'>Задание 6</span>
-                        <span class='dropdownSelect__option'>Задание 7</span>
-                        <span class='dropdownSelect__option'>Задание 8</span>
-                        <span class='dropdownSelect__option'>Задание 9</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <div id='markPalette'>
-            <button class="active hint">
-                <span>Отлично</span>
-                <div class="four"></div>
-            </button>
-            <button class='hint'>
-                <span>Хорошо</span>
-                <div class="three"></div>
-            </button>
-            <button class='hint'>
-                <span>Плохо</span>
-                <div class="two"></div>
-            </button>
-            <button class='hint'>
-                <span>Не сделано</span>
-                <div class="one"></div>
-            </button>
-            <button class='hint'>
-                <span>Отсутствие</span>
-                <div class="absence"></div>
-            </button>
-            <button class='hint'>
-                <span>Уважительная причина</span>
-                <div class="disease"></div>
-            </button>
         </div>
     </section>
 
+    <div id="arrowTop" hidden>
+        <svg viewBox="0 0 14 14">
+            <g transform="translate(-5 -5)">
+                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+            </g>
+        </svg> 
+    </div>
+    
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='../../../JS/sections_manager.js'></script>
+    <!-- Менеджер секций-->
+    <script src='../../JS/sections_manager.js'></script>
 
-    <script src="../../../JS/dropdownSelect.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+    <script>
+        const myCarousel = new Carousel(document.querySelector("#projectType__Carousel"), { Dots: false, 'infinite' : false });
+    </script>
 </body>
 
 </html>

@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel='stylesheet' href='../../../main.css' /> <!-- Основные стили -->
-    <link rel='stylesheet' href='../../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel="shortcut icon" href="../../../img/logo.png" type="image/png" /> <!-- Логотип -->
-    <link rel='stylesheet' href='../../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
+    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
+    <link rel="shortcut icon" href="../../img/logo.png" type="image/png" /> <!-- Логотип -->
+    <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
-    <link rel="stylesheet" href="../../../highlight.css"> <!-- Стили для подсветки кода -->
-    <link href="../../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+    <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
+    <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -28,7 +28,7 @@
     <aside>
         <!-- Логотип -->
         <div id="logo" onclick="location.href='/'">
-            <img src='../../../img/Кванториум SPACE.svg' alt='logo'/>
+            <img src='../../img/Кванториум SPACE.svg' alt='logo'/>
         </div>
         <!-- Индикатор -->
         <div id='indicator'>
@@ -123,7 +123,7 @@
             <!-- Профиль -->
             <div class="aside-profile">
                 <button class="profile">
-                    <img src='../../../img/Kaelthas.jpg'>
+                    <img src='../../img/Kaelthas.jpg'>
                     <div class="info">
                         <h2>Фамилия И.</h2>
                         <h4>Ученик</h4>
@@ -231,8 +231,9 @@
 
                 </section>
                 <section class="menu">
-                    <button class="menu__button"><p>Выполненные</p></button>
-                    <button class="menu__button active"><p>Невыполненные</p></button>
+                    <button class="menu__button active"><p>Назначено</p></button>
+                    <button class="menu__button"><p>Просрочено</p></button>
+                    <button class="menu__button"><p>Выполнено</p></button>
                 </section>
             </div>
 
@@ -511,7 +512,7 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='../../../JS/sections_manager.js'></script>
+    <script src='../../JS/sections_manager.js'></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init({ offset: -200 })</script>
@@ -542,14 +543,14 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <!-- Настройки панели -->
-    <script src='../../../JS/toolbar_options.js'></script>
+    <script src='../../JS/toolbar_options.js'></script>
 
     <!-- Библиотека для перетаскивания -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
-    <script src="../../../JS/draggable_options.js"></script>
+    <script src="../../JS/draggable_options.js"></script>
 
-    <script src="../../../JS/dropdownSelect.js"></script>
+    <script src="../../JS/dropdownSelect.js"></script>
 </body>
 
 </html>

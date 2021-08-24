@@ -53,6 +53,8 @@
     --special-ui-elements-color: var(--color-scheme-light);
 
     --theme-light: #F5F8FA;
+    --theme-light-alpha: #0004;
+    --theme-light-alpha-reverse: #fff4;
 }
 /* Темная тема */
 .dark__theme{
@@ -72,6 +74,8 @@
     --special-ui-elements-color: #1B1C22;
 
     --theme-light: #f5f8fa0e;
+    --theme-light-alpha: #fff4;
+    --theme-light-alpha-reverse: #0004;
 }
 
 
@@ -323,7 +327,7 @@ aside:hover .aside-profile .profile .info h2, aside:hover .aside-profile .profil
 
 
 /* Шапка */
-header{
+body > header{
     position: relative;
     z-index: 1;
     width: 100%; height: 75px;

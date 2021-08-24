@@ -1,0 +1,120 @@
+.projectCategory{
+    margin: 25px 0;
+}
+
+.projectCard{
+    background-color: var(--item-bg-color);
+    width: 256px;
+    height: 309px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+.projectCard__preview{
+    width: 100%; height: 150px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+
+    transition: height .4s;
+    transition-delay: .1s;
+}
+.projectCard__teamLeader{
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 1;
+
+    position: absolute; right: 16px; top: 119px;
+    padding: 3px;
+    border: var(--theme-light-alpha) solid 2px;
+    box-shadow: inset 0 0 16px var(--theme-light-alpha-reverse);
+
+    transition: all .4s;
+    transition-delay: .1s;
+}
+.projectCard__teamLeaderBadge{
+    width: 18px; height: 18px;
+    background-color: #20d489;
+    border-radius: 50%;
+    padding: 2px;
+    border: var(--item-bg-color) solid 3px;
+
+    position: absolute; top: 163px; right: 17px;
+
+    transition: all .4s;
+    transition-delay: .1s;
+}
+
+.projectCard__info{
+    padding: 16px;
+    width: 100%;
+}
+.projectCard__infoSubtitle{
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.projectCard__infoTitle{
+    font-weight: 600;
+    color: var(--text-primary-color);
+    font-size: 1.3rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.members{
+    display: flex; flex-direction: row; align-items: center;
+    padding-left: 8px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 34px;
+}
+.members__member{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: -8px;
+    border: var(--item-bg-color) solid 2px;
+}
+.members__member.empty{
+    background-color: var(--item-bg-color);
+    box-shadow: inset 0 0 0 2px var(--theme-light-alpha);
+}
+
+.projectCard__description{
+    text-align: justify;
+    opacity: 0;
+
+    transition: opacity .4s;
+    transition-delay: .1s;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+
+.projectCard:hover .projectCard__teamLeader{
+    width: 32px; height: 32px;
+    top: 8px;
+    padding: 1.5px;
+}
+.projectCard:hover .projectCard__teamLeaderBadge{
+    width: 8px; height: 8px;
+    top: 32px;
+    border-width: 0;
+}
+.projectCard:hover .projectCard__preview{
+    height: 48px;
+}
+.projectCard:hover .projectCard__description{
+    opacity: 1;
+}

@@ -1,4 +1,3 @@
-
 #diary .container{
     display: flex; flex-direction: column; gap: 12px;
     padding-top: 5px;
@@ -163,11 +162,9 @@
     background-color: var(--theme-light);
 }
 .task{
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
+    display: flex; flex-direction: row; gap: 16px;
     border-radius: 8px;
-    transition: background-color .2s;
+    transition: background-color .1s;
     position: relative;
 }
 .task:hover{
@@ -295,7 +292,7 @@
 @media screen and (max-width: 512px){
     #tasks .header{
         flex-direction: column;
-        justify-content: stretch;
+        align-items: stretch;
         gap: 8px;
     }
 }
