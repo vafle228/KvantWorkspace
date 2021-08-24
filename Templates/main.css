@@ -1023,9 +1023,9 @@ button.primaryButton:hover{
 
 
 .popup{
-    position: fixed; top: 16px; left: calc(50% - 250px);
-    padding: 16px;
-    min-width: 500px;
+    position: fixed; top: 16px; left: calc(50% - 256px);
+    padding: 8px 16px;
+    min-width: 512px;
     border-radius: 8px;
     background-color: #f1416ccc;
     color: #fff;
@@ -1041,4 +1041,5 @@ button.primaryButton:hover{
     font-size: 32px;
     line-height: 32px;
     color: #fff;
+    margin-bottom: 4px;
 }
