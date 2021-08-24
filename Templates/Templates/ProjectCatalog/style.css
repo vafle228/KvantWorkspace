@@ -1,6 +1,23 @@
-.projectCategory{
+.carousel {
+    color: var(--text-primary-color);
+    width: 100%;
     margin: 25px 0;
+
+    --carousel-button-bg: var(--item-bg-color);
+    --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0
+            0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+
+    --carousel-button-svg-width: 16px;
+    --carousel-button-svg-height: 16px;
+    --carousel-button-svg-stroke-width: 3;
 }
+  
+.carousel__slide {
+    width: 256px !important;
+    padding: 0 !important;
+    margin-right: 16px;
+}
+
 
 .projectCard{
     background-color: var(--item-bg-color);
@@ -110,7 +127,8 @@
 .projectCard:hover .projectCard__teamLeaderBadge{
     width: 8px; height: 8px;
     top: 32px;
-    border-width: 0;
+    border-width: 1px;
+    padding: 1px;
 }
 .projectCard:hover .projectCard__preview{
     height: 48px;
@@ -118,3 +136,5 @@
 .projectCard:hover .projectCard__description{
     opacity: 1;
 }
+
+
