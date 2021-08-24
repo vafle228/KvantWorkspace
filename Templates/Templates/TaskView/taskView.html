@@ -191,7 +191,7 @@
                 </svg>
                 Перейти к проверке
             </button>
-            <button class="dangerButton">
+            <button class="dangerButton" onclick="delTask(this)">
                 <svg viewBox="0 0 448 512">
                     <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
                     <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
@@ -376,9 +376,20 @@
     <!-- Настройки панели -->
     <script src='../../JS/toolbar_options.js'></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     <script>
-        const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), { Dots: false, 'infinite' : false });
+        function delTask(delBtn){
+            $(delBtn).hide();
+            $(delBtn).parent().append(`
+                <button class='dangerButton'>
+                    <svg viewBox="0 0 576 512">
+                        <path d="M569.52 440L329.58 24c-18.44-32-64.69-32-83.16 0L6.48 440c-18.42 31.94 4.64 72 41.57 72h479.89c36.87 0 60.06-40 41.58-72zM288 448a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 297.52 352h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 265.68 192h44.64a16 16 0 0 1 15.92 17.59z"></path>
+                        <path opacity='0.1' d="M310.32 192h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 278.48 352h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 310.32 192zM288 384a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
+                    </svg>
+                    Подтвердить
+                </button>
+                <button class='primaryButton' onclick='location.reload()'>Отмена</button>
+            `)
+        }
     </script>
 </body>
 
