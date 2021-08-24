@@ -34,10 +34,7 @@
 
 /* Светлая тема */
 .light__theme{
-    /* --bg-color: #f6f7fb; */
-    /* --bg-color: var(--color-scheme-light); */
     --bg-color: #cceef2;
-    /* --bg-color: #fbf9f6; */
     --aside-bg-color: #fff;
     --aside-bg-color-alpha: rgba(241, 240, 245, 0.8);
 
@@ -1022,4 +1019,26 @@ button.primaryButton:hover{
     .menu:first-of-type .menu__button.active p{
         display: block;
     }
+}
+
+
+.popup{
+    position: fixed; top: 16px; left: calc(50% - 250px);
+    padding: 16px;
+    min-width: 500px;
+    border-radius: 8px;
+    background-color: #f1416ccc;
+    color: #fff;
+    display: flex; align-items: center; gap: 8px;
+    z-index: 100;
+}
+.popup svg{
+    fill: #fff;
+}
+.popup button{
+    background-color: unset;
+    margin-left: auto;
+    font-size: 32px;
+    line-height: 32px;
+    color: #fff;
 }
