@@ -1,11 +1,8 @@
+from django.http.response import HttpResponse
 from .models import KvantNews
 from django.views import generic
-from django.utils import timezone
-from django.urls import reverse_lazy
 from .forms import KvantNewsSaveForm
-from SystemModule.forms import FileStorageSaveForm
-from django.shortcuts import HttpResponse, redirect
-from SystemModule.views import KvantJournalAccessMixin, ModelsFileFiller
+from SystemModule.views import KvantJournalAccessMixin
 
 
 # View для отображения главной страницы
@@ -49,6 +46,7 @@ class NewsListView(KvantJournalAccessMixin, generic.ListView):
 class _NewsManipulationBaseView(generic.View):
     def post(self, request, *args, **kwargs):
         from django.urls import reverse_lazy
+        from django.http import JsonResponse
 
         redirect_kwargs = {'identifier': request.user.id}
         if kwargs.get('is_available'):
@@ -56,10 +54,13 @@ class _NewsManipulationBaseView(generic.View):
             if form.is_valid():
                 news = self.fill_news_files(form.save())
                 redirect_kwargs['news_identifier'] = news.id
-                return HttpResponse(reverse_lazy('detail_news', kwargs=redirect_kwargs))    
-        return HttpResponse(reverse_lazy('main_page', kwargs=redirect_kwargs))
+                return JsonResponse({'status': 200, 'link':reverse_lazy('detail_news', kwargs=redirect_kwargs)})
+            return JsonResponse({'status': 400, 'errors': form.errors})  
+        return JsonResponse({'status': 403,'link':reverse_lazy('main_page', kwargs=redirect_kwargs)})
     
     def fill_news_files(self, news):
+        from SystemModule.views import ModelsFileFiller
+
         filler = ModelsFileFiller('news/', news.files)
         filler.fill_model_files(self.request.FILES.getlist('files'), news.title)
 
@@ -79,9 +80,18 @@ class NewsCreateView(KvantJournalAccessMixin, _NewsManipulationBaseView, generic
 # View для обновления новости
 class NewsUpdateView(KvantJournalAccessMixin, _NewsManipulationBaseView, generic.View):
     def post(self, request, *args, **kwargs):
-        news = KvantNews.objects.get(id=kwargs['news_identifier'])
+        news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
         post_kwargs = {
-            'is_available': request.user.permission != news.author,
+            'is_available': request.user == news.author,
             'form': KvantNewsSaveForm(request.POST, request.FILES, instance=news)
         }
         return super().post(request, *args, **post_kwargs)
+
+# View для удаления новости
+class NewsDeleteView(KvantJournalAccessMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
+        if request.POST.get('confirm') and news.author == request.user:
+            news.delete()
+            return HttpResponse('OK')
+        return HttpResponse('Error')

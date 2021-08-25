@@ -39,6 +39,7 @@
                 </svg>
                 Назад
             </button>
+            {% if news.author == user %}
             <button class="secondaryButton" onclick="open_form('#edit-news-form')">
                 <svg viewBox="0 0 576 512">
                     <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
@@ -46,19 +47,32 @@
                 </svg>
                 Редактировать
             </button>
+            <button class="dangerButton" style='margin-left: auto' onclick="delNewsItem(this)">
+                <svg viewBox="0 0 448 512">
+                    <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                    <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                </svg>
+                Удалить новость
+            </button>
+            {% endif %}
         </div>
 
+        {% if news.files|get_objects|is_files_image %}
+        <!-- Галерея новости -->
+        <div id="newsView__Carousel" class="carousel">
+            <div class="carousel__slide" style="background-image: url({{ news.image.url }})"></div>
+            {% for file in news.files|get_objects %}
+                {% if file|is_image %}
+                <div class="carousel__slide" style="background-image: url({{ file.file.url }})"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
         <!-- Если есть только одно изображение -->
         <div class="newsView__preview">
             <img src="{{ news.image.url }}">
         </div>
-
-        <!-- Галерея новости
-        <div id="newsView__Carousel" class="carousel">
-            <div class="carousel__slide" style="background-image: url('../../../img/Kaelthas.jpg')"></div>
-            <div class="carousel__slide" style="background-image: url('../../../img/Kaelthas.jpg')"></div>
-            <div class="carousel__slide" style="background-image: url('../../../img/Kaelthas.jpg')"></div>
-        </div> -->
+        {% endif %}
 
         <!-- Информация новости -->
         <div class="newsView__info">
@@ -170,7 +184,7 @@
         const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), { Dots: false, 'infinite' : false });
     </script>
     <script src="{% static 'NewsApp/NewsView/scripts.js' %}"></script>
-    <script src="{% static 'NewsApp/MainPage/text/options.js' %}"></script>
+    <script src="{% static 'SystemModule/text/options.js' %}"></script>
     <script>
         old_files = Array();
         window.onload = function(){
@@ -233,10 +247,47 @@
                 contentType: false,
                 enctype: "multipart/form-data",
                 success: function(response) {
-                    location.href = response 
+                    if(response.status == 400){
+                        for(let key in response.errors){
+                            errors = response.errors[key]
+                            for(let i = 0; i < errors.length; i++){
+                                error_popup(errors[i])
+                            }
+                        }
+                    }
                 }
             })
         });
+    </script>
+    <script>
+        function delConfirm(){
+            $.ajax({
+                type: 'POST',
+                url: '{% url "delete_news" user.id news.id %}',
+                data:{
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                    'confirm': true,
+                },
+                cache: false,
+                success: function(response){
+                    location.href = '{% url "main_page" user.id %}'
+                }
+            })
+        }
+        function delNewsItem(delBtn){
+            $(delBtn).hide();
+            $(delBtn).parent().append(`
+                <button class='dangerButton' style='margin-left: auto' onclick='delConfirm()'>
+                    <svg viewBox="0 0 576 512">
+                        <path d="M569.52 440L329.58 24c-18.44-32-64.69-32-83.16 0L6.48 440c-18.42 31.94 4.64 72 41.57 72h479.89c36.87 0 60.06-40 41.58-72zM288 448a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 297.52 352h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 265.68 192h44.64a16 16 0 0 1 15.92 17.59z"></path>
+                        <path opacity='0.1' d="M310.32 192h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 278.48 352h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 310.32 192zM288 384a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
+                    </svg>
+                    Подтвердить
+                </button>
+                <button class='primaryButton' onclick='location.reload()'>Отмена</button>
+            `)
+        }
+
     </script>
 </body>
 </html>

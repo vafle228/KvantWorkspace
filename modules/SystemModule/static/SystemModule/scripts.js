@@ -1,6 +1,5 @@
-// Адаптивность от бога 2.0
 $(window).resize(function(){
-	$('body')[0].style.zoom = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
+	$('body')[0].style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
 });
 
 // Открыть меню
@@ -36,19 +35,6 @@ function getUserColorTheme(){
 
 function getUserTheme(){
 	return $('body').hasClass('light__theme') ? 'light' : 'dark'
-}
-
-function themeChange(theme, color){
-	$.ajax({
-		type: 'POST',
-		url: change_theme,
-		data: {
-			theme: theme,
-			color: color,
-			csrfmiddlewaretoken: getCookie('csrftoken')
-		},
-		cache: false
-	})
 }
 
 function getCookie(name) {

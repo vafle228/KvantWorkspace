@@ -258,7 +258,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
-    <script src="{% static 'NewsApp/MainPage/text/options.js' %}"></script>
+    <script src="{% static 'SystemModule/text/options.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init({ offset: -9999999 })</script>
     <!-- Функционал слайдера -->
@@ -316,7 +316,7 @@
                 contentType: false,
                 enctype: "multipart/form-data",
                 success: function(response) {
-                    location.href = response 
+                    console.log(response)
                 }
             })
         });

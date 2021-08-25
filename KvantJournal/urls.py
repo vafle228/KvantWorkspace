@@ -10,6 +10,7 @@ urlpatterns = [
     path('mail/', include('MailApp.urls')),
     path('login/', include('LoginApp.urls')),
     path('diary/', include('DiaryApp.urls')),
+    path('profile/', include('ProfileApp.urls')),
 
     path('system/', include('SystemModule.urls')),
 ]
