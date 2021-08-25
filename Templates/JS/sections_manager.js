@@ -3,17 +3,12 @@ $(window).resize(function(){
 	$('body')[0].style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
 });
 
-// Перезагрузка старницы с анимацией логотипа
-function reload(logo_div) {
-	$(logo_div).find('img')[0].style.animation = 'you_spin_me_right_round 1s';
-	setTimeout("location.reload()", 800);
-}
-
 // Закрытие форм и меню при клике вне
 $(document).mouseup(function (e) {
 	var form = $(".form-wrapper");
 	var menu = $("menu");
-	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0) {
+	var alert = $(".alert")
+	if (form.has(e.target).length === 0 && menu.has(e.target).length === 0 && alert.has(e.target).length === 0){
 		// $(".form").hide();
 		$(".form").removeClass("active");
 		$("menu").hide();
