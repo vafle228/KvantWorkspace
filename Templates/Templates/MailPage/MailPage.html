@@ -557,7 +557,7 @@
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='../../JS/sections_manager.js'></script>
+    <script src='../../JS/script.js'></script>
 
     <!-- Подсветка кода -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
@@ -577,6 +577,14 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init({ offset: -200 })</script>
+
+    <script>
+        // Открытие формы по нажатию на письмо
+        $("#mail .item").click(function () {
+            $('#mail .form').first().addClass("active");
+            $("body").css("overflow", "hidden");
+        });
+    </script>
 </body>
 
 </html>

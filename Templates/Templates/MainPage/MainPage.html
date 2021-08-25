@@ -712,7 +712,7 @@
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- Менеджер секций-->
-    <script src='../../JS/sections_manager.js'></script>
+    <script src='../../JS/script.js'></script>
     <script>
         $(document).ready(function () {
             $('#next').click(function () {
@@ -742,5 +742,13 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init({ offset: -9999999 })</script>
+
+    <script>
+        // Открытие формы по нажатию на курс
+        $("#schedule-widget .item").click(function () {
+            $('#schedule-widget .form').addClass("active");
+            $("body").css("overflow", "hidden");
+        });
+    </script>
 </body>
 </html>
