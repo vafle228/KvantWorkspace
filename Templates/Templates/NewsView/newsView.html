@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
     <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <title>Заголовок новости</title>
 </head>
@@ -378,6 +380,7 @@
     <!-- Форма редактирования новости -->
     <div class='form' id='editNewsItemForm'>
         <div class="form-wrapper">
+
             <form>
                 <div class='item-header'>
                     <h2>Редактирование новости</h2>
@@ -532,6 +535,25 @@
         </div>
     </div>
 
+    <div class="alertsContainer column" id='alertsContainer'>
+        <div class='alert' data-aos="fade-left">
+            <svg viewBox="0 0 448 512">
+                <path opacity='0.6' d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 384a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 233.52 288h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 201.68 128h44.64a16 16 0 0 1 15.92 17.59z"></path>
+                <path d="M246.32 128h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 214.48 288h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 246.32 128zM224 320a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
+            </svg>
+            <p>Заголовок не может быть пустым.</p>
+            <button onclick='$(this).parent().remove()'>×</button>
+        </div>
+        <div class='alert' data-aos="fade-left">
+            <svg viewBox="0 0 448 512">
+                <path opacity='0.6' d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 384a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 233.52 288h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 201.68 128h44.64a16 16 0 0 1 15.92 17.59z"></path>
+                <path d="M246.32 128h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 214.48 288h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 246.32 128zM224 320a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
+            </svg>
+            <p>Файл поврежден или не является изображением.</p>
+            <button onclick='$(this).parent().remove()'>×</button>
+        </div>
+    </div>
+
     <div id="arrowTop" hidden>
         <svg viewBox="0 0 14 14">
             <g transform="translate(-5 -5)">
@@ -562,6 +584,9 @@
         const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), { Dots: false, 'infinite' : false });
     </script>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ offset: -200 })</script>
+
     <script>
         function delNewsItem(delBtn){
             $(delBtn).hide();
@@ -577,6 +602,8 @@
             `)
         }
     </script>
+    
+    <script src="../../JS/alert.js"></script>
 </body>
 
 </html>
