@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'NewsApp.apps.NewsAppConfig',
     'DiaryApp.apps.DiaryAppConfig',
     'MailApp.apps.MailAppConfig',
+    'ProfileApp.apps.ProfileAppConfig',
 
     'AdminModule.apps.AdminModuleConfig',
     'SystemModule.apps.SystemModuleConfig',

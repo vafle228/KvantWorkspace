@@ -1,0 +1,5 @@
+{% for award in poftfolio %}
+<a data-fancybox="gallery" href="{{ award.image.image.url }}">
+    <img src="{{ award.image.image.url }}" />
+</a>
+{% endfor %}
