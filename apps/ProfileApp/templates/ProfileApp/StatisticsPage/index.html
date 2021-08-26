@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     {% include "SystemModule/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "SystemModule/icons/files/file-icons.css" %}'/>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'ProfileApp/StatisticsPage/style.css' %}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -41,7 +41,7 @@
                     </svg>
                     <p>Портфолио</p>
                 </button>
-                <button class="menu__button active" onclick="location.href='{% url "static_page" user.id %}'">
+                <button class="menu__button active" onclick="location.href='{% url "statistic_page" user.id %}'">
                     <svg viewBox="0 0 18 16">
                         <g transform="translate(-3 -4)">
                           <rect fill='#20d489' opacity="0.3" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
@@ -62,7 +62,7 @@
             </button>
         </div>
         <div class="profilePage__tabs">
-            <div class="profilePage__tab" id='statisticsTab'>
+            <div class="profilePage__tab active" id='statisticsTab'>
                 Статистика
             </div>
         </div>

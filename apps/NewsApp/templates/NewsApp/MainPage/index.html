@@ -19,7 +19,7 @@
     <title>Главная</title>
 </head>
 
-<body style="overflow: auto" onload="getNewNews('{% url "send_news" user.id %}');">
+<body style="overflow: auto" onload="getNewNews();">
     <script>
         document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
     </script>
@@ -184,7 +184,7 @@
             </div>
             <!-- Кнопка "Больше новостей" -->
             <div id="more-news" class='main-btn'>
-                <button onclick="getNewNews('{% url "send_news" user.id %}' + `?page=${page}`)">Больше новостей</button>
+                <button onclick="getNewNews()">Больше новостей</button>
             </div>
             <!-- Форма создания новости -->
             <div class='form' id='add-news-form'>
@@ -203,7 +203,7 @@
                                     </svg>
                                     <p>Добавить обложку</p>
                                 </button>
-                                <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" />
+                                <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" accept="image/*"/>
             
                                 <button class='form-btn active' id="news-upload" type="button">
                                     <svg viewBox="0 0 24 24">
@@ -239,15 +239,7 @@
         </section>
     </section>
 
-    <div id="arrowTop" hidden>
-        <svg viewBox="0 0 14 14">
-            <g transform="translate(-5 -5)">
-                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
-                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
-            </g>
-        </svg> 
-    </div>
-
+    <div class="alertsContainer column" id='alertsContainer'></div>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <!-- Подсветка кода -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
@@ -276,10 +268,10 @@
     <script>
         const news_per_page_num = 6;
         // Запрос новостей с сервера
-        function getNewNews(link){
+        function getNewNews(){
             $.ajax({
                 type: 'GET',
-                url: link,
+                url: '{% url "send_news" user.id %}' + `?page=${page}`,
                 cache: false,
                 success: function(response){
                     $('#news__container').append(response);
@@ -316,7 +308,17 @@
                 contentType: false,
                 enctype: "multipart/form-data",
                 success: function(response) {
-                    console.log(response)
+                    if(response.status == 400){
+                        for(let key in response.errors){
+                            errors = response.errors[key]
+                            for(let i = 0; i < errors.length; i++){
+                                error_alert(errors[i])
+                            }
+                        }
+                    }
+                    else{
+                        location.href = response.link
+                    }
                 }
             })
         });

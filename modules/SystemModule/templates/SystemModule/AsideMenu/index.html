@@ -157,7 +157,7 @@
         <nav>
             <!-- Профиль -->
             <div class="aside-profile">
-                <button class="profile" onclick="{% url 'logout_user' user.id %}">
+                <button class="profile" onclick="location.href = '{% url 'profile_page' user.id %}'">
                     <img src='{{ user.image.url }}'>
                     <div class="info">
                         <h2>{{ user.surname }} {{ user.name|slice:"1" }}.</h2>

@@ -5,10 +5,8 @@ from core.mixins import ImageMixinBase, FileManagerMixinBase
 
 class ImageManagerMixin(ImageMixinBase, FileManagerMixinBase):
     def clean_image(self):
-        from django.utils import timezone
-        
         from_path = "/".join(self.get_instance_image().name.split('/')[:-1])
-        to_path = f'news/img/{timezone.now().date()}/{self.cleaned_data.get("title")}'
+        to_path = f'news/img/{self.instance.date}/{self.cleaned_data.get("title")}'
         
         return self.change_directory(super().clean_image(), from_path, to_path)
 
@@ -43,10 +41,9 @@ class FileManagerMixin:
                 file.delete()
     
     def change_news_file_directory(self):
-        from django.utils import timezone
         from SystemModule.forms import FileStorageSaveForm
 
-        new_file_path = f'news/files/{timezone.now().date()}/{self.cleaned_data.get("title")}'
+        new_file_path = f'news/files/{self.instance.date}/{self.cleaned_data.get("title")}'
         for file in self.instance.files.all():
             form = FileStorageSaveForm({'upload_path': new_file_path}, instance=file)
             form.save() if form.is_valid() else None

@@ -129,7 +129,7 @@
                             </svg>
                             <p>Добавить обложку</p>
                         </button>
-                        <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreviewHandler(event)" />
+                        <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreviewHandler(event)" accept="image/*"/>
                         <button class='form-btn active' id="news-upload" type="button">
                             <svg viewBox="0 0 24 24">
                                 <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
@@ -162,14 +162,7 @@
         </div>
     </div>
 
-    <div id="arrowTop" hidden>
-        <svg viewBox="0 0 14 14">
-            <g transform="translate(-5 -5)">
-                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
-                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
-            </g>
-        </svg> 
-    </div>
+    <div class="alertsContainer column" id='alertsContainer'></div>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <!-- Подсветка кода -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
@@ -251,9 +244,12 @@
                         for(let key in response.errors){
                             errors = response.errors[key]
                             for(let i = 0; i < errors.length; i++){
-                                error_popup(errors[i])
+                                error_alert(errors[i])
                             }
                         }
+                    }
+                    else{
+                        location.href = response.link
                     }
                 }
             })

@@ -7,7 +7,7 @@ def get_path(instance, filename):
 
 
 class KvantAward(models.Model):
-    image = models.ImageField(upload_to=get_path)
+    image = models.FileField(upload_to=get_path)
     user = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
 
     def __str__(self):

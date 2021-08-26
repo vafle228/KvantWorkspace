@@ -1,8 +1,8 @@
-from django.http.response import HttpResponse
 from .models import KvantNews
 from django.views import generic
 from .forms import KvantNewsSaveForm
-from SystemModule.views import KvantJournalAccessMixin
+from django.http.response import HttpResponse
+from core.classes import KvantJournalAccessMixin
 
 
 # View для отображения главной страницы

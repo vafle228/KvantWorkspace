@@ -40,15 +40,9 @@ class ImageMixinBase:
 
         new_image.seek(0)  # Возвращение в начало файла
 
-        name = f'{image_file.name.split(".")[0]}.jpeg'  # Имя файла
+        file_name = f'{image_file.name.split(".")[0]}.jpeg'
 
-        # Перезапись файла в базе данных
-        model_image = InMemoryUploadedFile(
-            new_image, 'ImageField',  # Картинка, поля сохранения
-            name, 'image/jpeg',  # Имя картинки, содержание
-            getsizeof(new_image), None  # Размер, доп инфа
-        )
-        return model_image
+        return InMemoryUploadedFile(new_image, 'ImageField', file_name, 'image/jpeg', getsizeof(new_image), None)
     
 
 
