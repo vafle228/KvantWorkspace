@@ -1,8 +1,20 @@
 
-// Адаптивность от бога 2.0
+function page_adaptation(){
+	let ratio = window.innerWidth / 1920 < 0.5 ? 2 : 1920 / window.innerWidth;
+    $("body")[0].style.transform = window.innerWidth / 1920 < 0.5 ? 'scale(0.5)' : `scale(${window.innerWidth / 1920})`;
+	$("body")[0].style.width = window.innerWidth / 1920 < 0.5 ? '200%' : `${1920 / window.innerWidth * 100}%`;
+	$("aside")[0].style.height = `${window.innerHeight * ratio}px`;
+}
+
 $(window).resize(function () {
-	$('body')[0].style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
+	page_adaptation();
 });
+
+$(document).ready(function() {
+	page_adaptation();
+});
+
+
 
 // Закрытие форм при клике вне
 $(document).mouseup(function (e) {
@@ -12,6 +24,11 @@ $(document).mouseup(function (e) {
 		$(".form").removeClass("active");
 		$("body").css("overflow-y", "scroll");
 	}
+});
+
+$(window).scroll(function(){
+	let ratio = window.innerWidth / 1920 < 0.5 ? 2 : 1920 / window.innerWidth;
+	$("aside")[0].style.top = `${$(window).scrollTop() * ratio}px`;
 });
 
 // Открыть форму по ID

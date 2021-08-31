@@ -3,6 +3,10 @@
 /* Шапка */
 .profile-header{ margin-left: auto }
 
+
+#main{
+    transform-origin: 0 0;
+}
 /* Виджеты */
 #widgets{
     height: 350px;
@@ -319,3 +323,4 @@
     /* Новости */
     #news > #news__container .item{ width: 100% }
 }
+

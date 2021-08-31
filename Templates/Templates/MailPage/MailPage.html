@@ -21,19 +21,11 @@
 </head>
 
 <body class='light__theme blue__color__scheme'>
-    <script> 
-        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
-    </script>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
         <div id="logo" onclick="location.href='/'">
             <img src='../../img/Кванториум SPACE.svg' alt='logo'/>
-            <!-- <h1>KvantJournal</h1> -->
-        </div>
-        <!-- Индикатор -->
-        <div id='indicator'>
-            <svg viewBox="0 0 24 24"><path d="M19.1 10.586l-5.289-5.293L12.4 6.707 17.689 12 12.4 17.293l1.415 1.414 5.285-5.293a2 2 0 000-2.828z"/><path d="M12.811 11.293l-6-6L5.4 6.707 10.689 12 5.4 17.293l1.415 1.414 6-6a1 1 0 00-.004-1.414z"/></svg>
         </div>
 
         <!-- Навигация -->
@@ -83,31 +75,6 @@
                       <p>Почта</p>
                 </div>
                 <p>11</p>
-            </button>
-            <!-- Отчеты -->
-            <button>
-                <div>
-                    <svg viewBox="0 0 18 16">
-                        <g transform="translate(-3 -4)">
-                          <rect class='faded' width="3" height="16" rx="1.5" transform="translate(13 4)"/>
-                          <rect class='bright' width="3" height="11" rx="1.5" transform="translate(8 9)"/>
-                          <rect class='bright' width="3" height="9" rx="1.5" transform="translate(18 11)"/>
-                          <rect class='bright' width="3" height="7" rx="1.5" transform="translate(3 13)"/>
-                        </g>
-                      </svg>                      
-                    <p>Отчеты</p>
-                </div>
-            </button>
-            <!-- Портфолио -->
-            <button>
-                <div>
-                    <svg viewBox="0 0 576 512">
-                        <path class='faded' d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
-                        <path class='bright' d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
-                    </svg>
-                    <p>Портфолио</p>
-                </div>
-                <p>1</p>
             </button>
         </nav>
         <hr style='margin: 8px 16px' class='divider'/>
@@ -189,372 +156,161 @@
         </nav>
     </aside>
 
-    <!-- Шапка -->
-    <header>
-        <div class='page-header'>
-            <h1>Почта</h1>
-            <div>
-                <p onclick="open_menu('#mail-tabs')">
-                    Входящие
-                    <svg viewBox="0 0 24 24"><path class='bright' d="M12 15.5a1.993 1.993 0 01-1.414-.585L5.293 9.621l1.414-1.414L12 13.5l5.293-5.293 1.414 1.414-5.293 5.293A1.993 1.993 0 0112 15.5z"/></svg>
-                </p>
-                <menu id='mail-tabs'>
-                    <button class="active">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                                <g transform="translate(-8 -8)">
-                                    <path class='faded' d="M22.833,18H20.962a1.171,1.171,0,0,0-1.092.757l-.675,1.8a.167.167,0,0,1-.156.108H12.963a.168.168,0,0,1-.156-.108l-.675-1.8A1.176,1.176,0,0,0,11.038,18H9.167A1.168,1.168,0,0,0,8,19.167v3A1.835,1.835,0,0,0,9.833,24H22.166A1.835,1.835,0,0,0,24,22.167v-3A1.168,1.168,0,0,0,22.833,18Z"/>
-                                    <path class='bright' d="M24,11.167a.492.492,0,0,0-.387-.477L21.156,8.506A2,2,0,0,0,19.827,8H12.174a2,2,0,0,0-1.329.5L8.388,10.689A.494.494,0,0,0,8,11.167a.5.5,0,0,0,.017.086.71.71,0,0,0-.017.08v3.333a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V11.333a.778.778,0,0,0-.017-.081A.492.492,0,0,0,24,11.167ZM11.731,9.5a.667.667,0,0,1,.443-.168h7.653a.665.665,0,0,1,.443.169l1.31,1.165h-.618a1.171,1.171,0,0,0-1.092.757l-.675,1.8a.167.167,0,0,1-.156.108H12.963a.168.168,0,0,1-.156-.108l-.675-1.8a1.172,1.172,0,0,0-1.092-.757h-.62Z"/>
-                                </g>
-                            </svg>
-                            Входящие
-                        </div>
-                        <p>11</p>
+    <section class="mail">
+        <div class="mail__widgetRow">
+            <div class="mailNavigation column">
+                <button class="mailNavigation__composeBtn" onclick="open_form('#newMailItem')">Написать</button>
+                <nav class='column'>
+                    <button class="mailNavigation__link row active">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,13 C19,13.5522847 18.5522847,14 18,14 L6,14 C5.44771525,14 5,13.5522847 5,13 L5,3 C5,2.44771525 5.44771525,2 6,2 Z M13.8,4 C13.1562,4 12.4033,4.72985286 12,5.2 C11.5967,4.72985286 10.8438,4 10.2,4 C9.0604,4 8.4,4.88887193 Z" opacity="0.3"></path>
+                            <path d="M3.79274528,6.57253826 L12,12.5 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 Z"></path>
+                        </svg>
+                        Входящие
                     </button>
-                    <button>
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16.046" height="8.666" viewBox="0 0 16.046 8.666">
-                                <g transform="translate(-8.011 -11.167)">
-                                    <path class='bright' d="M23.781,11.581a1.164,1.164,0,0,0-.891-.414H13.207a1.163,1.163,0,0,0-1.15.972l-1.072,6.333a1.167,1.167,0,0,0,1.15,1.361h9.683a1.163,1.163,0,0,0,1.15-.972l1.072-6.333a1.161,1.161,0,0,0-.259-.947ZM22.351,14.2l-4.233,1.753a1.419,1.419,0,0,1-.573.113,1.44,1.44,0,0,1-.66-.153L13.038,14.02l.173-1.027,4.113,2.027a.52.52,0,0,0,.413.013l4.807-1.993Zm1.474-.733.053-.333A.443.443,0,0,1,23.825,13.467Z"/>
-                                    <g>
-                                        <path class='faded' d="M10.678,13.167h-2a.667.667,0,1,1,0-1.334h2a.667.667,0,0,1,0,1.334Z"/>
-                                        <path class='faded' d="M10.011,15.833H8.678a.667.667,0,1,1,0-1.333h1.333a.667.667,0,1,1,0,1.333Z"/>
-                                        <path class='faded' d="M9.345,18.5H8.678a.667.667,0,1,1,0-1.334h.667a.667.667,0,0,1,0,1.334Z"/>
-                                    </g>
-                                </g>
-                            </svg>
-                            Отправленные
-                        </div>
-                        <p>3</p>
+                    <button class="mailNavigation__link row">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8,13.1668961 L20.4470385,11.9999863 L8,10.8330764 L8,5.77181995 C8,5.70108058 8.01501031,5.63114635 8.04403925,5.56663761 C8.15735832,5.31481744 8.45336217,5.20254012 8.70518234,5.31585919 L22.545552,11.5440255 C22.6569791,11.5941677 22.7461882,11.6833768 22.7963304,11.794804 C22.9096495,12.0466241 22.7973722,12.342628 22.545552,12.455947 L8.70518234,18.6841134 C8.64067359,18.7131423 8.57073936,18.7281526 8.5,18.7281526 C8.22385763,18.7281526 8,18.504295 8,18.2281526 L8,13.1668961 Z"></path>
+                            <path d="M4,16 L5,16 C5.55228475,16 6,16.4477153 6,17 C6,17.5522847 5.55228475,18 5,18 L4,18 C3.44771525,18 3,17.5522847 3,17 C3,16.4477153 3.44771525,16 4,16 Z M1,11 L5,11 C5.55228475,11 6,11.4477153 6,12 C6,12.5522847 5.55228475,13 5,13 L1,13 C0.44771525,13 6.76353751e-17,12.5522847 0,12 C-6.76353751e-17,11.4477153 0.44771525,11 1,11 Z M4,6 L5,6 C5.55228475,6 6,6.44771525 6,7 C6,7.55228475 5.55228475,8 5,8 L4,8 C3.44771525,8 3,7.55228475 3,7 C3,6.44771525 3.44771525,6 4,6 Z" opacity="0.3"></path>
+                        </svg>
+                        Отправленные
                     </button>
-                    <button>
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16.001" height="15.976" viewBox="0 0 16.001 15.976">
-                                <g transform="translate(-7.999 -8.031)">
-                                    <path class='bright' d="M23.974,14.077a.5.5,0,0,0-.4-.335l-4.919-.752-2.2-4.7a.521.521,0,0,0-.9,0l-2.2,4.7-4.919.752a.5.5,0,0,0-.282.843l3.574,3.663-.845,5.178a.5.5,0,0,0,.735.518L16,21.515l4.394,2.428a.5.5,0,0,0,.735-.517l-.845-5.178,3.574-3.663a.5.5,0,0,0,.116-.508Z"/>
-                                </g>
-                            </svg>
-                            Важные
-                        </div>
-                        <p>2</p>
+                    <button class="mailNavigation__link row">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.3"></path>
+                            <path d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
+                        </svg>
+                        Важные
                     </button>
-                </menu>
-                <div class="main-btn">
-                    <button onclick="open_form('#create-mail-form')">Написать</button>
-                </div>
+                </nav>
             </div>
-        </div>
-    </header>
-    <!-- Почта -->
-    <section id="mail">
-        <main>
-            <div class="container">
-                <div class="item new-mail" data-aos="fade-up">
-                    <div class="mail-sender">
-                        <img src='../../img/Kaelthas.jpg'/>
-                        <h4>Фамилия Имя<br>Отчество</h4>
+            <div class="mails">
+                <header class="mails__header">
+                    <div class="inputGroup">
+                        <input type="text" placeholder="Поиск" class='inputGroup__input'>
+                        <svg viewBox="0 0 24 24" class='inputGroup__svg'>
+                            <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" opacity="0.3"></path>
+                            <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"></path>
+                        </svg>
                     </div>
-                    <div class="mail-info">
-                        <div class='item-header'>
-                            <h2>Тема письма</h2>
-                            <h3>3.06 2021</h3>
+                    
+                </header>
+                <div class="column">
+                    <div class="mailItem">
+                        <div class="senderInfo">
+                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                            <div>
+                                <p class="senderInfo__name">Каратаев Вадим</p>
+                                <p class="senderInfo__role">Ученик</p>
+                            </div>
                         </div>
-                        <p class='item-text'>
-                            Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                        </p>
-                        <div class='files'>
-                            <div class="file file-mini">
-                                <div class="file-info">
-                                    <i class='file-docx'></i>
-                                    <h4>Домашнее задание.docx</h4>
+                        <div class="column">
+                            <p class="mailItem__title">
+                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
+                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
+                            <div class='files'>
+                                <div class="file file-mini">
+                                    <div class="file-info">
+                                        <i class='file-docx'></i>
+                                        <h4>Домашнее задание.docx</h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="file file-mini">
-                                <div class="file-info">
-                                    <i class='file-pptx'></i>
-                                    <h4>Теория.pptx</h4>
-                                </div>
-                            </div>
-                            <div class='file file-mini'>
-                                <div class="file-info">
-                                    <i class='file-mov'></i>
-                                    <h4>video.mov</h4>
-                                </div>
-                            </div>
-                            <div class='file file-mini'>
-                                <div class="file-info">
-                                    <i class='file-mp3'></i>
-                                    <h4>audio.mp3</h4>
-                                </div>
-                            </div>
-                            <div class='file file-mini'>
-                                <div class="file-info">
-                                    <i class='file-pyc'></i>
-                                    <h4>python prog.pyc</h4>
+                                <div class="file file-mini">
+                                    <div class="file-info">
+                                        <i class='file-pptx'></i>
+                                        <h4>Теория.pptx</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <p class="mailItem__date">28.08</p>
                     </div>
-                </div>
-                <div class="item old-mail" data-aos="fade-up">
-                    <div class="mail-sender">
-                        <img src='../../img/Kaelthas.jpg'/>
-                        <h4>Фамилия Имя<br>Отчество</h4>
+                    <div class="mailItem">
+                        <div class="senderInfo">
+                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                            <div>
+                                <p class="senderInfo__name">Смышляев Дмитрий</p>
+                                <p class="senderInfo__role">Ученик</p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <p class="mailItem__title">
+                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
+                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
+                        </div>
+                        <p class="mailItem__date">28.08</p>
                     </div>
-                    <div class="mail-info">
-                        <div class='item-header'>
-                            <h2>Тема письма</h2>
-                            <h3>3.06 2021</h3>
-                        </div>
-                        <p class='item-text'>
-                            Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                        </p>
-                        <div class='files'>
-                            <div class="file">
-                                <div class="file-info">
-                                    <i class='file-docx'></i>
-                                    <h4>Домашнее задание.docx</h4>
-                                </div>
-                            </div>
-                            <div class="file">
-                                <div class="file-info">
-                                    <i class='file-pptx'></i>
-                                    <h4>Теория.pptx</h4>
-                                </div>
+                    <div class="mailItem">
+                        <div class="senderInfo">
+                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                            <div>
+                                <p class="senderInfo__name">Фамилия Имя</p>
+                                <p class="senderInfo__role">Ученик</p>
                             </div>
                         </div>
+                        <div class="column">
+                            <p class="mailItem__title">
+                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
+                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
+                            <div class='files'>
+                                <div class='file file-mini'>
+                                    <div class="file-info">
+                                        <i class='file-mov'></i>
+                                        <h4>video.mov</h4>
+                                    </div>
+                                </div>
+                                <div class='file file-mini'>
+                                    <div class="file-info">
+                                        <i class='file-mp3'></i>
+                                        <h4>audio.mp3</h4>
+                                    </div>
+                                </div>
+                                <div class='file file-mini'>
+                                    <div class="file-info">
+                                        <i class='file-pyc'></i>
+                                        <h4>python prog.pyc</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mailItem__date">28.08</p>
                     </div>
-                </div>
-            </div>
-            <!-- Кнопка "Больше писем" -->
-            <div class='main-btn' style='margin: 32px 0;' data-aos="fade-up">
-                <button>Больше писем</button>
-            </div>
-        </main>
-        <!-- <img src='../../img/atom.png' class='bg'/> -->
-
-        <!-- Форма просмотра письма -->
-        <div class='form'>
-            <div class="form-wrapper">
-                <form>
-                    <div class='item-header'>
-                        <div class="user">
-                            <img src='../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Учитель</h4>
-                                <h2>Фамилия И. О.</h2>
-                            </div>
-                        </div>
-                        <nav style='display: flex; gap: 4px'>
-                            <button class='form-btn active hint' type='button'>
-                                <span>Ответить</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13.5" viewBox="0 0 16 13.5">
-                                    <g transform="translate(-8 -9.125)">
-                                        <path class='bright' d="M18,12.632V9.792a.5.5,0,0,0-.848-.359l-5.667,5.5a.5.5,0,0,0,0,.718l5.667,5.5A.5.5,0,0,0,18,20.792v-2.81a5.3,5.3,0,0,1,4.134,2.708l.928,1.677a.5.5,0,0,0,.438.258.487.487,0,0,0,.125-.016A.5.5,0,0,0,24,22.125v-3.2a6.3,6.3,0,0,0-6-6.29Z" fill="#be63f9"/>
-                                        <path class='faded' d="M14.5,21.458a.66.66,0,0,1-.457-.182l-5.833-5.5A.659.659,0,0,1,8,15.292a.667.667,0,0,1,.21-.485l5.833-5.5a.666.666,0,1,1,.914.97L9.639,15.292l5.318,5.015a.666.666,0,0,1-.457,1.151Z" fill="#d9a4fc"/>
-                                    </g>
-                                </svg>
-                                <!-- <p>Ответить</p> -->
-                            </button>
-                            <button class='form-btn active hint' type='button'>
-                                <span>Важное</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16.001" height="15.976" viewBox="0 0 16.001 15.976">
-                                    <g transform="translate(-7.999 -8.031)">
-                                        <path class='faded' d="M23.974,14.077a.5.5,0,0,0-.4-.335l-4.919-.752-2.2-4.7a.521.521,0,0,0-.9,0l-2.2,4.7-4.919.752a.5.5,0,0,0-.282.843l3.574,3.663-.845,5.178a.5.5,0,0,0,.735.518L16,21.515l4.394,2.428a.5.5,0,0,0,.735-.517l-.845-5.178,3.574-3.663a.5.5,0,0,0,.116-.508Z"/>
-                                    </g>
-                                </svg>
-                                <!-- <p>Важное</p> -->
-                            </button>
-                            <button class='form-btn active hint' type='button'>
-                                <span>Удалить</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.661" height="15.995" viewBox="0 0 14.661 15.995">
-                                    <g transform="translate(-8.664 -7.997)">
-                                        <path class='bright' d="M160,134v8.164a1.832,1.832,0,0,0,1.832,1.832h8.33A1.832,1.832,0,0,0,172,142.162V134Zm4,6.665a.667.667,0,0,1-1.334,0v-4a.667.667,0,0,1,1.334,0Zm2.666,0a.667.667,0,0,1-1.334,0v-4a.667.667,0,0,1,1.334,0Zm2.665,0a.667.667,0,0,1-1.334,0v-4a.667.667,0,0,1,1.335,0v4ZM164,129.332h4V130h1.333v-.667A1.337,1.337,0,0,0,168,128h-4a1.337,1.337,0,0,0-1.333,1.333V130H164Zm0,0" transform="translate(-150.003 -120.003)"/>
-                                        <path class='faded' d="M153.333,161.832V163.5a.5.5,0,0,1-.5.5H139.172a.5.5,0,0,1-.5-.5v-1.666A1.832,1.832,0,0,1,140.5,160h11a1.832,1.832,0,0,1,1.832,1.832Zm0,0" transform="translate(-130.008 -150.003)"/>
-                                    </g>
-                                </svg>
-                                <!-- <p>Удалить</p> -->
-                            </button>
-                        </nav>
-                    </div>
-                    <hr class="divider"/>
-                    <div class="users">
-                        <div class="user">
-                            <img src='../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Ученик</h4>
-                                <h2>Смышляев Дмитрий</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Учитель</h4>
-                                <h2>Сыч Эрнест</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../img/atom.png'/>
-                            <div class="info">
-                                <h4>Группа</h4>
-                                <h2>IT квантум</h2>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <img src='../../img/Kaelthas.jpg'/>
-                            <div class="info">
-                                <h4>Администратор</h4>
-                                <h2>Каратаев Вадим</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="divider"/>
-                    <h2>Тема письма</h2>
-                    <p class='item-text'>
-                        Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php. Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php. Нужно реализовать свой сервер на технологии ASP.NET Core MVC. И положить его на бесплатный хостинг somme.com, инструкция прилагается по ссылке: https://metanit.com/sharp/mvc/13.3.php
-                    </p>
-                    <div class='date__container'>
-                        <h5>3.06 2021</h5>
-                    </div>
-                    <hr class="divider"/>
-                    <div class='files'>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-docx'></i>
-                                <h4>Домашнее задание.docx</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class='download-file'></button>
-                            </div>
-                        </div>
-                        <div class="file">
-                            <div class="file-info">
-                                <i class='file-pptx'></i>
-                                <h4>Теория.pptx</h4>
-                            </div>
-                            <div class="file-btns">
-                                <button class='download-file'></button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Форма создания письма -->
-        <div class='form' id='create-mail-form'>
-            <div class="form-wrapper">
-                <div class="forms__container">
-                    <form>
-                        <div class="item-header">
-                            <input placeholder="Поиск пользователей" onkeyup="filterFunction(this)" class='dropdown-input'>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Ученик')">
-                                <svg viewBox="0 0 24 24">
-                                    <path class='bright' d="M16,24H8a3,3,0,0,1-2.886-2.225,6.993,6.993,0,0,1,13.772,0A3,3,0,0,1,16,24ZM3,21V13.424A5,5,0,0,0,0,18v1a5,5,0,0,0,3.924,4.876A4.953,4.953,0,0,1,3,21Zm18-7.576V21a4.953,4.953,0,0,1-.924,2.876A5,5,0,0,0,24,19V18A5,5,0,0,0,21,13.424ZM19,11v6.356a8.978,8.978,0,0,0-14,0V11A6.992,6.992,0,0,1,8,5.264V4a4,4,0,0,1,8,0V5.264A6.992,6.992,0,0,1,19,11ZM10,4.3a6.927,6.927,0,0,1,4,0V4a2,2,0,0,0-4,0ZM15,10h0a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1H9a1,1,0,0,0,1,1h4A1,1,0,0,0,15,10Z"/></svg>
-                            </button>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Учитель')">
-                                <svg viewBox="0 0 24 24">
-                                    <path class='bright' d="M24,8.48V20a1,1,0,0,1-2,0V11.752l-7.4,3.536a5,5,0,0,1-2.577.694,5.272,5.272,0,0,1-2.7-.739L1.943,11.73a3.691,3.691,0,0,1-.084-6.455c.027-.016.056-.031.084-.045L9.4,1.672a5.226,5.226,0,0,1,5.282.045L22.057,5.23A3.767,3.767,0,0,1,24,8.48Zm-11.978,9.5a7.26,7.26,0,0,1-3.645-.972L4,14.919v2.7a5.007,5.007,0,0,0,3.519,4.778A15.557,15.557,0,0,0,12,23a15.557,15.557,0,0,0,4.481-.607A5.007,5.007,0,0,0,20,17.615V14.924l-4.459,2.13A6.983,6.983,0,0,1,12.022,17.982Z"/></svg>
-                            </button>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Группа')">
-                                <svg viewBox="0 0 24 24">
-                                    <path class='bright' d="M22.563,1.437C20.189-.937,16.644-.358,12,3.137,7.357-.358,3.813-.938,1.437,1.437S-.358,7.356,3.137,12c-3.495,4.643-4.075,8.188-1.7,10.563A4.7,4.7,0,0,0,4.879,24C6.85,24,9.23,22.948,12,20.864,14.769,22.948,17.149,24,19.121,24a4.7,4.7,0,0,0,3.442-1.437c2.375-2.375,1.8-5.919-1.7-10.563C24.358,7.356,24.938,3.812,22.563,1.437Zm-3.478.591a2.806,2.806,0,0,1,2.067.819c1.746,1.747.456,4.713-1.588,7.539-.838-.988-1.782-2.015-2.858-3.092S14.6,5.273,13.612,4.434C15.51,3.061,17.472,2.028,19.085,2.028ZM18.311,12c-1.011,1.22-2.082,2.361-3.016,3.3S13.22,17.3,12,18.311C10.78,17.3,9.639,16.229,8.705,15.3S6.7,13.22,5.689,12C6.7,10.78,7.771,9.638,8.705,8.705S10.78,6.7,12,5.688c1.22,1.01,2.361,2.083,3.3,3.017S17.3,10.78,18.311,12ZM2.848,2.848a2.8,2.8,0,0,1,2.067-.82c1.613,0,3.575,1.033,5.473,2.406-.988.839-2.016,1.783-3.094,2.86s-2.02,2.1-2.859,3.092C2.392,7.56,1.1,4.594,2.848,2.848Zm0,18.3c-1.746-1.746-.456-4.713,1.587-7.538.839.988,1.783,2.015,2.859,3.092s2.1,2.023,3.089,2.861C7.558,21.609,4.592,22.9,2.848,21.152Zm18.3,0c-1.745,1.744-4.71.457-7.535-1.585.986-.838,2.014-1.787,3.089-2.861s2.02-2.1,2.858-3.092C21.608,16.44,22.9,19.406,21.152,21.152Z"/><circle class='bright' cx="12" cy="12" r="2"/></svg>
-                            </button>
-                            <button class='filter-button active' type="button" onclick="filter_applying(this, 'Администратор')">
-                                <svg viewBox="0 0 24 24">
-                                    <path class='bright' d="M22.766,4.566A1.994,1.994,0,0,0,20.586,5L18,7.586,13.414,3a2,2,0,0,0-2.828,0L6,7.586,3.414,5A2,2,0,0,0,0,6.414V17a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6.414A2,2,0,0,0,22.766,4.566Z"/></svg>
-                            </button>
-                        </div>
-                        <div class="users unselected" style='display: none'>
-                            <div class="user draggable">
-                                <img src='../../img/Kaelthas.jpg'/>
-                                <div class="info">
-                                    <h4>Ученик</h4>
-                                    <h2>Смышляев Дмитрий</h2>
-                                </div>
-                            </div>
-                            <div class="user draggable">
-                                <img src='../../img/Kaelthas.jpg'/>
-                                <div class="info">
-                                    <h4>Учитель</h4>
-                                    <h2>Сыч Эрнест</h2>
-                                </div>
-                            </div>
-                            <div class="user draggable">
-                                <img src='../../img/atom.png'/>
-                                <div class="info">
-                                    <h4>Группа</h4>
-                                    <h2>IT квантум</h2>
-                                </div>
-                            </div>
-                            <div class="user draggable">
-                                <img src='../../img/Kaelthas.jpg'/>
-                                <div class="info">
-                                    <h4>Администратор</h4>
-                                    <h2>Каратаев Вадим</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <form>
-                        <div class='item-header'>
-                            <h2>Получатели</h2>
-                            <button class='form-btn active' type="submit">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16.046" height="8.666" viewBox="0 0 16.046 8.666">
-                                    <g transform="translate(-8.011 -11.167)">
-                                        <path class='bright' d="M23.781,11.581a1.164,1.164,0,0,0-.891-.414H13.207a1.163,1.163,0,0,0-1.15.972l-1.072,6.333a1.167,1.167,0,0,0,1.15,1.361h9.683a1.163,1.163,0,0,0,1.15-.972l1.072-6.333a1.161,1.161,0,0,0-.259-.947ZM22.351,14.2l-4.233,1.753a1.419,1.419,0,0,1-.573.113,1.44,1.44,0,0,1-.66-.153L13.038,14.02l.173-1.027,4.113,2.027a.52.52,0,0,0,.413.013l4.807-1.993Zm1.474-.733.053-.333A.443.443,0,0,1,23.825,13.467Z"/>
-                                        <g>
-                                            <path class='faded' d="M10.678,13.167h-2a.667.667,0,1,1,0-1.334h2a.667.667,0,0,1,0,1.334Z"/>
-                                            <path class='faded' d="M10.011,15.833H8.678a.667.667,0,1,1,0-1.333h1.333a.667.667,0,1,1,0,1.333Z"/>
-                                            <path class='faded' d="M9.345,18.5H8.678a.667.667,0,1,1,0-1.334h.667a.667.667,0,0,1,0,1.334Z"/>
-                                        </g>
-                                    </g>
-                                </svg>
-                                <p>Отправить</p>
-                            </button>
-                        </div>
-                        <div class="users selected">
-                            <!-- Место для выбранных пользователей -->
-                        </div>
-                        <input class='text-field text-field-title' autocomplete="off" placeholder="Тема"></input>
-                        <div id="editor" class='text-field'></div>
-                        <div class="item-header">
-                            <h2>Прикрепленные файлы</h2>
-                            <button class='form-btn active' type="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
-                                    <g transform="translate(-8.667 -8)">
-                                      <path class='faded' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
-                                      <path class='bright' d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
-                                    </g>
-                                  </svg>
-                                  <p>Документ</p>
-                            </button>
-                        </div>
-                        <div class='files'>
-                            <div class="file">
-                                <div class="file-info">
-                                    <i class='file-xml'></i>
-                                    <h4>excel document.xml</h4>
-                                </div>
-                                <div class="file-btns">
-                                    <button class="del-file"></button>
-                                </div>
-                            </div>
-                            <div class="file">
-                                <div class="file-info">
-                                    <i class='file-pptx'></i>
-                                    <h4>presentation.pptx</h4>
-                                </div>
-                                <div class="file-btns">
-                                    <button class="del-file"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id='newMailItemForm' class='draggable'>
+        <form>
+            <div class="form__cell row">
+                <button class='windowButton' style='margin-left: auto' onclick="minimize(this)" type="button">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M448 240v32a32 32 0 0 1-32 32H32a32 32 0 0 1-32-32v-32a32 32 0 0 1 32-32h384a32 32 0 0 1 32 32z"></path>
+                    </svg>
+                </button>
+                <button class='windowButton' type="button">
+                    <svg viewBox="0 0 320 512">
+                        <path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="form__cell row">
+                Кому:
+                <input type="text">
+            </div>
+
+            <div class="form__cell">
+                <input type="text" placeholder="Тема">
+            </div>
+
+            <div id="editor" class='text-field'></div>
+            
+            <div class="form__cell">
+                <button class="secondaryButton">Отправить</button>
+            </div>
+            
+        </form>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='../../JS/script.js'></script>
@@ -584,6 +340,10 @@
             $('#mail .form').first().addClass("active");
             $("body").css("overflow", "hidden");
         });
+
+        function minimize(btn){
+            $("#newMailItemForm").toggleClass('minimized');
+        }
     </script>
 </body>
 

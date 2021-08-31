@@ -5,14 +5,22 @@
     <meta charset="UTF-8">
     <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
     <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel="shortcut icon" href="../../img/logo.png" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+    <link rel="shortcut icon" href="../../img/logo.png" type="image/png" />
     <link rel="stylesheet" href="style.css">
-    <title>Оценивание</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+    <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
+    <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+    
+    <title>Фамилия Имя</title>
 </head>
 
 <body class='light__theme blue__color__scheme'>
-
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
@@ -149,105 +157,81 @@
         </nav>
     </aside>
 
-    <!-- Шапка -->
-    <header>
-        <div class='page-header'>
-            <h1>Проверка и выставление отметок</h1>
+    <section class="profilePage">
+        <div class="profileCard">
+            <img src="../../img/Kaelthas.jpg" alt="profileImg" class='profileCard__profileImg'>
+            <p class="profileCard__profileName">Имя Фамилия</p>
+            <p class="profileCard__profileRole">Ученик</p>
         </div>
-    </header>
-
-    <!-- Проверка и выставление отметок -->
-    <section id='markEditor'>
-
-        <section class="filteringList">
-
-            <!-- Группа -->
-            <div class="filtering">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Группа</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Группа 1</span>
-                        <span class='dropdownSelect__option'>Группа 2</span>
-                    </div>
-                </div>
+        <div class="profilePage__tabs">
+            <div class="menu">
+                <button class="menu__button active" onclick="changeType('#profileTab')">
+                    <svg viewBox="0 0 18 18">
+                        <g transform="translate(-3 -3)">
+                            <path fill='#20d489' d="M12,11a4,4,0,1,1,4-4A4,4,0,0,1,12,11Z" opacity="0.3"/>
+                            <path fill='#20d489' d="M3,20.2c.388-4.773,4.261-7.2,8.983-7.2C16.771,13,20.7,15.293,21,20.2a.687.687,0,0,1-.751.8H3.727A1.107,1.107,0,0,1,3,20.2Z"/>
+                        </g>
+                    </svg> 
+                    <p>Профиль</p>
+                </button>
+                <button class="menu__button" onclick="changeType('#statisticsTab')">
+                    <svg viewBox="0 0 18 16">
+                        <g transform="translate(-3 -4)">
+                            <rect fill='#20d489' opacity="0.3" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
+                            <rect fill='#20d489' width="3" height="11" rx="1.5" transform="translate(8 9)"/>
+                            <rect fill='#20d489' width="3" height="9" rx="1.5" transform="translate(18 11)"/>
+                            <rect fill='#20d489' width="3" height="7" rx="1.5" transform="translate(3 13)"/>
+                        </g>
+                    </svg>
+                    <p>Проектная деятельность</p>
+                </button>
             </div>
-
-            <!-- Проектная группа -->
-            <div class="filtering disable">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Проектная группа</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Проектная группа 1</span>
-                        <span class='dropdownSelect__option'>Проектная группа 2</span>
-                        <span class='dropdownSelect__option'>Проектная группа 3</span>
-                        <span class='dropdownSelect__option'>Проектная группа 4</span>
-                        <span class='dropdownSelect__option'>Проектная группа 5</span>
-                        <span class='dropdownSelect__option'>Проектная группа 6</span>
-                    </div>
-                </div>
+            <div class="profilePage__tab inactive" id='statisticsTab'>
+                Статистика
             </div>
-
-            <!-- Задание -->
-            <div class="filtering disable">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Задание</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Задание 1</span>
-                        <span class='dropdownSelect__option'>Задание 2</span>
-                        <span class='dropdownSelect__option'>Задание 3</span>
-                        <span class='dropdownSelect__option'>Задание 4</span>
-                        <span class='dropdownSelect__option'>Задание 5</span>
-                        <span class='dropdownSelect__option'>Задание 6</span>
-                        <span class='dropdownSelect__option'>Задание 7</span>
-                        <span class='dropdownSelect__option'>Задание 8</span>
-                        <span class='dropdownSelect__option'>Задание 9</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <div id='markPalette'>
-            <button class="active hint">
-                <span>Отлично</span>
-                <div class="four"></div>
-            </button>
-            <button class='hint'>
-                <span>Хорошо</span>
-                <div class="three"></div>
-            </button>
-            <button class='hint'>
-                <span>Плохо</span>
-                <div class="two"></div>
-            </button>
-            <button class='hint'>
-                <span>Не сделано</span>
-                <div class="one"></div>
-            </button>
-            <button class='hint'>
-                <span>Отсутствие</span>
-                <div class="absence"></div>
-            </button>
-            <button class='hint'>
-                <span>Уважительная причина</span>
-                <div class="disease"></div>
-            </button>
         </div>
+        
     </section>
 
+    <div id="arrowTop" hidden>
+        <svg viewBox="0 0 14 14">
+            <g transform="translate(-5 -5)">
+                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+            </g>
+        </svg> 
+    </div>
+    
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Менеджер секций-->
     <script src='../../JS/script.js'></script>
 
-    <script src="../../JS/dropdownSelect.js"></script>
+    <!-- Подсветка кода -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <!-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Отображение математических формул -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Настройки панели -->
+    <script src='../../JS/toolbar_options.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+    <script>
+
+        $(".menu__button").on("click", function(){
+            $(this).parent().find(".menu__button").removeClass("active");
+            $(this).toggleClass("active", "inactive");
+        });
+
+        function changeType(tabId){
+            $('.profilePage__tabs').find(".profilePage__tab").hide();
+            $('.profilePage__tabs').find(tabId).show();
+        }
+    </script>
 </body>
 
 </html>

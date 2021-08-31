@@ -17,19 +17,12 @@
 </head>
 
 <body class='light__theme blue__color__scheme'>
-    <script> 
-        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
-    </script>
     <!-- Навигационное меню -->
     <aside>
         <!-- Логотип -->
         <div id="logo" onclick="location.href='/'">
             <img src='../../img/Кванториум SPACE.svg' alt='logo'/>
             <!-- <h1>KvantJournal</h1> -->
-        </div>
-        <!-- Индикатор -->
-        <div id='indicator'>
-            <svg viewBox="0 0 24 24"><path d="M19.1 10.586l-5.289-5.293L12.4 6.707 17.689 12 12.4 17.293l1.415 1.414 5.285-5.293a2 2 0 000-2.828z"/><path d="M12.811 11.293l-6-6L5.4 6.707 10.689 12 5.4 17.293l1.415 1.414 6-6a1 1 0 00-.004-1.414z"/></svg>
         </div>
 
         <!-- Навигация -->
@@ -128,8 +121,7 @@
                 </button>
                 <nav class='toolbar'>
                     <!-- Список задач -->
-                    <button class='hint'>
-                        <span style='transform: translate(-15px, -75px)'>Список задач</span>
+                    <button data-tippy-content="Список задач">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13.334" viewBox="0 0 16 13.334">
                             <g id="task" transform="translate(-8 -9.333)">
                                 <g>
@@ -146,8 +138,7 @@
                         </svg>
                     </button>
                     <!-- Уведомления -->
-                    <button class='hint'>
-                        <span style='transform: translate(-15px, -75px)'>Уведомления</span>
+                    <button data-tippy-content="Уведомления">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13.334" height="16" viewBox="0 0 13.334 16">
                             <g id="bell" transform="translate(-9.333 -8)">
                                 <path class='bright' d="M22.253,19.275a4.466,4.466,0,0,1-1.586-3.417V14a4.67,4.67,0,0,0-4-4.613v-.72a.667.667,0,1,0-1.334,0v.72a4.669,4.669,0,0,0-4,4.613v1.859a4.472,4.472,0,0,1-1.592,3.422,1.167,1.167,0,0,0,.759,2.053h11a1.167,1.167,0,0,0,.753-2.059Z"/>
@@ -372,6 +363,14 @@
             'fill': false,
             'center': false,
             slidesPerPage: 2,
+        });
+    </script>
+
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+        tippy('[data-tippy-content]', {
+            placement: 'top',
         });
     </script>
 </body>
