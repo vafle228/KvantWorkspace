@@ -1,9 +1,9 @@
 
 function page_adaptation(){
-	let ratio = window.innerWidth / 1920 < 0.5 ? 2 : 1920 / window.innerWidth;
-    $("body")[0].style.transform = window.innerWidth / 1920 < 0.5 ? 'scale(0.5)' : `scale(${window.innerWidth / 1920})`;
-	$("body")[0].style.width = window.innerWidth / 1920 < 0.5 ? '200%' : `${1920 / window.innerWidth * 100}%`;
-	$("aside")[0].style.height = `${window.innerHeight * ratio}px`;
+	let ratio = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
+    $("body")[0].style.transform = `scale(${ratio})`;
+	$("body")[0].style.width = `${ 1 / ratio * 100}%`
+	$("aside")[0].style.height = `${window.innerHeight * (1 / ratio)}px`;
 }
 
 $(window).resize(function () {
