@@ -1,18 +1,21 @@
 
+$(window).scroll(function(){
+	let ratio = window.innerWidth / 1920 < 0.5 ? 2 : 1920 / window.innerWidth;
+	$("aside")[0].style.top = `${$(window).scrollTop() * ratio}px`;
+});
+
 function page_adaptation(){
 	let ratio = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
     $("body")[0].style.transform = `scale(${ratio})`;
 	$("body")[0].style.width = `${ 1 / ratio * 100}%`
 	$("aside")[0].style.height = `${window.innerHeight * (1 / ratio)}px`;
+	$(".form-wrapper").css("height", `${1 / ratio * 100}vh`);
 }
 
-$(window).resize(function () {
-	page_adaptation();
-});
+$(window).resize(page_adaptation());
 
-$(document).ready(function() {
-	page_adaptation();
-});
+$(document).ready(page_adaptation());
+
 
 
 
@@ -24,11 +27,6 @@ $(document).mouseup(function (e) {
 		$(".form").removeClass("active");
 		$("body").css("overflow-y", "scroll");
 	}
-});
-
-$(window).scroll(function(){
-	let ratio = window.innerWidth / 1920 < 0.5 ? 2 : 1920 / window.innerWidth;
-	$("aside")[0].style.top = `${$(window).scrollTop() * ratio}px`;
 });
 
 // Открыть форму по ID
