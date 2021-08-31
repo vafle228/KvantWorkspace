@@ -122,8 +122,6 @@ html{
 body{
     cursor: default;
     background-color: var(--bg-color);
-
-    transform-origin: 0 0;
     
     font-family: "Google Sans";
 
@@ -330,7 +328,7 @@ body > header{
 .form .form-wrapper{
     overflow-y: scroll; padding: 6rem 0 6rem 2.375rem;
     position: fixed; top: 0; left: calc(50% - 31.25rem);
-    height: 100vh;
+    height: 100%;
     z-index: 3;
     display: flex; align-items: center;
 }
@@ -692,20 +690,6 @@ body > header{
 }
 
 
-/* Стилизация даты */
-.date__container{
-    display: flex; align-items: center; gap: 0.25rem;
-    color: var(--text-primary-color);
-    margin-left: auto;
-}
-.date__container h5{
-    display: inline-block;
-}
-.date__container span{
-    font-size: 0.8rem;
-}
-
-
 /* @media screen and (max-width: 992px){
 } */
 
@@ -722,36 +706,6 @@ body > header{
     /* Пользователи */
     .users{ gap: 1% }
     .user{ width: 49.5% }
-}
-
-
-/* Подсказки при наведении */
-.hint{
-    position: relative;
-}
-.hint span{
-    white-space: nowrap;
-    background-color: #555;
-    color: #fff; font-size: 0.875rem; font-weight: 400;
-    text-align: center;
-    padding: 0.25rem 0;
-    border-radius: 4px;
-
-    position: absolute;
-    z-index: 1;
-    bottom: -75%;
-    left: -50%;
-
-    visibility: hidden;
-    opacity: 0;
-}
-.hint span::before, .hint span::after{
-    content: '_';
-    opacity: 0;
-}
-.hint:hover span{
-    visibility: visible;
-    opacity: 1;
 }
 
 /* Выпадающий список */
