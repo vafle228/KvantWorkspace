@@ -1,20 +1,19 @@
 
-
 function page_adaptation(){
 
 	let ratio = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
-	$("body").css("zoom", ratio);
-	$("body").css("-moz-zoom", ratio);
-	$("body")[0].style.width = `${ 1 / ratio * 100}vw`;
-	$("body")[0].style.height = `${ 1 / ratio * 100}vh`;
+
+	$("body").css({
+		"zoom": ratio,
+		"-moz-zoom": ratio,
+		"width": `${ 1 / ratio * 100}vw`,
+		"height": `${ 1 / ratio * 100}vh`
+	});
 }
 
 $(window).resize(page_adaptation());
 
 $(document).ready(page_adaptation());
-
-
-
 
 
 // Закрытие форм при клике вне
