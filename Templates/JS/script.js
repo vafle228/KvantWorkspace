@@ -7,13 +7,13 @@ function page_adaptation(){
 		"zoom": ratio,
 		"-moz-zoom": ratio,
 		"width": `${ 1 / ratio * 100}vw`,
-		"height": `${ 1 / ratio * 100}vh`
+		"height": `${ 1 / ratio * 100}%`
 	});
 }
 
-$(window).resize(page_adaptation());
-
 $(document).ready(page_adaptation());
+
+$(window).resize(page_adaptation());
 
 
 // Закрытие форм при клике вне
@@ -84,7 +84,11 @@ function switch_theme() {
 
 // Сменить цветовую схему
 function switch_color_scheme() {
-	$('body').toggleClass('blue__color__scheme orange__color__scheme');
+	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red'];
+	let currentSchemeIndex = schemes.indexOf($('body').attr("colorScheme"));
+	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;
+
+	$('body').attr("colorScheme", schemes[nextSchemeIndex]);
 }
 
 

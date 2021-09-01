@@ -9,7 +9,7 @@
     padding: 16px;
 }
 .mailNavigation__composeBtn{
-    background-color: #0bb783;
+    background-color: var(--currentColor);
     color: #fff;
     padding: 16px;
     border-radius: 12px;
@@ -34,10 +34,10 @@
 }
 .mailNavigation__link:hover, .mailNavigation__link.active{
     background-color: var(--theme-light);
-    color: #0bb783;
+    color: var(--currentColor);
 }
 .mailNavigation__link:hover svg, .mailNavigation__link.active svg{
-    fill: #0bb783;
+    fill: var(--currentColor);
 }
 
 .mails{
@@ -164,7 +164,7 @@
     background-color: var(--theme-light);
 }
 .windowButton:hover svg{
-    fill: #20d489;
+    fill: var(--currentColor);
 }
 .windowButton svg{
     fill: var(--theme-light-alpha);

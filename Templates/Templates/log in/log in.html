@@ -10,6 +10,8 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css"/>
+
     <title>Вход</title>
 </head>
 <body>
@@ -33,7 +35,12 @@
             <input name="password" type="password" autocomplete="off" placeholder="Введите ваш пароль"/>
 
             <footer>
-                <h4>Если вы забыли пароль, обратитесь к администратору.</h4>
+                <h4 
+                data-tippy-content="Обратитесь к администратору."
+                data-tippy-trigger="click"
+                data-tippy-placement="right"
+                data-tippy-arrow="false"
+                >Забыли пароль?</h4>
                 <button type="submit">
                     <h4>Войти</h4>
                 </button>
@@ -43,6 +50,14 @@
     </div>
 
     <div id="blob"></div>
+
+    <script src="../../JS/script.js"></script>
+
+    <!-- poppers -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="../../JS/tippyConfig.js"></script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init()</script>
 
@@ -239,5 +254,6 @@
         requestAnimationFrame(animate);
     });
     </script>
+
 </body>
 </html>

@@ -11,25 +11,38 @@
 }
 
 /* Синяя цветовая гамма */
-.blue__color__scheme{
+/* .blue__color__scheme{
     --color-scheme: #40B9E6;
     --color-scheme-dark: #06c;
     --color-scheme-gradient: #63a4ff;
     --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
     --color-scheme-light: #5faaec55;
-}
+} */
 /* Оранжевая цветовая гамма */
-.orange__color__scheme{
+/* .orange__color__scheme{
     --color-scheme: #f3a183;
     --color-scheme-dark: #eC6f66;
     --color-scheme-gradient: #eC6f66;
     --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
     --color-scheme-light: #f3a18355;
+} */
+
+body[colorScheme='colorScheme__green']{
+    --bgColor: #cceef2;
+    --currentColor: #20d489;
+}
+body[colorScheme='colorScheme__blue']{
+    --bgColor: #00b2ff22;
+    --currentColor: #00b2ff;
+}
+body[colorScheme='colorScheme__red']{
+    --bgColor: #f1416c22;
+    --currentColor: #f1416c;
 }
 
 /* Светлая тема */
 .light__theme{
-    --bg-color: #cceef2;
+    --bg-color: var(--bgColor);
     --aside-bg-color: #fff;
     --aside-bg-color-alpha: rgba(241, 240, 245, 0.8);
 
@@ -104,10 +117,11 @@ svg .bright{
     fill: #495B7A;
 }
 .active svg .faded{
-    fill: var(--color-scheme-light);
+    fill: var(--currentColor);
+    opacity: 0.3;
 }
 .active svg .bright{
-    fill: var(--color-scheme);
+    fill: var(--currentColor);
 }
 
 
@@ -201,7 +215,7 @@ aside > nav{
     display: flex; flex-direction: column; gap: 0.375rem;
 }
 aside > nav:last-of-type{
-    position: absolute; bottom: 16px;
+    position: fixed; bottom: 1rem;
 }
 aside > nav > button{
     height: 44px;
@@ -228,18 +242,11 @@ aside > nav > button:hover{
 aside > nav > button.active{
     background-color: var(--button-bg-hover-color);
 }
-.light__theme aside > nav > button.active p{
-    color: var(--color-scheme-dark);
+aside > nav > button.active p{
+    color: var(--currentColor);
 }
-.light__theme aside > nav > button.active svg .bright{
-    fill: var(--color-scheme-dark);
-}
-.dark__theme aside > nav > button.active p{
-    color: var(--color-scheme);
-}
-.dark__theme aside > nav > button.active svg .bright{
-    fill: var(--color-scheme);
-}
+
+
 
 /* Профиль в навигации */
 .aside-profile{
@@ -345,7 +352,7 @@ body > header{
     padding: 1rem 1.5rem; margin: auto 0;
     border-radius: 1rem;
     position: relative;
-    display: flex; flex-direction: column; gap: 0.5rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
 
     transform: translateY(2000px);
     transition: transform .4s;
@@ -366,11 +373,8 @@ body > header{
 .form .form-wrapper form .form-btn p{
     font-weight: 500; font-size: 1.2rem;
 }
-.dark__theme .form-btn p{
-    color: var(--color-scheme);
-}
-.light__theme .form-btn p{
-    color: var(--color-scheme-dark);
+.form-btn p{
+    color: var(--currentColor);
 }
 .form .form-wrapper form .form-btn:hover{
     background-color: var(--button-bg-hover-color);
@@ -444,15 +448,14 @@ body > header{
 .dark__theme .toggle.theme:after{
     transform: translatex(1rem);
 }
+
 .toggle.color-scheme{
-    background: var(--color-scheme-light);
+    width: 1rem;
 }
 .toggle.color-scheme::after{
-    background-color: var(--color-scheme-dark);
+    background-color: var(--currentColor);
 }
-.orange__color__scheme .toggle.color-scheme::after{
-    transform: translatex(1rem);
-}
+
 
 
 
@@ -502,7 +505,7 @@ body > header{
 /* Название и иконка файла */
 .file .file-info{
     display: flex; align-items: center;
-    margin-right: 1.5rem;
+    margin-right: 2rem;
     z-index: 1;
 }
 .file .file-info h4{
@@ -518,10 +521,10 @@ body > header{
     z-index: 1;
 }
 .file button{
+    width: 2rem; height: 2rem;
     background-color: unset;
     transition-duration: .4s; transition-property: color background-color;
     clip-path: circle();
-    padding: 0.5rem;
     display: flex; justify-content: center; align-items: center;
 }
 
@@ -545,7 +548,7 @@ body > header{
     color: var(--text-primary-color);
 }
 .file .download-file:hover{
-    background-color: #20d489;
+    background-color: var(--currentColor);
 }
 .file .download-file:hover::before{
     color: #fff;
@@ -556,12 +559,16 @@ body > header{
     height: 2rem;
     padding: 0 0.75rem;
 }
+.file-mini:hover::before{
+    opacity: 0.3;
+    background-color: var(--currentColor);
+}
 .file-mini::before{
     width: 100%;
     height: 100%;
     top: 0; left: 0;
-    opacity: 1;
-    background-color: rgba(32, 212, 137, 0.2);
+    opacity: 0.2;
+    background-color: var(--currentColor);
 }
 .file-mini i{
     margin-right: 0.5rem;
@@ -575,7 +582,7 @@ body > header{
 }
 .file-mini .file-info h4{
     font-size: 1rem;
-    color: #0bb783;
+    color: var(--currentColor);
 }
 .file-mini .file-btns{
     display: none;
@@ -848,14 +855,14 @@ button.primaryButton{
 }
 .primaryButton svg{
     width: 1rem; height: 1rem;
-    fill: #20d489;
+    fill: var(--currentColor);
 }
 button.primaryButton:hover{
-    color: #20d489;
+    color: var(--currentColor);
 }
 
 .secondaryButton{
-    background-color: #20d489;
+    background-color: var(--currentColor);
     color: #fff;
     font-weight: 600; font-size: 1rem;
     padding: 0.75rem 1rem;
@@ -925,7 +932,7 @@ button.primaryButton:hover{
     content: "";
     width: 0; height: 0;
     position: absolute; left: 50%; bottom: 0;
-    background-color: #20d489;
+    background-color: var(--currentColor);
     transition: all .2s;
 }
 

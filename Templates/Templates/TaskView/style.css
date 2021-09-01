@@ -9,19 +9,6 @@
     }
 }
 
-/* Обложка новости */
-.taskView__preview{
-    height: 320px;
-    overflow: hidden;
-    border-radius: 16px;
-}
-.taskView__preview img{
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-    height: 100%;
-}
-
 /* Информационный блок новости */
 .taskView__info{
     border-radius: 16px;

@@ -79,7 +79,8 @@ form label{
 
 /* footer */
 form footer{
-    display: flex; gap: 10px;
+    display: flex; align-items: center;
+    gap: 10px;
     margin-top: 30px;
 } 
 form footer > h4{

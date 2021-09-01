@@ -444,7 +444,7 @@
   .ql-snow .ql-toolbar .ql-picker-item:hover,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-    color: var(--color-scheme-dark);
+    color: var(--currentColor);
   }
   .ql-snow.ql-toolbar button:hover .ql-fill,
   .ql-snow .ql-toolbar button:hover .ql-fill,
@@ -474,7 +474,7 @@
   .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
-    fill: var(--color-scheme-dark);
+    fill: var(--currentColor);
   }
   .ql-snow.ql-toolbar button:hover .ql-stroke,
   .ql-snow .ql-toolbar button:hover .ql-stroke,
@@ -504,7 +504,7 @@
   .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-    stroke: var(--color-scheme-dark);
+    stroke: var(--currentColor);
   }
   @media (pointer: coarse) {
     .ql-snow.ql-toolbar button:hover:not(.ql-active),

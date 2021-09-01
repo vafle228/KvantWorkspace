@@ -17,10 +17,12 @@
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- Красивый вылет элементов -->
 
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css"/>
+
     <title>Задания</title>
 </head>
 
-<body class='light__theme blue__color__scheme'>
+<body class='light__theme' colorScheme="colorScheme__green">
     
     <!-- Навигационное меню -->
     <aside>
@@ -503,6 +505,11 @@
         </svg> 
     </div> -->
     
+    <!-- poppers -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="../../JS/tippyConfig.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='../../JS/script.js'></script>
 
@@ -545,12 +552,7 @@
     <!-- Выпадающие меню -->
     <script src="../../JS/dropdownSelect.js"></script>
 
-    <!-- poppers -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <script>
-        tippy('[data-tippy-content]'); 
-    </script>
+
 </body>
 
 </html>
