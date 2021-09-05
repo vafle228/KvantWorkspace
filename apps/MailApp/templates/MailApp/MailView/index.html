@@ -1,0 +1,27 @@
+{% load news_tags %}
+
+{% for mail in mails %}
+<div class="item new-mail" data-aos="fade-up">
+    <div class="mail-sender">
+        <img src='{{ mail.sender.image.url }}'/>
+        <h4>{{ mail.sender.surname }} {{ mail.sender.name|slice:"1" }}<br>{{ mail.sender.patronymic }}</h4>
+    </div>
+    <div class="mail-info">
+        <div class='item-header'>
+            <h2>{{ mail.title }}</h2>
+            <h3>{{ mail.date|date:"j.m" }}</h3>
+        </div>
+        <p class='item-text'>{{ mail.text }}</p>
+        <div class='files'>
+            {% for file in mail.files|get_objects %}
+            <div class="file file-mini">
+                <div class="file-info">
+                    <i class='file-{{ file|file_extension }}'></i>
+                    <h4>{{ file|file_name }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}

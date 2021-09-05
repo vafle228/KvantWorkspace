@@ -59,7 +59,7 @@ class _NewsManipulationBaseView(generic.View):
         return JsonResponse({'status': 403,'link':reverse_lazy('main_page', kwargs=redirect_kwargs)})
     
     def fill_news_files(self, news):
-        from SystemModule.views import ModelsFileFiller
+        from core.classes import ModelsFileFiller
 
         filler = ModelsFileFiller('news/', news.files)
         filler.fill_model_files(self.request.FILES.getlist('files'), news.title)

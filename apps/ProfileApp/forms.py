@@ -50,8 +50,10 @@ class AwardMixin(ImageMixinBase, FileManagerMixinBase):
         image = BytesIO()
         document = fitz.open('pdf', pdf_file.read())
         file_name = f'{os.path.splitext(pdf_file.name)[0]}.jpeg'
+
+        zoom_matrix = fitz.Matrix(2, 2) # 2 - zoom coefficient
         
-        Image.open(BytesIO(document[0].getPixmap(matrix=fitz.Matrix(2, 2)).tobytes())).save(image, format='JPEG', quality=90)
+        Image.open(BytesIO(document[0].getPixmap(matrix=zoom_matrix).tobytes())).save(image, format='JPEG', quality=90)
         
         return InMemoryUploadedFile(image, 'FileField', file_name, 'image/jpeg', getsizeof(image), None)
     

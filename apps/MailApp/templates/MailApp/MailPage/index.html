@@ -1,4 +1,5 @@
 {% load static %}
+{% load mail_tags %}
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +28,7 @@
             </div>
             <div>
                 <p onclick="open_menu('#mail-tabs')">
-                    {% if box_type == 'sent' %}Отправленные{% else %}{% if box_type == 'received' %}
+                    {% if request.get == 'sent' %}Отправленные{% else %}{% if request.get == 'received' %}
                     Входящие{% else %}Важные{% endif %}{% endif %}
                     <svg viewBox="0 0 24 24"><path d="M12 15.5a1.993 1.993 0 01-1.414-.585L5.293 9.621l1.414-1.414L12 13.5l5.293-5.293 1.414 1.414-5.293 5.293A1.993 1.993 0 0112 15.5z"/></svg>
                 </p>
@@ -59,7 +60,6 @@
                 </div>
             </div>
         </div>
-        {% include "SystemModule/ToolbarMenu/index.html" with user=user %}
     </header>
     <!-- Почта -->
     <section id="mail">
@@ -163,9 +163,6 @@
         if('{{ box_type }}' == 'received'){ max_mails = {{ received_mails }} }
         if('{{ box_type }}' == 'important'){ max_mails = {{ important_mails }} }
     	let send_mail = '{% url "send_mails" user.id %}';
-        let create_mail = '{% url "create_mail" user.id %}';
-        let change_status = '{% url "change_status" user.id %}';
-        let change_important = '{% url "change_important" user.id %}'
     </script>
 </body>
 

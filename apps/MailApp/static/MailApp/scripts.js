@@ -1,4 +1,4 @@
-let page = 0;
+let page = 1;
 let file_array = Array();
 let filters = ['Ученик', 'Учитель', 'Группа', 'Администратор'];
 
@@ -62,19 +62,16 @@ function filter_applying(button, filter) {
 // Получение письм
 function getNewMails(){	
 	$.ajax({
-		type: 'POST',
-		url: send_mail + location.search,
-		data: {
-			page: page,
-			csrfmiddlewaretoken: getCookie('csrftoken'),
-		},
+		type: 'GET',
+		url: send_mail + location.search + `&?page=${page}`,
 		cache: false,
 		success: function(response){
-			if(page * 8 >= max_mails && page !== 0){ 
+			$('#mail_container').append(response);
+			if(page * 8 >= 2 && page !== 0){ 
 				$('#more-mails')[0].style.display = 'none'; 
 			}
 			for(let i in response['mails']){
-				buildNewMail(response['mails'][i]);
+				// buildNewMail(response['mails'][i]);
 			}
 			page++
 		}

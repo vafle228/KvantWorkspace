@@ -29,6 +29,20 @@ function switch_color_scheme(){
 	}
 }
 
+// Сменить тему оформления
+function switch_theme() {
+	$('body').toggleClass('light__theme dark__theme');
+}
+
+// Сменить цветовую схему
+function switch_color_scheme() {
+	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red'];
+	let currentSchemeIndex = schemes.indexOf($('body').attr("colorScheme"));
+	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;
+
+	$('body').attr("colorScheme", schemes[nextSchemeIndex]);
+}
+
 function getUserColorTheme(){
 	return $('body').hasClass('blue__color__scheme') ? 'blue' : 'orange'
 }
