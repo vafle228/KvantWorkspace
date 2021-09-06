@@ -7,13 +7,17 @@ function page_adaptation(){
 		"zoom": ratio,
 		"-moz-zoom": ratio,
 		"width": `${ 1 / ratio * 100}vw`,
-		"height": `${ 1 / ratio * 100}%`
+		// "height": `${ 1 / ratio * 100}%`
 	});
 }
 
-$(document).ready(page_adaptation());
+$(window).ready(function () {
+	page_adaptation();
+});
 
-$(window).resize(page_adaptation());
+$(window).resize(function () {
+	page_adaptation();
+});
 
 
 // Закрытие форм при клике вне
@@ -84,7 +88,9 @@ function switch_theme() {
 
 // Сменить цветовую схему
 function switch_color_scheme() {
+
 	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red'];
+
 	let currentSchemeIndex = schemes.indexOf($('body').attr("colorScheme"));
 	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;
 

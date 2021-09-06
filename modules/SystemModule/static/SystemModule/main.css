@@ -9,24 +9,17 @@
     --aside-text-color: #9B9C9E;
 }
 
-/* Синяя цветовая гамма */
-.blue__color__scheme{
-    --color-scheme: #40B9E6;
-    --color-scheme-dark: #06c;
-    --color-scheme-gradient: #63a4ff;
-    --color-scheme-shadow: -1px 1px #83eaf1, -2px 2px #83eaf1, -3px 3px #83eaf1, -4px 4px #83eaf1;
-    --color-scheme-shadow-alpha: -1px 1px #83eaf122, -2px 2px #83eaf133, -3px 3px #83eaf144, -4px 4px #83eaf155;
-    /* --color-scheme-light: #bce0ff; */
-    --color-scheme-light: #5faaec55;
+body[colorScheme='colorScheme__green']{
+    --bgColor: #20d48922;
+    --currentColor: #20d489;
 }
-/* Оранжевая цветовая гамма */
-.orange__color__scheme{
-    --color-scheme: #f3a183;
-    --color-scheme-dark: #eC6f66;
-    --color-scheme-gradient: #eC6f66;
-    --color-scheme-shadow: -1px 1px #f3a183, -2px 2px #f3a183, -3px 3px #f3a183, -4px 4px #f3a183;
-    --color-scheme-shadow-alpha: -1px 1px #f3a18322, -2px 2px #f3a18333, -3px 3px #f3a18344, -4px 4px #f3a18355;
-    --color-scheme-light: #f3a18355;
+body[colorScheme='colorScheme__blue']{
+    --bgColor: #00b2ff22;
+    --currentColor: #00b2ff;
+}
+body[colorScheme='colorScheme__red']{
+    --bgColor: #f1416c22;
+    --currentColor: #f1416c;
 }
 
 /* Светлая тема */
