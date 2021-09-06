@@ -19,10 +19,10 @@
 
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css"/>
 
-    <title>Почта</title>
+    <title>Тема письма</title>
 </head>
 
-<body class='light__theme' colorScheme='colorScheme__blue'>
+<body class='dark__theme' colorScheme='colorScheme__blue'>
 
     <!-- Навигационное меню -->
     <aside>
@@ -202,8 +202,10 @@
                     </div>
                     
                 </header>
-                <div class="column">
-                    <div class="mailItem">
+                
+                <div class="mailView">
+                    <h1 class="mailView__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto ad omnis molestias eos reprehenderit sint consectetur accusantium voluptate id veniam hic consequuntur dicta</h1>
+                    <div class="row">
                         <div class="senderInfo">
                             <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
                             <div>
@@ -211,108 +213,22 @@
                                 <p class="senderInfo__role">Ученик</p>
                             </div>
                         </div>
-                        <div class="column">
-                            <p class="mailItem__title">
-                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
-                            <div class='files'>
-                                <div class="file file-mini">
-                                    <div class="file-info">
-                                        <i class='file-docx'></i>
-                                        <h4>Домашнее задание.docx</h4>
-                                    </div>
-                                </div>
-                                <div class="file file-mini">
-                                    <div class="file-info">
-                                        <i class='file-pptx'></i>
-                                        <h4>Теория.pptx</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mailItem__date">28.08</p>
+                        <p>28.08</p>
                     </div>
-                    <div class="mailItem">
-                        <div class="senderInfo">
-                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
-                            <div>
-                                <p class="senderInfo__name">Фамилия Имя</p>
-                                <p class="senderInfo__role">Ученик</p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <p class="mailItem__title">
-                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
-                        </div>
-                        <p class="mailItem__date">28.08</p>
-                    </div>
-                    <div class="mailItem">
-                        <div class="senderInfo">
-                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
-                            <div>
-                                <p class="senderInfo__name">Фамилия Имя</p>
-                                <p class="senderInfo__role">Ученик</p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <p class="mailItem__title">
-                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
-                            <div class='files'>
-                                <div class='file file-mini'>
-                                    <div class="file-info">
-                                        <i class='file-mov'></i>
-                                        <h4>video.mov</h4>
-                                    </div>
-                                </div>
-                                <div class='file file-mini'>
-                                    <div class="file-info">
-                                        <i class='file-mp3'></i>
-                                        <h4>audio.mp3</h4>
-                                    </div>
-                                </div>
-                                <div class='file file-mini'>
-                                    <div class="file-info">
-                                        <i class='file-pyc'></i>
-                                        <h4>python prog.pyc</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mailItem__date">28.08</p>
-                    </div>
-                    <div class="mailItem">
-                        <div class="senderInfo">
-                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
-                            <div>
-                                <p class="senderInfo__name">Фамилия Имя</p>
-                                <p class="senderInfo__role">Ученик</p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <p class="mailItem__title">
-                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
-                        </div>
-                        <p class="mailItem__date">28.08</p>
-                    </div>
-                    <div class="mailItem">
-                        <div class="senderInfo">
-                            <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
-                            <div>
-                                <p class="senderInfo__name">Фамилия Имя</p>
-                                <p class="senderInfo__role">Ученик</p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <p class="mailItem__title">
-                                <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
-                        </div>
-                        <p class="mailItem__date">28.08</p>
-                    </div>
+                    
+                    <p class="mailView__text">
+                        Hi Bob, 
+                        <br/><br/>
+                        With resrpect, i must disagree with Mr.Zinsser. We all know the most part of important part of any article is the title.Without a compelleing title, your reader won't even get to the first sentence.After the title, however, the first few sentences of your article are certainly the most important part.
+                        <br/><br/>
+                        Jornalists call this critical, introductory section the "Lede," and when bridge properly executed, it's the that carries your reader from an headine try at attention-grabbing to the body of your blog post, if you want to get it right on of these 10 clever ways to omen your next blog posr with a bang
+                        <br/><br/>
+                        Best regards,
+                        <br/><br/>
+                        Jason Muller    
+                    </p>
                 </div>
+
             </div>
         </div>
     </section>
