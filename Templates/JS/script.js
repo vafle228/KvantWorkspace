@@ -27,6 +27,7 @@ $(document).mouseup(function (e) {
 	if(!(exceptions.filter(exception => exception.has(e.target).length !== 0).length)){
 		$(".form").removeClass("active");
 		$("body").css("overflow-y", "scroll");
+		$(".userSelect").hide();
 	}
 });
 
@@ -42,30 +43,30 @@ let filters = ['Ученик', 'Учитель', 'Группа', 'Админис
 function filterFunction(input) {
 	let substr = input.value.toUpperCase();
 	if (substr.trim()) {
-		$('.unselected').show();
-		let users = $('.unselected .user').map(function (index) {
-			let user = $('.unselected .user')[index]
+		$('.userSelect').show();
+		let users = $('.userSelect__user').map(function (index) {
+			let user = $('.userSelect__user')[index]
 
-			user.style.display = 'none';
+			$(user).removeClass('active');
 			return user
 		});
 
 		let unblocked = users.map(function (index) {
 			let user = users[index]
 
-			let name = $(user).find('h2')[0].textContent;
-			let category = $(user).find('h4')[0].textContent;
+			let name = $(user).find('h3')[0].textContent;
+			let category = $(user).find('p')[0].textContent;
 
-			if (name.toUpperCase().indexOf(substr) !== -1 && filters.indexOf(category) !== -1) {
-				user.style.display = 'flex'
+			if (name.toUpperCase().indexOf(substr) !== -1) {
+				$(user).addClass('active');
 				return user
 			}
 		})
 
-		if (unblocked.length) { $('.unselected').show() }
-		else { $('.unselected').hide(); }
+		if (unblocked.length) { $('.userSelect').show() }
+		else { $('.userSelect').hide(); }
 	}
-	else { $('.unselected').hide(); }
+	else { $('.userSelect').hide(); }
 }
 
 // Применение фильтра

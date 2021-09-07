@@ -126,7 +126,8 @@
     background-color: var(--aside-bg-color);
     border-radius: 16px;
     width: 800px;
-    max-height: calc(100% - 32px);
+    max-height: calc(100% - 48px);
+    max-width: calc(100% - 48px);
 
     overflow: auto;
 
@@ -145,6 +146,10 @@
     font-size: 1rem;
     color: var(--text-primary-color);
 }
+#mailSubject{
+    width: 100%;
+}
+
 .form__cell{
     position: relative;
     padding: 16px 24px;
@@ -216,4 +221,8 @@
     .mails__header > .menu{
         display: flex;
     }
+}
+
+#newMailItem__userSelect{
+    position: absolute; top: 7rem; left: 4rem;
 }

@@ -982,3 +982,65 @@ button.primaryButton:hover{
     margin-bottom: 0.25rem;
     margin-left: 1rem;
 }
+
+
+.userSelect{
+    width: 32rem;
+    background-color: var(--item-bg-color);
+    border-radius: 12px;
+    display: flex; flex-direction: column;
+    max-height: 16rem;
+    overflow: auto;
+    box-shadow: 0 0 1rem #0001;
+}
+
+.userSelect::-webkit-scrollbar{
+    width: 6px;
+}
+.userSelect::-webkit-scrollbar-thumb{
+    background-color: var(--theme-light-alpha);
+    border-radius: 3px;
+}
+.userSelect__user{
+    height: 0; visibility: hidden;
+    padding: 0 1.5rem;
+    transition: padding .2s, height .2s;
+    display: flex; flex-direction: row; gap: 1rem;
+}
+.userSelect__user.active{
+    padding: 1rem 1.5rem;
+    visibility: visible;
+    height: 5rem;
+}
+.userSelect__user:hover{
+    background-color: var(--theme-light);
+}
+.userSelect__user:hover .userSelect__userName{
+    color: var(--currentColor);
+}
+.userSelect__userImage{
+    width: 3rem; height: 3rem;
+    border-radius: 25%;
+    object-fit: cover; object-position: center;
+}
+.userSelect__userInfo{
+    display: flex; flex-direction: column; gap: 4px;
+}
+.userSelect__userName{
+    color: var(--text-primary-color);
+    transition: color .2s;
+}
+
+#userSearch{
+    height: 27.2px;
+}
+
+#selectedUsers{
+    display: flex; flex-wrap: wrap; gap: 0.25rem;
+}
+.selectedUsers__user{
+    background-color: var(--bgColor);
+    color: var(--currentColor);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+}

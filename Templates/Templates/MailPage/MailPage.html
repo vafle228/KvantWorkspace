@@ -366,9 +366,13 @@
                     </svg>
                 </button>
             </div>
-            <div class="form__cell row">
-                Кому:
-                <input type="text">
+
+            <div class="form__cell row" style='align-items: flex-start;'>
+                <p style='line-height: 27.2px'>Кому:</p>
+                <div id="selectedUsers">
+                    <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
+                </div>
+                
             </div>
 
             <div class="form__cell">
@@ -409,6 +413,46 @@
                     </svg>
                     Прикрепить файл
                 </button>
+            </div>
+
+            <div class="userSelect" id='newMailItem__userSelect'>
+
+                <div class="userSelect__user row">
+                    <img src="../../img/Kaelthas.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Каратаев Вадим</h3>
+                        <p class="userSelect__userRole">Ученик</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/user_profile_male.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Павел Сергеевич</h3>
+                        <p class="userSelect__userRole">Учитель</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/atom.svg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">IT квантум</h3>
+                        <p class="userSelect__userRole">Группа</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/Kaelthas.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Смышляев Дмитрий</h3>
+                        <p class="userSelect__userRole">Администратор</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/howtospeedupreact-thumb.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Александра Денисовна</h3>
+                        <p class="userSelect__userRole">Искусственный интеллект</p>
+                    </div>
+                </div>
+
             </div>
             
         </form>
@@ -487,7 +531,19 @@
                 $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path><path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path></svg>`);
             }
         }
+
+        $('.userSelect .userSelect__user').click( function() {
+            $('#userSearch').val('');
+            $('#userSearch').before($(`
+                <div class='selectedUsers__user'>
+                    ${$(this).find('.userSelect__userName').text()}
+                </div>
+            `));
+            $(this).remove();
+            $('#userSearch').focus();
+        });
     </script>
 </body>
 
 </html>
+
