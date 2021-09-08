@@ -38,48 +38,28 @@ function open_form(form_id) {
 }
 
 
-let filters = ['Ученик', 'Учитель', 'Группа', 'Администратор'];
 // Поиск пользователя
 function filterFunction(input) {
 	let substr = input.value.toUpperCase();
 	if (substr.trim()) {
 		$('.userSelect').show();
-		let users = $('.userSelect__user').map(function (index) {
-			let user = $('.userSelect__user')[index]
+		let users = $('.userSelect .userSelect__user');
+		
+		// Сортируем
+		users.sort((a, b) => {
+			a = $(a).find('h3')[0].textContent.toUpperCase().indexOf(substr);
+			b = $(b).find('h3')[0].textContent.toUpperCase().indexOf(substr);
 
-			$(user).removeClass('active');
-			return user
+			if (a == -1) return 1
+			if (b == -1) return -1
+			return a - b
 		});
 
-		let unblocked = users.map(function (index) {
-			let user = users[index]
-
-			let name = $(user).find('h3')[0].textContent;
-			let category = $(user).find('p')[0].textContent;
-
-			if (name.toUpperCase().indexOf(substr) !== -1) {
-				$(user).addClass('active');
-				return user
-			}
-		})
-
-		if (unblocked.length) { $('.userSelect').show() }
-		else { $('.userSelect').hide(); }
+		// Перезаполняем
+		$('.userSelect').find('.userSelect__user').detach();
+		users.map(index => $('.userSelect').append(users[index]));
 	}
 	else { $('.userSelect').hide(); }
-}
-
-// Применение фильтра
-function filter_applying(button, filter) {
-
-	if (filters.indexOf(filter) !== -1) {
-		filters.splice(filters.indexOf(filter), 1);
-	} else {
-		filters.push(filter);
-	}
-
-	$(button).toggleClass("active", "inactive")
-	filterFunction($('.dropdown-input')[0]);
 }
 
 // Сменить тему оформления

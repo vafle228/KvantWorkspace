@@ -1002,16 +1002,12 @@ button.primaryButton:hover{
     border-radius: 3px;
 }
 .userSelect__user{
-    height: 0; visibility: hidden;
-    padding: 0 1.5rem;
+    height: 5rem;
+    padding: 1rem 1.5rem;
     transition: padding .2s, height .2s;
     display: flex; flex-direction: row; gap: 1rem;
 }
-.userSelect__user.active{
-    padding: 1rem 1.5rem;
-    visibility: visible;
-    height: 5rem;
-}
+
 .userSelect__user:hover{
     background-color: var(--theme-light);
 }
@@ -1038,9 +1034,18 @@ button.primaryButton:hover{
 #selectedUsers{
     display: flex; flex-wrap: wrap; gap: 0.25rem;
 }
-.selectedUsers__user{
+#selectedUsers .userSelect__user{
     background-color: var(--bgColor);
     color: var(--currentColor);
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
+    height: 27.2px;
+}
+#selectedUsers .userSelect__user .userSelect__userName{
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--currentColor);
+}
+#selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
+    display: none;
 }

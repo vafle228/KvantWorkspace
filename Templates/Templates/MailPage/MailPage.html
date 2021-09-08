@@ -335,7 +335,7 @@
                         <div class="column">
                             <p class="mailItem__title">
                                 <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-                                Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
+                                Harum repellendus veniam.</p>
                         </div>
                         <p class="mailItem__date">28.08</p>
                     </div>
@@ -370,6 +370,7 @@
             <div class="form__cell row" style='align-items: flex-start;'>
                 <p style='line-height: 27.2px'>Кому:</p>
                 <div id="selectedUsers">
+
                     <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
                 </div>
                 
@@ -416,7 +417,6 @@
             </div>
 
             <div class="userSelect" id='newMailItem__userSelect'>
-
                 <div class="userSelect__user row">
                     <img src="../../img/Kaelthas.jpg" class='userSelect__userImage'>
                     <div class="userSelect__userInfo">
@@ -432,7 +432,7 @@
                     </div>
                 </div>
                 <div class="userSelect__user row">
-                    <img src="../../img/atom.svg" class='userSelect__userImage'>
+                    <img src="../../img/stacked-waves-haikei (2).png" class='userSelect__userImage'>
                     <div class="userSelect__userInfo">
                         <h3 class="userSelect__userName">IT квантум</h3>
                         <p class="userSelect__userRole">Группа</p>
@@ -452,9 +452,7 @@
                         <p class="userSelect__userRole">Искусственный интеллект</p>
                     </div>
                 </div>
-
             </div>
-            
         </form>
     </div>
 
@@ -496,13 +494,6 @@
     <script src="../../JS/draggable_options.js"></script>
 
     <script>
-        // Открытие формы по нажатию на письмо
-        $("#mail .item").click(function () {
-            $('#mail .form').first().addClass("active");
-            $("body").css("overflow", "hidden");
-        });
-
-
 
         function closeForm(btn){
             $("#newMailItemForm").toggleClass('closed');
@@ -535,14 +526,17 @@
             }
         }
 
-        $('.userSelect .userSelect__user').click( function() {
+        $('.userSelect__user').click( function() {
+            
+            if ($(this).parent().hasClass('userSelect')){
+                $(this).detach();
+                $('#userSearch').before($(this));
+            } else {
+                $(this).detach();
+                $(this).appendTo($('.userSelect'));
+            }
+
             $('#userSearch').val('');
-            $('#userSearch').before($(`
-                <div class='selectedUsers__user'>
-                    ${$(this).find('.userSelect__userName').text()}
-                </div>
-            `));
-            $(this).remove();
             $('#userSearch').focus();
         });
     </script>
