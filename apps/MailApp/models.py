@@ -8,6 +8,9 @@ class MailReceiver(models.Model):
     is_read  = models.BooleanField(default=False)
     receiver = models.ForeignKey(KvantUser, on_delete=models.CASCADE, related_name='receivers')
 
+    def __str__(self):
+        return f'Получатель {self.receiver.__str__()}'
+
 
 class KvantMessage(models.Model):
     text        = models.TextField(blank=True)
@@ -28,3 +31,6 @@ class KvantMessage(models.Model):
 class ImportantMail(models.Model):
     user = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
     mail = models.ForeignKey(KvantMessage, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Важное письмо {self.mail.sender.__str__()}'

@@ -3,7 +3,6 @@ from core.classes import KvantJournalAccessMixin
 from django.shortcuts import redirect, HttpResponse
 
 
-
 class UserLogOutView(KvantJournalAccessMixin, View):
     def get(self, *args, **kwargs):
         from django.urls import reverse_lazy

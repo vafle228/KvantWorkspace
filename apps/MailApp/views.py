@@ -1,25 +1,25 @@
-from django.db.models.query import QuerySet
 from django.http import JsonResponse
 from LoginApp.models import KvantUser
 from core.classes import KvantJournalAccessMixin
 
 from .models import KvantMessage, ImportantMail
-from .forms import SendNewMails, KvantMailSaveForm
+from .forms import KvantMailSaveForm
 from django.shortcuts import render, redirect, HttpResponse
 from django.views import generic
 
 
 class MailPageTemplateView(KvantJournalAccessMixin, generic.TemplateView):
-    template_name = 'MailApp/MailPage/index.html'
+    template_name = 'MailApp/MailBox/index.html'
 
     def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        
-        ctx['sent_mails'] = len(KvantMessage.objects.filter(sender=self.request.user))
-        ctx['important_mails'] = len(ImportantMail.objects.filter(user=self.request.user))
-        ctx['received_mails'] = len(KvantMessage.objects.filter(receivers__receiver=self.request.user))
+        context = super().get_context_data(**kwargs)
 
-        return ctx
+        context.update(
+            box_type=self.request.GET['type'],
+            kvant_users=KvantUser.objects.exclude(id=self.request.user.id),
+        )
+
+        return context
 
 
 class MailListView(KvantJournalAccessMixin, generic.ListView):
@@ -31,27 +31,43 @@ class MailListView(KvantJournalAccessMixin, generic.ListView):
     
     def get_queryset(self):
         mails_type = self.request.GET['type']
-        mails = super().get_queryset()
 
-        if mails_type == 'received':
-            return mails.filter(receivers__receiver__id=self.kwargs['identifier'])
         if mails_type == 'sent':
-            return mails.filter(sender__id=self.kwargs['identifier'])
+            return KvantMessage.objects.filter(sender=self.request.user)
+        if mails_type == 'received':
+            return KvantMessage.objects.filter(receivers__receiver=self.request.user)
         if mails_type == 'important':
-            return ImportantMail.objects.filter(user=self.request.user)
-        return QuerySet()
+            return KvantMessage.objects.filter(importantmail__user=self.request.user)
+        return KvantMessage.objects.none()
 
 
-# def mail_page(request, identifier):
-#     sent_mails = len(KvantMessage.objects.filter(sender=request.user))
-#     important_mails = len(ImportantMail.objects.filter(user=request.user))
-#     received_mails = len(KvantMessage.objects.filter(receivers__receiver=request.user))
+class MailCreationView(KvantJournalAccessMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        from django.urls import reverse_lazy
 
-#     return render(request, 'MailApp/index.html', {'sent_mails': sent_mails,
-#                                                   'received_mails': received_mails,
-#                                                   'users': KvantUser.objects.all(),
-#                                                   'box_type': request.GET['type'],
-#                                                   'important_mails': important_mails})
+        form = KvantMailSaveForm(self.request.POST)
+        if form.is_valid():
+            mail = self.fill_mail_files(form.save(request))
+            return JsonResponse({'status': 200, 'link': reverse_lazy('main_page', kwargs={"identifier": self.request.user.id})})
+        if self.request.FILES.getlist('files') == []:
+            form.add_error(None, 'Письмо должно содержать хотя бы одного получателя')
+        return JsonResponse({'status': 400, 'errors': form.errors})
+    
+
+    def fill_mail_files(self, mail):
+        from core.classes import ModelsFileFiller
+        
+        filler = ModelsFileFiller('mail/', mail.files)
+        filler.fill_model_files(self.request.FILES.getlist('files'), mail.title)
+
+        return mail
+
+
+class MailDetailView(KvantJournalAccessMixin, generic.DetailView):
+    model               = KvantMessage
+    pk_url_kwarg        = 'mail_identifier'
+    context_object_name = 'mail'
+    template_name       = 'MailApp/MailDetailView/index.html'
 
 
 # def send_more_mails(request, identifier):

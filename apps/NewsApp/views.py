@@ -50,13 +50,12 @@ class _NewsManipulationBaseView(generic.View):
 
         redirect_kwargs = {'identifier': request.user.id}
         if kwargs.get('is_available'):
-            form = kwargs.get('form')
-            if form.is_valid():
-                news = self.fill_news_files(form.save())
+            if kwargs.get('form').is_valid():
+                news = self.fill_news_files(kwargs.get('form').save())
                 redirect_kwargs['news_identifier'] = news.id
-                return JsonResponse({'status': 200, 'link':reverse_lazy('detail_news', kwargs=redirect_kwargs)})
-            return JsonResponse({'status': 400, 'errors': form.errors})  
-        return JsonResponse({'status': 403,'link':reverse_lazy('main_page', kwargs=redirect_kwargs)})
+                return JsonResponse({'status': 200, 'link': reverse_lazy('detail_news', kwargs=redirect_kwargs)})
+            return JsonResponse({'status': 400, 'errors': kwargs.get('form').errors})  
+        return JsonResponse({'status': 403,'link': reverse_lazy('main_page', kwargs=redirect_kwargs)})
     
     def fill_news_files(self, news):
         from core.classes import ModelsFileFiller

@@ -1,12 +1,10 @@
-:root{
+body{
     /* Брейкпоинты */
     --xsmall: 576px;
     --small: 768px;
     --medium: 992px;
     --large: 1200px;
     --xlarge: 1400px;
-
-    --aside-text-color: #9B9C9E;
 }
 
 body[colorScheme='colorScheme__green']{
@@ -24,7 +22,7 @@ body[colorScheme='colorScheme__red']{
 
 /* Светлая тема */
 .light__theme{
-    --bg-color: #cceef2;
+    --bg-color: var(--bgColor);
     --aside-bg-color: #fff;
     --aside-bg-color-alpha: rgba(241, 240, 245, 0.8);
 
@@ -39,7 +37,7 @@ body[colorScheme='colorScheme__red']{
 
     --special-ui-elements-color: var(--color-scheme-light);
 
-    --theme-light: #F5F8FA;
+    --theme-light: #F4F4F4;
     --theme-light-alpha: #0004;
     --theme-light-alpha-reverse: #fff4;
 }
@@ -69,7 +67,7 @@ body[colorScheme='colorScheme__red']{
 
 /* Скрываем скролбар */
 ::-webkit-scrollbar{
-    width: 0;height: 0;
+    width: 0; height: 0;
 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
@@ -99,15 +97,19 @@ svg .bright{
     fill: #495B7A;
 }
 .active svg .faded{
-    fill: var(--color-scheme-light);
+    fill: var(--currentColor);
+    opacity: 0.3;
 }
 .active svg .bright{
-    fill: var(--color-scheme);
+    fill: var(--currentColor);
 }
+
 
 html{
     /* Плавный скрол страницы */
     scroll-behavior: smooth;
+
+    font-size: 16px;
 }
   
 /* Основные элементы страницы */
@@ -131,19 +133,19 @@ body{
 }
 
 body > section{
-    padding: 25px 45px 25px 121px;
+    padding: 1.5rem 2% 1.5rem calc(2% + 4.75rem);
 }
 
 .row{
-    display: flex; flex-direction: row; align-items: center; gap: 8px;
+    display: flex; flex-direction: row; align-items: center; gap: 0.5rem;
 }
 .column{
-    display: flex; flex-direction: column; gap: 8px;
+    display: flex; flex-direction: column; gap: 0.5rem;
 }
 
 .item{
     background-color: var(--item-bg-color);
-    border-radius: 10px;
+    border-radius: 0.5rem;
     border: #0001 solid 1px;
     cursor: pointer;
     transition-duration: .5s; transition-property: transform, box-shadow !important;
@@ -156,24 +158,23 @@ body > section{
 /* Навигационное меню */
 aside{
     position: fixed; top: 0; left: 0;
-    height: 100%; width: 76px;
+    height: 100%; width: 4.75rem;
     background-color: var(--aside-bg-color);
     box-shadow: rgb(0 0 0 / 8%) 0px 10px 20px 0px;
     z-index: 2;
 
-    transition-duration: .15s;
-    transition-property: width left background-color;
+    transition: width .15s;
     overflow: hidden;
 }
 aside:hover{
-    width: 300px;
+    width: 18.75rem;
 }
-aside:hover p, aside:hover #logo h1, aside:hover .toggle{
+aside:hover .aside__profile{
+    width: 18.75rem;
+}
+aside:hover p, aside:hover .toggle{
     opacity: 1;
     visibility: visible;
-}
-aside:hover #indicator svg{
-    transform: rotate(180deg);
 }
 aside .toggle{
     opacity: 0;
@@ -181,47 +182,28 @@ aside .toggle{
     transition: opacity .05s;
 }
 aside #logo{
-    height: 100px;
+    height: 6.25rem;
     display: flex; align-items: center;
-    padding: 0 14px;
+    padding: 0 0.875rem;
     overflow: hidden;
 }
 aside #logo img{
-    height: 52px;
+    height: 3.25rem;
 }
 .dark__theme aside #logo img{
     filter: invert(100%) hue-rotate(180deg);
 }
-aside #indicator {
-    position: fixed; left: 72px; top: 26px;
-    background-color: var(--aside-bg-color);
-    width: 40px; height: 48px;
-    border-radius: 0 50% 50% 0;
-    display: flex; justify-content: center; align-items: center;
-    box-shadow: rgb(0 0 0 / 8%) 20px 10px 20px 0px;
 
-    transition-duration: .15s;
-    transition-property: background-color left;
-    visibility: hidden;
-}
-aside #indicator svg{
-    fill: var(--text-primary-color);
-    transition-duration: .2s;
-    transition-property: transform;
-}
-aside:hover #indicator{
-    left: 296px;
-}
 aside > nav{
-    display: flex; flex-direction: column; gap: 6px;
+    display: flex; flex-direction: column; gap: 0.375rem;
 }
 aside > nav:last-of-type{
-    position: fixed; bottom: 16px;
+    position: fixed; bottom: 0;
 }
 aside > nav > button{
     height: 44px;
     background-color: unset;
-    border-radius: 10px;
+    border-radius: 0.5rem;
     transition-property: background-color; transition-duration: .2s;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 12px; margin: 0 16px;
@@ -240,75 +222,79 @@ aside > nav > button p{
 aside > nav > button:hover{
     background-color: var(--button-bg-hover-color);
 }
+
 aside > nav > button.active{
     background-color: var(--button-bg-hover-color);
 }
-.light__theme aside > nav > button.active p{
-    color: var(--color-scheme-dark);
-}
-.light__theme aside > nav > button.active svg .bright{
-    fill: var(--color-scheme-dark);
-}
-.dark__theme aside > nav > button.active p{
-    color: var(--color-scheme);
-}
-.dark__theme aside > nav > button.active svg .bright{
-    fill: var(--color-scheme);
+aside > nav > button.active p{
+    color: var(--currentColor);
 }
 
+
+
 /* Профиль в навигации */
-.aside-profile{
-    display: flex; justify-content: space-between;
-    padding: 0 16px 0;
-    width: 300px;
+.aside__profile{
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.8125rem;
+    padding-right: 1rem;
+    margin: 0.5rem 0 0;
+    width: 4.75rem;
+    transition: width .15s;
+    overflow: hidden;
+    background-color: var(--theme-light);
+    /* border-radius: 0 2.375rem 2.375rem 0; */
+    box-shadow: #0003 0 0 0.25rem 0;
 }
-.aside-profile .profile{
-    display: flex; gap: 8px; align-items: center;
+.aside__profile .aside__profileInfo{
+    display: flex; gap: 0.5rem; align-items: center;
     position: relative;
     cursor: pointer;
     background-color: unset;
 }
-.aside-profile .profile .info{
+.aside__profile .aside__profileInfo div{
     display: flex; flex-direction: column; gap: 0; align-items: center; justify-content: left;
 }
-.aside-profile .profile .info h2{
-    font-size: 1.2rem; white-space: nowrap; opacity: 0; transition: .2s opacity;
+.aside__profile .aside__profileInfo div:hover h2{
+    color: var(--currentColor);
 }
-.aside-profile .profile .info h4{
+.aside__profile .aside__profileInfo h2{
+    font-size: 1rem; font-weight: 500;
+    opacity: 0; transition: all .2s;
+    white-space: nowrap; max-width: 10rem; overflow: hidden; text-overflow: ellipsis;
+}
+.aside__profile .aside__profileInfo h4{
     font-size: 1rem; text-align: left; width: 100%; opacity: 0; transition: .2s opacity;
 }
-.aside-profile .profile img{
-    width: 40px; height: 40px;
+.aside__profile .aside__profileInfo img{
+    width: 2.875rem; height: 2.875rem;
     border-radius: 100%;
     object-fit: cover;
     transition-duration: .2s;
     transition-property: filter;
     position: relative;
-    margin: 2px;
+    margin: 0.125rem;
+
+    padding: 3px;
+    border: var(--theme-light-alpha) solid 2px;
 }
-.aside-profile svg{
+.aside__profile svg{
     fill: var(--text-primary-color);
 }
-.aside-profile .toolbar{
-    opacity: 0;
-    display: flex; align-items: center; gap: 8px; flex-direction: row;
-    height: 40px;
-    transition: .1s opacity;
-}
-.aside-profile .toolbar button{
-    width: 40px; height: 40px;
-    border-radius: 8px;
+
+.aside__profileButton{
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 0.5rem;
     background-color: unset;
-    transition: .2s background-color;
-    display: flex; align-items: center; justify-content: center;
+    padding: 0.625rem;
+    opacity: 0; transition: all .1s;
 }
-.aside-profile .toolbar button:hover{
+.aside__profileButton:hover{
     background-color: var(--button-bg-hover-color);
 }
-aside:hover .aside-profile *{
+aside:hover .aside__profile *{
     opacity: 1;
 }
-aside:hover .aside-profile .profile .info h2, aside:hover .aside-profile .profile .info h4{
+aside:hover .aside__profile .profile .info h2, aside:hover .aside__profile .profile .info h4{
     opacity: 1;
 }
 
@@ -317,19 +303,16 @@ aside:hover .aside-profile .profile .info h2, aside:hover .aside-profile .profil
 body > header{
     position: relative;
     z-index: 1;
-    width: 100%; height: 75px;
-    padding: 25px 45px 0 121px;
+    width: 100%; height: 5rem;
+    padding: 1.5rem 3rem 0 7.75rem;
     display: flex; align-items: center;
 }
 
 
 /* Формы */
-.form{
-    visibility: hidden; transition: visibility .4s;
-}
-.form.active{
-    visibility: visible;
-}
+.form{ visibility: hidden; transition: visibility .4s }
+.form.active{ visibility: visible }
+
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
@@ -344,26 +327,26 @@ body > header{
     visibility: visible; opacity: 1;
 }
 .form .form-wrapper{
-    overflow-y: scroll; padding: 100px 0 100px 38px;
-    position: fixed; top: 0; left: calc(50% - 500px);
+    overflow-y: scroll; padding: 6rem 0 6rem 2.375rem;
+    position: fixed; top: 0; left: calc(50% - 31.25rem);
     height: 100%;
-    display: flex;
     z-index: 3;
+    display: flex; align-items: center;
 }
 .form .forms__container{
-    display: flex; flex-direction: column; gap: 10px;
+    display: flex; flex-direction: column; gap: 0.5rem;
     margin: auto 0;
 }
 .form .forms__container > form{
     margin: 0;
 }
 .form .form-wrapper form{
-    width: 1000px;
+    width: 62.5rem;
     background-color: var(--item-bg-color);
-    padding: 15px 25px 15px 25px; margin: auto 0;
-    border-radius: 10px;
+    padding: 1rem 1.5rem; margin: auto 0;
+    border-radius: 1rem;
     position: relative;
-    display: flex; flex-direction: column; gap: 10px;
+    display: flex; flex-direction: column; gap: 0.75rem;
 
     transform: translateY(2000px);
     transition: transform .4s;
@@ -375,20 +358,17 @@ body > header{
 /* Кнопки в форме */
 .form .form-wrapper form .form-btn{
     background-color: unset;
-    padding: 0 12.5px; margin: 3px 0;
-    min-height: 45px; max-height: 45px;
-    border-radius: 8px;
+    padding: 0 0.75rem; margin: auto 0;
+    min-height: 3rem; max-height: 3rem;
+    border-radius: 0.5rem;
     transition-property: color background-color box-shadow; transition-duration: .2s;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 0.5rem;
 }
 .form .form-wrapper form .form-btn p{
     font-weight: 500; font-size: 1.2rem;
 }
-.dark__theme .form-btn p{
-    color: var(--color-scheme);
-}
-.light__theme .form-btn p{
-    color: var(--color-scheme-dark);
+.form-btn p{
+    color: var(--currentColor);
 }
 .form .form-wrapper form .form-btn:hover{
     background-color: var(--button-bg-hover-color);
@@ -397,41 +377,16 @@ body > header{
 /* Элемент шапки формы */
 .form .form-wrapper form .item-header{
     display: flex; justify-content: space-between; align-items: center;
-    min-height: 51px;
-    gap: 4px;
-}
-.form .form-wrapper form .item-header .lesson-title{
-    max-width: 80%;
-}
-.form .form-wrapper form .item-header .lesson-title h2{
-    display: inline-block;
-    margin-right: 10px;
-}
-.form .form-wrapper form .item-header .lesson-title h3{
-    color: var(--color-scheme-dark); font-weight: bold;
-    margin-top: 6px;
-    float: right;
-}
-.form .form-wrapper form .item-header .lesson-teacher{
-    display: flex; align-items: center;
-}
-.form .form-wrapper form .item-header .lesson-teacher img{
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.form .form-wrapper form .item-header .lesson-teacher h4{
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 16px;
+    min-height: 3rem;
+    gap: 0.25rem;
 }
 
 /* Текстовые поля в форме */
 .form .form-wrapper form .text-field{
     width: 100%;
-    border-radius: 10px;
+    border-radius: 0.5rem;
     border: #0002 solid 1px;
-    padding: 10px;
+    padding: 0.5rem;
     font-size: 1rem;
     background-color: var(--aside-bg-color);
     color: var(--text-primary-color);
@@ -447,17 +402,24 @@ body > header{
 .form .form-wrapper form .text-field-title::placeholder{
     font-size: 1.3rem;
 }
-.form .form-wrapper form .preview{
-    width: 1000px;
-    margin: -15px -25px 10px -25px;
-    border-radius: 10px 10px 0 0;
+
+/* Временно */
+.form .form-wrapper form .item-header .lesson-teacher{
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.form .form-wrapper form .item-header .lesson-teacher img{
+    width: 2rem; height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.form .form-wrapper form .item-header .lesson-teacher h4{
+    font-size: 1rem;
 }
 
 /* Toggle */
 .toggle{
-    height: 16px;
-    width: 32px;
-    border-radius: 16px;
+    height: 1rem; width: 2rem;
+    border-radius: 1rem;
     display: inline-block;
     position: relative;
     margin: 0;
@@ -468,7 +430,7 @@ body > header{
     content: '';
     position: absolute;
     top: -2px; left: -2px;
-    width: 20px; height: 20px;
+    width: 1.25rem; height: 1.25rem;
     border-radius: 50%;
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(44,44,44,.4);
@@ -478,23 +440,22 @@ body > header{
     background: #A1D214;
 }
 .dark__theme .toggle.theme:after{
-    transform: translatex(16px);
+    transform: translatex(1rem);
 }
+
 .toggle.color-scheme{
-    background: var(--color-scheme-light);
+    width: 1rem;
 }
 .toggle.color-scheme::after{
-    background-color: var(--color-scheme-dark);
+    background-color: var(--currentColor);
 }
-.orange__color__scheme .toggle.color-scheme::after{
-    transform: translatex(16px);
-}
+
 
 
 
 /* Разделитель */
 .divider{
-    margin: 8px 0;
+    margin: 0.5rem 0;
     border-color: var(--text-primary-color);
     border-width: 1px;
     opacity: .05;
@@ -502,21 +463,20 @@ body > header{
 
 /* Файлы */
 .files{
-    display: flex; flex-wrap: wrap; gap: 8px;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
     width: 100%;
 }
 .file-info i{
-    margin-right: 10px;
+    margin-right: 0.5rem;
 }
 .files h4{
     display: inline-block;
     color: var(--text-primary-color);
 }
 .file{
-    height: 51px;
-    border-radius: 100px;
+    height: 3rem;
     padding-left: 13.5px;
-    display: flex; align-items: center;
+    display: flex; align-items: center; flex-direction: row;
     transition-duration: .2s; transition-property: background-color;
     position: relative;
 }
@@ -526,7 +486,7 @@ body > header{
     width: 0; height: 0;
     opacity: 0;
     background-color: var(--theme-light);
-    border-radius: 100px;
+    border-radius: 51px;
 	transition: all .2s ease;
     z-index: 1;
 }
@@ -538,38 +498,33 @@ body > header{
 }
 /* Название и иконка файла */
 .file .file-info{
-    display: flex;
-    align-items: center;
-    margin-right: 25px;
+    display: flex; align-items: center;
+    margin-right: 2rem;
     z-index: 1;
 }
 .file .file-info h4{
-    max-width: 256px;
+    max-width: 16rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 /* Кнопка удаления и скачивания файла*/
 .file .file-btns{
-    display: flex; align-items: center; gap: 10px;
-    padding: 5px 10px 5px 15px; margin-left: -25px;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.25rem 0.5rem; margin-left: -1.5rem;
     z-index: 1;
 }
 .file button{
+    width: 2rem; height: 2rem;
     background-color: unset;
     transition-duration: .4s; transition-property: color background-color;
     clip-path: circle();
-    padding: 10px;
     display: flex; justify-content: center; align-items: center;
 }
-/* .file button svg{
-    width: 16px; height: 16px;
-    fill: var(--text-primary-color);
-} */
+
 /* Кнопка "Удалить файл" */
 .file .del-file::before{
     content: '\f15d';
-    width: 13px; height: 13px;
     font-family: "uicons-regular-rounded";
     color: var(--text-primary-color);
 }
@@ -587,7 +542,7 @@ body > header{
     color: var(--text-primary-color);
 }
 .file .download-file:hover{
-    background-color: #20d489;
+    background-color: var(--currentColor);
 }
 .file .download-file:hover::before{
     color: #fff;
@@ -595,10 +550,32 @@ body > header{
 
 /* Мини файлы */
 .file-mini{
-    width: 51px;
+    height: 2rem;
+    padding: 0 0.75rem;
+}
+.file-mini::before{
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    opacity: 0.2;
+    background-color: var(--currentColor);
+}
+.file-mini:hover::before{
+    opacity: 0.3;
+}
+.file-mini i{
+    margin-right: 0.5rem;
+    display: none;
+}
+.file-mini i::before{
+    width: 1.25rem !important; height: 1.25rem !important;
+}
+.file-mini .file-info{
+    margin-right: 0;
 }
 .file-mini .file-info h4{
-    display: none;
+    font-size: 1rem;
+    color: var(--currentColor);
 }
 .file-mini .file-btns{
     display: none;
@@ -613,10 +590,10 @@ body > header{
     max-height: 162.9px;
 }
 .user{
-    display: flex; gap: 10px; align-items: center;
+    display: flex; gap: 0.5rem; align-items: center;
     width: 33%;
     padding: 0.5rem;
-    border-radius: 10px;
+    border-radius: 0.5rem;
     background-color: unset;
     margin-bottom: 0.33%;
     transition: background-color .2s;
@@ -652,19 +629,19 @@ body > header{
 .selected .user::after{
     content: "\f143";
     font-family: "uicons-regular-rounded"; color: #A1D214;
-    margin: 0 10px;
+    margin: 0 0.5rem;
 }
 .selected .user:hover::after{
     content: "\f15d";
     font-family: "uicons-regular-rounded"; color: red;
-    margin: 0 10px;
+    margin: 0 0.5rem;
 }
 
 /* Поиск пользователей */
 .dropdown-input{
     font-size: 1.4rem; color: var(--text-primary-color);
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     flex-grow: 1;
     background-color: var(--button-bg-hover-color);
 }
@@ -672,8 +649,8 @@ body > header{
     color: #aaa; font-weight: 100;
 }
 .filter-button{
-    border-radius: 10px;
-    width: 48px; height: 48px;
+    border-radius: 0.5rem;
+    width: 3rem; height: 3rem;
     background-color: var(--button-bg-hover-color);
 }
 
@@ -699,10 +676,10 @@ body > header{
     display: flex; justify-content: center; align-items: center;
 }
 .main-btn button{
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
     background-color: #0E58B5;
-    color: #fff; font-size: 24px;
+    color: #fff; font-size: 1.5rem;
     transition-duration: .2s; transition-property: transform box-shadow;
     box-shadow: 0 5px 0 0 #0b458b;
     transform: translate(0, 0);
@@ -710,20 +687,6 @@ body > header{
 .main-btn button:hover{
     box-shadow: 0 3px 0 0 #0b458b;
     transform: translate(0, 3px);
-}
-
-
-/* Стилизация даты */
-.date__container{
-    display: flex; align-items: center; gap: 5px;
-    color: var(--text-primary-color);
-    margin-left: auto;
-}
-.date__container h5{
-    display: inline-block;
-}
-.date__container span{
-    font-size: 0.8rem;
 }
 
 
@@ -745,53 +708,23 @@ body > header{
     .user{ width: 49.5% }
 }
 
-
-/* Подсказки при наведении */
-.hint{
-    position: relative;
-}
-.hint span{
-    white-space: nowrap;
-    background-color: #555;
-    color: #fff; font-size: 0.875rem; font-weight: 400;
-    text-align: center;
-    padding: 4px 0;
-    border-radius: 4px;
-
-    position: absolute;
-    z-index: 1;
-    bottom: -75%;
-    left: -50%;
-
-    visibility: hidden;
-    opacity: 0;
-}
-.hint span::before, .hint span::after{
-    content: '_';
-    opacity: 0;
-}
-.hint:hover span{
-    visibility: visible;
-    opacity: 1;
-}
-
 /* Выпадающий список */
 .filteringList{
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 1rem;
 }
 .dropdownSelect{
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 216px;
+    min-width: 13rem;
 }
 .dropdownSelect__trigger{
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 16px;
-    height: 55px;
+    padding: 0 1rem;
+    height: 3.5rem;
     border-radius: 8px;
     background-color: var(--theme-light);
     font-weight: 500;
@@ -810,7 +743,7 @@ body > header{
     opacity: 0;
     visibility: hidden;
     z-index: 1;
-    max-height: 300px; overflow-y: auto;
+    max-height: 20rem; overflow-y: auto;
     border: var(--theme-light) solid 2px;
 }
 .dropdownSelect__options::-webkit-scrollbar{
@@ -824,14 +757,14 @@ body > header{
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 .dropdownSelect__option {
     position: relative;
     display: block;
-    padding: 0 16px;
+    padding: 0 1rem;
     background-color: var(--button-bg-color);
-    line-height: 40px;
+    line-height: 2.5rem;
     transition: all 0.1s;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 }
@@ -847,7 +780,7 @@ body > header{
 .arrowDown {
     position: relative;
     height: 10px; width: 10px;
-    margin-left: 16px;
+    margin-left: 1rem;
 }
 .arrowDown::before, .arrowDown::after {
     content: "";
@@ -856,7 +789,7 @@ body > header{
     width: 0.16rem;
     border-radius: 0.8rem;
     height: 120%;
-    background-color: var(--aside-text-color);
+    background-color: #70757D;
 }
 .arrowDown::before {
     left: -3.3px;
@@ -886,11 +819,11 @@ body > header{
 /* Вернуться в начало страницы */
 #arrowTop{
     position: fixed;
-    bottom: 16px; right: 16px;
-    height: 48px; width: 48px;
+    bottom: 1rem; right: 1rem;
+    height: 3rem; width: 3rem;
     background-color: var(--color-scheme);
-    border-radius: 16px;
-    padding: 14px;
+    border-radius: 1rem;
+    padding: 0.875rem;
     transform: rotate(-90deg);
     opacity: 0.5;
 }
@@ -906,32 +839,34 @@ button.primaryButton{
     background-color: var(--button-bg-color);
 }
 .primaryButton{
+    height: 3rem;
     color: #7e8299;
     font-weight: 700; font-size: 1rem;
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
     transition: all .05s;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 0.5rem;
 }
 .primaryButton svg{
-    width: 16px; height: 16px;
-    fill: #20d489;
+    width: 1rem; height: 1rem;
+    fill: var(--currentColor);
 }
 button.primaryButton:hover{
-    color: #20d489;
+    color: var(--currentColor);
 }
 
 .secondaryButton{
-    background-color: #20d489;
+    height: 3rem;
+    background-color: var(--currentColor);
     color: #fff;
     font-weight: 600; font-size: 1rem;
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
     transition: all .05s;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 0.5rem;
 }
 .secondaryButton svg{
-    width: 16px; height: 16px;
+    width: 1rem; height: 1rem;
     fill: #fff;
 }
 .secondaryButton:hover{
@@ -939,16 +874,17 @@ button.primaryButton:hover{
 }
 
 .dangerButton{
+    height: 3rem;
     background-color: tomato;
     color: #fff;
     font-weight: 600; font-size: 1rem;
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
     transition: all .05s;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 0.5rem;
 }
 .dangerButton svg{
-    width: 16px; height: 16px;
+    width: 1rem; height: 1rem;
     fill: #fff;
 }
 .dangerButton:hover{
@@ -958,14 +894,14 @@ button.primaryButton:hover{
 
 .menu{
     background-color: var(--item-bg-color);
-    border-radius: 8px;
+    border-radius: 0.5rem;
     display: flex; flex-direction: row; gap: 2px;
     width: max-content;
     overflow: hidden;
 }
 .menu__button{
-    display: flex; gap: 16px; align-items: center;
-    padding: 16px;
+    display: flex; gap: 1rem; align-items: center;
+    padding: 1rem;
     background-color: unset;
     transition: all .1s;
     position: relative;
@@ -973,6 +909,7 @@ button.primaryButton:hover{
 .menu__button svg{
     transition: all .1s;
     filter: saturate(0);
+    fill: var(--currentColor);
 }
 .menu__button:hover, .menu__button.active{
     background-color: var(--theme-light);
@@ -992,7 +929,7 @@ button.primaryButton:hover{
     content: "";
     width: 0; height: 0;
     position: absolute; left: 50%; bottom: 0;
-    background-color: #20d489;
+    background-color: var(--currentColor);
     transition: all .2s;
 }
 
@@ -1015,16 +952,16 @@ button.primaryButton:hover{
 
 /* Оповещения об ошибках */
 .alertsContainer{
-    position: fixed; bottom: 16px; right: 16px;
+    position: fixed; bottom: 1rem; right: 1rem;
     z-index: 10;
     align-items: flex-end;
 }
 .alert{
     width: min-content;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     background-color: #f1416ccc;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 0.5rem;
 }
 .alert p{
     white-space: nowrap;
@@ -1036,9 +973,76 @@ button.primaryButton:hover{
 .alert button{
     background-color: unset;
     margin-left: auto;
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 2rem;
+    line-height: 2rem;
     color: #fff;
-    margin-bottom: 4px;
-    margin-left: 16px;
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+}
+
+
+.userSelect{
+    width: 32rem;
+    background-color: var(--item-bg-color);
+    border-radius: 12px;
+    display: flex; flex-direction: column;
+    max-height: 16rem;
+    overflow: auto;
+    box-shadow: 0 0 1rem #0001;
+}
+
+.userSelect::-webkit-scrollbar{
+    width: 6px;
+}
+.userSelect::-webkit-scrollbar-thumb{
+    background-color: var(--theme-light-alpha);
+    border-radius: 3px;
+}
+.userSelect__user{
+    height: 5rem;
+    padding: 1rem 1.5rem;
+    transition: padding .2s, height .2s;
+    display: flex; flex-direction: row; gap: 1rem;
+}
+
+.userSelect__user:hover{
+    background-color: var(--theme-light);
+}
+.userSelect__user:hover .userSelect__userName{
+    color: var(--currentColor);
+}
+.userSelect__userImage{
+    width: 3rem; height: 3rem;
+    border-radius: 25%;
+    object-fit: cover; object-position: center;
+}
+.userSelect__userInfo{
+    display: flex; flex-direction: column; gap: 4px;
+}
+.userSelect__userName{
+    color: var(--text-primary-color);
+    transition: color .2s;
+}
+
+#userSearch{
+    height: 27.2px;
+}
+
+#selectedUsers{
+    display: flex; flex-wrap: wrap; gap: 0.25rem;
+}
+#selectedUsers .userSelect__user{
+    background-color: var(--bgColor);
+    color: var(--currentColor);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    height: 27.2px;
+}
+#selectedUsers .userSelect__user .userSelect__userName{
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--currentColor);
+}
+#selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
+    display: none;
 }

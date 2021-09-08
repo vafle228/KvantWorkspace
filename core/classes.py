@@ -2,6 +2,7 @@ from django.views.generic import View
 from LoginApp.models import KvantUser
 from django.shortcuts import redirect
 
+
 class KvantJournalAccessMixin(View):
     # Метод делегирования запроса
     def dispatch(self, request, *args, **kwargs):

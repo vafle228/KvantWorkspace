@@ -1,17 +1,20 @@
-{% load news_tags %}
+{% load mail_tags %}
 
 {% for mail in mails %}
-<div class="item new-mail" data-aos="fade-up">
-    <div class="mail-sender">
-        <img src='{{ mail.sender.image.url }}'/>
-        <h4>{{ mail.sender.surname }} {{ mail.sender.name|slice:"1" }}<br>{{ mail.sender.patronymic }}</h4>
-    </div>
-    <div class="mail-info">
-        <div class='item-header'>
-            <h2>{{ mail.title }}</h2>
-            <h3>{{ mail.date|date:"j.m" }}</h3>
+<div class="mailItem" onclick="location.href='{% url 'mail_detail' user.id mail.id %}'">
+    <div class="senderInfo">
+        <img src="{{ mail.sender.image.url }}" class="senderInfo__img">
+        <div>
+            <p class="senderInfo__name">{{ mail.sender.surname }} {{ mail.sender.name }}</p>
+            <p class="senderInfo__role">{{ mail.sender.permission }}</p>
         </div>
-        <p class='item-text'>{{ mail.text }}</p>
+    </div>
+    <div class="column">
+        <p class="mailItem__title">
+            <strong>{{ mail.title }}</strong>
+            {{ mail.text }}
+        </p>
+
         <div class='files'>
             {% for file in mail.files|get_objects %}
             <div class="file file-mini">
@@ -23,5 +26,6 @@
             {% endfor %}
         </div>
     </div>
+    <p class="mailItem__date">{{ mail.date }}</p>
 </div>
 {% endfor %}

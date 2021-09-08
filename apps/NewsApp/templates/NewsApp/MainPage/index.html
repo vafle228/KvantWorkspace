@@ -13,8 +13,6 @@
     <link rel="stylesheet" href='{% static "SystemModule/text/ql-editor.css" %}'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Главная</title>
 </head>
@@ -175,7 +173,7 @@
                     <h1 style='display: inline-block'>Новости</h1>
                 </div>
                 {% if user.permission == 'Администратор' or user.permission == 'Учитель'  %}
-                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_form('#add-news-form')">Добавить новость</button></div>
+                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_form('#news-form')">Добавить новость</button></div>
                 {% endif %}
             </div>
             <!-- Блок новостей -->
@@ -186,72 +184,15 @@
             <div id="more-news" class='main-btn'>
                 <button onclick="getNewNews()">Больше новостей</button>
             </div>
-            <!-- Форма создания новости -->
-            <div class='form' id='add-news-form'>
-                <div class="form-wrapper">
-                    <form autocomplete="off">
-                        <div class='item-header'>
-                            <h2>Добавление новости</h2>
-                            <div id="news-form-btns" style="display: flex; gap: 5px">
-                                <button class='form-btn active' id="news-preview" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
-                                        <g transform="translate(-8.001 -9.667)">     
-                                            <path class='faded' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
-                                            <path class='faded' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
-                                            <path class='bright' d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
-                                        </g>
-                                    </svg>
-                                    <p>Добавить обложку</p>
-                                </button>
-                                <input id="preview-input" type="file" name="name" style="display: none;" onchange="addNewsPreview(event)" accept="image/*"/>
-            
-                                <button class='form-btn active' id="news-upload" type="button">
-                                    <svg viewBox="0 0 24 24">
-                                        <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
-                                        <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
-                                        <path class='faded' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
-                                    </svg>
-                                    <p>Опубликовать</p>
-                                </button>
-                            </div>
-                        </div>
-                        <input id="news-title" class='text-field text-field-title' autocomplete="off" placeholder="Заголовок"></input>
-                        <div id="editor" class='text-field'></div>
-                        <div class="item-header">
-                            <h2>Прикрепленные файлы</h2>
-                            <button class='form-btn' id="file-button" type="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
-                                    <g transform="translate(-8.667 -8)">
-                                        <path class='faded' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
-                                        <path class='bright' d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
-                                    </g>
-                                </svg>
-                                <p>Документ</p>
-                            </button>
-                            <input id="file-input" type="file" name="name" style="display: none;" onchange='addNewFile(event)' multiple/>
-                        </div>
-                        <div class='files' id='file-container'>
-                            <!-- Тут спавнять файлы -->
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {% include "NewsApp/NewsCreationForm/index.html" with form_status="create" %}
         </section>
     </section>
 
     <div class="alertsContainer column" id='alertsContainer'></div>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
-    <!-- Подсветка кода -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <!-- Сама панель инструментов -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <!-- Отображение математических формул -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
-    <script src="{% static 'SystemModule/text/options.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
     <script>AOS.init({ offset: -9999999 })</script>
     <!-- Функционал слайдера -->
     <script>
@@ -285,43 +226,7 @@
     </script>
     <script>
         // Отправка формы новости на сервер
-        $('#news-upload').on('click', function(){
-            let news_form = new FormData();
-
-            for(let i = 0; i < file_array.length; i++){ // Перебор файлов
-                news_form.append('files', file_array[i]) // Добавление файла в форму
-            }
-
-            news_form.append('author', '{{ user.id }}')
-            news_form.append('image', news_preview) // Превью
-            news_form.append('content', quill.getText()) // Текст
-            news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
-            news_form.append('title', $('#news-title')[0].value) // заголовок
-            news_form.append('style_content', $('.ql-editor')[0].innerHTML) // форматированный текст
-
-            $.ajax({
-                type: 'POST',
-                url: '{% url "create_news" user.id %}',
-                data: news_form,
-                cache: false,
-                processData: false,
-                contentType: false,
-                enctype: "multipart/form-data",
-                success: function(response) {
-                    if(response.status == 400){
-                        for(let key in response.errors){
-                            errors = response.errors[key]
-                            for(let i = 0; i < errors.length; i++){
-                                error_alert(errors[i])
-                            }
-                        }
-                    }
-                    else{
-                        location.href = response.link
-                    }
-                }
-            })
-        });
+        $('#news-upload').on('click', () => sendOrUpdateNews(getNewsFormData()));
     </script>
 </body>
 </html>
