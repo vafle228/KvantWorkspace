@@ -44,7 +44,7 @@ function filterFunction(input) {
 	if (substr.trim()) {
 		$('.userSelect').show();
 		let users = $('.userSelect .userSelect__user');
-		
+
 		// Сортируем
 		users.sort((a, b) => {
 			a = $(a).find('h3')[0].textContent.toUpperCase().indexOf(substr);
@@ -58,6 +58,8 @@ function filterFunction(input) {
 		// Перезаполняем
 		$('.userSelect').find('.userSelect__user').detach();
 		users.map(index => $('.userSelect').append(users[index]));
+
+		users.map((index) => $(users[index]).find('h3')[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide());
 	}
 	else { $('.userSelect').hide(); }
 }
