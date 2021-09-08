@@ -193,19 +193,19 @@
             </div>
             <div class="mails">
                 <header class="mails__header">
-                    <div class="inputGroup">
-                        <input type="text" placeholder="Поиск" class='inputGroup__input'>
-                        <svg viewBox="0 0 24 24" class='inputGroup__svg'>
-                            <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" opacity="0.3"></path>
-                            <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"></path>
+                    <button onclick="history.back()" class='primaryButton'>
+                        <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                            <g transform="translate(-5 -5)">
+                                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                            </g>
                         </svg>
-                    </div>
-                    
+                    </button>
                 </header>
                 
                 <div class="mailView">
-                    <h1 class="mailView__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto ad omnis molestias eos reprehenderit sint consectetur accusantium voluptate id veniam hic consequuntur dicta</h1>
-                    <div class="row">
+                    <h1 class="mailView__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto ad omnis molestias.</h1>
+                    <div class='row'>
                         <div class="senderInfo">
                             <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
                             <div>
@@ -213,7 +213,7 @@
                                 <p class="senderInfo__role">Ученик</p>
                             </div>
                         </div>
-                        <p>28.08</p>
+                        <p class='mailView__date'>28.08</p>
                     </div>
                     
                     <p class="mailView__text">
@@ -227,6 +227,27 @@
                         <br/><br/>
                         Jason Muller    
                     </p>
+
+                    <div class='files'>
+                        <div class='file'>
+                            <div class="file-info">
+                                <i class='file-xml'></i>
+                                <h4>excel document.xml</h4>
+                            </div>
+                            <div class="file-btns">
+                                <button class='del-file' type='button'></button>
+                            </div>
+                        </div>
+                        <div class='file'>
+                            <div class="file-info">
+                                <i class='file-pptx'></i>
+                                <h4>presentation.pptx</h4>
+                            </div>
+                            <div class="file-btns">
+                                <button class='del-file' type='button'></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -385,21 +406,15 @@
     <script src="../../JS/draggable_options.js"></script>
 
     <script>
-        // Открытие формы по нажатию на письмо
-        $("#mail .item").click(function () {
-            $('#mail .form').first().addClass("active");
-            $("body").css("overflow", "hidden");
-        });
-
-
 
         function closeForm(btn){
             $("#newMailItemForm").toggleClass('closed');
-
-            
             
             if ($("#newMailItemForm").hasClass("closed")){
+                
                 $(btn).html(`<svg viewBox="0 0 512 512"><path opacity='0.6' d="M400 320h32a16 16 0 0 1 16 16v128a48 48 0 0 1-48 48H48a48 48 0 0 1-48-48V112a48 48 0 0 1 48-48h160a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H64v320h320V336a16 16 0 0 1 16-16z"></path><path d="M512 24v128c0 21.47-26 32-41 17l-35.71-35.71L191.8 376.77a24 24 0 0 1-33.94 0l-22.63-22.63a24 24 0 0 1 0-33.94L378.76 76.68 343.05 41C328 25.9 338.66 0 360 0h128a24 24 0 0 1 24 24z"></path></svg>`);
+                
+                $("#newMailItemForm").removeClass("expanded");
                 
                 if ($("#mailSubject").val()){
                     $(btn).parent().find("h3").html($("#mailSubject").val());
@@ -413,22 +428,27 @@
 
         function expandForm(btn){
             $("#newMailItemForm").toggleClass('expanded');
+           
             
             if ($("#newMailItemForm").hasClass("expanded")){
                 $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M224 280v112c0 21.38-25.8 32.09-40.92 17L152 376l-99.31 99.31a16 16 0 0 1-22.63 0L4.69 449.94a16 16 0 0 1 0-22.63L104 328l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 224 280z"></path><path d="M443.31 62.06a16 16 0 0 1 0 22.63L344 184l32.92 31c15.12 15.12 4.41 41-17 41H248a24 24 0 0 1-24-24V120c0-21.38 25.8-32.09 40.92-17L296 136l99.31-99.31a16 16 0 0 1 22.63 0z"></path></svg>`);
+                $("#newMailItemForm").removeClass("closed");
             } else {
                 $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path><path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path></svg>`);
             }
         }
 
-        $('.userSelect .userSelect__user').click( function() {
+        $('.userSelect__user').click( function() {
+            
+            if ($(this).parent().hasClass('userSelect')){
+                $(this).detach();
+                $('#userSearch').before($(this));
+            } else {
+                $(this).detach();
+                $(this).appendTo($('.userSelect'));
+            }
+
             $('#userSearch').val('');
-            $('#userSearch').before($(`
-                <div class='selectedUsers__user'>
-                    ${$(this).find('.userSelect__userName').text()}
-                </div>
-            `));
-            $(this).remove();
             $('#userSearch').focus();
         });
     </script>
