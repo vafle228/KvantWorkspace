@@ -239,6 +239,9 @@
 #newMailItem__userSelect{
     position: absolute; top: 9rem; left: 5rem;
 }
+#newMailItemForm.fullscreen #newMailItem__userSelect{
+    position: absolute; top: 16rem; left: 16rem;
+}
 
 .mailView{
     display: flex; flex-direction: column; gap: 1.5rem;

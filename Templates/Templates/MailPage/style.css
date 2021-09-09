@@ -236,3 +236,6 @@
 #newMailItem__userSelect{
     position: absolute; top: 9rem; left: 5rem;
 }
+#newMailItemForm.fullscreen #newMailItem__userSelect{
+    position: absolute; top: 16rem; left: 16rem;
+}
