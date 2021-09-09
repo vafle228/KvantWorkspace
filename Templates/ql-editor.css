@@ -6,7 +6,7 @@
  */
  #editor{
      border-radius: 0 0 10px 10px;
-     min-height: 256px
+     min-height: 300px;
  }
  .ql-container {
     box-sizing: border-box;

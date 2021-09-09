@@ -3,21 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
+    <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
+
     <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
     <link rel="shortcut icon" href="../../img/logo.png" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
-    <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
+    <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
-    <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
-
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css"/>
 
     <title>Тема письма</title>
 </head>
@@ -166,7 +165,7 @@
     <section class="mail">
         <div class="mail__widgetRow">
             <div class="mailNavigation column">
-                <button class="mailNavigation__composeBtn" onclick="$('#newMailItemForm').show()">Написать</button>
+                <button class="mailNavigation__composeBtn" onclick="$('#newMailItemForm').toggleClass('active')">Написать</button>
                 <nav class='column'>
                     <button class="mailNavigation__link row active">
                         <svg viewBox="0 0 24 24">
@@ -258,23 +257,21 @@
         <form>
             <div class="form__cell row newMailItemForm__header">
                 <h3>Новое сообщение</h3>
-                <button class='windowButton' style='margin-left: auto' onclick="closeForm(this)" type="button">
-                    <svg viewBox="0 0 512 512" style="transform: scale(0.8);">
-                        <path d="M464 352H48c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48v-32c0-26.5-21.5-48-48-48z"></path>
-                    </svg>
-                </button>
-                <button class='windowButton' type="button" onclick="expandForm(this)">
+
+                <button class='windowButton' type="button" onclick="updateFormCondition(this)" style='margin-left: auto'>
                     <svg viewBox="0 0 448 512">
                         <path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path>
                         <path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path>
                     </svg>
                 </button>
+
                 <button class='windowButton' type="button" onclick="location.reload()">
                     <svg viewBox="0 0 352 512">
                         <path opacity='0.6' d="M9.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L176,322.72,109.28,256ZM342.79,111.45,320.55,89.21a31.46,31.46,0,0,0-44.48,0L176,189.28,242.72,256,342.79,155.93a31.46,31.46,0,0,0,0-44.48Z"></path>
                         <path d="M342.79,356.07a31.46,31.46,0,0,1,0,44.48l-22.24,22.24a31.46,31.46,0,0,1-44.48,0L9.21,155.93a31.46,31.46,0,0,1,0-44.48L31.45,89.21a31.46,31.46,0,0,1,44.48,0Z"></path>
                     </svg>
                 </button>
+
             </div>
 
             <div class="form__cell row" style='align-items: flex-start;'>
@@ -378,61 +375,26 @@
         </svg> 
     </div>
 
-    <!-- poppers -->
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-    <script src="../../JS/tippyConfig.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='../../JS/script.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init({ offset: -200 })</script>
 
-    <!-- Подсветка кода -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <!-- Сама панель инструментов -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script> <!-- Подсветка кода -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
+    <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
+
     <!-- Отображение математических формул -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
-    <!-- Настройки панели -->
-    <script src='../../JS/toolbar_options.js'></script>
-
-    <!-- Библиотека для перетаскивания -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.0/utils/Draggable.min.js"></script>
-    <script src="../../JS/draggable_options.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
     <script>
+        function updateFormCondition(btn){
+            $("#newMailItemForm").toggleClass('fullscreen');
 
-        function closeForm(btn){
-            $("#newMailItemForm").toggleClass('closed');
-            
-            if ($("#newMailItemForm").hasClass("closed")){
-                
-                $(btn).html(`<svg viewBox="0 0 512 512"><path opacity='0.6' d="M400 320h32a16 16 0 0 1 16 16v128a48 48 0 0 1-48 48H48a48 48 0 0 1-48-48V112a48 48 0 0 1 48-48h160a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H64v320h320V336a16 16 0 0 1 16-16z"></path><path d="M512 24v128c0 21.47-26 32-41 17l-35.71-35.71L191.8 376.77a24 24 0 0 1-33.94 0l-22.63-22.63a24 24 0 0 1 0-33.94L378.76 76.68 343.05 41C328 25.9 338.66 0 360 0h128a24 24 0 0 1 24 24z"></path></svg>`);
-                
-                $("#newMailItemForm").removeClass("expanded");
-                
-                if ($("#mailSubject").val()){
-                    $(btn).parent().find("h3").html($("#mailSubject").val());
-                }
-            } else {
-                $(btn).html(`<svg viewBox="0 0 512 512" style="transform: scale(0.8);"><path d="M464 352H48c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48v-32c0-26.5-21.5-48-48-48z"></path></svg>`);
-                
-                $(btn).parent().find("h3").html("Новое сообщение");
-            }
-        }
-
-        function expandForm(btn){
-            $("#newMailItemForm").toggleClass('expanded');
-           
-            
-            if ($("#newMailItemForm").hasClass("expanded")){
+            if ($("#newMailItemForm").hasClass("fullscreen")){
                 $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M224 280v112c0 21.38-25.8 32.09-40.92 17L152 376l-99.31 99.31a16 16 0 0 1-22.63 0L4.69 449.94a16 16 0 0 1 0-22.63L104 328l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 224 280z"></path><path d="M443.31 62.06a16 16 0 0 1 0 22.63L344 184l32.92 31c15.12 15.12 4.41 41-17 41H248a24 24 0 0 1-24-24V120c0-21.38 25.8-32.09 40.92-17L296 136l99.31-99.31a16 16 0 0 1 22.63 0z"></path></svg>`);
-                $("#newMailItemForm").removeClass("closed");
             } else {
                 $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path><path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path></svg>`);
             }

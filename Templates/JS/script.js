@@ -11,13 +11,9 @@ function page_adaptation(){
 	});
 }
 
-$(window).ready(function () {
-	page_adaptation();
-});
+$(window).ready(() => page_adaptation());
 
-$(window).resize(function () {
-	page_adaptation();
-});
+$(window).resize(() => page_adaptation());
 
 
 // Закрытие форм при клике вне
@@ -58,7 +54,8 @@ function filterFunction(input) {
 		// Перезаполняем
 		$('.userSelect').find('.userSelect__user').detach();
 		users.map(index => $('.userSelect').append(users[index]));
-
+		
+		// Скрываем пользователей неудолетворяющих поиску
 		users.map((index) => $(users[index]).find('h3')[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide());
 	}
 	else { $('.userSelect').hide(); }

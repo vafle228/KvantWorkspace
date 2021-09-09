@@ -1040,6 +1040,12 @@ button.primaryButton:hover{
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
     height: 27.2px;
+    display: flex; align-items: center;
+}
+#selectedUsers .userSelect__user::after{
+    content: "×";
+    font-size: 1.5rem;
+    margin-left: -0.5rem;
 }
 #selectedUsers .userSelect__user .userSelect__userName{
     font-weight: 400;
