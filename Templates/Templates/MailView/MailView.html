@@ -163,39 +163,47 @@
     </aside>
 
     <section class="mail">
-        <div class="mail__widgetRow">
-            <div class="mailNavigation column">
-                <button class="mailNavigation__composeBtn" onclick="$('#newMailItemForm').toggleClass('active')">Написать</button>
-                <nav class='column'>
-                    <button class="mailNavigation__link row active">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,13 C19,13.5522847 18.5522847,14 18,14 L6,14 C5.44771525,14 5,13.5522847 5,13 L5,3 C5,2.44771525 5.44771525,2 6,2 Z M13.8,4 C13.1562,4 12.4033,4.72985286 12,5.2 C11.5967,4.72985286 10.8438,4 10.2,4" opacity="0.3"></path>
-                            <path d="M3.79274528,6.57253826 L12,12.5 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 Z"></path>
-                        </svg>
-                        Входящие
-                    </button>
-                    <button class="mailNavigation__link row">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M8,13.1668961 L20.4470385,11.9999863 L8,10.8330764 L8,5.77181995 C8,5.70108058 8.01501031,5.63114635 8.04403925,5.56663761 C8.15735832,5.31481744 8.45336217,5.20254012 8.70518234,5.31585919 L22.545552,11.5440255 C22.6569791,11.5941677 22.7461882,11.6833768 22.7963304,11.794804 C22.9096495,12.0466241 22.7973722,12.342628 22.545552,12.455947 L8.70518234,18.6841134 C8.64067359,18.7131423 8.57073936,18.7281526 8.5,18.7281526 C8.22385763,18.7281526 8,18.504295 8,18.2281526 L8,13.1668961 Z"></path>
-                            <path d="M4,16 L5,16 C5.55228475,16 6,16.4477153 6,17 C6,17.5522847 5.55228475,18 5,18 L4,18 C3.44771525,18 3,17.5522847 3,17 C3,16.4477153 3.44771525,16 4,16 Z M1,11 L5,11 C5.55228475,11 6,11.4477153 6,12 C6,12.5522847 5.55228475,13 5,13 L1,13 C0.44771525,13 6.76353751e-17,12.5522847 0,12 C-6.76353751e-17,11.4477153 0.44771525,11 1,11 Z M4,6 L5,6 C5.55228475,6 6,6.44771525 6,7 C6,7.55228475 5.55228475,8 5,8 L4,8 C3.44771525,8 3,7.55228475 3,7 C3,6.44771525 3.44771525,6 4,6 Z" opacity="0.3"></path>
-                        </svg>
-                        Отправленные
-                    </button>
-                    <button class="mailNavigation__link row">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.3"></path>
-                            <path d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
-                        </svg>
-                        Важные
-                    </button>
-                </nav>
+        <div class="row g16 items-stretch">
+            <div class="mailHeader column g16">
+                <div class='column g4'>
+                    <h1>Почта</h1>
+                    <h3>5 сообщений | 2 новых</h3>
+                </div>
+    
+                <div class="mailNavigation column g16">
+                    <button class="mailNavigation__composeBtn" onclick="$('#newMailItemForm').toggleClass('active')">Новое сообщение</button>
+                    <nav class='column'>
+                        <button class="mailNavigation__link row active">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,13 C19,13.5522847 18.5522847,14 18,14 L6,14 C5.44771525,14 5,13.5522847 5,13 L5,3 C5,2.44771525 5.44771525,2 6,2 Z M13.8,4 C13.1562,4 12.4033,4.72985286 12,5.2 C11.5967,4.72985286 10.8438,4 10.2,4" opacity="0.3"></path>
+                                <path d="M3.79274528,6.57253826 L12,12.5 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 Z"></path>
+                            </svg>
+                            Входящие
+                        </button>
+                        <button class="mailNavigation__link row">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8,13.1668961 L20.4470385,11.9999863 L8,10.8330764 L8,5.77181995 C8,5.70108058 8.01501031,5.63114635 8.04403925,5.56663761 C8.15735832,5.31481744 8.45336217,5.20254012 8.70518234,5.31585919 L22.545552,11.5440255 C22.6569791,11.5941677 22.7461882,11.6833768 22.7963304,11.794804 C22.9096495,12.0466241 22.7973722,12.342628 22.545552,12.455947 L8.70518234,18.6841134 C8.64067359,18.7131423 8.57073936,18.7281526 8.5,18.7281526 C8.22385763,18.7281526 8,18.504295 8,18.2281526 L8,13.1668961 Z"></path>
+                                <path d="M4,16 L5,16 C5.55228475,16 6,16.4477153 6,17 C6,17.5522847 5.55228475,18 5,18 L4,18 C3.44771525,18 3,17.5522847 3,17 C3,16.4477153 3.44771525,16 4,16 Z M1,11 L5,11 C5.55228475,11 6,11.4477153 6,12 C6,12.5522847 5.55228475,13 5,13 L1,13 C0.44771525,13 6.76353751e-17,12.5522847 0,12 C-6.76353751e-17,11.4477153 0.44771525,11 1,11 Z M4,6 L5,6 C5.55228475,6 6,6.44771525 6,7 C6,7.55228475 5.55228475,8 5,8 L4,8 C3.44771525,8 3,7.55228475 3,7 C3,6.44771525 3.44771525,6 4,6 Z" opacity="0.3"></path>
+                            </svg>
+                            Отправленные
+                        </button>
+                        <button class="mailNavigation__link row">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.3"></path>
+                                <path d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
+                            </svg>
+                            Важные
+                        </button>
+                    </nav>
+                </div>
             </div>
+            
             <div class="mails">
                 <header class="mails__header">
-                    <button onclick="history.back()" class='primaryButton'>
+                    <button onclick="history.back()" class='actionButton'>
                         <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                             <g transform="translate(-5 -5)">
-                                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.8'/>
                                 <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
                             </g>
                         </svg>
@@ -204,7 +212,7 @@
                 
                 <div class="mailView">
                     <h1 class="mailView__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto ad omnis molestias.</h1>
-                    <div class='row'>
+                    <div class='row space-between'>
                         <div class="senderInfo">
                             <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
                             <div>
@@ -212,7 +220,22 @@
                                 <p class="senderInfo__role">Ученик</p>
                             </div>
                         </div>
-                        <p class='mailView__date'>28.08</p>
+                        <div class="row g8">
+                            <p class='mailView__date'>11 сентября</p>
+                            <button class='actionButton' title='Отметить как важное' id='markAsImportant'>
+                                <svg viewBox="0 0 24 24">
+                                    <path fill='#ffc700' d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.3"></path>
+                                    <path fill='#ffc700' d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
+                                </svg>
+                            </button>
+                            <button class='actionButton' title='Удалить сообщение'>
+                                <svg viewBox="0 0 448 512">
+                                    <path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+                                    <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
                     </div>
                     
                     <p class="mailView__text">
@@ -229,21 +252,23 @@
 
                     <div class='files'>
                         <div class='file'>
-                            <div class="file-info">
-                                <i class='file-xml'></i>
-                                <h4>excel document.xml</h4>
+                            <i class='file-xml'></i>
+                            <div class="file__info">
+                                <h4 class='file__name'>excel document.xml</h4>
+                                <p class="file__size">14.4 KB</p>
                             </div>
-                            <div class="file-btns">
-                                <button class='del-file' type='button'></button>
+                            <div class="file__actions">
+                                <button class='downloadButton'></button>
                             </div>
                         </div>
                         <div class='file'>
-                            <div class="file-info">
-                                <i class='file-pptx'></i>
-                                <h4>presentation.pptx</h4>
+                            <i class='file-pptx'></i>
+                            <div class="file__info">
+                                <h4 class='file__name'>presentation.pptx</h4>
+                                <p class="file__size">267 MB</p>
                             </div>
-                            <div class="file-btns">
-                                <button class='del-file' type='button'></button>
+                            <div class="file__actions">
+                                <button class='downloadButton'></button>
                             </div>
                         </div>
                     </div>
@@ -255,7 +280,7 @@
 
     <div id='newMailItemForm'>
         <form>
-            <div class="form__cell row newMailItemForm__header">
+            <div class="form__cell row g8 newMailItemForm__header">
                 <h3>Новое сообщение</h3>
 
                 <button class='windowButton' type="button" onclick="updateFormCondition(this)" style='margin-left: auto'>
@@ -274,7 +299,7 @@
 
             </div>
 
-            <div class="form__cell row" style='align-items: flex-start;'>
+            <div class="form__cell row g8" style='align-items: flex-start;'>
                 <p style='line-height: 27.2px'>Кому:</p>
                 <div id="selectedUsers">
                     <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
@@ -290,26 +315,28 @@
 
             <div class='files form__cell' >
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-xml'></i>
-                        <h4>excel document.xml</h4>
+                    <i class='file-xml'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Таблица.xml</h4>
+                        <p class="file__size">3 KB</p>
                     </div>
-                    <div class="file-btns">
-                        <button class='del-file' type='button'></button>
+                    <div class="file__actions">
+                        <button class='deleteButton' type='button'></button>
                     </div>
                 </div>
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-pptx'></i>
-                        <h4>presentation.pptx</h4>
+                    <i class='file-pptx'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Презентация.pptx</h4>
+                        <p class="file__size">267 MB</p>
                     </div>
-                    <div class="file-btns">
-                        <button class='del-file' type='button'></button>
+                    <div class="file__actions">
+                        <button class='deleteButton' type='button'></button>
                     </div>
                 </div>
             </div>
             
-            <div class='newMailItemForm__footer row'>
+            <div class='newMailItemForm__footer row g8'>
                 <button class="secondaryButton">Отправить</button>
                 <button class="primaryButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
@@ -363,6 +390,17 @@
             </div>
             
         </form>
+    </div>
+
+    <div class="alertsContainer" id='alertsContainer'>
+        <div class='alert' data-aos="fade-up">
+            <svg viewBox="0 0 448 512">
+                <path opacity='0.6' d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 384a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 233.52 288h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 201.68 128h44.64a16 16 0 0 1 15.92 17.59z"></path>
+                <path d="M246.32 128h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 214.48 288h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 246.32 128zM224 320a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
+            </svg>
+            <p>Просто добавь alertsContainer в конец body и будут работать alertы</p>
+            <button onclick='$(this).parent().remove()'>×</button>
+        </div>
     </div>
 
     <!-- Кнопка в начало страницы -->

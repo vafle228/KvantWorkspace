@@ -183,7 +183,7 @@
 
                     <button class="menu__button active" onclick="changeType('.task')">
                         <svg viewBox="0 0 448 512">
-                            <path d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
+                            <path d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z" opacity='0.3'></path>
                             <path d="M96 384h328a24 24 0 0 0 24-24V32a32 32 0 0 0-32-32H96A96 96 0 0 0 0 96v320a96 96 0 0 0 96 96h328a24 24 0 0 0 24-24v-16a24 24 0 0 0-24-24H96c-19.2 0-32-12.8-32-32s16-32 32-32zm32-250a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6zm0 64a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6z"></path>
                         </svg>
                         <p>Все задания</p>
@@ -257,22 +257,24 @@
                 </div>
 
                 <div class='files'>
-                    <div class="file file">
-                        <div class="file-info">
-                            <i class='file-docx'></i>
-                            <h4>Домашнее задание.docx</h4>
+                    <div class="file">
+                        <i class='file-docx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Домашнее задание.docx</h4>
+                            <p class="file__size">6.5 MB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
+                        <div class="file__actions">
+                            <button class='downloadButton'></button>
                         </div>
                     </div>
-                    <div class="file file">
-                        <div class="file-info">
-                            <i class='file-pptx'></i>
-                            <h4>Теория.pptx</h4>
+                    <div class="file">
+                        <i class='file-pptx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Теория.pptx</h4>
+                            <p class="file__size">23 MB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
+                        <div class="file__actions">
+                            <button class='downloadButton'></button>
                         </div>
                     </div>
                 </div>
@@ -330,13 +332,14 @@
                 </div>
 
                 <div class='files'>
-                    <div class='file file'>
-                        <div class="file-info">
-                            <i class='file-pyc'></i>
-                            <h4>python prog.pyc</h4>
+                    <div class='file'>
+                        <i class='file-pyc'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>python prog.pyc</h4>
+                            <p class="file__size">34 KB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='download-file'></button>
+                        <div class="file__actions">
+                            <button class='downloadButton'></button>
                         </div>
                     </div>
                 </div>
@@ -477,21 +480,23 @@
                 </div>
                 <div class='files'>
                     <div class='file'>
-                        <div class="file-info">
-                            <i class='file-xml'></i>
-                            <h4>excel document.xml</h4>
+                        <i class='file-xml'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>excel document.xml</h4>
+                            <p class="file__size">2 MB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='del-file' type='button'></button>
+                        <div class="file__actions">
+                            <button class='deleteButton' type='button'></button>
                         </div>
                     </div>
                     <div class='file'>
-                        <div class="file-info">
-                            <i class='file-pptx'></i>
-                            <h4>presentation.pptx</h4>
+                        <i class='file-pptx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>presentation.pptx</h4>
+                            <p class="file__size">12 MB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='del-file' type='button'></button>
+                        <div class="file__actions">
+                            <button class='deleteButton' type='button'></button>
                         </div>
                     </div>
                 </div>

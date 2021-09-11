@@ -1,9 +1,6 @@
-.mail__widgetRow{
-    display: flex; flex-direction: row; gap: 1rem;
-}
 
 .mailNavigation{
-    min-width: 19rem;
+    min-width: 19rem; height: 100%;
     background-color: var(--item-bg-color);
     border-radius: 1rem;
     padding: 1rem;
@@ -13,7 +10,6 @@
     color: #fff;
     padding: 1rem;
     border-radius: 0.75rem;
-    margin-bottom: 0.5rem;
     font-size: 1.2rem; font-weight: 500;
 }
 .mailNavigation__composeBtn:hover{
@@ -21,8 +17,8 @@
 }
 .mailNavigation__link{
     background-color: unset;
-    height: 3rem;
-    border-radius: 0.5rem;
+    height: 3.5rem;
+    border-radius: 0.75rem;
     color: var(--text-primary-color);
     transition: all .05s;
     padding: 0.75rem 1rem;
@@ -47,15 +43,13 @@
     border-radius: 1rem;
     display: flex; flex-direction: column;
     width: 100%;
+    overflow: hidden;
 }
 
 .mails__header{
     display: flex; flex-direction: row; align-items: center; gap: 1rem;
     padding: 1rem;
     justify-content: space-between;
-}
-.mails__header > button{
-    background-color: var(--theme-light);
 }
 .inputGroup{
     width: 32%;
@@ -72,20 +66,37 @@
 }
 .inputGroup__svg{
     height: 3rem; width: 3rem;
-    padding: 10px;
-    fill: var(--text-primary-color);
+    padding: 0.75rem;
+    fill: #70757D;
     background-color: var(--theme-light);
+    transition: all .2s;
+}
+.inputGroup__svg:hover{
+    fill: var(--currentColor);
 }
 
-.mails__container{
-    gap: 0;
-    width: 100%;
+.pagination__page{
+    padding: 0 1rem;
 }
 
 .mailItem{
     display: flex; flex-direction: row; gap: 1.5rem;
     padding: 1rem 1.5rem;
-    width: 100%;
+    position: relative;
+}
+.mailItem.new::before{
+    content: "";
+    position: absolute; top: 10%; left: 0;
+    width: 0.25rem; height: 80%;
+    background-color: var(--currentColor);
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+.mailItem.important::before{
+    content: "";
+    position: absolute; top: 10%; left: 0;
+    width: 0.25rem; height: 80%;
+    background-color: #ffc700;
+    border-radius: 0 0.25rem 0.25rem 0;
 }
 .light__theme .mailItem:nth-child(2n+1){
     backdrop-filter: brightness(0.98);
@@ -107,7 +118,7 @@
 .senderInfo__name{
     white-space: nowrap; color: var(--text-primary-color); font-weight: 500;
     overflow: hidden;
-    width: 12rem;
+    width: 10rem;
     text-overflow: ellipsis;
 }
 
@@ -124,6 +135,7 @@
 .mailItem__date{
     color: var(--text-primary-color);
     margin-left: auto;
+    white-space: nowrap;
 }
 
 #newMailItemForm{
@@ -131,30 +143,33 @@
     width: 50rem;
     max-height: 100%; max-width: 100%;
     overflow: auto;
-    z-index: 999999;
-    transition-duration: .4s;
-    transition-property: right width bottom padding;
     padding: 1.5rem;
+
+    transition-duration: .4s;
+    transition-property: width height padding;
 }
 #newMailItemForm.active{
     bottom: 0;
 }
 #newMailItemForm.fullscreen{
-    width: 100%;
-    padding: 17.5vh 10vw 16vh calc(2.375rem + 10vw);
-    box-shadow: 0 0 100rem #3332;
+    right: calc(50% - 50rem);
+    display: flex; align-items: center;
+    width: 100rem; height: 100%;
+    padding: 4rem 0;
 }
 
 #newMailItemForm form{
     background-color: var(--aside-bg-color);
     border-radius: 1rem;
-    box-shadow: 0 0 1.5rem #3331;
-    max-height: 100%;
-    max-width: 100%;
+    box-shadow: 0 0 1.5rem #3332;
+    max-height: 100%; max-width: 100%;
+    transition-duration: .4s;
+    transition-property: width height;
 }
 #newMailItemForm.fullscreen form{
+    width: 100rem;
     max-height: unset;
-    box-shadow: 0 0 100rem #3332;
+    margin: auto 0;
 }
 
 .newMailItemForm__header h3{
@@ -195,7 +210,6 @@
 }
 #newMailItemForm .ql-snow.ql-container{
     padding: 1.5rem !important;
-    height: max-content !important;
 }
 #newMailItemForm .ql-snow .ql-tooltip{
     transform: none;
@@ -228,7 +242,7 @@
 }
 
 @media screen and (max-width: 768px){
-    .mailNavigation{
+    .mailNavigation, .mailHeader{
         display: none;
     }
     .mails__header > .menu{
@@ -239,20 +253,32 @@
 #newMailItem__userSelect{
     position: absolute; top: 9rem; left: 5rem;
 }
-#newMailItemForm.fullscreen #newMailItem__userSelect{
+/* #newMailItemForm.fullscreen #newMailItem__userSelect{
     position: absolute; top: 16rem; left: 16rem;
-}
+} */
+
 
 .mailView{
     display: flex; flex-direction: column; gap: 1.5rem;
-    padding: 0 1.5rem 2rem;
+    padding: 0 1.5rem 1.5rem;
 }
 .mailView__date{
-    margin-left: auto;
+    padding: 0 1rem;
 }
 .mailView__title{
     font-weight: 500;
 }
 .mailView__text{
     font-size: 1.1rem;
+}
+
+#markAsImportant{
+    filter: saturate(0);
+    padding: 0.75rem;
+}
+#markAsImportant svg{
+    height: 1.5rem; width: 1.5rem;
+}
+#markAsImportant.marked{
+    filter: saturate(1);
 }

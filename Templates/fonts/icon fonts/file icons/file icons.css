@@ -22,12 +22,12 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
 
 .file-mp4:before, .file-avi:before, .file-wmv:before, .file-mkv:before{
     content: "";
-    background-image: url('./svg/030-mp4.svg');
+    background-image: url('./svg/icons8-google-play-movies-and-tv.svg');
 }
 
 .file-mov::before{
     content: "";
-    background-image: url('./svg/031-mov.svg');
+    background-image: url('./svg/icons8-google-play-movies-and-tv.svg');
 }
 
 .file-avi::before{
@@ -37,22 +37,22 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
 
 .file-mp3:before, .file-waf:before, .file-aif:before, .file-mid:before{
     content: "";
-    background-image: url('./svg/033-mp3.svg');
+    background-image: url('./svg/icons8-google-play-music.svg');
 }
 
 .file-xls:before, .file-xlsx:before, .file-csv:before, .file-xml:before{
     content: "";
-    background-image: url('./svg/010-xls.svg');
+    background-image: url('./svg/sheets.svg');
 }
 
 .file-doc:before, .file-docm:before, .file-docx:before{
     content: "";
-    background-image: url('./svg/037-doc.svg');
+    background-image: url('./svg/docs.svg');
 }
 
 .file-pptx:before{
     content: "";
-    background-image: url('./svg/045-ppt.svg');
+    background-image: url('./svg/slides.svg');
 }
 
 .file-pdf:before{

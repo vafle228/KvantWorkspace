@@ -166,7 +166,7 @@
     <section class="taskView">
 
         <!-- Кнопки -->
-        <div class="row">
+        <div class="row g8">
             <button class="primaryButton" onclick="history.back();">
                 <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                     <g transform="translate(-5 -5)">
@@ -203,37 +203,39 @@
         <div class="taskView__info">
 
             <p class="taskView__infoTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, vero!</p>
-            <div class="row">
+            <div class="row g8">
                 <p class="taskView__infoAuthor">Фамилия Имя</p>
                 <div class="dot"></div>
                 <p class="taskView__infoDate">19.08</p>
             </div>
 
-            <hr class="divider" noshade/>
+            <hr class="divider" style="visibility: hidden"/>
 
             <!-- Текст новости -->
             <p class="taskView__infoText">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quisquam saepe fugiat quam vel deleniti ullam, architecto dolor eaque pariatur cupiditate tempora ea error fugit doloremque molestiae voluptatem vitae nobis. Suscipit iure odit nam iste beatae dignissimos tenetur animi amet similique pariatur hic ea placeat repellat facilis, unde maxime dolor eligendi ipsum, fugiat quam sint! Itaque accusamus animi illum. Unde voluptas nobis ipsam accusantium asperiores ullam fugit est possimus molestias deserunt animi ducimus voluptatibus aliquid quasi, atque fuga inventore omnis nisi facilis maiores similique, ea iste voluptate. Nam, officiis aut culpa error ratione odio, voluptas vitae magni nulla quibusdam dolore ad exercitationem obcaecati perferendis distinctio doloremque soluta qui cum optio hic repellat, velit harum. Quo iure numquam ex excepturi facere eius beatae aut quibusdam quos inventore esse nesciunt officia expedita odio, earum id voluptatibus est tempora neque culpa. A dolorem, qui aspernatur dolores doloremque labore amet minima iste harum nihil tenetur obcaecati ea cum atque id soluta. Deserunt, molestias totam? Ex, corrupti dolorem maxime rem facere aperiam inventore dicta tenetur ullam, error fugit iusto consequatur fuga deserunt voluptatibus ut similique sed laboriosam repellendus. Nostrum quos, eaque eveniet aspernatur cumque dicta perferendis ab, aperiam asperiores neque soluta saepe repellendus sed! Et?</p>
             
-            <hr class="divider" noshade/>
+            <hr class="divider" style="visibility: hidden"/>
 
             <!-- Файлы -->
             <div class='files'>
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-xml'></i>
-                        <h4>Таблица.xml</h4>
+                    <i class='file-xml'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Таблица.xml</h4>
+                        <p class="file__size">245 KB</p>
                     </div>
-                    <div class="file-btns">
-                        <button class='download-file' type='button'></button>
+                    <div class="file__actions">
+                        <button class='downloadButton' type='button'></button>
                     </div>
                 </div>
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-pptx'></i>
-                        <h4>Презентация.pptx</h4>
+                    <i class='file-pptx'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Презентация.pptx</h4>
+                        <p class="file__size">1.2 GB</p>
                     </div>
-                    <div class="file-btns">
-                        <button class='download-file' type='button'></button>
+                    <div class="file__actions">
+                        <button class='downloadButton' type='button'></button>
                     </div>
                 </div>
             </div>
@@ -241,7 +243,7 @@
         </div>
 
         <div class="taskView__info">
-            <div class="row">
+            <div class="row g8">
                 <p class="taskView__infoTitle">Мои задания</p>
                 <button class='primaryButton' style='margin-left: auto; box-shadow: 0 0 4px #0002'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
@@ -260,32 +262,35 @@
                     </svg>
                 </button>
             </div>
-            <hr class="divider"/>
+            <hr class="divider" style="visibility: hidden"/>
             <div class='files'>
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-rar'></i>
-                        <h4>homework.rar</h4>
+                    <i class='file-rar'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>homework.rar</h4>
+                        <p class="file__size">23 KB</p>
                     </div>
-                    <div class="file-btns">
+                    <div class="file__actions">
                         <button class='del-file' type='button'></button>
                     </div>
                 </div>
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-txt'></i>
-                        <h4>notes.txt</h4>
+                    <i class='file-txt'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>notes.txt</h4>
+                        <p class="file__size">2 KB</p>
                     </div>
-                    <div class="file-btns">
+                    <div class="file__actions">
                         <button class='del-file' type='button'></button>
                     </div>
                 </div>
                 <div class='file'>
-                    <div class="file-info">
-                        <i class='file-html'></i>
-                        <h4>template.html</h4>
+                    <i class='file-html'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>template.html</h4>
+                        <p class="file__size">652 KB</p>
                     </div>
-                    <div class="file-btns">
+                    <div class="file__actions">
                         <button class='del-file' type='button'></button>
                     </div>
                 </div>
@@ -328,21 +333,23 @@
                 </div>
                 <div class='files'>
                     <div class='file'>
-                        <div class="file-info">
-                            <i class='file-xml'></i>
-                            <h4>Таблица.xml</h4>
+                        <i class='file-xml'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Таблица.xml</h4>
+                            <p class="file__size">245 KB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='del-file' type='button'></button>
+                        <div class="file__actions">
+                            <button class='deleteButton' type='button'></button>
                         </div>
                     </div>
                     <div class='file'>
-                        <div class="file-info">
-                            <i class='file-pptx'></i>
-                            <h4>Презентация.pptx</h4>
+                        <i class='file-pptx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Презентация.pptx</h4>
+                            <p class="file__size">1.2 GB</p>
                         </div>
-                        <div class="file-btns">
-                            <button class='del-file' type='button'></button>
+                        <div class="file__actions">
+                            <button class='deleteButton' type='button'></button>
                         </div>
                     </div>
                 </div>
