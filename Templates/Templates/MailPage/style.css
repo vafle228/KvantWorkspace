@@ -249,6 +249,17 @@
         display: flex;
     }
 }
+@media screen and (max-width: 576px){
+    .mailItem{
+        flex-direction: column;
+    }
+    .mailItem__date{
+        position: absolute; top: 1.5rem; right: 1.5rem;
+    }
+    .mails__header .inputGroup{
+        display: none;
+    }
+}
 
 #newMailItem__userSelect{
     position: absolute; top: 9rem; left: 5rem;

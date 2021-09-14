@@ -11,21 +11,24 @@ body{
 }
 
 body[colorScheme='colorScheme__green']{
+    --bgColor-solid: #e1f9ef;
     --bgColor: #20d48922;
     --currentColor: #20d489;
 }
 body[colorScheme='colorScheme__blue']{
+    --bgColor-solid: #ddf4ff;
     --bgColor: #00b2ff22;
     --currentColor: #00b2ff;
 }
 body[colorScheme='colorScheme__red']{
+    --bgColor-solid: #fde5eb;
     --bgColor: #f1416c22;
     --currentColor: #f1416c;
 }
 
 /* Светлая тема */
 .light__theme{
-    --bg-color: var(--bgColor);
+    --bg-color: var(--bgColor-solid);
     --aside-bg-color: #fff;
     --aside-bg-color-alpha: rgba(241, 240, 245, 0.8);
 
@@ -137,6 +140,7 @@ body{
 
 body > section{
     padding: 1.5rem 2% 1.5rem calc(2% + 4.75rem);
+    background-color: var(--bg-color);
 }
 
 .row{ display: flex; flex-direction: row; align-items: center }
@@ -211,36 +215,32 @@ aside > nav:last-of-type{
     position: fixed; bottom: 0;
 }
 aside > nav > button{
-    height: 44px;
+    position: relative;
+    height: 2.75rem;
     background-color: unset;
     border-radius: 0.5rem;
     transition-property: background-color; transition-duration: .2s;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 12px; margin: 0 16px;
+    padding: 0 0.75rem; margin: 0 1rem;
 }
 aside > nav > button div{
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: center; gap: 1rem;
 }
 aside > nav > button p{
-    opacity: 0;
-    visibility: hidden;
-    font-size: 16px; font-weight: 500; line-height: 16px;
+    opacity: 0; visibility: hidden;
+    font-size: 1rem; font-weight: 500; line-height: 1rem;
     color: var(--text-primary-color);
     transition-duration: .1s;
     transition-property: opacity;
 }
-aside > nav > button:hover{
+aside > nav > button:hover, aside > nav > button.active{
     background-color: var(--button-bg-hover-color);
 }
 
-aside > nav > button.active{
-    background-color: var(--button-bg-hover-color);
-    position: relative;
-}
 aside > nav > button.active::after{
     content: "";
-    position: absolute; top: 0; left: -16px;
-    height: 100%; width: 4px; border-radius: 0 2px 2px 0;
+    position: absolute; top: 0; left: -1rem;
+    height: 100%; width: 0.25rem; border-radius: 0 2px 2px 0;
     background-color: var(--currentColor);
 }
 aside > nav > button.active p{
@@ -259,7 +259,6 @@ aside > nav > button.active p{
     transition: width .15s;
     overflow: hidden;
     background-color: var(--theme-light);
-    /* border-radius: 0 2.375rem 2.375rem 0; */
     box-shadow: #0003 0 0 0.25rem 0;
 }
 .aside__profile .aside__profileInfo{
@@ -290,7 +289,6 @@ aside > nav > button.active p{
     transition-property: filter;
     position: relative;
     margin: 0.125rem;
-
     padding: 3px;
     border: var(--theme-light-alpha) solid 2px;
 }
@@ -313,6 +311,22 @@ aside:hover .aside__profile *{
 }
 aside:hover .aside__profile .profile .info h2, aside:hover .aside__profile .profile .info h4{
     opacity: 1;
+}
+
+@media screen and (max-width: 576px){
+    body > section{
+        padding-left: 2%;
+    }
+    aside{
+        width: 18.75rem;
+    }
+    aside *:not(.divider){
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    .aside__profile{
+        width: 18.75rem;
+    }
 }
 
 
@@ -468,40 +482,38 @@ body > header{
 }
 
 
-
-
 /* Разделитель */
 .divider{
     margin: 0.5rem 0;
     border-color: var(--text-primary-color);
     border-width: 1px;
-    opacity: .05;
+    opacity: .01;
 }
+
 
 /* Файлы */
 .files{
     display: flex; flex-wrap: wrap; gap: 1rem;
     width: 100%;
 }
-
 .file{
-    height: 3rem;
+    height: 3rem; width: calc((100% - 3rem) / 4);
+    min-width: 16rem;
     display: flex; align-items: center; flex-direction: row;
     border-radius: 0.25rem;
     overflow: hidden;
     border: var(--theme-light) solid 1px;
 }
-
 .file i{
     width: 3rem; height: 3rem;
     padding: 0 0.75rem;
     background-color: var(--theme-light);
     display: flex; align-items: center;
 }
-
 .file i::before{
     width: 1.5rem !important;
 }
+
 .file__info{
     min-width: 8rem;
     padding: 0 0.5rem; margin-right: 1rem;
@@ -510,14 +522,12 @@ body > header{
 .file__name{
     color: var(--text-primary-color);
     font-size: 1rem;
-    max-width: 16rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .file__size{
     font-size: 0.8rem;
-    max-width: 16rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -526,6 +536,7 @@ body > header{
 .file__actions{
     display: flex; gap: 0.5rem;
     padding: 0.25rem;
+    margin-left: auto;
 }
 .file__actions button{
     width: 2rem; height: 2rem;
@@ -533,23 +544,12 @@ body > header{
     display: flex; align-items: center;
     padding: 0 0.5rem;
 }
-.file__actions button:hover{
-    filter: brightness(1.5)
-}
-
-/* Кнопка "Удалить файл" */
-.deleteButton::before{
-    content: url('./img/deleteButton.svg');
+.file__actions button svg{
+    fill: #70757D;
     width: 1rem; height: 1rem;
-    margin: 0 auto;
-    transform: translate(0, -2px);
 }
-
-/* Кнопка "Скачать файл" */
-.downloadButton::before{
-    content: url('./img/dowloadButton.svg');
-    width: 1rem; height: 1rem;
-    margin: 0 auto;
+.file__actions button:hover svg{
+    fill: var(--currentColor);
 }
 
 
@@ -1042,3 +1042,20 @@ button.primaryButton:hover{
 #selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
     display: none;
 }
+
+#snap-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+          -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }

@@ -9,6 +9,17 @@ function page_adaptation(){
 		"width": `${ 1 / ratio * 100}vw`,
 		// "height": `${ 1 / ratio * 100}%`
 	});
+
+	if (window.innerWidth < 576){
+		$("body > section").attr("id", "snap-content");
+	} else {
+		$("body > section").attr("id", "");
+	}
+	var snapper = new Snap({
+		element: document.getElementById('snap-content'),
+		maxPosition: 300,
+		minPosition: 0,
+	});
 }
 
 $(window).ready(() => page_adaptation());
@@ -64,6 +75,7 @@ function filterFunction(input) {
 // Сменить тему оформления
 function switch_theme() {
 	$('body').toggleClass('light__theme dark__theme');
+	page_adaptation();
 }
 
 // Сменить цветовую схему
@@ -75,6 +87,7 @@ function switch_color_scheme() {
 	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;
 
 	$('body').attr("colorScheme", schemes[nextSchemeIndex]);
+	page_adaptation();
 }
 
 

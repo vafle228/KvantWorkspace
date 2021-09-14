@@ -248,6 +248,9 @@
     .mails__header > .menu{
         display: flex;
     }
+    .mailItem{
+        flex-direction: column;
+    }
 }
 
 #newMailItem__userSelect{
