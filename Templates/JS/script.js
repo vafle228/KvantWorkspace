@@ -10,16 +10,16 @@ function page_adaptation(){
 		// "height": `${ 1 / ratio * 100}%`
 	});
 
-	if (window.innerWidth < 576){
-		$("body > section").attr("id", "snap-content");
-	} else {
-		$("body > section").attr("id", "");
-	}
-	var snapper = new Snap({
-		element: document.getElementById('snap-content'),
-		maxPosition: 300,
-		minPosition: 0,
-	});
+	// if (window.innerWidth < 576){
+	// 	$("body > section").attr("id", "snap-content");
+	// } else {
+	// 	$("body > section").attr("id", "");
+	// }
+	// var snapper = new Snap({
+	// 	element: document.getElementById('snap-content'),
+	// 	maxPosition: 300,
+	// 	minPosition: 0,
+	// });
 }
 
 $(window).ready(() => page_adaptation());

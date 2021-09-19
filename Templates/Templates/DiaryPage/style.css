@@ -1,3 +1,4 @@
+
 #diary .container{
     display: flex; flex-direction: column; gap: 12px;
     padding-top: 5px;
@@ -126,17 +127,17 @@
 
 
 .widgetRow{
-    display: flex; flex-direction: column; gap: 16px;
+    display: flex; flex-direction: column; gap: 1rem;
     margin: 25px 45px 25px 121px;
     padding: 0;
 }
 
 
 #tasks{
-    display: flex; flex-direction: column; gap: 16px;
+    display: flex; flex-direction: column; gap: 1rem;
     background-color: var(--item-bg-color);
-    padding: 16px;
-    border-radius: 16px;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
 
