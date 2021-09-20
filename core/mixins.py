@@ -1,4 +1,8 @@
 from abc import abstractmethod
+from django.views.generic import View
+from LoginApp.models import KvantUser
+from django.shortcuts import redirect
+
 
 class ImageMixinBase:
     def __init__(self, coef):
@@ -32,19 +36,13 @@ class ImageMixinBase:
         image = Image.open(image_file)  # Открываем картинку
         new_image = BytesIO()  # Создаем байтовое представление
 
-        resize = self.get_new_size(*image.size)
-
-        image.thumbnail(resize, resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
-        image = image.convert('RGB')  # Убираем все лишние каналы
-        image.save(new_image, format='JPEG', quality=90)  # Конвертируем в JPEG, ибо мало весит
-
-        new_image.seek(0)  # Возвращение в начало файла
+        image.thumbnail(self.get_new_size(*image.size), resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
+        image.convert('RGB').save(new_image, format='JPEG', quality=90)  # Конвертируем в JPEG, ибо мало весит
 
         file_name = f'{image_file.name.split(".")[0]}.jpeg'
 
         return InMemoryUploadedFile(new_image, 'ImageField', file_name, 'image/jpeg', getsizeof(new_image), None)
     
-
 
 class FileManagerMixinBase:
     @abstractmethod
@@ -72,3 +70,27 @@ class FileManagerMixinBase:
         bucket.delete(from_path)
         
         return to_path
+
+
+class KvantJournalAccessMixin(View):
+    # Метод делегирования запроса
+    def dispatch(self, request, *args, **kwargs):
+        from django.urls import reverse_lazy
+        
+        user_id = kwargs['identifier']
+        if not self.is_available(user_id):  # Проверка на доступ
+            return redirect(reverse_lazy('login_page'))
+        return super().dispatch(request, *args, **kwargs)  # Исполняем родительский метод
+
+    def is_available(self, identifier):
+        from django.contrib import messages
+
+        if KvantUser.objects.filter(id=identifier).exists():  # Проверяем существование
+            request_user = self.request.user  # Пользователь который запросил
+            requested_user = KvantUser.objects.filter(id=identifier)[0]  # Пользовательн которого запросили
+            if request_user == requested_user and requested_user.is_authenticated:  # Проверка совпадения
+                return True
+
+        # Ошибка в случаи не совпадения или отсутсвия
+        messages.error(self.request, 'Отказано в доступе!')
+        return False

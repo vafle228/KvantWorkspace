@@ -1,18 +1,7 @@
 from django import template
+from modules.SystemModule.templatetags import base_tags as bt
 
 register = template.Library()
-
-
-def file_extension(file):
-    return file.file.name.split(".")[-1]
-
-
-def file_name(file):
-    return file.file.name.split("/")[-1]
-
-
-def get_objects(model_object):
-    return model_object.all()
 
 
 def _get_file_type(file):
@@ -30,9 +19,8 @@ def is_files_image(files):
     return False
 
 
-
 register.filter('is_image', is_image)
-register.filter('file_name', file_name)
-register.filter('get_objects', get_objects)
-register.filter('file_extension', file_extension)
 register.filter('is_files_image', is_files_image)
+
+register.filter('get_objects', bt.get_objects)
+register.filter('get_file_name', bt.get_file_name)

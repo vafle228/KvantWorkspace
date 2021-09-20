@@ -3,7 +3,6 @@ from .models import FileStorage
 from LoginApp.models import KvantUser
 from core.mixins import FileManagerMixinBase
 
-"""Встроенные формы основанные на модельном предствалении"""
 
 class FileManagerMixin(FileManagerMixinBase):
     def clean_upload_path(self):

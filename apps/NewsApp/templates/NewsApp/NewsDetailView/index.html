@@ -81,7 +81,7 @@
             <div class="row">
                 <p class="newsView__infoAuthor">{{ news.author.surname }} {{ news.author.name|slice:"1" }}.</p>
                 <div class="dot"></div>
-                <p class="newsView__infoDate">{{ news.date|date:"j.m" }}</p>
+                <p class="newsView__infoDate">{{ news.date|date:"j.m.Y" }}</p>
             </div>
 
             <hr class="divider" noshade/>
@@ -96,17 +96,7 @@
             <hr class="divider" noshade/>
             <!-- Файлы -->
             <div class='files'>
-                {% for file in news.files|get_objects %}
-                <div class='file'>
-                    <div class="file-info">
-                        <i class='file-{{ file|file_extension }}'></i>
-                        <h4>{{ file|file_name }}</h4>
-                    </div>
-                    <div class="file-btns">
-                        <button class='download-file' onclick="window.open('{{ file.file.url }}')" type='button'></button>
-                    </div>
-                </div>
-                {% endfor %}
+                {% include "SystemModule/FileView/index.html" with files=news.files type="detail_view" %}
             </div>
             {% endif %}
         </div>
@@ -124,18 +114,16 @@
     <script src="{% static 'NewsApp/NewsView/scripts.js' %}"></script>
     <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
     <script>
-        old_files = Array();
         window.onload = function(){
-            old_files_view = [
+            old_files = [
                 {% for file in news.files|get_objects %}
-                {'name': '{{ file|file_name }}', 'id': '{{ file.id }}'},
+                {'name': '{{ file|get_file_name }}', 'id': '{{ file.id }}', 'size': '{{ file.file.size }}'},
                 {% endfor %}
             ]
             
-            addNewsPreview({'name': '{{ news.image|file_name }}'})
-            for(let i = 0; i < old_files_view.length; i++){
-                old_files.push(old_files_view[i].id)
-                addNewFile(old_files_view[i], old_files)
+            addNewsPreview({'name': '{{ news.image|get_file_name }}', 'size': '{{ news.image.size }}'})
+            for(let i = 0; i < old_files.length; i++){
+                addNewFile(old_files[i], old_files, "#file-container")
             }
         }
     </script>
@@ -145,7 +133,7 @@
             let news_form = getNewsFormData();
 
             for(let i = 0; i < old_files.length; i++){ // Перебор старых файлов
-                news_form.append('files', old_files[i]) // Добавление старых файла в форму
+                news_form.append('files', old_files[i].id) // Добавление старых файла в форму
             }
             sendOrUpdateNews(news_form);
         });

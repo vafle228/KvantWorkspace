@@ -1,0 +1,16 @@
+{% load base_tags %}
+
+{% for file in files|get_objects %}
+<div class='file'>
+    <i class='file-{{ file|get_file_extension }}'></i>
+    <div class="file__info">
+        <h4 class='file__name'>{{ file|get_file_name }}</h4>
+        <p class="file__size">{{ file|get_file_size }}</p>
+    </div>
+    {% if type == "detail_view" %}
+    <div class="file__actions">
+        <button class='downloadButton' onclick="window.open('{{ file.file.url }}')" type='button'></button>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}

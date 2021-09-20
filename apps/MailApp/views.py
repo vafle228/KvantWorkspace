@@ -1,32 +1,18 @@
 from django.http import JsonResponse
 from LoginApp.models import KvantUser
-from core.classes import KvantJournalAccessMixin
+from core.mixins import KvantJournalAccessMixin
 
-from .models import KvantMessage, ImportantMail
+from .models import KvantMessage, ImportantMail, MailReceiver
 from .forms import KvantMailSaveForm
 from django.shortcuts import render, redirect, HttpResponse
 from django.views import generic
-
-
-class MailPageTemplateView(KvantJournalAccessMixin, generic.TemplateView):
-    template_name = 'MailApp/MailBox/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context.update(
-            box_type=self.request.GET['type'],
-            kvant_users=KvantUser.objects.exclude(id=self.request.user.id),
-        )
-
-        return context
 
 
 class MailListView(KvantJournalAccessMixin, generic.ListView):
     model               = KvantMessage
     ordering            = ['-date', '-id']
     paginate_by         = 8
-    template_name       = 'MailApp/MailView/index.html'
+    template_name       = 'MailApp/MailBox/index.html'
     context_object_name = 'mails'
     
     def get_queryset(self):
@@ -39,16 +25,35 @@ class MailListView(KvantJournalAccessMixin, generic.ListView):
         if mails_type == 'important':
             return KvantMessage.objects.filter(importantmail__user=self.request.user)
         return KvantMessage.objects.none()
+    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        send_mails = len(KvantMessage.objects.filter(sender=self.request.user))
+        received_mails = len(KvantMessage.objects.filter(receivers__receiver=self.request.user))
+
+        context.update(
+            box_type=self.request.GET['type'],
+            mail_count=send_mails + received_mails,
+            kvant_users=KvantUser.objects.exclude(id=self.request.user.id),
+            new_mails=len(MailReceiver.objects.filter(receiver=self.request.user).filter(is_read=False)),
+        )
+        return context
 
 
 class MailCreationView(KvantJournalAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         from django.urls import reverse_lazy
 
+        redirect_kwarg = {
+            "identifier": self.request.user.id
+        }
+
         form = KvantMailSaveForm(self.request.POST)
         if form.is_valid():
-            mail = self.fill_mail_files(form.save(request))
-            return JsonResponse({'status': 200, 'link': reverse_lazy('main_page', kwargs={"identifier": self.request.user.id})})
+            redirect_kwarg['mail_identifier'] = self.fill_mail_files(form.save(request)).id
+            return JsonResponse({'status': 200, 'link': reverse_lazy('mail_detail', kwargs=redirect_kwarg)})
         if self.request.FILES.getlist('files') == []:
             form.add_error(None, 'Письмо должно содержать хотя бы одного получателя')
         return JsonResponse({'status': 400, 'errors': form.errors})
@@ -69,21 +74,18 @@ class MailDetailView(KvantJournalAccessMixin, generic.DetailView):
     context_object_name = 'mail'
     template_name       = 'MailApp/MailDetailView/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-# def send_more_mails(request, identifier):
-#     if request.method == 'POST':  # Проверка на POST запрос
-#         form = SendNewMails(request.POST)  # Формирование формы ответа
-#         response = form.save(request) if form.is_valid() else []  # Попытка получения данных
-#         return JsonResponse({'mails': response})  # JSON ответ
-#     return HttpResponse('Error')  # В случаи ошибки ранее
+        send_mails = len(KvantMessage.objects.filter(sender=self.request.user))
+        received_mails = len(KvantMessage.objects.filter(receivers__receiver=self.request.user))
 
-
-# def create_mail(request, identifier):
-#     if request.method == 'POST':
-#         form = KvantMailSaveForm(request.POST)  # Форма создания письма
-#         form.save(request) if form.is_valid() else None  # Попытка создать письмо
-#         return HttpResponse('Ok')  # Ответ для прикола
-#     return HttpResponse('Error')  # Если была ошибка ранее
+        context.update(
+            mail_count=send_mails + received_mails,
+            kvant_users=KvantUser.objects.exclude(id=self.request.user.id),
+            new_mails=len(MailReceiver.objects.filter(receiver=self.request.user).filter(is_read=False)),
+        )
+        return context 
 
 
 # def change_read_status(request, identifier):

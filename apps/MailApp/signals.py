@@ -1,6 +1,6 @@
 from .models import KvantMessage
 from django.dispatch import receiver
-from django.db.models.signals import pre_delete, post_delete
+from django.db.models.signals import pre_delete
 
 
 @receiver(pre_delete, sender=KvantMessage)

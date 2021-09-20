@@ -1,5 +1,5 @@
 from django.views.generic import View
-from core.classes import KvantJournalAccessMixin
+from core.mixins import KvantJournalAccessMixin
 from django.shortcuts import redirect, HttpResponse
 
 

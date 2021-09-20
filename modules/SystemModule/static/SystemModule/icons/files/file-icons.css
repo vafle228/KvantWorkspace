@@ -4,82 +4,92 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
     display: block;
 }
 
-/* Archive */
-.file-zip:before, .file-rar:before, .file-7z:before, .file-jar:before, .file-gz:before{
+
+.file-zip:before, .file-7z:before, .file-gz:before{
+    content: "";
+    background-image: url('./svg/009-zip.svg');
+}
+
+.file-rar:before{
     content: "";
     background-image: url('./svg/035-rar.svg');
 }
-/* Python */
+
 .file-py:before, .file-pyw:before, .file-pyc:before, .file-pyd:before, .file-pyo:before, .file-pyz:before, .file-pyi:before{
     content: "";
     background-image: url('./svg/python.svg');
 }
-/* Video */
+
 .file-mp4:before, .file-avi:before, .file-wmv:before, .file-mkv:before{
     content: "";
-    background-image: url('./svg/030-mp4.svg');
+    background-image: url('./svg/icons8-google-play-movies-and-tv.svg');
 }
+
 .file-mov::before{
     content: "";
-    background-image: url('./svg/031-mov.svg');
+    background-image: url('./svg/icons8-google-play-movies-and-tv.svg');
 }
+
 .file-avi::before{
     content: "";
     background-image: url('./svg/018-avi.svg');
 }
-/* Audio */
+
 .file-mp3:before, .file-waf:before, .file-aif:before, .file-mid:before{
     content: "";
-    background-image: url('./svg/033-mp3.svg');
+    background-image: url('./svg/icons8-google-play-music.svg');
 }
-/* Excel */
+
 .file-xls:before, .file-xlsx:before, .file-csv:before, .file-xml:before{
     content: "";
-    background-image: url('./svg/010-xls.svg');
+    background-image: url('./svg/sheets.svg');
 }
-/* Word */
+
 .file-doc:before, .file-docm:before, .file-docx:before{
     content: "";
-    background-image: url('./svg/037-doc.svg');
+    background-image: url('./svg/docs.svg');
 }
-/* Powerpoint */
+
 .file-pptx:before{
     content: "";
-    background-image: url('./svg/045-ppt.svg');
+    background-image: url('./svg/slides.svg');
 }
-/* PDF */
+
 .file-pdf:before{
     content: "";
     background-image: url('./svg/026-pdf.svg');
 }
-/* Java */
+
 .file-java:before, .file-class:before, .file-jar:before, .file-jad:before, .file-jmod:before{
     content: "";
     background-image: url('./svg/048-jar.svg');
 }
 
-/* C++ and C#*/
 .file-csx:before, .file-cs:before, .file-cc:before, .file-cpp:before, .file-cxx:before, .file-c:before, .file-h:before, .file-hpp:before, .file-hxx:before{
     content: "";
     background-image: url('./svg/032-c++.svg');
 }
-/* Image */
+
 .file-webp:before, .file-bmp:before, .file-tiff:before{
     content: "";
     background-image: url('./svg/picture.svg');
 }
+
 .file-gif:before{
     content: "";
     background-image: url('./svg/012-gif.svg');
 }
+
 .file-png:before{
     content: "";
     background-image: url('./svg/028-png.svg');
 }
+
 .file-jpeg:before, .file-jpg:before{
     content: "";
     background-image: url('./svg/042-jpg.svg');
 }
+
 .file-svg:before{
     content: "";
     background-image: url('./svg/038-svg.svg');
@@ -115,31 +125,91 @@ i[class^="file-"]:before, i[class*=" file-"]:before{
     background-image: url('./svg/040-apk.svg');
 }
 
-file-ai::before{
+.file-ai::before{
     content: "";
     background-image: url('./svg/027-AI.svg');
 }
 
-file-psd::before{
+.file-psd::before{
     content: "";
     background-image: url('./svg/043-psd.svg');
 }
 
-file-ttf::before{
+.file-ttf::before{
     content: "";
     background-image: url('./svg/047-ttf.svg');
 }
-file-otf::before{
+.file-otf::before{
     content: "";
     background-image: url('./svg/017-otf.svg');
 }
 
-file-sql::before{
+.file-sql::before{
     content: "";
     background-image: url('./svg/034-sql.svg');
 }
 
-file-xd::before{
+.file-xd::before{
     content: "";
     background-image: url('./svg/002-xd.svg');
+}
+
+.file-js::before{
+    content: "";
+    background-image: url('./svg/014-js.svg');
+}
+
+.file-obj::before{
+    content: "";
+    background-image: url('./svg/029-obj.svg');
+}
+
+.file-php::before{
+    content: "";
+    background-image: url('./svg/013-php.svg');
+}
+
+.file-cdr::before{
+    content: "";
+    background-image: url('./svg/025-cdr.svg');
+}
+
+.file-dll::before{
+    content: "";
+    background-image: url('./svg/041-dll.svg');
+}
+
+.file-ico::before{
+    content: "";
+    background-image: url('./svg/006-ico.svg');
+}
+
+.file-ae::before{
+    content: "";
+    background-image: url('./svg/005-AE.svg');
+}
+
+.file-indd::before{
+    content: "";
+    background-image: url('./svg/036-indd.svg');
+}
+
+.file-3ds::before{
+    content: "";
+    background-image: url('./svg/049-3ds.svg');
+}
+
+.file-eps::before{
+    content: "";
+    background-image: url('./svg/050-eps.svg');
+}
+
+.file-iso::before{
+    content: "";
+    background-image: url('./svg/023-iso.svg');
+}
+
+.file-eml::before{
+    content: "";
+    background-image: url('./svg/007-eml.svg');
 }

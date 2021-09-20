@@ -6,6 +6,18 @@ function page_adaptation(){
 		"zoom": ratio,
 		"-moz-zoom": ratio,
 		"width": `${ 1 / ratio * 100}vw`,
+		// "height": `${ 1 / ratio * 100}%`
+	});
+
+	if (window.innerWidth < 576){
+		$("body > section").attr("id", "snap-content");
+	} else {
+		$("body > section").attr("id", "");
+	}
+	var snapper = new Snap({
+		element: document.getElementById('snap-content'),
+		maxPosition: 300,
+		minPosition: 0,
 	});
 }
 
@@ -95,4 +107,56 @@ function sendInstanceData(form, post_url){
 			else{ location.href = response.link }
 		}
 	})
+}
+
+// <=== Генерация файлового превью ===>
+
+// Генерация интерфейса файла
+function addNewFile(file, array, container_id){
+	let container = $(container_id)[0] // init контейнера
+	let file_widget = addFileWidget(file) // Получение html файла
+
+	// Функция по клику на "крестик"
+	$(file_widget).find('#del-btn')[0].onclick = function(click) {
+		for(let i = 0; i < array.length; i++){
+			if(array[i] == file){ array.splice(i, 1) }
+		} 
+		container.removeChild(file_widget) // Уборка html файла
+	}
+	
+	container.appendChild(file_widget) // Добавление файла в контейнер
+	
+}
+
+function getFileSize(nbytes){
+	let suffix_index = 0
+    let suffixes = ['B', 'kB', 'MB', 'GB', 'TB', 'PB']
+    
+    while(nbytes >= 1024 && suffix_index < suffixes.length - 1){
+		nbytes /= 1024.
+        suffix_index += 1
+	}
+    size = nbytes.toFixed(2).split(".00")[0]
+
+    return `${size} ${suffixes[suffix_index]}`
+}
+
+// Генерация файлов в форме
+function addFileWidget(file){
+	return $(`
+		<div class='file'>
+			<i class='file-${file.name.split('.')[file.name.split('.').length - 1]}'></i>
+			<div class="file__info">
+				<h4 class='file__name'>${file.name}</h4>
+				<p class="file__size">${getFileSize(file.size)}</p>
+			</div>
+			<div class="file__actions">
+				<button type='button' id='del-btn'>
+					<svg viewBox="0 0 448 512">
+						<path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+						<path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+					</svg>
+				</button>
+			</div>
+		</div>`)[0]
 }

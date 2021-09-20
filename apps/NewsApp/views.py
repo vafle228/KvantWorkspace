@@ -2,7 +2,7 @@ from .models import KvantNews
 from django.views import generic
 from .forms import KvantNewsSaveForm
 from django.http.response import HttpResponse
-from core.classes import KvantJournalAccessMixin
+from core.mixins import KvantJournalAccessMixin
 
 
 # View для отображения главной страницы
@@ -51,8 +51,7 @@ class _NewsManipulationBaseView(generic.View):
         redirect_kwargs = {'identifier': request.user.id}
         if kwargs.get('is_available'):
             if kwargs.get('form').is_valid():
-                news = self.fill_news_files(kwargs.get('form').save())
-                redirect_kwargs['news_identifier'] = news.id
+                redirect_kwargs['news_identifier'] = self.fill_news_files(kwargs.get('form').save()).id
                 return JsonResponse({'status': 200, 'link': reverse_lazy('detail_news', kwargs=redirect_kwargs)})
             return JsonResponse({'status': 400, 'errors': kwargs.get('form').errors})  
         return JsonResponse({'status': 403,'link': reverse_lazy('main_page', kwargs=redirect_kwargs)})

@@ -1,6 +1,6 @@
 from .models import KvantAward
 from django.views import generic
-from core.classes import KvantJournalAccessMixin
+from core.mixins import KvantJournalAccessMixin
 
 
 class ProfilePageTemplateView(generic.TemplateView, KvantJournalAccessMixin):
