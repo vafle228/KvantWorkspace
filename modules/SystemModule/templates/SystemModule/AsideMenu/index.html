@@ -194,4 +194,94 @@
             </div>
         </nav>
     </aside>
+
+    <nav class='navigation row items-stretch'>
+        {% if active == "main" %}
+        <button class="navigation__link active" onclick="location.href='{% url 'main_page' user.id %}'">
+            <svg viewBox="0 0 16 16">
+                <g transform="translate(-4 -4)">
+                    <rect class='bright' width="7" height="7" rx="1.5" transform="translate(4 4)"/>
+                    <path class='faded' d="M5.5,13h4A1.5,1.5,0,0,1,11,14.5v4A1.5,1.5,0,0,1,9.5,20h-4A1.5,1.5,0,0,1,4,18.5v-4A1.5,1.5,0,0,1,5.5,13Zm9-9h4A1.5,1.5,0,0,1,20,5.5v4A1.5,1.5,0,0,1,18.5,11h-4A1.5,1.5,0,0,1,13,9.5v-4A1.5,1.5,0,0,1,14.5,4Zm0,9h4A1.5,1.5,0,0,1,20,14.5v4A1.5,1.5,0,0,1,18.5,20h-4A1.5,1.5,0,0,1,13,18.5v-4A1.5,1.5,0,0,1,14.5,13Z"/>
+                </g>
+            </svg>
+            <p>Главная</p>
+        </button>
+        {% else %}
+        <button class="navigation__link" onclick="location.href='{% url 'main_page' user.id %}'">
+            <svg viewBox="0 0 16 16">
+                <g transform="translate(-4 -4)">
+                    <rect class='bright' width="7" height="7" rx="1.5" transform="translate(4 4)"/>
+                    <path class='faded' d="M5.5,13h4A1.5,1.5,0,0,1,11,14.5v4A1.5,1.5,0,0,1,9.5,20h-4A1.5,1.5,0,0,1,4,18.5v-4A1.5,1.5,0,0,1,5.5,13Zm9-9h4A1.5,1.5,0,0,1,20,5.5v4A1.5,1.5,0,0,1,18.5,11h-4A1.5,1.5,0,0,1,13,9.5v-4A1.5,1.5,0,0,1,14.5,4Zm0,9h4A1.5,1.5,0,0,1,20,14.5v4A1.5,1.5,0,0,1,18.5,20h-4A1.5,1.5,0,0,1,13,18.5v-4A1.5,1.5,0,0,1,14.5,13Z"/>
+                </g>
+            </svg>
+            <p>Главная</p>
+        </button>
+        {% endif %}
+
+        {% if active == "diary" %}
+        <button class="navigation__link active" onclick="location.href='{% url 'diary_page' user.id %}'">
+            <svg viewBox="0 0 448 512">
+                <path class='faded' d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
+                <path class='bright' d="M96 384h328a24 24 0 0 0 24-24V32a32 32 0 0 0-32-32H96A96 96 0 0 0 0 96v320a96 96 0 0 0 96 96h328a24 24 0 0 0 24-24v-16a24 24 0 0 0-24-24H96c-19.2 0-32-12.8-32-32s16-32 32-32zm32-250a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6zm0 64a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6z"></path>
+            </svg>
+            <p>Задания</p>
+        </button>
+        {% else %}
+        <button class="navigation__link" onclick="location.href='{% url 'diary_page' user.id %}'">
+            <svg viewBox="0 0 448 512">
+                <path class='faded' d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
+                <path class='bright' d="M96 384h328a24 24 0 0 0 24-24V32a32 32 0 0 0-32-32H96A96 96 0 0 0 0 96v320a96 96 0 0 0 96 96h328a24 24 0 0 0 24-24v-16a24 24 0 0 0-24-24H96c-19.2 0-32-12.8-32-32s16-32 32-32zm32-250a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6zm0 64a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6z"></path>
+            </svg>
+            <p>Задания</p>
+        </button>
+        {% endif %}
+
+        {% if active == "project" %}
+        <button class="navigation__link active" onclick="location.href='{% url 'main_page' user.id %}'">
+            <svg viewBox="0 0 18.174 18.053">
+                <g transform="translate(-4 -2.947)">
+                    <path class='bright' d="M5,3H6A1,1,0,0,1,7,4V20a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V4A1,1,0,0,1,5,3Zm5,0h1a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V4A1,1,0,0,1,10,3Z"/>
+                    <rect class='faded' width="3" height="18" rx="1" transform="translate(13.477 3.924) rotate(-19)"/>
+                </g>
+            </svg> 
+            <p>Проекты</p>
+        </button>
+        {% else %}
+        <button class="navigation__link" onclick="location.href='{% url 'main_page' user.id %}'">
+            <svg viewBox="0 0 18.174 18.053">
+                <g transform="translate(-4 -2.947)">
+                    <path class='bright' d="M5,3H6A1,1,0,0,1,7,4V20a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V4A1,1,0,0,1,5,3Zm5,0h1a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V4A1,1,0,0,1,10,3Z"/>
+                    <rect class='faded' width="3" height="18" rx="1" transform="translate(13.477 3.924) rotate(-19)"/>
+                </g>
+            </svg> 
+            <p>Проекты</p>
+        </button>
+        {% endif %}
+
+        {% if active == "mail" %}
+        <button class="navigation__link active" onclick="location.href='{% url 'mail_box' user.id %}?type=received'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16.166" height="15.333" viewBox="0 0 16.166 15.333">
+                <g id="messages" transform="translate(-8.042 -7.833)">
+                    <path class='faded' d="M22.375,11.833h-.333V15a2.836,2.836,0,0,1-2.833,2.833H11.376v1.5a1.835,1.835,0,0,0,1.833,1.833h.833v1.5A.5.5,0,0,0,14.91,23l1.685-1.838h5.78a1.835,1.835,0,0,0,1.833-1.833V13.666A1.835,1.835,0,0,0,22.375,11.833Z"/>
+                    <path class='bright' d="M19.208,7.833H9.542a1.5,1.5,0,0,0-1.5,1.5V15a1.5,1.5,0,0,0,1.5,1.5h9.667a1.5,1.5,0,0,0,1.5-1.5V9.333A1.5,1.5,0,0,0,19.208,7.833Zm.167,2.96-4.493,2.18a1.131,1.131,0,0,1-1.014,0l-4.493-2.18V9.687L14.3,12.074a.144.144,0,0,0,.147,0l4.927-2.387v1.106Z"/>
+                </g>
+            </svg>
+            <p>Почта</p>
+        </button>
+        {% else %}
+        <button class="navigation__link" onclick="location.href='{% url 'mail_box' user.id %}?type=received'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16.166" height="15.333" viewBox="0 0 16.166 15.333">
+                <g id="messages" transform="translate(-8.042 -7.833)">
+                    <path class='faded' d="M22.375,11.833h-.333V15a2.836,2.836,0,0,1-2.833,2.833H11.376v1.5a1.835,1.835,0,0,0,1.833,1.833h.833v1.5A.5.5,0,0,0,14.91,23l1.685-1.838h5.78a1.835,1.835,0,0,0,1.833-1.833V13.666A1.835,1.835,0,0,0,22.375,11.833Z"/>
+                    <path class='bright' d="M19.208,7.833H9.542a1.5,1.5,0,0,0-1.5,1.5V15a1.5,1.5,0,0,0,1.5,1.5h9.667a1.5,1.5,0,0,0,1.5-1.5V9.333A1.5,1.5,0,0,0,19.208,7.833Zm.167,2.96-4.493,2.18a1.131,1.131,0,0,1-1.014,0l-4.493-2.18V9.687L14.3,12.074a.144.144,0,0,0,.147,0l4.927-2.387v1.106Z"/>
+                </g>
+            </svg>
+            <p>Почта</p>
+        </button>
+        {% endif %}
+        <button class="navigation__link" onclick="location.href='{% url "profile_page" user.id %}'">
+            <img src='{{ user.image.url }}' class='navigation__profile'>
+            <p>{{ user.surname }} {{ user.name }}</p>
+        </button>
+    </nav>
 </body>
