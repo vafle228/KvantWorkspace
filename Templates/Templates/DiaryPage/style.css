@@ -126,12 +126,6 @@
 
 
 
-.widgetRow{
-    display: flex; flex-direction: column; gap: 1rem;
-    margin: 25px 45px 25px 121px;
-    padding: 0;
-}
-
 
 #tasks{
     display: flex; flex-direction: column; gap: 1rem;
@@ -140,14 +134,8 @@
     border-radius: 1rem;
 }
 
-
-.pageHeader{
-    display: flex; justify-content: space-between; align-items: center;
-}
-
 .header{
-    width: 100%;
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; flex-direction: row; justify-content: space-between;
 }
 .header__nav{
     display: flex; align-items: center; gap: 16px;

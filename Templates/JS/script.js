@@ -1,25 +1,14 @@
 
 function page_adaptation(){
 
-	let ratio = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
+	let ratio = window.innerWidth / 1920 < 0.75 ? 0.75 : window.innerWidth / 1920;
 
 	$("body").css({
 		"zoom": ratio,
 		"-moz-zoom": ratio,
 		"width": `${ 1 / ratio * 100}vw`,
-		// "height": `${ 1 / ratio * 100}%`
+		"height": `${ 1 / ratio * 100}vh`
 	});
-
-	// if (window.innerWidth < 576){
-	// 	$("body > section").attr("id", "snap-content");
-	// } else {
-	// 	$("body > section").attr("id", "");
-	// }
-	// var snapper = new Snap({
-	// 	element: document.getElementById('snap-content'),
-	// 	maxPosition: 300,
-	// 	minPosition: 0,
-	// });
 }
 
 $(window).ready(() => page_adaptation());
@@ -29,12 +18,13 @@ $(window).resize(() => page_adaptation());
 
 // Закрытие форм при клике вне
 $(document).mouseup(function (e) {
-	let exceptions = [$(".form-wrapper"), $("menu"), $(".alert")]
+	let exceptions = [$(".form-wrapper"), $(".alert"), $(".trigger")]
 
 	if(!(exceptions.filter(exception => exception.has(e.target).length !== 0).length)){
 		$(".form").removeClass("active");
 		$("body").css("overflow-y", "scroll");
 		$(".userSelect").hide();
+		$("menu").removeClass("active");
 	}
 });
 

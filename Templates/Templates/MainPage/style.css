@@ -6,6 +6,10 @@
 
 #main{
     transform-origin: 0 0;
+    padding: 1.5rem;
+    border: var(--theme-light) solid 2px;
+    border-color: transparent transparent transparent var(--theme-light);
+    border-radius: 1.5rem;
 }
 /* Виджеты */
 #widgets{
