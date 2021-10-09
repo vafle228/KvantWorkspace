@@ -24,238 +24,227 @@
 <body class='light__theme' colorScheme="colorScheme__green">
 
     <!-- Навигационное меню -->
-    <aside>
-        <!-- Логотип -->
-        <div id="logo" onclick="location.href='/'">
-            <img src='../../img/Кванториум SPACE.svg' alt='logo'/>
+    <nav class='navigation'>
+
+        <div class='navigation__logo'>
+            <img src='../../img/LOGO.svg' alt='logo'/>
         </div>
 
-        <!-- Навигация -->
-        <nav>
-            <!-- Главная -->
-            <button>
-                <div>
-                    <svg viewBox="0 0 16 16">
-                        <g transform="translate(-4 -4)">
-                            <rect class='bright' width="7" height="7" rx="1.5" transform="translate(4 4)"/>
-                            <path class='faded' d="M5.5,13h4A1.5,1.5,0,0,1,11,14.5v4A1.5,1.5,0,0,1,9.5,20h-4A1.5,1.5,0,0,1,4,18.5v-4A1.5,1.5,0,0,1,5.5,13Zm9-9h4A1.5,1.5,0,0,1,20,5.5v4A1.5,1.5,0,0,1,18.5,11h-4A1.5,1.5,0,0,1,13,9.5v-4A1.5,1.5,0,0,1,14.5,4Zm0,9h4A1.5,1.5,0,0,1,20,14.5v4A1.5,1.5,0,0,1,18.5,20h-4A1.5,1.5,0,0,1,13,18.5v-4A1.5,1.5,0,0,1,14.5,13Z"/>
+        <div class='navigation__group column'>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 576 512">
+                    <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
+                    <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
+                </svg>
+            </button>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 576 512">
+                    <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
+                    <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
+                </svg>
+            </button>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 512 512">
+                    <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
+                    <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
+                </svg>
+            </button>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 576 512">
+                    <path opacity='0.3' d="M352 287.9H162.3L79.5 350a9.7 9.7 0 0 1-15.5-7.8V288a64.06 64.06 0 0 1-64-64V64A64.06 64.06 0 0 1 64 0h288a64.06 64.06 0 0 1 64 64v160a63.91 63.91 0 0 1-64 63.9z"></path>
+                    <path d="M576 224v160a64.06 64.06 0 0 1-64 64h-32v54.3a9.7 9.7 0 0 1-15.5 7.8L381.7 448H256a64.06 64.06 0 0 1-64-64v-64h160a96.15 96.15 0 0 0 96-96v-64h64a64.06 64.06 0 0 1 64 64z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class='navigation__group column'>
+            <button onclick="switch_theme()" class='navigation__link'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <g id="eclipse" transform="translate(-8 -8)">
+                        <path opacity='0.3' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
+                        <g>
+                        <path d="M16.333,10.667A5.007,5.007,0,0,0,11.426,14.7,5.409,5.409,0,0,1,12,14.667,5.34,5.34,0,0,1,17.332,20a5.394,5.394,0,0,1-.033.573,5,5,0,0,0-.966-9.906Z"/>
+                        <path d="M16.333,10a.667.667,0,0,1-.667-.667V8.667a.667.667,0,0,1,1.334,0v.667A.667.667,0,0,1,16.333,10Z"/>
+                        <path d="M23.333,16.333h-.667a.667.667,0,1,1,0-1.333h.667a.667.667,0,0,1,0,1.333Z"/>
+                        <path d="M20.341,11.66a.668.668,0,0,1,0-.943l.471-.472a.667.667,0,1,1,.943.943l-.471.472A.668.668,0,0,1,20.341,11.66Z"/>
+                        <path d="M20.812,21.088l-.471-.472a.667.667,0,0,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                        <path d="M11.383,11.66l-.471-.472a.667.667,0,1,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
                         </g>
-                    </svg>
-                    <p>Главная</p>
-                </div>
+                    </g>
+                </svg>
             </button>
-            <!-- Дневник -->
-            <button>
-                <div>
-                    <svg viewBox="0 0 448 512">
-                        <path class='faded' d="M96 448c-19.2 0-32-12.8-32-32s16-32 32-32h319.33c-1.93 16.24-1.76 48.38.53 64z"></path>
-                        <path class='bright' d="M96 384h328a24 24 0 0 0 24-24V32a32 32 0 0 0-32-32H96A96 96 0 0 0 0 96v320a96 96 0 0 0 96 96h328a24 24 0 0 0 24-24v-16a24 24 0 0 0-24-24H96c-19.2 0-32-12.8-32-32s16-32 32-32zm32-250a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6zm0 64a6 6 0 0 1 6-6h212a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H134a6 6 0 0 1-6-6z"></path>
-                    </svg>
-                    <p>Задания</p>
-                </div>
+            <button onclick="switch_color_scheme()" class='navigation__link'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <g id="roller" transform="translate(-8 -8)">
+                        <path d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
+                        <path opacity='0.3' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
+                        <path d="M15.5,18H13.167A1.168,1.168,0,0,0,12,19.167v3.667A1.167,1.167,0,0,0,13.167,24H15.5a1.168,1.168,0,0,0,1.167-1.167V19.166A1.168,1.168,0,0,0,15.5,18Z"/>
+                    </g>
+                </svg>
             </button>
-            <button>
-                <div>
-                    <svg viewBox="0 0 18.174 18.053">
-                        <g transform="translate(-4 -2.947)">
-                            <path class='bright' d="M5,3H6A1,1,0,0,1,7,4V20a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V4A1,1,0,0,1,5,3Zm5,0h1a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V4A1,1,0,0,1,10,3Z"/>
-                            <rect class='faded' width="3" height="18" rx="1" transform="translate(13.477 3.924) rotate(-19)"/>
-                        </g>
-                    </svg> 
-                    <p>Проекты</p>
-                </div>
-            </button>
-            <!-- Почта -->
-            <button>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16.166" height="15.333" viewBox="0 0 16.166 15.333">
-                        <g id="messages" transform="translate(-8.042 -7.833)">
-                            <path class='faded' d="M22.375,11.833h-.333V15a2.836,2.836,0,0,1-2.833,2.833H11.376v1.5a1.835,1.835,0,0,0,1.833,1.833h.833v1.5A.5.5,0,0,0,14.91,23l1.685-1.838h5.78a1.835,1.835,0,0,0,1.833-1.833V13.666A1.835,1.835,0,0,0,22.375,11.833Z"/>
-                            <path class='bright' d="M19.208,7.833H9.542a1.5,1.5,0,0,0-1.5,1.5V15a1.5,1.5,0,0,0,1.5,1.5h9.667a1.5,1.5,0,0,0,1.5-1.5V9.333A1.5,1.5,0,0,0,19.208,7.833Zm.167,2.96-4.493,2.18a1.131,1.131,0,0,1-1.014,0l-4.493-2.18V9.687L14.3,12.074a.144.144,0,0,0,.147,0l4.927-2.387v1.106Z"/>
-                        </g>
-                      </svg>
-                      <p>Почта</p>
-                </div>
-                <p>11</p>
-            </button>
-        </nav>
-        <hr style='margin: 8px 16px' class='divider'/>
-        <nav>
-            <button onclick="switch_theme()">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                        <g id="eclipse" transform="translate(-8 -8)">
-                          <path class='faded' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
-                          <g>
-                            <path class='bright' d="M16.333,10.667A5.007,5.007,0,0,0,11.426,14.7,5.409,5.409,0,0,1,12,14.667,5.34,5.34,0,0,1,17.332,20a5.394,5.394,0,0,1-.033.573,5,5,0,0,0-.966-9.906Z"/>
-                            <path class='bright' d="M16.333,10a.667.667,0,0,1-.667-.667V8.667a.667.667,0,0,1,1.334,0v.667A.667.667,0,0,1,16.333,10Z"/>
-                            <path class='bright' d="M23.333,16.333h-.667a.667.667,0,1,1,0-1.333h.667a.667.667,0,0,1,0,1.333Z"/>
-                            <path class='bright' d="M20.341,11.66a.668.668,0,0,1,0-.943l.471-.472a.667.667,0,1,1,.943.943l-.471.472A.668.668,0,0,1,20.341,11.66Z"/>
-                            <path class='bright' d="M20.812,21.088l-.471-.472a.667.667,0,0,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
-                            <path class='bright' d="M11.383,11.66l-.471-.472a.667.667,0,1,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
-                          </g>
-                        </g>
-                      </svg>
-                    <p>Тема</p>
-                </div>
-                <span class="toggle theme"></span>
-            </button>
-            <button onclick="switch_color_scheme()">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                        <g id="roller" transform="translate(-8 -8)">
-                          <path class='bright' d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
-                          <path class='faded' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
-                          <path class='bright' d="M15.5,18H13.167A1.168,1.168,0,0,0,12,19.167v3.667A1.167,1.167,0,0,0,13.167,24H15.5a1.168,1.168,0,0,0,1.167-1.167V19.166A1.168,1.168,0,0,0,15.5,18Z"/>
-                        </g>
-                      </svg>
-                      <p>Цвет</p>
-                </div>
-                <span class="toggle color-scheme"></span>
-            </button>
-        </nav>
-        <nav>
+        </div>
+
+        <div class='navigation__group column'>
+
             <!-- Список задач -->
-            <button>
-                <div>
-                    <svg viewBox="0 0 512 512">
-                        <path class='faded' d="M166.57 282.71L44 159.21a17.87 17.87 0 0 1 .18-25.2l42.1-41.77a17.87 17.87 0 0 1 25.2.18l68.23 68.77L336.87 5.11a17.88 17.88 0 0 1 25.21.18L404 47.41a17.88 17.88 0 0 1-.18 25.21L191.78 282.89a17.88 17.88 0 0 1-25.21-.18z"></path>
-                        <path class='bright' d="M504.5 172a25.86 25.86 0 0 1 0 36.42L210.1 504.46a25.48 25.48 0 0 1-36.2 0L7.5 337.1a25.84 25.84 0 0 1 0-36.41l36.2-36.41a25.48 25.48 0 0 1 36.2 0L192 377l240.1-241.46a25.5 25.5 0 0 1 36.2 0L504.5 172z"></path>
-                    </svg>
-                    <p>Список задач</p>
-                </div>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 512 512">
+                    <path opacity='0.3' d="M166.57 282.71L44 159.21a17.87 17.87 0 0 1 .18-25.2l42.1-41.77a17.87 17.87 0 0 1 25.2.18l68.23 68.77L336.87 5.11a17.88 17.88 0 0 1 25.21.18L404 47.41a17.88 17.88 0 0 1-.18 25.21L191.78 282.89a17.88 17.88 0 0 1-25.21-.18z"></path>
+                    <path d="M504.5 172a25.86 25.86 0 0 1 0 36.42L210.1 504.46a25.48 25.48 0 0 1-36.2 0L7.5 337.1a25.84 25.84 0 0 1 0-36.41l36.2-36.41a25.48 25.48 0 0 1 36.2 0L192 377l240.1-241.46a25.5 25.5 0 0 1 36.2 0L504.5 172z"></path>
+                </svg>
             </button>
+
             <!-- Уведомления -->
-            <button>
-                <div>
-                    <svg viewBox="0 0 448 512">
-                        <path class='faded' d="M448 384c-.1 16.4-13 32-32.1 32H32.08C13 416 .09 400.4 0 384a31.25 31.25 0 0 1 8.61-21.71c19.32-20.76 55.47-52 55.47-154.29 0-77.7 54.48-139.9 127.94-155.16V32a32 32 0 1 1 64 0v20.84C329.42 68.1 383.9 130.3 383.9 208c0 102.3 36.15 133.53 55.47 154.29A31.27 31.27 0 0 1 448 384z"></path>
-                        <path class='bright' d="M160 448h128a64 64 0 0 1-128 0z"></path>
-                    </svg>
-                    <p>Уведомления</p>
-                </div>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 448 512">
+                    <path d="M448 384c-.1 16.4-13 32-32.1 32H32.08C13 416 .09 400.4 0 384a31.25 31.25 0 0 1 8.61-21.71c19.32-20.76 55.47-52 55.47-154.29 0-77.7 54.48-139.9 127.94-155.16V32a32 32 0 1 1 64 0v20.84C329.42 68.1 383.9 130.3 383.9 208c0 102.3 36.15 133.53 55.47 154.29A31.27 31.27 0 0 1 448 384z"></path>
+                    <path opacity='0.3' d="M160 448h128a64 64 0 0 1-128 0z"></path>
+                </svg>
             </button>
+
             <!-- Профиль -->
-            <div class="aside__profile">
+            <div class="navigation__profile">
+                <img src='../../img/Kaelthas.jpg'>
+            </div>
+        </div>
+    </nav>
 
-                <div class="aside__profileInfo">
-                    <img src='../../img/Kaelthas.jpg'>
-                    <div>
-                        <h2>Фамилия Имя</h2>
-                        <h4>Ученик</h4>
+    <!-- Навигационное меню для смартфонов -->
+    <nav class='navigationBar'>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 576 512">
+                <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
+                <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
+            </svg>
+            Главная
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 576 512">
+                <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
+                <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
+            </svg>
+            Задания
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 512 512">
+                <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
+                <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
+            </svg>
+            Проекты
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 576 512">
+                <path opacity='0.3' d="M352 287.9H162.3L79.5 350a9.7 9.7 0 0 1-15.5-7.8V288a64.06 64.06 0 0 1-64-64V64A64.06 64.06 0 0 1 64 0h288a64.06 64.06 0 0 1 64 64v160a63.91 63.91 0 0 1-64 63.9z"></path>
+                <path d="M576 224v160a64.06 64.06 0 0 1-64 64h-32v54.3a9.7 9.7 0 0 1-15.5 7.8L381.7 448H256a64.06 64.06 0 0 1-64-64v-64h160a96.15 96.15 0 0 0 96-96v-64h64a64.06 64.06 0 0 1 64 64z"></path>
+            </svg>
+            Сообщения
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 512 512">
+                <path opacity='0.3' d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
+                <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>
+            </svg>
+            Профиль
+        </button>
+    </nav>
+
+    <div class="mainContainer column">
+        <!-- Шапка -->
+        <header>
+            <div class='page-header'>
+                <h1>Проверка и выставление отметок</h1>
+            </div>
+        </header>
+
+        <!-- Проверка и выставление отметок -->
+        <section id='markEditor'>
+
+            <section class="filteringList">
+
+                <!-- Группа -->
+                <div class="filtering">
+                    <div class="dropdownSelect">
+                        <div class="dropdownSelect__trigger">
+                            <span>Группа</span>
+                            <div class="arrowDown"></div>
+                        </div>
+                        <div class="dropdownSelect__options">
+                            <span class='dropdownSelect__option'>Группа 1</span>
+                            <span class='dropdownSelect__option'>Группа 2</span>
+                        </div>
                     </div>
                 </div>
 
-                <button class='aside__profileButton'>
-                    <svg viewBox="0 0 16 16">
-                        <g transform="translate(-8 -8)">
-                            <circle class='faded' cx="1.667" cy="1.667" r="1.667" transform="translate(14.333 14.333)"/>
-                            <path class='faded' d="M21.75,16.667H16.833a.667.667,0,0,1,0-1.334H21.75a.667.667,0,1,1,0,1.334Z"/>
-                            <path class='faded' d="M15.584,15.945a.667.667,0,0,1-.578-.333l-2.38-4.122a.667.667,0,1,1,1.155-.667l2.38,4.122a.666.666,0,0,1-.577,1Z"/>
-                            <path class='faded' d="M13.293,21.354a.666.666,0,0,1-.577-1L15,16.389a.667.667,0,0,1,1.155.667l-2.289,3.965A.667.667,0,0,1,13.293,21.354Z"/>
-                            <path class='bright' d="M23.4,14.805l-.864-.087a6.615,6.615,0,0,0-.233-.877l.7-.506a.665.665,0,0,0,.188-.875l-.532-.921a.665.665,0,0,0-.852-.274l-.788.356a6.75,6.75,0,0,0-.644-.644l.356-.788a.665.665,0,0,0-.275-.851l-.92-.532a.666.666,0,0,0-.875.188l-.506.7a6.614,6.614,0,0,0-.877-.233L17.2,8.6a.664.664,0,0,0-.663-.6H15.469a.664.664,0,0,0-.663.6l-.087.864a6.614,6.614,0,0,0-.877.233l-.506-.7a.665.665,0,0,0-.875-.188l-.921.533a.664.664,0,0,0-.274.852l.356.788a6.749,6.749,0,0,0-.644.644l-.788-.356a.665.665,0,0,0-.851.275l-.533.919a.665.665,0,0,0,.188.875l.7.506a6.614,6.614,0,0,0-.233.877l-.864.087a.664.664,0,0,0-.6.663v1.063a.664.664,0,0,0,.6.663l.864.087a6.614,6.614,0,0,0,.233.877l-.7.506a.665.665,0,0,0-.188.875l.532.921a.663.663,0,0,0,.852.274l.788-.356a6.749,6.749,0,0,0,.644.644l-.356.788a.665.665,0,0,0,.275.851l.921.532a.664.664,0,0,0,.875-.188l.506-.7a6.615,6.615,0,0,0,.877.233l.087.864a.662.662,0,0,0,.662.6h1.063a.664.664,0,0,0,.663-.6l.087-.864a6.615,6.615,0,0,0,.877-.233l.506.7a.666.666,0,0,0,.875.188l.921-.532a.664.664,0,0,0,.274-.852l-.356-.788a6.749,6.749,0,0,0,.644-.644l.788.356a.664.664,0,0,0,.851-.275l.532-.921a.665.665,0,0,0-.188-.875l-.7-.506a6.615,6.615,0,0,0,.233-.877l.864-.087a.662.662,0,0,0,.6-.662V15.469a.664.664,0,0,0-.6-.664ZM16,20.667A4.667,4.667,0,1,1,20.667,16,4.672,4.672,0,0,1,16,20.667Z"/>
-                        </g>
-                    </svg>
+                <!-- Проектная группа -->
+                <div class="filtering disable">
+                    <div class="dropdownSelect">
+                        <div class="dropdownSelect__trigger">
+                            <span>Проектная группа</span>
+                            <div class="arrowDown"></div>
+                        </div>
+                        <div class="dropdownSelect__options">
+                            <span class='dropdownSelect__option'>Проектная группа 1</span>
+                            <span class='dropdownSelect__option'>Проектная группа 2</span>
+                            <span class='dropdownSelect__option'>Проектная группа 3</span>
+                            <span class='dropdownSelect__option'>Проектная группа 4</span>
+                            <span class='dropdownSelect__option'>Проектная группа 5</span>
+                            <span class='dropdownSelect__option'>Проектная группа 6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Задание -->
+                <div class="filtering disable">
+                    <div class="dropdownSelect">
+                        <div class="dropdownSelect__trigger">
+                            <span>Задание</span>
+                            <div class="arrowDown"></div>
+                        </div>
+                        <div class="dropdownSelect__options">
+                            <span class='dropdownSelect__option'>Задание 1</span>
+                            <span class='dropdownSelect__option'>Задание 2</span>
+                            <span class='dropdownSelect__option'>Задание 3</span>
+                            <span class='dropdownSelect__option'>Задание 4</span>
+                            <span class='dropdownSelect__option'>Задание 5</span>
+                            <span class='dropdownSelect__option'>Задание 6</span>
+                            <span class='dropdownSelect__option'>Задание 7</span>
+                            <span class='dropdownSelect__option'>Задание 8</span>
+                            <span class='dropdownSelect__option'>Задание 9</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <div id='markPalette'>
+                <button class="active hint">
+                    <span>Отлично</span>
+                    <div class="four"></div>
                 </button>
-
+                <button class='hint'>
+                    <span>Хорошо</span>
+                    <div class="three"></div>
+                </button>
+                <button class='hint'>
+                    <span>Плохо</span>
+                    <div class="two"></div>
+                </button>
+                <button class='hint'>
+                    <span>Не сделано</span>
+                    <div class="one"></div>
+                </button>
+                <button class='hint'>
+                    <span>Отсутствие</span>
+                    <div class="absence"></div>
+                </button>
+                <button class='hint'>
+                    <span>Уважительная причина</span>
+                    <div class="disease"></div>
+                </button>
             </div>
-        </nav>
-    </aside>
-
-    <!-- Шапка -->
-    <header>
-        <div class='page-header'>
-            <h1>Проверка и выставление отметок</h1>
-        </div>
-    </header>
-
-    <!-- Проверка и выставление отметок -->
-    <section id='markEditor'>
-
-        <section class="filteringList">
-
-            <!-- Группа -->
-            <div class="filtering">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Группа</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Группа 1</span>
-                        <span class='dropdownSelect__option'>Группа 2</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Проектная группа -->
-            <div class="filtering disable">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Проектная группа</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Проектная группа 1</span>
-                        <span class='dropdownSelect__option'>Проектная группа 2</span>
-                        <span class='dropdownSelect__option'>Проектная группа 3</span>
-                        <span class='dropdownSelect__option'>Проектная группа 4</span>
-                        <span class='dropdownSelect__option'>Проектная группа 5</span>
-                        <span class='dropdownSelect__option'>Проектная группа 6</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Задание -->
-            <div class="filtering disable">
-                <div class="dropdownSelect">
-                    <div class="dropdownSelect__trigger">
-                        <span>Задание</span>
-                        <div class="arrowDown"></div>
-                    </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option'>Задание 1</span>
-                        <span class='dropdownSelect__option'>Задание 2</span>
-                        <span class='dropdownSelect__option'>Задание 3</span>
-                        <span class='dropdownSelect__option'>Задание 4</span>
-                        <span class='dropdownSelect__option'>Задание 5</span>
-                        <span class='dropdownSelect__option'>Задание 6</span>
-                        <span class='dropdownSelect__option'>Задание 7</span>
-                        <span class='dropdownSelect__option'>Задание 8</span>
-                        <span class='dropdownSelect__option'>Задание 9</span>
-                    </div>
-                </div>
-            </div>
-
         </section>
+    </div>
 
-        <div id='markPalette'>
-            <button class="active hint">
-                <span>Отлично</span>
-                <div class="four"></div>
-            </button>
-            <button class='hint'>
-                <span>Хорошо</span>
-                <div class="three"></div>
-            </button>
-            <button class='hint'>
-                <span>Плохо</span>
-                <div class="two"></div>
-            </button>
-            <button class='hint'>
-                <span>Не сделано</span>
-                <div class="one"></div>
-            </button>
-            <button class='hint'>
-                <span>Отсутствие</span>
-                <div class="absence"></div>
-            </button>
-            <button class='hint'>
-                <span>Уважительная причина</span>
-                <div class="disease"></div>
-            </button>
-        </div>
-    </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->

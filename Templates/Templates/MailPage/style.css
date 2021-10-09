@@ -15,19 +15,25 @@
     font-size: 1.2rem; font-weight: 500;
     transition: all .05s;
 }
+.mailNavigation__composeBtn:active{
+    transform: scale(0.98);
+}
 .mailNavigation__composeBtn:hover{
     background-color: var(--currentColor);
     color: #fff;
 }
 .mailNavigation__link{
     background-color: unset;
-    height: 3.5rem;
-    border-radius: 0.5rem;
+    height: 3rem;
+    border-radius: 0.4rem;
     color: var(--text-primary-color);
     padding: 0.75rem 1rem;
-    display: flex; align-items: center; gap: 12px;
-    font-size: 1rem; font-weight: 500;
-    transition: all .05s;
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 1rem; font-weight: 400;
+    transition: all .2s;
+}
+.mailNavigation__link:active{
+    transform: scale(0.96);
 }
 .mailNavigation__link svg{
     width: 1.25rem; height: 1.25rem;
@@ -38,11 +44,11 @@
 }
 .mailNavigation__link.active{
     background-color: var(--item-bg-color);
-    color: var(--currentColor);
+    /* color: var(--currentColor); */
 }
 .mailNavigation__link.active svg path{
     fill: var(--currentColor);
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 .labelsContainer__label{
@@ -87,7 +93,7 @@
 
 .mails{
     background-color: var(--item-bg-color);
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     height: 100%; width: 36rem;
     overflow: hidden;
     position: relative;
@@ -141,7 +147,11 @@
     display: flex; flex-direction: column; gap: 1rem;
     padding: 1rem;
     position: relative;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
+    transition: transform .2s;
+}
+.mailItem:active{
+    transform: scale(0.98);
 }
 .mailItem:hover{
     background-color: var(--theme-light);
@@ -181,7 +191,7 @@
     color: var(--text-primary-color);
 }
 .mailItem__tag{
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 0.25rem 0.75rem;
     transition: all .1s;
     background-color: var(--bgColor);
@@ -392,7 +402,7 @@
     }
 
     .mailView.active{
-        top: 0; left: 7rem;
+        top: 0; left: 6.5rem;
     }
     .mailView .closeButton{
         visibility: visible;

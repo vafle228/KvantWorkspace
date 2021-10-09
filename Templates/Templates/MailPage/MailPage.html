@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
 
     <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel="shortcut icon" href="../../img/LOGO.svg" type="image/png" /> <!-- Логотип -->
+    <link rel="shortcut icon" href="../../img/google.svg" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     
     <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
@@ -25,7 +25,7 @@
     <nav class='navigation'>
 
         <div class='navigation__logo'>
-            <img src='../../img/LOGO.svg' alt='logo'/>
+            <img src='../../img/google.svg' alt='logo'/>
         </div>
 
         <div class='navigation__group column'>
@@ -49,6 +49,12 @@
             </button>
             <button class='navigation__link active'>
                 <svg viewBox="0 0 576 512">
+                    <defs>
+                        <linearGradient id="gradient">
+                            <stop offset="0%" stop-color="var(--color-start)" />
+                            <stop offset="100%" stop-color="var(--color-stop)" />
+                        </linearGradient>
+                    </defs>
                     <path opacity='0.3' d="M352 287.9H162.3L79.5 350a9.7 9.7 0 0 1-15.5-7.8V288a64.06 64.06 0 0 1-64-64V64A64.06 64.06 0 0 1 64 0h288a64.06 64.06 0 0 1 64 64v160a63.91 63.91 0 0 1-64 63.9z"></path>
                     <path d="M576 224v160a64.06 64.06 0 0 1-64 64h-32v54.3a9.7 9.7 0 0 1-15.5 7.8L381.7 448H256a64.06 64.06 0 0 1-64-64v-64h160a96.15 96.15 0 0 0 96-96v-64h64a64.06 64.06 0 0 1 64 64z"></path>
                 </svg>
@@ -169,32 +175,32 @@
                 <button class="mailNavigation__composeBtn" onclick="$('#newMailItemForm').toggleClass('active')">
                     Новое сообщение
                 </button>
-                <nav class='column g8'>
+                <nav class='column g4'>
                     <button class="mailNavigation__link row active">
                         <svg viewBox="0 0 576 512">
-                            <path opacity="0.3" d="M528 512H48a48 48 0 0 1-48-48v-95.2a47.29 47.29 0 0 1 10.7-30l94.4-118a12 12 0 0 1 18.1-.7l27.6 29.5a12 12 0 0 1 .6 15.7L107.6 320H200l32 64h112l32-64h92.3L424 264.6a12.16 12.16 0 0 1 .8-15.9l28.1-28.9a12.12 12.12 0 0 1 18 .9l94.6 118.2a47.77 47.77 0 0 1 10.5 29.9V464a48 48 0 0 1-48 48z"></path>
+                            <path opacity="0.6" d="M528 512H48a48 48 0 0 1-48-48v-95.2a47.29 47.29 0 0 1 10.7-30l94.4-118a12 12 0 0 1 18.1-.7l27.6 29.5a12 12 0 0 1 .6 15.7L107.6 320H200l32 64h112l32-64h92.3L424 264.6a12.16 12.16 0 0 1 .8-15.9l28.1-28.9a12.12 12.12 0 0 1 18 .9l94.6 118.2a47.77 47.77 0 0 1 10.5 29.9V464a48 48 0 0 1-48 48z"></path>
                             <path d="M171.5 160h61.9V17.1A17.16 17.16 0 0 1 250.5 0h68.6a17.09 17.09 0 0 1 17.1 17.1V160h68.3c17.8 0 26.7 21.5 14.1 34.1l-119.4 120a20 20 0 0 1-28.6-.3L157 193.8c-12.1-12.7-3.1-33.8 14.5-33.8z"></path>
                         </svg>
                         Входящие
                     </button>
                     <button class="mailNavigation__link row">
                         <svg viewBox="0 0 512 512">
-                            <path opacity="0.3" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z"></path>
+                            <path opacity="0.6" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z"></path>
                             <path d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path>
                         </svg>
                         Отправленные
                     </button>
                     <button class="mailNavigation__link row">
                         <svg viewBox="0 0 576 512">
-                            <path  opacity="0.3" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z"></path>
+                            <path  opacity="0.6" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z"></path>
                             <path d="M110.4 474.5l25-145.5L29.7 226c-19-18.5-8.5-50.8 17.7-54.6l146.1-21.2 65.3-132.4A31.62 31.62 0 0 1 287.5 0v439.6l-130.7 68.6c-23.4 12.3-50.9-7.6-46.4-33.7z"></path>
                         </svg>
                         Важные
                     </button>
-                    <hr class="divider">
+                    <!-- <hr class="divider" style='display: none;'> -->
                     <button class="mailNavigation__link row" onclick='$(".labelsContainer").toggleClass("active")'>
                         <svg viewBox="0 0 640 512">
-                            <path opacity="0.3" d="M497.94 225.94L286.06 14.06A48 48 0 0 0 252.12 0H48A48 48 0 0 0 0 48v204.12a48 48 0 0 0 14.06 33.94l211.88 211.88a48 48 0 0 0 67.88 0l204.12-204.12a48 48 0 0 0 0-67.88zM112 160a48 48 0 1 1 48-48 48 48 0 0 1-48 48z"></path>
+                            <path opacity="0.6" d="M497.94 225.94L286.06 14.06A48 48 0 0 0 252.12 0H48A48 48 0 0 0 0 48v204.12a48 48 0 0 0 14.06 33.94l211.88 211.88a48 48 0 0 0 67.88 0l204.12-204.12a48 48 0 0 0 0-67.88zM112 160a48 48 0 1 1 48-48 48 48 0 0 1-48 48z"></path>
                             <path d="M625.94 293.82L421.82 497.94a48 48 0 0 1-67.88 0l-.36-.36 174.06-174.06a90 90 0 0 0 0-127.28L331.4 0h48.72a48 48 0 0 1 33.94 14.06l211.88 211.88a48 48 0 0 1 0 67.88z"></path>
                         </svg>
                         Метки
@@ -203,7 +209,7 @@
                             <path d="M435 187.15L241 381.48a23.94 23.94 0 0 1-33.84 0l-40-40 211.34-211a23.93 23.93 0 0 1 33.84 0L435 153.21a24 24 0 0 1 0 33.94z"></path>
                         </svg>
                     </button>
-                    <div class="labelsContainer column g8">
+                    <div class="labelsContainer column g4">
                         <button class="mailNavigation__link labelsContainer__label row g12 w100">
                             <svg viewBox="0 0 496 512">
                                 <path opacity="0.3" d="M248,8C111,8,0,119,0,256S111,504,248,504,496,393,496,256,385,8,248,8Zm0,312a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
@@ -304,13 +310,10 @@
                             <strong>Lorem ipsum dolor sit amet.</strong>
                             Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?
                         </p>
-                        <div class="mailItem__tags row g8">
-                            <span class="mailItem__tag">Новое</span>
-                        </div>
                     </div>
                     <p class="mailItem__date">13 августа</p>
                 </div>
-                <div class="mailItem">
+                <div class="mailItem new">
                     <div class="senderInfo">
                         <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
                         <div>
@@ -326,7 +329,7 @@
                     </div>
                     <p class="mailItem__date">11 сентября</p>
                 </div>
-                <div class="mailItem new">
+                <div class="mailItem">
                     <div class="senderInfo">
                         <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
                         <div>
@@ -438,9 +441,9 @@
                     </svg>
                 </button>
                 <div class="row g8">
-                    <button class='actionButton transparent active' title='Отметить как важное' id='markAsImportant'>
+                    <button class='actionButton transparent' title='Отметить как важное' id='markAsImportant'>
                         <svg viewBox="0 0 24 24">
-                            <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.6"></path>
+                            <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.8"></path>
                             <path d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
                         </svg>
                     </button>
