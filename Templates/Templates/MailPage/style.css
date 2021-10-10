@@ -136,10 +136,10 @@
 }
 
 .mails__container{
-    height: calc(100% - 7rem);
+    height: calc(100% - 7.5rem);
     overflow: auto;
     scroll-behavior: smooth;
-    padding: 0 1rem 0.5rem;
+    padding: 0 1rem 0;
 }
 
 /* Сообщение */
@@ -285,9 +285,9 @@
     bottom: 0;
 }
 #newMailItemForm.fullscreen{
-    right: calc(50% - 50rem);
+    right: 4rem;
     display: flex; align-items: center;
-    width: 100rem; height: 100%;
+    width: calc(100% - 8rem - 5.5rem); height: 100%;
     padding: 4rem 0;
 }
 
@@ -410,6 +410,11 @@
     .windowButton:first-of-type{
         display: none;
     }
+
+    #newMailItemForm.fullscreen{
+        width: calc(100% - 2rem);
+        right: 1rem;
+    }
 }
 
 @media screen and (max-width: 740px){
@@ -448,7 +453,7 @@
         border: none;
         border-radius: 0;
     }
-    .mailNavigation, .navigation, .divider{
+    .mailNavigation, .divider{
         display: none;
     }
     #newMessageButton, .mailNavigationBar{
@@ -483,7 +488,7 @@
         height: calc(100% - 8rem);
         scroll-behavior: smooth;
     }
-    .mailItem, .mailItem.new{
+    .mailItem.new{
         background-color: var(--item-bg-color);
     }
     #actionMenuTrigger{

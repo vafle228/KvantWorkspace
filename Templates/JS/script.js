@@ -34,9 +34,6 @@ function open_form(form_id) {
 	$(form_id).addClass("active");
 }
 
-
-console.log(s < d < f ? s < f : s < d < 366 || 0 < d < f)
-
 // Поиск пользователя
 function filterFunction(input) {
 	let substr = input.value.toUpperCase();
