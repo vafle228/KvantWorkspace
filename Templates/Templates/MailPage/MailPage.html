@@ -434,10 +434,12 @@
 
         <div class="mailView column">
             <header class="mailView__header row space-between">
-                <button onclick="$('.mailView').toggleClass('active')" class='actionButton closeButton'>
-                    <svg viewBox="0 0 352 512">
-                        <path opacity='0.6' d="M9.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L176,322.72,109.28,256ZM342.79,111.45,320.55,89.21a31.46,31.46,0,0,0-44.48,0L176,189.28,242.72,256,342.79,155.93a31.46,31.46,0,0,0,0-44.48Z"></path>
-                        <path d="M342.79,356.07a31.46,31.46,0,0,1,0,44.48l-22.24,22.24a31.46,31.46,0,0,1-44.48,0L9.21,155.93a31.46,31.46,0,0,1,0-44.48L31.45,89.21a31.46,31.46,0,0,1,44.48,0Z"></path>
+                <button onclick="$('.mailView').toggleClass('active')" class='actionButton transparent closeButton'>
+                    <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                        <g transform="translate(-5 -5)">
+                            <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                            <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                        </g>
                     </svg>
                 </button>
                 <div class="row g8">

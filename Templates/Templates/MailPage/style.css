@@ -29,7 +29,7 @@
     color: var(--text-primary-color);
     padding: 0.75rem 1rem;
     display: flex; align-items: center; gap: 1rem;
-    font-size: 1rem; font-weight: 400;
+    font-size: 1.05rem; font-weight: 400;
     transition: all .2s;
 }
 .mailNavigation__link:active{
@@ -44,11 +44,9 @@
 }
 .mailNavigation__link.active{
     background-color: var(--item-bg-color);
-    /* color: var(--currentColor); */
 }
 .mailNavigation__link.active svg path{
     fill: var(--currentColor);
-    /* opacity: 1; */
 }
 
 .labelsContainer__label{
@@ -139,16 +137,16 @@
     height: calc(100% - 7.5rem);
     overflow: auto;
     scroll-behavior: smooth;
-    padding: 0 1rem 0;
+    padding: 0 1rem;
 }
 
 /* Сообщение */
 .mailItem{
     display: flex; flex-direction: column; gap: 1rem;
     padding: 1rem;
-    position: relative;
     border-radius: 0.75rem;
     transition: transform .2s;
+    position: relative;
 }
 .mailItem:active{
     transform: scale(0.98);
@@ -181,7 +179,6 @@
 
 /* Тема, текст, файлы и теги */
 .mailItem__title{
-    width: fit-content;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -191,8 +188,8 @@
     color: var(--text-primary-color);
 }
 .mailItem__tag{
-    border-radius: 0.5rem;
-    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
     transition: all .1s;
     background-color: var(--bgColor);
     color: var(--currentColor);
@@ -205,15 +202,13 @@
 /* Дата */
 .mailItem__date{
     color: var(--text-primary-color);
-    margin-left: auto;
     white-space: nowrap;
-
-    position: absolute; top: 1.5rem; right: 1.5rem;
+    position: absolute; top: 1rem; right: 1rem;
 }
 
+/* Просмотр письма */
 .mailView{
-    width: calc(100% - 20rem - 36rem);
-    border-radius: 1rem;
+    width: calc(100% - 18rem - 36rem - 3rem);
 }
 .mailView__header{
     padding: 1rem 0;
@@ -222,11 +217,10 @@
     visibility: hidden;
 }
 .mailView__content{
-    height: calc(100% - 7rem);
+    height: calc(100% - 7.5rem);
     overflow: auto;
 }
 .mailView__date{
-    padding: 0 1rem;
     color: var(--text-primary-color);
 }
 .mailView__title{
@@ -234,7 +228,6 @@
 }
 .mailView__text{
     font-size: 1.1rem;
-    color: var(--text-primary-color);
 }
 .mailView .file{
     width: auto;
@@ -247,22 +240,18 @@
 #markAsImportant svg{
     height: 1.5rem; width: 1.5rem;
 }
-#markAsImportant:hover{
-    fill: var(--currentColor);
-}
 #markAsImportant.active svg{
     fill: #ffc700;
 }
 
 
-
+/* Форма создания сообщения */
 #newMailItemForm{
-    position: fixed; bottom: -1000px; right: 0;
+    position: fixed; bottom: -100%; right: 0;
     width: 50rem;
     max-height: 100%; max-width: 100%;
     overflow: auto;
     padding: 1.5rem;
-
     transition-duration: .4s;
     transition-property: width height padding;
 }
@@ -280,31 +269,28 @@
     transition-property: visibility opacity;
     transition-duration: .4s;
 }
-
 #newMailItemForm.active{
     bottom: 0;
 }
 #newMailItemForm.fullscreen{
-    right: 4rem;
     display: flex; align-items: center;
-    width: calc(100% - 8rem - 5.5rem); height: 100%;
-    padding: 4rem 0;
+    width: 100%; height: 100%;
+    padding: 4rem 4rem 4rem 9.5rem;
 }
-
 #newMailItemForm.fullscreen::before{
     opacity: 1;
     visibility: visible;
 }
+
 #newMailItemForm form{
-    border: var(--theme-light) solid 2px;
+    border: var(--bgColor) solid 1px;
     background-color: var(--aside-bg-color);
-    border-radius: 1rem;
-    max-height: 100%; max-width: 100%;
+    border-radius: 0.75rem;
     transition-duration: .4s;
     transition-property: width height;
 }
 #newMailItemForm.fullscreen form{
-    width: 100rem;
+    width: calc(100% - 5.5rem);
     max-height: unset;
     margin: auto 0;
 }
@@ -373,13 +359,14 @@
 .windowButton:hover{
     background-color: var(--theme-light);
 }
-.windowButton:hover svg{
-    fill: var(--currentColor);
-}
 .windowButton svg{
     fill: var(--text-primary-color);
     width: 1rem; height: 1rem;
 }
+.windowButton:hover svg{
+    fill: var(--currentColor);
+}
+
 
 #newMailItem__userSelect{
     position: absolute; top: 9rem; left: 5rem;
@@ -394,7 +381,7 @@
     }
 
     .mailView{
-        width: calc(100% - 7rem); height: 100%;
+        width: calc(100% - 6rem); height: 100%;
         position: fixed; top: 0; left: 100%;
         background-color: var(--aside-bg-color);
         padding: 0.5rem 1.5rem;
@@ -402,33 +389,31 @@
     }
 
     .mailView.active{
-        top: 0; left: 6.5rem;
+        left: 6rem;
     }
     .mailView .closeButton{
         visibility: visible;
-    }
-    .windowButton:first-of-type{
-        display: none;
+        margin-left: -1rem;
     }
 
     #newMailItemForm.fullscreen{
-        width: calc(100% - 2rem);
-        right: 1rem;
+        padding: 1rem;
+    }
+    #newMailItemForm.fullscreen form{
+        width: 100%;
     }
 }
 
 @media screen and (max-width: 740px){
 
     .mailView{
-        width: calc(100%); height: 96%;
+        width: 100%; height: 96%;
         position: fixed; top: 100%; left: 0;
-        background-color: var(--aside-bg-color);
-        padding: 0.5rem 1.5rem 4rem;
+        padding: 1.5rem 1.5rem 4rem;
         border-radius: 2rem 2rem 0 0;
         transition: top .4s;
-        box-shadow: 0 0 1rem var(--theme-light);
+        box-shadow: 0 0 2rem var(--theme-light-alpha);
     }
-
     .mailView.active{
         top: 4%; left: 0;
     }
@@ -439,13 +424,7 @@
         position: absolute; top: 1rem; left: 45%;
         border-radius: 0.25rem;
     }
-    .windowButton:first-of-type{
-        display: none;
-    }
 
-    body{
-        padding-left: 0;
-    }
     .mainContainer{
         flex-direction: column;
         padding: 1rem 1rem 0 !important;
@@ -453,7 +432,7 @@
         border: none;
         border-radius: 0;
     }
-    .mailNavigation, .divider{
+    .mailNavigation, .divider, .windowButton:first-of-type{
         display: none;
     }
     #newMessageButton, .mailNavigationBar{
@@ -486,18 +465,15 @@
     .mails__container{
         padding: 0.5rem 0;
         height: calc(100% - 8rem);
-        scroll-behavior: smooth;
     }
-    .mailItem.new{
+    .mailItem.new, .mailItem:hover{
         background-color: var(--item-bg-color);
     }
-    #actionMenuTrigger{
-        display: flex;
-    }
+
     #newMailItemForm{
         padding: 0 0 4rem;
     }
     #newMailItemForm form{
-        border-radius: 0;
+        border-radius: 0.75rem 0.75rem 0 0;
     }
 }

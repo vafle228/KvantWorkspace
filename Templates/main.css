@@ -14,8 +14,8 @@ body[colorScheme='colorScheme__green']{
     --bgColor-solid: #e1f9ef;
     --bgColor: #20d48922;
     --currentColor: #20d489;
-    --color-start: #a8ff78; 
-    --color-stop: #78ffd6;
+    /* --color-start: #a8ff78; 
+    --color-stop: #78ffd6; */
 }
 body[colorScheme='colorScheme__blue']{
     --bgColor-solid: #ddf4ff;
@@ -85,18 +85,19 @@ a{ text-decoration: none; color: unset; }
 /* Настройка шрифтов и размеров текста */
 ::placeholder{ font-family: 'Google Sans' }
 h1{ font-size: 2rem; font-weight: bold; color: var(--text-primary-color)}
-h2, h2 *{ font-size: 1.6rem; font-weight: bold; color: var(--text-primary-color)}
-h3, .dropdown-input{ font-size: 1.1; font-weight: 500; color: #6A6F78 }
-h4, h6{ font-size: 1.2rem; font-weight: 300; color: #6A6F78}
+h2{ font-size: 1.6rem; font-weight: bold; color: var(--text-primary-color)}
+h3{ font-size: 1.2rem; font-weight: 500; color: #70757D }
+h4, h6{ font-size: 1.2rem; font-weight: 300; color: #70757D}
 p{ font-size: 1rem; font-weight: normal; color: #70757D }
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
-span{ color: var(--text-primary-color); vertical-align: text-bottom }
+/* span{ color: var(--text-primary-color); vertical-align: text-bottom } */
 
 
 html{
     /* Плавный скрол страницы */
     scroll-behavior: smooth;
 
+    /* Параметр, от которого зависит размер всех элементов */
     font-size: 16px;
 }
   
@@ -116,23 +117,23 @@ body{
     user-select: none;
 
     /* Убирает подсветку кнопок при нажатии на смартфонах */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: #0000;
 
     /* Отступ для навигации */
     padding-left: 5.5rem;
 }
 
+/* Основной контейнер */
 .mainContainer{
-    background-color: var(--aside-bg-color);
     height: 100%; width: 100%;
     padding: 1.5rem;
     border: var(--theme-light) solid 2px;
     border-color: transparent transparent transparent var(--theme-light);
     border-radius: 1.5rem;
-
     display: flex; gap: 1.5rem;
 }
 
+/* Быстрые классы */
 .row{ display: flex; flex-direction: row; align-items: center }
 .column{ display: flex; flex-direction: column }
 
@@ -151,6 +152,7 @@ body{
 
 .space-between{ justify-content: space-between }
 
+
 .item{
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
@@ -167,16 +169,12 @@ body{
 .navigation{
     position: fixed; top: 0; left: 0;
     height: 100%; width: 5.5rem;
-    background-color: var(--aside-bg-color);
-    /* box-shadow: rgb(0 0 0 / 8%) 0px 10px 20px 0px; */
 }
-
 .navigation__logo img{
     width: 3.5rem; height: 3.5rem;
     padding: 0.5rem;
     margin: 2rem 1rem 2rem;
 }
-
 .navigation__group:last-of-type{
     position: fixed; bottom: 0;
 }
@@ -197,7 +195,6 @@ body{
     margin: 1rem;
     fill: #9ea5b0;
 }
-
 .navigation__link:hover, .navigation__link.active{
     background-color: var(--theme-light);
 }
@@ -205,7 +202,6 @@ body{
     fill: var(--currentColor);
     opacity: 1;
 }
-
 .navigation__link.active::after{
     content: "";
     position: absolute; top: 30%; left: 0;
@@ -219,7 +215,7 @@ body{
     object-fit: cover;
 }
 
-
+/* Навигация для смартфонов */
 .navigationBar{
     width: 100%; height: 4rem;
     display: none;
@@ -271,31 +267,17 @@ body{
     background-color: var(--currentColor);
 }
 
+/* Смена навигации */
 @media screen and (max-width: 740px){
     body{
         padding-left: 0;
         padding-bottom: 4rem;
     }
-    .navigation{
-        display: none;
-    }
-    .navigationBar{
-        display: flex;
-    }
+    .navigation{ display: none }
+    .navigationBar{ display: flex }
 }
 
-
-/* Шапка */
-body > header{
-    position: relative;
-    z-index: 1;
-    width: 100%; height: 5rem;
-    padding: 1.5rem;
-    display: flex; align-items: center;
-}
-
-
-/* Формы */
+/* Формы просмотра и заполнения информации */
 .form{ visibility: hidden; transition: visibility .4s }
 .form.active{ visibility: visible }
 
@@ -312,19 +294,13 @@ body > header{
 .form.active::before{
     visibility: visible; opacity: 1;
 }
+
 .form .form-wrapper{
     overflow-y: scroll; padding: 6rem 0 6rem 2.375rem;
     position: fixed; top: 0; left: calc(50% - 31.25rem);
     height: 100%;
     z-index: 3;
     display: flex; align-items: center;
-}
-.form .forms__container{
-    display: flex; flex-direction: column; gap: 0.5rem;
-    margin: auto 0;
-}
-.form .forms__container > form{
-    margin: 0;
 }
 .form .form-wrapper form{
     width: 62.5rem;
@@ -342,7 +318,7 @@ body > header{
 }
 
 /* Кнопки в форме */
-.form .form-wrapper form .form-btn{
+.form-btn{
     background-color: unset;
     padding: 0 0.75rem; margin: auto 0;
     min-height: 3rem; max-height: 3rem;
@@ -350,13 +326,13 @@ body > header{
     transition-property: color background-color box-shadow; transition-duration: .2s;
     display: flex; align-items: center; gap: 0.5rem;
 }
-.form .form-wrapper form .form-btn p{
+.form-btn p{
     font-weight: 500; font-size: 1.2rem;
 }
 .form-btn p{
     color: var(--currentColor);
 }
-.form .form-wrapper form .form-btn:hover{
+.form-btn:hover{
     background-color: var(--button-bg-hover-color);
 }
 
@@ -389,18 +365,6 @@ body > header{
     font-size: 1.3rem;
 }
 
-/* Временно */
-.form .form-wrapper form .item-header .lesson-teacher{
-    display: flex; align-items: center; gap: 0.5rem;
-}
-.form .form-wrapper form .item-header .lesson-teacher img{
-    width: 2rem; height: 2rem;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.form .form-wrapper form .item-header .lesson-teacher h4{
-    font-size: 1rem;
-}
 
 /* Toggle */
 .toggle{
@@ -508,7 +472,7 @@ body > header{
 }
 
 
-/* Пользователи */
+/* Пользователи (Надо обновлять) */
 .users{
     display: flex; gap: 0.33%;
     flex-wrap: wrap;
@@ -548,8 +512,8 @@ body > header{
     object-fit: cover;
 }
 
-/* Выбранные пользователи */
-.selected::before{
+/* Выбранные пользователи (Старые) */
+/* .selected::before{
     content: "";
     height: 54px;
 }
@@ -562,39 +526,7 @@ body > header{
     content: "\f15d";
     font-family: "uicons-regular-rounded"; color: red;
     margin: 0 0.5rem;
-}
-
-/* Поиск пользователей */
-.dropdown-input{
-    font-size: 1.4rem; color: var(--text-primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    flex-grow: 1;
-    background-color: var(--button-bg-hover-color);
-}
-.dropdown-input::placeholder{
-    color: #aaa; font-weight: 100;
-}
-.filter-button{
-    border-radius: 0.5rem;
-    width: 3rem; height: 3rem;
-    background-color: var(--button-bg-hover-color);
-}
-
-/* Фон */
-.bg{
-    position: fixed; right: -20%; top: 15%;
-    height: 80%;
-    animation: you_spin_me_right_round 200s infinite;
-    z-index: -1000;
-    opacity: .5;
-}
-
-/* Анимация */
-@keyframes you_spin_me_right_round{
-    from{ transform: rotate(0deg) }
-    to{ transform: rotate(720deg) }
-}
+} */
 
 
 /* Кнопка с эффектом нажатия */
@@ -742,7 +674,6 @@ body > header{
 }
 
 
-
 /* Вернуться в начало страницы */
 #arrowTop{
     position: fixed;
@@ -761,7 +692,7 @@ body > header{
     fill: var(--currentColor);
 }
 
-
+/* Кнопки */
 button.primaryButton{
     background-color: var(--button-bg-color);
 }
@@ -838,7 +769,13 @@ button.primaryButton:hover{
     transition: all .2s;
 }
 
+button[class$='Button']:active{
+    transition: transform .2s;
+    transform: scale(0.96);
+}
 
+
+/* Меню по разделам */
 .menu{
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
@@ -898,14 +835,12 @@ button.primaryButton:hover{
 }
 
 
-
 /* Оповещения об ошибках */
 .alertsContainer{
     position: fixed; bottom: 0; left: 0;
     padding: 1rem;
     z-index: 10;
-    display: flex; flex-direction: column; align-items: center;
-    gap: 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
     width: 100%;
 }
 .alert{
@@ -933,6 +868,7 @@ button.primaryButton:hover{
 }
 
 
+/* Выбор пользователя */
 .userSelect{
     width: 32rem;
     background-color: var(--item-bg-color);
@@ -979,7 +915,6 @@ button.primaryButton:hover{
 #userSearch{
     height: 27.2px;
 }
-
 #selectedUsers{
     display: flex; flex-wrap: wrap; gap: 0.25rem;
 }
@@ -1004,20 +939,3 @@ button.primaryButton:hover{
 #selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
     display: none;
 }
-
-/* #snap-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    z-index: 2;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-          -o-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-  } */
