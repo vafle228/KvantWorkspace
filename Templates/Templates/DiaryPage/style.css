@@ -4,6 +4,7 @@
     background-color: var(--item-bg-color);
     border-radius: 0.75rem;
     width: calc(100% - 1.5rem - 18rem);
+    box-shadow: inset 0 0 1rem var(--theme-light);
 }
 
 .header{
@@ -32,13 +33,13 @@
     scroll-behavior: smooth;
 }
 .task{
+    background-color: var(--aside-bg-color);
     display: flex; flex-direction: row; gap: 16px;
     border-radius: 8px;
-    transition: background-color .1s;
     position: relative;
 }
-.task:hover{
-    background-color: var(--theme-light);
+.light__theme .task{
+    box-shadow: 0 0 2rem var(--theme-light);
 }
 .task.active{
     flex-direction: column;
@@ -53,20 +54,17 @@
     white-space: normal;
 }
 .task__icon{
-    width: 64px; height: 64px;
-    padding: 20px;
+    width: 3.5rem; height: 3.5rem;
+    padding: 1rem;
+    margin: 0.25rem;
     border-radius: 8px;
     fill: var(--currentColor);
     background-color: var(--bgColor);
 }
 .task.active .task__icon{
     position: absolute; top: 0; left: 0;
-    height: 100%;
+    height: calc(100% - 0.5rem);
 }
-/* .task.project .task__icon{ fill: #00b2ff; background-color: rgba(0, 178, 255, 0.1); }
-.task.individual .task__icon{ fill: #20d489; background-color: rgba(32, 212, 137, 0.1); }
-.task.kvantum .task__icon{ fill: #f1416c; background-color: rgba(241, 65, 108, 0.1); }
-.task.math .task__icon{ fill: #ffc700; background-color: rgba(255, 199, 0, 0.1); } */
 
 .task__icon svg{
     width: 24px; height: 24px;
@@ -119,10 +117,6 @@
 .task:not(.active) .files .file::before{
     content: none;
 }
-.task.project .file::before{ background-color: rgba(0, 178, 255, 0.1); }
-.task.individual .file::before{ background-color: rgba(32, 212, 137, 0.1); }
-.task.kvantum .file::before{ background-color: rgba(241, 65, 108, 0.1); }
-.task.math .file::before{ background-color: rgba(255, 199, 0, 0.1); }
 
 .task__date{
     min-height: 64px;

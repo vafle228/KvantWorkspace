@@ -95,6 +95,7 @@
     height: 100%; width: 36rem;
     overflow: hidden;
     position: relative;
+    box-shadow: inset 0 0 1rem var(--theme-light);
 }
 .mails__header{
     padding: 1rem;
@@ -147,12 +148,22 @@
     border-radius: 0.75rem;
     transition: transform .2s;
     position: relative;
+    cursor: pointer;
 }
 .mailItem:active{
     transform: scale(0.98);
 }
 .mailItem:hover{
     background-color: var(--theme-light);
+}
+.mailItem::after{
+    content: "";
+    position: absolute; bottom: calc(-0.25rem - 0.5px);
+    width: calc(100% - 1rem); height: 1px; left: 0.5rem;
+    background-color: var(--theme-light);
+}
+.mailItem:last-of-type::after{
+    content: none;
 }
 .mailItem.new{
     background-color: var(--aside-bg-color);
@@ -188,7 +199,7 @@
     color: var(--text-primary-color);
 }
 .mailItem__tag{
-    border-radius: 0.25rem;
+    border-radius: 1rem;
     padding: 0.25rem 0.5rem;
     transition: all .1s;
     background-color: var(--bgColor);
@@ -217,8 +228,9 @@
     visibility: hidden;
 }
 .mailView__content{
-    height: calc(100% - 7.5rem);
+    height: calc(100% - 6.5rem);
     overflow: auto;
+    scroll-behavior: smooth;
 }
 .mailView__date{
     color: var(--text-primary-color);
@@ -283,7 +295,7 @@
 }
 
 #newMailItemForm form{
-    border: var(--bgColor) solid 1px;
+    border: var(--theme-light) solid 1px;
     background-color: var(--aside-bg-color);
     border-radius: 0.75rem;
     transition-duration: .4s;
@@ -346,7 +358,7 @@
 }
 
 .newMailItemForm__footer{
-    padding: 1.5rem;
+    padding: 1rem;
     width: 100%;
 }
 
