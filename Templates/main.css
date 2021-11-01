@@ -154,6 +154,8 @@ body{
 .space-between{ justify-content: space-between }
 .center{ justify-content: center }
 
+.display-none{ display: none }
+
 
 .item{
     background-color: var(--item-bg-color);
