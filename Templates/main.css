@@ -417,7 +417,9 @@ body{
     width: 100%;
 }
 .file{
-    height: 3rem; width: calc((100% - 3rem) / 4);
+    height: 3rem;
+    width: calc((100% - 3rem) / 4);
+    /* width: auto !important; */
     min-width: 16rem;
     display: flex; align-items: center; flex-direction: row;
     border-radius: 0.25rem;

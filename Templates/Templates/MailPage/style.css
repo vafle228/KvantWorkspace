@@ -454,6 +454,7 @@
         width: 100%;
         background-color: unset;
         border-radius: 0;
+        box-shadow: none;
     }
     .mails__header{
         padding: 0.5rem 0;
