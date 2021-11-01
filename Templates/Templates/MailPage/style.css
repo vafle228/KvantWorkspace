@@ -219,7 +219,11 @@
 
 /* Просмотр письма */
 .mailView{
+    display: none;
     width: calc(100% - 18rem - 36rem - 3rem);
+}
+.mailView.active{
+    display: flex;
 }
 .mailView__header{
     padding: 1rem 0;
@@ -393,6 +397,7 @@
     }
 
     .mailView{
+        display: flex;
         width: calc(100% - 6rem); height: 100%;
         position: fixed; top: 0; left: 100%;
         background-color: var(--aside-bg-color);
@@ -406,6 +411,10 @@
     .mailView .closeButton{
         visibility: visible;
         margin-left: -1rem;
+    }
+
+    .mailView__empty{
+        display: none;
     }
 
     #newMailItemForm.fullscreen{

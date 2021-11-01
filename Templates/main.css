@@ -152,6 +152,7 @@ body{
 .h100 { height: 100%; }
 
 .space-between{ justify-content: space-between }
+.center{ justify-content: center }
 
 
 .item{
