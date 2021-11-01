@@ -2,7 +2,7 @@ from django.db import models
 from LoginApp.models import KvantStudent
 from SystemModule.models import FileStorage
 
-marks = (
+MARKS = (
     ('1', '1'), ('2', '2'),
     ('3', '3'), ('4', '4'),
     ('ОТ', 'ОТ'), ('УП', 'УП')
@@ -19,7 +19,7 @@ class KvantLessonHomeWork(models.Model):
 
 
 class KvantLessonMark(models.Model):
-    mark    = models.CharField(max_length=150, choices=marks)
+    mark    = models.CharField(max_length=150, choices=MARKS)
     student = models.ForeignKey(KvantStudent, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -7,16 +7,6 @@ function open_form(form_id) {
 	$(form_id).addClass("active");
 }
 
-// Закрытие форм при клике вне
-$(document).mouseup(function (e) {
-	let exceptions = [$(".form-wrapper"), $("menu"), $(".alert")]
-
-	if(!(exceptions.filter(exception => exception.has(e.target).length !== 0).length)){
-		$(".form").removeClass("active");
-		$("body").css("overflow-y", "scroll");
-	}
-});
-
 // <=== Скрипты формы добавления новости ===>
 
 // Добавление файлов по кнопке

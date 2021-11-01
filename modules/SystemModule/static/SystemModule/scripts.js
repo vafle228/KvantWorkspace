@@ -1,29 +1,29 @@
 function page_adaptation(){
 
-	let ratio = window.innerWidth / 1920 < 0.5 ? 0.5 : window.innerWidth / 1920;
+	let ratio = window.innerWidth / 1920 < 0.75 ? 0.75 : window.innerWidth / 1920;
 
 	$("body").css({
 		"zoom": ratio,
 		"-moz-zoom": ratio,
 		"width": `${ 1 / ratio * 100}vw`,
-		// "height": `${ 1 / ratio * 100}%`
-	});
-
-	if (window.innerWidth < 576){
-		$("body > section").attr("id", "snap-content");
-	} else {
-		$("body > section").attr("id", "");
-	}
-	var snapper = new Snap({
-		element: document.getElementById('snap-content'),
-		maxPosition: 300,
-		minPosition: 0,
+		"height": `${ 1 / ratio * 100}vh`,
 	});
 }
 
 $(window).ready(() => page_adaptation());
 
 $(window).resize(() => page_adaptation());
+
+$(document).mouseup(function (e) {
+	let exceptions = [$(".form-wrapper"), $(".alert"), $(".trigger")]
+
+	if(!(exceptions.filter(exception => exception.has(e.target).length !== 0).length)){
+		$(".form").removeClass("active");
+		$("body").css("overflow-y", "scroll");
+		$(".userSelect").hide();
+		$("menu").removeClass("active");
+	}
+});
 
 // Сменить тему
 function switch_theme(){
@@ -62,7 +62,7 @@ function errorAlert(errorsObj){
 	
 	function _errorAlert(message){
 		$("#alertsContainer").append(`
-		<div class='alert' data-aos="fade-left">
+		<div class='alert' data-aos="fade-up">
 			<svg viewBox="0 0 448 512">
 				<path opacity='0.6' d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 384a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 233.52 288h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 201.68 128h44.64a16 16 0 0 1 15.92 17.59z"></path>
 				<path d="M246.32 128h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 214.48 288h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 246.32 128zM224 320a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
@@ -104,7 +104,10 @@ function sendInstanceData(form, post_url){
 		enctype: "multipart/form-data",
 		success: function(response) {
 			if(response.status == 400){ errorAlert(response.errors) }
-			else{ location.href = response.link }
+			else{
+				if(response.link != "Reload"){ location.href = response.link }
+				else{ location.reload() }
+			}
 		}
 	})
 }

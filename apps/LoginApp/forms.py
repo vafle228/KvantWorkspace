@@ -1,24 +1,35 @@
 from django import forms
 from .models import KvantUser
+from core.mixins import ImageMixinBase
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
-class ImageThumbnailFormMixin:
+class ImageManagerMixin(ImageMixinBase):
     def clean_image(self):
-        from SystemModule.functions import format_image
+        return super().clean_image()
+    
+    def get_image_file(self):
+        return self.cleaned_data.get('image')
+    
+    def get_instance_image(self):
+        return self.instance.image
 
-        file = self.cleaned_data.get('image')  # Получаем картинку
-        # Если картинка не менялась, то не обрабатываем ее
-        return file if self.instance.image == file else format_image(file, 0.3)
 
-
-class KvantUserCreationForm(UserCreationForm, ImageThumbnailFormMixin):
+class KvantUserCreationForm(UserCreationForm, ImageManagerMixin):
+    def __init__(self, *args, **kwargs):
+        super(KvantUserCreationForm, self).__init__(*args, **kwargs)
+        super(ImageManagerMixin, self).__init__(coef=0.4)
+    
     class Meta:
         model = KvantUser
         fields = ('username', 'email', 'password', 'name', 'surname', 'patronymic', 'image')
 
 
-class KvantUserChangeForm(UserChangeForm, ImageThumbnailFormMixin):
+class KvantUserChangeForm(UserChangeForm, ImageManagerMixin):
+    def __init__(self, *args, **kwargs):
+        super(KvantUserChangeForm, self).__init__(*args, **kwargs)
+        super(ImageManagerMixin, self).__init__(coef=0.4)
+    
     class Meta:
         model = KvantUser
         fields = ('username', 'email', 'password', 'name', 'surname', 'patronymic', 'image')

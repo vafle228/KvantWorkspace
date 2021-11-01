@@ -16,13 +16,10 @@
 </head>
 
 <body onload="getMoreAwards()">
-    <script> 
-        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
-    </script>
     <!-- Навигационное меню -->
     {% include "SystemModule/AsideMenu/index.html" %}
     
-    <section class="profilePage">
+    <section class="profilePage mainContainer">
         <div class="profilePage__menu">
             <section class="menu">
                 <button class="menu__button" onclick="location.href='{% url "profile_page" user.id %}'">

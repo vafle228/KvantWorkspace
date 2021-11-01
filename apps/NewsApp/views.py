@@ -91,5 +91,4 @@ class NewsDeleteView(KvantJournalAccessMixin, generic.View):
         news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
         if request.POST.get('confirm') and news.author == request.user:
             news.delete()
-            return HttpResponse('OK')
-        return HttpResponse('Error')
+        return HttpResponse({'status': 200})

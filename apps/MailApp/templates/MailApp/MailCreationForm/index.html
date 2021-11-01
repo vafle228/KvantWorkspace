@@ -1,23 +1,25 @@
 {% load static %}
 <div id='newMailItemForm'>
     <form>
-        <div class="form__cell row newMailItemForm__header">
+        <div class="form__cell row newMailItemForm__header space-between">
             <h3>Новое сообщение</h3>
-            <button class='windowButton' type="button" onclick="updateFormCondition(this)" style='margin-left: auto'>
-                <svg viewBox="0 0 448 512">
-                    <path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path>
-                    <path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path>
-                </svg>
-            </button>
-            <button class='windowButton' type="button" onclick="$('#newMailItemForm').removeClass('active')">
-                <svg viewBox="0 0 352 512">
-                    <path opacity='0.6' d="M9.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L176,322.72,109.28,256ZM342.79,111.45,320.55,89.21a31.46,31.46,0,0,0-44.48,0L176,189.28,242.72,256,342.79,155.93a31.46,31.46,0,0,0,0-44.48Z"></path>
-                    <path d="M342.79,356.07a31.46,31.46,0,0,1,0,44.48l-22.24,22.24a31.46,31.46,0,0,1-44.48,0L9.21,155.93a31.46,31.46,0,0,1,0-44.48L31.45,89.21a31.46,31.46,0,0,1,44.48,0Z"></path>
-                </svg>
-            </button>
+            <div>
+                <button class='windowButton' type="button" onclick="updateFormCondition(this)">
+                    <svg viewBox="0 0 448 512">
+                        <path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path>
+                        <path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path>
+                    </svg>
+                </button>
+                <button class='windowButton' type="button" onclick="$('#newMailItemForm').removeClass('active fullscreen')">
+                    <svg viewBox="0 0 352 512">
+                        <path opacity='0.6' d="M9.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L176,322.72,109.28,256ZM342.79,111.45,320.55,89.21a31.46,31.46,0,0,0-44.48,0L176,189.28,242.72,256,342.79,155.93a31.46,31.46,0,0,0,0-44.48Z"></path>
+                        <path d="M342.79,356.07a31.46,31.46,0,0,1,0,44.48l-22.24,22.24a31.46,31.46,0,0,1-44.48,0L9.21,155.93a31.46,31.46,0,0,1,0-44.48L31.45,89.21a31.46,31.46,0,0,1,44.48,0Z"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
 
-        <div class="form__cell row" style='align-items: flex-start;'>
+        <div class="form__cell row g8" style='align-items: flex-start;'>
             <p style='line-height: 27.2px'>Кому:</p>
             <div id="selectedUsers">
                 <input type="text" onkeyup="filterFunction(this)" id='userSearch' autocomplete="off">
@@ -35,7 +37,7 @@
             <!-- Спавн файлов -->
         </div>
         
-        <div class='newMailItemForm__footer row'>
+        <div class='newMailItemForm__footer row g8'>
             <button class="secondaryButton" id="sendMail" type="button">Отправить</button>
             <button class="primaryButton" onclick="openFileDialog('#file-input')" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">

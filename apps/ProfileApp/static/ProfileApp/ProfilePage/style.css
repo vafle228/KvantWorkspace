@@ -44,7 +44,6 @@
     box-shadow: inset 0 0 4px #0001;
 }
 .profileCard__field{
-    color: var(--aside-text-color);
     display: flex; justify-content: space-between;
 }
 .profileCard__field button{

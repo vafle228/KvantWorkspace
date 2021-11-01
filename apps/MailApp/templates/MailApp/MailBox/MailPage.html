@@ -1,0 +1,673 @@
+{% load static %}
+{% load base_tags %}
+{% load mail_tags %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'SystemModule/main.css' %}">
+    <link rel="stylesheet" href="{% static 'SystemModule/icons/uicons-regular-rounded.css' %}">
+    <link rel="shortcut icon" href="{% static 'SystemModule/imgs/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href='{% static "MailApp/MailBox/style.css" %}'>
+    <link rel='stylesheet' href='{% static "SystemModule/icons/files/file-icons.css" %}'/>
+    
+    <link rel="stylesheet" href='{% static "SystemModule/text/highlight.css" %}'>
+    <link rel="stylesheet" href='{% static "SystemModule/text/ql-editor.css" %}'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+    <title>Почта</title>
+</head>
+
+<body class='dark__theme' colorScheme='colorScheme__blue'>
+    <!-- Навигационное меню -->
+    <nav class='navigation'>
+
+        <div class='navigation__logo'>
+            <img src='../../img/google.svg' alt='logo'/>
+        </div>
+
+        <div class='navigation__group column'>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 576 512">
+                    <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
+                    <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
+                </svg>
+            </button>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 576 512">
+                    <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
+                    <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
+                </svg>
+            </button>
+            <button class='navigation__link'>
+                <svg viewBox="0 0 512 512">
+                    <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
+                    <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
+                </svg>
+            </button>
+            <button class='navigation__link active'>
+                <svg viewBox="0 0 576 512">
+                    <defs>
+                        <linearGradient id="gradient">
+                            <stop offset="0%" stop-color="var(--color-start)" />
+                            <stop offset="100%" stop-color="var(--color-stop)" />
+                        </linearGradient>
+                    </defs>
+                    <path opacity='0.3' d="M352 287.9H162.3L79.5 350a9.7 9.7 0 0 1-15.5-7.8V288a64.06 64.06 0 0 1-64-64V64A64.06 64.06 0 0 1 64 0h288a64.06 64.06 0 0 1 64 64v160a63.91 63.91 0 0 1-64 63.9z"></path>
+                    <path d="M576 224v160a64.06 64.06 0 0 1-64 64h-32v54.3a9.7 9.7 0 0 1-15.5 7.8L381.7 448H256a64.06 64.06 0 0 1-64-64v-64h160a96.15 96.15 0 0 0 96-96v-64h64a64.06 64.06 0 0 1 64 64z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class='navigation__group column'>
+            <button onclick="switch_theme()" class='navigation__link'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <g id="eclipse" transform="translate(-8 -8)">
+                        <path opacity='0.3' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
+                        <g>
+                        <path d="M16.333,10.667A5.007,5.007,0,0,0,11.426,14.7,5.409,5.409,0,0,1,12,14.667,5.34,5.34,0,0,1,17.332,20a5.394,5.394,0,0,1-.033.573,5,5,0,0,0-.966-9.906Z"/>
+                        <path d="M16.333,10a.667.667,0,0,1-.667-.667V8.667a.667.667,0,0,1,1.334,0v.667A.667.667,0,0,1,16.333,10Z"/>
+                        <path d="M23.333,16.333h-.667a.667.667,0,1,1,0-1.333h.667a.667.667,0,0,1,0,1.333Z"/>
+                        <path d="M20.341,11.66a.668.668,0,0,1,0-.943l.471-.472a.667.667,0,1,1,.943.943l-.471.472A.668.668,0,0,1,20.341,11.66Z"/>
+                        <path d="M20.812,21.088l-.471-.472a.667.667,0,0,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                        <path d="M11.383,11.66l-.471-.472a.667.667,0,1,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+            <button onclick="switch_color_scheme()" class='navigation__link'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <g id="roller" transform="translate(-8 -8)">
+                        <path d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
+                        <path opacity='0.3' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
+                        <path d="M15.5,18H13.167A1.168,1.168,0,0,0,12,19.167v3.667A1.167,1.167,0,0,0,13.167,24H15.5a1.168,1.168,0,0,0,1.167-1.167V19.166A1.168,1.168,0,0,0,15.5,18Z"/>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <div class='navigation__group column'>
+
+            <!-- Список задач -->
+            <button class='navigation__link'>
+                <svg viewBox="0 0 512 512">
+                    <path opacity='0.3' d="M166.57 282.71L44 159.21a17.87 17.87 0 0 1 .18-25.2l42.1-41.77a17.87 17.87 0 0 1 25.2.18l68.23 68.77L336.87 5.11a17.88 17.88 0 0 1 25.21.18L404 47.41a17.88 17.88 0 0 1-.18 25.21L191.78 282.89a17.88 17.88 0 0 1-25.21-.18z"></path>
+                    <path d="M504.5 172a25.86 25.86 0 0 1 0 36.42L210.1 504.46a25.48 25.48 0 0 1-36.2 0L7.5 337.1a25.84 25.84 0 0 1 0-36.41l36.2-36.41a25.48 25.48 0 0 1 36.2 0L192 377l240.1-241.46a25.5 25.5 0 0 1 36.2 0L504.5 172z"></path>
+                </svg>
+            </button>
+
+            <!-- Уведомления -->
+            <button class='navigation__link'>
+                <svg viewBox="0 0 448 512">
+                    <path d="M448 384c-.1 16.4-13 32-32.1 32H32.08C13 416 .09 400.4 0 384a31.25 31.25 0 0 1 8.61-21.71c19.32-20.76 55.47-52 55.47-154.29 0-77.7 54.48-139.9 127.94-155.16V32a32 32 0 1 1 64 0v20.84C329.42 68.1 383.9 130.3 383.9 208c0 102.3 36.15 133.53 55.47 154.29A31.27 31.27 0 0 1 448 384z"></path>
+                    <path opacity='0.3' d="M160 448h128a64 64 0 0 1-128 0z"></path>
+                </svg>
+            </button>
+
+            <!-- Профиль -->
+            <div class="navigation__profile">
+                <img src='../../img/Kaelthas.jpg'>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Навигационное меню для смартфонов -->
+    <nav class='navigationBar'>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 576 512">
+                <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
+                <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
+            </svg>
+            Главная
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 576 512">
+                <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
+                <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
+            </svg>
+            Задания
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 512 512">
+                <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
+                <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
+            </svg>
+            Проекты
+        </button>
+        <button class='navigation__link active'>
+            <svg viewBox="0 0 576 512">
+                <path opacity='0.3' d="M352 287.9H162.3L79.5 350a9.7 9.7 0 0 1-15.5-7.8V288a64.06 64.06 0 0 1-64-64V64A64.06 64.06 0 0 1 64 0h288a64.06 64.06 0 0 1 64 64v160a63.91 63.91 0 0 1-64 63.9z"></path>
+                <path d="M576 224v160a64.06 64.06 0 0 1-64 64h-32v54.3a9.7 9.7 0 0 1-15.5 7.8L381.7 448H256a64.06 64.06 0 0 1-64-64v-64h160a96.15 96.15 0 0 0 96-96v-64h64a64.06 64.06 0 0 1 64 64z"></path>
+            </svg>
+            Сообщения
+        </button>
+        <button class='navigation__link'>
+            <svg viewBox="0 0 512 512">
+                <path opacity='0.3' d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
+                <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>
+            </svg>
+            Профиль
+        </button>
+    </nav>
+
+    <section class="mainContainer">
+        <div class="column">
+            <div style='height: 5rem' class='row space-between'>
+                <div class='column g4'>
+                    <h1>Почта</h1>
+                    <p>Новых сообщений 2</p>
+                </div>
+
+                <button class='secondaryButton' onclick="$('#newMailItemForm').toggleClass('active')" id='newMessageButton'>
+                    <svg viewBox="0 0 512 512">
+                        <path opacity='0.6' d="M498 142.08l-56.6 56.55-128-128 56.55-56.55a48 48 0 0 1 67.91 0L498 74.17a48 48 0 0 1 0 67.91z"></path>
+                        <path d="M12.85 371.11L.15 485.33a24 24 0 0 0 26.49 26.51l114.14-12.6 278-278-128-128z"></path>
+                    </svg>
+                    Новое сообщение
+                </button>
+            </div>
+            
+            <hr class="divider" style='margin: 0 0 1.5rem'>
+            
+            <div class="mailNavigation column g16">
+                <button class="mailNavigation__composeBtn" onclick="$('#newMailItemForm').toggleClass('active')">
+                    Новое сообщение
+                </button>
+                <nav class='column g4'>
+                    <button class="mailNavigation__link row active">
+                        <svg viewBox="0 0 576 512">
+                            <path opacity="0.6" d="M528 512H48a48 48 0 0 1-48-48v-95.2a47.29 47.29 0 0 1 10.7-30l94.4-118a12 12 0 0 1 18.1-.7l27.6 29.5a12 12 0 0 1 .6 15.7L107.6 320H200l32 64h112l32-64h92.3L424 264.6a12.16 12.16 0 0 1 .8-15.9l28.1-28.9a12.12 12.12 0 0 1 18 .9l94.6 118.2a47.77 47.77 0 0 1 10.5 29.9V464a48 48 0 0 1-48 48z"></path>
+                            <path d="M171.5 160h61.9V17.1A17.16 17.16 0 0 1 250.5 0h68.6a17.09 17.09 0 0 1 17.1 17.1V160h68.3c17.8 0 26.7 21.5 14.1 34.1l-119.4 120a20 20 0 0 1-28.6-.3L157 193.8c-12.1-12.7-3.1-33.8 14.5-33.8z"></path>
+                        </svg>
+                        Входящие
+                    </button>
+                    <button class="mailNavigation__link row">
+                        <svg viewBox="0 0 512 512">
+                            <path opacity="0.6" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z"></path>
+                            <path d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path>
+                        </svg>
+                        Отправленные
+                    </button>
+                    <button class="mailNavigation__link row">
+                        <svg viewBox="0 0 576 512">
+                            <path  opacity="0.6" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z"></path>
+                            <path d="M110.4 474.5l25-145.5L29.7 226c-19-18.5-8.5-50.8 17.7-54.6l146.1-21.2 65.3-132.4A31.62 31.62 0 0 1 287.5 0v439.6l-130.7 68.6c-23.4 12.3-50.9-7.6-46.4-33.7z"></path>
+                        </svg>
+                        Важные
+                    </button>
+                    <!-- <hr class="divider" style='display: none;'> -->
+                    <button class="mailNavigation__link row" onclick='$(".labelsContainer").toggleClass("active")'>
+                        <svg viewBox="0 0 640 512">
+                            <path opacity="0.6" d="M497.94 225.94L286.06 14.06A48 48 0 0 0 252.12 0H48A48 48 0 0 0 0 48v204.12a48 48 0 0 0 14.06 33.94l211.88 211.88a48 48 0 0 0 67.88 0l204.12-204.12a48 48 0 0 0 0-67.88zM112 160a48 48 0 1 1 48-48 48 48 0 0 1-48 48z"></path>
+                            <path d="M625.94 293.82L421.82 497.94a48 48 0 0 1-67.88 0l-.36-.36 174.06-174.06a90 90 0 0 0 0-127.28L331.4 0h48.72a48 48 0 0 1 33.94 14.06l211.88 211.88a48 48 0 0 1 0 67.88z"></path>
+                        </svg>
+                        Метки
+                        <svg viewBox="0 0 448 512" style='margin-left: auto'>
+                            <path opacity="0.3" d="M224.1 284.64l-56.89 56.78-154-154.31a24 24 0 0 1 0-33.94l22.65-22.7a23.93 23.93 0 0 1 33.84 0z"></path>
+                            <path d="M435 187.15L241 381.48a23.94 23.94 0 0 1-33.84 0l-40-40 211.34-211a23.93 23.93 0 0 1 33.84 0L435 153.21a24 24 0 0 1 0 33.94z"></path>
+                        </svg>
+                    </button>
+                    <div class="labelsContainer column g4">
+                        <button class="mailNavigation__link labelsContainer__label row g12 w100">
+                            <svg viewBox="0 0 496 512">
+                                <path opacity="0.3" d="M248,8C111,8,0,119,0,256S111,504,248,504,496,393,496,256,385,8,248,8Zm0,312a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
+                                <path d="M248,320a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
+                            </svg>
+                            Название проекта
+                        </button>
+                        <button class="mailNavigation__link labelsContainer__label row g12 w100">
+                            <svg viewBox="0 0 496 512">
+                                <path opacity="0.3" d="M248,8C111,8,0,119,0,256S111,504,248,504,496,393,496,256,385,8,248,8Zm0,312a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
+                                <path d="M248,320a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
+                            </svg>
+                            Название проекта
+                        </button>
+                        <button class="mailNavigation__link labelsContainer__label row g12 w100">
+                            <svg viewBox="0 0 496 512">
+                                <path opacity="0.3" d="M248,8C111,8,0,119,0,256S111,504,248,504,496,393,496,256,385,8,248,8Zm0,312a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
+                                <path d="M248,320a64,64,0,1,1,64-64A64,64,0,0,1,248,320Z"></path>
+                            </svg>
+                            Название проекта
+                        </button>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="mailNavigationBar">
+                <button class='mailNavigationBar__link active'>
+                    <svg viewBox="0 0 576 512">
+                        <path opacity="0.6" d="M528 512H48a48 48 0 0 1-48-48v-95.2a47.29 47.29 0 0 1 10.7-30l94.4-118a12 12 0 0 1 18.1-.7l27.6 29.5a12 12 0 0 1 .6 15.7L107.6 320H200l32 64h112l32-64h92.3L424 264.6a12.16 12.16 0 0 1 .8-15.9l28.1-28.9a12.12 12.12 0 0 1 18 .9l94.6 118.2a47.77 47.77 0 0 1 10.5 29.9V464a48 48 0 0 1-48 48z"></path>
+                        <path d="M171.5 160h61.9V17.1A17.16 17.16 0 0 1 250.5 0h68.6a17.09 17.09 0 0 1 17.1 17.1V160h68.3c17.8 0 26.7 21.5 14.1 34.1l-119.4 120a20 20 0 0 1-28.6-.3L157 193.8c-12.1-12.7-3.1-33.8 14.5-33.8z"></path>
+                    </svg>
+                    Входящие
+                </button>
+                <button class='mailNavigationBar__link'>
+                    <svg viewBox="0 0 512 512">
+                        <path opacity="0.6" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z"></path>
+                        <path d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path>
+                    </svg>
+                    Отправленные
+                </button>
+                <button class='mailNavigationBar__link'>
+                    <svg viewBox="0 0 576 512">
+                        <path  opacity="0.6" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z"></path>
+                        <path d="M110.4 474.5l25-145.5L29.7 226c-19-18.5-8.5-50.8 17.7-54.6l146.1-21.2 65.3-132.4A31.62 31.62 0 0 1 287.5 0v439.6l-130.7 68.6c-23.4 12.3-50.9-7.6-46.4-33.7z"></path>
+                    </svg>
+                    Важные
+                </button>
+            </div>
+        </div>
+
+        <div class="mails">
+            <header class="mails__header row space-between">
+
+                <div class="inputGroup">
+                    <input type="text" placeholder="Поиск" class='inputGroup__input'>
+                    <svg viewBox="0 0 24 24" class='inputGroup__svg'>
+                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" opacity="0.3"></path>
+                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"></path>
+                    </svg>
+                </div>
+
+                <div class="pagination row g8">
+                    <p class='pagination__page'>1 из 14</p>
+                    <button class="actionButton">
+                        <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                            <g transform="translate(-5 -5)">
+                                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <p class='pagination__page'>1 из 14</p>
+                    <button class="actionButton">
+                        <svg viewBox="0 0 14 14">
+                            <g transform="translate(-5 -5)">
+                                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                            </g>
+                        </svg> 
+                    </button>
+                </div>
+                
+            </header>
+
+            <hr class="divider" style='margin: 0 1rem 1.5rem'>
+
+            <div class="mails__container column g8">
+                <div class="mailItem new">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor sit amet.</strong>
+                            Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?
+                        </p>
+                    </div>
+                    <p class="mailItem__date">13 августа</p>
+                </div>
+                <div class="mailItem new">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor elit.</strong>
+                            Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?
+                        </p>
+                    </div>
+                    <p class="mailItem__date">11 сентября</p>
+                </div>
+                <div class="mailItem">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
+                            Harum repellendus veniam.
+                        </p>
+                        <div class="mailItem__tags row g8">
+                            <span class="mailItem__tag">Важное</span>
+                        </div>
+                    </div>
+                    <p class="mailItem__date">31 июля</p>
+                </div>
+                <div class="mailItem">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor.</strong>
+                            Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?
+                        </p>
+                    </div>
+                    <p class="mailItem__date">27 августа</p>
+                </div>
+                <div class="mailItem important">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor sit amet.</strong>
+                            Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?
+                        </p>
+                    </div>
+                    <p class="mailItem__date">13 августа</p>
+                </div>
+                <div class="mailItem">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
+                            Harum repellendus veniam.</p>
+                    </div>
+                    <p class="mailItem__date">31 июля</p>
+                </div>
+                <div class="mailItem important">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor elit.</strong>
+                            Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?
+                        </p>
+                        <div class="mailItem__tags row g8">
+                            <span class="mailItem__tag">Название проекта</span>
+                        </div>
+                    </div>
+                    <p class="mailItem__date">11 сентября</p>
+                </div>
+                <div class="mailItem">
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <div class="column g12">
+                        <p class="mailItem__title">
+                            <strong>Lorem ipsum dolor sit amet.</strong>
+                            Harum repellendus veniam expedita sint provident! Iusto vero temporibus molestiae at mollitia minus quasi est culpa, voluptatem quae, necessitatibus accusantium? Dicta, inventore?</p>
+                    </div>
+                    <p class="mailItem__date">13 августа</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mailView column">
+            <header class="mailView__header row space-between">
+                <button onclick="$('.mailView').toggleClass('active')" class='actionButton closeButton'>
+                    <svg viewBox="0 0 352 512">
+                        <path opacity='0.6' d="M9.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L176,322.72,109.28,256ZM342.79,111.45,320.55,89.21a31.46,31.46,0,0,0-44.48,0L176,189.28,242.72,256,342.79,155.93a31.46,31.46,0,0,0,0-44.48Z"></path>
+                        <path d="M342.79,356.07a31.46,31.46,0,0,1,0,44.48l-22.24,22.24a31.46,31.46,0,0,1-44.48,0L9.21,155.93a31.46,31.46,0,0,1,0-44.48L31.45,89.21a31.46,31.46,0,0,1,44.48,0Z"></path>
+                    </svg>
+                </button>
+                <div class="row g8">
+                    <button class='actionButton transparent' title='Отметить как важное' id='markAsImportant'>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.8"></path>
+                            <path d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
+                        </svg>
+                    </button>
+                    <button class='actionButton transparent' title='Удалить сообщение'>
+                        <svg viewBox="0 0 448 512">
+                            <path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+                            <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+            <hr class="divider" style='margin: 0 0 1.5rem;'>
+            <div class="mailView__content column g24">
+                <h1 class="mailView__title">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto ad omnis molestias.
+                </h1>
+
+                <div class='row space-between'>
+                    <div class="senderInfo">
+                        <img src="../../img/Kaelthas.jpg" class="senderInfo__img">
+                        <div>
+                            <p class="senderInfo__name">Фамилия Имя</p>
+                            <p class="senderInfo__role">Ученик</p>
+                        </div>
+                    </div>
+                    <p class='mailView__date'>11 сентября</p>
+                </div>
+                
+                <p class="mailView__text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit distinctio iure ipsa tempore incidunt earum quae dolorum amet cumque, sint odio nemo quas illum consectetur assumenda ipsum, quis suscipit sed alias. A corporis repellendus totam amet possimus dolorum, ullam, nisi suscipit illum eveniet mollitia omnis reprehenderit cupiditate cum. Nam voluptates distinctio suscipit, delectus deleniti veniam alias quos vel aspernatur ipsa hic at nemo dolorem, iure, est atque perspiciatis harum velit. Architecto qui voluptatibus, aliquam dolor maiores reiciendis aperiam, ullam officiis quae culpa eos praesentium eligendi deserunt quibusdam enim tenetur repellendus eaque autem hic ut quod fugit magni deleniti. Repudiandae eos, autem odio nihil aliquam dolorum maxime, ad in eius, quisquam natus. Sequi quis animi quod. Placeat inventore itaque, exercitationem deleniti voluptas vero perferendis ratione enim! Sit, natus voluptatum?
+                </p>
+                <div class='files'>
+                    <div class='file'>
+                        <i class='file-docx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Домашнее задание.docx</h4>
+                            <p class="file__size">6.3 MB</p>
+                        </div>
+                    </div>
+                    <div class='file'>
+                        <i class='file-pptx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Теория.pptx</h4>
+                            <p class="file__size">16 MB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id='newMailItemForm'>
+        <form>
+            <div class="form__cell row newMailItemForm__header space-between">
+                <h3>Новое сообщение</h3>
+
+                <div>
+                    <button class='windowButton' type="button" onclick="updateFormCondition(this)">
+                        <svg viewBox="0 0 448 512">
+                            <path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path>
+                            <path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path>
+                        </svg>
+                    </button>
+                    <button class='windowButton' type="button" onclick="location.reload()">
+                        <svg viewBox="0 0 352 512">
+                            <path opacity='0.6' d="M9.21,356.07a31.46,31.46,0,0,0,0,44.48l22.24,22.24a31.46,31.46,0,0,0,44.48,0L176,322.72,109.28,256ZM342.79,111.45,320.55,89.21a31.46,31.46,0,0,0-44.48,0L176,189.28,242.72,256,342.79,155.93a31.46,31.46,0,0,0,0-44.48Z"></path>
+                            <path d="M342.79,356.07a31.46,31.46,0,0,1,0,44.48l-22.24,22.24a31.46,31.46,0,0,1-44.48,0L9.21,155.93a31.46,31.46,0,0,1,0-44.48L31.45,89.21a31.46,31.46,0,0,1,44.48,0Z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+            </div>
+
+            <div class="form__cell row g8" style='align-items: flex-start;'>
+                <p style='line-height: 27.2px'>Кому:</p>
+                <div id="selectedUsers">
+
+                    <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
+                </div>
+                
+            </div>
+
+            <div class="form__cell">
+                <input type="text" placeholder="Тема" id='mailSubject'>
+            </div>
+
+            <div id="editor" class='text-field'></div>
+
+            <div class='files form__cell' >
+                <div class='file'>
+                    <i class='file-xml'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Таблица.xml</h4>
+                        <p class="file__size">3 KB</p>
+                    </div>
+                    <div class="file__actions">
+                        <button type='button'>
+                            <svg viewBox="0 0 448 512">
+                                <path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+                                <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class='file'>
+                    <i class='file-pptx'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Презентация.pptx</h4>
+                        <p class="file__size">267 MB</p>
+                    </div>
+                    <div class="file__actions">
+                        <button type='button'>
+                            <svg viewBox="0 0 448 512">
+                                <path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+                                <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='newMailItemForm__footer row g8'>
+                <button class="secondaryButton">Отправить</button>
+                <button class="primaryButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                        <g transform="translate(-8.667 -8)">
+                            <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                            <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                        </g>
+                    </svg>
+                    Прикрепить файл
+                </button>
+            </div>
+
+            <div class="userSelect" id='newMailItem__userSelect'>
+                <div class="userSelect__user row">
+                    <img src="../../img/Kaelthas.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Каратаев Вадим</h3>
+                        <p class="userSelect__userRole">Ученик</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/user_profile_male.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Павел Сергеевич</h3>
+                        <p class="userSelect__userRole">Учитель</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/stacked-waves-haikei (2).png" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">IT квантум</h3>
+                        <p class="userSelect__userRole">Группа</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/Kaelthas.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Смышляев Дмитрий</h3>
+                        <p class="userSelect__userRole">Администратор</p>
+                    </div>
+                </div>
+                <div class="userSelect__user row">
+                    <img src="../../img/howtospeedupreact-thumb.jpg" class='userSelect__userImage'>
+                    <div class="userSelect__userInfo">
+                        <h3 class="userSelect__userName">Александра Денисовна</h3>
+                        <p class="userSelect__userRole">Искусственный интеллект</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Кнопка в начало страницы -->
+    <div id="arrowTop" hidden>
+        <svg viewBox="0 0 14 14">
+            <g transform="translate(-5 -5)">
+                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+            </g>
+        </svg> 
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'SystemModule/scripts.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script> <!-- Подсветка кода -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
+    <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
+    
+    <!-- Отображение математических формул -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        function updateFormCondition(btn){
+            $("#newMailItemForm").toggleClass('fullscreen');
+
+            if ($("#newMailItemForm").hasClass("fullscreen")){
+                $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M224 280v112c0 21.38-25.8 32.09-40.92 17L152 376l-99.31 99.31a16 16 0 0 1-22.63 0L4.69 449.94a16 16 0 0 1 0-22.63L104 328l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 224 280z"></path><path d="M443.31 62.06a16 16 0 0 1 0 22.63L344 184l32.92 31c15.12 15.12 4.41 41-17 41H248a24 24 0 0 1-24-24V120c0-21.38 25.8-32.09 40.92-17L296 136l99.31-99.31a16 16 0 0 1 22.63 0z"></path></svg>`);
+            } else {
+                $(btn).html(`<svg viewBox="0 0 448 512"><path opacity='0.6' d="M0 456V344c0-21.38 25.8-32.09 40.92-17L72 360l92.69-92.69a16 16 0 0 1 22.62 0l25.38 25.38a16 16 0 0 1 0 22.62L120 408l32.92 31c15.12 15.12 4.41 41-17 41H24a24 24 0 0 1-24-24z"></path><path d="M235.31 196.69L328 104l-32.92-31c-15.12-15.12-4.41-41 17-41h112A24 24 0 0 1 448 56v112c0 21.38-25.8 32.09-40.92 17L376 152l-92.69 92.69a16 16 0 0 1-22.62 0l-25.38-25.38a16 16 0 0 1 0-22.62z"></path></svg>`);
+            }
+        }
+
+        $('.userSelect__user').click( function() {
+            
+            if ($(this).parent().hasClass('userSelect')){
+                $(this).detach();
+                $('#userSearch').before($(this));
+            } else {
+                $(this).detach();
+                $(this).appendTo($('.userSelect'));
+            }
+
+            $('#userSearch').val('');
+            $('#userSearch').focus();
+        });
+
+        $('.mailItem').click( () => { $('.mailView').toggleClass('active') } )
+    </script>
+</body>
+
+</html>
+

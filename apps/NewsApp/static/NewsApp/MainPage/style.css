@@ -1,9 +1,15 @@
+
+
 /* Шапка */
 .profile-header{ margin-left: auto }
 
 
 #main{
     transform-origin: 0 0;
+    padding: 1.5rem;
+    border: var(--theme-light) solid 2px;
+    border-color: transparent transparent transparent var(--theme-light);
+    border-radius: 1.5rem;
 }
 /* Виджеты */
 #widgets{
@@ -103,13 +109,13 @@
 #schedule-widget{
     width: 775px; height: 300px;
     padding: 25px 20px 15px 25px;
-    background-color: var(--currentColor);
+    background-color: var(--bgColor);
     background-image: 
 		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
 		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
 		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(90deg, var(--currentColor), var(--currentColor)),
-		linear-gradient(90deg, var(--currentColor), var(--currentColor));
+		linear-gradient(90deg, var(--currentColor), var(--bgColor)),
+		linear-gradient(90deg, var(--bgColor), var(--bgColor));
 	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
     display: flex; flex-direction: column; gap: 10px;
     border-radius: 10px;
@@ -200,7 +206,8 @@
 }
 .lessonDay{
     height: 100%; width: 47%;
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--bgColor);
+    color: var(--currentColor) !important;
     padding: 8px 12px;
     border-radius: 8px;
     color: var(--text-primary-color);

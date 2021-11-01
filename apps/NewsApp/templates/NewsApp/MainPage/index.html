@@ -18,23 +18,13 @@
 </head>
 
 <body style="overflow: auto" onload="getNewNews();">
-    <script>
-        document.body.style.zoom = window.innerWidth / 1800 < 0.5 ? 0.5 : window.innerWidth / 1800;
-    </script>
     <!-- Навигационное меню -->
-    {% include "SystemModule/AsideMenu/index.html" with user=user active='main' %}
-
-    <!-- Шапка -->
-    <header>
-        <div class='page-header'>
-            <h1>Главная</h1>
-        </div>
-    </header>
-
-    <!-- Главная -->
-    <section id='main'>
-        <!-- Виджеты -->
+    {% include "SystemModule/AsideMenu/index.html" with user=user active='main_page' %}
+    <section id="main">
+        
+        <!-- ===== Виджеты ===== -->
         <section id='widgets'>
+
             <!-- Виджет "Календарь" -->
             <div id="calendar-widget">
                 <div class="calendar-container">
@@ -49,7 +39,7 @@
                             </button>
                         </div>
                     </div>
-                    <!-- <hr class='divider' style='margin: 6px 0 18px;'/> -->
+
                     <div class="calendar">
                         <span class='inactive'>Пн</span><span class='inactive'>Вт</span><span class='inactive'>Ср</span><span class='inactive'>Чт</span><span class='inactive'>Пт</span><span class='inactive'>Сб</span><span class='inactive'>Вс</span>
                         <span class='inactive'>28</span><span class='inactive'>29</span><span class='inactive'>30</span><span>1</span><span>2</span><span>3</span><span>4</span>
@@ -67,10 +57,11 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Виджет "Расписание" -->
-            <div id='schedule-widget'>
+            <div id="schedule-widget">
                 <div class='widget-header'>
+                    <!-- Заголовок виджета -->
                     <div>
                         <h1 style='display: inline-block; color: #000'>Расписание</h1>
                     </div>
@@ -91,11 +82,7 @@
                         <img src="{{ course.teacher.teacher.image.url }}" class='teacherProfileImg'/>
                         <div class="course__info">
                             <h2>{{ course.name }}</h2>
-                            <h4>
-                                {{ course.teacher.teacher.surname }}
-                                {{ course.teacher.teacher.name|slice:"1" }}.
-                                {{ course.teacher.teacher.patronymic|slice:"1" }}.
-                            </h4>
+                            <h4>{{ course.teacher.teacher.surname }} {{ course.teacher.teacher.name|slice:"1" }}.</h4>
                         </div>
                         <div class="course__timetable">
                             <div class="lessonDay">
@@ -122,15 +109,13 @@
                             </div>
                             <div class='lesson-teacher'>
                                 <h4>{{ course.teacher.teacher.surname }}
-                                    {{ course.teacher.teacher.name|slice:"1" }}.
-                                    {{ course.teacher.teacher.patronymic|slice:"1" }}.
+                                    {{ course.teacher.teacher.name }}
+                                    {{ course.teacher.teacher.patronymic }}
                                 </h4>
                                 <img src='{{ course.teacher.teacher.image.url }}' />
                             </div>
                         </div>
-                        <p class='item-text'>
-                            Краткое описание курса. Если его не надо уберем
-                        </p>
+                        <p class='item-text'>Описание направления</p>
                         <hr class='divider'/>
                         <h2>Расписание</h2>
                         <div class="calendar__timetable">
@@ -149,12 +134,8 @@
                             <div class="user">
                                 <img src='{{ student.student.image.url }}'/>
                                 <div class="info">
-                                    <h4>Ученик</h4>
-                                    <h2>
-                                        {{ student.student.surname }}
-                                        {{ student.student.name|slice:"1" }}.
-                                        {{ student.student.patronymic|slice:"1" }}.
-                                    </h2>
+                                    <h4>{{ student.student.permission }}</h4>
+                                    <h2>{{ student.student.name }} {{ student.student.surname }}</h2>
                                 </div>
                             </div>
                             {% endfor %}
@@ -164,7 +145,8 @@
             </div>
             {% endfor %}
         </section>
-        <!-- Новости -->
+        
+        <!-- ===== Новости ===== -->
         <section id='news'>
             <!-- Шапка секции -->
             <div style='display: flex; gap: 2%'>
@@ -172,22 +154,21 @@
                 <div>
                     <h1 style='display: inline-block'>Новости</h1>
                 </div>
-                {% if user.permission == 'Администратор' or user.permission == 'Учитель'  %}
-                <div class='main-btn' style='width: auto'><button style='height: 40px;' onclick="open_form('#news-form')">Добавить новость</button></div>
-                {% endif %}
+                <div class='main-btn' style='width: auto'>
+                    <button style='height: 40px;' onclick="open_form('#news-form')">Добавить новость</button>
+                </div>
             </div>
             <!-- Блок новостей -->
             <div id='news__container'>
-                <!-- Тут спавняться новости -->
+                <!-- Спавн новсотей -->
             </div>
             <!-- Кнопка "Больше новостей" -->
-            <div id="more-news" class='main-btn'>
-                <button onclick="getNewNews()">Больше новостей</button>
+            <div class='main-btn'>
+                <button onclick="getNewNews()" id="more-news">Больше новостей</button>
             </div>
             {% include "NewsApp/NewsCreationForm/index.html" with form_status="create" %}
         </section>
     </section>
-
     <div class="alertsContainer column" id='alertsContainer'></div>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
@@ -207,16 +188,17 @@
     </script>
     <!-- Функция получения новостей -->
     <script>
+        const all_news = {{ max_news }};
         const news_per_page_num = 6;
         // Запрос новостей с сервера
         function getNewNews(){
             $.ajax({
                 type: 'GET',
-                url: '{% url "send_news" user.id %}' + `?page=${page}`,
+                url: `{% url "send_news" user.id %}?page=${page}`,
                 cache: false,
                 success: function(response){
                     $('#news__container').append(response);
-                    if(page * news_per_page_num >= {{ max_news }}){  // Проверка наличия еще страниц пагинации
+                    if(page * news_per_page_num >= all_news){  // Проверка наличия еще страниц пагинации
                         $('#more-news')[0].style.display = 'none';
                     }
                     page++

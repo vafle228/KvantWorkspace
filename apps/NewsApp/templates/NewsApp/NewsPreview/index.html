@@ -1,5 +1,5 @@
 {% for news in all_news %}
-<div class="item" data-aos="fade-up" onclick="location.href='{% url "detail_news" user.id news.id %}'">
+<div class="item" data-aos="fade-up" onclick="location.href=`{% url 'detail_news' user.id news.id %}`">
     <img src="{{ news.image.url }}" alt="preview" class='item__preview'>
 
     <div class="item__content">

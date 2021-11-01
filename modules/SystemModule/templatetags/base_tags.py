@@ -14,6 +14,8 @@ def get_file_name(file):
 def get_objects(model_object):
     return model_object.all()
 
+def get_active_btn(active, aside):
+    return "active" if aside == active else ""
 
 def get_file_size(file):
     suffix_index = 0
@@ -31,4 +33,5 @@ def get_file_size(file):
 register.filter('get_objects', get_objects)
 register.filter('get_file_size', get_file_size)
 register.filter('get_file_name', get_file_name)
+register.filter('get_active_btn', get_active_btn)
 register.filter('get_file_extension', get_file_extension)
