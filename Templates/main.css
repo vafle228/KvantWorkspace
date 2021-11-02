@@ -157,6 +157,12 @@ body{
 .display-none{ display: none }
 
 
+.avatar{
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 1.5rem;
+    object-fit: cover;
+}
+
 .item{
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
@@ -300,7 +306,7 @@ body{
 }
 
 .form .form-wrapper{
-    overflow-y: scroll; padding: 6rem 0 6rem 2.375rem;
+    overflow-y: scroll; padding: 6rem 0;
     position: fixed; top: 0; left: calc(50% - 31.25rem);
     height: 100%;
     z-index: 3;
@@ -309,7 +315,7 @@ body{
 .form .form-wrapper form{
     width: 62.5rem;
     background-color: var(--item-bg-color);
-    padding: 1rem 1.5rem; margin: auto 0;
+    padding: 1rem 1.25rem; margin: auto 0;
     border-radius: 1rem;
     position: relative;
     display: flex; flex-direction: column; gap: 0.75rem;
@@ -518,23 +524,6 @@ body{
     object-fit: cover;
 }
 
-/* Выбранные пользователи (Старые) */
-/* .selected::before{
-    content: "";
-    height: 54px;
-}
-.selected .user::after{
-    content: "\f143";
-    font-family: "uicons-regular-rounded"; color: #A1D214;
-    margin: 0 0.5rem;
-}
-.selected .user:hover::after{
-    content: "\f15d";
-    font-family: "uicons-regular-rounded"; color: red;
-    margin: 0 0.5rem;
-} */
-
-
 /* Кнопка с эффектом нажатия */
 .main-btn{
     width: 100%;
@@ -573,6 +562,7 @@ body{
     .user{ width: 49.5% }
 }
 
+
 /* Выпадающий список */
 .filteringList{
     width: 100%;
@@ -594,6 +584,7 @@ body{
     background-color: var(--theme-light);
     font-weight: 500;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    color: var(--text-primary-color);
 }
 .filtering.disable .dropdownSelect__trigger{
     opacity: 0.5;
@@ -605,8 +596,7 @@ body{
     top: 110%;
     left: 0; right: 0;
     transition: all 0.1s;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0; visibility: hidden;
     z-index: 1;
     max-height: 20rem; overflow-y: auto;
     border: var(--theme-light) solid 2px;
@@ -615,7 +605,7 @@ body{
     width: 6px;
 }
 .dropdownSelect__options::-webkit-scrollbar-thumb{
-    background-color: var(--color-scheme-light);
+    background-color: var(--currentColor);
     border-radius: 3px;
 }
 .dropdownSelect.open .dropdownSelect__options {
@@ -632,6 +622,7 @@ body{
     line-height: 2.5rem;
     transition: all 0.1s;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    color: var(--text-primary-color);
 }
 .dropdownSelect__option:hover {
     cursor: pointer;
@@ -639,7 +630,7 @@ body{
 }
 .dropdownSelect__option.selected {
     color: #ffffff;
-    background-color: var(--color-scheme-dark);
+    background-color: var(--currentColor);
 }
 
 .arrowDown {
@@ -665,7 +656,7 @@ body{
     transform: rotate(-45deg); 
 }
 .dropdownSelect__trigger.active .arrowDown::after, .dropdownSelect__trigger.active .arrowDown::before{
-    background-color: var(--color-scheme-dark);
+    background-color: var(--currentColor);
     width: 10px;
     left: 0;
     height: 100%;

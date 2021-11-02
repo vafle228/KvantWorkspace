@@ -43,7 +43,7 @@
 }
 .task.active{
     flex-direction: column;
-    gap: 0;
+    gap: 0.125rem;
     padding-bottom: 0.5rem;
 }
 .task p{
@@ -97,7 +97,7 @@
 }
 .task.active .task__info{
     margin-left: 1rem;
-    width: 100%;
+    width: 90%;
 }
 .task__title{
     font-size: 18px; font-weight: 600;
@@ -115,6 +115,23 @@
     margin-bottom: 0.5rem;
     flex-wrap: wrap;
     display: flex;
+}
+
+.task__footer{
+    display: none;
+    padding: 0.5rem 1rem;
+}
+.task.active .task__footer{
+    display: flex;
+}
+.task__footer button{
+    width: max-content;
+}
+.task__status.overdue{
+    color: #f1416c;
+}
+.task__status.done{
+    color: var(--currentColor);
 }
 
 .task__date{
@@ -184,6 +201,39 @@
     fill: var(--currentColor);
 }
 
+#newTaskButton{
+    display: none;
+}
+
+.diaryNavigationBar{
+    width: 100%;
+    display: none; gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+}
+.diaryNavigationBar__link{
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1rem; font-weight: 500;
+    color: var(--text-primary-color);
+    background-color: var(--item-bg-color);
+    display: flex; flex-direction: row; align-items: center; gap: 0.5rem;
+}
+.diaryNavigationBar__link:hover{
+    filter: brightness(1.1);
+}
+.diaryNavigationBar__link svg{
+    width: 1rem;
+    fill: #7e8299;
+}
+.diaryNavigationBar__link.active{
+    background-color: var(--currentColor);
+    color: #fff;
+}
+.diaryNavigationBar__link.active svg{
+    fill: #fff;
+}
+
 .inputGroup{
     width: 32%;
     display: flex; flex-direction: row; gap: 0.125rem; align-items: center;
@@ -212,6 +262,9 @@
 }
 
 @media screen and (max-width: 1100px){
+    .inputGroup{
+        display: none;
+    }
     .task{
         flex-direction: column;
         gap: 0;
@@ -232,9 +285,55 @@
     }
     .task .task__info{
         margin-left: 1rem;
-        width: 75%;
+        width: 80%;
     }
     .task .task__date{
         position: absolute; right: 0; top: 0;
+    }
+}
+
+@media screen and (max-width: 740px){
+    #tasks{
+        width: 100%;
+        background-color: unset;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .task{
+        background-color: var(--item-bg-color);
+    }
+    .light__theme .task{
+        box-shadow: 0 0 1rem var(--theme-light);
+    }
+    .diaryNavigation{
+        display: none;
+    }
+    .mainContainer{
+        flex-direction: column;
+        padding: 1rem 1rem 0 !important;
+        gap: 0 !important;
+        border: none;
+        border-radius: 0;
+    }
+
+    #newTaskButton, .diaryNavigationBar{
+        display: flex;
+    }
+    .tasksContainer{
+        padding: 0.5rem 0;
+        height: min-content;
+        margin-bottom: 4.5rem;
+        overflow: hidden;
+        /* height: calc(100% - 16rem) !important; */
+    }
+    .divider{
+        display: none;
+    }
+    .header{
+        height: auto;
+        padding: 0.5rem 0;
+        flex-direction: column; gap: 1rem;
+        width: 100%;
+        align-items: unset;
     }
 }

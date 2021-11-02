@@ -1,9 +1,8 @@
 .taskView{
     width: 68%;
     margin: 0 auto;
-    display: flex; flex-direction: column; gap: 16px;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1100px){
     .taskView{
         width: 100%;
     }
@@ -14,15 +13,12 @@
     border-radius: 16px;
     padding: 16px 24px;
     background-color: var(--item-bg-color);
-    display: flex; flex-direction: column; gap: 8px;
 }
 .taskView__infoTitle{
     font-size: 36px;
     font-weight: 500;
     color: var(--text-primary-color);
 }
-.dot{
-    background-color: #70757D;
-    min-width: 6px; min-height: 6px;
-    border-radius: 3px;
+.taskView__infoText{
+    text-align: justify;
 }
