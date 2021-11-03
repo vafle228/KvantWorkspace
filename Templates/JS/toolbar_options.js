@@ -20,3 +20,19 @@ var quill = new Quill('#editor', {
   theme: 'snow',
   spellcheck: true
 });
+var quill = new Quill('#editor1', {
+  modules: {
+    syntax: true,
+    toolbar: toolbarOptions,
+  },
+  theme: 'snow',
+  spellcheck: true
+});
+var quill = new Quill('#editor2', {
+  modules: {
+    syntax: true,
+    toolbar: toolbarOptions,
+  },
+  theme: 'snow',
+  spellcheck: true
+});

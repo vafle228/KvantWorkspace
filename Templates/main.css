@@ -131,6 +131,7 @@ body{
     border-color: transparent transparent transparent var(--theme-light);
     border-radius: 1.5rem;
     display: flex; gap: 1.5rem;
+    overflow: auto;
 }
 
 /* Быстрые классы */

@@ -22,3 +22,9 @@
 .taskView__infoText{
     text-align: justify;
 }
+
+/* Костыль */
+.taskView::after{
+    content: '_';
+    height: 16rem;
+}
