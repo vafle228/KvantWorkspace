@@ -23,6 +23,17 @@
     text-align: justify;
 }
 
+/* Footer задания */
+.task__footer{
+    padding: 0.5rem 0;
+}
+.task__status.red{
+    color: #f1416c;
+}
+.task__status.green{
+    color: var(--currentColor);
+}
+
 /* Костыль */
 .taskView::after{
     content: '_';

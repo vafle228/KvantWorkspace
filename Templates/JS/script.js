@@ -70,7 +70,7 @@ function switch_theme() {
 // Сменить цветовую схему
 function switch_color_scheme() {
 
-	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red'];
+	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red', 'colorScheme__purple'];
 
 	let currentSchemeIndex = schemes.indexOf($('body').attr("colorScheme"));
 	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;

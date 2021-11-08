@@ -14,8 +14,6 @@ body[colorScheme='colorScheme__green']{
     --bgColor-solid: #e1f9ef;
     --bgColor: #20d48922;
     --currentColor: #20d489;
-    /* --color-start: #a8ff78; 
-    --color-stop: #78ffd6; */
 }
 body[colorScheme='colorScheme__blue']{
     --bgColor-solid: #ddf4ff;
@@ -26,6 +24,9 @@ body[colorScheme='colorScheme__red']{
     --bgColor-solid: #fde5eb;
     --bgColor: #f1416c22;
     --currentColor: #f1416c;
+}
+body[colorScheme='colorScheme__purple']{
+    --currentColor: #6c63ff;
 }
 
 /* Светлая тема */
@@ -104,7 +105,7 @@ html{
 /* Основные элементы страницы */
 body{
     cursor: default;
-    background-color: var(--aside-bg-color);
+    background-color: var(--item-bg-color);
     
     font-family: "Google Sans";
 
@@ -126,15 +127,21 @@ body{
 /* Основной контейнер */
 .mainContainer{
     height: 100%; width: 100%;
+    background-color: var(--aside-bg-color);
     padding: 1.5rem;
-    border: var(--theme-light) solid 2px;
-    border-color: transparent transparent transparent var(--theme-light);
-    border-radius: 1.5rem;
+    border-radius: 1.5rem 0 0 1.5rem;
     display: flex; gap: 1.5rem;
     overflow: auto;
 }
+@media screen and (max-width: 740px){
+    .mainContainer{
+        padding: 0.5rem;
+        border-radius: 0;
+    }
+}
 
 /* Быстрые классы */
+.flex{ display: flex }
 .row{ display: flex; flex-direction: row; align-items: center }
 .column{ display: flex; flex-direction: column }
 
@@ -158,8 +165,10 @@ body{
 .display-none{ display: none }
 
 .px8{ padding: 0 0.5rem }
+.px16{ padding: 0 1rem }
 
 
+/* Аватар */
 .avatar{
     width: 2.5rem; height: 2.5rem;
     border-radius: 1.5rem;
@@ -169,24 +178,19 @@ body{
 .item{
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
-    border: #0001 solid 1px;
+    border: 0 0 1rem var(--theme-light);
     cursor: pointer;
-    transition-duration: .5s; transition-property: transform, box-shadow !important;
-}
-.item:hover{
-    box-shadow: var(--color-scheme-shadow) !important;
-    transform: translateX(4px) translateY(-4px) !important;
 }
 
 /* Навигационное меню */
 .navigation{
     position: fixed; top: 0; left: 0;
     height: 100%; width: 5.5rem;
+    padding: 0 1rem;
 }
 .navigation__logo img{
-    width: 3.5rem; height: 3.5rem;
-    padding: 0.5rem;
-    margin: 2rem 1rem 2rem;
+    width: 2.5rem; height: 2.5rem;
+    margin: 2.5rem 0.5rem;
 }
 .navigation__group:last-of-type{
     position: fixed; bottom: 0;
@@ -196,9 +200,7 @@ body{
     height: 3.5rem; width: 3.5rem;
     background-color: unset;
     border-radius: 0.5rem;
-    transition-property: background-color transform;
-    transition-duration: .1s;
-    margin: 0.25rem 1rem;
+    transition: all .1s;
 }
 .navigation__link:active{
     transform: scale(0.9);
@@ -223,7 +225,7 @@ body{
 }
 .navigation__profile img{
     width: 2.5rem; height: 2.5rem;
-    margin: 1.5rem;
+    margin: 1.5rem 0.5rem;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -843,6 +845,11 @@ button[class$='Button']:active{
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     width: 100%;
 }
+@media screen and (max-width: 740px){
+    .alertsContainer{
+        bottom: 4rem;
+    }
+}
 .alert{
     width: min-content;
     padding: 0.5rem 1rem;
@@ -938,4 +945,15 @@ button[class$='Button']:active{
 }
 #selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
     display: none;
+}
+
+.scrollbar{
+    padding-right: 0.5rem;
+}
+.scrollbar::-webkit-scrollbar{
+    width: 0.25rem;
+}
+.scrollbar::-webkit-scrollbar-thumb{
+    background-color: var(--theme-light-alpha);
+    border-radius: 0.125rem;
 }
