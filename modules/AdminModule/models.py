@@ -1,6 +1,5 @@
 from django.db import models
 from LoginApp.models import KvantStudent, KvantTeacher
-from DiaryApp.models import KvantLessonMark, KvantLessonHomeWork
 
 
 class KvantCourse(models.Model):
@@ -12,12 +11,12 @@ class KvantCourse(models.Model):
         return f'Курс {self.name}'
 
 
-class KvantLesson(models.Model):
-    date    = models.DateField()
-    time    = models.TimeField()
-    mark    = models.ManyToManyField(KvantLessonMark, blank=True)
-    course  = models.ForeignKey(KvantCourse, on_delete=models.CASCADE)
-    task    = models.ManyToManyField(KvantLessonHomeWork, blank=True)
+# class KvantLesson(models.Model):
+#     date    = models.DateField()
+#     time    = models.TimeField()
+#     mark    = models.ManyToManyField(KvantLessonMark, blank=True)
+#     course  = models.ForeignKey(KvantCourse, on_delete=models.CASCADE)
+#     task    = models.ManyToManyField(KvantLessonHomeWork, blank=True)
 
-    def __str__(self):
-        return f'Урок {self.date}'
+#     def __str__(self):
+#         return f'Урок {self.date}'

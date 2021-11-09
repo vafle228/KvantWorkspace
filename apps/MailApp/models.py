@@ -14,7 +14,6 @@ class MailReceiver(models.Model):
 
 class KvantMessage(models.Model):
     text        = models.TextField(blank=True)
-    style_text  = models.TextField(blank=True)
     receivers   = models.ManyToManyField(MailReceiver)
     date        = models.DateField(default=timezone.now)
     files       = models.ManyToManyField(FileStorage, blank=True)

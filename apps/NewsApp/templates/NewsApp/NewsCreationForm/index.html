@@ -42,7 +42,7 @@
             {% endif %}
             
             {% if form_status == "update" %}
-            <div id="editor" class='text-field'>{{ news.style_content|safe }}</div>
+            <div id="editor" class='text-field'>{{ news.content|safe }}</div>
             {% else %}
             <div id="editor" class='text-field'></div>
             {% endif %}
@@ -92,13 +92,12 @@
         for(let i = 0; i < file_array.length; i++){ // Перебор файлов
             news_form.append('files', file_array[i]) // Добавление файла в форму
         }
-
+        
+        news_form.append('image', news_preview)
         news_form.append('author', '{{ user.id }}')
-        news_form.append('image', news_preview) // Превью
-        news_form.append('content', quill.getText()) // Текст
-        news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
-        news_form.append('title', $('#news-title')[0].value) // заголовок
-        news_form.append('style_content', $('#editor .ql-editor')[0].innerHTML) // форматированный текст
+        news_form.append('title', $('#news-title')[0].value) 
+        news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) 
+        news_form.append('content', $('#editor .ql-editor')[0].innerHTML)
 
         return news_form
     }

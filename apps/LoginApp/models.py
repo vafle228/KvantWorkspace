@@ -40,9 +40,9 @@ class KvantUser(AbstractUser):
     name        = models.CharField(max_length=100)
     surname     = models.CharField(max_length=100)
     patronymic  = models.CharField(max_length=100)
-    permission  = models.CharField(choices=PERMISSION, max_length=100)
-    color       = models.CharField(max_length=100, choices=COLOR, default='blue')
-    theme       = models.CharField(max_length=100, choices=THEME, default='light')
+    permission  = models.CharField(choices=PERMISSION, max_length=20)
+    color       = models.CharField(max_length=10, choices=COLOR, default='blue')
+    theme       = models.CharField(max_length=10, choices=THEME, default='light')
     image       = models.ImageField(upload_to=get_path, default=set_default_image)
 
     def __str__(self):

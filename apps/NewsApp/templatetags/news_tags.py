@@ -1,5 +1,4 @@
 from django import template
-from modules.SystemModule.templatetags import base_tags as bt
 
 register = template.Library()
 
@@ -21,6 +20,3 @@ def is_files_image(files):
 
 register.filter('is_image', is_image)
 register.filter('is_files_image', is_files_image)
-
-register.filter('get_objects', bt.get_objects)
-register.filter('get_file_name', bt.get_file_name)

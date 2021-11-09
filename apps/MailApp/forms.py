@@ -12,7 +12,7 @@ class MailReceiverSaveForm(forms.ModelForm):
 class KvantMailSaveForm(forms.ModelForm):    
     class Meta:
         model = KvantMessage
-        fields = ['sender', 'text', 'style_text', 'files', 'title']
+        fields = ['sender', 'text', 'files', 'title']
     
     def __init__(self, *args, **kwargs):
         super(KvantMailSaveForm, self).__init__(*args, **kwargs)

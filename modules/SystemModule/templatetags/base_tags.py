@@ -30,6 +30,13 @@ def get_file_size(file):
     return f'{size} {suffixes[suffix_index]}'
 
 
+def get_text(html):
+    import re
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', html)
+
+
+register.filter('get_text', get_text)
 register.filter('get_objects', get_objects)
 register.filter('get_file_size', get_file_size)
 register.filter('get_file_name', get_file_name)

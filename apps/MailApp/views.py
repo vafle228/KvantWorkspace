@@ -41,7 +41,7 @@ class MailListView(KvantJournalAccessMixin, _MailPageContentBaseView, generic.Li
             return KvantMessage.objects.filter(sender=self.request.user)
         if self.request.GET.get('type') == 'received':
             return KvantMessage.objects.filter(receivers__receiver=self.request.user)
-        if self.request.GET.get('type') == 'importants':
+        if self.request.GET.get('type') == 'important':
             return KvantMessage.objects.filter(importantmail__user=self.request.user)
         return KvantMessage.objects.none()  # TODO: 404 page return
 
@@ -86,3 +86,15 @@ class MailChangeImportantStatusView(KvantJournalAccessMixin, generic.View):
 
             important_mail.delete() if not created else None
         return HttpResponse({'status': 200})
+
+
+class MailDeleteView(KvantJournalAccessMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        if KvantMessage.objects.filter(id=request.POST['id']).exists() and request.POST.get('confirm'):
+            mail = KvantMessage.objects.get(id=request.POST['id'])
+            mail.delete() if mail.sender == request.user else None
+            
+            if MailReceiver.objects.filter(kvantmessage=mail, receiver=request.user).exists():
+                MailReceiver.objects.get(kvantmessage=mail, receiver=request.user).delete()
+            return HttpResponse({'status': 200})
+        return HttpResponse({'status': 404})

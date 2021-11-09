@@ -21,10 +21,8 @@ def get_path(instance, filename):
     return f'news/img/{date}/{instance.title}/{filename}'
 
 
-
 class KvantNews(models.Model):
     content         = models.TextField(blank=True)
-    style_content   = models.TextField(blank=True)
     title           = models.CharField(max_length=100)
     date            = models.DateField(default=timezone.now)
     files           = models.ManyToManyField(FileStorage, blank=True)

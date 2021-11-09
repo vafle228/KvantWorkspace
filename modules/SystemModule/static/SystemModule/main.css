@@ -1,3 +1,6 @@
+/* Подключение шрифтов */
+@import url("fonts/Google font/stylesheet.css");
+
 body{
     /* Брейкпоинты */
     --xsmall: 576px;
@@ -11,8 +14,6 @@ body[colorScheme='colorScheme__green']{
     --bgColor-solid: #e1f9ef;
     --bgColor: #20d48922;
     --currentColor: #20d489;
-    /* --color-start: #a8ff78; 
-    --color-stop: #78ffd6; */
 }
 body[colorScheme='colorScheme__blue']{
     --bgColor-solid: #ddf4ff;
@@ -23,6 +24,9 @@ body[colorScheme='colorScheme__red']{
     --bgColor-solid: #fde5eb;
     --bgColor: #f1416c22;
     --currentColor: #f1416c;
+}
+body[colorScheme='colorScheme__purple']{
+    --currentColor: #6c63ff;
 }
 
 /* Светлая тема */
@@ -101,7 +105,7 @@ html{
 /* Основные элементы страницы */
 body{
     cursor: default;
-    background-color: var(--aside-bg-color);
+    background-color: var(--item-bg-color);
     
     font-family: "Google Sans";
 
@@ -123,14 +127,21 @@ body{
 /* Основной контейнер */
 .mainContainer{
     height: 100%; width: 100%;
+    background-color: var(--aside-bg-color);
     padding: 1.5rem;
-    border: var(--theme-light) solid 2px;
-    border-color: transparent transparent transparent var(--theme-light);
-    border-radius: 1.5rem;
+    border-radius: 1.5rem 0 0 1.5rem;
     display: flex; gap: 1.5rem;
+    overflow: auto;
+}
+@media screen and (max-width: 740px){
+    .mainContainer{
+        padding: 0.5rem;
+        border-radius: 0;
+    }
 }
 
 /* Быстрые классы */
+.flex{ display: flex }
 .row{ display: flex; flex-direction: row; align-items: center }
 .column{ display: flex; flex-direction: column }
 
@@ -153,28 +164,33 @@ body{
 
 .display-none{ display: none }
 
+.px8{ padding: 0 0.5rem }
+.px16{ padding: 0 1rem }
+
+
+/* Аватар */
+.avatar{
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 1.5rem;
+    object-fit: cover;
+}
 
 .item{
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
-    border: #0001 solid 1px;
+    border: 0 0 1rem var(--theme-light);
     cursor: pointer;
-    transition-duration: .5s; transition-property: transform, box-shadow !important;
-}
-.item:hover{
-    box-shadow: var(--color-scheme-shadow) !important;
-    transform: translateX(4px) translateY(-4px) !important;
 }
 
 /* Навигационное меню */
 .navigation{
     position: fixed; top: 0; left: 0;
     height: 100%; width: 5.5rem;
+    padding: 0 1rem;
 }
 .navigation__logo img{
-    width: 3.5rem; height: 3.5rem;
-    padding: 0.5rem;
-    margin: 2rem 1rem 2rem;
+    width: 2.5rem; height: 2.5rem;
+    margin: 2.5rem 0.5rem;
 }
 .navigation__group:last-of-type{
     position: fixed; bottom: 0;
@@ -184,9 +200,7 @@ body{
     height: 3.5rem; width: 3.5rem;
     background-color: unset;
     border-radius: 0.5rem;
-    transition-property: background-color transform;
-    transition-duration: .1s;
-    margin: 0.25rem 1rem;
+    transition: all .1s;
 }
 .navigation__link:active{
     transform: scale(0.9);
@@ -211,7 +225,7 @@ body{
 }
 .navigation__profile img{
     width: 2.5rem; height: 2.5rem;
-    margin: 1.5rem;
+    margin: 1.5rem 0.5rem;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -297,7 +311,7 @@ body{
 }
 
 .form .form-wrapper{
-    overflow-y: scroll; padding: 6rem 0 6rem 2.375rem;
+    overflow-y: scroll; padding: 6rem 0;
     position: fixed; top: 0; left: calc(50% - 31.25rem);
     height: 100%;
     z-index: 3;
@@ -306,7 +320,7 @@ body{
 .form .form-wrapper form{
     width: 62.5rem;
     background-color: var(--item-bg-color);
-    padding: 1rem 1.5rem; margin: auto 0;
+    padding: 1rem 1.25rem; margin: auto 0;
     border-radius: 1rem;
     position: relative;
     display: flex; flex-direction: column; gap: 0.75rem;
@@ -515,23 +529,6 @@ body{
     object-fit: cover;
 }
 
-/* Выбранные пользователи (Старые) */
-/* .selected::before{
-    content: "";
-    height: 54px;
-}
-.selected .user::after{
-    content: "\f143";
-    font-family: "uicons-regular-rounded"; color: #A1D214;
-    margin: 0 0.5rem;
-}
-.selected .user:hover::after{
-    content: "\f15d";
-    font-family: "uicons-regular-rounded"; color: red;
-    margin: 0 0.5rem;
-} */
-
-
 /* Кнопка с эффектом нажатия */
 .main-btn{
     width: 100%;
@@ -570,6 +567,7 @@ body{
     .user{ width: 49.5% }
 }
 
+
 /* Выпадающий список */
 .filteringList{
     width: 100%;
@@ -591,6 +589,7 @@ body{
     background-color: var(--theme-light);
     font-weight: 500;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    color: var(--text-primary-color);
 }
 .filtering.disable .dropdownSelect__trigger{
     opacity: 0.5;
@@ -602,8 +601,7 @@ body{
     top: 110%;
     left: 0; right: 0;
     transition: all 0.1s;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0; visibility: hidden;
     z-index: 1;
     max-height: 20rem; overflow-y: auto;
     border: var(--theme-light) solid 2px;
@@ -612,7 +610,7 @@ body{
     width: 6px;
 }
 .dropdownSelect__options::-webkit-scrollbar-thumb{
-    background-color: var(--color-scheme-light);
+    background-color: var(--currentColor);
     border-radius: 3px;
 }
 .dropdownSelect.open .dropdownSelect__options {
@@ -629,6 +627,7 @@ body{
     line-height: 2.5rem;
     transition: all 0.1s;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    color: var(--text-primary-color);
 }
 .dropdownSelect__option:hover {
     cursor: pointer;
@@ -636,7 +635,7 @@ body{
 }
 .dropdownSelect__option.selected {
     color: #ffffff;
-    background-color: var(--color-scheme-dark);
+    background-color: var(--currentColor);
 }
 
 .arrowDown {
@@ -662,7 +661,7 @@ body{
     transform: rotate(-45deg); 
 }
 .dropdownSelect__trigger.active .arrowDown::after, .dropdownSelect__trigger.active .arrowDown::before{
-    background-color: var(--color-scheme-dark);
+    background-color: var(--currentColor);
     width: 10px;
     left: 0;
     height: 100%;
@@ -846,6 +845,11 @@ button[class$='Button']:active{
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     width: 100%;
 }
+@media screen and (max-width: 740px){
+    .alertsContainer{
+        bottom: 4rem;
+    }
+}
 .alert{
     width: min-content;
     padding: 0.5rem 1rem;
@@ -941,4 +945,15 @@ button[class$='Button']:active{
 }
 #selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
     display: none;
+}
+
+.scrollbar{
+    padding-right: 0.5rem;
+}
+.scrollbar::-webkit-scrollbar{
+    width: 0.25rem;
+}
+.scrollbar::-webkit-scrollbar-thumb{
+    background-color: var(--theme-light-alpha);
+    border-radius: 0.125rem;
 }

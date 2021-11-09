@@ -1,17 +1,17 @@
-from LoginApp.models import KvantUser
-from django.shortcuts import render, redirect
-from AdminModule.models import KvantLesson, KvantCourse
+from .models import KvantLesson
+from django.views import generic
+from core.mixins import KvantJournalAccessMixin
 
 
-def diary_page(request, identifier):
-    # if not is_available(request, identifier):
-    #     return redirect('/login/')
+class DiaryPageListView(KvantJournalAccessMixin, generic.ListView):
+    model               = KvantLesson
+    ordering            = ['-date', '-id']
+    template_name       = 'DiaryApp/DiaryPage/index.html'
+    context_object_name = 'tasks'
 
-    user = KvantUser.objects.filter(id=identifier)[0]
-    if user.permission == 'Ученик':
-        course = KvantCourse.objects.filter(students__student=user)[0]
-    else:
-        course = KvantCourse.objects.filter(teacher__teacher=user)[0]
-
-    lessons = KvantLesson.objects.filter(course=course)
-    return render(request, 'DiaryPage/index.html', {'lessons': lessons})
+    # def get_queryset(self):
+    #     if self.request.GET.get('type') == 'lesson':
+    #         return KvantLesson.objects.filter(works__student=self.request.user)
+    #     if self.request.GET.get('type') == 'task':
+    #         return KvantTask.objects.filter(works__student=self.request.user)
+    #     return KvantTask.objects.none()  # TODO: 404 page return

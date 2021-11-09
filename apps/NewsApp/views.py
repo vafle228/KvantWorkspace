@@ -78,17 +78,21 @@ class NewsCreateView(KvantJournalAccessMixin, _NewsManipulationBaseView, generic
 # View для обновления новости
 class NewsUpdateView(KvantJournalAccessMixin, _NewsManipulationBaseView, generic.View):
     def post(self, request, *args, **kwargs):
-        news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
-        post_kwargs = {
-            'is_available': request.user == news.author,
-            'form': KvantNewsSaveForm(request.POST, request.FILES, instance=news)
-        }
-        return super().post(request, *args, **post_kwargs)
+        if KvantNews.objects.filter(id=kwargs.get('news_identifier')).exists():
+            news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
+            post_kwargs = {
+                'is_available': request.user == news.author,
+                'form': KvantNewsSaveForm(request.POST, request.FILES, instance=news)
+            }
+            return super().post(request, *args, **post_kwargs)
+        return HttpResponse({'status': 404})
 
 # View для удаления новости
 class NewsDeleteView(KvantJournalAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
-        news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
-        if request.POST.get('confirm') and news.author == request.user:
-            news.delete()
-        return HttpResponse({'status': 200})
+        if KvantNews.objects.filter(id=kwargs.get('news_identifier')).exists():
+            news = KvantNews.objects.get(id=kwargs.get('news_identifier'))
+            if request.POST.get('confirm') and news.author == request.user:
+                news.delete()
+            return HttpResponse({'status': 200})
+        return HttpResponse({'status': 404})

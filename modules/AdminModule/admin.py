@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import KvantCourse, KvantLesson
+from .models import KvantCourse
 
 
 admin.site.register(KvantCourse)
-admin.site.register(KvantLesson)

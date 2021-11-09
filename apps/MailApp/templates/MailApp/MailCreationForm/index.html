@@ -87,12 +87,12 @@
             mail_form.append('receivers', users[i])
         }
 
-        mail_form.append('text', quill.getText()) // Текст
-        mail_form.append('sender', '{{ user.id }}'); // Отправитель
-        mail_form.append('title', $('#mailSubject')[0].value) // Заголовок
-        mail_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) // csfr_token
-        mail_form.append('style_text', $('#editor .ql-editor')[0].innerHTML) // Форматированный текст
 
+        mail_form.append('sender', '{{ user.id }}')
+        mail_form.append('title', $('#mailSubject')[0].value)
+        mail_form.append('text', $('#editor .ql-editor')[0].innerHTML) 
+        mail_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+        
         return mail_form
     }
 </script>

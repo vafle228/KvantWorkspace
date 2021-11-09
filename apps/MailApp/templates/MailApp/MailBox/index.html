@@ -184,7 +184,7 @@
                     <div class="column g12">
                         <p class="mailItem__title">
                             <strong>{{ mail.title }}</strong>
-                            {{ mail.text }}
+                            {{ mail.text|get_text }}
                         </p>
                     </div>
                     <p class="mailItem__date">{{ mail.date|date:"j.m.Y" }}</p>
@@ -239,6 +239,35 @@
                     $("#mailDetailView")[0].innerHTML = response
                     $('.mailView').addClass('active'); $('.mailView__empty').hide();
                 }
+            })
+        }
+    </script>
+    <script>
+        function changeImportantStatus(id){
+            $.ajax({
+                method: 'POST',
+                url: '{% url "make_important" user.id %}',
+                data: {
+                    id: id,
+                    csrfmiddlewaretoken: getCookie('csrftoken'),
+                },
+                cache: false,
+                success: () => $('#markAsImportant').toggleClass('active  '),
+            })
+        }
+    </script>
+    <script>
+        function deleteMail(id){
+            $.ajax({
+                method: 'POST',
+                url: '{% url "delete_mail" user.id %}',
+                data: {
+                    id: id,
+                    confirm: true,
+                    csrfmiddlewaretoken: getCookie('csrftoken'),
+                },
+                cache: false,
+                success: () => location.reload(),
             })
         }
     </script>

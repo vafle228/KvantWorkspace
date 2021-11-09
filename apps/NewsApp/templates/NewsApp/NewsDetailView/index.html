@@ -1,4 +1,5 @@
 {% load static %}
+{% load base_tags %}
 {% load news_tags %}
 <!DOCTYPE html>
 <html>
@@ -87,7 +88,7 @@
                 <!-- Текст новости -->          
                 <div class="ql-snow">
                     <div class="ql-editor">
-                        <p class="newsView__infoText">{{ news.style_content|safe }}</p>
+                        <p class="newsView__infoText">{{ news.content|safe }}</p>
                     </div>
                 </div>
                 {% if news.files|get_objects|length != 0 %}

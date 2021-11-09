@@ -117,17 +117,17 @@ function sendInstanceData(form, post_url){
 // Генерация интерфейса файла
 function addNewFile(file, array, container_id){
 	let container = $(container_id)[0] // init контейнера
-	let file_widget = addFileWidget(file) // Получение html файла
+	let file_widget = addFileWidget(file) // Получение html view
 
 	// Функция по клику на "крестик"
 	$(file_widget).find('#del-btn')[0].onclick = function(click) {
 		for(let i = 0; i < array.length; i++){
 			if(array[i] == file){ array.splice(i, 1) }
 		} 
-		container.removeChild(file_widget) // Уборка html файла
+		container.removeChild(file_widget) // Уборка html view
 	}
 	
-	container.appendChild(file_widget) // Добавление файла в контейнер
+	container.appendChild(file_widget) // Добавление view в контейнер
 	
 }
 

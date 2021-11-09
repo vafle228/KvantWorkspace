@@ -1,5 +1,8 @@
+from . import models
 from django.contrib import admin
-from .models import KvantLessonHomeWork, KvantLessonMark
 
-admin.site.register(KvantLessonMark)
-admin.site.register(KvantLessonHomeWork)
+
+admin.site.register(models.KvantLesson)
+admin.site.register(models.KvantHomeWork)
+admin.site.register(models.KvantHomeTask)
+admin.site.register(models.KvantLessonWork)
