@@ -163,7 +163,7 @@
                     </svg>
                     Назад
                 </button>
-                <button class="secondaryButton" onclick="open_form('#editNewsItemForm')">
+                <button class="primaryButton" onclick="open_form('#editNewsItemForm')">
                     <svg viewBox="0 0 576 512">
                         <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
                         <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
@@ -192,23 +192,23 @@
             </div>
     
             <!-- Информация новости -->
-            <div class="newsView__info">
+            <div class="newsView__info column g16">
     
                 <p class="newsView__infoTitle">Заголовок новости</p>
-                <div class="row g8">
-                    <p class="newsView__infoAuthor">Фамилия Имя</p>
-                    <div class="dot"></div>
-                    <p class="newsView__infoDate">19.08</p>
+
+                <div class='row space-between'>
+                    <div class='row g8'>
+                        <img src="../../img/Kaelthas.jpg" class="avatar">
+                        <div class='column'>
+                            <p style='color: var(--text-primary-color)'>Фамилия Имя</p>
+                            <p>Учитель</p>
+                        </div>
+                    </div>
+                    <p class='mailView__date'>11 сентября</p>
                 </div>
     
-                <hr class="divider" noshade/>
-    
-                <!-- Текст новости -->
                 <p class="newsView__infoText">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quisquam saepe fugiat quam vel deleniti ullam, architecto dolor eaque pariatur cupiditate tempora ea error fugit doloremque molestiae voluptatem vitae nobis. Suscipit iure odit nam iste beatae dignissimos tenetur animi amet similique pariatur hic ea placeat repellat facilis, unde maxime dolor eligendi ipsum, fugiat quam sint! Itaque accusamus animi illum. Unde voluptas nobis ipsam accusantium asperiores ullam fugit est possimus molestias deserunt animi ducimus voluptatibus aliquid quasi, atque fuga inventore omnis nisi facilis maiores similique, ea iste voluptate. Nam, officiis aut culpa error ratione odio, voluptas vitae magni nulla quibusdam dolore ad exercitationem obcaecati perferendis distinctio doloremque soluta qui cum optio hic repellat, velit harum. Quo iure numquam ex excepturi facere eius beatae aut quibusdam quos inventore esse nesciunt officia expedita odio, earum id voluptatibus est tempora neque culpa. A dolorem, qui aspernatur dolores doloremque labore amet minima iste harum nihil tenetur obcaecati ea cum atque id soluta. Deserunt, molestias totam? Ex, corrupti dolorem maxime rem facere aperiam inventore dicta tenetur ullam, error fugit iusto consequatur fuga deserunt voluptatibus ut similique sed laboriosam repellendus. Nostrum quos, eaque eveniet aspernatur cumque dicta perferendis ab, aperiam asperiores neque soluta saepe repellendus sed! Et?</p>
-                
-                <hr class="divider" noshade/>
-    
-                <!-- Файлы -->
+
                 <div class='files'>
                     <div class='file'>
                         <i class='file-7z'></i>
@@ -335,24 +335,24 @@
             <form>
                 <div class='item-header'>
                     <h2>Редактирование новости</h2>
-                    <div style='display: flex; gap: 5px'>
-                        <button class='form-btn active' type="button">
+                    <div class='row g8'>
+                        <button class='primaryButton' type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
                                 <g transform="translate(-8.001 -9.667)">     
-                                    <path class='faded' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
-                                    <path class='faded' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
-                                    <path class='bright' d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
+                                    <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
+                                    <path opacity='0.3' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
+                                    <path d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
                                 </g>
                             </svg>
-                            <p>Добавить обложку</p>
+                            Добавить обложку
                         </button>
-                        <button class='form-btn active' type="submit">
+                        <button class='secondaryButton' type="submit">
                             <svg viewBox="0 0 24 24">
-                                <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
-                                <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
-                                <path class='faded' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
+                                <path d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
+                                <path d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
+                                <path opacity='0.6' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
                             </svg>
-                            <p>Опубликовать</p>
+                            Опубликовать
                         </button>
                     </div>
                 </div>
@@ -362,14 +362,14 @@
                 </div>
                 <div class="item-header">
                     <h2>Прикрепленные файлы</h2>
-                    <button class='form-btn active' type="button">
+                    <button class='primaryButton' type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
                             <g transform="translate(-8.667 -8)">
-                                <path class='faded' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
-                                <path class='bright' d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                                <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                                <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
                             </g>
                         </svg>
-                        <p>Документ</p>
+                        Документ
                     </button>
                 </div>
                 

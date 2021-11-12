@@ -1,289 +1,161 @@
 
 
-/* Шапка */
-.profile-header{ margin-left: auto }
-
-
-#main{
-    transform-origin: 0 0;
-    padding: 1.5rem;
-    border: var(--theme-light) solid 2px;
-    border-color: transparent transparent transparent var(--theme-light);
-    border-radius: 1.5rem;
-}
-/* Виджеты */
-#widgets{
-    height: 350px;
-    display: flex;
-}
-
 /* Виджет "Календарь" */
-#calendar-widget{
-    height: 300px; width: 100%;
-    background-color: var(--item-bg-color);
-    display: flex;
-    box-shadow: rgb(0 0 0 / 8%) 0px 10px 20px 0px;
-    border-radius: 10px;
-    margin-right: 1%;
-}
-#calendar-widget .calendar-container{
-    background-color: var(--currentColor);
-    background-image: 
-		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
-		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(90deg, var(--currentColor), var(--currentColor)),
-		linear-gradient(90deg, var(--currentColor), var(--currentColor));
-	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
-    width: 256px; height: 100%;
-    border-radius: 10px 0 0 10px;
-    padding: 24px 16px;
-}
-#calendar-widget .calendar-container .date-info{
-    height: 40px; width: 100%;
-    display: flex; align-items: center; justify-content: space-between;
-    font-weight: 800; font-size: 1.6rem;
-    margin: 0 0 24px;
-}
-
-/* Календарь */
-.calendar{
-    margin-top: auto;
-    width: 100%; height: 192px;
-    
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 2px;
-}
-.calendar span{
-    text-align: center;
-    padding: 7px 0;
-    border-radius: 5px;
-    color: #25262C; font-weight: 600; font-size: 0.875rem;
-    transition-duration: .1s;
-    transition-property: background-color color;
-}
-.calendar span.inactive{
-    font-weight: 500;
-}
-.calendar span:not(.inactive){
-    background-color: #25262C22;
-}
-.calendar span:not(.inactive):hover, .calendar span.active{
-    background-color: #25262C;
-    color: #fff;
+#eventsWidget{
+    width: calc(100% - 48rem - 1rem); height: 22rem;
+    border-radius: 1rem;
+    border: 2px dashed var(--item-bg-color);
+    padding: 1.5rem;
 }
 
 /* Расписание мероприятий */
-#calendar-widget .timetable{
-    width: calc(100% - 256px); height: calc(100% - 48px); overflow-y: scroll;
-    padding: 0 24px; margin: 24px 0;
-    display: flex; flex-direction: column; gap: 4px;
+#eventsWidget .timetable{
+    width: 100%; height: 100%;
+    overflow: auto;
 }
-#calendar-widget .timetable .event{
-    width: 100%; min-height: 48px;
-    background-color: unset;
-    border-radius: 6px;
-    padding: 0 16px;
-    display: flex; align-items: center; gap: 16px;
-    color: var(--text-primary-color);
+.event{
+    min-height: 3rem;
+    border-radius: 0.5rem;
     transition: background-color .2s;
     cursor: pointer;
 }
-#calendar-widget .timetable .event:hover{
-    background-color: var(--button-bg-hover-color);
+.event:hover{
+    background-color: var(--theme-light);
 }
-#calendar-widget .timetable .event .marker{
-    min-width: 12px; min-height: 12px;
-    border-radius: 6px;
-    background-color: #F6BF26;
+.event__date{
+    width: 2.5rem;
+    font-weight: 500; color: var(--text-primary-color);
+    text-align: right;
 }
-#calendar-widget .timetable .event .event__name{
+.event__name{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 500;
+    max-width: calc(100% - 2.5rem - 2rem - 1rem);
 }
-
-/* Виджет "Расписание" */
-#schedule-widget{
-    width: 775px; height: 300px;
-    padding: 25px 20px 15px 25px;
-    background-color: var(--bgColor);
-    background-image: 
-		linear-gradient(transparent 0px, transparent 49px, rgba(255,255,255, 0.2) 50px, transparent 51px, transparent 99px, rgba(255,255,255, 0.2) 100px), 
-		linear-gradient(120deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(60deg, transparent 0, transparent 48px, rgba(255,255,255, 0.2) 49px, transparent 50px, transparent 98px, rgba(255,255,255, 0.2) 99px, transparent 100px), 
-		linear-gradient(90deg, var(--currentColor), var(--bgColor)),
-		linear-gradient(90deg, var(--bgColor), var(--bgColor));
-	background-size: 100px 100px, 115px 100px, 115px 100px, auto;
-    display: flex; flex-direction: column; gap: 10px;
-    border-radius: 10px;
-}
-#schedule-widget .widget-header{
-    display: flex; justify-content: space-between;
+.event__marker{
+    height: 1rem; width: 1rem;
     position: relative;
 }
-#slider-controller{
-    display: flex; align-items: center; gap: 8px;
-    margin-right: 4px;
+.event__marker::before{
+    content: "";
+    width: 0.25rem; height: 3rem;
+    background-color: var(--extra-color);
+    position: absolute; top: -1rem; left: 0.375rem;
 }
-.arrow{
-    height: 30px; width: 30px;
-    background-color: var(--button-bg-color);
-    border-radius: 5px;
-    padding: 4px;
-    font-size: 22px;
-    transition: .2s transform;
+.event__marker::after{
+    content: "";
+    height: 0.5rem; width: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--aside-bg-color);
+    border: var(--currentColor) solid 0.25rem;
+    position: absolute; top: 0; left: 0;
+    box-shadow: 0 0 0 0.125rem var(--aside-bg-color);
 }
-.arrow svg {
-    fill: var(--text-primary-color);
+.event:first-of-type .event__marker::before{
+    height: 1.5rem; top: 0.5rem;
 }
-.arrow:hover{ transform: scale(1.2) }
+.event:last-of-type .event__marker::before{
+    height: 1.5rem;
+}
 
-#schedule-widget #slider{
-    display: flex;
-    overflow-x: auto;
-    padding-top: 10px;
-    height: 200px;
+
+/* Виджет "Расписание" */
+#scheduleWidget{
+    width: 48rem; height: 22rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 2px dashed var(--item-bg-color);
+}
+
+.courseList{
+    width: 100%; min-height: 16rem; max-height: 16rem;
+    overflow: auto;
 }
 
 /* Направление */
 .course{
-    min-width: 225px; max-width: 225px; height: 190px;
-    margin-right: 25px;
-    position: relative;
-    border: none;
-    border-radius: 0.5rem;
-    overflow: hidden;
-}
-.course:last-of-type{
-    margin-right: 5px;
-}
-.course .course__banner{
-    position: absolute;
-    top: 0;
-    object-fit: cover;
-    width: 100%; height: 100px;
-}
-.course .teacherProfileImg{
-    position: absolute;
-    right: 16px; top: 73px;
-    object-fit: cover;
-    width: 54px; height: 54px;
-    border-radius: 50%;
-    z-index: 1;
-    padding: 6px;
+    height: 5rem; width: 100%;
+    border-radius: 1rem;
     background-color: var(--item-bg-color);
+    cursor: pointer;
+    transition: transform .1s;
 }
-.course .course__info{
-    position: absolute;
-    width: 100%; height: 100px;
-    padding: 16px;
-    background-color: #0004;
-    border-radius: 10px 10px 0 0;
+.course:active{
+    transform: scale(0.98);
 }
-.course .course__info h2{
-    width: 100%;
+.course__illustration{
+    width: 4rem; height: 4rem;
+    margin: 0.5rem 1rem;
+}
+.course__title{
+    font-size: 1.25rem; font-weight: 500;
+    color: var(--text-primary-color);
+    width: 12rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: #eee;
 }
-.course .course__info h4{
-    font-size: 1rem;
-    position: absolute;
-    bottom: 8px;
-    color: #eee;
-}
-/* Расписание занятий */
-.course .course__timetable{
-    position: absolute; top: 100px;
-    width: 100%; height: 90px;
-    padding: 40px 16px 16px;
-    display: flex; gap: 6%;
-    overflow: hidden;
-}
-.lessonDay{
-    height: 100%; width: 47%;
+
+.lesson{
     background-color: var(--bgColor);
-    color: var(--currentColor) !important;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: var(--text-primary-color);
-    display: flex; align-items: center; gap: 8px;
+    width: 3rem; height: 3rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+}
+.lesson__day{
+    font-weight: 800;
+}
+.lesson__day, .lesson__time{
+    color: var(--currentColor);
+    text-align: center;
+}
+.lesson.inactive{
+    background-color: var(--theme-light);
+}
+.lesson.inactive .lesson__day{
+    color: #70757D;
 }
 
-.calendar__timetable{
-    display: flex; flex-direction: row; align-items: center; gap: 8px;
-}
-.calendar__timetable .day{
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: var(--text-primary-color);
-    display: flex; align-items: center; gap: 4px;
-}
-.calendar__timetable .day.active{
-    background-color: var(--special-ui-elements-color);
-}
-
-/* ===== Новости ===== */
-#news{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-#news__container{
-    display: flex;
+/* Новости */
+.newsContainer{
     flex-wrap: wrap;
-    gap: 1%;
 }
-#news__container .item{
-    width: 32.6666%; height: 400px;
-    margin-bottom: 1%;
-    padding: 32px;
-    border-radius: 16px;
+.newsItem{
+    width: calc((100% - 2rem) / 3); height: 400px;
+    padding: 2rem;
+    border-radius: 1rem;
     overflow: hidden;
     position: relative;
 }
-#news__container .item:hover{
-    transform: none !important;
-    box-shadow: none !important;
-}
-#news__container .item:hover .item__preview{
+.newsItem:hover .newsItem__preview{
     transform: scale(1.05);
 }
-#news__container .item .item__preview{
-    width: calc(100% + 64px);
-    height: calc(100% + 64px);
+.newsItem__preview{
+    width: calc(100% + 4rem); height: calc(100% + 4rem);
     filter: brightness(0.6);
-
     object-fit: cover;
-    margin: -32px;
-    border-radius: 16px;
-
+    margin: -2rem;
+    border-radius: 1rem;
     z-index: -1;
-
     transition: transform .4s ease;
 }
-#news__container .item .item__content{
+.newsItem__content{
     position: absolute;
-    bottom: 32px;
-    display: flex;
-    flex-direction: column;
-    padding-right: 32px;
+    bottom: 2rem;
+    padding-right: 2rem;    
 }
-#news__container .item .item__title{
+.newsItem__title{
     color: #eee;
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 1.8rem; font-weight: 500;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
-#news__container .item .item__text{
+.newsItem__text{
     color: rgba(238, 238, 238, 0.8);
     font-size: 1rem;
     overflow: hidden;
@@ -291,43 +163,60 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin: 8px 0 16px 0;
 }
-#news__container .item__info{
-    display: flex;
-    gap: 16px;
-    align-items: center;
+.newsItem__info{
+    color: #eee; font-size: 1.1rem;
+}
+.newsItem__info p{
     color: #eee;
-    font-size: 1.1rem;
 }
-#news__container .item .item__info .profile-img{
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-#news__container .item .item__info .dot{
+.newsItem__info .dot{
     background-color: #eee;
     width: 8px; height: 8px;
     border-radius: 4px;
 }
 
-/* Адаптивность для сенсорных устройств */
-@media screen and (max-width: 900px){
-    /* Новости */
-    #news > #news__container .item{ width: 49.5% }
-}
-@media screen and (max-width: 782px){
-    /* Виджеты */
-    #widgets{
-        height: 675px;
-        flex-direction: column; gap: 25px;
+
+@media screen and (max-width: 1100px){
+    .newsItem{
+        width: calc((100% - 1rem) / 2);
     }
-    #schedule-widget{
+    #scheduleWidget{
+        width: 32rem;
+    }
+    #eventsWidget{
+        width: calc(100% - 32rem - 1rem);
+    }
+    .lesson.inactive{
+        display: none;
+    }
+}
+@media screen and (max-width: 820px){
+    #widgets{
+        flex-direction: column;
+    }
+    #scheduleWidget, #eventsWidget{
         width: 100%;
     }
-}
-@media screen and (max-width: 576px){
-    /* Новости */
-    #news > #news__container .item{ width: 100% }
+    .lesson.inactive{
+        display: flex;
+    }
 }
 
+@media screen and (max-width: 740px){
+    .mainContainer{
+        padding: 1rem;
+    }
+    .newsItem{
+        width: 100%;
+    }
+    #scheduleWidget, #eventsWidget{
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .lesson.inactive{
+        display: none;
+    }
+}

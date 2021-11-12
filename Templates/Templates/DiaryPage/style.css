@@ -11,7 +11,7 @@
 }
 
 .pagination__page{
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--aside-bg-color);
     height: 3rem; width: calc(100% - 7rem);
     border-radius: 0.5rem;
     color: var(--text-primary-color); font-size: 1.25rem;
@@ -47,8 +47,9 @@
 }
 .lesson__title{
     color: var(--text-primary-color);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
+    width: 80%;
 }
 .lesson__date{
     line-height: 2rem;
@@ -57,7 +58,7 @@
     color: var(--text-primary-color);
     font-size: 1.25rem;
 }
-.lesson__info p{
+.lesson__info p, .lesson__title{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -102,11 +103,9 @@
 .lessonView__content h1:not(.lessonView__content h1:first-of-type){
     margin-top: 0.5rem;
 }
-.lessonView__content .ql-snow.ql-toolbar{
-    background-color: var(--item-bg-color);
-}
 .lessonView__content #editor{
     height: 8rem;
+    background-color: var(--item-bg-color);
 }
 #lessonView .closeButton{
     display: none;

@@ -23,10 +23,7 @@
 
 /* Информационный блок новости */
 .newsView__info{
-    border-radius: 16px;
-    padding: 16px 24px;
-    background-color: var(--item-bg-color);
-    display: flex; flex-direction: column; gap: 8px;
+    padding: 1rem 0;
 }
 .newsView__infoTitle{
     font-size: 36px;

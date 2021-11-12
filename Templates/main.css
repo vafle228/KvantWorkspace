@@ -11,98 +11,80 @@ body{
 }
 
 body[colorScheme='colorScheme__green']{
-    --bgColor-solid: #e1f9ef;
     --bgColor: #20d48922;
     --currentColor: #20d489;
 }
 body[colorScheme='colorScheme__blue']{
-    --bgColor-solid: #ddf4ff;
     --bgColor: #00b2ff22;
     --currentColor: #00b2ff;
 }
 body[colorScheme='colorScheme__red']{
-    --bgColor-solid: #fde5eb;
     --bgColor: #f1416c22;
     --currentColor: #f1416c;
 }
 body[colorScheme='colorScheme__purple']{
+    --bgColor: #6c63ff22;
     --currentColor: #6c63ff;
 }
 
 /* Светлая тема */
 .light__theme{
-    --bg-color: var(--bgColor-solid);
     --aside-bg-color: #fff;
+    --item-bg-color: #ebf0f8;
 
     --text-primary-color: #111926;
     --text-secondary-color: #eee;
 
-    --item-bg-color: #f4f6f8;
-
-    --button-bg-color: #fff;
-    --button-bg-hover-color: #f5f5f5;
-    --button-bg-active-color: var(--color-scheme-light);
-
-    --special-ui-elements-color: #e5e8ee;
-
-    --theme-light: #3436380e;
+    --theme-light: #3436380a;
     --theme-light-alpha: #0004;
-    --theme-light-alpha-reverse: #fff4;
 }
 /* Темная тема */
 .dark__theme{
-    --bg-color: #202020;
     --aside-bg-color: #191919;
+    --item-bg-color: #25262C;
 
     --text-primary-color: #eee;
     --text-secondary-color: #111926;
 
-    --item-bg-color: #25262C;
-
-    --button-bg-color: #25262C;
-    --button-bg-hover-color: #101114;
-    --button-bg-active-color: #25262C;
-
-    --special-ui-elements-color: #1B1C22;
-
     --theme-light: #f5f8fa0e;
     --theme-light-alpha: #fff1;
-    --theme-light-alpha-reverse: #0004;
-}
-
-
-
-/* Скрываем скролбар */
-::-webkit-scrollbar{
-    width: 0; height: 0;
 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
 
-/* Немного обнуления */
-button, input, textarea, .ql-editor{ border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans'; }
-a{ text-decoration: none; color: unset; }
+/* Скрываем полосу прокрутки */
+::-webkit-scrollbar{
+    width: 0; height: 0;
+}
 
-/* Настройка шрифтов и размеров текста */
+/* Немного обнуления */
+button, input, textarea, .ql-editor{
+    border: none; outline: none; cursor: pointer; resize: none; font-family: 'Google Sans';
+}
+a{
+    text-decoration: none; color: unset;
+}
+
+/* Шрифты и размеры текста */
 ::placeholder{ font-family: 'Google Sans' }
-h1{ font-size: 2rem; font-weight: bold; color: var(--text-primary-color)}
-h2{ font-size: 1.6rem; font-weight: bold; color: var(--text-primary-color)}
-h3{ font-size: 1.2rem; font-weight: 500; color: #70757D }
-h4, h6{ font-size: 1.2rem; font-weight: 300; color: #70757D}
-p{ font-size: 1rem; font-weight: normal; color: #70757D }
+
+h1{ font-size: 2rem;    font-weight: bold;    color: var(--text-primary-color) }
+h2{ font-size: 1.6rem;  font-weight: bold;    color: var(--text-primary-color) }
+h3{ font-size: 1.2rem;  font-weight: 500;     color: #70757D }
+h4{ font-size: 1.2rem;  font-weight: 300;     color: #70757D }
+p{  font-size: 1rem;    font-weight: normal;  color: #70757D }
+
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
-/* span{ color: var(--text-primary-color); vertical-align: text-bottom } */
 
 
 html{
-    /* Плавный скрол страницы */
+    /* Плавная прокрутка страницы */
     scroll-behavior: smooth;
 
     /* Параметр, от которого зависит размер всех элементов */
     font-size: 16px;
 }
-  
-/* Основные элементы страницы */
+
 body{
     cursor: default;
     background-color: var(--item-bg-color);
@@ -167,19 +149,15 @@ body{
 .px8{ padding: 0 0.5rem }
 .px16{ padding: 0 1rem }
 
+.py8{ padding: 0.5rem 0 }
+.py16{ padding: 1rem 0 }
+
 
 /* Аватар */
 .avatar{
     width: 2.5rem; height: 2.5rem;
     border-radius: 1.5rem;
     object-fit: cover;
-}
-
-.item{
-    background-color: var(--item-bg-color);
-    border-radius: 0.5rem;
-    border: 0 0 1rem var(--theme-light);
-    cursor: pointer;
 }
 
 /* Навигационное меню */
@@ -213,6 +191,9 @@ body{
 .navigation__link:hover, .navigation__link.active{
     background-color: var(--theme-light);
 }
+.navigation__link.active{
+    background-color: var(--aside-bg-color);
+}
 .navigation__link.active svg path{
     fill: var(--currentColor);
     opacity: 1;
@@ -230,7 +211,7 @@ body{
     object-fit: cover;
 }
 
-/* Навигация для смартфонов */
+/* Навигационное меню для смартфонов */
 .navigationBar{
     width: 100%; height: 4rem;
     display: none;
@@ -282,7 +263,6 @@ body{
     background-color: var(--currentColor);
 }
 
-/* Смена навигации */
 @media screen and (max-width: 740px){
     body{
         padding-left: 0;
@@ -293,9 +273,12 @@ body{
 }
 
 /* Формы просмотра и заполнения информации */
-.form{ visibility: hidden; transition: visibility .4s }
-.form.active{ visibility: visible }
-
+.form{
+    visibility: hidden; transition: visibility .4s;
+}
+.form.active{
+    visibility: visible;
+}
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
@@ -309,21 +292,20 @@ body{
 .form.active::before{
     visibility: visible; opacity: 1;
 }
-
 .form .form-wrapper{
     overflow-y: scroll; padding: 6rem 0;
-    position: fixed; top: 0; left: calc(50% - 31.25rem);
+    position: fixed; top: 0; left: calc(50% - 36.25rem);
     height: 100%;
     z-index: 3;
     display: flex; align-items: center;
 }
 .form .form-wrapper form{
-    width: 62.5rem;
-    background-color: var(--item-bg-color);
+    width: 72.5rem;
+    background-color: var(--aside-bg-color);
     padding: 1rem 1.25rem; margin: auto 0;
     border-radius: 1rem;
     position: relative;
-    display: flex; flex-direction: column; gap: 0.75rem;
+    display: flex; flex-direction: column; gap: 1rem;
 
     transform: translateY(2000px);
     transition: transform .4s;
@@ -332,27 +314,8 @@ body{
     transform: translateY(0px) !important;
 }
 
-/* Кнопки в форме */
-.form-btn{
-    background-color: unset;
-    padding: 0 0.75rem; margin: auto 0;
-    min-height: 3rem; max-height: 3rem;
-    border-radius: 0.5rem;
-    transition-property: color background-color box-shadow; transition-duration: .2s;
-    display: flex; align-items: center; gap: 0.5rem;
-}
-.form-btn p{
-    font-weight: 500; font-size: 1.2rem;
-}
-.form-btn p{
-    color: var(--currentColor);
-}
-.form-btn:hover{
-    background-color: var(--button-bg-hover-color);
-}
-
-/* Элемент шапки формы */
-.form .form-wrapper form .item-header{
+/* Строительный блок для форм (Костыль из прошлого)*/
+.form .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 3rem;
     gap: 0.25rem;
@@ -362,16 +325,14 @@ body{
 .form .form-wrapper form .text-field{
     width: 100%;
     border-radius: 0.5rem;
-    border: #0002 solid 1px;
     padding: 0.5rem;
     font-size: 1rem;
-    background-color: var(--aside-bg-color);
+    background-color: var(--item-bg-color);
     color: var(--text-primary-color);
 }
 .form .form-wrapper form .text-field-title{
     font-size: 1.3rem;
     white-space: nowrap;
-    border: 1px solid #0002;
 }
 .form .form-wrapper form .text-field::placeholder{
     font-size: 1rem;
@@ -380,8 +341,21 @@ body{
     font-size: 1.3rem;
 }
 
+@media screen and (max-width: 992px){
+    .form .form-wrapper form{ width: 100% }
+    .form .form-wrapper{ width: 98%; left: 1% }
+}
+@media screen and (max-width: 576px){
+    .form form{
+        padding: 1rem !important;
+    }
+    .form h2{
+        display: none;
+    }
+}
 
-/* Toggle */
+
+/* Переключатели */
 .toggle{
     height: 1rem; width: 2rem;
     border-radius: 1rem;
@@ -407,7 +381,6 @@ body{
 .dark__theme .toggle.theme:after{
     transform: translatex(1rem);
 }
-
 .toggle.color-scheme{
     width: 1rem;
 }
@@ -433,7 +406,6 @@ body{
 .file{
     height: 3rem;
     width: calc((100% - 3rem) / 4);
-    /* width: auto !important; */
     min-width: 16rem;
     display: flex; align-items: center; flex-direction: row;
     border-radius: 0.25rem;
@@ -489,82 +461,50 @@ body{
 }
 
 
-/* Пользователи (Надо обновлять) */
+/* Пользователи */
 .users{
-    display: flex; gap: 0.33%;
+    display: flex; gap: 0.5rem;
     flex-wrap: wrap;
-
-    overflow: auto;
-    max-height: 162.9px;
 }
 .user{
-    display: flex; gap: 0.5rem; align-items: center;
-    width: 33%;
+    width: calc((100% - 1.5rem) / 4);
     padding: 0.5rem;
-    border-radius: 0.5rem;
-    background-color: unset;
-    margin-bottom: 0.33%;
+    border-radius: 2rem;
     transition: background-color .2s;
-    cursor: default;
+    overflow: hidden;
 }
 .user:hover{
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--item-bg-color);
 }
-.user .info{
-    display: flex; flex-direction: column;
-    width: 100%;
+.user:hover .user__name{
+    color: var(--currentColor);
 }
-.user .info h2{
-    font-size: 1.1rem; line-height: 1; font-weight: 500;
-    max-width: 80%;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+.user__info{
+    width: calc(100% - 3rem - 0.5rem);
 }
-.user .info h4{
-    font-size: 0.9rem;
-    color: #6A6F78;
-}
-.user img{
-    min-width: 2.2rem; max-width: 2.2rem; height: 2.2rem;
-    border-radius: 100%;
-    object-fit: cover;
+.user__name{
+    font-weight: 500;
+    color: var(--text-primary-color);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Кнопка с эффектом нажатия */
-.main-btn{
-    width: 100%;
-    display: flex; justify-content: center; align-items: center;
+@media screen and (max-width: 768px){
+    .user{
+        width: calc((100% - 1rem) / 3);
+    }
 }
-.main-btn button{
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: #0E58B5;
-    color: #fff; font-size: 1.5rem;
-    transition-duration: .2s; transition-property: transform box-shadow;
-    box-shadow: 0 5px 0 0 #0b458b;
-    transform: translate(0, 0);
-}
-.main-btn button:hover{
-    box-shadow: 0 3px 0 0 #0b458b;
-    transform: translate(0, 3px);
-}
-
-
-/* @media screen and (max-width: 992px){
-} */
-
-@media screen and (max-width: 790px){
-    /* Формы во всю ширину экрана */
-    .form .form-wrapper form{ width: 100% }
-    .form .form-wrapper{ width: 96%; left: 2% }
-}
-
 @media screen and (max-width: 576px){
-    /* Сокращенные кнопки */
-    .form .form-wrapper form .form-btn p{ display: none }
-
-    /* Пользователи */
-    .users{ gap: 1% }
-    .user{ width: 49.5% }
+    .user{
+        width: calc((100% - 0.5rem) / 2);
+    }
+}
+@media screen and (max-width: 400px){
+    .user{
+        width: 100%;
+    }
 }
 
 
@@ -623,7 +563,7 @@ body{
     position: relative;
     display: block;
     padding: 0 1rem;
-    background-color: var(--button-bg-color);
+    background-color: var(--aside-bg-color);
     line-height: 2.5rem;
     transition: all 0.1s;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
@@ -631,7 +571,7 @@ body{
 }
 .dropdownSelect__option:hover {
     cursor: pointer;
-    background-color: var(--button-bg-hover-color);
+    background-color: var(--theme-light);
 }
 .dropdownSelect__option.selected {
     color: #ffffff;
@@ -694,18 +634,16 @@ body{
     fill: var(--currentColor);
 }
 
+
 /* Кнопки */
-button.primaryButton{
-    background-color: var(--button-bg-color);
-}
 .primaryButton{
     height: 3rem;
     color: #7e8299;
-    font-weight: 700; font-size: 1rem;
+    font-weight: 700;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    transition: all .05s;
     display: flex; align-items: center; gap: 0.5rem;
+    background-color: var(--item-bg-color);
 }
 .primaryButton svg{
     width: 1rem; height: 1rem;
@@ -714,15 +652,17 @@ button.primaryButton{
 button.primaryButton:hover{
     color: var(--currentColor);
 }
+.light__theme button.primaryButton:hover{
+    color: #606374;
+}
 
 .secondaryButton{
     height: 3rem;
     background-color: var(--currentColor);
     color: #fff;
-    font-weight: 600; font-size: 1rem;
+    font-weight: 600;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    transition: all .05s;
     display: flex; align-items: center; gap: 0.5rem;
 }
 .secondaryButton svg{
@@ -737,10 +677,9 @@ button.primaryButton:hover{
     height: 3rem;
     background-color: tomato;
     color: #fff;
-    font-weight: 600; font-size: 1rem;
+    font-weight: 600;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    transition: all .05s;
     display: flex; align-items: center; gap: 0.5rem;
 }
 .dangerButton svg{
@@ -755,7 +694,7 @@ button.primaryButton:hover{
     height: 3rem; width: 3rem;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--aside-bg-color);
 }
 .actionButton.transparent{
     background-color: unset;
@@ -771,6 +710,10 @@ button.primaryButton:hover{
     transition: all .2s;
 }
 
+button[class$='Button']{
+    font-size: 1.1rem;
+    transition: all .05s;
+}
 button[class$='Button']:active{
     transition: transform .2s;
     transform: scale(0.96);
@@ -827,17 +770,17 @@ button[class$='Button']:active{
     left: 0;
 }
 
-@media screen and (max-width: 980px){
-    .menu:first-of-type .menu__button p{
+@media screen and (max-width: 992px){
+    .menu .menu__button p{
         display: none;
     }
-    .menu:first-of-type .menu__button.active p{
+    .menu .menu__button.active p{
         display: block;
     }
 }
 
 
-/* Оповещения об ошибках */
+/* Оповещения */
 .alertsContainer{
     position: fixed; bottom: 0; left: 0;
     padding: 1rem;
@@ -885,7 +828,6 @@ button[class$='Button']:active{
     overflow: auto;
     box-shadow: 0 0 1rem #0001;
 }
-
 .userSelect::-webkit-scrollbar{
     width: 6px;
 }
@@ -899,7 +841,6 @@ button[class$='Button']:active{
     transition: padding .2s, height .2s;
     display: flex; flex-direction: row; gap: 1rem;
 }
-
 .userSelect__user:hover{
     background-color: var(--theme-light);
 }
@@ -947,6 +888,8 @@ button[class$='Button']:active{
     display: none;
 }
 
+
+/* Кастомная полоса прокрутки */
 .scrollbar{
     padding-right: 0.5rem;
 }

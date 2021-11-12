@@ -401,7 +401,7 @@
   .ql-snow.ql-toolbar{
       border-radius: 0.5rem 0.5rem 0 0;
       border: none;
-      margin-bottom: -0.5rem !important;
+      margin-bottom: -0.75rem;
   }
   .ql-snow.ql-toolbar:after,
   .ql-snow .ql-toolbar:after {
@@ -854,12 +854,10 @@
     background-color: #000;
   }
   .ql-toolbar.ql-snow {
-    border: 1px solid #0002;
     box-sizing: border-box;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     padding: 8px;
-    background-color: var(--aside-bg-color);
-    margin-top: 5px; margin-bottom: -5px;
+    background-color: var(--item-bg-color);
   }
   .ql-toolbar.ql-snow .ql-formats {
     margin-right: 15px;
@@ -954,8 +952,5 @@
   }
   .ql-snow a {
     color: #06c;
-  }
-  .ql-container.ql-snow {
-    border: 1px solid #0002;
   }
   

@@ -13,7 +13,7 @@
     padding: 1rem 0;
     border-radius: 0.5rem;
     font-size: 1.2rem; font-weight: 500;
-    transition: all .05s;
+    transition: all .2s;
 }
 .mailNavigation__composeBtn:active{
     transform: scale(0.98);
@@ -107,7 +107,7 @@
 }
 .inputGroup__input{
     width: calc(100% - 3rem); height: 3rem;
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--aside-bg-color);
     padding: 0.5rem 1rem;
     color: var(--text-primary-color);
     font-size: 1.1rem;
@@ -119,7 +119,7 @@
     height: 3rem; width: 3rem;
     padding: 0.75rem;
     fill: var(--text-primary-color);
-    background-color: var(--special-ui-elements-color);
+    background-color: var(--aside-bg-color);
     transition: all .2s;
 }
 .inputGroup__svg:hover{

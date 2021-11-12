@@ -148,306 +148,274 @@
         </button>
     </nav>
 
-    <!-- Главная -->
-    <section id='main'>
+    <section class="mainContainer column">
 
-        <!-- ===== Виджеты ===== -->
-        <section id='widgets'>
+        <!-- Виджеты -->
+        <section id='widgets' class='row g16'>
 
             <!-- Виджет "Календарь" -->
-            <div id="calendar-widget">
-                <div class="calendar-container">
-                    <div class="date-info">
-                        Июль 2021
-                        <div id="slider-controller">
-                            <button class='arrow'>
-                                <svg viewBox="0 0 24 24"><path d="M10.88 17.715a1 1 0 000-1.415l-3.292-3.293L18 13a1 1 0 000-2l-10.414.007 3.294-3.292A1 1 0 009.466 6.3L5.88 9.886a3 3 0 000 4.243l3.586 3.586a1 1 0 001.414 0z"/></svg>
-                            </button>
-                            <button class='arrow'>
-                                <svg viewBox="0 0 24 24"><path d="M13.121 6.293a1 1 0 000 1.414L16.413 11 6 11.007a1 1 0 100 2L16.414 13l-3.293 3.293a1 1 0 101.414 1.414l3.586-3.585a3 3 0 000-4.243l-3.586-3.586a1 1 0 00-1.414 0z"/></svg>
-                            </button>
-                        </div>
+            <div id="eventsWidget" class='column g16'>
+                <h2>Календарь</h2>
+                <div class="timetable column scrollbar">
+                    <div class="event row g16 px16">
+                        <p class='event__date'>22.11</p>
+                        <span class="event__marker"></span>
+                        <p class="event__name">Выставка</p>
                     </div>
-
-                    <div class="calendar">
-                        <span class='inactive'>Пн</span><span class='inactive'>Вт</span><span class='inactive'>Ср</span><span class='inactive'>Чт</span><span class='inactive'>Пт</span><span class='inactive'>Сб</span><span class='inactive'>Вс</span>
-                        <span class='inactive'>28</span><span class='inactive'>29</span><span class='inactive'>30</span><span>1</span><span>2</span><span>3</span><span>4</span>
-                        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
-                        <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span class='active'>18</span>
-                        <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-                        <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class='inactive'>1</span>
+                    <div class="event row g16 px16">
+                        <p class='event__date'>15.12</p>
+                        <span class="event__marker"></span>
+                        <p class="event__name">Фестиваль</p>
                     </div>
-                </div>
-                <div class="timetable">
-                    <div class="event">
-                        <span class="marker"></span>
-                        <time>10:00</time>
-                        <p class="event__name">День защиты детей</p>
+                    <div class="event row g16 px16">
+                        <p class='event__date'>13.01</p>
+                        <span class="event__marker"></span>
+                        <p class="event__name">Защита проектов за первое полугодие</p>
+                    </div>
+                    <div class="event row g16 px16">
+                        <p class='event__date'>23.01</p>
+                        <span class="event__marker"></span>
+                        <p class="event__name">Мастер-класс</p>
+                    </div>
+                    <div class="event row g16 px16">
+                        <p class='event__date'>15.04</p>
+                        <span class="event__marker"></span>
+                        <p class="event__name">Хакатон</p>
+                    </div>
+                    <div class="event row g16 px16">
+                        <p class='event__date'>26.05</p>
+                        <span class="event__marker"></span>
+                        <p class="event__name">Защита проектов за второе полугодие</p>
                     </div>
                 </div>
             </div>
             
             <!-- Виджет "Расписание" -->
-            <div id="schedule-widget">
-                <div class='widget-header'>
-                    <!-- Заголовок виджета -->
-                    <div>
-                        <h1 style='display: inline-block; color: #000'>Расписание</h1>
-                    </div>
-                    <!-- Кнопки слайдера -->
-                    <div id="slider-controller">
-                        <button id='prev' class='arrow'>
-                            <svg viewBox="0 0 24 24"><path d="M10.88 17.715a1 1 0 000-1.415l-3.292-3.293L18 13a1 1 0 000-2l-10.414.007 3.294-3.292A1 1 0 009.466 6.3L5.88 9.886a3 3 0 000 4.243l3.586 3.586a1 1 0 001.414 0z"/></svg>
-                        </button>
-                        <button id='next' class='arrow'>
-                            <svg viewBox="0 0 24 24"><path d="M13.121 6.293a1 1 0 000 1.414L16.413 11 6 11.007a1 1 0 100 2L16.414 13l-3.293 3.293a1 1 0 101.414 1.414l3.586-3.585a3 3 0 000-4.243l-3.586-3.586a1 1 0 00-1.414 0z"/></svg>
-                        </button>
-                    </div>
+            <div id="scheduleWidget" class='column g16'>
+                <div class='flex space-between'>
+                    <h2>Расписание</h2>
                 </div>
-                <div id='slider'>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
+
+                <div class='courseList column g8 scrollbar'>
+                    <div class='course row'>
+                        <img src="../../img/illustrations/science.svg" class='course__illustration'/>
+                        <div class="course__info column g4">
+                            <p class='course__title'>Направление</p>
+                            <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                        <div class="row g4 px16" style='margin-left: auto'>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пн</p>
                             </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
-                                <time>18:20</time>
+                            <div class="lesson column">
+                                <p class="lesson__day">Вт</p>
+                                <p class='lesson__time'>18:20</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
-                        </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Ср</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
-                        </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                            <div class="lesson column">
+                                <p class="lesson__day">Чт</p>
+                                <p class='lesson__time'>18:20</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пт</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Сб</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вс</p>
                             </div>
                         </div>
                     </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
+                    <div class='course row'>
+                        <img src="../../img/illustrations/math.svg" class='course__illustration'/>
+                        <div class="course__info column g4">
+                            <p class='course__title'>Математика</p>
+                            <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                        <div class="row g4 px16" style='margin-left: auto'>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пн</p>
                             </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вт</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
-                        </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                            <div class="lesson column">
+                                <p class="lesson__day">Ср</p>
+                                <p class='lesson__time'>10:00</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
-                        </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Чт</p>
                             </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пт</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Сб</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вс</p>
                             </div>
                         </div>
                     </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
+                    <div class='course row'>
+                        <img src="../../img/illustrations/eng.svg" class='course__illustration'/>
+                        <div class="course__info column g4">
+                            <p class='course__title'>Английский язык</p>
+                            <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                        <div class="row g4 px16" style='margin-left: auto'>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пн</p>
                             </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вт</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class='item course'>
-                        <img src="../../img/bg.jpg" class='course__banner'/>
-                        <img src="../../img/atom.png" class='teacherProfileImg'/>
-                        <div class="course__info">
-                            <h2>Направление</h2>
-                            <h4>Фамилия И. О.</h4>
-                        </div>
-                        <div class="course__timetable">
-                            <div class="lessonDay">
-                                <div class="weekday">Вт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Ср</p>
                             </div>
-                            <div class="lessonDay">
-                                <div class="weekday">Чт</div>
-                                <time>18:20</time>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Чт</p>
+                            </div>
+                            <div class="lesson column">
+                                <p class="lesson__day">Пт</p>
+                                <p class='lesson__time'>16:30</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Сб</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вс</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- Форма просмотра курса -->
-                <div class='form' style='padding: 0'>
+                <div class='form'>
                     <div class="form-wrapper">
                         <form>
-                            <div class='item-header'>
-                                <div class='lesson-title'>
-                                    <h2>Направление</h2>
+                            <div class='course row'>
+                                <img src="../../img/illustrations/science.svg" class='course__illustration'/>
+                                <div class="course__info column g4">
+                                    <p class='course__title'>Направление</p>
+                                    <p class='course__teacher'>Фамилия И. О.</p>
                                 </div>
-                                <!-- <div class='lesson-teacher'>
-                                    <h4>Фамилия Имя Отчество</h4>
-                                    <img src='../../img/user_profile_female.jpg' />
-                                </div> -->
+                                <div class="row g4 px16" style='margin-left: auto'>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Пн</p>
+                                    </div>
+                                    <div class="lesson column">
+                                        <p class="lesson__day">Вт</p>
+                                        <p class='lesson__time'>18:20</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Ср</p>
+                                    </div>
+                                    <div class="lesson column">
+                                        <p class="lesson__day">Чт</p>
+                                        <p class='lesson__time'>18:20</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Пт</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Сб</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Вс</p>
+                                    </div>
+                                </div>
                             </div>
-                            <p class='item-text'>Описание направления</p>
-                            <hr class='divider'/>
-                            <h2>Расписание</h2>
-                            <div class="calendar__timetable">
-                                <div class="day">Пн</div>
-                                <div class="day active">Вт<time>18:20</time></div>
-                                <div class="day">Ср</div>
-                                <div class="day active">Чт<time>18:20</time></div>
-                                <div class="day">Пт</div>
-                                <div class="day">Сб</div>
-                                <div class="day">Вс</div>
-                            </div>
-                            <hr class="divider"/>
-                            <h2>Участники курса</h2>
+
+                            <hr class='divider' style='margin: 0.5rem 0'/>
+
+                            <h2 class='px16'>Участники</h2>
                             <div class="users">
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
-                                <div class="user">
-                                    <img src='../../img/Kaelthas.jpg'/>
-                                    <div class="info">
-                                        <h4>Ученик</h4>
-                                        <h2>Имя Фамилия</h2>
+                                <div class="user row g8 items-center">
+                                    <img src="../../img/Kaelthas.jpg" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>Фамилия Имя</p>
+                                        <p class='user__type'>Ученик</p>
                                     </div>
                                 </div>
                             </div>
@@ -455,166 +423,143 @@
                     </div>
                 </div>
             </div>
+            
         </section>
 
-        <!-- ===== Новости ===== -->
-        <section id='news'>
-            <!-- Шапка секции -->
-            <div style='display: flex; gap: 2%'>
-                <!-- Заголовок секции -->
-                <div>
-                    <h1 style='display: inline-block'>Новости</h1>
-                </div>
-                <div class='main-btn' style='width: auto'>
-                    <button style='height: 40px;' onclick="open_form('#add-news-form')">Добавить новость</button>
-                </div>
+        <!-- Новости -->
+        <section id='news' class='column g24'>
+
+            <div class='row g24'>
+                <h1>Новости</h1>
+                <button class='primaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
             </div>
+
             <!-- Блок новостей -->
-            <div id='news__container'>
-                <div class="item" data-aos="fade-up">
-                    <img src="../../img/mountains.jpg" alt="preview" class='item__preview'>
+            <div class='newsContainer flex g16'>
+                <div class="newsItem" data-aos="fade-up">
+                    <img src="../../img/default_bg.jpg" class='newsItem__preview'>
 
-                    <div class="item__content">
-                        <h2 class='item__title'>Заголовок новости</h2>
-                        <div class='item__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                            dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                            similique blanditiis! Minus, aut.
-                        </div>
-                        <div class="item__info">
-                            <img src='../../img/user_profile_male.jpg' class='profile-img'/>
-                            <div>Автор новости</div>
+                    <div class="newsItem__content column g16">
+                        <h2 class='newsItem__title'>Заголовок новости</h2>
+                        <p class='newsItem__text'>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
+                        </p>
+                        <div class="newsItem__info row g16 items-center">
+                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
+                            <p>Автор новости</p>
                             <span class="dot"></span>
-                            <div>29 Июля</div>
+                            <p>29 Июля</p>
                         </div>
                     </div>
-                    
                 </div>
-                <div class="item" data-aos="fade-up">
-                    <img src="../../img/mountains.jpg" alt="preview" class='item__preview'>
+                <div class="newsItem" data-aos="fade-up">
+                    <img src="../../img/default_bg.jpg" class='newsItem__preview'>
 
-                    <div class="item__content">
-                        <h2 class='item__title'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate</h2>
-                        <div class='item__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                            dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                            similique blanditiis! Minus, aut.
-                        </div>
-                        <div class="item__info">
-                            <img src='../../img/user_profile_male.jpg' class='profile-img'/>
-                            <div>Автор новости</div>
+                    <div class="newsItem__content column g16">
+                        <h2 class='newsItem__title'>Заголовок новости</h2>
+                        <p class='newsItem__text'>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
+                        </p>
+                        <div class="newsItem__info row g16 items-center">
+                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
+                            <p>Автор новости</p>
                             <span class="dot"></span>
-                            <div>29 Июля</div>
+                            <p>29 Июля</p>
                         </div>
                     </div>
-                    
                 </div>
-                <div class="item" data-aos="fade-up">
-                    <img src="../../img/mountains.jpg" alt="preview" class='item__preview'>
+                <div class="newsItem" data-aos="fade-up">
+                    <img src="../../img/default_bg.jpg" class='newsItem__preview'>
 
-                    <div class="item__content">
-                        <h2 class='item__title'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate</h2>
-                        <div class='item__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                            dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                            similique blanditiis! Minus, aut.
-                        </div>
-                        <div class="item__info">
-                            <img src='../../img/user_profile_male.jpg' class='profile-img'/>
-                            <div>Автор новости</div>
+                    <div class="newsItem__content column g16">
+                        <h2 class='newsItem__title'>Заголовок новости</h2>
+                        <p class='newsItem__text'>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
+                        </p>
+                        <div class="newsItem__info row g16 items-center">
+                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
+                            <p>Автор новости</p>
                             <span class="dot"></span>
-                            <div>29 Июля</div>
+                            <p>29 Июля</p>
                         </div>
                     </div>
-                    
                 </div>
-                <div class="item" data-aos="fade-up">
-                    <img src="../../img/mountains.jpg" alt="preview" class='item__preview'>
+                <div class="newsItem" data-aos="fade-up">
+                    <img src="../../img/default_bg.jpg" class='newsItem__preview'>
 
-                    <div class="item__content">
-                        <h2 class='item__title'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate</h2>
-                        <div class='item__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                            dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                            similique blanditiis! Minus, aut.
-                        </div>
-                        <div class="item__info">
-                            <img src='../../img/user_profile_male.jpg' class='profile-img'/>
-                            <div>Автор новости</div>
+                    <div class="newsItem__content column g16">
+                        <h2 class='newsItem__title'>Заголовок новости</h2>
+                        <p class='newsItem__text'>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
+                        </p>
+                        <div class="newsItem__info row g16 items-center">
+                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
+                            <p>Автор новости</p>
                             <span class="dot"></span>
-                            <div>29 Июля</div>
+                            <p>29 Июля</p>
                         </div>
                     </div>
-                    
                 </div>
-                <div class="item" data-aos="fade-up">
-                    <img src="../../img/mountains.jpg" alt="preview" class='item__preview'>
+                <div class="newsItem" data-aos="fade-up">
+                    <img src="../../img/default_bg.jpg" class='newsItem__preview'>
 
-                    <div class="item__content">
-                        <h2 class='item__title'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate</h2>
-                        <div class='item__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                            dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                            similique blanditiis! Minus, aut.
-                        </div>
-                        <div class="item__info">
-                            <img src='../../img/user_profile_male.jpg' class='profile-img'/>
-                            <div>Автор новости</div>
+                    <div class="newsItem__content column g16">
+                        <h2 class='newsItem__title'>Заголовок новости</h2>
+                        <p class='newsItem__text'>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
+                        </p>
+                        <div class="newsItem__info row g16 items-center">
+                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
+                            <p>Автор новости</p>
                             <span class="dot"></span>
-                            <div>29 Июля</div>
+                            <p>29 Июля</p>
                         </div>
                     </div>
-                    
                 </div>
-                <div class="item" data-aos="fade-up">
-                    <img src="../../img/mountains.jpg" alt="preview" class='item__preview'>
+                <div class="newsItem" data-aos="fade-up">
+                    <img src="../../img/default_bg.jpg" class='newsItem__preview'>
 
-                    <div class="item__content">
-                        <h2 class='item__title'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate</h2>
-                        <div class='item__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa
-                            dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint
-                            similique blanditiis! Minus, aut.
-                        </div>
-                        <div class="item__info">
-                            <img src='../../img/user_profile_male.jpg' class='profile-img'/>
-                            <div>Автор новости</div>
+                    <div class="newsItem__content column g16">
+                        <h2 class='newsItem__title'>Заголовок новости</h2>
+                        <p class='newsItem__text'>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
+                        </p>
+                        <div class="newsItem__info row g16 items-center">
+                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
+                            <p>Автор новости</p>
                             <span class="dot"></span>
-                            <div>29 Июля</div>
+                            <p>29 Июля</p>
                         </div>
                     </div>
-                    
                 </div>
-                
             </div>
-            <!-- Кнопка "Больше новостей" -->
-            <div class='main-btn'>
-                <button>Больше новостей</button>
-            </div>
+
+            <button class='primaryButton' style='margin: 0 auto'>Больше новостей</button>
+
             <!-- Форма создания новости -->
-            <div class='form' id='add-news-form'>
+            <div class='form' id='newNewsItemForm'>
                 <div class="form-wrapper">
                     <form>
                         <div class='item-header'>
                             <h2>Добавление новости</h2>
-                            <div style='display: flex; gap: 5px'>
-                                <button class='form-btn active' type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
+                            <div class='row g8'>
+                                <button class='primaryButton' type="button">
+                                    <svg viewBox="0 0 15.999 14.667">
                                         <g transform="translate(-8.001 -9.667)">     
-                                            <path class='faded' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
-                                            <path class='faded' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
-                                            <path class='bright' d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
+                                            <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
+                                            <path d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
+                                            <path d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
                                         </g>
                                     </svg>
-                                    <p>Добавить обложку</p>
+                                    Добавить обложку
                                 </button>
-                                <button class='form-btn active' type="submit">
+                                <button class='secondaryButton' type="submit">
                                     <svg viewBox="0 0 24 24">
-                                        <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
-                                        <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
-                                        <path class='faded' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
+                                        <path d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
+                                        <path d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
+                                        <path opacity='0.6' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
                                     </svg>
-                                    <p>Опубликовать</p>
+                                    Опубликовать
                                 </button>
                             </div>
                         </div>
@@ -622,14 +567,14 @@
                         <div id="editor" class='text-field'></div>
                         <div class="item-header">
                             <h2>Прикрепленные файлы</h2>
-                            <button class='form-btn active' type="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                            <button class='primaryButton' type="button">
+                                <svg viewBox="0 0 14.666 16">
                                     <g transform="translate(-8.667 -8)">
                                         <path class='faded' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
                                         <path class='bright' d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
                                     </g>
                                 </svg>
-                                <p>Документ</p>
+                                Документ
                             </button>
                         </div>
                         <div class='files'>
@@ -685,19 +630,9 @@
 	<script>AOS.init({ offset: -9999999 })</script>
 
     <script>
-        // Открытие формы по нажатию на курс
-        $("#schedule-widget .item").click(function () {
-            $('#schedule-widget .form').addClass("active");
+        $("#scheduleWidget .course").click(function () {
+            $('#scheduleWidget .form').addClass("active");
             $("body").css("overflow", "hidden");
-        });
-
-        $(document).ready(function () {
-            $('#next').click(function () {
-                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() + 250 }, 300);
-            });
-            $('#prev').click(function () {
-                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() - 250 }, 300);
-            });
         });
     </script>
 </body>
