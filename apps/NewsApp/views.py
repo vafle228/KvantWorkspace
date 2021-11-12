@@ -16,9 +16,9 @@ class MainPageTemplateView(KvantJournalAccessMixin, generic.TemplateView):
         from AdminModule.models import KvantCourse
         
         if user.permission == 'Ученик': 
-            context['courses'] = KvantCourse.objects.filter(students__student=user)
+            context['courses'] = KvantCourse.objects.filter(students=user)
         elif user.permission == 'Учитель': 
-            context['courses'] = KvantCourse.objects.filter(teacher__teacher=user)
+            context['courses'] = KvantCourse.objects.filter(teacher=user)
         context['max_news'] = len(KvantNews.objects.all())
 
         return context

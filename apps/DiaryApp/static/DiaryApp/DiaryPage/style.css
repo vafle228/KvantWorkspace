@@ -1,0 +1,155 @@
+
+#lessons{
+    background-color: var(--item-bg-color);
+    border-radius: 1rem;
+    width: 40rem;
+    box-shadow: inset 0 0 1rem var(--theme-light);
+}
+
+.header{
+    height: 5rem;
+}
+
+.pagination__page{
+    background-color: var(--aside-bg-color);
+    height: 3rem; width: calc(100% - 7rem);
+    border-radius: 0.5rem;
+    color: var(--text-primary-color); font-size: 1.25rem;
+    line-height: 3rem;
+}
+
+.container{
+    padding: 0 1rem 0 5rem;
+    height: calc(100% - 7.5rem);
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+.lesson{
+    width: 100%; height: 10rem;
+    background-color: var(--aside-bg-color);
+    border-radius: 1rem;
+    transition: transform .1s;
+    position: relative;
+}
+.lesson:active{
+    transform: scale(0.99);
+}
+.lesson__illustration{
+    width: 6rem; height: 6rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin: 2rem 1rem 2rem 2rem;
+}
+.lesson__info{
+    padding: 1rem;
+    width: calc(100% - 9rem);
+    overflow: hidden;
+}
+.lesson__title{
+    color: var(--text-primary-color);
+    font-size: 1.25rem;
+    font-weight: 500;
+    width: 80%;
+}
+.lesson__date{
+    line-height: 2rem;
+}
+.lesson__topic{
+    color: var(--text-primary-color);
+    font-size: 1.25rem;
+}
+.lesson__info p, .lesson__title{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.lesson::before{
+    pointer-events: none;
+    content: "";
+    width: 0.25rem; height: calc(100% + 0.5rem);
+    background-color: var(--currentColor);
+    position: absolute; top: -0.25rem; left: -2.375rem;
+}
+.lesson:first-of-type::before{
+    height: calc(50% + 0.25rem); top: 50%;
+}
+.lesson:last-of-type::before{
+    height: calc(50% + 0.25rem);
+}
+.lesson::after{
+    pointer-events: none;
+    content: "";
+    width: 1.5rem; height: 1.5rem;
+    border-radius: 1rem; border: var(--currentColor) solid 0.25rem;
+    background-color: var(--aside-bg-color);
+    position: absolute; top: calc(50% - 1rem); left: -3.25rem;
+}
+
+#lessonView{
+    display: none;
+    width: calc(100% - 40rem);
+}
+#lessonView.active{
+    display: block;
+}
+.lessonView__content{
+    height: calc(100% - 6.5rem);
+    overflow: auto;
+}
+.lessonView__content h1{
+    font-size: 1.75rem; font-weight: 500;
+}
+.lessonView__content h1:not(.lessonView__content h1:first-of-type){
+    margin-top: 0.5rem;
+}
+.lessonView__content #editor{
+    height: 8rem;
+    background-color: var(--item-bg-color);
+}
+#lessonView .closeButton{
+    display: none;
+    margin-left: -1rem;
+}
+
+@media screen and (max-width: 1100px){
+    #lessons{
+        width: 100%;
+    }
+    #lessonView{
+        display: block;
+        width: calc(100% - 6rem); height: 100%;
+        position: fixed; top: 0; left: 100%;
+        background-color: var(--aside-bg-color);
+        padding: 1.5rem;
+        transition: left .4s;
+        border-radius: 1rem;
+    }
+    #lessonView.active{
+        left: 6rem;
+    }
+    #lessonView .closeButton{
+        display: flex;
+    }
+    .lessonView__empty{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 740px){
+    #lessonView{
+        width: 100%; height: calc(100% - 4rem);
+    }
+    #lessonView.active{
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .container{
+        padding-left: 1rem;
+    }
+    .lesson::before, .lesson::after{
+        display: none;
+    }
+}

@@ -1,17 +1,17 @@
 {% load base_tags %}
 
 {% for news in all_news %}
-<div class="item" data-aos="fade-up" onclick="location.href=`{% url 'detail_news' user.id news.id %}`">
-    <img src="{{ news.image.url }}" alt="preview" class='item__preview'>
+<div class="newsItem" data-aos="fade-up" onclick="location.href=`{% url 'detail_news' user.id news.id %}`">
+    <img src="{{ news.image.url }}" alt="preview" class='newsItem__preview'>
 
-    <div class="item__content">
-        <h2 class='item__title'>{{ news.title }}</h2>
-        <div class='item__text'>{{ news.content|get_text }}</div>
-        <div class="item__info">
-            <img src='{{ news.author.image.url }}' class='profile-img'/>
-            <div>{{ news.author.surname }} {{ news.author.name|slice:"1" }}.</div>
+    <div class="newsItem__content column g16">
+        <h2 class='newsItem__title'>{{ news.title }}</h2>
+        <div class='newsItem__text'>{{ news.content|get_text }}</div>
+        <div class="newsItem__info row g16 items-center">
+            <img src='{{ news.author.image.url }}' class='avatar'/>
+            <p>{{ news.author.surname }} {{ news.author.name|slice:"1" }}.</p>
             <span class="dot"></span>
-            <div>{{ news.date|date:"j.m" }}</div>
+            <p>{{ news.date|date:"j.m" }}</p>
         </div>
     </div>
 </div>

@@ -16,7 +16,8 @@ THEME = (
 COLOR = (
     ("green", "green"), 
     ("blue", "blue"),
-    ("red", "red")
+    ("red", "red"),
+    ("purple", "purple"),
 )
 
 

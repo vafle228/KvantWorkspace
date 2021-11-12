@@ -33,7 +33,10 @@ function switch_theme(){
 
 // Сменить цветовую гамму
 function switch_color_scheme(){
-	let schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red'];
+	let schemes = [
+		'colorScheme__green', 'colorScheme__blue', 
+		'colorScheme__red', 'colorScheme__purple'
+	];
 	
 	let currentSchemeIndex = schemes.indexOf($('body').attr("colorScheme"));
 	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;
@@ -48,6 +51,7 @@ function getColorScheme() {
 		case "colorScheme__green": return "green";
 		case "colorScheme__blue": return "blue";
 		case "colorScheme__red": return "red";
+		case "colorScheme__purple": return "purple"
 		default: return "blue";
 	}
 	

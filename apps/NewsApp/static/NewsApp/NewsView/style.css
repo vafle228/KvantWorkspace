@@ -3,7 +3,7 @@
     margin: 0 auto;
     display: flex; flex-direction: column; gap: 16px;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1100px){
     .newsView{
         width: 100%;
     }
@@ -11,7 +11,7 @@
 
 /* Обложка новости */
 .newsView__preview{
-    height: 384px;
+    max-height: 512px;
     overflow: hidden;
     border-radius: 16px;
 }
@@ -19,15 +19,11 @@
     width: 100%;
     object-fit: cover;
     object-position: center;
-    height: 100%;
 }
 
 /* Информационный блок новости */
 .newsView__info{
-    border-radius: 16px;
-    padding: 16px 24px;
-    background-color: var(--item-bg-color);
-    display: flex; flex-direction: column; gap: 8px;
+    padding: 1rem 0;
 }
 .newsView__infoTitle{
     font-size: 36px;
@@ -57,4 +53,5 @@
     margin-right: 16px;
     border-radius: 16px;
     background-size: cover;
+    background-position: center;
 }

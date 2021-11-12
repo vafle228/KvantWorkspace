@@ -188,6 +188,13 @@
                         </p>
                     </div>
                     <p class="mailItem__date">{{ mail.date|date:"j.m.Y" }}</p>
+                    
+                    {% if mail|is_important_mail:user == 'active' %}
+                    <div class="mailItem__tags row g8">
+                        <span class="mailItem__tag">Важное</span>
+                    </div>
+                    {% endif %}
+                    
                 </div>
                 {% endfor %}
                 

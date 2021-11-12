@@ -17,17 +17,25 @@ class KvantHomeWork(models.Model):
     files   = models.ManyToManyField(FileStorage, blank=True)
     sender  = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'Работа {self.sender}'
+
 
 class KvantHomeTask(models.Model):
     task    = models.TextField(null=False)
-    title   = models.CharField(max_length=100)
     files   = models.ManyToManyField(FileStorage, blank=True)
     works   = models.ManyToManyField(KvantHomeWork, blank=True)
 
+    def __str__(self):
+        return f'Задание №{self.id}'
 
-class KvantLessonWork(models.Model):
+
+class KvantLessonMark(models.Model):
     mark    = models.CharField(max_length=10, choices=MARKS)
     student = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Оценка {self.mark} {self.student}'
 
 
 class KvantLesson(models.Model):
@@ -35,6 +43,9 @@ class KvantLesson(models.Model):
     title       = models.CharField(max_length=100)
     date        = models.DateField(default=timezone.now)        
     files       = models.ManyToManyField(FileStorage, blank=True)
-    mark        = models.ManyToManyField(KvantLessonWork, blank=True)
-    course      = models.ForeignKey(KvantCourse, on_delete=models.CASCADE)
-    task        = models.OneToOneField(KvantHomeTask, on_delete=models.SET(None), blank=True)
+    mark        = models.ManyToManyField(KvantLessonMark, blank=True)
+    course      = models.ForeignKey(KvantCourse, on_delete=models.CASCADE, blank=False)
+    task        = models.ForeignKey(KvantHomeTask, on_delete=models.SET(None), blank=True, null=True)
+
+    def __str__(self):
+        return f'Урок: {self.title}'

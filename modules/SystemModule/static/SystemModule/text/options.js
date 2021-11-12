@@ -1,7 +1,6 @@
 hljs.configure({
     useBR: false
-    });
-
+});
 var toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
     ['blockquote', 'code-block'],

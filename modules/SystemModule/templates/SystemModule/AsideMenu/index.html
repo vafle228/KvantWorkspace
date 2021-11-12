@@ -15,7 +15,7 @@
                     <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
                 </svg>
             </button>
-            <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' user.id %}?type=lesson`">
+            <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' user.id %}`">
                 <svg viewBox="0 0 576 512">
                     <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
                     <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
@@ -102,12 +102,12 @@
             </svg>
             Главная
         </button>
-        <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'main_page' user.id %}`">
+        <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' user.id %}`">
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
                 <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
             </svg>
-            Задания
+            Дневник
         </button>
         <button class='navigation__link {{ active|get_active_btn:"projects_page" }}' onclick="location.href=`{% url 'main_page' user.id %}`">
             <svg viewBox="0 0 512 512">
