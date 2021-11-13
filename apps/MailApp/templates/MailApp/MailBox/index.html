@@ -65,7 +65,6 @@
                         </svg>
                         Важные
                     </button>
-                    <!-- <hr class="divider" style='display: none;'> -->
                     <button class="mailNavigation__link row" onclick='$(".labelsContainer").toggleClass("active")'>
                         <svg viewBox="0 0 640 512">
                             <path opacity="0.6" d="M497.94 225.94L286.06 14.06A48 48 0 0 0 252.12 0H48A48 48 0 0 0 0 48v204.12a48 48 0 0 0 14.06 33.94l211.88 211.88a48 48 0 0 0 67.88 0l204.12-204.12a48 48 0 0 0 0-67.88zM112 160a48 48 0 1 1 48-48 48 48 0 0 1-48 48z"></path>
@@ -132,8 +131,8 @@
             <header class="mails__header row space-between">
 
                 <div class="inputGroup">
-                    <input type="text" placeholder="Поиск" class='inputGroup__input'>
-                    <svg viewBox="0 0 24 24" class='inputGroup__svg'>
+                    <input type="text" placeholder="Поиск" class='inputGroup__input' id='searchInput'>
+                    <svg viewBox="0 0 24 24" class='inputGroup__svg' onclick="location.href = updateGetUrlParams('search', $('#searchInput').val())">
                         <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" opacity="0.3"></path>
                         <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"></path>
                     </svg>
@@ -143,7 +142,7 @@
                     <p class='pagination__page'>{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</p>
                     
                     {% if page_obj.has_previous  %}
-                    <button class="actionButton" onclick='location.href=`?type={{ request.GET.type }}&page={{ page_obj.previous_page_number }}`'>
+                    <button class="actionButton" onclick='location.href = updateGetUrlParams("page", "{{ page_obj.previous_page_number }}")'>
                         <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                             <g transform="translate(-5 -5)">
                                 <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
@@ -156,7 +155,7 @@
                     <p class='pagination__page'>{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</p>
 
                     {% if page_obj.has_next %}
-                    <button class="actionButton" onclick='location.href=`?type={{ request.GET.type }}&page={{ page_obj.next_page_number }}`'>
+                    <button class="actionButton" onclick='location.href = updateGetUrlParams("page", "{{ page_obj.next_page_number }}")'>
                         <svg viewBox="0 0 14 14">
                             <g transform="translate(-5 -5)">
                                 <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
@@ -242,6 +241,7 @@
                 url: mail_url,
                 cache: false,
                 success: function(response){
+                    console.log(response);
                     if ($(mail).hasClass('new')) { $(mail).removeClass('new') }
                     $("#mailDetailView")[0].innerHTML = response
                     $('.mailView').addClass('active'); $('.mailView__empty').hide();

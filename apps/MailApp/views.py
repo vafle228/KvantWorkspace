@@ -37,13 +37,16 @@ class MailListView(KvantJournalAccessMixin, _MailPageContentBaseView, generic.Li
     context_object_name = 'mails'
 
     def get_queryset(self):
+        queryset = KvantMessage.objects.none()
         if self.request.GET.get('type') == 'sent':
-            return KvantMessage.objects.filter(sender=self.request.user)
+            queryset = KvantMessage.objects.filter(sender=self.request.user)
         if self.request.GET.get('type') == 'received':
-            return KvantMessage.objects.filter(receivers__receiver=self.request.user)
+            queryset = KvantMessage.objects.filter(receivers__receiver=self.request.user)
         if self.request.GET.get('type') == 'important':
-            return KvantMessage.objects.filter(importantmail__user=self.request.user)
-        return KvantMessage.objects.none()  # TODO: 404 page return
+            queryset = KvantMessage.objects.filter(importantmail__user=self.request.user)
+        if self.request.GET.get('search'):
+            queryset = queryset.filter(title__contains=self.request.GET.get('search'))
+        return queryset
 
 
 class MailCreationView(KvantJournalAccessMixin, generic.View):

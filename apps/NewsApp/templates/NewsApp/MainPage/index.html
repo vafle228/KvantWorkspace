@@ -77,7 +77,7 @@
                             <p class='course__title'>{{ course }}</p>
                             <p class='course__teacher'>
                                 {{ course.teacher.surname }} 
-                                {{ course.teacher.name|slice:"1" }}
+                                {{ course.teacher.name|slice:"1" }}.
                             </p>
                         </div>
                         <div class="row g4 px16" style='margin-left: auto'>
@@ -119,8 +119,8 @@
                                     <p class='course__title'>{{ course }}</p>
                                     <p class='course__teacher'>
                                         {{ course.teacher.surname }} 
-                                        {{ course.teacher.name|slice:"1" }}
-                                        {{ course.teacher.patronymic|slice:"1" }} 
+                                        {{ course.teacher.name|slice:"1" }}.
+                                        {{ course.teacher.patronymic|slice:"1" }}.
                                     </p>
                                 </div>
                                 <div class="row g4 px16" style='margin-left: auto'>
@@ -184,7 +184,7 @@
 
             <!-- Блок новостей -->
             <div id='news__container' class='newsContainer flex g16'>
-                <!-- Спавн новсотей -->
+                <!-- Спавн новсотей :\ -->
             </div>
             
             <button onclick="getNewNews()" id="more-news" class='primaryButton' style='margin: 0 auto'>Больше новостей</button>
@@ -194,26 +194,16 @@
     
     <div class="alertsContainer column" id='alertsContainer'></div>
     {% include "SystemModule/ScriptsSetup/index.html" with user=user %}
+    
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
     <script>AOS.init({ offset: -9999999 })</script>
-    <!-- Функционал слайдера -->
-    <script>
-        $(document).ready(function () {
-            $('#next').click(function () {
-                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() + 750 }, 400);
-            });
-            $('#prev').click(function () {
-                $('#slider').animate({ scrollLeft: $('#slider').scrollLeft() - 750 }, 400);
-            });
-        });
-    </script>
-    <!-- Функция получения новостей -->
+    
     <script>
         const all_news = {{ max_news }};
         const news_per_page_num = 6;
-        // Запрос новостей с сервера
+        
         function getNewNews(){
             $.ajax({
                 type: 'GET',

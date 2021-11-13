@@ -33,7 +33,7 @@ function addNewFileHandler(event){
 function addNewsPreview(news_preview){
 	$('#news-preview')[0].style.display = 'none' // Скрытие кнопки "Загрузить картинку"
 
-	let btns_container = $('#news-form-btns')[0] // Определение контейнера
+	let btns_container = $('.item-header')[0] // Определение контейнера
 	let preview_widget = addFileWidget(news_preview) // Получение html-а превью
 
 	// Фунция по клику на "крестик"
@@ -42,5 +42,5 @@ function addNewsPreview(news_preview){
 		btns_container.removeChild(preview_widget) // Чистим html от превью
 		$('#news-preview')[0].style.display = 'flex' // Открываем кнопку
 	}
-	btns_container.insertBefore(preview_widget, btns_container.firstChild) // Добавление превью
+	btns_container.insertBefore(preview_widget, btns_container.firstElementChild.nextSibling) // Добавление превью
 }

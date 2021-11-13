@@ -116,6 +116,13 @@ function sendInstanceData(form, post_url){
 	})
 }
 
+function updateGetUrlParams(param, value){
+	let current_href = new URL(location.href)
+	current_href.searchParams.set(param, value)
+
+	return current_href.toString()
+}
+
 // <=== Генерация файлового превью ===>
 
 // Генерация интерфейса файла
