@@ -318,7 +318,11 @@ body{
 .form .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 3rem;
-    gap: 0.25rem;
+    gap: 0.5rem;
+}
+.form .item-header h2{
+    white-space: nowrap;
+    margin-right: auto;
 }
 
 /* Текстовые поля в форме */
@@ -423,7 +427,7 @@ body{
 }
 
 .file__info{
-    min-width: 8rem;
+    overflow: hidden;
     padding: 0 0.5rem; margin-right: 1rem;
     display: flex; flex-direction: column; gap: 1px;
 }
