@@ -523,7 +523,7 @@ body{
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 13rem;
+    width: 100%;
 }
 .dropdownSelect__trigger{
     display: flex; align-items: center; justify-content: space-between;
@@ -549,6 +549,7 @@ body{
     z-index: 1;
     max-height: 20rem; overflow-y: auto;
     border: var(--theme-light) solid 2px;
+    background-color: var(--aside-bg-color);
 }
 .dropdownSelect__options::-webkit-scrollbar{
     width: 6px;
@@ -903,4 +904,43 @@ button[class$='Button']:active{
 .scrollbar::-webkit-scrollbar-thumb{
     background-color: var(--theme-light-alpha);
     border-radius: 0.125rem;
+}
+
+/* Таблицы */
+table{
+    width: 100%;
+}
+th{
+    width: var(--width);
+    text-align: left;
+    background-color: var(--item-bg-color);
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    color: var(--text-primary-color);
+}
+tr:hover > td{
+    background-color: var(--bgColor);
+}
+
+td{
+    background-color: var(--item-bg-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: var(--text-primary-color);
+    vertical-align: top;
+    transition: all .05s;
+}
+
+
+/* Шкалы */
+.scale{
+    background-color: var(--item-bg-color);
+    width: 100%; height: 0.5rem;
+    border-radius: 0.25rem;
+}
+.subscale{
+    width: var(--percent);
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--currentColor);
 }

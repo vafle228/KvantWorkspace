@@ -20,7 +20,7 @@
     cursor: pointer;
 }
 .event:hover{
-    background-color: var(--theme-light);
+    background-color: var(--item-bg-color);
 }
 .event__date{
     width: 2.5rem;
@@ -81,13 +81,14 @@
     background-color: var(--item-bg-color);
     cursor: pointer;
     transition: transform .1s;
+    padding: 0 1rem;
 }
 .course:active{
     transform: scale(0.98);
 }
 .course__illustration{
     width: 4rem; height: 4rem;
-    margin: 0.5rem 1rem;
+    margin: 0.5rem 0;
 }
 .course__title{
     font-size: 1.25rem; font-weight: 500;
@@ -112,7 +113,7 @@
     text-align: center;
 }
 .lesson.inactive{
-    background-color: var(--theme-light);
+    background-color: var(--aside-bg-color);
 }
 .lesson.inactive .lesson__day{
     color: #70757D;

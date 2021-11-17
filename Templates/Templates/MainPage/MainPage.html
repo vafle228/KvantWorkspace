@@ -197,13 +197,13 @@
                 </div>
 
                 <div class='courseList column g8 scrollbar'>
-                    <div class='course row'>
+                    <div class='course row g16'>
                         <img src="../../img/illustrations/science.svg" class='course__illustration'/>
                         <div class="course__info column g4">
                             <p class='course__title'>Направление</p>
                             <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
-                        <div class="row g4 px16" style='margin-left: auto'>
+                        <div class="row g4" style='margin-left: auto'>
                             <div class="lesson column inactive">
                                 <p class="lesson__day">Пн</p>
                             </div>
@@ -229,13 +229,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class='course row'>
+                    <div class='course row g16'>
                         <img src="../../img/illustrations/math.svg" class='course__illustration'/>
                         <div class="course__info column g4">
                             <p class='course__title'>Математика</p>
                             <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
-                        <div class="row g4 px16" style='margin-left: auto'>
+                        <div class="row g4" style='margin-left: auto'>
                             <div class="lesson column inactive">
                                 <p class="lesson__day">Пн</p>
                             </div>
@@ -260,13 +260,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class='course row'>
+                    <div class='course row g16'>
                         <img src="../../img/illustrations/eng.svg" class='course__illustration'/>
                         <div class="course__info column g4">
                             <p class='course__title'>Английский язык</p>
                             <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
-                        <div class="row g4 px16" style='margin-left: auto'>
+                        <div class="row g4" style='margin-left: auto'>
                             <div class="lesson column inactive">
                                 <p class="lesson__day">Пн</p>
                             </div>
@@ -297,13 +297,13 @@
                 <div class='form'>
                     <div class="form-wrapper">
                         <form>
-                            <div class='course row'>
+                            <div class='course row g16'>
                                 <img src="../../img/illustrations/science.svg" class='course__illustration'/>
                                 <div class="course__info column g4">
                                     <p class='course__title'>Направление</p>
                                     <p class='course__teacher'>Фамилия И. О.</p>
                                 </div>
-                                <div class="row g4 px16" style='margin-left: auto'>
+                                <div class="row g4" style='margin-left: auto'>
                                     <div class="lesson column inactive">
                                         <p class="lesson__day">Пн</p>
                                     </div>
@@ -637,7 +637,7 @@
     <script>
         $("#scheduleWidget .course").click(function () {
             $('#scheduleWidget .form').addClass("active");
-            $("body").css("overflow", "hidden");
+            $(".mainContainer").css("overflow", "hidden");
         });
     </script>
 </body>

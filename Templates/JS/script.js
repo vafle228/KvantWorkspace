@@ -22,7 +22,7 @@ $(document).mouseup(function (e) {
 
 	if(!(exceptions.filter(exception => exception.has(e.target).length !== 0).length)){
 		$(".form").removeClass("active");
-		$("body").css("overflow-y", "scroll");
+		$(".mainContainer").css("overflow-y", "scroll");
 		$(".userSelect").hide();
 		$("menu").removeClass("active");
 	}
@@ -30,7 +30,7 @@ $(document).mouseup(function (e) {
 
 // Открыть форму по ID
 function open_form(form_id) {
-	$("body").css("overflow", "hidden");
+	$(".mainContainer").css("overflow", "hidden");
 	$(form_id).addClass("active");
 }
 

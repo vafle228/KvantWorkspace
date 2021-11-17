@@ -8,7 +8,7 @@ var toolbarOptions = [
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
     [{ 'indent': '-1'}, { 'indent': '+1' }],
     [{ 'color': [] }, { 'background': [] }],
-    [{ 'align': [] }],
+    // [{ 'align': [] }],
     ['formula'],
     ['link']
     ];
