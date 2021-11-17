@@ -1,14 +1,16 @@
 from django import forms
 from .models import KvantNews
-from core.mixins import ImageMixinBase, FileManagerMixinBase
+from django.conf import settings
+from SystemModule.forms import FileStorageSaveForm
+from core.mixins import ImageMixinBase, FileMoveMixinBase
 
 
-class ImageManagerMixin(ImageMixinBase, FileManagerMixinBase):
+class ImageManagerMixin(ImageMixinBase, FileMoveMixinBase):
     def clean_image(self):
-        from_path = "/".join(self.get_instance_image().name.split('/')[:-1])
-        to_path = f'news/img/{self.instance.date}/{self.cleaned_data.get("title")}'
-        
-        return self.change_directory(super().clean_image(), from_path, to_path)
+        return self.change_directory(
+            self.image_clean(), 
+            f'news/img/{self.instance.date}/{self.cleaned_data.get("title")}'
+        )
 
     def get_image_file(self):
         return self.cleaned_data.get('image')
@@ -17,13 +19,10 @@ class ImageManagerMixin(ImageMixinBase, FileManagerMixinBase):
         return self.instance.image
     
     def is_file_moveable(self, file):
-        from django.conf import settings
-
         is_file_changed = file != self.cleaned_data.get('image')
         is_default_img = settings.NEWS_DEFAULT_IMAGE == file.name
-        is_directory_changed = self.cleaned_data.get('title') != self.instance.title
         
-        return self.cleaned_data.get('title') and not is_default_img and is_directory_changed and not is_file_changed
+        return not is_default_img and not is_file_changed
 
 
 class FileManagerMixin:
@@ -37,12 +36,9 @@ class FileManagerMixin:
     
     def files_clean_up(self):
         for file in self.instance.files.all():
-            if file not in self.cleaned_data.get('files'):
-                file.delete()
+            file.delete() if file not in self.cleaned_data.get('files') else None
     
     def change_news_file_directory(self):
-        from SystemModule.forms import FileStorageSaveForm
-
         new_file_path = f'news/files/{self.instance.date}/{self.cleaned_data.get("title")}'
         for file in self.instance.files.all():
             form = FileStorageSaveForm({'upload_path': new_file_path}, instance=file)
@@ -68,10 +64,8 @@ class KvantNewsSaveForm(forms.ModelForm, ImageManagerMixin, FileManagerMixin):
         })
 
     def clean_title(self):
-        if not self.cleaned_data.get('title').strip():
-            raise forms.ValidationError('Заголовок не может быть пустым. Заголовок невалиден')
         if not self.cleaned_data.get('title').isprintable():
             raise forms.ValidationError('Заголовок содержит невалидые символы')
         if '/' in self.cleaned_data.get('title'):
             raise forms.ValidationError('Заголовок не может содержать "/" символ')
-        return self.cleaned_data['title'] 
+        return self.cleaned_data.get('title')

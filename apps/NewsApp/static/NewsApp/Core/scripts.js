@@ -16,7 +16,7 @@ function openFileDialog(fileInput){
 }
 
 function addNewsPreviewHandler(event){
-	if(event.target.files[0] != undefined){
+	if(event.target.files[0] !== undefined){
 		news_preview = event.target.files[0]
 		addNewsPreview(event.target.files[0])
 	}

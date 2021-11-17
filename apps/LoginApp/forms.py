@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class ImageManagerMixin(ImageMixinBase):
     def clean_image(self):
-        return super().clean_image()
+        return self.image_clean()
     
     def get_image_file(self):
         return self.cleaned_data.get('image')
@@ -18,7 +18,7 @@ class ImageManagerMixin(ImageMixinBase):
 class KvantUserCreationForm(UserCreationForm, ImageManagerMixin):
     def __init__(self, *args, **kwargs):
         super(KvantUserCreationForm, self).__init__(*args, **kwargs)
-        super(ImageManagerMixin, self).__init__(coef=0.4)
+        super(ImageManagerMixin, self).__init__(coef=0.35)
     
     class Meta:
         model = KvantUser

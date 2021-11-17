@@ -90,11 +90,11 @@
             news_form.append('files', file_array[i]) // Добавление файла в форму
         }
         
-        news_form.append('image', news_preview)
         news_form.append('author', '{{ user.id }}')
         news_form.append('title', $('#news-title')[0].value) 
         news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) 
         news_form.append('content', $('#editor .ql-editor')[0].innerHTML)
+        news_form.append('image', news_preview !== undefined ? news_preview : '')
 
         return news_form
     }

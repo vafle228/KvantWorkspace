@@ -1,5 +1,6 @@
 import os
 import sys
+from .secret import *
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -11,9 +12,6 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'modules'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6q*nolmjv+0my(*vt_pvr)j6ltsp=!=%b1p1-0rgufnl_u#_y#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,8 +124,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # AWS S3 Set up
 AWS_STORAGE_BUCKET_NAME = 'kvant-journal'  # Имя бакета
-AWS_ACCESS_KEY_ID = 'AKIAZTAFQGAIYRYMOODR'  # Id (дается при создании бакета)
-AWS_SECRET_ACCESS_KEY = 'KEeFB52DHZfSRbarQ6fdV/RXj/6oqq5PnZogxCDW'  # Key (дается при создании бакета)
+
 
 AWS_S3_FILE_OVERWRITE = False  # Запретить перезапись файла
 

@@ -1,7 +1,15 @@
+from PIL import Image
+from io import BytesIO
+from sys import getsizeof
 from abc import abstractmethod
-from django.views.generic import View
-from LoginApp.models import KvantUser
+from django.contrib import messages
+from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from LoginApp.models import KvantUser
+from django.views.generic import View
+from os.path import basename, join, splitext
+from storages.backends.s3boto3 import S3Boto3Storage
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 class ImageMixinBase:
@@ -10,58 +18,54 @@ class ImageMixinBase:
     
     @abstractmethod
     def get_image_file(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_instance_image(self):
-        pass
+        raise NotImplementedError
 
-    def clean_image(self):
+    def image_clean(self):
         image = self.get_image_file()
         instance_image = self.get_instance_image()
 
-        return instance_image if image == instance_image else self.format_image(image)
+        return instance_image if image == instance_image else self._image_thumbnail(image)
 
-    def get_new_size(self, width, height):
+    def _get_new_size(self, width, height):
         if width > height:
             return (int(width * self.coef), height * int(width * self.coef) // width)
         return (width * int(height * self.coef) // height, int(height * self.coef))
     
-    def format_image(self, image_file):
-        from PIL import Image
-        from io import BytesIO
-        from sys import getsizeof
-        from django.core.files.uploadedfile import InMemoryUploadedFile
-
+    def _image_thumbnail(self, image_file):
         image = Image.open(image_file)  # Открываем картинку
         new_image = BytesIO()  # Создаем байтовое представление
 
-        image.thumbnail(self.get_new_size(*image.size), resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
+        image.thumbnail(self._get_new_size(*image.size), resample=Image.ANTIALIAS)  # Делаем миниатюру картинки
         image.convert('RGB').save(new_image, format='JPEG', quality=90)  # Конвертируем в JPEG, ибо мало весит
 
-        file_name = f'{image_file.name.split(".")[0]}.jpeg'
+        file_name = f'{splitext(image_file.name)[0]}.jpeg'
 
         return InMemoryUploadedFile(new_image, 'ImageField', file_name, 'image/jpeg', getsizeof(new_image), None)
     
 
-class FileManagerMixinBase:
+class FileMoveMixinBase:
     @abstractmethod
     def is_file_moveable(self, file):
-        pass
+        raise NotImplementedError
+    
+    def _get_to_path(self, file, to_path):
+        return '/'.join([to_path, basename(file.name)])
 
-    def change_directory(self, file, from_path, to_path):
-        if self.is_file_moveable(file):
-            file.name = self.change_file_directory(file, from_path, to_path)
+    def change_directory(self, file, to_path):
+        to_path = self._get_to_path(file, to_path)
+        if self.is_file_moveable(file) and file.name != to_path:
+            file.name = self._change_file_directory(file, to_path)
         return file
     
-    def change_file_directory(self, file, from_path, to_path):
-        from storages.backends.s3boto3 import S3Boto3Storage
-    
+    def _change_file_directory(self, file, to_path):
         bucket = S3Boto3Storage()
-        file_name = file.name.split('/')[-1]
         
-        from_path = bucket._normalize_name(bucket._clean_name(f'{from_path}/{file_name}'))
-        to_path = bucket._normalize_name(bucket._clean_name(f'{to_path}/{file_name}'))
+        to_path = bucket._normalize_name(bucket._clean_name(to_path))
+        from_path = bucket._normalize_name(bucket._clean_name(file.name))
         
         bucket.connection.meta.client.copy_object(
             Bucket=bucket.bucket_name,
@@ -75,19 +79,16 @@ class FileManagerMixinBase:
 class KvantJournalAccessMixin(View):
     # Метод делегирования запроса
     def dispatch(self, request, *args, **kwargs):
-        from django.urls import reverse_lazy
-        
         user_id = kwargs['identifier']
-        if not self.is_available(user_id):  # Проверка на доступ
+        if not self._is_available(user_id):  # Проверка на доступ
             return redirect(reverse_lazy('login_page'))
         return super().dispatch(request, *args, **kwargs)  # Исполняем родительский метод
 
-    def is_available(self, identifier):
-        from django.contrib import messages
-
+    def _is_available(self, identifier):
         if KvantUser.objects.filter(id=identifier).exists():  # Проверяем существование
             request_user = self.request.user  # Пользователь который запросил
             requested_user = KvantUser.objects.filter(id=identifier)[0]  # Пользовательн которого запросили
+            
             if request_user == requested_user and requested_user.is_authenticated:  # Проверка совпадения
                 return True
 
