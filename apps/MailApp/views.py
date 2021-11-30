@@ -1,35 +1,13 @@
 from django.views import generic
 from django.http import JsonResponse
 from LoginApp.models import KvantUser
-from core.classes import ModelsFileFiller
 from django.shortcuts import HttpResponse
 from core.mixins import KvantJournalAccessMixin
 from .models import KvantMessage, ImportantMail, MailReceiver
-from .forms import KvantMailFillReceiversForm, KvantMailSaveForm, MailReceiverSaveForm
+from .forms import KvantMailFileSaveForm, KvantMailReceiversForm, KvantMailSaveForm, MailReceiverSaveForm
 
 
-class _MailPageContentBaseView(generic.View):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context.update(
-            new_mails=self._count_new_mails(),
-            kvant_users=KvantUser.objects.exclude(id=self.request.user.id),
-            mail_count=self._count_send_mails() + self._count_received_mails(),
-        )
-        return context
-
-    def _count_send_mails(self):
-        return len(KvantMessage.objects.filter(sender=self.request.user))
-
-    def _count_received_mails(self):
-        return len(KvantMessage.objects.filter(receivers__receiver=self.request.user))
-
-    def _count_new_mails(self):
-        return len(MailReceiver.objects.filter(receiver=self.request.user).filter(is_read=False))
-
-
-class MailListView(KvantJournalAccessMixin, _MailPageContentBaseView, generic.ListView):
+class MailListView(KvantJournalAccessMixin, generic.ListView):
     model               = KvantMessage
     ordering            = ['-date', '-id']
     paginate_by         = 8
@@ -47,31 +25,42 @@ class MailListView(KvantJournalAccessMixin, _MailPageContentBaseView, generic.Li
         if self.request.GET.get('search'):
             queryset = queryset.filter(title__contains=self.request.GET.get('search'))
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        send_mails      = len(KvantMessage.objects.filter(sender=self.request.user))
+        received_mails  = len(KvantMessage.objects.filter(receivers__receiver=self.request.user))
+        new_mails       = len(MailReceiver.objects.filter(receiver=self.request.user).filter(is_read=False))
+
+        context.update(
+            new_mails=new_mails,
+            mail_count=send_mails + received_mails,
+            kvant_users=KvantUser.objects.exclude(id=self.request.user.id),
+        )
+        return context
 
 
 class MailCreationView(KvantJournalAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         mail_or_error = self.create_mail()
         if isinstance(mail_or_error, KvantMessage):
-            self.fill_mail_files(mail_or_error)
             return JsonResponse({'status': 200, 'link': 'Reload'})
         return JsonResponse(mail_or_error)
-
-    def fill_mail_files(self, mail):
-        filler = ModelsFileFiller('mail/', mail.files)
-        filler.fill_model_files(self.request.FILES.getlist('files'), mail.title)
     
     def create_mail(self):
-        form = KvantMailSaveForm(self.request.POST)
-        if form.is_valid():
-            no_receivers_mail = form.save()
-            form = KvantMailFillReceiversForm(
-                self.request.POST, instance=no_receivers_mail
+        mail = None
+        forms = [KvantMailSaveForm, KvantMailReceiversForm, KvantMailFileSaveForm]
+        
+        for creation_form in forms:
+            form = creation_form(
+                self.request.POST, self.request.FILES, instance=mail
             )
-            if form.is_valid():
-                return form.save()
-            no_receivers_mail.delete()
-        return {'status': 400, 'errors': form.errors}
+            if not form.is_valid():
+                mail.delete() if mail else None
+                return {'status': 400, 'errors': form.errors}
+            mail = form.save()
+        return mail
 
 class MailDetailView(KvantJournalAccessMixin, generic.DetailView):
     model               = KvantMessage
@@ -89,15 +78,15 @@ class MailDetailView(KvantJournalAccessMixin, generic.DetailView):
                     {"receiver": request.user, "is_read": True}, instance=receiver
                 )
                 form.save() if form.is_valid() else None
-        return super().get(request, *args, **kwargs)
+            return super().get(request, *args, **kwargs)
+        return HttpResponse({'status': 400})
 
 
 class MailChangeImportantStatusView(KvantJournalAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         if KvantMessage.objects.filter(id=request.POST.get('id')).exists():
-            mail = KvantMessage.objects.get(id=request.POST.get('id'))
             important_mail, created = ImportantMail.objects.get_or_create(
-                user=request.user, mail=mail
+                user=request.user, mail=KvantMessage.objects.get(id=request.POST.get('id'))
             )
             important_mail.delete() if not created else None
             return HttpResponse({'status': 200})

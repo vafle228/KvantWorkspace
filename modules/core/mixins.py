@@ -1,5 +1,6 @@
 from PIL import Image
 from io import BytesIO
+from django import forms
 from sys import getsizeof
 from abc import abstractmethod
 from django.contrib import messages
@@ -7,7 +8,9 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from LoginApp.models import KvantUser
 from django.views.generic import View
-from os.path import basename, join, splitext
+from os.path import basename, splitext
+from django.forms import ValidationError
+from django.forms.utils import ErrorDict
 from storages.backends.s3boto3 import S3Boto3Storage
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
@@ -74,6 +77,37 @@ class FileMoveMixinBase:
         bucket.delete(from_path)
         
         return to_path
+
+
+class ManyToManyObjectCreateMixin(forms.ModelForm):
+    def __init__(self, field, *args, **kwargs):
+        self.field_name = field
+        super().__init__(*args, **kwargs)
+
+    @abstractmethod
+    def validate_value(self, values):
+        raise NotImplementedError
+    
+    @abstractmethod
+    def create_objects(self, values):
+        raise NotImplementedError
+    
+    @abstractmethod
+    def get_data(self):
+        raise NotImplementedError
+    
+    def clean(self):
+        try:
+            self._errors = ErrorDict()
+            self.validate_value(self.get_data())
+        except ValidationError as e:
+            self.add_error(self.field_name, e)
+            return super().clean()
+        else:
+            self.cleaned_data.update({
+                self.field_name: self.create_objects(self.get_data())
+            })
+            return super().clean() 
 
 
 class KvantJournalAccessMixin(View):
