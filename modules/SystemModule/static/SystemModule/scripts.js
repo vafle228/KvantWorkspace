@@ -150,6 +150,7 @@ function getFileSize(nbytes){
 		nbytes /= 1024.
         suffix_index += 1
 	}
+	console.log(nbytes)
     size = nbytes.toFixed(2).split(".00")[0]
 
     return `${size} ${suffixes[suffix_index]}`
@@ -162,7 +163,7 @@ function addFileWidget(file){
 			<i class='file-${file.name.split('.')[file.name.split('.').length - 1]}'></i>
 			<div class="file__info">
 				<h4 class='file__name'>${file.name}</h4>
-				<p class="file__size">${getFileSize(file.size)}</p>
+				<p class="file__size">${getFileSize(parseFloat(file.size))}</p>
 			</div>
 			<div class="file__actions">
 				<button type='button' id='del-btn'>

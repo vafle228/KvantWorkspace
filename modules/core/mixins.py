@@ -47,7 +47,10 @@ class ImageMixinBase:
 
         file_name = f'{splitext(image_file.name)[0]}.jpeg'
 
-        return InMemoryUploadedFile(new_image, 'ImageField', file_name, 'image/jpeg', getsizeof(new_image), None)
+        return InMemoryUploadedFile(
+            new_image, 'ImageField', file_name, 
+            'image/jpeg', getsizeof(new_image), None
+        )
     
 
 class FileMoveMixinBase:
@@ -73,7 +76,8 @@ class FileMoveMixinBase:
         bucket.connection.meta.client.copy_object(
             Bucket=bucket.bucket_name,
             CopySource=bucket.bucket_name + "/" + from_path,
-            Key=to_path)
+            Key=to_path
+        )
         bucket.delete(from_path)
         
         return to_path

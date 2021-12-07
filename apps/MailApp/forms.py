@@ -25,6 +25,13 @@ class KvantMailSaveForm(forms.ModelForm):
             'required': u'Заголовок не может быть пустым.',
             'max_length': u'Заголовок не может превышать %(limit_value)d (сейчас %(show_value)d).',
         })
+    
+    def clean_title(self):
+        if not self.cleaned_data.get('title').isprintable():
+            raise forms.ValidationError('Заголовок содержит невалидые символы')
+        if '/' in self.cleaned_data.get('title'):
+            raise forms.ValidationError('Заголовок не может содержать символ "/".')
+        return self.cleaned_data.get('title')
 
 
 class KvantMailFileSaveForm(ManyToManyObjectCreateMixin):
@@ -43,20 +50,20 @@ class KvantMailFileSaveForm(ManyToManyObjectCreateMixin):
     def get_data(self):
         return self.files.getlist('files')
 
-    def validate_value(self, value):
-        if len(value) > 16:
+    def validate_value(self, values):
+        if len(values) > 16:
             raise ValidationError(self.fields['files'].error_messages['max_upload_count'])
         size_count = 0
-        for file in value:
+        for file in values:
             size_count += file.size
 
             if size_count > 32 * 8 * 1024 * 1024:
                 raise ValidationError(self.fields['files'].error_messages['max_upload_weight'])
 
-    def create_objects(self, value):
+    def create_objects(self, values):
         mail_files = []
         mail = self.instance
-        for file in value:
+        for file in values:
             form = FileStorageSaveForm(
                 {'upload_path': f'mail/{mail.date}/{mail.title}'}, {'file': file}
             )
