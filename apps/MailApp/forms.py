@@ -57,7 +57,7 @@ class KvantMailFileSaveForm(ManyToManyObjectCreateMixin):
         for file in values:
             size_count += file.size
 
-            if size_count > 32 * 8 * 1024 * 1024:
+            if size_count > 32 * 1024 * 1024:
                 raise ValidationError(self.fields['files'].error_messages['max_upload_weight'])
 
     def create_objects(self, values):
