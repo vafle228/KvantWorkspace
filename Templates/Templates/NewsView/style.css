@@ -1,19 +1,26 @@
 .newsView{
-    width: 68%;
+    width: 80rem;
+    max-width: 100%;
     margin: 0 auto;
-    display: flex; flex-direction: column; gap: 16px;
+    display: flex; flex-direction: column; gap: 1rem;
 }
-@media screen and (max-width: 1100px){
-    .newsView{
-        width: 100%;
+.newsView:after{
+    content: "_";
+    opacity: 0;
+}
+
+@media screen and (max-width: 740px){
+    .mainContainer{
+        padding: 1rem;
+        border-radius: 0;
     }
 }
 
 /* Обложка новости */
 .newsView__preview{
-    max-height: 512px;
+    max-height: 32rem;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 1rem;
 }
 .newsView__preview img{
     width: 100%;
@@ -26,14 +33,13 @@
     padding: 1rem 0;
 }
 .newsView__infoTitle{
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 500;
     color: var(--text-primary-color);
 }
-.dot{
-    background-color: #70757D;
-    width: 6px; height: 6px;
-    border-radius: 3px;
+.newsView__infoText{
+    text-align: justify;
+    font-size: 1.25rem;
 }
 
 .carousel {
@@ -43,15 +49,15 @@
     --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0
             0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
 
-    --carousel-button-svg-width: 16px;
-    --carousel-button-svg-height: 16px;
+    --carousel-button-svg-width: 1rem;
+    --carousel-button-svg-height: 1rem;
     --carousel-button-svg-stroke-width: 3;
 }
   
 .carousel__slide {
     height: 384px;
-    margin-right: 16px;
-    border-radius: 16px;
+    margin-right: 1rem;
+    border-radius: 1rem;
     background-size: cover;
     background-position: center;
 }

@@ -36,7 +36,7 @@ body[colorScheme='colorScheme__purple']{
     --text-secondary-color: #eee;
 
     --theme-light: #3436380a;
-    --theme-light-alpha: #0004;
+    --theme-light-alpha: #0002;
 }
 /* Темная тема */
 .dark__theme{
@@ -127,6 +127,7 @@ body{
 .row{ display: flex; flex-direction: row; align-items: center }
 .column{ display: flex; flex-direction: column }
 
+.g0{ gap: 0; }
 .g2{ gap: 0.125rem }
 .g4{ gap: 0.25rem }
 .g8{ gap: 0.5rem }
@@ -641,6 +642,10 @@ body{
 
 
 /* Кнопки */
+button.disabled{
+    opacity: 0.5;
+}
+
 .primaryButton{
     height: 3rem;
     color: #7e8299;
@@ -727,52 +732,45 @@ button[class$='Button']:active{
 
 /* Меню по разделам */
 .menu{
-    background-color: var(--item-bg-color);
-    border-radius: 0.5rem;
-    display: flex; flex-direction: row; gap: 2px;
-    width: max-content;
+    border-radius: 1rem;
+    display: flex; flex-direction: row; gap: 0.5rem;
     overflow: hidden;
-    height: 3rem;
+    height: 4rem; min-height: 4rem;
+    width: min-content;
+    padding: 0.25rem;
+    /* border: var(--theme-light) dashed 2px; */
+    background-color: var(--item-bg-color);
 }
 .menu__button{
-    display: flex; gap: 1rem; align-items: center;
-    padding: 0 1rem;
+    display: flex; gap: 0.75rem; align-items: center;
+    padding: 0 1.5rem;
+    border-radius: 1rem;
     background-color: unset;
     transition: all .1s;
     position: relative;
 }
+.menu__button.active{
+    background-color: var(--currentColor);
+}
 .menu__button svg{
-    width: 1.5rem; height: 1.5rem;
+    width: 1rem; height: 1rem;
     transition: all .1s;
     filter: saturate(0);
-    fill: var(--currentColor);
-}
-.menu__button:hover, .menu__button.active{
-    background-color: var(--theme-light);
+    fill: #70757D;
 }
 .menu__button:hover svg, .menu__button.active svg{
-    filter: saturate(1);
+    fill: #fff;
 }
 .menu__button p{
-    color: var(--text-primary-color);
+    font-size: 1.125rem;
     font-weight: 500;
+    white-space: nowrap;
 }
 .menu__button.active p{
-    display: block;
+    color: #fff;
 }
-
-.menu__button::after{
-    content: "";
-    width: 0; height: 0;
-    position: absolute; left: 50%; bottom: 0;
-    background-color: var(--currentColor);
-    transition: all .2s;
-}
-
-.menu__button.active::after{
-    content: "";
-    width: 100%; height: 2px;
-    left: 0;
+.menu__button:not(.active):hover p{
+    color: var(--text-primary-color);
 }
 
 @media screen and (max-width: 992px){
@@ -943,4 +941,120 @@ td{
     height: 0.5rem;
     border-radius: 0.25rem;
     background-color: var(--currentColor);
+}
+
+/* Список */
+.relativeBox{
+    position: relative;
+}
+.list{
+    display: none; flex-direction: column;
+    position: absolute; top: calc(100% + 0.5rem); right: 0;
+    z-index: 1;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--aside-bg-color);
+    box-shadow: 0 0 0 1px var(--item-bg-color);
+}
+.listButton{
+    background-color: unset;
+    display: flex; justify-content: space-between; align-items: center;
+    width: 16rem; height: 4rem;
+    font-weight: 500;
+    padding: 0 1.5rem;
+    color: var(--text-primary-color);
+}
+.listButton svg{
+    width: 1rem; height: 1rem;
+    fill: #70757D;
+}
+.listButton:hover{
+    background-color: var(--theme-light);
+}
+.listButton:active{
+    transform: none !important;
+}
+
+
+.combinedButton{
+    background-color: unset;
+    display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
+    height: 3rem;
+    border-radius: 1.5rem;
+    color: var(--text-primary-color);
+    padding: 0 1rem;
+    max-width: 90%; 
+}
+.combinedButton span{
+    white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+    font-weight: 500;
+}
+.combinedButton svg{
+    width: 1rem; height: 1rem;
+    fill: #70757D;
+}
+.combinedButton:hover{
+    background-color: var(--theme-light);
+}
+.combinedButton:hover svg{
+    fill: var(--currentColor);
+}
+.combinedButton:active{
+    transform: none !important;
+}
+
+/* Инпут */
+.input{
+    height: 4rem;
+    background-color: var(--item-bg-color);
+    border-radius: 1rem;
+    padding: 0 1rem;
+    display: flex; flex: 1 0 auto;
+    font-size: 1.125rem; color: var(--text-primary-color); font-weight: 500;
+}
+
+
+/* Вкладки */
+.tabs{
+    display: flex; flex-direction: row; gap: 0.5rem;
+    overflow: hidden;
+    height: 4rem; min-height: 4rem;
+    width: min-content;
+    padding: 0.25rem;
+}
+.tab{
+    display: flex; gap: 0.75rem; align-items: center;
+    padding: 0 1.5rem;
+    border-radius: 1rem;
+    background-color: unset;
+    transition: all .1s;
+    position: relative;
+}
+.tab.active::before{
+    content: "";
+    position: absolute;
+    left: 0; bottom: -0.25rem;
+    height: 0.25rem; width: 100%;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background-color: var(--currentColor);
+}
+.tab svg{
+    width: 1rem; height: 1rem;
+    transition: all .1s;
+    filter: saturate(0);
+    fill: #70757D;
+}
+.tab:hover svg, .tab.active svg{
+    fill: #fff;
+}
+.tab p{
+    font-size: 1.125rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.tab.active p{
+    color: var(--text-primary-color);
+}
+.tab:not(.active):hover p{
+    color: var(--text-primary-color);
 }

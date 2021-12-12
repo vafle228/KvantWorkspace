@@ -23,7 +23,7 @@ form{
     display: flex; flex-direction: column; gap: 10px;
     width: 500px;
     background-color: #fff;
-    border-radius: 12px;
+    border-radius: 1rem;
     padding: 32px;
 }
 form header{

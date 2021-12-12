@@ -131,7 +131,7 @@
     position: relative;
 }
 .newsItem:hover .newsItem__preview{
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 .newsItem__preview{
     width: calc(100% + 4rem); height: calc(100% + 4rem);
@@ -140,7 +140,7 @@
     margin: -2rem;
     border-radius: 1rem;
     z-index: -1;
-    transition: transform .4s ease;
+    transition: transform .6s ease;
 }
 .newsItem__content{
     position: absolute;

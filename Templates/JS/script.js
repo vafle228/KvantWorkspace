@@ -25,6 +25,7 @@ $(document).mouseup(function (e) {
 		$(".mainContainer").css("overflow-y", "scroll");
 		$(".userSelect").hide();
 		$("menu").removeClass("active");
+		$(".list").hide();
 	}
 });
 

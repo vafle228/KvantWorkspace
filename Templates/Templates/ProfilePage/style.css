@@ -1,71 +1,65 @@
-.profilePage{
-    display: flex; gap: 32px; flex-direction: column;
-}
-.profilePage__menu{
-    display: flex; flex-direction: row; gap: 16px;
-}
-.profilePage__tab{
-    display: none;
-}
-.profilePage__tab.active{
-    display: flex;
-}
 .profileCard{
     background-color: var(--item-bg-color);
-    width: 600px;
-    border-radius: 12px;
-    padding: 176px 16px 16px 16px;
+    width: 24rem; height: 100%;
+    border-radius: 1rem;
+    padding: 1rem;
     position: relative;
+    display: flex; flex-direction: column; gap: 1rem;
+    min-width: 24rem;
 }
 .profileCard__header{
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 80px;
-    border-radius: 12px 12px 0 0;
-    background-image: url('../../img/stacked-waves-haikei (2).png');
-    background-size: cover;
+    padding: 0.5rem;
 }
 .profileCard__profileImg{
-    position: absolute; top: 64px; left: 24px;
-    width: 96px; height: 96px;
-    border-radius: 48px;
+    width: 4rem; height: 4rem;
+    border-radius: 3rem;
     object-fit: cover;
     object-position: center;
-    box-shadow: 0 0 0 8px var(--item-bg-color);
 }
 .profileCard__profileName{
-    position: absolute; top: 88px; left: calc(24px + 96px + 24px);
-    font-size: 24px; font-weight: 600;
+    font-size: 1.4rem; font-weight: 600;
     color: var(--text-primary-color);
 }
 .profileCard__profileRole{
-    position: absolute; top: 120px; left: calc(24px + 96px + 24px);
-    font-size: 16px; font-weight: 500;
+    font-size: 1rem; font-weight: 500;
     color: #70757D;
 }
 .profileCard__fields{
     width: 100%;
-    background-color: var(--aside-bg-color);
-    border-radius: 8px;
-    padding: 16px;
-    display: flex; flex-direction: column; gap: 32px;
-    box-shadow: inset 0 0 4px #0001;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex; flex-direction: column; gap: 2rem;
 }
 .profileCard__field{
     display: flex; justify-content: space-between;
 }
 .profileCard__field button{
-    box-shadow: 0 0 8px #0001;
+    box-shadow: 0 0 0.5rem #0001;
 }
 .profileCard__field p:first-of-type{
     font-weight: 600;
     text-transform: uppercase;
+    margin-bottom: 6px;
 }
 .profileCard__field p:last-of-type{
     color: var(--text-primary-color);
 }
 
+.profilePage__tab{
+    display: none;
+    width: calc(100% - 24rem - 1.5rem);
+    height: calc(100% - 4rem - 1.5rem);
+    overflow: auto;
+    position: relative;
+}
+.profilePage__tab.active{
+    display: flex;
+}
+
 .galleryBox{
-    column-count: 5;
+    width: 100% !important;
+    height: 100% !important;
+    column-count: 3;
 }
 .galleryBox img{
     width: 100%;
@@ -75,16 +69,16 @@
 
 @media screen and (max-width: 992px){
     .galleryBox{
-        column-count: 4;
+        column-count: 2;
     }
 }
 @media screen and (max-width: 768px){
     .galleryBox{
-        column-count: 3;
+        column-count: 1;
     }
 }
 @media screen and (max-width: 576px){
     .galleryBox{
-        column-count: 2;
+        column-count: 1;
     }
 }
