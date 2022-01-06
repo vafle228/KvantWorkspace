@@ -76,7 +76,6 @@ class KvantNewsFilesSaveForm(ManyToManyObjectCreateMixin):
             raise ValidationError(self.fields['files'].error_messages['max_upload_count'])
         size_count = 0
         for file in values:
-            print(file.file.size if isinstance(file, FileStorage) else file.size)
             size_count += file.file.size if isinstance(file, FileStorage) else file.size
 
             if size_count > 32 * 1024 * 1024:

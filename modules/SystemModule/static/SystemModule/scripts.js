@@ -97,7 +97,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function sendInstanceData(form, post_url){
+function sendInstanceData(form, post_url, btn){
 	$.ajax({
 		type: 'POST',
 		url: post_url,
@@ -107,13 +107,17 @@ function sendInstanceData(form, post_url){
 		contentType: false,
 		enctype: "multipart/form-data",
 		success: function(response) {
-			if(response.status == 400){ errorAlert(response.errors) }
+			if(response.status == 400){
+				btn.disabled = false; 
+				errorAlert(response.errors);
+			}
 			else{
 				if(response.link != "Reload"){ location.href = response.link }
 				else{ location.reload() }
 			}
 		}
 	})
+	return true;
 }
 
 function updateGetUrlParams(param, value){
@@ -150,7 +154,6 @@ function getFileSize(nbytes){
 		nbytes /= 1024.
         suffix_index += 1
 	}
-	console.log(nbytes)
     size = nbytes.toFixed(2).split(".00")[0]
 
     return `${size} ${suffixes[suffix_index]}`

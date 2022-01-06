@@ -87,7 +87,6 @@
             mail_form.append('receivers', users[i])
         }
 
-
         mail_form.append('sender', '{{ user.id }}')
         mail_form.append('title', $('#mailSubject')[0].value)
         mail_form.append('text', $('#editor .ql-editor')[0].innerHTML) 

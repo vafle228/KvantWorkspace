@@ -133,11 +133,12 @@
         // Отправка формы новости на сервер
         $('#news-upload').on('click', function(){
             let news_form = getNewsFormData();
+            $('#news-upload')[0].disabled = true;
 
             for(let i = 0; i < old_files.length; i++){ // Перебор старых файлов
-                news_form.append('files', old_files[i].id) // Добавление старых файла в форму
+                news_form.append('files', old_files[i].id) // Добавление старых файлов в форму
             }
-            sendOrUpdateNews(news_form);
+            sendOrUpdateNews(news_form, $('#news-upload')[0]);
         });
     </script>
     <script>

@@ -74,13 +74,13 @@
 <script src="{% static 'SystemModule/text/options.js' %}"></script>
 <script>
     // Отправка формы новости на сервер
-    function sendOrUpdateNews(form){
+    function sendOrUpdateNews(form, btn){
         {% if form_status == "update" %}
         let form_url = '{% url "update_news" user.id news.id %}';
         {% else %}
         let form_url = '{% url "create_news" user.id %}';
         {% endif %}
-        sendInstanceData(form, form_url)
+        sendInstanceData(form, form_url, btn)
     }
 
     function getNewsFormData(){

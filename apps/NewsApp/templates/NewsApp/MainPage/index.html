@@ -219,9 +219,12 @@
             })
         }
     </script>
+
     <script>
-        // Отправка формы новости на сервер
-        $('#news-upload').on('click', () => sendOrUpdateNews(getNewsFormData()));
+        $('#news-upload').on('click', function(){
+            $('#news-upload')[0].disabled = true;
+            sendOrUpdateNews(getNewsFormData(), $('#news-upload')[0]);
+        })
     </script>
 </body>
 </html>

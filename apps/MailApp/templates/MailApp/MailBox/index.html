@@ -232,7 +232,10 @@
     
     <script>
         // Отправка письма по кнопке
-        $('#sendMail').on('click', () => sendInstanceData(getMailFormData(), '{% url "create_mail" user.id %}'))
+        $('#sendMail').on('click', function(){
+            $('#sendMail')[0].disabled = true;
+            sendInstanceData(getMailFormData(), '{% url "create_mail" user.id %}', $('#sendMail')[0])
+        })
     </script>
     <script>
         function getDetailMail(mail_url, mail){
