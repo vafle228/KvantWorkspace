@@ -1,7 +1,7 @@
 
 function page_adaptation(){
 
-	let ratio = window.innerWidth / 1920 < 0.75 ? 0.75 : window.innerWidth / 1920;
+	let ratio = window.innerWidth / 2560 < 0.75 ? 0.75 : window.innerWidth / 2560;
 
 	$("body").css({
 		"zoom": ratio,
@@ -57,7 +57,8 @@ function filterFunction(input) {
 		users.map(index => $('.userSelect').append(users[index]));
 		
 		// Скрываем пользователей неудолетворяющих поиску
-		users.map((index) => $(users[index]).find('h3')[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide());
+		users.map(
+			(index) => $(users[index]).find('h3')[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide());
 	}
 	else { $('.userSelect').hide(); }
 }

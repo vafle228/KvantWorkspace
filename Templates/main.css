@@ -1,7 +1,7 @@
 /* Подключение шрифтов */
 @import url("fonts/Google font/stylesheet.css");
 
-body{
+:root{
     /* Брейкпоинты */
     --xsmall: 576px;
     --small: 768px;
@@ -10,44 +10,48 @@ body{
     --xlarge: 1400px;
 }
 
+/* Темы оформления */
 body[colorScheme='colorScheme__green']{
-    --bgColor: #20d48922;
-    --currentColor: #20d489;
+    --bgColor: #66cd0311;
+    --currentColor: #66cd03;
 }
 body[colorScheme='colorScheme__blue']{
-    --bgColor: #00b2ff22;
+    --bgColor: #00b2ff11;
     --currentColor: #00b2ff;
 }
 body[colorScheme='colorScheme__red']{
-    --bgColor: #f1416c22;
+    --bgColor: #f1416c11;
     --currentColor: #f1416c;
 }
 body[colorScheme='colorScheme__purple']{
-    --bgColor: #6c63ff22;
+    --bgColor: #6c63ff11;
     --currentColor: #6c63ff;
 }
 
 /* Светлая тема */
 .light__theme{
-    --aside-bg-color: #fff;
-    --item-bg-color: #ebf0f8;
+    --aside-bg-color: #eeeeef;
+    --item-bg-color: #ffffff;
+    --bg-color: #fcfcfd;
 
-    --text-primary-color: #111926;
+    --text-primary-color: #2b292e;
     --text-secondary-color: #eee;
 
-    --theme-light: #3436380a;
-    --theme-light-alpha: #0002;
+    --theme-light: #f3f3f3;
+    --theme-light-alpha: #f3f3f3;
 }
+
 /* Темная тема */
 .dark__theme{
-    --aside-bg-color: #191919;
-    --item-bg-color: #25262C;
+    --aside-bg-color: #0b0c0e;
+    --bg-color: #0f1012;
+    --item-bg-color: #141519;
 
-    --text-primary-color: #eee;
+    --text-primary-color: #cacbce;
     --text-secondary-color: #111926;
 
-    --theme-light: #f5f8fa0e;
-    --theme-light-alpha: #fff1;
+    --theme-light: #1e2025;
+    --theme-light-alpha: #1e2025;
 }
 
 *{ margin: 0; padding: 0; box-sizing: border-box }
@@ -72,7 +76,7 @@ h1{ font-size: 2rem;    font-weight: bold;    color: var(--text-primary-color) }
 h2{ font-size: 1.6rem;  font-weight: bold;    color: var(--text-primary-color) }
 h3{ font-size: 1.2rem;  font-weight: 500;     color: #70757D }
 h4{ font-size: 1.2rem;  font-weight: 300;     color: #70757D }
-p{  font-size: 1rem;    font-weight: normal;  color: #70757D }
+p { font-size: 1rem;    font-weight: normal;  color: #70757D }
 
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 
@@ -87,7 +91,7 @@ html{
 
 body{
     cursor: default;
-    background-color: var(--item-bg-color);
+    background-color: var(--aside-bg-color);
     
     font-family: "Google Sans";
 
@@ -109,7 +113,7 @@ body{
 /* Основной контейнер */
 .mainContainer{
     height: 100%; width: 100%;
-    background-color: var(--aside-bg-color);
+    background-color: var(--bg-color);
     padding: 1.5rem;
     border-radius: 1.5rem 0 0 1.5rem;
     display: flex; gap: 1.5rem;
@@ -193,18 +197,13 @@ body{
     background-color: var(--theme-light);
 }
 .navigation__link.active{
-    background-color: var(--aside-bg-color);
+    background-color: var(--theme-light);
 }
 .navigation__link.active svg path{
     fill: var(--currentColor);
     opacity: 1;
 }
-.navigation__link.active::after{
-    content: "";
-    position: absolute; top: 30%; left: 0;
-    height: 40%; width: 0.25rem; border-radius: 2px;
-    background-color: var(--currentColor);
-}
+
 .navigation__profile img{
     width: 2.5rem; height: 2.5rem;
     margin: 1.5rem 0.5rem;
@@ -280,6 +279,8 @@ body{
 .form.active{
     visibility: visible;
 }
+
+/* Затемнение фона при просмотре формы */
 .form::before{
     content: "";
     position: fixed; top: 0; left: 0;
@@ -293,6 +294,8 @@ body{
 .form.active::before{
     visibility: visible; opacity: 1;
 }
+
+/* Упаковщик формы, для позициолнирования и эффекта появления формы */
 .form .form-wrapper{
     overflow-y: scroll; padding: 6rem 0;
     position: fixed; top: 0; left: calc(50% - 36.25rem);
@@ -302,12 +305,12 @@ body{
 }
 .form .form-wrapper form{
     width: 72.5rem;
-    background-color: var(--aside-bg-color);
+    background-color: var(--item-bg-color);
     padding: 1rem 1.25rem; margin: auto 0;
     border-radius: 1rem;
+    border: 1px solid var(--theme-light);
     position: relative;
     display: flex; flex-direction: column; gap: 1rem;
-
     transform: translateY(2000px);
     transition: transform .4s;
 }
@@ -319,7 +322,7 @@ body{
 .form .item-header{
     display: flex; justify-content: space-between; align-items: center;
     min-height: 3rem;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 .form .item-header h2{
     white-space: nowrap;
@@ -332,7 +335,7 @@ body{
     border-radius: 0.5rem;
     padding: 0.5rem;
     font-size: 1rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--theme-light);
     color: var(--text-primary-color);
 }
 .form .form-wrapper form .text-field-title{
@@ -346,10 +349,17 @@ body{
     font-size: 1.3rem;
 }
 
+/* Адаптивность для форм */
 @media screen and (max-width: 992px){
-    .form .form-wrapper form{ width: 100% }
-    .form .form-wrapper{ width: 98%; left: 1% }
+    .form .form-wrapper form{
+        width: 100%;
+    }
+    .form .form-wrapper{
+        width: 98%;
+        left: 1%;
+    }
 }
+
 @media screen and (max-width: 576px){
     .form form{
         padding: 1rem !important;
@@ -446,6 +456,7 @@ body{
     white-space: nowrap;
 }
 
+/* Кнопки взаимодействия с файлом */
 .file__actions{
     display: flex; gap: 0.5rem;
     padding: 0.25rem;
@@ -479,7 +490,7 @@ body{
     overflow: hidden;
 }
 .user:hover{
-    background-color: var(--item-bg-color);
+    background-color: var(--theme-light);
 }
 .user:hover .user__name{
     color: var(--currentColor);
@@ -496,16 +507,19 @@ body{
     white-space: nowrap;
 }
 
+/* Адаптивность для пользователей */
 @media screen and (max-width: 768px){
     .user{
         width: calc((100% - 1rem) / 3);
     }
 }
+
 @media screen and (max-width: 576px){
     .user{
         width: calc((100% - 0.5rem) / 2);
     }
 }
+
 @media screen and (max-width: 400px){
     .user{
         width: 100%;
@@ -543,8 +557,7 @@ body{
 .dropdownSelect__options{
     position: absolute;
     display: block;
-    top: 110%;
-    left: 0; right: 0;
+    top: 110%; left: 0; right: 0;
     transition: all 0.1s;
     opacity: 0; visibility: hidden;
     z-index: 1;
@@ -653,7 +666,7 @@ button.disabled{
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     display: flex; align-items: center; gap: 0.5rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--theme-light);
 }
 .primaryButton svg{
     width: 1rem; height: 1rem;
@@ -668,8 +681,8 @@ button.primaryButton:hover{
 
 .secondaryButton{
     height: 3rem;
-    background-color: var(--currentColor);
-    color: #fff;
+    background-color: var(--bgColor);
+    color: var(--currentColor);
     font-weight: 600;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
@@ -677,16 +690,20 @@ button.primaryButton:hover{
 }
 .secondaryButton svg{
     width: 1rem; height: 1rem;
-    fill: #fff;
+    fill: var(--currentColor);
 }
 .secondaryButton:hover{
-    filter: brightness(0.9);
+    background-color: var(--currentColor);
+    color: #fff;
+}
+.secondaryButton:hover svg{
+    fill: #fff;
 }
 
 .dangerButton{
     height: 3rem;
-    background-color: tomato;
-    color: #fff;
+    background-color: #ff634722;
+    color: #ff6347;
     font-weight: 600;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
@@ -694,10 +711,14 @@ button.primaryButton:hover{
 }
 .dangerButton svg{
     width: 1rem; height: 1rem;
-    fill: #fff;
+    fill: #ff6347;
 }
 .dangerButton:hover{
-    filter: brightness(0.9);
+    background-color: #ff6347;
+    color: #fff;
+}
+.dangerButton:hover svg{
+    fill: #fff;
 }
 
 .actionButton{
@@ -720,9 +741,36 @@ button.primaryButton:hover{
     transition: all .2s;
 }
 
+.combinedButton{
+    background-color: unset;
+    display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
+    height: 3rem;
+    border-radius: 1.5rem;
+    color: var(--text-primary-color);
+    padding: 0 1rem;
+    max-width: 90%; 
+}
+.combinedButton span{
+    white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+    font-weight: 500;
+}
+.combinedButton svg{
+    width: 1rem; height: 1rem;
+    fill: #70757D;
+}
+.combinedButton:hover{
+    background-color: var(--theme-light);
+}
+.combinedButton:hover svg{
+    fill: var(--currentColor);
+}
+.combinedButton:active{
+    transform: none !important;
+}
+
 button[class$='Button']{
     font-size: 1.1rem;
-    transition: all .05s;
+    transition: all .1s;
 }
 button[class$='Button']:active{
     transition: transform .2s;
@@ -738,7 +786,6 @@ button[class$='Button']:active{
     height: 4rem; min-height: 4rem;
     width: min-content;
     padding: 0.25rem;
-    /* border: var(--theme-light) dashed 2px; */
     background-color: var(--item-bg-color);
 }
 .menu__button{
@@ -773,6 +820,7 @@ button[class$='Button']:active{
     color: var(--text-primary-color);
 }
 
+/* Адаптивность дял меню */
 @media screen and (max-width: 992px){
     .menu .menu__button p{
         display: none;
@@ -790,11 +838,6 @@ button[class$='Button']:active{
     z-index: 10;
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     width: 100%;
-}
-@media screen and (max-width: 740px){
-    .alertsContainer{
-        bottom: 4rem;
-    }
 }
 .alert{
     width: min-content;
@@ -820,11 +863,18 @@ button[class$='Button']:active{
     margin-left: 1rem;
 }
 
+/* Чтобы нижнее навигационное меню на смартфонах не перекрывало оповещения */
+@media screen and (max-width: 740px){
+    .alertsContainer{
+        bottom: 4rem;
+    }
+}
+
 
 /* Выбор пользователя */
 .userSelect{
     width: 32rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--aside-bg-color);
     border-radius: 12px;
     display: flex; flex-direction: column;
     max-height: 16rem;
@@ -887,7 +937,8 @@ button[class$='Button']:active{
     font-size: 1rem;
     color: var(--currentColor);
 }
-#selectedUsers .userSelect__user .userSelect__userImage, #selectedUsers .userSelect__user .userSelect__userRole{
+#selectedUsers .userSelect__user .userSelect__userImage,
+#selectedUsers .userSelect__user .userSelect__userRole{
     display: none;
 }
 
@@ -904,6 +955,7 @@ button[class$='Button']:active{
     border-radius: 0.125rem;
 }
 
+
 /* Таблицы */
 table{
     width: 100%;
@@ -919,7 +971,6 @@ th{
 tr:hover > td{
     background-color: var(--bgColor);
 }
-
 td{
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
@@ -943,7 +994,8 @@ td{
     background-color: var(--currentColor);
 }
 
-/* Список */
+
+/* Списки */
 .relativeBox{
     position: relative;
 }
@@ -951,18 +1003,19 @@ td{
     display: none; flex-direction: column;
     position: absolute; top: calc(100% + 0.5rem); right: 0;
     z-index: 1;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    background-color: var(--aside-bg-color);
-    box-shadow: 0 0 0 1px var(--item-bg-color);
+    border-radius: 0.25rem;
+    background-color: var(--item-bg-color);
+    border: var(--theme-light) solid 1px;
+    padding: 0.5rem;
 }
 .listButton{
     background-color: unset;
     display: flex; justify-content: space-between; align-items: center;
-    width: 16rem; height: 4rem;
-    font-weight: 500;
-    padding: 0 1.5rem;
+    width: 16rem; height: 3rem;
+    font-weight: 500; font-size: 1rem;
+    padding: 0 1rem;
     color: var(--text-primary-color);
+    border-radius: 0.25rem;
 }
 .listButton svg{
     width: 1rem; height: 1rem;
@@ -975,33 +1028,6 @@ td{
     transform: none !important;
 }
 
-
-.combinedButton{
-    background-color: unset;
-    display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
-    height: 3rem;
-    border-radius: 1.5rem;
-    color: var(--text-primary-color);
-    padding: 0 1rem;
-    max-width: 90%; 
-}
-.combinedButton span{
-    white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
-    font-weight: 500;
-}
-.combinedButton svg{
-    width: 1rem; height: 1rem;
-    fill: #70757D;
-}
-.combinedButton:hover{
-    background-color: var(--theme-light);
-}
-.combinedButton:hover svg{
-    fill: var(--currentColor);
-}
-.combinedButton:active{
-    transform: none !important;
-}
 
 /* Инпут */
 .input{

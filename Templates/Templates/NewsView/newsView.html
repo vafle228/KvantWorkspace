@@ -8,7 +8,6 @@
     <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
     <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
 
-    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
     <link rel="shortcut icon" href="../../img/google.svg" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     
@@ -16,8 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
     
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/> <!-- Кастомные слайдеры -->
     
     <title>Заголовок новости</title>
 </head>
@@ -192,7 +190,7 @@
                                 <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
                             </svg>  
                         </button>
-                        <button class="listButton" onclick="delNewsItem(this)">
+                        <button class="listButton" onclick="open_form('#confirmDeletion')">
                             Удалить
                             <svg viewBox="0 0 448 512">
                                 <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
@@ -202,6 +200,30 @@
                     </div>
                 </div>
                 
+                <!-- Форма подтверждения удаления новости -->
+                <div class='form' id='confirmDeletion'>
+                    <div class="form-wrapper" style="left: calc(50% - 24rem)">
+                        <form style='width: 48rem'>
+                            <h2>Удаление новости</h2>
+                            <p>Вы уверены, что хотите удалить эту новость?</p>
+                            <div class='item-header'>
+                                <div class='row g8' style='margin-left: auto;'>
+                                    <button class='primaryButton'>
+                                        Отмена
+                                    </button>
+                                    <button class='dangerButton' type="submit">
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                            <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                                        </svg>
+                                        Подтвердить удаление
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
     
             <!-- Если есть только одно изображение -->
@@ -232,11 +254,13 @@
                     <p style='margin-bottom: auto'>27 ноября</p>
                 </div>
     
-                <p class="newsView__infoText">В субботу, 27 ноября, в Детском технопарке «Кванториум» Свердловской детской железной дороги открылась шахматная гостиная.
+                <p class="newsView__infoText">
+                    В субботу, 27 ноября, в Детском технопарке «Кванториум» Свердловской детской железной дороги открылась шахматная гостиная.
 
                     В открытии нового направления приняли участие исполнительный директор Федерации шахмат Екатеринбурга, КМС по шахматам Алексей Федотов и педагог, мастер ФИДЕ Екатерина Рассохина.
                     
-                    Родители и будущие шахматисты познакомились с преподавателем и особенностями организации занятий. Каждый участник получил возможность продемонстрировать свой уровень игры в увлекательном интерактиве.</p>
+                    Родители и будущие шахматисты познакомились с преподавателем и особенностями организации занятий. Каждый участник получил возможность продемонстрировать свой уровень игры в увлекательном интерактиве.
+                </p>
 
                 <div class='files'>
                     <div class='file'>
@@ -375,17 +399,7 @@
         const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), { Dots: false, 'infinite' : false });
     </script>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ offset: -200 })</script>
-
     <script src="../../JS/alert.js"></script> <!-- Оповещения -->
-
-    <script>
-        function delNewsItem(delBtn){
-            $(delBtn).hide();
-            $(delBtn).parent().append(`<button class='listButton'>Подтвердить</button>`)
-        }
-    </script>
 </body>
 
 </html>

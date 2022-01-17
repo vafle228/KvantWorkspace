@@ -8,15 +8,14 @@
     <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
     <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
 
-    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel="shortcut icon" href="../../img/google.svg" type="image/png" /> <!-- Логотип -->
+    <link rel="shortcut icon" href="../../img/google.svg" type="image/png" /> <!-- Иконка вкладки -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     
     <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
     <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
     
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/> <!-- Слайдер -->
     
     <title>Главная</title>
 </head>
@@ -26,6 +25,7 @@
     <!-- Навигационное меню -->
     <nav class='navigation'>
 
+        <!-- Логотип -->
         <div class='navigation__logo'>
             <img src='../../img/google.svg' alt='logo'/>
         </div>
@@ -107,10 +107,12 @@
                 <img src='../../img/Kaelthas.jpg'>
             </div>
         </div>
+
     </nav>
 
     <!-- Навигационное меню для смартфонов -->
     <nav class='navigationBar'>
+
         <button class='navigation__link active'>
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
@@ -146,59 +148,62 @@
             </svg>
             Профиль
         </button>
+
     </nav>
 
+    <!-- Основной контейнер -->
     <section class="mainContainer column">
+
+        <!-- Шапка -->
+        <!-- <header class="row g32">
+            <h3 class='active'>Главная</h3>
+            <h3>Дневник</h3>
+            <h3>Проекты</h3>
+            <h3>Сообщения</h3>
+            <h3>Профиль</h3>
+        </header> -->
 
         <!-- Виджеты -->
         <section id='widgets' class='row g16'>
-
-            <!-- Виджет "Календарь" -->
-            <div id="eventsWidget" class='column g16'>
-                <h2>Календарь</h2>
-                <div class="timetable column scrollbar">
-                    <div class="event row g16 px16">
-                        <p class='event__date'>22.11</p>
-                        <span class="event__marker"></span>
-                        <p class="event__name">Выставка</p>
+            
+            <!-- Виджет "События" -->
+            <div id="eventsWidget">
+                <div id="eventsWidget__carousel" class="carousel">
+                    <div class="carousel__slide event">
+                        <img src="../../img/Зимняя сказка.jpg" class='event__banner'>
+                        <div class="event__content column g16">
+                            <p class="event__tag">Событие</p>
+                            <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
+                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
+                            <button class="event__button">Подробнее</button>
+                        </div>
                     </div>
-                    <div class="event row g16 px16">
-                        <p class='event__date'>15.12</p>
-                        <span class="event__marker"></span>
-                        <p class="event__name">Фестиваль</p>
+                    <div class="carousel__slide event">
+                        <img src="../../img/Зимняя сказка.jpg" class='event__banner'>
+                        <div class="event__content column g16">
+                            <p class="event__tag">Событие</p>
+                            <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
+                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
+                            <button class="event__button">Подробнее</button>
+                        </div>
                     </div>
-                    <div class="event row g16 px16">
-                        <p class='event__date'>13.01</p>
-                        <span class="event__marker"></span>
-                        <p class="event__name">Защита проектов за первое полугодие</p>
-                    </div>
-                    <div class="event row g16 px16">
-                        <p class='event__date'>23.01</p>
-                        <span class="event__marker"></span>
-                        <p class="event__name">Мастер-класс</p>
-                    </div>
-                    <div class="event row g16 px16">
-                        <p class='event__date'>15.04</p>
-                        <span class="event__marker"></span>
-                        <p class="event__name">Хакатон</p>
-                    </div>
-                    <div class="event row g16 px16">
-                        <p class='event__date'>26.05</p>
-                        <span class="event__marker"></span>
-                        <p class="event__name">Защита проектов за второе полугодие</p>
+                    <div class="carousel__slide event">
+                        <img src="../../img/Зимняя сказка.jpg" class='event__banner'>
+                        <div class="event__content column g16">
+                            <p class="event__tag">Событие</p>
+                            <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
+                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
+                            <button class="event__button">Подробнее</button>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- Виджет "Расписание" -->
-            <div id="scheduleWidget" class='column g16'>
-                <div class='flex space-between'>
-                    <h2>Расписание</h2>
-                </div>
-
-                <div class='courseList column g8 scrollbar'>
+            <div id="scheduleWidget">
+                <div class='courseList column scrollbar'>
                     <div class='course row g16'>
-                        <img src="../../img/illustrations/science.svg" class='course__illustration'/>
+                        <img src="../../img/3d/cube-dynamic-color.png" class='course__illustration'/>
                         <div class="course__info column g4">
                             <p class='course__title'>Направление</p>
                             <p class='course__teacher'>Фамилия И. О.</p>
@@ -228,11 +233,14 @@
                                 <p class="lesson__day">Вс</p>
                             </div>
                         </div>
+                        <svg viewBox="0 0 256 512">
+                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+                        </svg>
                     </div>
                     <div class='course row g16'>
-                        <img src="../../img/illustrations/math.svg" class='course__illustration'/>
+                        <img src="../../img/3d/location-dynamic-color.png" class='course__illustration'/>
                         <div class="course__info column g4">
-                            <p class='course__title'>Математика</p>
+                            <p class='course__title'>Направление</p>
                             <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
                         <div class="row g4" style='margin-left: auto'>
@@ -259,11 +267,14 @@
                                 <p class="lesson__day">Вс</p>
                             </div>
                         </div>
+                        <svg viewBox="0 0 256 512">
+                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+                        </svg>
                     </div>
                     <div class='course row g16'>
-                        <img src="../../img/illustrations/eng.svg" class='course__illustration'/>
+                        <img src="../../img/3d/flash-dynamic-color.png" class='course__illustration'/>
                         <div class="course__info column g4">
-                            <p class='course__title'>Английский язык</p>
+                            <p class='course__title'>Направление</p>
                             <p class='course__teacher'>Фамилия И. О.</p>
                         </div>
                         <div class="row g4" style='margin-left: auto'>
@@ -290,8 +301,87 @@
                                 <p class="lesson__day">Вс</p>
                             </div>
                         </div>
+                        <svg viewBox="0 0 256 512">
+                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+                        </svg>
+                    </div>
+                    <div class='course row g16'>
+                        <img src="../../img/3d/figma-dynamic-color.png" class='course__illustration'/>
+                        <div class="course__info column g4">
+                            <p class='course__title'>Направление</p>
+                            <p class='course__teacher'>Фамилия И. О.</p>
+                        </div>
+                        <div class="row g4" style='margin-left: auto'>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пн</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вт</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Ср</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Чт</p>
+                            </div>
+                            <div class="lesson column">
+                                <p class="lesson__day">Пт</p>
+                                <p class='lesson__time'>16:30</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Сб</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вс</p>
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 256 512">
+                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+                        </svg>
                     </div>
                 </div>
+
+                <!-- <div class="week row">
+                    <div class="week__day">
+                        <h3>Пн</h3>
+                        <div class='lessonList'></div>
+                    </div>
+                    <div class="week__day">
+                        <h3>Вт</h3>
+                        <div class='lessonList'>
+                            <div class="lesson" style='--time: 240'>
+                                12:00
+                            </div>
+                            <div class="lesson" style='--time: 620'>
+                                18:20
+                            </div>
+                        </div>
+                    </div>
+                    <div class="week__day">
+                        <h3>Ср</h3>
+                        <div class='lessonList'></div>
+                    </div>
+                    <div class="week__day active">
+                        <h3>Чт</h3>
+                        <div class='lessonList'>
+                            <div class="lesson" style='--time: 620'>
+                                18:20
+                            </div>
+                        </div>
+                    </div>
+                    <div class="week__day">
+                        <h3>Пт</h3>
+                        <div class='lessonList'></div>
+                    </div>
+                    <div class="week__day">
+                        <h3>Сб</h3>
+                        <div class='lessonList'></div>
+                    </div>
+                    <div class="week__day">
+                        <h3>Вс</h3>
+                        <div class='lessonList'></div>
+                    </div>
+                </div> -->
 
                 <!-- Форма просмотра курса -->
                 <div class='form'>
@@ -330,7 +420,7 @@
                                 </div>
                             </div>
 
-                            <hr class='divider' style='margin: 0.5rem 0'/>
+                            <!-- <hr class='divider' style='margin: 0.5rem 0'/> -->
 
                             <h2 class='px16'>Участники</h2>
                             <div class="users">
@@ -432,108 +522,69 @@
             <div class='row g24'>
                 <h1>Новости</h1>
                 <button class='primaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
+                <input type="text" class='newsSearch' placeholder="🔍︎">
             </div>
 
             <!-- Блок новостей -->
             <div class='newsContainer flex g16'>
-                <div class="newsItem" data-aos="fade-up">
-                    <img src="../../img/Kaelthas.jpg" class='newsItem__preview'>
+                
+                <div class="newsItem">
+                    <img src="../../img/Трейсер.jpg" class='newsItem__preview'>
 
-                    <div class="newsItem__content column g16">
-                        <h2 class='newsItem__title'>Заголовок новости</h2>
-                        <p class='newsItem__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
-                        </p>
-                        <div class="newsItem__info row g16 items-center">
-                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
-                            <p>Автор новости</p>
-                            <span class="dot"></span>
-                            <p>29 Июля</p>
-                        </div>
+                    <div class="newsItem__content column g8">
+                        <p class='newsItem__tag'>Overwatch</p>
+                        <h2 class='newsItem__title'>Невероятные герои. Потрясающие моменты. Только в Overwatch</h2>
+                        <p class='newsItem__date'>29 декабря 2021 г.</p>
                     </div>
                 </div>
-                <div class="newsItem" data-aos="fade-up">
-                    <img src="../../img/blurry-gradient-haikei.png" class='newsItem__preview'>
+                <div class="newsItem">
+                    <img src="../../img/Трейсер.jpg" class='newsItem__preview'>
 
-                    <div class="newsItem__content column g16">
-                        <h2 class='newsItem__title'>Заголовок новости</h2>
-                        <p class='newsItem__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
-                        </p>
-                        <div class="newsItem__info row g16 items-center">
-                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
-                            <p>Автор новости</p>
-                            <span class="dot"></span>
-                            <p>29 Июля</p>
-                        </div>
+                    <div class="newsItem__content column g8">
+                        <p class='newsItem__tag'>Overwatch</p>
+                        <h2 class='newsItem__title'>Невероятные герои. Потрясающие моменты. Только в Overwatch</h2>
+                        <p class='newsItem__date'>29 декабря 2021 г.</p>
                     </div>
                 </div>
-                <div class="newsItem" data-aos="fade-up">
-                    <img src="../../img/blurry-gradient-haikei.png" class='newsItem__preview'>
+                <div class="newsItem">
+                    <img src="../../img/Трейсер.jpg" class='newsItem__preview'>
 
-                    <div class="newsItem__content column g16">
-                        <h2 class='newsItem__title'>Заголовок новости</h2>
-                        <p class='newsItem__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
-                        </p>
-                        <div class="newsItem__info row g16 items-center">
-                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
-                            <p>Автор новости</p>
-                            <span class="dot"></span>
-                            <p>29 Июля</p>
-                        </div>
+                    <div class="newsItem__content column g8">
+                        <p class='newsItem__tag'>Overwatch</p>
+                        <h2 class='newsItem__title'>Невероятные герои. Потрясающие моменты. Только в Overwatch</h2>
+                        <p class='newsItem__date'>29 декабря 2021 г.</p>
                     </div>
                 </div>
-                <div class="newsItem" data-aos="fade-up">
-                    <img src="../../img/blurry-gradient-haikei.png" class='newsItem__preview'>
+                <div class="newsItem">
+                    <img src="../../img/Трейсер.jpg" class='newsItem__preview'>
 
-                    <div class="newsItem__content column g16">
-                        <h2 class='newsItem__title'>Заголовок новости</h2>
-                        <p class='newsItem__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
-                        </p>
-                        <div class="newsItem__info row g16 items-center">
-                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
-                            <p>Автор новости</p>
-                            <span class="dot"></span>
-                            <p>29 Июля</p>
-                        </div>
+                    <div class="newsItem__content column g8">
+                        <p class='newsItem__tag'>Overwatch</p>
+                        <h2 class='newsItem__title'>Невероятные герои. Потрясающие моменты. Только в Overwatch</h2>
+                        <p class='newsItem__date'>29 декабря 2021 г.</p>
                     </div>
                 </div>
-                <div class="newsItem" data-aos="fade-up">
-                    <img src="../../img/blurry-gradient-haikei.png" class='newsItem__preview'>
+                <div class="newsItem">
+                    <img src="../../img/Трейсер.jpg" class='newsItem__preview'>
 
-                    <div class="newsItem__content column g16">
-                        <h2 class='newsItem__title'>Заголовок новости</h2>
-                        <p class='newsItem__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
-                        </p>
-                        <div class="newsItem__info row g16 items-center">
-                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
-                            <p>Автор новости</p>
-                            <span class="dot"></span>
-                            <p>29 Июля</p>
-                        </div>
+                    <div class="newsItem__content column g8">
+                        <p class='newsItem__tag'>Overwatch</p>
+                        <h2 class='newsItem__title'>Невероятные герои. Потрясающие моменты. Только в Overwatch</h2>
+                        <p class='newsItem__date'>29 декабря 2021 г.</p>
                     </div>
                 </div>
-                <div class="newsItem" data-aos="fade-up">
-                    <img src="../../img/blurry-gradient-haikei.png" class='newsItem__preview'>
+                <div class="newsItem">
+                    <img src="../../img/Трейсер.jpg" class='newsItem__preview'>
 
-                    <div class="newsItem__content column g16">
-                        <h2 class='newsItem__title'>Заголовок новости</h2>
-                        <p class='newsItem__text'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe voluptate, adipisci in culpa dignissimos, tenetur tempora non earum architecto sit dolorum eos aliquam sapiente quasi, sint similique blanditiis! Minus, aut.
-                        </p>
-                        <div class="newsItem__info row g16 items-center">
-                            <img src='../../img/user_profile_female.jpg' class='avatar'/>
-                            <p>Автор новости</p>
-                            <span class="dot"></span>
-                            <p>29 Июля</p>
-                        </div>
+                    <div class="newsItem__content column g8">
+                        <p class='newsItem__tag'>Overwatch</p>
+                        <h2 class='newsItem__title'>Невероятные герои. Потрясающие моменты. Только в Overwatch</h2>
+                        <p class='newsItem__date'>29 декабря 2021 г.</p>
                     </div>
                 </div>
             </div>
 
+            <!-- Кнопка "Больше новостей" -->
             <button class='primaryButton' style='margin: 0 auto'>Больше новостей</button>
 
             <!-- Форма создания новости -->
@@ -568,8 +619,14 @@
                                 Опубликовать
                             </button>
                         </div>
+
+                        <!-- Поле для заголовка новости -->
                         <input class='text-field text-field-title' autocomplete="off" placeholder="Заголовок"></input>
+
+                        <!-- Редактор содержимого новости -->
                         <div id="editor" class='text-field'></div>
+
+                        <!-- Прикрепление файлов к новости -->
                         <div class="item-header">
                             <h2>Прикрепленные файлы</h2>
                             <button class='primaryButton' type="button">
@@ -607,9 +664,12 @@
                     </form>
                 </div>
             </div>
+
         </section>
+
     </section>
 
+    <!-- Кнопка "В начало страницы" -->
     <div id="arrowTop" hidden>
         <svg viewBox="0 0 14 14">
             <g transform="translate(-5 -5)">
@@ -630,15 +690,22 @@
     <!-- Отображение математических формул -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<script>AOS.init({ offset: -9999999 })</script>
 
     <script>
         $("#scheduleWidget .course").click(function () {
             $('#scheduleWidget .form').addClass("active");
             $(".mainContainer").css("overflow", "hidden");
         });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+    <script>
+        const myCarousel = new Carousel(document.querySelector("#eventsWidget__carousel"), {
+            Dots: true,
+            infinite: true,
+            friction: 0.9,
+        });
+        setInterval(() => myCarousel.slideTo(myCarousel.pageIndex + 1), 10000)
     </script>
 </body>
 </html>

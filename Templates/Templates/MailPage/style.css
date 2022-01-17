@@ -95,7 +95,8 @@
     height: 100%; width: 36rem;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 0 1rem var(--theme-light);
+    /* box-shadow: inset 0 0 1rem var(--theme-light); */
+    border: var(--theme-light) solid 1px;
 }
 .mails__header{
     padding: 1rem;
@@ -279,7 +280,7 @@
     width: 100%; height: 100%;
     position: fixed;
     top: 0; left: 0;
-    background-color: var(--theme-light-alpha);
+    background-color: #1e2025;
     z-index: -1;
     opacity: 0; visibility: hidden;
     transition-property: visibility opacity;
@@ -294,13 +295,13 @@
     padding: 4rem 4rem 4rem 9.5rem;
 }
 #newMailItemForm.fullscreen::before{
-    opacity: 1;
+    opacity: 0.75;
     visibility: visible;
 }
 
 #newMailItemForm form{
     border: var(--theme-light) solid 1px;
-    background-color: var(--aside-bg-color);
+    background-color: var(--item-bg-color);
     border-radius: 0.75rem;
     transition-duration: .4s;
     transition-property: width height;
@@ -454,6 +455,7 @@
         background-color: unset;
         border-radius: 0;
         box-shadow: none;
+        border: none;
     }
     .mails__header{
         padding: 0.5rem 0;

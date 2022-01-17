@@ -32,6 +32,7 @@
     width: 18rem; height: 24rem;
     border-radius: 1rem;
     overflow: hidden;
+    border: var(--theme-light) solid 1px;
 }
 .light__theme .projectCard{
     background-color: var(--aside-bg-color);
@@ -108,6 +109,7 @@
     position: relative;
     cursor: pointer;
     transition: transform 0.1s;
+    border: var(--theme-light) solid 1px;
 }
 .categoryCard:active{
     transform: scale(0.96);
