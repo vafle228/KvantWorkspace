@@ -17,7 +17,7 @@ header h3:not(.active):hover{
 
 /* Виджет "События" */
 #eventsWidget{
-    width: calc(100% - 64rem - 1rem); height: 22rem;
+    width: calc(100% - 48rem - 1rem); height: 22rem;
     border-radius: 0.5rem;
 }
 
@@ -76,7 +76,7 @@ header h3:not(.active):hover{
 
 /* Виджет "Расписание" */
 #scheduleWidget{
-    width: 64rem; height: 22rem;
+    width: 48rem; height: 22rem;
 }
 
 .courseList{
@@ -295,43 +295,3 @@ header h3:not(.active):hover{
 .carousel__dot.is-selected::after{
     background-color: var(--currentColor) !important;
 }
-
-
-/* .week{
-    width: 100%;
-    height: 22rem;
-    align-items: stretch;
-}
-.week__day{
-    width: calc(100% / 7);
-    height: 100%;
-    padding: 1rem;
-    border-radius: 0.5rem;
-}
-.week__day:hover{
-    background-color: var(--theme-light);
-}
-.week__day.active h3{
-    color: var(--currentColor);
-}
-.week__day h3{
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.lessonList{
-    width: 100%; height: 18rem;
-    margin-top: 0.5rem;
-    position: relative;
-}
-.lesson{
-    position: absolute;
-    left: 0; top: calc((100% - 3rem) * (var(--time) / 720));
-    width: 100%; height: 3rem;
-    background-color: var(--bgColor);
-    color: var(--currentColor);
-    text-align: center;
-    padding: 1rem;
-    font-weight: 600;
-    border-radius: 0.5rem;
-} */

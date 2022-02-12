@@ -20,7 +20,7 @@
     <title>Проверка</title>
 </head>
 
-<body class='light__theme' colorScheme="colorScheme__purple">
+<body class='dark__theme' colorScheme="colorScheme__blue">
     
     <!-- Навигационное меню -->
     <nav class='navigation'>
@@ -147,21 +147,28 @@
         </button>
     </nav>
 
-    <div class="mainContainer">
+    <div class="mainContainer column">
 
         <!-- Домашнее задание -->
         <header class="flex space-between items-center">
-            <div class="row g16">
-                <button class='actionButton transparent' style='margin-left: -1rem' title='Назад'>
-                    <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
-                        <g transform="translate(-5 -5)">
-                            <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
-                            <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
-                        </g>
-                    </svg>
-                </button>
-                <h1>Проверка</h1>
-            </div>
+            <!-- <button class='actionButton transparent' style='margin-left: -1rem' title='Назад'>
+                <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                    <g transform="translate(-5 -5)">
+                        <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                        <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                    </g>
+                </svg>
+            </button>
+            <h1>Проверка</h1> -->
+            <button class="combinedButton" onclick="history.back();">
+                <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                    <g transform="translate(-5 -5)">
+                        <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                        <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                    </g>
+                </svg>
+                <span>Назад</span>
+            </button>
         </header>
 
         <hr class="divider" style='margin: -0.5rem 0'>
@@ -169,22 +176,14 @@
         <div class="row g24 items-stretch">
             <div class="column g16" style='width: 50%;'>
                 <div class="flex space-between items-center">
-                    <h2>Домашнее задание</h2>
+                    <h2>Тема урока</h2>
                     
-                    <div class="row">
-                        <button class='actionButton transparent' title='Редактировать' onclick="open_form('#editHomeworkForm')">
-                            <svg viewBox="0 0 576 512">
-                                <path opacity='0.6' d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z"></path>
-                                <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
-                            </svg>                         
-                        </button>
-                        <button class='actionButton transparent' title='Удалить домашнее задание'>
-                            <svg viewBox="0 0 448 512">
-                                <path opacity='0.6' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
-                                <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
-                            </svg>                         
-                        </button>
-                    </div>
+                    <button class='actionButton transparent' title='Редактировать' onclick="open_form('#editHomeworkForm')">
+                        <svg viewBox="0 0 576 512">
+                            <path opacity='0.6' d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z"></path>
+                            <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                        </svg>                         
+                    </button>
                 </div>
                 
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis expedita omnis atque cum quod. Sint facilis cupiditate minima eligendi earum laudantium laboriosam ipsa magnam atque rerum repellendus adipisci vero, itaque quibusdam reprehenderit recusandae neque iste. Alias consequatur unde ab eum, ad suscipit ipsa iusto accusamus iure! Nulla rerum architecto accusantium aperiam excepturi, magnam necessitatibus, error tenetur ad laborum inventore accusamus quaerat dolores, nam eligendi impedit ducimus porro perferendis! Sed ut, vel alias vero placeat totam maxime aperiam! Nobis est mollitia totam quos cupiditate consectetur dolor temporibus nam doloremque inventore animi sapiente aliquid sed dolorem dignissimos, quidem nisi dolore ab! Eos!</p>
@@ -240,7 +239,7 @@
         <h2>Список работ</h2>
         <table>
             <tr>
-                <th style='--width: 16%'>Ученик</th>
+                <th style='--width: 16%'>Ученики</th>
                 <th style='--width: 68%'>Домашняя работа</th>
                 <th style='--width: 16%'>Оценка</th>
             </tr>

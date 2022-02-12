@@ -154,15 +154,6 @@
     <!-- Основной контейнер -->
     <section class="mainContainer column">
 
-        <!-- Шапка -->
-        <!-- <header class="row g32">
-            <h3 class='active'>Главная</h3>
-            <h3>Дневник</h3>
-            <h3>Проекты</h3>
-            <h3>Сообщения</h3>
-            <h3>Профиль</h3>
-        </header> -->
-
         <!-- Виджеты -->
         <section id='widgets' class='row g16'>
             
@@ -341,48 +332,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="week row">
-                    <div class="week__day">
-                        <h3>Пн</h3>
-                        <div class='lessonList'></div>
-                    </div>
-                    <div class="week__day">
-                        <h3>Вт</h3>
-                        <div class='lessonList'>
-                            <div class="lesson" style='--time: 240'>
-                                12:00
-                            </div>
-                            <div class="lesson" style='--time: 620'>
-                                18:20
-                            </div>
-                        </div>
-                    </div>
-                    <div class="week__day">
-                        <h3>Ср</h3>
-                        <div class='lessonList'></div>
-                    </div>
-                    <div class="week__day active">
-                        <h3>Чт</h3>
-                        <div class='lessonList'>
-                            <div class="lesson" style='--time: 620'>
-                                18:20
-                            </div>
-                        </div>
-                    </div>
-                    <div class="week__day">
-                        <h3>Пт</h3>
-                        <div class='lessonList'></div>
-                    </div>
-                    <div class="week__day">
-                        <h3>Сб</h3>
-                        <div class='lessonList'></div>
-                    </div>
-                    <div class="week__day">
-                        <h3>Вс</h3>
-                        <div class='lessonList'></div>
-                    </div>
-                </div> -->
-
                 <!-- Форма просмотра курса -->
                 <div class='form'>
                     <div class="form-wrapper">
@@ -419,8 +368,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- <hr class='divider' style='margin: 0.5rem 0'/> -->
 
                             <h2 class='px16'>Участники</h2>
                             <div class="users">
@@ -519,10 +466,11 @@
         <!-- Новости -->
         <section id='news' class='column g24'>
 
+            <!-- Шапка раздела -->
             <div class='row g24'>
                 <h1>Новости</h1>
-                <button class='primaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
-                <input type="text" class='newsSearch' placeholder="🔍︎">
+                <button class='secondaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
+                <!-- <input type="text" class='newsSearch' placeholder="🔍︎"> -->
             </div>
 
             <!-- Блок новостей -->

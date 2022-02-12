@@ -1,0 +1,137 @@
+.mainContainer > table{
+    width: min-content;
+    max-width: 100%;
+    overflow: auto;
+}
+
+td{
+    text-align: center;
+}
+
+.light__theme td,
+.light__theme th{
+    border: var(--theme-light) solid 1px;
+}
+
+/* Увеник */
+.student{
+    min-width: 8rem;
+    max-width: 8rem;
+    text-align: center;
+}
+.student .avatar{
+    width: 2rem; height: 2rem;
+}
+.student__name{
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--text-primary-color);
+}
+
+/* Урок */
+.lesson{
+    display: flex; flex-direction: row; gap: 0.5rem;
+    text-align: left;
+    font-weight: 600;
+    line-height: 1.5rem;
+    border: #0000 solid 1px;
+}
+.lesson:hover{
+    border: var(--currentColor) solid 1px;
+}
+.lesson svg{
+    width: 1rem; height: 1rem;
+    margin: 0.25rem;
+    fill: var(--currentColor);
+}
+.lessonRow.active svg{
+    transform: rotate(180deg);
+}
+
+.lesson__topic{
+    color: var(--text-primary-color);
+    font-weight: 500;
+    width: 14rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.lesson__date{
+    font-size: 0.875rem;
+    margin-left: auto;
+}
+
+
+/* Задания */
+.taskGroupRow{
+    display: none;
+}
+.taskGroup{
+    padding: 0;
+    border: none !important;
+    background-color: #0000 !important;
+    filter: none !important;
+}
+.taskGroup table{
+    margin: 2px -2px;
+}
+.taskRow td{
+    min-width: 8rem;
+    max-width: 8rem;
+}
+.taskRow td:first-of-type{
+    min-width: 21rem;
+    max-width: 21rem;
+}
+.light__theme .taskRow:hover td:not(.task){
+    background-color: var(--item-bg-color);
+    filter: brightness(0.99);
+}
+.task{
+    margin-left: 3rem;
+}
+
+
+/* Оценки */
+.mark{
+    min-width: 2rem;
+    font-weight: 400; font-size: 1.25rem;
+    line-height: 1.5rem;
+    background-color: var(--theme-light);
+    padding: 0.095rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--currentColor);
+    border: var(--bgColor) solid 0.5px;
+}
+
+/* .average{} */
+.average__mark{
+    color: var(--currentColor);
+}
+
+.mark.excellent{
+    color: #35a755;
+    background-color: #35a75511;
+    border: #35a75511 solid 0.5px;
+}
+.mark.fine{
+    color: #4486f6;
+    background-color: #4486f611;
+    border: #4486f611 solid 0.5px;
+}
+.mark.badly{
+    padding: 0.095rem 0.55rem;
+    color: #fbbc07;
+    background-color: #fbbc0711;
+    border: #fbbc0711 solid 0.5px;
+}
+.mark.poor{
+    padding: 0.095rem 0.65rem 0.095rem 0.55rem;
+    color: #ec4137;
+    background-color: #ec413711;
+    border: #ec413711 solid 0.5px;
+}
+
+col:hover td{
+    background-color: #4486f6;
+}

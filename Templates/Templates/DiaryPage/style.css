@@ -26,7 +26,7 @@
 }
 .lesson{
     width: 100%; height: 10rem;
-    background-color: var(--aside-bg-color);
+    background-color: var(--theme-light);
     border-radius: 1rem;
     transition: transform .1s;
     position: relative;
@@ -105,7 +105,7 @@
 }
 .lessonView__content #editor{
     min-height: 12rem; max-height: 12rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--aside-bg-color);
 }
 #lessonView .closeButton{
     display: none;
