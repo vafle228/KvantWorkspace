@@ -424,7 +424,9 @@ body{
     margin: 0.5rem 0;
     border-color: var(--text-primary-color);
     border-width: 1px;
+    background-color: var(--text-primary-color);
     opacity: .1;
+    border-radius: 1px;
 }
 
 
@@ -1028,15 +1030,21 @@ td{
 
 /* Шкалы */
 .scale{
-    background-color: var(--item-bg-color);
+    background-color: var(--theme-light);
     width: 100%; height: 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: 0.125rem;
 }
 .subscale{
-    width: var(--percent);
     height: 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: 0.125rem;
     background-color: var(--currentColor);
+    animation: grow 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+    0%{ width: 0 }
+    100%{ width: var(--percent) }
 }
 
 

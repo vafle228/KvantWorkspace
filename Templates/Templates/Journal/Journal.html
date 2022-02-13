@@ -283,7 +283,7 @@
 
                             <tr class="taskRow">
                                 <td class="lesson task">
-                                    <svg viewBox="0 0 384 512" style="transform: rotate(90deg)">
+                                    <svg viewBox="0 0 384 512" style="transform: rotate(90deg)" class="lesson__svg">
                                         <path d="M318 145.6c-3.812 8.75-12.45 14.41-22 14.41L224 160v272c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V160L88 159.1c-9.547 0-18.19-5.656-22-14.41S63.92 126.7 70.41 119.7l104-112c9.498-10.23 25.69-10.23 35.19 0l104 112C320.1 126.7 321.8 136.8 318 145.6z"/>
                                     </svg>
                                     <p class="lesson__topic">Тема задания</p>
@@ -304,7 +304,7 @@
     
                             <tr class="taskRow">
                                 <td class="lesson task">
-                                    <svg viewBox="0 0 384 512" style="transform: rotate(90deg);">
+                                    <svg viewBox="0 0 384 512" style="transform: rotate(90deg)" class="lesson__svg">
                                         <path d="M318 145.6c-3.812 8.75-12.45 14.41-22 14.41L224 160v272c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V160L88 159.1c-9.547 0-18.19-5.656-22-14.41S63.92 126.7 70.41 119.7l104-112c9.498-10.23 25.69-10.23 35.19 0l104 112C320.1 126.7 321.8 136.8 318 145.6z"/>
                                     </svg>
                                     <p class="lesson__topic">Тема задания</p>
@@ -325,7 +325,7 @@
 
                             <tr class="taskRow" onclick="open_form('#newTaskForm')">
                                 <td class="lesson task">
-                                    <svg viewBox="0 0 512 512">
+                                    <svg viewBox="0 0 512 512" class="lesson__svg">
                                         <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/>
                                     </svg>
                                     <p class="lesson__topic">Добавить задание</p>
@@ -360,7 +360,7 @@
                         <table>
                             <tr class="taskRow" onclick="open_form('#newTaskForm')">
                                 <td class="lesson task">
-                                    <svg viewBox="0 0 512 512">
+                                    <svg viewBox="0 0 512 512" class="lesson__svg">
                                         <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/>
                                     </svg>
                                     <p class="lesson__topic">Добавить задание</p>
@@ -394,7 +394,7 @@
                         <table>
                             <tr class="taskRow" onclick="open_form('#newTaskForm')">
                                 <td class="lesson task">
-                                    <svg viewBox="0 0 512 512">
+                                    <svg viewBox="0 0 512 512" class="lesson__svg">
                                         <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/>
                                     </svg>
                                     <p class="lesson__topic">Добавить задание</p>
@@ -437,6 +437,38 @@
             </tfoot>
 
         </table>
+
+        <section class="hints row g24">
+            <div class="hint row g24" style="animation-delay: 1s">
+                <img src="../../img/figures.png" class="hint__illustration">
+                <div class="hint__info column g8">
+                    <h3 class="hint__subtitle">Работа с журналом</h3>
+                    <h2 class="hint__title">Для просмотра журнала</h2>
+                    <ol>
+                        <li>Выберите группу из выпадающего списка</li>
+                        <li>Выберите период обучения</li>
+                        <li>Нажмите "Построить таблицу"</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="hint row g24" style="animation-delay: 2s">
+                <div class="hint__info column g8" style="width: 28rem">
+                    <h3 class="hint__subtitle">Работа с журналом</h3>
+                    <h2 class="hint__title">Использование</h2>
+                    <ul>
+                        <li>Нажмите на занятие для заполнения посещаемости</li>
+                        <li>
+                            Нажмите на
+                            <svg viewBox="0 0 384 512" class="lesson__svg" style="transform: translate(0, 0.25rem);">
+                                <path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/>
+                            </svg>
+                            для просмотра списка заданий
+                        </li>
+                        <li>Нажмите на задание для проверки и оценивания</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
     </div>
 
@@ -510,9 +542,9 @@
     <script src="../../JS/dropdownSelect.js"></script> <!-- Выпадающие меню -->
 
     <script>
-        $('.lessonRow').click(function() {
-            $(this).next().toggle();
-            $(this).toggleClass('active');
+        $('.lesson__svg').click(function() {
+            $(this).parent().parent().next().toggle();
+            $(this).parent().parent().toggleClass('active');
         });
     </script>
 </body>

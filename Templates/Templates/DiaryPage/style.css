@@ -154,3 +154,40 @@
         display: none;
     }
 }
+
+
+/* ќценки */
+.mark{
+    min-width: 2rem;
+    font-weight: 400; font-size: 1.25rem;
+    line-height: 1.5rem;
+    background-color: var(--theme-light);
+    padding: 0.095rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--currentColor);
+    border: var(--bgColor) solid 0.5px;
+    text-align: center;
+}
+
+.mark.excellent{
+    color: #35a755;
+    background-color: #35a75511;
+    border: #35a75511 solid 0.5px;
+}
+.mark.fine{
+    color: #4486f6;
+    background-color: #4486f611;
+    border: #4486f611 solid 0.5px;
+}
+.mark.badly{
+    padding: 0.095rem 0.55rem;
+    color: #fbbc07;
+    background-color: #fbbc0711;
+    border: #fbbc0711 solid 0.5px;
+}
+.mark.poor{
+    padding: 0.095rem 0.65rem 0.095rem 0.55rem;
+    color: #ec4137;
+    background-color: #ec413711;
+    border: #ec413711 solid 0.5px;
+}

@@ -20,7 +20,7 @@
     <title>Проверка</title>
 </head>
 
-<body class='dark__theme' colorScheme="colorScheme__blue">
+<body class='light__theme' colorScheme="colorScheme__blue">
     
     <!-- Навигационное меню -->
     <nav class='navigation'>
@@ -171,22 +171,24 @@
             </button>
         </header>
 
-        <hr class="divider" style='margin: -0.5rem 0'>
+        <!-- <hr class="divider" style='margin: -0.5rem 0'> -->
 
         <div class="row g24 items-stretch">
-            <div class="column g16" style='width: 50%;'>
+            <div class="taskInfo column g12" style='width: 64%'>
                 <div class="flex space-between items-center">
-                    <h2>Тема урока</h2>
+                    <h1>Тема</h1>
                     
-                    <button class='actionButton transparent' title='Редактировать' onclick="open_form('#editHomeworkForm')">
+                    <button class='secondaryButton' onclick="open_form('#editHomeworkForm')">
                         <svg viewBox="0 0 576 512">
                             <path opacity='0.6' d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z"></path>
                             <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
-                        </svg>                         
+                        </svg>
+                        Редактировать                       
                     </button>
                 </div>
                 
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis expedita omnis atque cum quod. Sint facilis cupiditate minima eligendi earum laudantium laboriosam ipsa magnam atque rerum repellendus adipisci vero, itaque quibusdam reprehenderit recusandae neque iste. Alias consequatur unde ab eum, ad suscipit ipsa iusto accusamus iure! Nulla rerum architecto accusantium aperiam excepturi, magnam necessitatibus, error tenetur ad laborum inventore accusamus quaerat dolores, nam eligendi impedit ducimus porro perferendis! Sed ut, vel alias vero placeat totam maxime aperiam! Nobis est mollitia totam quos cupiditate consectetur dolor temporibus nam doloremque inventore animi sapiente aliquid sed dolorem dignissimos, quidem nisi dolore ab! Eos!</p>
+                <p style="text-align: justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis expedita omnis atque cum quod. Sint facilis cupiditate minima eligendi earum laudantium laboriosam ipsa magnam atque rerum repellendus adipisci vero, itaque quibusdam reprehenderit recusandae neque iste. Alias consequatur unde ab eum, ad suscipit ipsa iusto accusamus iure! Nulla rerum architecto accusantium aperiam excepturi, magnam necessitatibus, error tenetur ad laborum inventore accusamus quaerat dolores, nam eligendi impedit ducimus porro perferendis! Sed ut, vel alias vero placeat totam maxime aperiam! Nobis est mollitia totam quos cupiditate consectetur dolor temporibus nam doloremque inventore animi sapiente aliquid sed dolorem dignissimos, quidem nisi dolore ab! Eos!</p>
+                
                 <div class='files'>
                     <div class='file'>
                         <i class='file-docx'></i>
@@ -206,7 +208,7 @@
                 </div>
             </div>
     
-            <div class="column g16" style='width: 50%'>
+            <div class="column g16" style='width: 36%'>
                 <h2 class='py8'>Статистика</h2>
     
                 <div class="flex space-between items-center">
@@ -222,7 +224,7 @@
                     <h3 style='color: var(--currentColor)'>96%</h3>
                 </div>
                 <div class='scale'>
-                    <div class='subscale' style='--percent: 12%'></div>
+                    <div class='subscale' style='--percent: 96%'></div>
                 </div>
         
                 <div class="flex space-between items-center">
@@ -230,31 +232,32 @@
                     <h3 style='color: var(--currentColor)'>12%</h3>
                 </div>
                 <div class='scale'>
-                    <div class='subscale' style='--percent: 96%'></div>
+                    <div class='subscale' style='--percent: 12%'></div>
                 </div>
             </div>
         </div>
 
-
         <h2>Список работ</h2>
+        
         <table>
             <tr>
-                <th style='--width: 16%'>Ученики</th>
-                <th style='--width: 68%'>Домашняя работа</th>
-                <th style='--width: 16%'>Оценка</th>
+                <th style="width: 16rem">Ученики</th>
+                <th>Домашняя работа</th>
+                <th style="width: 16rem">Оценка</th>
             </tr>
             <tr>
                 <td>
-                    <div class="row g8">
-                        <img src="../../img/Kaelthas.jpg" class="avatar">
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
                         <div class='column'>
-                            <p style='color: var(--text-primary-color)'>Фамилия Имя</p>
-                            <p>Ученик</p>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div class="column g8">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, quidem. Placeat eaque omnis corrupti voluptatibus ullam doloribus optio voluptatum assumenda.</p>
                         <div class='files'>
                             <div class='file'>
                                 <i class='file-xlsx'></i>
@@ -290,158 +293,118 @@
                     </div>
                 </td>
                 <td>
-                    <div class="filtering">
-                        <div class="dropdownSelect">
-                            <div class="dropdownSelect__trigger">
-                                <span>Не выбрано</span>
-                                <div class="arrowDown"></div>
-                            </div>
-                            <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option'>Отлично</span>
-                                <span class='dropdownSelect__option'>Хорошо</span>
-                                <span class='dropdownSelect__option'>Удовлетворительно</span>
-                                <span class='dropdownSelect__option'>Неудовлетворительно</span>
-                                <span class='dropdownSelect__option'>УП</span>
-                                <span class='dropdownSelect__option'>ОТ</span>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="row g8">
-                        <img src="../../img/Kaelthas.jpg" class="avatar">
-                        <div class='column'>
-                            <p style='color: var(--text-primary-color)'>Фамилия Имя</p>
-                            <p>Ученик</p>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="column g8">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat ipsum repellendus fuga nobis nam delectus animi quasi. Suscipit nobis vel odit accusamus laboriosam nam porro earum incidunt iure, optio eligendi!
-                        <div class='files'>
-                            <div class='file'>
-                                <i class='file-xlsx'></i>
-                                <div class="file__info">
-                                    <h4 class='file__name'>Домашняя работа.xlsx</h4>
-                                    <p class="file__size">6.4 MB</p>
-                                </div>
-                                <div class="file__actions">
-                                    <button>
-                                        <svg viewBox="0 0 384 448">
-                                            <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
-                                            <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="filtering">
-                        <div class="dropdownSelect">
-                            <div class="dropdownSelect__trigger">
-                                <span>Не выбрано</span>
-                                <div class="arrowDown"></div>
-                            </div>
-                            <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option'>Отлично</span>
-                                <span class='dropdownSelect__option'>Хорошо</span>
-                                <span class='dropdownSelect__option'>Удовлетворительно</span>
-                                <span class='dropdownSelect__option'>Неудовлетворительно</span>
-                                <span class='dropdownSelect__option'>УП</span>
-                                <span class='dropdownSelect__option'>ОТ</span>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="row g8">
-                        <img src="../../img/Kaelthas.jpg" class="avatar">
-                        <div class='column'>
-                            <p style='color: var(--text-primary-color)'>Фамилия Имя</p>
-                            <p>Ученик</p>
-                        </div>
-                    </div>
-                </td>
-                <td></td>
-                <td>
-                    <div class="filtering">
-                        <div class="dropdownSelect">
-                            <div class="dropdownSelect__trigger">
-                                <span>Не выбрано</span>
-                                <div class="arrowDown"></div>
-                            </div>
-                            <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option'>Отлично</span>
-                                <span class='dropdownSelect__option'>Хорошо</span>
-                                <span class='dropdownSelect__option'>Удовлетворительно</span>
-                                <span class='dropdownSelect__option'>Неудовлетворительно</span>
-                                <span class='dropdownSelect__option'>УП</span>
-                                <span class='dropdownSelect__option'>ОТ</span>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="row g8">
-                        <img src="../../img/Kaelthas.jpg" class="avatar">
-                        <div class='column'>
-                            <p style='color: var(--text-primary-color)'>Фамилия Имя</p>
-                            <p>Ученик</p>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="column g8">
-                        <div class='files'>
-                            <div class='file'>
-                                <i class='file-xlsx'></i>
-                                <div class="file__info">
-                                    <h4 class='file__name'>Домашняя работа.xlsx</h4>
-                                    <p class="file__size">6.4 MB</p>
-                                </div>
-                                <div class="file__actions">
-                                    <button>
-                                        <svg viewBox="0 0 384 448">
-                                            <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
-                                            <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="filtering">
-                        <div class="dropdownSelect">
-                            <div class="dropdownSelect__trigger">
-                                <span>Не выбрано</span>
-                                <div class="arrowDown"></div>
-                            </div>
-                            <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option'>Отлично</span>
-                                <span class='dropdownSelect__option'>Хорошо</span>
-                                <span class='dropdownSelect__option'>Удовлетворительно</span>
-                                <span class='dropdownSelect__option'>Неудовлетворительно</span>
-                                <span class='dropdownSelect__option'>УП</span>
-                                <span class='dropdownSelect__option'>ОТ</span>
-                            </div>
-                        </div>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark poor">1</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark badly">2</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark fine">3</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark excellent">4</span>
+                            </button>
+                        </section>
                     </div>
                 </td>
             </tr>
         </table>
+
+        <h2>Посещаемость</h2>
+
+        <table style="width: 28rem">
+            <tr>
+                <th style="width: 16rem">Ученики</th>
+                <th style="width: 12rem">Посещаемость</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">ОТ</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">УП</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">ОТ</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">УП</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">ОТ</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">УП</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
         <div class="row">
-            <button class="secondaryButton" style='margin-left: auto'>
+            <button class="secondaryButton">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="14" r="2" opacity='0.6'/>
                     <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -467,6 +430,18 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
     <script src="../../JS/dropdownSelect.js"></script> <!-- Выпадающие меню -->
+
+    <script>
+        $(".menu__button").on("click", function(){
+            $(this).parent().find(".menu__button").removeClass("active");
+            $(this).toggleClass("active", "inactive");
+        });
+
+        function changeType(tabId){
+            $('.profilePage__tabs').find(".profilePage__tab").hide();
+            $('.profilePage__tabs').find(tabId).show();
+        }
+    </script>
 </body>
 
 </html>

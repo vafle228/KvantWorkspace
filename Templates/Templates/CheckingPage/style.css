@@ -1,6 +1,77 @@
+.taskInfo{
+    background-color: var(--item-bg-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.student{
+    padding: 0.5rem 0;
+}
+.student__name{
+    color: var(--text-primary-color);
+    font-weight: 500;
+}
+.student__role{
+    font-size: 0.875rem;
+}
+
 
 @media screen and (max-width: 740px){
     .mainContainer{
         padding: 1rem;
     }
+}
+
+.menu{
+    background-color: var(--aside-bg-color);
+    gap: 0.25rem;
+    border: var(--theme-light) solid 1px;
+    height: 3.5rem;
+    min-height: 3.5rem;
+    border-radius: 0.5rem;
+}
+.menu__button{
+    padding: 0.25rem;
+    opacity: 0.4;
+    height: 2.5rem;
+}
+.menu__button.active{
+    background-color: unset;
+    opacity: 1;
+}
+
+/* ?????? */
+.mark{
+    min-width: 2rem;
+    font-weight: 400; font-size: 1.25rem;
+    line-height: 1.5rem;
+    background-color: var(--theme-light);
+    padding: 0.095rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--currentColor);
+    border: var(--currentColor) solid 1px;
+    text-align: center;
+}
+
+.mark.excellent{
+    color: #35a755;
+    background-color: #35a75522;
+    border: #35a755 solid 1px;
+}
+.mark.fine{
+    color: #4486f6;
+    background-color: #4486f622;
+    border: #4486f6 solid 1px;
+}
+.mark.badly{
+    padding: 0.095rem 0.55rem;
+    color: #fbbc07;
+    background-color: #fbbc0722;
+    border: #fbbc07 solid 1px;
+}
+.mark.poor{
+    padding: 0.095rem 0.65rem 0.095rem 0.55rem;
+    color: #ec4137;
+    background-color: #ec413722;
+    border: #ec4137 solid 1px;
 }

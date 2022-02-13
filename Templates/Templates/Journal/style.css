@@ -13,7 +13,7 @@ td{
     border: var(--theme-light) solid 1px;
 }
 
-/* Увеник */
+/* ?????? */
 .student{
     min-width: 8rem;
     max-width: 8rem;
@@ -28,7 +28,7 @@ td{
     color: var(--text-primary-color);
 }
 
-/* Урок */
+/* ???? */
 .lesson{
     display: flex; flex-direction: row; gap: 0.5rem;
     text-align: left;
@@ -39,10 +39,14 @@ td{
 .lesson:hover{
     border: var(--currentColor) solid 1px;
 }
-.lesson svg{
-    width: 1rem; height: 1rem;
-    margin: 0.25rem;
+.lesson__svg{
+    width: 1.5rem; height: 1.5rem;
+    padding: 0.25rem;
     fill: var(--currentColor);
+    border-radius: 0.25rem;
+}
+.lesson:not(.task) svg:hover{
+    background-color: var(--theme-light);
 }
 .lessonRow.active svg{
     transform: rotate(180deg);
@@ -62,7 +66,7 @@ td{
 }
 
 
-/* Задания */
+/* ??????? */
 .taskGroupRow{
     display: none;
 }
@@ -92,7 +96,7 @@ td{
 }
 
 
-/* Оценки */
+/* ?????? */
 .mark{
     min-width: 2rem;
     font-weight: 400; font-size: 1.25rem;
@@ -102,6 +106,7 @@ td{
     border-radius: 0.25rem;
     color: var(--currentColor);
     border: var(--bgColor) solid 0.5px;
+    text-align: center;
 }
 
 /* .average{} */
@@ -132,6 +137,56 @@ td{
     border: #ec413711 solid 0.5px;
 }
 
-col:hover td{
-    background-color: #4486f6;
+
+/* ????????? */
+.hint{
+    align-items: center;
+    border: var(--theme-light) solid 0.125rem;
+    background-color: var(--item-bg-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    animation: scale 1.5s forwards;
+    opacity: 0;
+    height: 16rem;
+}
+.hint__illustration{
+    width: 16rem;
+    margin-left: -2rem;
+}
+.dark__theme .hint__illustration{
+    filter: hue-rotate(180deg);
+}
+.hint__info{
+    width: 24rem;
+}
+.hint__subtitle{
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.hint__title{
+    font-size: 2rem;
+    font-weight: 500;
+}
+.hint ol, .hint ul{
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+.hint ol li, .hint ul li{
+    font-size: 1rem;
+    line-height: 2rem;
+    color: #70757D;
+}
+
+@keyframes scale {
+    0%{
+        opacity: 0.2;
+        transform: translate(16rem, 0);
+        filter: blur(0.5rem);
+    }
+  
+    50%, 100%{
+        opacity: 1;
+        transform: translate(0, 0);
+        filter: blur(0);
+    }
 }
