@@ -1,0 +1,223 @@
+{% load static %}
+{% load base_tags %}
+{% load news_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    
+    {% include "CoreApp/HeadSetup/index.html" %}
+    <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
+    <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'> <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "CoreApp/text/highlight.css" %}'>
+    <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/> <!-- Слайдер -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
+
+    <title>Главная</title>
+</head>
+
+<body onload="getNewNews();">
+    <!-- Навигационное меню -->
+    {% include "CoreApp/AsideMenu/index.html" with user=user active='main_page' %}
+    
+    <section class="mainContainer column">
+        <!-- Виджеты -->
+        <section id='widgets' class='row g16'>
+
+            <!-- Виджет "Календарь" -->
+            <div id="eventsWidget">
+                <div id="eventsWidget__carousel" class="carousel">
+                    <div class="carousel__slide event">
+                        <img src="{{ user.image.url }}" class='event__banner'>
+                        <div class="event__content column g16">
+                            <p class="event__tag">Событие</p>
+                            <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
+                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
+                            <button class="event__button">Подробнее</button>
+                        </div>
+                    </div>
+                    <div class="carousel__slide event">
+                        <img src="{{ user.image.url }}" class='event__banner'>
+                        <div class="event__content column g16">
+                            <p class="event__tag">Событие</p>
+                            <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
+                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
+                            <button class="event__button">Подробнее</button>
+                        </div>
+                    </div>
+                    <div class="carousel__slide event">
+                        <img src="{{ user.image.url }}" class='event__banner'>
+                        <div class="event__content column g16">
+                            <p class="event__tag">Событие</p>
+                            <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
+                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
+                            <button class="event__button">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Виджет "Расписание" -->
+            <div id="scheduleWidget">
+
+                <div class='courseList column scrollbar'>
+                    {% for course in courses %}
+                    <div class='course row g16'>
+                        <img src="{{ course.type.image.url }}" class='course__illustration'/>
+                        <div class="course__info column g4">
+                            <p class='course__title'>{{ course }}</p>
+                            <p class='course__teacher'>
+                                {{ course.teacher.surname }} 
+                                {{ course.teacher.name|slice:"1" }}.
+                            </p>
+                        </div>
+                        <div class="row g4" style='margin-left: auto'>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Пн</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вт</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Ср</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Чт</p>
+                            </div>
+                            <div class="lesson column">
+                                <p class="lesson__day">Пт</p>
+                                <p class='lesson__time'>16:30</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Сб</p>
+                            </div>
+                            <div class="lesson column inactive">
+                                <p class="lesson__day">Вс</p>
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 256 512">
+                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+                        </svg>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% for course in courses %}
+                <div class='form'>
+                    <div class="form-wrapper">
+                        <form>
+                            <div class='course row g16'>
+                                <img src="{{ course.type.image.url }}" class='course__illustration'/>
+                                <div class="course__info column g4">
+                                    <p class='course__title'>{{ course }}</p>
+                                    <p class='course__teacher'>
+                                        {{ course.teacher.surname }} 
+                                        {{ course.teacher.name|slice:"1" }}.
+                                        {{ course.teacher.patronymic|slice:"1" }}.
+                                    </p>
+                                </div>
+                                <div class="row g4" style='margin-left: auto'>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Пн</p>
+                                    </div>
+                                    <div class="lesson column">
+                                        <p class="lesson__day">Вт</p>
+                                        <p class='lesson__time'>18:20</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Ср</p>
+                                    </div>
+                                    <div class="lesson column">
+                                        <p class="lesson__day">Чт</p>
+                                        <p class='lesson__time'>18:20</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Пт</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Сб</p>
+                                    </div>
+                                    <div class="lesson column inactive">
+                                        <p class="lesson__day">Вс</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 class='px16'>Участники</h2>
+                            <div class="users">
+                                {% for user in course.students|get_objects %}
+                                <div class="user row g8 items-center">
+                                    <img src="{{ user.image.url }}" class='user__img avatar'/>
+                                    <div class="user__info column">
+                                        <p class='user__name'>
+                                            {{ user.surname }}
+                                            {{ user.name }}
+                                        </p>
+                                        <p class='user__type'>{{ user.permission }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>    
+        </section>
+        
+        <!-- Новости -->
+        <section id='news' class='column g24'>
+
+            <div class='row g24'>
+                <h1>Новости</h1>
+                <button class='primaryButton' onclick="open_form('#news-form')">Добавить новость</button>
+                <input type="text" class='newsSearch' placeholder="🔍︎">
+            </div>
+
+            <!-- Блок новостей -->
+            <div id='news__container' class='newsContainer flex g16'>
+                <!-- Спавн новсотей :\ -->
+            </div>
+            
+            <button onclick="getNewNews()" class='primaryButton' style='margin: 0 auto' id='more'>Больше новостей</button>
+            {% include "NewsApp/NewsCreationForm/index.html" with form_status="create" %}
+        </section>
+    </section>
+    
+    <div class="alertsContainer column" id='alertsContainer'></div>
+    
+    <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
+    <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+    
+    <script>
+        const news_per_page_num = 6;
+        const all_news = parseInt('{{ max_news }}');
+        
+        function getNewNews(){
+            $.ajax({
+                type: 'GET',
+                url: `{% url "send_news" user.id %}`,
+                data: {'page': page},
+                cache: false,
+                success: function(response){
+                    $('#news__container').append(response);
+                    if(page * news_per_page_num >= all_news)  // Проверка наличия еще страниц пагинации
+                        $("#more")[0].style.display = 'none';
+                    page++
+                }
+            })
+        }
+    </script>
+    <script>
+        const myCarousel = new Carousel(document.querySelector("#eventsWidget__carousel"), {
+            Dots: true,
+            infinite: true,
+            friction: 0.9,
+        });
+        setInterval(() => myCarousel.slideTo(myCarousel.pageIndex + 1), 10000)
+    </script>
+</body>
+</html>

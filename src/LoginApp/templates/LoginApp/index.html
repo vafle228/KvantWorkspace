@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'LoginApp/fonts/stylesheet.css' %}">
+    <link rel='stylesheet' href="{% static 'LoginApp/style.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'LoginApp/imgs/icon.png' %}" type="image/png" /> <!-- Лого -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <title>Вход</title>
+</head>
+<body>
+
+    <div class="form__container">
+        <form data-aos="fade-down" data-aos-easing="ease-in-sine" method="POST" action="{% url 'login_page' %}">
+            <header>
+                <div id="logo">
+                    <img src="{% static 'LoginApp/imgs/logo.svg' %}" alt='logo' style="height: 64px"/>
+                </div>
+            </header>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div id='flash-error'>
+                        <h4>{{ message }}</h4><h4>&#8416 </h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% csrf_token %}
+            <label for="input">Логин</label>
+            <input placeholder="Введите ваш логин" name='username' autocomplete="off" />
+            <label for="input">Пароль</label>
+            <input placeholder="Введите ваш пароль" name="password" type="password" autocomplete="off" />
+
+            <footer>
+                <h4>Если вы забыли пароль, обратитесь к администратору.</h4>
+                <button type="submit">
+                    <h4>Войти</h4>
+                </button>
+            </footer>
+            
+        </form>
+    </div>
+
+    <div id="blob"></div>
+    <!-- Здесь нужен для анимации перезагрузки -->
+    <script src="{% static 'LoginApp/scripts.js' %}"></script> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init()</script>
+</body>
+</html>
+

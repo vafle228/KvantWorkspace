@@ -151,4 +151,4 @@ cython_debug/
 *.bak
 *.dir
 .vscode/launch.json
-KvantJournal/secret.py
+src/Config/secret.py

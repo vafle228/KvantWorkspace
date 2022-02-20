@@ -1,0 +1,77 @@
+{% load mail_tags %}
+
+<body>
+    <header class="mailView__header row space-between">
+        <button onclick="$('.mailView').toggleClass('active')" class='actionButton transparent closeButton'>
+            <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                <g transform="translate(-5 -5)">
+                    <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                    <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                </g>
+            </svg>
+        </button>
+        <div class="row g8">
+            <button class='actionButton transparent {{ mail|is_important_mail:user }}' title='Отметить как важное' id='markAsImportant' onclick="changeImportantStatus('{{ mail.id }}')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,4.25932872 C12.1488635,4.25921584 12.3000368,4.29247316 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 L12,4.25932872 Z" opacity="0.8"></path>
+                    <path d="M12,4.25932872 L12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.277344,4.464261 11.6315987,4.25960807 12,4.25932872 Z"></path>
+                </svg>
+            </button>
+            <button class='actionButton transparent' title='Удалить сообщение' onclick="deleteMail('{{ mail.id }}')">
+                <svg viewBox="0 0 448 512">
+                    <path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+                    <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <hr class="divider" style='margin: 0 0 1.5rem;'>
+    <div class="mailView__content column g24">
+        <h1 class="mailView__title">{{ mail.title }}</h1>
+        <div class='row space-between'>
+            <div class="senderInfo">
+                <img src="{{ mail.sender.image.url }}" class="senderInfo__img">
+                <div>
+                    <p class="senderInfo__name">{{ mail.sender.surname }} {{ mail.sender.name }}</p>
+                    <p class="senderInfo__role">{{ mail.sender.permission }}</p>
+                </div>
+            </div>
+            <p class='mailView__date'>{{ mail.date|date:"j.m.Y" }}</p>
+        </div>
+        
+        <div class="ql-snow">
+            <div class="ql-editor">
+            <p class="mailView__text">{{ mail.text|safe }}</p>
+            </div>
+        </div>
+        <div class='files'>
+            {% include "CoreApp/FileView/index.html" with files=mail.files %}
+        </div>
+    </div>
+</body>
+<script>
+    function changeImportantStatus(id){
+        $.ajax({
+            method: 'POST',
+            url: '{% url "make_important" user.id mail.id %}',
+            data: {
+                'csrfmiddlewaretoken': getCookie('csrftoken'),
+            },
+            cache: false,
+            success: () => $('#markAsImportant').toggleClass('active  '),
+        })
+    }
+</script>
+<script>
+    function deleteMail(id){
+        $.ajax({
+            method: 'POST',
+            url: '{% url "delete_mail" user.id mail.id %}',
+            data: {
+                'csrfmiddlewaretoken': getCookie('csrftoken'),
+            },
+            cache: false,
+            success: () => location.reload(),
+        })
+    }
+</script>
