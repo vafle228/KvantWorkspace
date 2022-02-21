@@ -1,0 +1,162 @@
+.profileCard{
+    background: url(../../img/backgrounds/1.jpg);
+    background-size: cover;
+    width: 24rem; height: 100%; 
+    border-radius: 1rem;
+    padding: 1.5rem;
+    position: relative;
+    display: flex; flex-direction: column; gap: 1rem;
+    min-width: 24rem;
+    overflow: hidden;
+}
+/* .light__theme .profileCard{
+    background: url(../../img/backgrounds/light.png);
+    background-size: cover;
+}
+.dark__theme .profileCard{
+    background: url(../../img/backgrounds/dark.png);
+    background-size: cover;
+} */
+.profileCard__imgBox{
+    width: 6rem; height: 6rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4rem;
+    cursor: pointer;
+}
+.profileCard__imgBox:hover svg{
+    opacity: 1;
+}
+.profileCard__imgBox svg{
+    position: absolute; top: 0; left: 0;
+    width: 6rem; height: 6rem;
+    padding: 2rem;
+    fill: #eee;
+    background-color: #0008;
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+.profileCard__profileImg{
+    width: 6rem; height: 6rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profileCard__profileName{
+    font-size: 1.5rem; font-weight: 500;
+    color: #fff;
+}
+.profileCard__profileRole{
+    font-size: 1rem; font-weight: 400;
+    color: #eee;    
+}
+.profileCard__description{
+    color: #eee;
+}
+
+.tag__group{
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.tag__groupName{
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+}
+.tag{
+    display: flex; flex-direction: row; gap: 0.25rem; align-items: center;
+    height: 2rem;
+    background-color: var(--theme-light-alpha);
+    padding: 0 0.75rem;
+    border-radius: 1rem;
+}
+.tag p{
+    margin-top: 2px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary-color);
+}
+.tag svg{
+    width: 1.25rem; height: 1.25rem;
+    fill: var(--text-primary-color);
+}
+
+.profileCard .dangerButton{
+    background-color: unset;
+    width: 100%;
+    text-align: center;
+    border-radius: 0.5rem;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: auto;
+    color: #fff;
+}
+.profileCard .dangerButton svg{
+    margin-left: auto;
+    fill: #fff;
+}
+.profileCard .dangerButton:hover{
+    color: var(--text-primary-color);
+    background-color: var(--theme-light-alpha);
+}
+.profileCard .dangerButton:hover svg{
+    fill: var(--text-primary-color);
+}
+
+
+.profileContent{
+    width: calc(100% - 24rem - 1.5rem);
+    height: 100%;
+    overflow: auto;
+}
+
+.profile__tab{
+    display: none;
+}
+.profile__tab.active{
+    display: flex;
+}
+
+.galleryBox{
+    column-count: 5;
+}
+.galleryBox img{
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: auto;
+}
+@media screen and (max-width: 1280px){
+    .galleryBox{
+        column-count: 4;
+    }
+}
+@media screen and (max-width: 992px){
+    .galleryBox{
+        column-count: 3;
+    }
+}
+@media screen and (max-width: 768px){
+    .galleryBox{
+        column-count: 2;
+    }
+}
+@media screen and (max-width: 576px){
+    .galleryBox{
+        column-count: 1;
+    }
+}
+
+
+/* Данные учетной записи */
+.profile__data{
+    display: flex; flex-direction: column; gap: 1rem;
+}
+.profile__data input{
+    width: 24rem; height: 3rem;
+    font-size: 1.125rem;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--item-bg-color);
+    color: var(--text-primary-color);
+}

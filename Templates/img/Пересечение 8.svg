@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f54f5b"/>
+      <stop offset="0.271" stop-color="#de60a1"/>
+      <stop offset="0.529" stop-color="#c372ed"/>
+      <stop offset="0.797" stop-color="#6c98eb"/>
+      <stop offset="1" stop-color="#14c0e9"/>
+    </linearGradient>
+  </defs>
+  <path id="Пересечение_8" data-name="Пересечение 8" d="M96.538,235.913h0c-41.408-57.785-46.965-133.579-17-199l0,.042c70.757-7,139.211,26.022,180.946,84.612l.027,0-.011.027.1.138-.132-.063c-27.678,59.173-82.593,100.056-146.5,111.319-5.679,1-11.466,2.384-17.275,2.911l-.076.132C96.595,235.99,96.566,235.951,96.538,235.913Zm38.037-65.632-37.808,65.5c4.035-2.376,59.578-35.961,88.955-101.6l74.6-12.578c-5.4-2.527-87.913-40.367-142.794-18.914L79.546,36.965C79.744,39.409,87.6,132.745,134.575,170.281Z" transform="translate(-60.604 -36.03)" fill="url(#linear-gradient)"/>
+</svg>

@@ -1,0 +1,111 @@
+@import url("fonts/Google font/stylesheet.css");
+::-webkit-scrollbar{ width: 0 }
+*{ margin: 0; padding: 0; box-sizing: border-box }
+
+body{
+    font-family: "Google Sans"; zoom: 80%;
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.form__container{
+    height: calc(100vh * 1.25); width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    display: flex; flex-direction: column; gap: 10px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 32px;
+}
+form header{
+    display: flex; gap: 5%; align-items: center;
+    margin-bottom: 30px;
+}
+form header h1{
+    font-size: 2rem;
+}
+form header h1::after{
+    content: "Вход";
+    font-size: 1rem;
+    opacity: 0.5;
+    margin-left: 5px;
+}
+#flash-error{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 24px 8px 16px;
+    background-color: #D9302511;
+    border-radius: 6px;
+}
+#flash-error h4{
+    font-size: 24px;
+    font-weight: 500;
+    color: #D93025;
+    text-align: right;
+}
+form input{
+    height: 60px; width: 100%;
+    border-radius: 6px;
+    padding: 0 25px;
+    outline: none;
+    font-size: 20px;
+    border: #d2ddec solid 1px;
+    position: relative;
+
+    transition: .2s border-color;
+}
+form input:focus{
+    border: #239AFF88 solid 2px;
+    box-shadow: 0px 0px 0px 4px #239aff44;
+}
+form input::placeholder{
+    font-size: 20px;
+    opacity: 0.5;
+}
+form label{
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+/* footer */
+form footer{
+    display: flex; align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+} 
+form footer > h4{
+    opacity: .5;
+}
+form footer button{
+    width: 100px; height: 48px;
+    padding: 0 20px; margin-left: auto;
+    border-radius: 6px; border: none;
+    background-color: #1A73E8;
+    color: #fff;
+    cursor: pointer;
+}
+form footer button h4{
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+/* Анимация фона */
+#blob {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    background: #111926;
+    width: 100%; height: 100%;
+}

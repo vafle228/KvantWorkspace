@@ -1,0 +1,265 @@
+.mainContainer{
+    flex-direction: column;
+}
+
+.header{
+    width: calc(100% + 3rem);
+    height: 6rem;
+    background-color: var(--theme-light);
+    margin: -1.5rem;
+    display: flex; justify-content: center;
+    margin-bottom: 2rem;
+    background: url('../../img/backgrounds/1.jpg');
+    background-size: cover;
+}
+.search{
+    height: 4rem;
+    transform: translate(0, 4rem);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+.search input{
+    padding: 0 1rem 0 0.5rem;
+    width: 32rem; height: 4rem;
+    max-width: 80vw;
+    font-size: 1.125rem;
+}
+.light__theme .search{
+    box-shadow: 0 0 2rem #0002;
+}
+.search svg{
+    height: 4rem; width: 3.5rem;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    background-color: #fff;
+}
+
+.projects{
+    display: flex;
+    gap:  1rem;
+    flex-wrap: wrap;
+}
+
+.project{
+    width: calc((100% - 4rem) / 5);
+    display: flex; flex-direction: column; gap: 1rem;
+    background-color: var(--item-bg-color);
+    border-radius:  0.5rem;
+    overflow: hidden;
+    padding: 1rem 1rem 0.5rem 1rem;
+    position: relative;
+    padding-top: 13rem;
+}
+.project__illustration{
+    height: 12rem; width: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute; top: 0; left: 0;
+}
+.project__title{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary-color);
+}
+.project__description{
+    margin-top: -0.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+.members{
+    display: flex; flex-direction: row; align-items: center;
+}
+.member .avatar{
+    margin-right: -0.5rem;
+    border: var(--item-bg-color) solid 2px;
+}
+.project__tags{
+    display: flex; flex-direction: row; gap: 0.5rem;
+    position: absolute; top: 1rem; left: 1rem;
+}
+.tag{
+    padding: 0.25rem 0.5rem;
+    background-color: var(--currentColor);
+    color: #fff;
+    border-radius: 0.25rem;
+}
+
+/* .carousel {
+    color: var(--text-primary-color);
+    width: 100%;
+    margin: 1rem 0;
+
+    --carousel-button-bg: var(--item-bg-color);
+    --carousel-button-shadow: 0 0 1px -1px rgb(0 0 0 / 20%), 0 0 1px 0 rgb(0 0
+            0 / 14%), 0 0 3px 0 rgb(0 0 0 / 12%);
+
+    --carousel-button-svg-width: 1rem;
+    --carousel-button-svg-height: 1rem;
+    --carousel-button-svg-stroke-width: 3;
+}
+  
+.carousel__slide {
+    width: calc((100% - 3rem) / 4) !important; height: 24rem !important;
+    padding: 0 !important;
+    margin: 1rem 0.5rem;
+    overflow-y: hidden !important;
+    cursor: default;
+}
+
+
+.projectCatalog{
+    width: 80rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.projectCard{
+    width: 18rem; height: 24rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: var(--theme-light) solid 1px;
+}
+.light__theme .projectCard{
+    background-color: var(--aside-bg-color);
+    box-shadow: 0 0 0.5rem var(--theme-light-alpha);
+}
+.dark__theme .projectCard{
+    background-color: var(--item-bg-color);
+    box-shadow: none;
+}
+.projectCard__preview{
+    width: 100%; height: 12rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.projectCard__info{
+    padding: 16px;
+    width: 100%; height: 12rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+}
+.projectCard__category{
+    font-weight: 600; font-size: 1rem; color: var(--currentColor);
+    background-color: var(--bgColor);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    width: min-content;
+    text-transform: uppercase;
+}
+.projectCard__infoTitle{
+    font-weight: 600; color: var(--text-primary-color);
+    font-size: 1.25rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.projectCard__description{
+    text-align: justify;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.members{
+    display: flex; flex-direction: row; align-items: center; gap: 0.25rem;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-top: auto;
+}
+.members__member{
+    width: 1.75rem; height: 1.75rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.members__counter{
+    font-weight: 600; font-size: 0.9rem; line-height: 1.75rem;
+    background-color: var(--item-bg-color);
+    padding: 0 0.5rem;
+    border-radius: 1rem;
+    width: min-content;
+}
+
+.categoryGroup{
+    flex-wrap: wrap;
+}
+.categoryCard{
+    min-width: 16rem;
+    width: calc((100% - 3rem) / 4); height: 8rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: var(--item-bg-color);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s;
+    border: var(--theme-light) solid 1px;
+}
+.categoryCard:active{
+    transform: scale(0.96);
+}
+.categoryCard h3{
+    color: var(--text-primary-color);
+    display: table-caption;
+    font-weight: 600;
+}
+.categoryCard p{
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-weight: 500; font-size: 1.5rem;
+}
+.categoryCard img{
+    width: 8rem; height: 8rem;
+    position: absolute; bottom: -1rem; right: 0;
+    transition: transform .3s;
+}
+
+.categoryCard:hover img{
+    transform: scale(1.15);
+} */
+
+
+.menu{
+    background-color: unset;
+}
+.menu__button.active{
+    background-color: var(--item-bg-color);
+}
+.menu__button p{
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all .1s;
+}
+.light__theme .menu__button:not(.active) p{
+    color: var(--text-primary-color);
+    opacity: 0.5;
+}
+.light__theme .menu__button:not(.active):hover p{
+    color: var(--text-primary-color);
+    opacity: 1;
+}
+.menu__button img{
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.menu__button.active p{
+    color: var(--text-primary-color);
+}
+
+.menu__button:not(.active):hover p{
+    color: var(--text-primary-color);
+}
+
+/* ������������ ��� ���� */
+@media screen and (max-width: 1100px){
+    .menu .menu__button p{
+        display: none;
+    }
+    .menu .menu__button.active p{
+        display: block;
+    }
+}
