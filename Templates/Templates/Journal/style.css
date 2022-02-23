@@ -1,4 +1,4 @@
-.mainContainer > table{
+#journal{
     width: min-content;
     max-width: 100%;
     overflow: auto;
