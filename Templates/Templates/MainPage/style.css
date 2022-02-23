@@ -15,6 +15,68 @@ header h3:not(.active):hover{
     color: var(--text-primary-color);
 }
 
+/* Виджет  "Сегодня" */
+#today{
+    width: 100%;
+}
+#today h1{
+    font-weight: 500;
+}
+#today .lesson{
+    width: 18rem; height: 7rem;
+    background-color: var(--item-bg-color);
+    border: var(--theme-light) solid 1px;
+    padding: 0.5rem 1rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+#today .lesson:hover{
+    background-color: var(--theme-light);
+}
+#todayCarousel{
+    height: 7rem;
+}
+#todayCarousel .carousel__slide {
+    height: 7rem; width: 18rem;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+
+#today .lesson__time{
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--currentColor);
+}
+.lesson__info{
+    position: relative;
+    padding-left: 1rem;
+}
+.lesson__info::before{
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 0.25rem; height: 100%;
+    background-color: var(--currentColor);
+    border-radius: 0.125rem;
+}
+#today .lesson__group{
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary-color);
+}
+#today .lesson__topic{
+    font-size: 1.125rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#today .lesson svg{
+    width: 1.5rem; height: 1.5rem;
+    fill: var(--currentColor);
+}
+
 /* Виджет "События" */
 #eventsWidget{
     width: calc(100% - 48rem - 1rem); height: 22rem;
@@ -61,7 +123,7 @@ header h3:not(.active):hover{
     width: 100%; height: 3rem;
     line-height: 3rem;
     border-radius: 0.25rem;
-    background-color: var(--theme-light);
+    background-color: var(--theme-light-alpha);
     color: var(--text-primary-color);
     font-size: 1.125rem;
     font-weight: 600;
@@ -131,14 +193,13 @@ header h3:not(.active):hover{
     text-align: center;
 }
 .lesson.inactive{
-    background-color: var(--aside-bg-color);
+    background-color: var(--theme-light);
 }
 .lesson.inactive .lesson__day{
     color: #70757D;
 }
 
 /* Новости */
-
 .newsSearch{
     margin-left: auto;
     height: 3rem; width: 24rem;
@@ -225,7 +286,7 @@ header h3:not(.active):hover{
     #scheduleWidget, #eventsWidget{
         width: 100%;
     }
-    #eventsWidget, .carousel__slide, .carousel, .carousel__viewport, .carousel__track{
+    #eventsWidget, #eventsWidget .carousel__slide, #eventsWidget .carousel, #eventsWidget .carousel__viewport, #eventsWidget .carousel__track{
         height: 32rem !important;
     }
     .event{
@@ -250,7 +311,7 @@ header h3:not(.active):hover{
     .newsItem{
         width: 100%;
     }
-    #scheduleWidget, #eventsWidget{
+    #scheduleWidget, #eventsWidget, #today{
         padding: 1rem;
     }
 }
@@ -271,14 +332,14 @@ header h3:not(.active):hover{
     --carousel-button-svg-stroke-width: 3;
 }
 .carousel:hover .carousel__button{
-    opacity: 0.5;
+    opacity: 0.75;
 }
 .carousel__button{
     opacity: 0;
     transition: all .4s;
 }
 
-.carousel__slide {
+#eventCarousel .carousel__slide {
     height: 22rem; width: 100% !important;
     border-radius: 0.5rem;
     padding: 0 !important;
@@ -286,6 +347,9 @@ header h3:not(.active):hover{
     background-size: cover;
     background-position: center;
     border: 1px solid var(--theme-light);
+}
+.carousel__dots{
+    transform: translate(0, -0.5rem);
 }
 
 .carousel__dot::after{

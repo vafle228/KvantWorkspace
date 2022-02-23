@@ -9,14 +9,6 @@
     min-width: 24rem;
     overflow: hidden;
 }
-/* .light__theme .profileCard{
-    background: url(../../img/backgrounds/light.png);
-    background-size: cover;
-}
-.dark__theme .profileCard{
-    background: url(../../img/backgrounds/dark.png);
-    background-size: cover;
-} */
 .profileCard__imgBox{
     width: 6rem; height: 6rem;
     position: relative;

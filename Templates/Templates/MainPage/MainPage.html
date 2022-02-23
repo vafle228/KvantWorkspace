@@ -20,7 +20,7 @@
     <title>Главная</title>
 </head>
 
-<body class='dark__theme' colorScheme="colorScheme__green">
+<body class='light__theme' colorScheme="colorScheme__blue">
 
     <!-- Навигационное меню -->
     <nav class='navigation'>
@@ -154,14 +154,87 @@
     <!-- Основной контейнер -->
     <section class="mainContainer column">
 
+        <div id="today" class="column g16">
+
+            <div class="flex space-between items-center g16">
+                <h1>Сегодня</h1>
+                <div class="row g16">
+                    <h1>22 февраля 2022</h1> 
+                    <svg style='width: 1.5rem; fill: var(--currentColor)' viewBox="0 0 448 512">
+                        <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
+                        <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div id="todayCarousel" class="carousel">
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">9:00</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">Группа</p>
+                        <p class="lesson__topic">Тема занятия</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">10:15</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">11:45</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">13:30</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">15:00</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">16:45</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">18:20</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">19:30</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Виджеты -->
         <section id='widgets' class='row g16'>
             
             <!-- Виджет "События" -->
             <div id="eventsWidget">
-                <div id="eventsWidget__carousel" class="carousel">
+                <div id="eventCarousel" class="carousel">
                     <div class="carousel__slide event">
-                        <img src="../../img/Зимняя сказка.jpg" class='event__banner'>
+                        <img src="../../img/backgrounds/1.jpg" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
                             <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
@@ -170,7 +243,7 @@
                         </div>
                     </div>
                     <div class="carousel__slide event">
-                        <img src="../../img/Зимняя сказка.jpg" class='event__banner'>
+                        <img src="../../img/backgrounds/2.jpg" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
                             <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
@@ -179,7 +252,7 @@
                         </div>
                     </div>
                     <div class="carousel__slide event">
-                        <img src="../../img/Зимняя сказка.jpg" class='event__banner'>
+                        <img src="../../img/backgrounds/3.jpg" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
                             <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
@@ -648,12 +721,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     <script>
-        const myCarousel = new Carousel(document.querySelector("#eventsWidget__carousel"), {
+        const todayCarousel = new Carousel(document.querySelector("#todayCarousel"), {
+            center: false,
+            slidesPerPage : 1,
+            Dots: false,
+            infinite: false,
+            friction: 0.8,
+        });
+
+        const eventCarousel = new Carousel(document.querySelector("#eventCarousel"), {
             Dots: true,
             infinite: true,
             friction: 0.9,
         });
-        setInterval(() => myCarousel.slideTo(myCarousel.pageIndex + 1), 10000)
+        setInterval(() => eventCarousel.slideTo(eventCarousel.pageIndex + 1), 10000)
     </script>
+    
 </body>
 </html>

@@ -1,0 +1,17 @@
+#create{
+    padding: 2rem 1rem 1rem 1rem;
+    border-radius: 0.5rem;
+    border: var(--currentColor) dashed 1px;
+    position: relative;
+    background-color: var(--bg-color);
+    width: max-content;
+}
+
+.section__title{
+    height: 3rem;
+    padding: 0.5rem;
+    position: absolute;
+    top: -1.25rem;
+    background-color: inherit;
+    color: var(--currentColor);
+}
