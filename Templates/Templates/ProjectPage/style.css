@@ -61,6 +61,21 @@
     text-overflow: ellipsis;
 }
 
+.project__members.expanded .member{
+    margin-right: -0.5rem;
+}
+/* .project__members.expanded .member__info{
+    width: 14rem;
+    margin-right: 2rem;
+    opacity: 1;
+} */
+.project__members.expanded .member .avatar{
+    transition: all .1s;
+}
+.project__members.expanded .member.selected .avatar{
+    border: var(--currentColor) solid 0.25rem;
+}
+
 .project__description{
     font-size: 1.25rem;
 }
@@ -336,9 +351,6 @@
 }
 
 
-#taskView .modal__viewport{
-    width: 64rem;
-}
 .modal__content .task__description{
     display: block;
     margin: 0;
@@ -347,23 +359,4 @@
 .modal__content .task__title{
     font-size: 2rem;
     font-weight: 500;
-}
-.modal__content .member{
-    border: var(--item-bg-color) solid 0.25rem;
-}
-
-.modal__content .dropdownSelect__trigger{
-    /* background-color: var(--theme-light-alpha); */
-    border: var(--theme-light-alpha) solid 2px;
-    border-radius: 0.5rem;
-    /* padding: 0.5rem; */
-}
-.modal__content .dropdownSelect__trigger span{
-    margin-left: -0.5rem;
-}
-.modal__content .dropdownSelect__option{
-    padding: 0.25rem 1rem;
-}
-.modal__content .dropdownSelect__option.selected{
-    background-color: var(--theme-light);
 }

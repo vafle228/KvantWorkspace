@@ -694,6 +694,7 @@ body{
 /* Кнопки */
 button.disabled{
     opacity: 0.5;
+    pointer-events: none;
 }
 
 .primaryButton{
@@ -1179,6 +1180,9 @@ td{
     justify-content: space-between;
     align-items: center;
 }
+.modal__block .file{
+    width: 16rem !important;
+}
 .modal__content  hr{
     width: 100%; height: 1px;
     background-color: var(--theme-light-alpha);
@@ -1187,7 +1191,7 @@ td{
 
 /* Текстовые поля в форме */
 .modal__content h3{
-    margin-bottom: -0.25rem;
+    margin-bottom: -0.125rem;
     font-weight: 500;
     font-size: 1.125rem;
 }
@@ -1218,4 +1222,30 @@ td{
 }
 .modal__content .file{
     width: calc((100% - 2rem) / 3);
+}
+
+
+.modal__content .member{
+    border: var(--item-bg-color) solid 0.25rem;
+}
+
+.modal__content .dropdownSelect__trigger{
+    border: var(--theme-light-alpha) solid 2px;
+    border-radius: 0.5rem;
+}
+.modal__content .dropdownSelect__trigger span{
+    margin-left: -0.5rem;
+}
+.modal__content .dropdownSelect__option{
+    padding: 0.25rem 1rem;
+}
+.modal__content .dropdownSelect__option.selected{
+    background-color: var(--theme-light);
+}
+
+.modal input[type=date]{
+    height: 3rem; width: 12rem;
+    border: var(--theme-light-alpha) solid 2px;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
