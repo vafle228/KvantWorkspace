@@ -188,14 +188,14 @@
                 </div>
                 
                 <!-- Форма подтверждения удаления новости -->
-                <div class='form' id='confirmDeletion'>
-                    <div class="form-wrapper" style="left: calc(50% - 24rem)">
-                        <form style='width: 48rem'>
-                            <h2>Удаление новости</h2>
+                <div class='modal' id='confirmDeletion'>
+                    <div class="modal__viewport">
+                        <form class='modal__content'>
+                            <h1 class="modal__title">Удаление новости</h1>
                             <p>Вы уверены, что хотите удалить эту новость?</p>
-                            <div class='item-header'>
-                                <div class='row g8' style='margin-left: auto;'>
-                                    <button class='primaryButton'>
+                            <div class='modal__block'>
+                                <div class='row g8' style='margin-left: auto'>
+                                    <button class='secondaryButton'>
                                         Отмена
                                     </button>
                                     <button class='dangerButton' type="submit">
@@ -203,7 +203,7 @@
                                             <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
                                             <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
                                         </svg>
-                                        Подтвердить удаление
+                                        Удалить
                                     </button>
                                 </div>
                             </div>
@@ -278,14 +278,14 @@
     </div>
     
     <!-- Форма редактирования новости -->
-    <div class='form' id='editNewsItemForm'>
-        <div class="form-wrapper">
+    <div class='modal' id='editNewsItemForm'>
+        <div class="modal__viewport">
 
-            <form>
-                <div class='item-header'>
-                    <h2>Редактирование новости</h2>
+            <form class="modal__content">
+                <div class='modal__block'>
+                    <h1 class="modal__title">Редактирование новости</h1>
                     <div class='row g8'>
-                        <button class='primaryButton' type="button">
+                        <button class='secondaryButton' type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
                                 <g transform="translate(-8.001 -9.667)">     
                                     <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
@@ -305,22 +305,24 @@
                         </button>
                     </div>
                 </div>
+
+                <h3>Заголовок</h3>
                 <input class='text-field text-field-title' autocomplete="off" placeholder="Заголовок" value="Заголовок новости"/>
+
+                <h3>Текст</h3>
                 <div id="editor" class='text-field'>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum quisquam saepe fugiat quam vel deleniti ullam, architecto dolor eaque pariatur cupiditate tempora ea error fugit doloremque molestiae voluptatem vitae nobis. Suscipit iure odit nam iste beatae dignissimos tenetur animi amet similique pariatur hic ea placeat repellat facilis, unde maxime dolor eligendi ipsum, fugiat quam sint! Itaque accusamus animi illum. Unde voluptas nobis ipsam accusantium asperiores ullam fugit est possimus molestias deserunt animi ducimus voluptatibus aliquid quasi, atque fuga inventore omnis nisi facilis maiores similique, ea iste voluptate. Nam, officiis aut culpa error ratione odio, voluptas vitae magni nulla quibusdam dolore ad exercitationem obcaecati perferendis distinctio doloremque soluta qui cum optio hic repellat, velit harum. Quo iure numquam ex excepturi facere eius beatae aut quibusdam quos inventore esse nesciunt officia expedita odio, earum id voluptatibus est tempora neque culpa. A dolorem, qui aspernatur dolores doloremque labore amet minima iste harum nihil tenetur obcaecati ea cum atque id soluta. Deserunt, molestias totam? Ex, corrupti dolorem maxime rem facere aperiam inventore dicta tenetur ullam, error fugit iusto consequatur fuga deserunt voluptatibus ut similique sed laboriosam repellendus. Nostrum quos, eaque eveniet aspernatur cumque dicta perferendis ab, aperiam asperiores neque soluta saepe repellendus sed! Et?
                 </div>
-                <div class="item-header">
-                    <h2>Прикрепленные файлы</h2>
-                    <button class='primaryButton' type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
-                            <g transform="translate(-8.667 -8)">
-                                <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
-                                <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
-                            </g>
-                        </svg>
-                        Документ
-                    </button>
-                </div>
+
+                <button class='secondaryButton' type="button" style="margin-top: 1rem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                        <g transform="translate(-8.667 -8)">
+                            <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                            <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                        </g>
+                    </svg>
+                    Прикрепить файл
+                </button>
                 
                 <!-- Файлы -->
                 <div class='files'>
@@ -359,15 +361,6 @@
             <p>Пример оповещения об ошибке</p>
             <button onclick='$(this).parent().remove()'>×</button>
         </div>
-    </div> -->
-
-    <!-- <div id="arrowTop" hidden>
-        <svg viewBox="0 0 14 14">
-            <g transform="translate(-5 -5)">
-                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
-                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
-            </g>
-        </svg> 
     </div> -->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->

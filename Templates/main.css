@@ -1145,6 +1145,7 @@ td{
     visibility: hidden; opacity: 0;
     transition-property: visibility opacity;
     transition-duration: .4s;
+    z-index: 999;
 }
 .modal.active::before{
     visibility: visible; opacity: 1;
@@ -1156,6 +1157,7 @@ td{
     position: fixed; top: 0; left: 50%;
     display: flex; align-items: center;
     transform: translateX(-50%);
+    z-index: 1000;
 }
 .modal__content{
     width: 100%;
@@ -1206,6 +1208,9 @@ td{
     min-height: 12rem;
     font-size: 1rem;
 }
+.modal__content .text-field:not(.text-field-title)#editor{
+    padding-top: 0 !important;
+}
 .modal__content .text-field-title{
     font-size: 1.125rem;
     white-space: nowrap;
@@ -1248,4 +1253,10 @@ td{
     border: var(--theme-light-alpha) solid 2px;
     padding: 0.5rem;
     border-radius: 0.5rem;
+    background-color: unset;
+    color: var(--text-primary-color);
+    font-size: 1rem;
+}
+.dark__theme .modal input[type=date]::-webkit-calendar-picker-indicator{
+    filter: invert();
 }

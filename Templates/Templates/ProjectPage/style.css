@@ -63,14 +63,13 @@
 
 .project__members.expanded .member{
     margin-right: -0.5rem;
+    height: 3.5rem;
+    border-radius: 1.75rem;
 }
-/* .project__members.expanded .member__info{
-    width: 14rem;
-    margin-right: 2rem;
-    opacity: 1;
-} */
-.project__members.expanded .member .avatar{
-    transition: all .1s;
+.project__members.expanded .member:hover{
+    background-color: var(--theme-light-alpha);
+    border-color: var(--theme-light-alpha);
+    margin-right: 0;
 }
 .project__members.expanded .member.selected .avatar{
     border: var(--currentColor) solid 0.25rem;
