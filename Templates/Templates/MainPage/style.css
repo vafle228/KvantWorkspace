@@ -160,6 +160,9 @@ header h3:not(.active):hover{
 .course:active{
     transform: scale(0.98);
 }
+.form .course{
+    pointer-events: none;
+}
 .course__illustration{
     width: 4rem; height: 4rem;
     margin: 0.5rem 0;
