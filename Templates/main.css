@@ -213,6 +213,13 @@ body{
 .navigation__link:active{
     transform: scale(0.9);
 }
+.navigation__link.attention::after{
+    content: "";
+    position: absolute; top: 0.75rem; right: 0.75rem;
+    height: 0.5rem; width: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--currentColor);
+}
 .navigation__link svg{
     width: 1.5rem; height: 1.5rem;
     margin: 1rem;
@@ -236,7 +243,6 @@ body{
 }
 .navigation__link.active svg path{
     fill: var(--currentColor);
-    opacity: 1;
 }
 
 .navigation__profile img{
