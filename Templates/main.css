@@ -1214,9 +1214,6 @@ td{
     min-height: 12rem;
     font-size: 1rem;
 }
-.modal__content .text-field:not(.text-field-title)#editor{
-    padding-top: 0 !important;
-}
 .modal__content .text-field-title{
     font-size: 1.125rem;
     white-space: nowrap;
@@ -1268,6 +1265,7 @@ td{
 }
 
 
+/* Уведомления */
 .notifications{
     position: fixed; left: 6.5rem;
     width: 24rem; height: 33rem;

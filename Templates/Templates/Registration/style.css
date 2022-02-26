@@ -1,0 +1,124 @@
+body{
+    padding: 0;
+    background-color: var(--bgColor);
+}
+.mainContainer{
+    height: calc(100vh - 6rem);
+    width: calc(100vw - 12rem);
+    display: flex; flex-direction: row;
+    background-color: var(--item-bg-color);
+    margin: 3rem 6rem;
+    padding: 0;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    gap: 0;
+}
+.illustration{
+    height: 100%;
+    width: 24rem;
+    object-fit: cover;
+    object-position: left;
+}
+
+.wizard{
+    height: 100%; width: calc(100% - 24rem);
+    padding: 3rem;
+    display: flex; flex-direction: column; gap: 3rem;
+}
+.wizard__title{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.progress{
+    display: flex; flex-direction: row; gap: 2rem;
+    margin-left: -1rem;
+}
+.progress__stage{
+    width: 5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    position: relative;
+}
+.progress__stage span{
+    width: 3rem; height: 3rem;
+    line-height: 2.625rem;
+    border-radius: 1.5rem;
+    background-color: var(--theme-light-alpha);
+    border: #b7bdc7 solid 3.25px;
+    text-align: center;
+    font-weight: 500;
+    z-index: 2;
+}
+.progress__stage::before{
+    content: "";
+    width: 7rem; height: 3px;
+    background-color: #b7bdc7;
+    position: absolute; top: calc(1.5rem - 1.5px); left: 1.5rem;
+    z-index: 1;
+}
+.progress__stage:last-of-type::before{
+    width: 0;
+}
+.progress__stage h3{
+    text-transform: uppercase;
+    color: #b7bdc7;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+.progress__stage.active span{
+    background-color: #fff;
+    color: var(--currentColor);
+    border-color: var(--currentColor);
+}
+.progress__stage.active h3{
+    color: var(--currentColor);
+}
+.progress__stage.done span{
+    background-color: var(--currentColor);
+    border-color: var(--currentColor);
+    color: #fff;
+}
+.progress__stage.done::before{
+    background-color: var(--currentColor);
+}
+.progress__stage.done h3{
+    color: var(--text-primary-color);
+}
+
+.stage{
+    width: 100%;
+    display: flex; flex-direction: column; gap: 1.5rem;
+}
+.stage__question{
+    font-weight: 500;
+}
+.stage__input{
+    background-color: var(--theme-light-alpha);
+    height: 3rem; width: 24rem;
+    padding: 0 1rem;
+    font-size: 1.125rem;
+    border-radius: 0.5rem;
+}
+.stage button{
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+#previousStage{
+    background-color: var(--theme-light-alpha);
+    color: var(--text-ptimary-color);
+}
+#previousStage:hover{
+    background-color: var(--bgColor);
+    color: var(--currentColor);
+}
+#nextStage{
+    background-color: var(--bgColor);
+    color: var(--currentColor);
+}
+#nextStage:hover{
+    background-color: var(--currentColor);
+    color: #fff;
+}

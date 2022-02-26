@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
+        <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
+    
+        <link rel="shortcut icon" href="../../img/google.svg" type="image/png" /> <!-- Иконка вкладки -->
+        <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
+        
+        <title>Регистрация</title>
+    </head>
+
+<body class="light__theme" colorScheme="colorScheme__green">
+    <main class="mainContainer">
+        <img src="../../img/backgrounds/6.jpg" class="illustration">
+        <div class="wizard">
+            <h1 class="wizard__title">Регистрация</h1>
+
+            <div class="wizard__progress progress">
+                <div class="progress__stage done">
+                    <span>1</span>
+                    <h3>ФИО</h3>
+                </div>
+                <div class="progress__stage active">
+                    <span>2</span>
+                    <h3>Возраст</h3>
+                </div>
+                <div class="progress__stage">
+                    <span>3</span>
+                    <h3>Паспорт</h3>
+                </div>
+                <div class="progress__stage">
+                    <span>4</span>
+                    <h3>СНИЛС</h3>
+                </div>
+                <div class="progress__stage">
+                    <span>5</span>
+                    <h3>Контакты</h3>
+                </div>
+            </div>
+
+            <div class="wizard__stage stage">
+                <h1 class="stage__question">Как вас зовут?</h1>
+
+                <div class="column g16">
+                    <input type="text" class="stage__input" placeholder="Фамилия">
+                    <input type="text" class="stage__input" placeholder="Имя">
+                    <input type="text" class="stage__input" placeholder="Отчество">
+                </div>
+
+                <div class="row g16">
+                    <button id="previousStage">Назад</button>
+                    <button id="nextStage">Далее</button>
+                </div>
+            </div>
+
+            <h3 style="margin-top: auto">Какая-то дополнительная информация, возможно телефон методиста.</h3>
+        </div>
+    </main>
+</body>
+
+</html>

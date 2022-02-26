@@ -309,52 +309,6 @@
     fill: #fff;
 }
 
-
-
-.field{
-    display: flex; flex-direction: row; gap: 1rem;
-}
-.field__placeholder{
-    color: var(--text-primary-color);
-    font-size: 1.125rem;
-    font-weight: 500;
-    width: 8rem;
-    text-align: right;
-    line-height: 3rem;
-}
-.field__input{
-    background-color: var(--bg-color);
-    min-height: 3rem;
-    padding: 0 1rem;
-    border-radius: 0.5rem;
-    color: var(--text-primary-color);
-    font-size: 1.125rem;
-    width: calc(100% - 8rem);
-}
-.field__textarea{
-    background-color: var(--bg-color);
-    height: 12rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    color: var(--text-primary-color);
-    font-size: 1.125rem;
-    width: calc(100% - 8rem);
-}
-.field__date{
-    background-color: var(--bg-color);
-    height: 3rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    color: var(--text-primary-color);
-    font-size: 1.125rem;
-}
-
-
-.modal__content .task__description{
-    display: block;
-    margin: 0;
-    font-size: 1.125rem;
-}
 .modal__content .task__title{
     font-size: 2rem;
     font-weight: 500;
