@@ -60,6 +60,8 @@
 .ql-editor p{
   font-size: 1.125rem;
   font-weight: 400;
+}
+.modal .ql-editor p{
   color: var(--text-primary-color);
 }
 .ql-editor h1{
