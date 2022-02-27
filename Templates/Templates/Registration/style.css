@@ -108,11 +108,11 @@ body{
 }
 #previousStage{
     background-color: var(--theme-light-alpha);
-    color: var(--text-ptimary-color);
+    color: #70757D;
 }
 #previousStage:hover{
-    background-color: var(--bgColor);
-    color: var(--currentColor);
+    /* background-color: var(--bgColor); */
+    color: var(--text-ptimary-color);
 }
 #nextStage{
     background-color: var(--bgColor);

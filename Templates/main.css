@@ -8,6 +8,8 @@
     --medium: 992px;
     --large: 1200px;
     --xlarge: 1400px;
+
+    --text-universal-color: #70757D;
 }
 
 /* Темы оформления */
@@ -50,11 +52,6 @@ body[colorScheme='colorScheme__purple'].light__theme{
 
 /* Светлая тема */
 .light__theme{
-    /* --aside-bg-color: #f7f8fc;
-    --item-bg-color: #f7f8fc; */
-    /* --item-bg-color: #f4f6f7; */
-    /* --bg-color: #fcfcfd; */
-    /* --bg-color: #fcfbfc; */
     --aside-bg-color: #fff;
     --item-bg-color: #fff;
     --bg-color: #f6f8fa;
@@ -97,11 +94,10 @@ a{
 /* Шрифты и размеры текста */
 ::placeholder{ font-family: 'Google Sans' }
 
-h1{ font-size: 2rem;    font-weight: bold;    color: var(--text-primary-color) }
-h2{ font-size: 1.6rem;  font-weight: bold;    color: var(--text-primary-color) }
-h3{ font-size: 1.2rem;  font-weight: 500;     color: #70757D }
-h4{ font-size: 1.2rem;  font-weight: 300;     color: #70757D }
-p { font-size: 1rem;    font-weight: normal;  color: #70757D }
+h1{ font-size: 2rem;   font-weight: 500; color: var(--text-primary-color) }
+h2{ font-size: 1.5rem; font-weight: 500; color: var(--text-primary-color) }
+h3{ font-size: 1.25rem; font-weight: 500; color: var(--text-universal-color) }
+p { font-size: 1rem;   font-weight: 400; color: var(--text-universal-color) }
 
 h1, h2, h3, h4, h5, h6, p{ cursor: unset }
 
@@ -409,41 +405,6 @@ body{
         display: none;
     }
 }
-
-
-/* Переключатели */
-.toggle{
-    height: 1rem; width: 2rem;
-    border-radius: 1rem;
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    background: linear-gradient(180deg, #eee 0%, #eee 100%);
-    transition: all .2s ease;
-}
-.toggle:after{
-    content: '';
-    position: absolute;
-    top: -2px; left: -2px;
-    width: 1.25rem; height: 1.25rem;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 1px 2px rgba(44,44,44,.4);
-    transition: all .2s cubic-bezier(.5,.1,.75,1.35);
-}
-.dark__theme .toggle.theme{
-    background: #A1D214;
-}
-.dark__theme .toggle.theme:after{
-    transform: translatex(1rem);
-}
-.toggle.color-scheme{
-    width: 1rem;
-}
-.toggle.color-scheme::after{
-    background-color: var(--currentColor);
-}
-
 
 /* Разделитель */
 .divider{
@@ -1190,11 +1151,6 @@ td{
 }
 .modal__block .file{
     width: 16rem !important;
-}
-.modal__content  hr{
-    width: 100%; height: 1px;
-    background-color: var(--theme-light-alpha);
-    border: none;
 }
 
 /* Текстовые поля в форме */
