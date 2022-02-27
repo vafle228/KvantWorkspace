@@ -13,6 +13,9 @@
 }
 
 /* Темы оформления */
+body[colorScheme='colorScheme__green']{
+    --illustration: url(../../img/backgrounds/6.jpg);
+}
 body[colorScheme='colorScheme__green'].dark__theme{
     --bgColor: #66cd0311;
     --currentColor: #66cd03;
@@ -22,6 +25,9 @@ body[colorScheme='colorScheme__green'].light__theme{
     --currentColor: #35a755;
 }
 
+body[colorScheme='colorScheme__blue']{
+    --illustration: url(../../img/backgrounds/1.jpg);
+}
 body[colorScheme='colorScheme__blue'].dark__theme{
     --bgColor: #00b2ff11;
     --currentColor: #00b2ff;
@@ -31,6 +37,9 @@ body[colorScheme='colorScheme__blue'].light__theme{
     --currentColor: #4486f6;
 }
 
+body[colorScheme='colorScheme__red']{
+    --illustration: url(../../img/backgrounds/5.jpg);
+}
 body[colorScheme='colorScheme__red'].dark__theme{
     --bgColor: #f1416c11;
     --currentColor: #f1416c;
@@ -40,6 +49,9 @@ body[colorScheme='colorScheme__red'].light__theme{
     --currentColor: #f17473;
 }
 
+body[colorScheme='colorScheme__purple']{
+    --illustration: url(../../img/backgrounds/11.jpg);
+}
 body[colorScheme='colorScheme__purple'].dark__theme{
     --bgColor: #6c63ff11;
     --currentColor: #6c63ff;
