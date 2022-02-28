@@ -11,7 +11,9 @@
     <link rel="shortcut icon" href="../../img/google.svg" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     
-    <title>Проекты</title>
+    <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
+    
+    <title>Мои проекты</title>
 </head>
 
 <body class='light__theme' colorScheme="colorScheme__blue">
@@ -144,53 +146,21 @@
     <div class="mainContainer">
 
         <header  class="header">
-            <h1>Проекты</h1>
-            <button class="secondaryButton">
-                Мои проекты
+            <h1>Мои проекты</h1>
+            <button class="secondaryButton" onclick="open_form('#createProject')">
+                Создать проект
             </button>
         </header>
-        
-        <div class="flex space-between items-center">
-            <div class="menu">
-                <div class="menu__button active">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>Все</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>IT</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>ХайТек</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>ПромДизайн</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>ПромРобо</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>Энерджи</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>Математика</p>
-                </div>
-                <div class="menu__button">
-                    <!-- <img src="../../img/3d/flash-dynamic-color.png"> -->
-                    <p>Английский</p>
-                </div>
+
+        <div class="menu">
+            <div class="menu__button active">
+                <p>Все</p>
             </div>
-            <div id="search">
-                <svg viewBox="0 0 512 512">
-                    <path style='opacity: .8' d="M500.3 443.7l-119.7-119.7c-15.03 22.3-34.26 41.54-56.57 56.57l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7z"/>
-                    <path style='opacity: .6' d="M207.1 0C93.12 0-.0002 93.13-.0002 208S93.12 416 207.1 416s208-93.13 208-208S322.9 0 207.1 0zM207.1 336c-70.58 0-128-57.42-128-128c0-70.58 57.42-128 128-128s128 57.42 128 128C335.1 278.6 278.6 336 207.1 336z"/>
-                </svg>
-                <input autocomplete="off" placeholder="Поиск">
+            <div class="menu__button">
+                <p>Текущие</p>
+            </div>
+            <div class="menu__button">
+                <p>Завершенные</p>
             </div>
         </div>
 
@@ -247,25 +217,101 @@
                 </div>
             </div>
         </section>
-        
     </div>
 
-    <div id="arrowTop" hidden>
-        <svg viewBox="0 0 14 14">
-            <g transform="translate(-5 -5)">
-                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
-                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
-            </g>
-        </svg> 
+    <!-- Форма создания проекта -->
+    <div class='modal' id='createProject'>
+        <div class="modal__viewport">
+            <form class="modal__content">
+                <div class='modal__block'>
+                    <h1 class="modal__title">Создание проекта</h1>
+                    <button class='secondaryButton' type="submit">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                        </svg>    
+                        Сохранить
+                    </button>
+                </div>
+
+                <h3>Название</h3>
+                <input class='text-field text-field-title' autocomplete="off" value=""/>
+
+                <h3>Участники</h3>
+                
+                <div id="selectedUsers">
+                    <!-- Здесь появляются участники -->
+                </div>
+
+                <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
+
+                <div class="userSelect" id='userSelect'>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-8.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Каратаев Вадим</h3>
+                            <p class="userSelect__userRole">Участник</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-4.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Павел Сергеевич</h3>
+                            <p class="userSelect__userRole">Учитель</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-7.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Смышляев Дмитрий</h3>
+                            <p class="userSelect__userRole">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-13.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Александра Денисовна</h3>
+                            <p class="userSelect__userRole">Администратор</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Описание</h3>
+                <div id="editor" class='text-field'></div>
+
+                <button class='secondaryButton' type="button" style="margin-top: 1rem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                        <g transform="translate(-8.667 -8)">
+                            <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                            <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                        </g>
+                    </svg>
+                    Прикрепить файл
+                </button>
+            </form>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
+    <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
+
     <script>
         $(".menu__button").on("click", function(){
             $(this).parent().find(".menu__button").removeClass("active");
             $(this).toggleClass("active", "inactive");
+        });
+
+        $('.userSelect__user').click( function() {
+            if ($(this).parent().attr('id') == 'userSelect') {
+                $('#selectedUsers').append($(this));
+                $('#userSearch').val('').focus();
+            } else {
+                $('#userSelect').append($(this));
+            }
         });
     </script>
 </body>

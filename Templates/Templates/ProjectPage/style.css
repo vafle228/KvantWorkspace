@@ -313,3 +313,13 @@
     font-size: 2rem;
     font-weight: 500;
 }
+
+
+#userSearch{
+    background-color: var(--theme-light-alpha);
+    height: 3rem; width: 100%;
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    font-size: 1.125rem;
+    color: var(--text-primary-color);
+}

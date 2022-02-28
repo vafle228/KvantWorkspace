@@ -260,12 +260,12 @@ header h3:not(.active):hover{
 
 @media screen and (max-width: 1600px){
     .newsItem{
-        width: calc(100% / 3);
+        width: calc((100% - 2rem) / 3);
     }
 }
 @media screen and (max-width: 1100px){
     .newsItem{
-        width: 50%;
+        width: calc((100% - 1rem) / 2);
     }
     #scheduleWidget{
         width: 32rem;
