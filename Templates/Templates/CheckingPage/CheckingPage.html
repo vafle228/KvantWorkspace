@@ -146,7 +146,6 @@
 
     <div class="mainContainer column">
 
-        <!-- Домашнее задание -->
         <header class="flex space-between items-center">
             <button class="combinedButton" onclick="history.back();">
                 <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
@@ -157,269 +156,260 @@
                 </svg>
                 <span>Назад</span>
             </button>
-            <section class="menu">
-                <button class="menu__button active" onclick="changeTab('#info')">
-                    <p>Задание / Урок</p>
-                </button>
-                <button class="menu__button" onclick="changeTab('#table')">
-                    <p>Список работ / Посещаемость</p>
-                </button>
-            </section>
         </header>
 
-        <div id="tabs">
-            <div class="tab active" id="info">
-                <div class="taskInfo column g12" style='width: 64%'>
-                    <div class="flex space-between items-center">
-                        <h1>Тема задания</h1>
-                        
-                        <div class="row g16">
-                            <button class='secondaryButton' onclick="open_form('#editTaskForm')">
-                                <svg viewBox="0 0 576 512">
-                                    <path opacity='0.6' d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z"></path>
-                                    <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
-                                </svg>
-                                Редактировать                       
-                            </button>
-                            <button class="dangerButton" onclick="open_form('#confirmDeletion')" title="Удалить">
-                                <svg viewBox="0 0 448 512">
-                                    <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
-                                    <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
-                                </svg>
-                                <!-- Удалить -->
-                            </button>
-                        </div>
+        <div class="row g24">
+            <div class="taskInfo column g12" style='width: 64%'>
+                <div class="flex space-between items-center">
+                    <h1>Тема задания</h1>
+                    
+                    <div class="row g16">
+                        <button class='secondaryButton' onclick="open_form('#editTaskForm')">
+                            <svg viewBox="0 0 576 512">
+                                <path opacity='0.6' d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z"></path>
+                                <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                            </svg>
+                            Редактировать                       
+                        </button>
+                        <button class="dangerButton" onclick="open_form('#confirmDeletion')" title="Удалить">
+                            <svg viewBox="0 0 448 512">
+                                <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                            </svg>
+                            <!-- Удалить -->
+                        </button>
+                    </div>
     
-                    </div>
-                    
-                    <p style="text-align: justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis expedita omnis atque cum quod. Sint facilis cupiditate minima eligendi earum laudantium laboriosam ipsa magnam atque rerum repellendus adipisci vero, itaque quibusdam reprehenderit recusandae neque iste. Alias consequatur unde ab eum, ad suscipit ipsa iusto accusamus iure! Nulla rerum architecto accusantium aperiam excepturi, magnam necessitatibus, error tenetur ad laborum inventore accusamus quaerat dolores, nam eligendi impedit ducimus porro perferendis! Sed ut, vel alias vero placeat totam maxime aperiam! Nobis est mollitia totam quos cupiditate consectetur dolor temporibus nam doloremque inventore animi sapiente aliquid sed dolorem dignissimos, quidem nisi dolore ab! Eos!</p>
-                    
-                    <div class='files'>
-                        <div class='file'>
-                            <i class='file-docx'></i>
-                            <div class="file__info">
-                                <h4 class='file__name'>Домашнее задание.docx</h4>
-                                <p class="file__size">6.3 MB</p>
-                            </div>
-                            <div class="file__actions">
-                                <button>
-                                    <svg viewBox="0 0 384 448">
-                                        <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
-                                        <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-        
-                <div class="column g16" style='width: 64%'>
-                    <h2 class='py8'>Статистика</h2>
-        
-                    <div class="flex space-between items-center">
-                        <h3 style='color: var(--currentColor)'>Выполнение работы</h3>
-                        <h3 style='color: var(--currentColor)'>64%</h3>
-                    </div>
-                    <div class='scale'>
-                        <div class='subscale' style='--percent: 64%'></div>
-                    </div>
-            
-                    <div class="flex space-between items-center">
-                        <h3 style='color: var(--currentColor)'>Качество выполнения работы</h3>
-                        <h3 style='color: var(--currentColor)'>96%</h3>
-                    </div>
-                    <div class='scale'>
-                        <div class='subscale' style='--percent: 96%'></div>
-                    </div>
-            
-                    <div class="flex space-between items-center">
-                        <h3 style='color: var(--currentColor)'>Просроченные работы</h3>
-                        <h3 style='color: var(--currentColor)'>12%</h3>
-                    </div>
-                    <div class='scale'>
-                        <div class='subscale' style='--percent: 12%'></div>
+                
+                <p style="text-align: justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis expedita omnis atque cum quod. Sint facilis cupiditate minima eligendi earum laudantium laboriosam ipsa magnam atque rerum repellendus adipisci vero, itaque quibusdam reprehenderit recusandae neque iste. Alias consequatur unde ab eum, ad suscipit ipsa iusto accusamus iure! Nulla rerum architecto accusantium aperiam excepturi, magnam necessitatibus, error tenetur ad laborum inventore accusamus quaerat dolores, nam eligendi impedit ducimus porro perferendis! Sed ut, vel alias vero placeat totam maxime aperiam! Nobis est mollitia totam quos cupiditate consectetur dolor temporibus nam doloremque inventore animi sapiente aliquid sed dolorem dignissimos, quidem nisi dolore ab! Eos!</p>
+                
+                <div class='files'>
+                    <div class='file'>
+                        <i class='file-docx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Домашнее задание.docx</h4>
+                            <p class="file__size">6.3 MB</p>
+                        </div>
+                        <div class="file__actions">
+                            <button>
+                                <svg viewBox="0 0 384 448">
+                                    <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
+                                    <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="tab" id="table">
-                <h2>Список работ</h2>
+    
+            <div class="column g16" style='width: 36%'>
+                <h2 class='py8'>Статистика</h2>
+    
+                <div class="flex space-between items-center">
+                    <h3 style='color: var(--currentColor)'>Выполнение работы</h3>
+                    <h3 style='color: var(--currentColor)'>64%</h3>
+                </div>
+                <div class='scale'>
+                    <div class='subscale' style='--percent: 64%'></div>
+                </div>
         
-                <table>
-                    <tr>
-                        <th style="width: 16rem">Ученики</th>
-                        <th>Домашняя работа</th>
-                        <th style="width: 16rem">Оценка</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="student row g8">
-                                <img src="../../img/user_profile_male.jpg" class="avatar">
-                                <div class='column'>
-                                    <p class="student__name">Фамилия Имя</p>
-                                    <p class="student__role">Ученик</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="column g8">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, quidem. Placeat eaque omnis corrupti voluptatibus ullam doloribus optio voluptatum assumenda.</p>
-                                <div class='files'>
-                                    <div class='file'>
-                                        <i class='file-xlsx'></i>
-                                        <div class="file__info">
-                                            <h4 class='file__name'>Домашняя работа.xlsx</h4>
-                                            <p class="file__size">6.4 MB</p>
-                                        </div>
-                                        <div class="file__actions">
-                                            <button>
-                                                <svg viewBox="0 0 384 448">
-                                                    <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
-                                                    <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class='file'>
-                                        <i class='file-pptx'></i>
-                                        <div class="file__info">
-                                            <h4 class='file__name'>Презентация проекта.pptx</h4>
-                                            <p class="file__size">16 MB</p>
-                                        </div>
-                                        <div class="file__actions">
-                                            <button>
-                                                <svg viewBox="0 0 384 448">
-                                                    <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
-                                                    <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row g16">
-                                <section class="menu">
-                                    <button class="menu__button active">
-                                        <span class="mark">&#8291;</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark poor">1</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark badly">2</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark fine">3</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark excellent">4</span>
-                                    </button>
-                                </section>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="flex space-between items-center">
+                    <h3 style='color: var(--currentColor)'>Качество выполнения работы</h3>
+                    <h3 style='color: var(--currentColor)'>96%</h3>
+                </div>
+                <div class='scale'>
+                    <div class='subscale' style='--percent: 96%'></div>
+                </div>
         
-                <h2>Посещаемость</h2>
-        
-                <table style="width: 28rem">
-                    <tr>
-                        <th style="width: 16rem">Ученики</th>
-                        <th style="width: 12rem">Посещаемость</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="student row g8">
-                                <img src="../../img/user_profile_male.jpg" class="avatar">
-                                <div class='column'>
-                                    <p class="student__name">Фамилия Имя</p>
-                                    <p class="student__role">Ученик</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row g16">
-                                <section class="menu">
-                                    <button class="menu__button active">
-                                        <span class="mark">&#8291;</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark">ОТ</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark">УП</span>
-                                    </button>
-                                </section>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="student row g8">
-                                <img src="../../img/user_profile_male.jpg" class="avatar">
-                                <div class='column'>
-                                    <p class="student__name">Фамилия Имя</p>
-                                    <p class="student__role">Ученик</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row g16">
-                                <section class="menu">
-                                    <button class="menu__button active">
-                                        <span class="mark">&#8291;</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark">ОТ</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark">УП</span>
-                                    </button>
-                                </section>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="student row g8">
-                                <img src="../../img/user_profile_male.jpg" class="avatar">
-                                <div class='column'>
-                                    <p class="student__name">Фамилия Имя</p>
-                                    <p class="student__role">Ученик</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row g16">
-                                <section class="menu">
-                                    <button class="menu__button active">
-                                        <span class="mark">&#8291;</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark">ОТ</span>
-                                    </button>
-                                    <button class="menu__button">
-                                        <span class="mark">УП</span>
-                                    </button>
-                                </section>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-        
-                <div class="row">
-                    <button class="secondaryButton">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
-                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
-                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
-                        </svg> 
-                        Сохранить
-                    </button>
+                <div class="flex space-between items-center">
+                    <h3 style='color: var(--currentColor)'>Просроченные работы</h3>
+                    <h3 style='color: var(--currentColor)'>12%</h3>
+                </div>
+                <div class='scale'>
+                    <div class='subscale' style='--percent: 12%'></div>
                 </div>
             </div>
         </div>
+        
+
+        <h2>Список работ</h2>
+
+        <table>
+            <tr>
+                <th style="width: 16rem">Ученики</th>
+                <th>Домашняя работа</th>
+                <th style="width: 16rem">Оценка</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="column g8">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, quidem. Placeat eaque omnis corrupti voluptatibus ullam doloribus optio voluptatum assumenda.</p>
+                        <div class='files'>
+                            <div class='file'>
+                                <i class='file-xlsx'></i>
+                                <div class="file__info">
+                                    <h4 class='file__name'>Домашняя работа.xlsx</h4>
+                                    <p class="file__size">6.4 MB</p>
+                                </div>
+                                <div class="file__actions">
+                                    <button>
+                                        <svg viewBox="0 0 384 448">
+                                            <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
+                                            <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class='file'>
+                                <i class='file-pptx'></i>
+                                <div class="file__info">
+                                    <h4 class='file__name'>Презентация проекта.pptx</h4>
+                                    <p class="file__size">16 MB</p>
+                                </div>
+                                <div class="file__actions">
+                                    <button>
+                                        <svg viewBox="0 0 384 448">
+                                            <path opacity='0.3' d="M360 480H24a24 24 0 0 1-24-24v-16a24 24 0 0 1 24-24h336a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z"></path>
+                                            <path d="M151.92 32h80a23.94 23.94 0 0 1 24 24v136h87.7c17.8 0 26.8 21.51 14.2 34.11l-152.3 152.26a19.36 19.36 0 0 1-27.3 0L26.12 226.14c-12.6-12.6-3.7-34.11 14.1-34.11h87.7V56a23.94 23.94 0 0 1 24-24z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark poor">1</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark badly">2</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark fine">3</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark excellent">4</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h2>Посещаемость</h2>
+
+        <table style="width: 28rem">
+            <tr>
+                <th style="width: 16rem">Ученики</th>
+                <th style="width: 12rem">Посещаемость</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">ОТ</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">УП</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">ОТ</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">УП</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="student row g8">
+                        <img src="../../img/user_profile_male.jpg" class="avatar">
+                        <div class='column'>
+                            <p class="student__name">Фамилия Имя</p>
+                            <p class="student__role">Ученик</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row g16">
+                        <section class="menu">
+                            <button class="menu__button active">
+                                <span class="mark">&#8291;</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">ОТ</span>
+                            </button>
+                            <button class="menu__button">
+                                <span class="mark">УП</span>
+                            </button>
+                        </section>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="row">
+            <button class="secondaryButton">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                    <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                    <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                </svg> 
+                Сохранить
+            </button>
+        </div>
+
     </div>
 
     <!-- Форма редактирования задания -->
@@ -514,11 +504,6 @@
             $(this).parent().find(".menu__button").removeClass("active");
             $(this).toggleClass("active", "inactive");
         });
-
-        function changeTab(tabId){
-            $('#tabs').find(".tab").removeClass('active');
-            $('#tabs').find(tabId).addClass('active');
-        }
     </script>
 </body>
 

@@ -2,7 +2,7 @@
     width: 80rem;
     max-width: 100%;
     margin: 0 auto;
-    display: flex; flex-direction: column; gap: 1rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
 }
 .newsView:after{
     content: "_";
@@ -29,9 +29,6 @@
 }
 
 /* Информационный блок новости */
-.newsView__info{
-    padding: 1rem 0;
-}
 .newsView__infoTitle{
     font-size: 2.25rem;
     font-weight: 500;
@@ -44,11 +41,10 @@
 
 .carousel {
     color: var(--text-primary-color);
-
     --carousel-button-bg: var(--item-bg-color);
     --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0
             0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
-
+            
     --carousel-button-svg-width: 1rem;
     --carousel-button-svg-height: 1rem;
     --carousel-button-svg-stroke-width: 3;
