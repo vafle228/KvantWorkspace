@@ -100,8 +100,8 @@
 .lessonView__content h1{
     font-size: 1.75rem; font-weight: 500;
 }
-.lessonView__content h1:not(.lessonView__content h1:first-of-type){
-    margin-top: 0.5rem;
+.lessonView__content > p{
+    font-size: 1.125rem;
 }
 .lessonView__content #editor{
     min-height: 12rem; max-height: 12rem;
@@ -121,7 +121,7 @@
         display: block;
         width: calc(100% - 6rem); height: 100%;
         position: fixed; top: 0; left: 100%;
-        background-color: var(--aside-bg-color);
+        background-color: var(--bg-color);
         padding: 1.5rem;
         transition: left .4s;
         border-radius: 1rem;
