@@ -1148,10 +1148,12 @@ td{
     border: 1px solid var(--theme-light);
     display: flex; flex-direction: column; gap: 0.75rem;
     transform: translateY(160rem);
-    transition: transform .4s;
+    opacity: 0;
+    transition: transform .4s, opacity .4s;
 }
 .modal.active .modal__content{
     transform: translateY(0px);
+    opacity: 1;
 }
 
 .modal__title{
