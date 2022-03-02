@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import View
@@ -12,8 +13,12 @@ class KvantWorkspaceAccessMixinBase(View):
         """ 
         Исполняет все тесты валидации с данными kwargs.
         В случаи завала, возвращает редирект на страницу логина.
+        Если был ajax запрос, возвращает JsonResponse
         """
         if not self.accessTest(**kwargs):
+            if request.is_ajax():
+                return JsonResponse({'status': 'Error', 'message': 'Отказано в доступе!'})
+            
             messages.error(self.request, 'Отказано в доступе!')
             return redirect(reverse_lazy('login_page'))
         return super().dispatch(request, *args, **kwargs)
@@ -25,32 +30,37 @@ class KvantWorkspaceAccessMixinBase(View):
 
 
 class KvantWorkspaceAccessMixin(KvantWorkspaceAccessMixinBase):
-    """ Рассширение для проверки доступа на страницу """
-    request_user_arg = 'identifier'
-
+    """ Рассширение для проверки авторизации """
     def dispatch(self, request, *args, **kwargs):
         kwargs['user'] = request.user
-        kwargs['requested_id'] = kwargs.get(self.request_user_arg)
         return super().dispatch(request, *args, **kwargs)
     
     def accessTest(self, **kwargs):
-        user = kwargs.get('user')
-        requested_id = kwargs.get('requested_id')
-        return self._authenticateTest(requested_id, user)
+        return self._authenticateTest(kwargs.get('user'))
 
-    def _authenticateTest(self, requested_id, user):
-        """ Тест на авторизованность и совпадения запроса с запрашиваемым """
-        return requested_id == user.id and user.is_authenticated
+    def _authenticateTest(self, user):
+        """ Тест на авторизованность """
+        return user.is_authenticated
 
 
 class KvantTeacherAndAdminAccessMixin(KvantWorkspaceAccessMixin):
     def accessTest(self, **kwargs):
         user = kwargs.get('user')
-        return self._permissionTest(user) and super().accessTest(**kwargs)
+        return super().accessTest(**kwargs) and self._permissionTest(user) 
 
     def _permissionTest(self, user):
         """ Тест на права учителя/администратора """
         return user.permission == 'Учитель' or user.permission == 'Администратор'
+
+
+class KvantStudentAccessMixin(KvantWorkspaceAccessMixin):
+    def accessTest(self, **kwargs):
+        user = kwargs.get('user')
+        return super().accessTest(**kwargs) and self._permissionTest(user) 
+
+    def _permissionTest(self, user):
+        """ Тест на права ученика """
+        return user.permission == 'Ученик'
 
 
 class KvantObjectExistsMixin(KvantWorkspaceAccessMixin):
@@ -63,7 +73,7 @@ class KvantObjectExistsMixin(KvantWorkspaceAccessMixin):
     
     def accessTest(self, **kwargs):
         object_id = kwargs.get(self.request_object_arg)
-        return self._objectExiststTest(object_id) and super().accessTest(**kwargs)
+        return super().accessTest(**kwargs) and self._objectExiststTest(object_id) 
     
     @abstractmethod
     def _objectExiststTest(self, object_id):

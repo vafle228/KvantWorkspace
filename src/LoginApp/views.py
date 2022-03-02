@@ -12,6 +12,4 @@ class LoginAppTemplateView(LoginView):
         return super().form_invalid(form)
     
     def get_success_url(self):
-        redirect_kwargs = {
-            'identifier': self.request.user.id}
-        return reverse_lazy('main_page', kwargs=redirect_kwargs)
+        return reverse_lazy('main_page')

@@ -1,0 +1,86 @@
+{% load static %}
+{% load base_tags %}
+{% load journal_tags %}
+
+<!-- Форма редактирования задания -->
+<div class='modal' id='taskForm'>
+    <div class="modal__viewport">
+        <form class="modal__content">
+            <div class='modal__block'>
+                
+                {% if form == 'update' %}
+                <h1 class="modal__title">Редактирование задания</h1>
+                {% else %}
+                <h1 class="modal__title">Новое задание</h1>
+                {% endif %}
+                
+                {% if form == 'update' %}
+                <button class='secondaryButton' onclick="sendInstanceData(getUpdateBaseFormData(), `{% url 'update_base' base.id %}`, this)">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                        <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                        <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                    </svg>    
+                    Сохранить
+                </button>
+                {% else %}
+                <button class='secondaryButton' onclick="sendInstanceData(getBaseCreationForm(), `{% url 'create_task' %}`, this)">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                        <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                        <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                    </svg>    
+                    Сохранить
+                </button>
+                {% endif %}
+            </div>
+
+            <hr>
+
+            <h3>Тема задания</h3>
+            
+            {% if form == 'update' %}
+            <input class='text-field text-field-title' id="baseTitle" autocomplete="off" value="{{ base.title }}"/>
+            {% else %}
+            <input class='text-field text-field-title' id="baseTitle" autocomplete="off" value="{{ base.title }}"/>
+            {% endif %}
+            
+            <h3>Описание</h3>
+            
+            {% if form == 'update' %}
+            <div id="editor" class='text-field'>{{ base.description|safe }}</div>
+            {% else %}
+            <div id="editor" class='text-field'></div>
+            {% endif %}
+
+            <button class='secondaryButton' type="button" style="margin-top: 1rem" onclick="openFileDialog('#file-input')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                    <g transform="translate(-8.667 -8)">
+                        <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                        <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                    </g>
+                </svg>
+                Прикрепить файл
+            </button>
+            <input id="file-input" type="file" style="display: none;" onchange='addBaseFileHandler(event)' multiple/>
+
+            <div class='files' id="file-container"></div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function getBaseFormData(){
+        let base_form = new FormData();
+
+        for(let i = 0; i < file_array.length; i++){ // Перебор файлов
+            base_form.append('files', file_array[i]) // Добавление файла в форму
+        }
+        
+        base_form.append('title', $('#baseTitle')[0].value) 
+        base_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) 
+        base_form.append('description', $('#editor .ql-editor')[0].innerHTML)
+        
+        return base_form
+    }
+</script>

@@ -1,0 +1,91 @@
+{% load static %}
+{% load base_tags %}
+{% load journal_tags %}
+
+<body>
+    
+    <div class="header flex space-between">
+        <div class='row g8'>
+            <button onclick="$('#lessonView').toggleClass('active')" class='actionButton transparent closeButton'>
+                <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                    <g transform="translate(-5 -5)">
+                        <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                        <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                    </g>
+                </svg>
+            </button>
+            <img src="{{ lesson.course.teacher.image.url }}" class="avatar">
+            <div class='column'>
+                <p style='color: var(--text-primary-color)'>{{ lesson.course.teacher.surname }} {{ lesson.course.teacher.name }}</p>
+                <p>{{ lesson.course.teacher.permission }}</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider" style='margin: 0 0 1.5rem'>
+
+    <div class="lessonView__content column g16">
+
+        <!-- Урок -->
+        <h1>{{ lesson.base.title }}</h1>
+        
+        <div class="ql-snow">
+            <div class="ql-editor">
+                <p style="text-align: justify">{{ lesson.base.description|safe }}</p>
+            </div>
+        </div>
+
+        <div class='files'>
+            {% include "CoreApp/FileView/index.html" with files=lesson.base.files %}
+        </div>
+
+        <!-- Домашнее задание -->
+
+        {% if lesson.tasks|get_objects %}
+        
+        <section class="tasks">
+            <nav class="menu">
+                
+                {% for task in lesson.tasks|get_objects %}
+                <button class="menu__button" onclick="changeTask(`{% url 'task_detail' task.id %}`)">
+                    <p>{{ task.base.title }}</p>
+                    
+                    {% if task.base|has_mark:user %}
+                    <span class="{{ task.base|get_mark_class:user }}">{{ task.base|get_mark:user }}</span>
+                    {% endif %}
+                
+                </button>
+                {% endfor %}
+            
+            </nav>
+        </section>
+
+        <div class="task active" id="task"></div>
+
+        {% endif %}
+
+    </div>
+
+    <script>
+        function changeTask(task_url){
+            $.ajax({
+                type: "GET",
+                url: task_url,
+                cache: false,
+                success: function(response){
+                    $("#task").html(response);
+                }
+            })
+        }
+    </script>
+
+    <script>
+        $(".menu__button").on("click", function(){
+            $(this).parent().find(".menu__button").removeClass("active");
+            $(this).toggleClass("active", "inactive");
+        });
+
+        if($(".menu__button").length)
+            $(".menu__button")[0].click()
+    </script>
+</body>

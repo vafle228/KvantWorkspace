@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'CoreApp.apps.CoreAppConfig',
     'NewsApp.apps.NewsAppConfig',
     'MailApp.apps.MailAppConfig',
+    'AdminApp.apps.AdminAppConfig',
     'DiaryApp.apps.DiaryAppConfig',
     'LoginApp.apps.LoginAppConfig',
+    'JournalApp.apps.JournalAppConfig',
     'ProjectApp.apps.ProjectAppConfig',
     'ProfileApp.apps.ProfileAppConfig',
 

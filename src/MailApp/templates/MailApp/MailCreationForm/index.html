@@ -38,7 +38,7 @@
         </div>
         
         <div class='newMailItemForm__footer row g8'>
-            <button class="secondaryButton" type="button" onclick="sendInstanceData(getMailFormData(), `{% url 'create_mail' user.id %}`, this)">Отправить</button>
+            <button class="secondaryButton" type="button" onclick="sendInstanceData(getMailFormData(), `{% url 'create_mail' %}`, this)">Отправить</button>
             <button class="primaryButton" onclick="openFileDialog('#file-input')" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
                     <g transform="translate(-8.667 -8)">
@@ -66,15 +66,6 @@
     </form>
 </div>
 
-<!-- Подсветка кода -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-<!-- Сама панель инструментов -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<!-- Отображение математических формул -->
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-<script src="{% static 'CoreApp/text/options.js' %}"></script>
 <script>
     function getMailFormData(){
         let mail_form = new FormData(); // Формирование формы

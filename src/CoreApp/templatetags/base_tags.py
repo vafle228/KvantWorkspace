@@ -1,7 +1,5 @@
 from django import template
 
-register = template.Library()
-
 
 def get_file_extension(file):
     return file.file.name.split(".")[-1]
@@ -14,8 +12,10 @@ def get_file_name(file):
 def get_objects(model_object):
     return model_object.all()
 
+
 def get_active_btn(active, aside):
     return "active" if aside == active else ""
+
 
 def get_file_size(file):
     suffix_index = 0
@@ -35,6 +35,8 @@ def get_text(html):
     clean = re.compile('<.*?>')
     return re.sub(clean, '', html)
 
+
+register = template.Library()
 
 register.filter('get_text', get_text)
 register.filter('get_objects', get_objects)

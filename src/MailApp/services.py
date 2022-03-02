@@ -4,14 +4,16 @@ from django.urls import reverse_lazy as rl
 from LoginApp.models import KvantUser
 
 from .forms import MailReceiverSaveForm
-from .models import KvantMessage, MailReceiver, ImportantMail
+from .models import ImportantMail, KvantMessage, MailReceiver
 
 
 def getMailById(mail_id):
+    """ Получает письмо по его id """
     return KvantMessage.objects.get(id=mail_id)
 
 
 def makeMailImportant(user, mail_id):
+    """ Создает экземпляр избранного письма """
     important_mail, created = ImportantMail.objects.get_or_create(
         user=user, mail=getMailById(mail_id))
     if not created: important_mail.delete() 
@@ -51,21 +53,17 @@ class MailBoxQuerySelector:
 
 
 class MailObjectManupulationResponse(ObjectManupulationResponse):
-    def _getRedirectKwargs(self, request, obj=None):
-        return {'identifier': request.user.id}
-
-    def _constructRedirectUrl(self, request, obj=None):
-        return rl('mail_box', kwargs=self._getRedirectKwargs(request, obj)) + '?type=received'
+    def _constructRedirectUrl(self, obj):
+        return rl('mail_box') + '?type=received'
 
 
 class KvantMailAccessMixin(KvantObjectExistsMixin): 
     request_object_arg = 'mail_identifier'
 
     def accessTest(self, **kwargs):
-        mail_id = kwargs.get(self.request_object_arg)
-        if self._objectExiststTest(mail_id):
-            mail, user = getMailById(mail_id), kwargs.get('user')
-            return self._userReceiverTest(user, mail) and super().accessTest(**kwargs)
+        if super().accessTest(**kwargs):
+            mail = getMailById(kwargs.get(self.request_object_arg))
+            return self._userReceiverTest(kwargs.get('user'), mail) 
         return False
     
     def _objectExiststTest(self, object_id):
@@ -76,10 +74,17 @@ class KvantMailAccessMixin(KvantObjectExistsMixin):
 
 
 class ChangeMailReadStatus:
+    """ Изменяет статус письма на "прочитан" при необходимости """
     def changeReadStatus(self, mail_id, user):
         mail = getMailById(mail_id)
-        if mail.receivers.filter(receiver=user).exists():
+        if self._canRead(mail, user):
             return self._saveNewStatus(mail, user)
+    
+    def _canRead(self, mail, user):
+        """ Проверяет возможность чтения на основе его статуса """
+        if mail.sender != user:
+            return not mail.receivers.get(receiver=user).is_read 
+        return False
 
     def _saveNewStatus(self, mail, user):
         """ Изменяет статус письма на прочитанный. """

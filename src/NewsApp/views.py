@@ -7,6 +7,7 @@ from django.views import generic
 from . import services
 from .forms import KvantNewsFilesSaveForm, KvantNewsSaveForm
 from .models import KvantNews
+from AdminApp.services import getCourseQuery
 
 
 class MainPageTemplateView(KvantWorkspaceAccessMixin, generic.TemplateView):
@@ -15,13 +16,10 @@ class MainPageTemplateView(KvantWorkspaceAccessMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['max_news'] = services.getNewsCount()
-        
-        # if user.permission == 'Ученик': 
-        #     context['courses'] = KvantCourse.objects.filter(students=user)
-        # elif user.permission == 'Учитель': 
-        #     context['courses'] = KvantCourse.objects.filter(teacher=user)
-        
+
+        context.update({
+            'max_news': services.getNewsCount(),
+            'courses': getCourseQuery(self.request.user),})
         return context
 
 
@@ -37,7 +35,7 @@ class NewsListView(KvantWorkspaceAccessMixin, generic.ListView):
     """ Контроллер для организации пагинации по новостям """
     model               = KvantNews
     ordering            = ['-date', '-id']
-    paginate_by         = 6
+    paginate_by         = 8
     template_name       = 'NewsApp/NewsPreview/index.html'
     context_object_name = 'all_news'
 
@@ -48,7 +46,7 @@ class NewsCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
         object_creator = CreateOrUpdateObject(
             [KvantNewsSaveForm, KvantNewsFilesSaveForm])
         news_or_errors = object_creator.createObject(request)
-        return services.NewsObjectManupulationResponse().getResponse(request, news_or_errors)
+        return services.NewsObjectManupulationResponse().getResponse(news_or_errors)
 
 
 class NewsUpdateView(services.NewsAccessMixin, generic.View):
@@ -58,7 +56,7 @@ class NewsUpdateView(services.NewsAccessMixin, generic.View):
         object_creator = CreateOrUpdateObject(
             [KvantNewsSaveForm, KvantNewsFilesSaveForm], object=news)
         news_or_errors = object_creator.updateObject(request)
-        return services.NewsObjectManupulationResponse().getResponse(request, news_or_errors)
+        return services.NewsObjectManupulationResponse().getResponse(news_or_errors)
 
 
 class NewsDeleteView(services.NewsAccessMixin, generic.View):

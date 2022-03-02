@@ -8,7 +8,7 @@ class FileMoveBaseMixin:
         """ Создание нового валидного пути для file """
         return '/'.join([to_path, basename(file.name)])
 
-    def changeDirectory(self, file, to_path: str, is_moveable: bool):
+    def changeDirectory(self, file, to_path: str, is_moveable=True):
         """ Изменяет расположения file по пути to_path при is_moveable """
         to_path = self._getToPath(file, to_path)
         if is_moveable and file.name != to_path:

@@ -10,7 +10,6 @@
     {% include "CoreApp/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
     <link rel="stylesheet" href='{% static "NewsApp/MainPage/style.css" %}'> <!-- Стили страницы -->
-    <link rel="stylesheet" href='{% static "CoreApp/text/highlight.css" %}'>
     <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/> <!-- Слайдер -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
@@ -23,14 +22,88 @@
     {% include "CoreApp/AsideMenu/index.html" with user=user active='main_page' %}
     
     <section class="mainContainer column">
+
+        <div id="today" class="column g16">
+
+            <div class="flex space-between items-center g16">
+                <h1>Сегодня</h1>
+                <div class="row g16">
+                    <h1>22 февраля 2022</h1> 
+                    <svg style='width: 1.5rem; fill: var(--currentColor)' viewBox="0 0 448 512">
+                        <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
+                        <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div id="todayCarousel" class="carousel">
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">9:00</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">Группа</p>
+                        <p class="lesson__topic">Тема занятия</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">10:15</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">11:45</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">13:30</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">15:00</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">16:45</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">18:20</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+                <div class="carousel__slide lesson">
+                    <p class="lesson__time">19:30</p>
+                    <div class="lesson__info column g4">
+                        <p class="lesson__group">IT 1-1</p>
+                        <p class="lesson__topic">Паттерны проектирования</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Виджеты -->
         <section id='widgets' class='row g16'>
 
             <!-- Виджет "Календарь" -->
             <div id="eventsWidget">
-                <div id="eventsWidget__carousel" class="carousel">
+                <div id="eventCarousel" class="carousel">
                     <div class="carousel__slide event">
-                        <img src="{{ user.image.url }}" class='event__banner'>
+                        <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
                             <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
@@ -39,7 +112,7 @@
                         </div>
                     </div>
                     <div class="carousel__slide event">
-                        <img src="{{ user.image.url }}" class='event__banner'>
+                        <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
                             <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
@@ -48,7 +121,7 @@
                         </div>
                     </div>
                     <div class="carousel__slide event">
-                        <img src="{{ user.image.url }}" class='event__banner'>
+                        <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
                             <h2 class="event__title">Настала пора зимних праздников: "Зимняя сказка"</h2>
@@ -60,111 +133,7 @@
             </div>
             
             <!-- Виджет "Расписание" -->
-            <div id="scheduleWidget">
-
-                <div class='courseList column scrollbar'>
-                    {% for course in courses %}
-                    <div class='course row g16'>
-                        <img src="{{ course.type.image.url }}" class='course__illustration'/>
-                        <div class="course__info column g4">
-                            <p class='course__title'>{{ course }}</p>
-                            <p class='course__teacher'>
-                                {{ course.teacher.surname }} 
-                                {{ course.teacher.name|slice:"1" }}.
-                            </p>
-                        </div>
-                        <div class="row g4" style='margin-left: auto'>
-                            <div class="lesson column inactive">
-                                <p class="lesson__day">Пн</p>
-                            </div>
-                            <div class="lesson column inactive">
-                                <p class="lesson__day">Вт</p>
-                            </div>
-                            <div class="lesson column inactive">
-                                <p class="lesson__day">Ср</p>
-                            </div>
-                            <div class="lesson column inactive">
-                                <p class="lesson__day">Чт</p>
-                            </div>
-                            <div class="lesson column">
-                                <p class="lesson__day">Пт</p>
-                                <p class='lesson__time'>16:30</p>
-                            </div>
-                            <div class="lesson column inactive">
-                                <p class="lesson__day">Сб</p>
-                            </div>
-                            <div class="lesson column inactive">
-                                <p class="lesson__day">Вс</p>
-                            </div>
-                        </div>
-                        <svg viewBox="0 0 256 512">
-                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
-                        </svg>
-                    </div>
-                    {% endfor %}
-                </div>
-
-                {% for course in courses %}
-                <div class='form'>
-                    <div class="form-wrapper">
-                        <form>
-                            <div class='course row g16'>
-                                <img src="{{ course.type.image.url }}" class='course__illustration'/>
-                                <div class="course__info column g4">
-                                    <p class='course__title'>{{ course }}</p>
-                                    <p class='course__teacher'>
-                                        {{ course.teacher.surname }} 
-                                        {{ course.teacher.name|slice:"1" }}.
-                                        {{ course.teacher.patronymic|slice:"1" }}.
-                                    </p>
-                                </div>
-                                <div class="row g4" style='margin-left: auto'>
-                                    <div class="lesson column inactive">
-                                        <p class="lesson__day">Пн</p>
-                                    </div>
-                                    <div class="lesson column">
-                                        <p class="lesson__day">Вт</p>
-                                        <p class='lesson__time'>18:20</p>
-                                    </div>
-                                    <div class="lesson column inactive">
-                                        <p class="lesson__day">Ср</p>
-                                    </div>
-                                    <div class="lesson column">
-                                        <p class="lesson__day">Чт</p>
-                                        <p class='lesson__time'>18:20</p>
-                                    </div>
-                                    <div class="lesson column inactive">
-                                        <p class="lesson__day">Пт</p>
-                                    </div>
-                                    <div class="lesson column inactive">
-                                        <p class="lesson__day">Сб</p>
-                                    </div>
-                                    <div class="lesson column inactive">
-                                        <p class="lesson__day">Вс</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class='px16'>Участники</h2>
-                            <div class="users">
-                                {% for user in course.students|get_objects %}
-                                <div class="user row g8 items-center">
-                                    <img src="{{ user.image.url }}" class='user__img avatar'/>
-                                    <div class="user__info column">
-                                        <p class='user__name'>
-                                            {{ user.surname }}
-                                            {{ user.name }}
-                                        </p>
-                                        <p class='user__type'>{{ user.permission }}</p>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>    
+            {% include "NewsApp/CourseShedule/index.html" with courses=courses %}  
         </section>
         
         <!-- Новости -->
@@ -172,12 +141,14 @@
 
             <div class='row g24'>
                 <h1>Новости</h1>
+                {% if user.permission != 'Ученик' %}
                 <button class='primaryButton' onclick="open_form('#news-form')">Добавить новость</button>
-                <input type="text" class='newsSearch' placeholder="🔍︎">
+                {% endif %}
+                <!-- <input type="text" class='newsSearch' placeholder="🔍︎"> -->
             </div>
 
             <!-- Блок новостей -->
-            <div id='news__container' class='newsContainer flex g16'>
+            <div id='news__container' class='newsContainer'>
                 <!-- Спавн новсотей :\ -->
             </div>
             
@@ -190,16 +161,21 @@
     
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
     <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
+    
+    !-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     
     <script>
-        const news_per_page_num = 6;
+        const news_per_page_num = 8;
         const all_news = parseInt('{{ max_news }}');
         
         function getNewNews(){
             $.ajax({
                 type: 'GET',
-                url: `{% url "send_news" user.id %}`,
+                url: `{% url "send_news" %}`,
                 data: {'page': page},
                 cache: false,
                 success: function(response){
@@ -212,7 +188,15 @@
         }
     </script>
     <script>
-        const myCarousel = new Carousel(document.querySelector("#eventsWidget__carousel"), {
+        const todayCarousel = new Carousel(document.querySelector("#todayCarousel"), {
+            center: false,
+            slidesPerPage : 1,
+            Dots: false,
+            infinite: false,
+            friction: 0.8,
+        });
+
+        const myCarousel = new Carousel(document.querySelector("#eventCarousel"), {
             Dots: true,
             infinite: true,
             friction: 0.9,

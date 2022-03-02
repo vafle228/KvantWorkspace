@@ -1,0 +1,105 @@
+{% load base_tags %}
+{% load journal_tags %}
+
+<table>
+    <thead>
+
+        <th style='min-width: 24rem; text-align: center'>
+            <h3>Занятия</h3>
+        </th>
+
+        {% for student in students|get_objects %}
+        <th class="student">
+            <img src="{{ student.image.url }}" class="avatar">
+            <p class="student__name">{{ student.surname }} {{ student.name|slice:"1" }}.</p>
+        </th>
+        {% endfor %}
+
+    </thead>
+
+    <tbody>
+        {% for lesson in lessons %}
+            <tr class="lessonRow">
+                <td class="lesson" onclick="location.href=`{% url 'checking_page' lesson.base.id %}`">
+                    <svg viewBox="0 0 384 512" class="lesson__svg" onclick="event.stopPropagation()">
+                        <path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/>
+                    </svg>
+                    <p class="lesson__topic">{{ lesson.base.title }}</p>
+                    <p class="lesson__date">{{ lesson.date|date:"j.m.Y" }}</p>
+                </td>
+
+                {% for student in students|get_objects %}
+                <td>
+                    <span class="{{ lesson.base|get_mark_class:student }}">{{ lesson.base|get_mark:student }}</span>
+                </td>
+                {% endfor %}
+            </tr>
+
+            {% if lesson.tasks %}
+            <tr class="taskGroupRow">
+                <td colspan="9" class="taskGroup">
+                    <table>
+                        {% for work in lesson.tasks|get_objects %}
+                        <tr class="taskRow" onclick="location.href=`{% url 'checking_page' work.base.id %}`">
+                            <td class="lesson task">
+                                <svg viewBox="0 0 384 512" style="transform: rotate(90deg)" class="lesson__svg">
+                                    <path d="M318 145.6c-3.812 8.75-12.45 14.41-22 14.41L224 160v272c0 44.13-35.89 80-80 80H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h112C152.8 448 160 440.8 160 432V160L88 159.1c-9.547 0-18.19-5.656-22-14.41S63.92 126.7 70.41 119.7l104-112c9.498-10.23 25.69-10.23 35.19 0l104 112C320.1 126.7 321.8 136.8 318 145.6z"/>
+                                </svg>
+                                <p class="lesson__topic">{{ work.base.title }}</p>
+                            </td>
+                            
+                            {% for student in students|get_objects %}
+                            <td>
+                                <span class="{{ work.base|get_mark_class:student }}">{{ work.base|get_mark:student }}</span>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+
+                        <tr class="taskRow" onclick="openTaskAddForm('{{ lesson.id }}', '#taskForm')">
+                            <td class="lesson task">
+                                <svg viewBox="0 0 512 512" class="lesson__svg">
+                                    <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/>
+                                </svg>
+                                <p class="lesson__topic">Добавить задание</p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+
+    <tfoot>
+
+        <tr class="average">
+            <td style="text-align: left">Успеваемость</td>
+
+            {% for student in students|get_objects %}
+            <td><span class="average__mark">{{ lessons|get_objects|get_avarage_mark:student }}</span></td>
+            {% endfor %}
+        </tr>
+
+        <tr class="average">
+            <td style="text-align: left">Посещаемость</td>
+
+            {% for student in students|get_objects %}
+            <td><span class="average__mark">{{ lessons|get_objects|get_avarage_attendance:student }}</span></td>
+            {% endfor %}
+        </tr>
+
+    </tfoot>
+
+</table>
+
+<!-- Форма создания задания -->
+{% include "JournalApp/BaseCreationForm/index.html" with form='create' %}
+
+<script>
+    $('.lesson__svg').click(function() {
+        $(this).parent().parent().next().toggle();
+        $(this).parent().parent().toggleClass('active');
+    });
+</script>

@@ -26,7 +26,7 @@
 
                 
                 {% if form_status == 'update' %}
-                <button class='secondaryButton' onclick="sendInstanceData(getUpdateFormData(), `{% url 'update_news' user.id news.id %}`, this)" type="button">
+                <button class='secondaryButton' onclick="sendInstanceData(getUpdateFormData(), `{% url 'update_news' news.id %}`, this)" type="button">
                     <svg viewBox="0 0 24 24">
                         <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
                         <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
@@ -35,7 +35,7 @@
                     Опубликовать
                 </button>
                 {% else %}
-                <button class='secondaryButton' onclick="sendInstanceData(getNewsFormData(), `{% url 'create_news' user.id %}`, this)">
+                <button class='secondaryButton' onclick="sendInstanceData(getNewsFormData(), `{% url 'create_news' %}`, this)">
                     <svg viewBox="0 0 24 24">
                         <path class='bright' d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
                         <path class='bright' d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
@@ -77,15 +77,7 @@
         </form>
     </div>
 </div>
-<!-- Подсветка кода -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-<!-- Сама панель инструментов -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<!-- Отображение математических формул -->
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-<script src="{% static 'CoreApp/text/options.js' %}"></script>
+
 <script>
     function getNewsFormData(){
         let news_form = new FormData();

@@ -1,12 +1,6 @@
 let file_array = Array();
 let news_preview = undefined;
 
-// Открыть форму
-function open_form(form_id) {
-	$("body").css("overflow", "hidden");
-	$(form_id).addClass("active");
-}
-
 // <=== Скрипты формы добавления новости ===>
 
 // Добавление файлов по кнопке

@@ -53,7 +53,7 @@
     function changeImportantStatus(id){
         $.ajax({
             method: 'POST',
-            url: '{% url "make_important" user.id mail.id %}',
+            url: '{% url "make_important" mail.id %}',
             data: {
                 'csrfmiddlewaretoken': getCookie('csrftoken'),
             },
@@ -66,7 +66,7 @@
     function deleteMail(id){
         $.ajax({
             method: 'POST',
-            url: '{% url "delete_mail" user.id mail.id %}',
+            url: '{% url "delete_mail" mail.id %}',
             data: {
                 'csrfmiddlewaretoken': getCookie('csrftoken'),
             },

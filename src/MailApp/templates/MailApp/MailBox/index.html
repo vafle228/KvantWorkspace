@@ -8,10 +8,8 @@
     <meta charset="UTF-8">
     {% include "CoreApp/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
-    <link rel="stylesheet" href='{% static "CoreApp/text/highlight.css" %}'>
     <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
     <link rel="stylesheet" href='{% static "MailApp/MailBox/style.css" %}'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous">  <!-- Стили для отображения формул -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <title>Почта</title>
@@ -44,21 +42,21 @@
                     Новое сообщение
                 </button>
                 <nav class='column g4'>
-                    <button class="mailNavigation__link row {{ request.GET.type|get_active_btn:'received' }}" onclick="location.href=`{% url 'mail_box' user.id %}?type=received`">
+                    <button class="mailNavigation__link row {{ request.GET.type|get_active_btn:'received' }}" onclick="location.href=`{% url 'mail_box' %}?type=received`">
                         <svg viewBox="0 0 576 512">
                             <path opacity="0.6" d="M528 512H48a48 48 0 0 1-48-48v-95.2a47.29 47.29 0 0 1 10.7-30l94.4-118a12 12 0 0 1 18.1-.7l27.6 29.5a12 12 0 0 1 .6 15.7L107.6 320H200l32 64h112l32-64h92.3L424 264.6a12.16 12.16 0 0 1 .8-15.9l28.1-28.9a12.12 12.12 0 0 1 18 .9l94.6 118.2a47.77 47.77 0 0 1 10.5 29.9V464a48 48 0 0 1-48 48z"></path>
                             <path d="M171.5 160h61.9V17.1A17.16 17.16 0 0 1 250.5 0h68.6a17.09 17.09 0 0 1 17.1 17.1V160h68.3c17.8 0 26.7 21.5 14.1 34.1l-119.4 120a20 20 0 0 1-28.6-.3L157 193.8c-12.1-12.7-3.1-33.8 14.5-33.8z"></path>
                         </svg>
                         Входящие
                     </button>
-                    <button class="mailNavigation__link row {{ request.GET.type|get_active_btn:'sent' }}" onclick="location.href=`{% url 'mail_box' user.id %}?type=sent`">
+                    <button class="mailNavigation__link row {{ request.GET.type|get_active_btn:'sent' }}" onclick="location.href=`{% url 'mail_box' %}?type=sent`">
                         <svg viewBox="0 0 512 512">
                             <path opacity="0.6" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z"></path>
                             <path d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path>
                         </svg>
                         Отправленные
                     </button>
-                    <button class="mailNavigation__link row {{ request.GET.type|get_active_btn:'important' }}" onclick="location.href=`{% url 'mail_box' user.id %}?type=important`">
+                    <button class="mailNavigation__link row {{ request.GET.type|get_active_btn:'important' }}" onclick="location.href=`{% url 'mail_box' %}?type=important`">
                         <svg viewBox="0 0 576 512">
                             <path  opacity="0.6" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z"></path>
                             <path d="M110.4 474.5l25-145.5L29.7 226c-19-18.5-8.5-50.8 17.7-54.6l146.1-21.2 65.3-132.4A31.62 31.62 0 0 1 287.5 0v439.6l-130.7 68.6c-23.4 12.3-50.9-7.6-46.4-33.7z"></path>
@@ -103,21 +101,21 @@
             </div>
 
             <div class="mailNavigationBar">
-                <button class="mailNavigationBar__link {{ request.GET.type|get_active_btn:'received' }}" onclick="location.href=`{% url 'mail_box' user.id %}?type=received`">
+                <button class="mailNavigationBar__link {{ request.GET.type|get_active_btn:'received' }}" onclick="location.href=`{% url 'mail_box' %}?type=received`">
                     <svg viewBox="0 0 576 512">
                         <path opacity="0.6" d="M528 512H48a48 48 0 0 1-48-48v-95.2a47.29 47.29 0 0 1 10.7-30l94.4-118a12 12 0 0 1 18.1-.7l27.6 29.5a12 12 0 0 1 .6 15.7L107.6 320H200l32 64h112l32-64h92.3L424 264.6a12.16 12.16 0 0 1 .8-15.9l28.1-28.9a12.12 12.12 0 0 1 18 .9l94.6 118.2a47.77 47.77 0 0 1 10.5 29.9V464a48 48 0 0 1-48 48z"></path>
                         <path d="M171.5 160h61.9V17.1A17.16 17.16 0 0 1 250.5 0h68.6a17.09 17.09 0 0 1 17.1 17.1V160h68.3c17.8 0 26.7 21.5 14.1 34.1l-119.4 120a20 20 0 0 1-28.6-.3L157 193.8c-12.1-12.7-3.1-33.8 14.5-33.8z"></path>
                     </svg>
                     Входящие
                 </button>
-                <button class="mailNavigationBar__link {{ request.GET.type|get_active_btn:'sent' }}" onclick="location.href=`{% url 'mail_box' user.id %}?type=sent`">
+                <button class="mailNavigationBar__link {{ request.GET.type|get_active_btn:'sent' }}" onclick="location.href=`{% url 'mail_box' %}?type=sent`">
                     <svg viewBox="0 0 512 512">
                         <path opacity="0.6" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z"></path>
                         <path d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path>
                     </svg>
                     Отправленные
                 </button>
-                <button class="mailNavigationBar__link {{ request.GET.type|get_active_btn:'important' }}" onclick="location.href=`{% url 'mail_box' user.id %}?type=important`">
+                <button class="mailNavigationBar__link {{ request.GET.type|get_active_btn:'important' }}" onclick="location.href=`{% url 'mail_box' %}?type=important`">
                     <svg viewBox="0 0 576 512">
                         <path  opacity="0.6" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z"></path>
                         <path d="M110.4 474.5l25-145.5L29.7 226c-19-18.5-8.5-50.8 17.7-54.6l146.1-21.2 65.3-132.4A31.62 31.62 0 0 1 287.5 0v439.6l-130.7 68.6c-23.4 12.3-50.9-7.6-46.4-33.7z"></path>
@@ -172,7 +170,7 @@
 
             <div class="mails__container column g8">
                 {% for mail in mails %}
-                <div class="mailItem {{ mail|get_mail_status:user }}" onclick="getDetailMail(`{% url 'mail_detail' user.id mail.id %}`, this)">
+                <div class="mailItem {{ mail|get_mail_status:user }}" onclick="getDetailMail(`{% url 'mail_detail' mail.id %}`, this)">
                     <div class="senderInfo">
                         <img src="{{ mail.sender.image.url }}" class="senderInfo__img">
                         <div>
@@ -226,6 +224,11 @@
     <div class="alertsContainer column" id='alertsContainer'></div>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+    
     <script>AOS.init({ offset: -9999999 })</script>
     <script src='{% static "MailApp/MailBox/scripts.js" %}'></script>
     <script>

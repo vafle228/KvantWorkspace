@@ -8,14 +8,10 @@
     {% include "CoreApp/HeadSetup/index.html" %}
     <!-- Иконки расширений файлов -->
     <link rel="stylesheet" href="{% static 'NewsApp/NewsView/style.css' %}">
-    <link rel="stylesheet" href='{% static "CoreApp/text/highlight.css" %}'>
     <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
     <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>{{ news.title }}</title>
 </head>
@@ -29,7 +25,7 @@
 
             <!-- Кнопки -->
             <div class="row g8">
-                <button class="primaryButton" onclick="location.href=`{% url 'main_page' user.id %}`">
+                <button class="primaryButton" onclick="location.href=`{% url 'main_page' %}`">
                     <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                         <g transform="translate(-5 -5)">
                             <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
@@ -108,12 +104,19 @@
     {% include "NewsApp/NewsCreationForm/index.html" with form_status="update" news=news %}
 
     <div class="alertsContainer column" id='alertsContainer'></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     <script>
         const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), { Dots: false, 'infinite' : false });
     </script>
+    
+    <!-- Сама панель инструментов -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+    
     <script src="{% static 'NewsApp/NewsView/scripts.js' %}"></script>
     <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
+    
     <script>
         old_files = [
             {% for file in news.files|get_objects %}
@@ -139,13 +142,13 @@
         function delConfirm(){
             $.ajax({
                 type: 'POST',
-                url: '{% url "delete_news" user.id news.id %}',
+                url: '{% url "delete_news" news.id %}',
                 data:{
                     'csrfmiddlewaretoken': getCookie('csrftoken'),
                 },
                 cache: false,
                 success: function(response){
-                    location.href = '{% url "main_page" user.id %}'
+                    location.href = '{% url "main_page" %}'
                 }
             })
         }

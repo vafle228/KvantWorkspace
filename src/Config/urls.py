@@ -8,4 +8,6 @@ urlpatterns = [
     path('news/', include('NewsApp.urls')),
     path('mail/', include('MailApp.urls')),
     path('login/', include('LoginApp.urls')),
+    path('diary/', include('DiaryApp.urls')),
+    path('journal/', include('JournalApp.urls')),
 ]

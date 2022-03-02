@@ -10,6 +10,7 @@ from .models import KvantMessage
 
 
 class MailListView(KvantWorkspaceAccessMixin, generic.ListView):
+    """ Контроллер почтовой страницы """
     model               = KvantMessage
     ordering            = ['-date', '-id']
     paginate_by         = 8
@@ -17,9 +18,9 @@ class MailListView(KvantWorkspaceAccessMixin, generic.ListView):
     context_object_name = 'mails'
 
     def get_queryset(self):
-        box_type, search = self.request.GET.get('type'), self.request.GET.get('search')
-        return services.MailBoxQuerySelector(box_type, search).getBoxQuery(self.request.user)
-        
+        return services.MailBoxQuerySelector(
+            self.request.GET.get('type'), 
+            self.request.GET.get('search')).getBoxQuery(self.request.user)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,14 +32,16 @@ class MailListView(KvantWorkspaceAccessMixin, generic.ListView):
 
 
 class MailCreationView(KvantWorkspaceAccessMixin, generic.View):
+    """ Контроллер создания письма """
     def post(self, request, *args, **kwargs):
         object_creator = CreateOrUpdateObject(
             [KvantMailSaveForm, KvantMailReceiversForm, KvantMailFileSaveForm])
         mail_or_errors = object_creator.createObject(request)
-        return services.MailObjectManupulationResponse().getResponse(request, mail_or_errors)
+        return services.MailObjectManupulationResponse().getResponse(mail_or_errors)
 
 
 class MailDetailView(services.KvantMailAccessMixin, generic.DetailView):
+    """ Контроллер чтения писем """
     model               = KvantMessage
     pk_url_kwarg        = 'mail_identifier'
     context_object_name = 'mail'
@@ -51,25 +54,17 @@ class MailDetailView(services.KvantMailAccessMixin, generic.DetailView):
 
 
 class MailChangeImportantStatusView(services.KvantMailAccessMixin, generic.View):
+    """ Контроллер пометки важных писем """
     def post(self, request, *args, **kwargs):
-        services.makeMailImportant(
-            request.user, kwargs.get('mail_identifier'))
+        services.makeMailImportant(request.user, kwargs.get('mail_identifier'))
         return HttpResponse({'status': 200}) 
 
 
 class MailDeleteView(services.KvantMailAccessMixin, generic.View):
+    """ Контроллер удаления писем """
     def post(self, request, *args, **kwargs):
         mail = services.getMailById(kwargs.get('mail_identifier'))
         if mail.sender == request.user: mail.delete()
         else: mail.receivers.filter(receiver=request.user).delete()
         
         return HttpResponse({'status': 200})
-
-
-# TODO
-# 1) Реализовать все pass-классы
-# 2) Привентить дневник
-# 3) Заставить Вадима написать 404 страницу
-# 4) Подумать над системой создания через ajax.
-# 5) Придумать что-то с Response классом (связано с 4)
-# 6) Микро почистить темплейты (хотя все равно бесить меня будут)
