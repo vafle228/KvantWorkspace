@@ -12,9 +12,6 @@
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
     
     <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous"> <!-- Стили для отображения формул -->
-    <link rel="stylesheet" href="../../highlight.css"> <!-- Стили для подсветки кода -->
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/> <!-- Кастомные слайдеры -->
     
     <title>Заголовок новости</title>
@@ -361,20 +358,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script> <!-- Подсветка кода -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
     <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
-    
-    <!-- Отображение математических формул -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     <script>
-        const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), { Dots: false, 'infinite' : false });
+        const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), {
+                Dots: false,
+                infinite : false
+            }
+        );
     </script>
-
-    <script src="../../JS/alert.js"></script> <!-- Оповещения -->
 </body>
 
 </html>

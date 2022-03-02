@@ -1032,7 +1032,7 @@ th[data]:hover::after{
     background-color: var(--bgColor);
 }
 .dark__theme tr:hover > td{
-    filter: brightness(1.25);
+    background-color: var(--aside-bg-color);
 }
 td{
     background-color: var(--item-bg-color);
