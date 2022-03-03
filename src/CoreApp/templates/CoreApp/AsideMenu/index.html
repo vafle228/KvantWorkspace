@@ -97,7 +97,7 @@
             </button>
 
             <!-- Профиль -->
-            <div class="navigation__profile" onclick="location.href=`{% url 'main_page' %}`">
+            <div class="navigation__profile" onclick="location.href=`{% url 'settings_page' %}`">
                 <img src='{{ user.image.url }}'>
             </div>
         </div>
@@ -144,7 +144,7 @@
             </svg>
             Сообщения
         </button>
-        <button class='navigation__link' onclick="location.href=`{% url 'main_page' %}`">
+        <button class='navigation__link' onclick="location.href=`{% url 'settings_page' %}`">
             <svg viewBox="0 0 512 512">
                 <path opacity='0.3' d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
                 <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>

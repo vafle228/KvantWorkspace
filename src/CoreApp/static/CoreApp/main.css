@@ -1,6 +1,3 @@
-/* Подключение шрифтов */
-@import url("fonts/Google font/stylesheet.css");
-
 :root{
     /* Брейкпоинты */
     --xsmall: 576px;
@@ -13,9 +10,6 @@
 }
 
 /* Темы оформления */
-body[colorScheme='colorScheme__green']{
-    --illustration: url(../../img/backgrounds/6.jpg);
-}
 body[colorScheme='colorScheme__green'].dark__theme{
     --bgColor: #66cd0311;
     --currentColor: #66cd03;
@@ -24,10 +18,6 @@ body[colorScheme='colorScheme__green'].light__theme{
     --bgColor: #35a75511;
     --currentColor: #35a755;
 }
-
-body[colorScheme='colorScheme__blue']{
-    --illustration: url(../../img/backgrounds/1.jpg);
-}
 body[colorScheme='colorScheme__blue'].dark__theme{
     --bgColor: #00b2ff11;
     --currentColor: #00b2ff;
@@ -35,10 +25,6 @@ body[colorScheme='colorScheme__blue'].dark__theme{
 body[colorScheme='colorScheme__blue'].light__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
-}
-
-body[colorScheme='colorScheme__red']{
-    --illustration: url(../../img/backgrounds/5.jpg);
 }
 body[colorScheme='colorScheme__red'].dark__theme{
     --bgColor: #f1416c11;
@@ -49,9 +35,6 @@ body[colorScheme='colorScheme__red'].light__theme{
     --currentColor: #f17473;
 }
 
-body[colorScheme='colorScheme__purple']{
-    --illustration: url(../../img/backgrounds/11.jpg);
-}
 body[colorScheme='colorScheme__purple'].dark__theme{
     --bgColor: #6c63ff11;
     --currentColor: #6c63ff;
@@ -1032,7 +1015,7 @@ th[data]:hover::after{
     background-color: var(--bgColor);
 }
 .dark__theme tr:hover > td{
-    filter: brightness(1.25);
+    background-color: var(--aside-bg-color);
 }
 td{
     background-color: var(--item-bg-color);

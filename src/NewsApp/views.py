@@ -19,7 +19,7 @@ class MainPageTemplateView(KvantWorkspaceAccessMixin, generic.TemplateView):
 
         context.update({
             'max_news': services.getNewsCount(),
-            'courses': getCourseQuery(self.request.user),})
+            'courses': getCourseQuery(self.request.user)})
         return context
 
 
@@ -27,7 +27,7 @@ class NewsDetailView(services.NewsExistsMixin, generic.DetailView):
     """ Контроллер детального просмотра новостей """
     model               = KvantNews
     pk_url_kwarg        = 'news_identifier'
-    context_object_name = 'news';
+    context_object_name = 'news'
     template_name       = 'NewsApp/NewsDetailView/index.html'
 
 

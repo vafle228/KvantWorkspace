@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    {% include "CoreApp/HeadSetup/index.html" %}
+    <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
+    <link rel="stylesheet" href='{% static "ProfileApp/style.css" %}'> <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+    
+    <title>Личный кабинет</title>
+</head>
+
+<body>
+
+    {% include "CoreApp/AsideMenu/index.html" with user=user %}
+    
+    <section class="profilePage mainContainer">
+
+        {% include "ProfileApp/AccountView/index.html" with user=user %}
+
+        <div class="profileContent column g24">
+            <section class="menu">
+                <button class="menu__button active" onclick="location.href = `{% url 'settings_page' %}`">
+                    <svg viewBox="0 0 512 512">
+                        <path opacity="0.6" d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
+                        <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>
+                    </svg>
+                    <p>Учетная запись</p>
+                </button>
+                <button class="menu__button" onclick="location.href = `{% url 'portfolio_page' %}`">
+                    <svg viewBox="0 0 576 512">
+                        <path opacity="0.6" d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
+                        <path d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
+                    </svg>
+                    <p>Портфолио</p>
+                </button>
+                <button class="menu__button" onclick="location.href = `{% url 'statistics_page' %}`">
+                    <svg viewBox="0 0 18 16">
+                        <g transform="translate(-3 -4)">
+                            <rect opacity="0.6" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
+                            <rect width="3" height="11" rx="1.5" transform="translate(8 9)"/>
+                            <rect width="3" height="9" rx="1.5" transform="translate(18 11)"/>
+                            <rect width="3" height="7" rx="1.5" transform="translate(3 13)"/>
+                        </g>
+                    </svg> 
+                    <p>Статистика</p>
+                </button>
+            </section>
+            
+            <div class="profile__tabs">
+                <div class="profile__tab column g24 active" id='profileTab'>
+                    <div class="column g16">
+                        <h1>Персонализация</h1>
+                    
+                        <div class="row g16">
+                            <button class="secondaryButton" style="width: min-content" onclick="switch_theme()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <g id="eclipse" transform="translate(-8 -8)">
+                                        <path opacity='0.3' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
+                                        <g>
+                                        <path d="M16.333,10.667A5.007,5.007,0,0,0,11.426,14.7,5.409,5.409,0,0,1,12,14.667,5.34,5.34,0,0,1,17.332,20a5.394,5.394,0,0,1-.033.573,5,5,0,0,0-.966-9.906Z"/>
+                                        <path d="M16.333,10a.667.667,0,0,1-.667-.667V8.667a.667.667,0,0,1,1.334,0v.667A.667.667,0,0,1,16.333,10Z"/>
+                                        <path d="M23.333,16.333h-.667a.667.667,0,1,1,0-1.333h.667a.667.667,0,0,1,0,1.333Z"/>
+                                        <path d="M20.341,11.66a.668.668,0,0,1,0-.943l.471-.472a.667.667,0,1,1,.943.943l-.471.472A.668.668,0,0,1,20.341,11.66Z"/>
+                                        <path d="M20.812,21.088l-.471-.472a.667.667,0,0,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                                        <path d="M11.383,11.66l-.471-.472a.667.667,0,1,1,.943-.943l.471.472a.667.667,0,0,1-.943.943Z"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </button>
+                            <h3>Тема</h3>
+                        </div>
+    
+                        <div class="row g16">
+                            <button class="secondaryButton" style="width: min-content" onclick="switch_color_scheme()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <g id="roller" transform="translate(-8 -8)">
+                                        <path d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
+                                        <path opacity='0.3' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
+                                        <path d="M15.5,18H13.167A1.168,1.168,0,0,0,12,19.167v3.667A1.167,1.167,0,0,0,13.167,24H15.5a1.168,1.168,0,0,0,1.167-1.167V19.166A1.168,1.168,0,0,0,15.5,18Z"/>
+                                    </g>
+                                </svg>
+                            </button>
+                            <h3>Цветовая схема</h3>
+                        </div>
+                    </div>
+                    <h1>Данные учетной записи</h1>
+                    <div class="profile__data">
+                        <h3>Электронная почта</h3>
+                        <div class="row g8">
+                            <input type="text" autocomplete="off" autocapitalize="off" value="karataev.vadim.a@gmail.com" disabled>
+                            <button class="secondaryButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile__data">
+                        <h3>Пароль</h3>
+                        <div class="row g8">
+                            <input type="text" autocomplete="off" autocapitalize="off" value="••••••••" disabled>
+                            <button class="secondaryButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+</body>
+
+</html>
