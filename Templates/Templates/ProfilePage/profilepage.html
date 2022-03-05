@@ -143,22 +143,24 @@
         </button>
     </nav>
 
-    <section class="profilePage mainContainer">
+    <section class="mainContainer">
 
         <div class="profileCard">
 
-
-            <div class="profileCard__imgBox">
-                <img src="../../img/avatars/Upstream-7.png" alt="profileImg" class='profileCard__profileImg'>
-                <svg viewBox="0 0 512 512">
-                    <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
-                </svg>
+            <div class="profileCard__profile">
+                <div class="profileCard__imgBox">
+                    <img src="../../img/avatars/Upstream-7.png" alt="profileImg" class='profileCard__profileImg'>
+                    <svg viewBox="0 0 512 512">
+                        <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
+                    </svg>
+                </div>
+    
+                <div class="column g4">
+                    <p class="profileCard__profileName">Фамилия Имя</p>
+                    <p class="profileCard__profileRole">Ученик</p>
+                </div>
             </div>
-
-            <div class="column g4">
-                <p class="profileCard__profileName">Фамилия Имя</p>
-                <p class="profileCard__profileRole">Ученик</p>
-            </div>
+            
 
             <p class='profileCard__description'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione non quia eius dolor temporibus eveniet adipisci.</p>
 
@@ -192,7 +194,7 @@
             </div>
 
             <button class="dangerButton">
-                Выйти из учетной записи
+                <p>Выйти из учетной записи</p>
                 <svg viewBox="0 0 512 512">
                     <path d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z"/>
                 </svg>
@@ -289,6 +291,14 @@
                     </div>
                 </div>
                 <div class="profile__tab inactive" id='portfolioTab'>
+                    <header>
+                        <button class="secondaryButton">
+                            <svg viewBox="0 0 384 512">
+                                <path d="M86.63 342.6L160 269.3V448c0 17.69 14.31 32 32 32s32-14.31 32-32V269.3l73.38 73.38C303.6 348.9 311.8 352 320 352s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25l-128-128c-12.5-12.5-32.75-12.5-45.25 0l-128 128c-12.5 12.5-12.5 32.75 0 45.25S74.13 355.1 86.63 342.6zM32 96h320c17.69 0 32-14.31 32-32s-14.31-32-32-32H32C14.31 32 0 46.31 0 64S14.31 96 32 96z"/>
+                            </svg>
+                            Загрузить
+                        </button>
+                    </header>
                     <div class="galleryBox">
                         <a data-fancybox="gallery" href="../../img/certificate.png">
                             <img src="../../img/certificate.png" />
@@ -313,8 +323,8 @@
         });
 
         function changeType(tabId){
-            $('.profile__tabs').find(".profile__tab").hide();
-            $('.profile__tabs').find(tabId).show();
+            $('.profile__tabs').find(".profile__tab").removeClass("active");
+            $('.profile__tabs').find(tabId).addClass("active");
         }
     </script>
 </body>

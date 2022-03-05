@@ -9,8 +9,13 @@
     min-width: 24rem;
     overflow: hidden;
 }
+.profileCard__profile{
+    display: flex; flex-direction: column;
+    gap: 1rem;
+}
 .profileCard__imgBox{
     width: 6rem; height: 6rem;
+    min-height: 6rem;
     position: relative;
     overflow: hidden;
     border-radius: 4rem;
@@ -29,7 +34,7 @@
     opacity: 0;
 }
 .profileCard__profileImg{
-    width: 6rem; height: 6rem;
+    width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
 }
@@ -78,18 +83,22 @@
     text-align: center;
     border-radius: 0.5rem;
     height: 3rem;
+    margin-top: auto;
+}
+.profileCard .dangerButton p{
+    color: #fff;
     font-size: 1rem;
     font-weight: 500;
-    margin-top: auto;
-    color: #fff;
 }
 .profileCard .dangerButton svg{
     margin-left: auto;
     fill: #fff;
 }
 .profileCard .dangerButton:hover{
-    color: var(--text-primary-color);
     background-color: var(--theme-light-alpha);
+}
+.profileCard .dangerButton:hover p{
+    color: var(--text-primary-color);
 }
 .profileCard .dangerButton:hover svg{
     fill: var(--text-primary-color);
@@ -107,6 +116,8 @@
 }
 .profile__tab.active{
     display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .galleryBox{
@@ -151,4 +162,50 @@
     border-radius: 0.5rem;
     background-color: var(--item-bg-color);
     color: var(--text-primary-color);
+}
+
+
+/* Адаптивность */
+@media screen and (max-width: 740px){
+    .mainContainer{
+        display: flex; flex-direction: column;
+        padding: 1.5rem;
+        padding-bottom: 6rem;
+        height: auto; min-height: 100%;
+    }
+    .profileCard{
+        width: 100%;
+        gap: 1.5rem;
+    }
+    .profileCard__profile{
+        width: 100%;
+        flex-direction: row; align-items: center; gap: 1.5rem;
+    }
+    .profileCard__imgBox{
+        height: 4rem; width: 4rem;
+        min-height: 4rem;
+    }
+    .tag__groupName{
+        margin-bottom: -0.75rem;
+    }
+
+    .profileCard .dangerButton{
+        position: absolute; right: 1rem; top: 1.5rem;
+        width: 3rem;
+        border-radius: 1.5rem;
+        background-color: var(--theme-light-alpha);
+    }
+    .profileCard .dangerButton svg{
+        fill: var(--text-primary-color);
+    }
+    .profileCard .dangerButton:hover svg{
+        fill: var(--currentColor);
+    }
+    .profileCard .dangerButton p{
+        display: none;
+    }
+
+    .profileContent{
+        width: 100%;
+    }
 }
