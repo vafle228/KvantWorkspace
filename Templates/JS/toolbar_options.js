@@ -9,18 +9,21 @@ var toolbarOptions = [
   // ['formula'],
   ['link']
 ];
+
 var quill = new Quill('#editor', {
   modules: {
     toolbar: toolbarOptions,
   },
   theme: 'snow',
 });
+
 var quill = new Quill('#editor1', {
   modules: {
     toolbar: toolbarOptions,
   },
   theme: 'snow',
 });
+
 var quill = new Quill('#editor2', {
   modules: {
     toolbar: toolbarOptions,
