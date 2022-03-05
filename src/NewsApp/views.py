@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
                                      KvantWorkspaceAccessMixin)
 from CoreApp.services.objects import CreateOrUpdateObject
@@ -63,5 +63,5 @@ class NewsDeleteView(services.NewsAccessMixin, generic.View):
     """ Контроллер удаления новости """
     def post(self, request, *args, **kwargs):
         services.getNewsById(kwargs.get('news_identifier')).delete()
-        return HttpResponse({'status': 200})
+        return JsonResponse({'status': 200})
         

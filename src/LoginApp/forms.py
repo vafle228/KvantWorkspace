@@ -13,7 +13,7 @@ class UserImageManagerMixin(ImageThumbnailBaseMixin):
 class KvantUserCreationForm(UserCreationForm, UserImageManagerMixin):
     def __init__(self, *args, **kwargs):
         super(KvantUserCreationForm, self).__init__(*args, **kwargs)
-        super(UserImageManagerMixin, self).__init__(coef=0.35)
+        super(UserImageManagerMixin, self).__init__(coef=0.2)
     
     class Meta:
         model = KvantUser

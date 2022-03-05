@@ -27,7 +27,7 @@ function addNewFileHandler(event){
 function addNewsPreview(news_preview){
 	$('#news-preview')[0].style.display = 'none' // Скрытие кнопки "Загрузить картинку"
 
-	let btns_container = $('.item-header')[0] // Определение контейнера
+	let btns_container = $('#formButtons')[0] // Определение контейнера
 	let preview_widget = addFileWidget(news_preview) // Получение html-а превью
 
 	// Фунция по клику на "крестик"

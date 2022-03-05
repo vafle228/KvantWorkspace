@@ -1,4 +1,24 @@
+{% load static %}
 {% load profile_tags %}
+
+<head>
+	<style>
+		body[colorScheme='colorScheme__blue']{
+		    --illustration: url({% static 'CoreApp/imgs/1.jpg' %});
+		}
+
+		body[colorScheme='colorScheme__red']{
+		    --illustration: url({% static 'CoreApp/imgs/5.jpg' %});
+		}
+
+		body[colorScheme='colorScheme__purple']{
+		    --illustration: url({% static 'CoreApp/imgs/11.jpg' %});
+		}
+		body[colorScheme='colorScheme__green']{
+		    --illustration: url({% static 'CoreApp/imgs/6.jpg' %});
+		}
+	</style>
+</head>
 
 <body>
     <div class="profileCard">

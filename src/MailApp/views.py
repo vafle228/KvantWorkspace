@@ -20,7 +20,8 @@ class MailListView(KvantWorkspaceAccessMixin, generic.ListView):
     def get_queryset(self):
         return services.MailBoxQuerySelector(
             self.request.GET.get('type'), 
-            self.request.GET.get('search')).getBoxQuery(self.request.user)
+            self.request.GET.get('search')
+        ).getBoxQuery(self.request.user)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

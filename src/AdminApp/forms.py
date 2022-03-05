@@ -26,7 +26,7 @@ class KvantCourseTypeSaveForm(forms.ModelForm, ImageManagerMixin):
     
     def __init__(self, *args, **kwargs):
         super(KvantCourseTypeSaveForm, self).__init__(*args, **kwargs)
-        super(ImageManagerMixin, self).__init__(coef=0.4)
+        super(ImageManagerMixin, self).__init__(coef=0.25)
         
         self.fields['name'].error_messages.update({
             'invalid': u'Заголовок невалиден.',

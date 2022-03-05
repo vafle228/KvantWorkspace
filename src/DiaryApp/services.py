@@ -3,7 +3,7 @@ from CoreApp.services.access import KvantObjectExistsMixin
 from JournalApp.services.queryget import getLessonById
 
 
-def getTaskById(self, task_id):
+def getTaskById(task_id):
     """ Возвращает задание по переданному task_id """
     return KvantHomeTask.objects.get(id=task_id)
 
@@ -19,6 +19,7 @@ class LessonAccessMixin(KvantObjectExistsMixin):
         if super().accessTest(**kwargs):
             lesson = getLessonById(kwargs.get(self.request_object_arg))
             return self._lessonAccessMixin(lesson, kwargs.get('user'))
+        return False
     
     def _objectExiststTest(self, object_id):
         return KvantLesson.objects.filter(id=object_id).exists()
@@ -34,9 +35,10 @@ class TaskAccessMixin(KvantObjectExistsMixin):
         if super().accessTest(**kwargs):
             task = getTaskById(kwargs.get(self.request_object_arg))
             return self._taskAccessMixin(task, kwargs.get('user'))
+        return False
 
     def _objectExiststTest(self, object_id):
         return KvantHomeTask.objects.filter(id=object_id).exists()
     
     def _taskAccessMixin(self, task, user):
-        return task.sender == user
+        return True

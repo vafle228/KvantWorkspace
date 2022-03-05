@@ -20,9 +20,9 @@ def makeMailImportant(user, mail_id):
 
 
 class MailBoxQuerySelector:
-    """ Класс получения множества писем по type и search """
-    def __init__(self, type, search=None):
-        self.box_type = type
+    """ Класс получения множества писем по box_type и search """
+    def __init__(self, box_type, search=None):
+        self.box_type = box_type
         self.search_param = search
     
     def getBoxQuery(self, user):
