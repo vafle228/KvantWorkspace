@@ -7,7 +7,7 @@ header{
 }
 
 .searchPage nav{
-    display: flex; flex-direction: row; gap: 0.75rem;
+    display: flex; flex-direction: row; gap: 1rem;
 }
 .searchPage nav h3{
     font-size: 1rem;
@@ -23,20 +23,34 @@ header{
 }
 
 
-/* .table{
-} */
+.table{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.tableHeader{
+    background-color: var(--item-bg-color);
+    height: 3rem; width: max-content;
+    display: flex; flex-direction: row; gap: 1.5rem;
+    align-items: center;
+    padding: 0 0.5rem 0 1.5rem;
+    border: var(--theme-light) solid 1px;
+    margin-bottom: -1px;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+.tableHeader p{
+    color: var(--text-primary-color);
+    font-weight: 500;
+}
 .tableRow{
     background-color: var(--item-bg-color);
     height: 4rem; width: max-content;
     display: flex; flex-direction: row; gap: 1.5rem;
     align-items: center;
-    padding: 0 1.5rem;
+    padding: 0 0.5rem 0 1.5rem;
     border: var(--theme-light) solid 1px;
     margin-bottom: -1px;
 }
-.tableRow:first-of-type{
-    border-radius: 0.25rem 0.25rem 0 0;
-}
+
 .tableRow:last-of-type{
     border-radius: 0 0 0.25rem 0.25rem;
 }
@@ -46,8 +60,8 @@ header{
 .dark__theme .tableRow:hover{
     background-color: var(--aside-bg-color);
 }
-/* .tableRow:nth-of-type(2n){
-    background-color: var(--theme-light);
+/* .tableRow:nth-of-type(2n + 1){
+    background-color: var(--theme-light-alpha);
 } */
 .tableCell{
     width: 9.5rem;
@@ -55,6 +69,7 @@ header{
     display: flex; flex-direction: row; gap: 0.5rem;
     align-items: center;
 }
+
 .tableCell p{
     width: calc(100% - 1.5rem);
     overflow: hidden;
@@ -64,6 +79,11 @@ header{
 .dark__theme .tableCell p{
     color: var(--text-primary-color);
 }
+.tableCell p:hover{
+    text-decoration: underline;
+    color: var(--currentColor);
+}
+
 .tableCell svg{
     width: 1rem; height: 1rem;
     fill: var(--text-universal-color);
@@ -71,16 +91,22 @@ header{
 .tableCell.email{
     width: 16rem;
 }
-.tableCell.date{
-    width: 7rem;
-}
+
+/* .tableCell input{
+    height: 2rem; width: calc(100% - 1.5rem);
+    padding: 0 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--item-bg-color);
+    color: var(--text-primary-color);
+    font-size: 1.125rem;
+} */
 
 input[type="checkbox"]{
     width: 1rem; height: 1rem;
 }
 
 .tableUser{
-    width: 16rem;
+    width: 20rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
@@ -91,11 +117,14 @@ input[type="checkbox"]{
     width: 2.25rem; height: 2.25rem;
 }
 .tableUser__name{
-    height: 1rem;
+    height: 1rem; width: 16.25rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-primary-color);
     margin-bottom: 0.125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .tableUser__role{
     height: 1rem;

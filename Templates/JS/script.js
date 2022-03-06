@@ -111,7 +111,7 @@ function copytext(el) {
     
 	let alert = $(`
 		<div class='alert good'>
-            <p>Скопировано</p>
+			<p>Скопировано</p>
         </div>
 	`);
 

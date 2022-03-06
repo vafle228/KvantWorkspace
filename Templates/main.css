@@ -787,6 +787,16 @@ button.primaryButton:hover{
     transform: none !important;
 }
 
+.light__theme .combinedButton.danger:hover{
+    background-color: #ff634722;
+}
+.dark__theme .combinedButton.danger:hover{
+    background-color: var(--theme-light);
+}
+.combinedButton.danger:hover svg{
+    fill: tomato;
+}
+
 button[class$='Button']{
     font-size: 1.1rem;
     transition: all .1s;
@@ -896,6 +906,7 @@ button[class$='Button']:active{
     color: #fff;
 }
 .alert svg{
+    width: 1rem; height: 1rem;
     fill: #fff;
 }
 .alert button{
@@ -996,6 +1007,17 @@ button[class$='Button']:active{
     width: 0.25rem;
 }
 .scrollbar::-webkit-scrollbar-thumb{
+    background-color: var(--theme-light-alpha);
+    border-radius: 0.125rem;
+}
+
+.scrollbarX{
+    padding-bottom: 0.5rem;
+}
+.scrollbarX::-webkit-scrollbar{
+    height: 0.25rem;
+}
+.scrollbarX::-webkit-scrollbar-thumb{
     background-color: var(--theme-light-alpha);
     border-radius: 0.125rem;
 }
