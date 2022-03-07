@@ -16,7 +16,7 @@ header h3:not(.active):hover{
 }
 
 /* Виджет  "Сегодня" */
-#today{
+/* #today{
     width: 100%;
 }
 #today h1{
@@ -75,7 +75,7 @@ header h3:not(.active):hover{
 #today .lesson svg{
     width: 1.5rem; height: 1.5rem;
     fill: var(--currentColor);
-}
+} */
 
 /* Виджет "События" */
 #eventsWidget{

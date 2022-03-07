@@ -1350,3 +1350,87 @@ td{
     font-weight: 500;
     font-size: 1rem;
 }
+
+
+/* Повестка дня */
+.agenda{
+    position: fixed; left: 6.5rem;
+    width: 24rem; height: 48rem;
+    background-color: var(--item-bg-color);
+    border: var(--theme-light-alpha) solid 1px;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    max-width: calc(100% - 5.5rem - 2rem);
+
+    opacity: 0;
+    bottom: -64rem;
+    transition: opacity 0.4s, bottom 0.4s;
+}
+.agenda.active{
+    opacity: 1;
+    bottom: 1rem;
+}
+.agenda__container{
+    display: flex; flex-direction: column;
+    overflow: auto;
+    height: 100%;
+}
+.agenda__lesson{
+    display: flex; flex-direction: row; gap: 1rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+    border-radius: 0.75rem;
+}
+
+.agenda__lesson .column{
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    width: calc(100% - 3rem);
+    background-color: var(--theme-light);
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.dark__theme .agenda__lesson:hover .column{
+    background-color: var(--aside-bg-color);
+}
+
+.agenda__lesson .column::before{
+    content: "";
+    height: 100%; width: 0.25rem;
+    background-color: var(--currentColor);
+    position: absolute; top: 0; left: 0;
+}
+
+.agenda__lesson .title{
+    color: var(--text-primary-color);
+    font-weight: 500;
+    font-size: 1.25rem;
+
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.agenda__lesson .time{
+    width: 2rem;
+    padding: 0.75rem 0;
+    line-height: 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.agenda__lesson .text{
+    margin: 0.25rem 0 0.5rem;
+    line-height: 1.25;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.agenda__lesson .secondaryButton{
+    height: 2rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+}

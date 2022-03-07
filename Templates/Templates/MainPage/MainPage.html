@@ -57,7 +57,7 @@
 
         <div class='navigation__group column g8'>
             <button onclick="switch_theme()" class='navigation__link'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <svg viewBox="0 0 16 16">
                     <g id="eclipse" transform="translate(-8 -8)">
                         <path opacity='0.3' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
                         <g>
@@ -72,7 +72,7 @@
                 </svg>
             </button>
             <button onclick="switch_color_scheme()" class='navigation__link'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <svg viewBox="0 0 16 16">
                     <g id="roller" transform="translate(-8 -8)">
                         <path d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
                         <path opacity='0.3' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
@@ -85,7 +85,12 @@
         <div class='navigation__group column g8'>
 
             <!-- Список задач -->
-            <button class='navigation__link'>
+            <button class='navigation__link' onclick="
+                $('#agenda').toggleClass('active');
+                $('#notifications').removeClass('active');
+                $(this).toggleClass('active');
+                $(this).next().removeClass('active');
+            ">
                 <svg viewBox="0 0 512 512">
                     <path opacity='0.3' d="M166.57 282.71L44 159.21a17.87 17.87 0 0 1 .18-25.2l42.1-41.77a17.87 17.87 0 0 1 25.2.18l68.23 68.77L336.87 5.11a17.88 17.88 0 0 1 25.21.18L404 47.41a17.88 17.88 0 0 1-.18 25.21L191.78 282.89a17.88 17.88 0 0 1-25.21-.18z"></path>
                     <path d="M504.5 172a25.86 25.86 0 0 1 0 36.42L210.1 504.46a25.48 25.48 0 0 1-36.2 0L7.5 337.1a25.84 25.84 0 0 1 0-36.41l36.2-36.41a25.48 25.48 0 0 1 36.2 0L192 377l240.1-241.46a25.5 25.5 0 0 1 36.2 0L504.5 172z"></path>
@@ -93,7 +98,12 @@
             </button>
 
             <!-- Уведомления -->
-            <button class='navigation__link attention' onclick="$('#notifications').toggleClass('active');$(this).toggleClass('active')">
+            <button class='navigation__link attention' onclick="
+                $('#notifications').toggleClass('active');
+                $('#agenda').removeClass('active');
+                $(this).toggleClass('active');
+                $(this).prev().removeClass('active');
+            ">
                 <svg viewBox="0 0 448 512">
                     <path d="M448 384c-.1 16.4-13 32-32.1 32H32.08C13 416 .09 400.4 0 384a31.25 31.25 0 0 1 8.61-21.71c19.32-20.76 55.47-52 55.47-154.29 0-77.7 54.48-139.9 127.94-155.16V32a32 32 0 1 1 64 0v20.84C329.42 68.1 383.9 130.3 383.9 208c0 102.3 36.15 133.53 55.47 154.29A31.27 31.27 0 0 1 448 384z"></path>
                     <path opacity='0.3' d="M160 448h128a64 64 0 0 1-128 0z"></path>
@@ -152,7 +162,7 @@
     <!-- Основной контейнер -->
     <section class="mainContainer column">
 
-        <div id="today" class="column g16">
+        <!-- <div id="today" class="column g16">
 
             <div class="flex space-between items-center g16">
                 <h1>Сегодня</h1>
@@ -201,29 +211,8 @@
                         <p class="lesson__topic">Паттерны проектирования</p>
                     </div>
                 </div>
-                <div class="carousel__slide lesson">
-                    <p class="lesson__time">16:45</p>
-                    <div class="lesson__info column g4">
-                        <p class="lesson__group">IT 1-1</p>
-                        <p class="lesson__topic">Паттерны проектирования</p>
-                    </div>
-                </div>
-                <div class="carousel__slide lesson">
-                    <p class="lesson__time">18:20</p>
-                    <div class="lesson__info column g4">
-                        <p class="lesson__group">IT 1-1</p>
-                        <p class="lesson__topic">Паттерны проектирования</p>
-                    </div>
-                </div>
-                <div class="carousel__slide lesson">
-                    <p class="lesson__time">19:30</p>
-                    <div class="lesson__info column g4">
-                        <p class="lesson__group">IT 1-1</p>
-                        <p class="lesson__topic">Паттерны проектирования</p>
-                    </div>
-                </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Виджеты -->
         <section id='widgets' class='row g16'>
@@ -679,16 +668,7 @@
 
     </section>
 
-    <!-- Кнопка "В начало страницы" -->
-    <div id="arrowTop" hidden>
-        <svg viewBox="0 0 14 14">
-            <g transform="translate(-5 -5)">
-                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
-                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
-            </g>
-        </svg> 
-    </div>
-
+    <!-- Уведомления -->
     <section class="notifications" id="notifications">
         <div class="notifications__container">
             <div class="notification">
@@ -757,7 +737,67 @@
         </div>
     </section>
 
-    
+    <!-- Повестка дня -->
+    <section class="agenda" id="agenda">
+        <div class="agenda__container">
+            <div class="agenda__lesson">
+                <p class="time">8:00</p>
+                <div class="column">
+                    <p class="title">Группа</p>
+                    <p class="text">Тема занятия</p>
+                    <div class="row g8">
+                        <button class="secondaryButton">
+                            <svg viewBox="0 0 640 512">
+                                <path d="M0 256C0 167.6 71.63 96 160 96H256C273.7 96 288 110.3 288 128C288 145.7 273.7 160 256 160H160C106.1 160 64 202.1 64 256C64 309 106.1 352 160 352H256C273.7 352 288 366.3 288 384C288 401.7 273.7 416 256 416H160C71.63 416 0 344.4 0 256zM480 416H384C366.3 416 352 401.7 352 384C352 366.3 366.3 352 384 352H480C533 352 576 309 576 256C576 202.1 533 160 480 160H384C366.3 160 352 145.7 352 128C352 110.3 366.3 96 384 96H480C568.4 96 640 167.6 640 256C640 344.4 568.4 416 480 416zM416 224C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H224C206.3 288 192 273.7 192 256C192 238.3 206.3 224 224 224H416z"/>
+                            </svg>
+                            Журнал
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="agenda__lesson">
+                <p class="time">10:15</p>
+                <div class="column">
+                    <p class="title">Группа</p>
+                    <p class="text">Тема занятия</p>
+                    <div class="row g8">
+                        <button class="secondaryButton">
+                            <svg viewBox="0 0 640 512">
+                                <path d="M0 256C0 167.6 71.63 96 160 96H256C273.7 96 288 110.3 288 128C288 145.7 273.7 160 256 160H160C106.1 160 64 202.1 64 256C64 309 106.1 352 160 352H256C273.7 352 288 366.3 288 384C288 401.7 273.7 416 256 416H160C71.63 416 0 344.4 0 256zM480 416H384C366.3 416 352 401.7 352 384C352 366.3 366.3 352 384 352H480C533 352 576 309 576 256C576 202.1 533 160 480 160H384C366.3 160 352 145.7 352 128C352 110.3 366.3 96 384 96H480C568.4 96 640 167.6 640 256C640 344.4 568.4 416 480 416zM416 224C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H224C206.3 288 192 273.7 192 256C192 238.3 206.3 224 224 224H416z"/>
+                            </svg>
+                            Журнал
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="agenda__lesson">
+                <p class="time">11:45</p>
+                <div class="column">
+                    <p class="title">Группа</p>
+                    <p class="text">Тема занятия</p>
+                    <div class="row g8">
+                        <button class="secondaryButton">
+                            <svg viewBox="0 0 640 512">
+                                <path d="M0 256C0 167.6 71.63 96 160 96H256C273.7 96 288 110.3 288 128C288 145.7 273.7 160 256 160H160C106.1 160 64 202.1 64 256C64 309 106.1 352 160 352H256C273.7 352 288 366.3 288 384C288 401.7 273.7 416 256 416H160C71.63 416 0 344.4 0 256zM480 416H384C366.3 416 352 401.7 352 384C352 366.3 366.3 352 384 352H480C533 352 576 309 576 256C576 202.1 533 160 480 160H384C366.3 160 352 145.7 352 128C352 110.3 366.3 96 384 96H480C568.4 96 640 167.6 640 256C640 344.4 568.4 416 480 416zM416 224C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H224C206.3 288 192 273.7 192 256C192 238.3 206.3 224 224 224H416z"/>
+                            </svg>
+                            Журнал
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кнопка "В начало страницы" -->
+    <div id="arrowTop" hidden>
+        <svg viewBox="0 0 14 14">
+            <g transform="translate(-5 -5)">
+                <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+            </g>
+        </svg> 
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
@@ -773,13 +813,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     <script>
-        const todayCarousel = new Carousel(document.querySelector("#todayCarousel"), {
-            center: false,
-            slidesPerPage : 1,
-            Dots: false,
-            infinite: false,
-            friction: 0.8,
-        });
+        // const todayCarousel = new Carousel(document.querySelector("#todayCarousel"), {
+        //     center: false,
+        //     slidesPerPage : 1,
+        //     Dots: false,
+        //     infinite: false,
+        //     friction: 0.8,
+        // });
 
         const eventCarousel = new Carousel(document.querySelector("#eventCarousel"), {
             Dots: true,
