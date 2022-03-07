@@ -17,7 +17,7 @@
             </button>
 
             {% if user.permission == 'Ученик' %}
-            <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' %}`">
+            <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' %}?period={% now 'n' %}`">
                 <svg viewBox="0 0 576 512">
                     <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
                     <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
@@ -114,7 +114,7 @@
         </button>
         
         {% if user.permission == 'Ученик' %}
-        <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' %}`">
+        <button class='navigation__link {{ active|get_active_btn:"diary_page" }}' onclick="location.href=`{% url 'diary_page' %}?period={% now 'n' %}`">
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
                 <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
@@ -155,11 +155,13 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="{% static 'CoreApp/scripts.js' %}"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init()</script>
 <script>
     function themeChange(theme, color){
         $.ajax({
             type: 'POST',
-            url: '{% url "change_theme" user.id %}',
+            url: '{% url "change_theme" %}',
             data: {
                 theme: theme,
                 color: color,

@@ -4,10 +4,6 @@ let news_preview = undefined;
 // <=== Скрипты формы добавления новости ===>
 
 // Добавление файлов по кнопке
-function openFileDialog(fileInput){
-	$(fileInput)[0].value = '';
-	$(fileInput).click();
-}
 
 function addNewsPreviewHandler(event){
 	if(event.target.files[0] !== undefined){

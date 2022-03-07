@@ -1,10 +1,6 @@
 let users = Array();
 let file_array = Array();
 
-function openFileDialog(fileInput){
-	$(fileInput)[0].value = '';
-	$(fileInput)[0].click();
-}
 
 // <=== Костыли Вадима ===>
 function updateFormCondition(btn){

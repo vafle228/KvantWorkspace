@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import KvantMessage, MailReceiver, ImportantMail
 
-# Register your models here.
+
+admin.site.register(KvantMessage)
+admin.site.register(MailReceiver)
+admin.site.register(ImportantMail)

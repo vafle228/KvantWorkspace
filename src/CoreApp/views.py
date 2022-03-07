@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.views import generic
+
 from .forms import UserThemeChangeForm
 from .services.access import KvantWorkspaceAccessMixin
 

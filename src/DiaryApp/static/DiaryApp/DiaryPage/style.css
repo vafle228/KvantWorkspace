@@ -103,13 +103,25 @@
 .lessonView__content > p{
     font-size: 1.125rem;
 }
-.lessonView__content #editor{
+.lessonView__content .editor{
     min-height: 12rem; max-height: 12rem;
     background-color: var(--theme-light-alpha);
 }
 #lessonView .closeButton{
     display: none;
     margin-left: -1rem;
+}
+
+.lessons__empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+.lessons__empty svg{
+    width: 4rem; height: 4rem;
+    fill: var(--text-primary-color);
 }
 
 

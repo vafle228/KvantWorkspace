@@ -64,8 +64,7 @@ class KvantLesson(models.Model):
     date    = models.DateField(default=timezone.now)
     tasks   = models.ManyToManyField(KvantHomeTask, blank=True)
     base    = models.OneToOneField(KvantTaskBase, on_delete=models.CASCADE)
-    course  = models.ForeignKey(KvantCourse, on_delete=models.CASCADE, blank=False)
-    
+    course  = models.ForeignKey(KvantCourse, on_delete=models.CASCADE, blank=False)    
 
     class Meta:
         db_table = 'kvant_lesson'

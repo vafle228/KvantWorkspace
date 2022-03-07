@@ -58,26 +58,12 @@
                 {% endfor %}
             
             </nav>
+            <div class="task active" id="task"></div>
         </section>
-
-        <div class="task active" id="task"></div>
 
         {% endif %}
 
     </div>
-
-    <script>
-        function changeTask(task_url){
-            $.ajax({
-                type: "GET",
-                url: task_url,
-                cache: false,
-                success: function(response){
-                    $("#task").html(response);
-                }
-            })
-        }
-    </script>
 
     <script>
         $(".menu__button").on("click", function(){

@@ -138,7 +138,6 @@ function sendInstanceData(form, post_url, btn){
 		contentType: false,
 		enctype: "multipart/form-data",
 		success: function(response) {
-			console.log(response)
 			if(response.status == 400){
 				
 				btn.disabled = false;
@@ -192,6 +191,11 @@ function getFileSize(nbytes){
     size = nbytes.toFixed(2).split(".00")[0]
 
     return `${size} ${suffixes[suffix_index]}`
+}
+
+function openFileDialog(fileInput){
+	$(fileInput)[0].value = '';
+	$(fileInput).click();
 }
 
 // Генерация файлов в форме

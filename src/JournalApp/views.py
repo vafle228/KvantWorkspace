@@ -1,10 +1,11 @@
 from AdminApp.services import getCourseById, getCourseQuery
 from CoreApp.services.access import KvantTeacherAndAdminAccessMixin
-from CoreApp.services.objects import CreateOrUpdateObject
-from JournalApp.forms import KvantBaseFilesSaveForm, KvantBaseSaveForm
 from DiaryApp.models import KvantTaskBase
-from JournalApp.services import access, queryget, utils
 from django.views import generic
+
+from JournalApp.forms import KvantBaseSaveForm, KvantTaskFilesSaveForm, KvantLessonFilesSaveForm
+from JournalApp.services import access, queryget, utils
+from django.http import JsonResponse
 
 
 class JournalPageTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
@@ -24,7 +25,6 @@ class JournalDetailView(access.KvantJournalAccessMixin, generic.TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         kwargs.update({
-            'period': self.request.GET.get('period'),
             'course_identifier': self.request.GET.get('course_id'),})
         return super(access.KvantJournalAccessMixin, self).dispatch(request, *args, **kwargs)
     
@@ -58,10 +58,14 @@ class UpdateBaseView(access.KvantBaseAccessMixin, generic.View):
     """ Контроллер обновления заданий """
     def post(self, request, *args, **kwargs):
         base = queryget.getBaseById(kwargs.get('base_identifier'))
-        object_creator = CreateOrUpdateObject(
-            [KvantBaseSaveForm, KvantBaseFilesSaveForm], object=base)
-        base_or_errors = object_creator.updateObject(request)
-        return utils.KvantBaseManupulationResponse().getResponse(base_or_errors)
+        object_manager = utils.KvantTaskManager(
+            self._getManagerForms(base), object=base)
+        return object_manager.updateObject(request)
+
+    def _getManagerForms(self, base):
+        if queryget.getBaseType(base) == 'lesson':
+            return [KvantBaseSaveForm, KvantLessonFilesSaveForm]
+        return [KvantBaseSaveForm, KvantTaskFilesSaveForm]
 
 
 class CreateTaskView(access.KvantLessonAccessMixin, generic.View):
@@ -73,10 +77,15 @@ class CreateTaskView(access.KvantLessonAccessMixin, generic.View):
     
     def post(self, request, *args, **kwargs):
         lesson = queryget.getLessonById(kwargs.get('lesson_identifier'))
-        object_creator = utils.KvantTaskCreator(
-            [KvantBaseSaveForm, KvantBaseFilesSaveForm])
-        base_or_errors = object_creator.createKvantTask(request, lesson)
-        return utils.KvantBaseManupulationResponse().getResponse(base_or_errors)
+        object_manager = utils.KvantTaskManager(
+            [KvantBaseSaveForm, KvantTaskFilesSaveForm])
+        return object_manager.createKvantTask(request, lesson)
+
+
+class DeleteTaskView(access.KvantBaseAccessMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        queryget.getBaseById(kwargs.get('base_identifier')).delete()
+        return JsonResponse({'status': 200})
 
 
 class UpdateMarksView(access.KvantBaseAccessMixin, generic.View):

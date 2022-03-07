@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
                                      KvantWorkspaceAccessMixin)
-from CoreApp.services.objects import CreateOrUpdateObject
 from django.views import generic
 
 from . import services
@@ -43,20 +42,17 @@ class NewsListView(KvantWorkspaceAccessMixin, generic.ListView):
 class NewsCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
     """ Контроллер создания новости """
     def post(self, request, *args, **kwargs):
-        object_creator = CreateOrUpdateObject(
+        object_manager = services.NewsObjectManipulationManager(
             [KvantNewsSaveForm, KvantNewsFilesSaveForm])
-        news_or_errors = object_creator.createObject(request)
-        return services.NewsObjectManupulationResponse().getResponse(news_or_errors)
-
+        return object_manager.createObject(request)
 
 class NewsUpdateView(services.NewsAccessMixin, generic.View):
     """ Контроллер редактирования новости """
     def post(self, request, *args, **kwargs):
         news = services.getNewsById(kwargs.get('news_identifier'))
-        object_creator = CreateOrUpdateObject(
+        object_manager = services.NewsObjectManipulationManager(
             [KvantNewsSaveForm, KvantNewsFilesSaveForm], object=news)
-        news_or_errors = object_creator.updateObject(request)
-        return services.NewsObjectManupulationResponse().getResponse(news_or_errors)
+        return object_manager.updateObject(request)
 
 
 class NewsDeleteView(services.NewsAccessMixin, generic.View):

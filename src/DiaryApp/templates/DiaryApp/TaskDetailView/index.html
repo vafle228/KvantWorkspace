@@ -14,40 +14,65 @@
             {% include "CoreApp/FileView/index.html" with files=task.base.files %}
         </div>
 
-        {% if task.works|get_objects %}
-        <h1>Here</h1>
+        {% if work %}
+        <div class="work column g16" id="work">
+            <div class="flex space-between items-center">
+                <h1>Отправить работу</h1>
+                <div class="row g8">
+                    <button class="secondaryButton" onclick="toForm()">
+                        Редактировать
+                    </button>
+                    <div class="primaryButton" style='color: var(--currentColor)'>
+                        <svg viewBox="0 0 512 512">
+                            <path opacity='0.6' d="M504.5 144.42L264.75 385.5 192 312.59l240.11-241a25.49 25.49 0 0 1 36.06-.14l.14.14L504.5 108a25.86 25.86 0 0 1 0 36.42z"></path>
+                            <path d="M264.67 385.59l-54.57 54.87a25.5 25.5 0 0 1-36.06.14l-.14-.14L7.5 273.1a25.84 25.84 0 0 1 0-36.41l36.2-36.41a25.49 25.49 0 0 1 36-.17l.16.17z"></path>
+                        </svg>
+                        Отправлено
+                    </div>
+                </div>
+            </div>
+
+            <div class="ql-snow">
+                <div class="ql-editor">
+                    <p style="text-align: justify">{{ work.text|safe }}</p>
+                </div>
+            </div>
+
+            <div class='files'>
+                {% include "CoreApp/FileView/index.html" with files=work.files %}
+            </div>
+        </div>
+
+        {% include "DiaryApp/WorkCreationForm/index.html" with type='update' work=work task=task %}
+        <script>
+            old_files = [
+                {% for file in work.files|get_objects %}
+                {'name': '{{ file|get_file_name }}', 'id': '{{ file.id }}', 'size': '{{ file.file.size }}'},
+                {% endfor %}
+            ]
+            for(let i = 0; i < old_files.length; i++){
+                addNewFile(old_files[i], old_files, "#file-container")
+            }
+        </script>
+        <script>
+            function toForm(){
+                $('#form')[0].style.display = 'flex';
+                $('#work')[0].style.display = 'none';
+            }
+        </script>
+        <script>
+            function getUpdateWorkFormData(){
+                let work_form = getWorkFormData()
+                for(let i = 0; i < old_files.length; i++){ // Перебор старых файлов
+                    work_form.append('files', old_files[i].id) // Добавление старых файлов в форму
+                }
+                return work_form 
+            }
+        </script>
 
         {% else %}
 
-        <!-- Отправить домашнюю работу -->
-        <div class="flex space-between items-center">
-            <h1>Отправить работу</h1>
-            <div class="row g8">
-                <button class='primaryButton'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
-                        <g transform="translate(-8.667 -8)">
-                            <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
-                            <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
-                        </g>
-                    </svg>
-                    Документ
-                </button>
-                <button class="secondaryButton">
-                    Отправить
-                    <svg viewBox="0 0 320 512">
-                        <path opacity='0.6' d="M232 160v328a24 24 0 0 1-24 24H12a12 12 0 0 1-8.48-20.48l56-56A12 12 0 0 1 68 432h84V160z"></path>
-                        <path d="M88 160c-20.94 0-31.76-25-17.6-40.33l104-112c.4-.43.82-.86 1.26-1.26a24 24 0 0 1 33.91 1.26l104 112C327.82 135 316.84 160 296 160z"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div id="editor"></div>
-        
-        <div class='files'></div>
+        {% include "DiaryApp/WorkCreationForm/index.html" with type='create' task=task %}
 
         {% endif %}
-    
-        <script>
-            initQuill('#editor')
-        </script>
 </body>

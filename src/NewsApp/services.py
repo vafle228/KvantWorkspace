@@ -1,5 +1,5 @@
 from CoreApp.services.access import KvantObjectExistsMixin
-from CoreApp.services.utils import ObjectManupulationResponse
+from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
 
 from .models import KvantNews
@@ -15,7 +15,7 @@ def getNewsById(id):
     return KvantNews.objects.get(id=id)
 
 
-class NewsObjectManupulationResponse(ObjectManupulationResponse):
+class NewsObjectManipulationManager(ObjectManipulationManager):
     def _constructRedirectUrl(self, obj):
         return rl('detail_news', kwargs={'news_identifier': obj.id})
 

@@ -1,3 +1,4 @@
+
 .taskInfo{
     background-color: var(--item-bg-color);
     padding: 1rem;
@@ -22,7 +23,7 @@
     }
 }
 
-.menu{
+table .menu{
     background-color: var(--aside-bg-color);
     gap: 0.25rem;
     border: var(--theme-light) solid 1px;
@@ -30,12 +31,12 @@
     min-height: 3.5rem;
     border-radius: 0.5rem;
 }
-.menu__button{
+table .menu__button{
     padding: 0.25rem;
     opacity: 0.4;
     height: 2.5rem;
 }
-.menu__button.active{
+table .menu__button.active{
     background-color: unset;
     opacity: 1;
 }

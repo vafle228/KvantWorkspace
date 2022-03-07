@@ -28,8 +28,8 @@ class KvantJournalAccessMixin(KvantObjectExistsMixin):
 
     def accessTest(self, **kwargs):
         if super().accessTest(**kwargs):
-            course, period = getCourseById(kwargs.get(self.request_object_arg)), kwargs.get('period')
-            return self._journalAccessTest(kwargs.get('user'), course) and self._periodExiststTest(period)
+            course = getCourseById(kwargs.get(self.request_object_arg))
+            return self._journalAccessTest(kwargs.get('user'), course)
         return False
 
     def _journalAccessTest(self, user, course):
@@ -38,10 +38,6 @@ class KvantJournalAccessMixin(KvantObjectExistsMixin):
 
     def _objectExiststTest(self, object_id):
         return KvantCourse.objects.filter(id=object_id).exists()
-    
-    def _periodExiststTest(self, period):
-        """ Тест валидации данных периода """
-        return period in ['1', '2']
 
 
 class KvantBaseAccessMixin(KvantObjectExistsMixin):

@@ -1,5 +1,5 @@
 from django import forms
-from .models import KvantTaskBase, KvantTaskMark
+from .models import KvantTaskBase, KvantTaskMark, KvantHomeTask
 from CoreApp.services.m2m import FileM2MBaseMixin
 
 
@@ -47,12 +47,18 @@ class KvantBaseFilesSaveForm(FileM2MBaseMixin):
     def __init__(self, *args, **kwargs):
         super().__init__('files', *args, **kwargs)
     
-    def getFileUploadPath(self):
-        return f'bases/{self.instance.title}'
-    
     def clean_files(self):
         """ Отчистка старых файлов """
         for file in self.instance.files.all():
             if file not in self.cleaned_data.get('files'): file.delete() 
         return self.cleaned_data.get('files')
-    
+
+
+class KvantLessonFilesSaveForm(KvantBaseFilesSaveForm):
+    def getFileUploadPath(self):
+        return f'lessons/{self.instance.title}'
+
+
+class KvantTaskFilesSaveForm(KvantBaseFilesSaveForm):
+    def getFileUploadPath(self):
+        return f'tasks/{self.instance.title}'

@@ -1,7 +1,6 @@
 from json import loads
 
-from CoreApp.services.objects import CreateOrUpdateObject
-from CoreApp.services.utils import ObjectManupulationResponse
+from CoreApp.services.utils import ObjectManipulationManager, ObjectManipulationResponse
 from DiaryApp.models import KvantHomeTask, KvantTaskBase, KvantTaskMark
 from django.urls import reverse_lazy as rl
 from JournalApp.forms import KvantMarkSaveForm
@@ -9,27 +8,25 @@ from LoginApp.services import getUserById
 from .queryget import getBaseType, getBaseStudents
 
 
-class KvantTaskCreator(CreateOrUpdateObject):
+class KvantTaskManager(ObjectManipulationManager):
     """ 
-    Создает задание для урока, наследуя CreateOrUpdateObject.
+    Создает задание для урока, наследуя ObjectManipulationManager.
     Реализует закрепление за уроком, по средствам проверки сущности.
     """
     def createKvantTask(self, request, lesson):
-        base_or_error = self.createObject(request)
+        base_or_error = self._getCreatedObject(request)
         if isinstance(base_or_error, KvantTaskBase):
             lesson.tasks.add(KvantHomeTask.objects.create(base=base_or_error))
-        return base_or_error
-
-
-class KvantBaseManupulationResponse(ObjectManupulationResponse):
+        return self.getResponse(base_or_error)
+    
     def _constructRedirectUrl(self, obj):
         return rl('checking_page', kwargs={'base_identifier': obj.id})
 
 
-class KvantBaseMarksUpdate(ObjectManupulationResponse):
+class KvantBaseMarksUpdate(ObjectManipulationResponse):
     """ 
     Создает отметки и возвращает JSON Response.
-    Наследует ObjectManupulationResponse для генерации JSON Response.
+    Наследует ObjectManipulationResponse для генерации JSON Response.
     """
     def __init__(self, request):
         self.marks = loads(request.POST['marks'])
@@ -63,6 +60,7 @@ class KvantBaseMarksUpdate(ObjectManupulationResponse):
             base.marks.get(student=student_user).delete()
     
     def _getMarkInstance(self, base, student_id):
+        """ Получает отметку base по student_id """
         student_user = getUserById(student_id)
         if base.marks.filter(student=student_user).exists():
             return base.marks.get(student=student_user)

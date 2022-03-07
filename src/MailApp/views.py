@@ -1,5 +1,4 @@
 from CoreApp.services.access import KvantWorkspaceAccessMixin
-from CoreApp.services.objects import CreateOrUpdateObject
 from django.http import HttpResponse
 from django.views import generic
 
@@ -35,10 +34,9 @@ class MailListView(KvantWorkspaceAccessMixin, generic.ListView):
 class MailCreationView(KvantWorkspaceAccessMixin, generic.View):
     """ Контроллер создания письма """
     def post(self, request, *args, **kwargs):
-        object_creator = CreateOrUpdateObject(
+        object_manager = services.MailObjectManipulationManager(
             [KvantMailSaveForm, KvantMailReceiversForm, KvantMailFileSaveForm])
-        mail_or_errors = object_creator.createObject(request)
-        return services.MailObjectManupulationResponse().getResponse(mail_or_errors)
+        return object_manager.createObject(request)
 
 
 class MailDetailView(services.KvantMailAccessMixin, generic.DetailView):

@@ -22,11 +22,10 @@ class FileMoveBaseMixin:
         to_path = bucket._normalize_name(bucket._clean_name(to_path))
         from_path = bucket._normalize_name(bucket._clean_name(file.name))
         
-        bucket.connection.meta.client.copy_object(
-            Bucket=bucket.bucket_name,
-            CopySource=bucket.bucket_name + "/" + from_path,
-            Key=to_path
-        )
-        bucket.delete(from_path)
-        
+        bucket.connection.meta.client.copy(
+            {
+                'Key': from_path,
+                'Bucket': bucket.bucket_name
+            }, 
+            bucket.bucket_name, to_path)
         return to_path

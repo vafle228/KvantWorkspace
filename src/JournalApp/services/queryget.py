@@ -13,10 +13,12 @@ def getLessonById(lesson_id):
 
 def getJournalLessonQuery(course, period):
     """ Возвращает уроки пользователя по заданному course и period """
-    return {
-        '1': lambda course: KvantLesson.objects.filter(course=course, date__month__lte=6),
-        '2': lambda course: KvantLesson.objects.filter(course=course, date__month__gte=7),
-    }[period](course)
+    if period in ['1', '2']:
+        return {
+            '1': lambda course: KvantLesson.objects.filter(course=course, date__month__lte=6),
+            '2': lambda course: KvantLesson.objects.filter(course=course, date__month__gte=7),
+        }[period](course)
+    return KvantLesson.objects.none()
 
 
 def getBaseType(base):

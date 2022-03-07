@@ -30,7 +30,8 @@
 
             <div class="header px16 flex space-between">
                 <div class="pagination w100 row g8">
-                    <button class="actionButton">
+                    {% if prev %}
+                    <button class="actionButton" onclick="location.href = '{{ prev }}'">
                         <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                             <g transform="translate(-5 -5)">
                                 <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
@@ -38,8 +39,10 @@
                             </g>
                         </svg>
                     </button>
-                    <p class='pagination__page column items-center'>Ноябрь</p>
-                    <button class="actionButton">
+                    {% endif %}
+                    <p class='pagination__page column items-center'>{{ month }}</p>
+                    {% if next %}
+                    <button class="actionButton" onclick="location.href = '{{ next }}'">
                         <svg viewBox="0 0 14 14">
                             <g transform="translate(-5 -5)">
                                 <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
@@ -47,6 +50,7 @@
                             </g>
                         </svg> 
                     </button>
+                    {% endif %}
                 </div>
             </div>
 
