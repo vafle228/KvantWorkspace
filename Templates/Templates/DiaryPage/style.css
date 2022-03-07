@@ -103,7 +103,7 @@
 .lessonView__content > p{
     font-size: 1.125rem;
 }
-.lessonView__content #editor{
+.lessonView__content .editor{
     min-height: 12rem; max-height: 12rem;
     background-color: var(--theme-light-alpha);
 }
