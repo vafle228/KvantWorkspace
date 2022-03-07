@@ -185,11 +185,21 @@ body{
 
 .display-none{ display: none }
 
+.px4{ padding: 0 0.25rem }
 .px8{ padding: 0 0.5rem }
 .px16{ padding: 0 1rem }
 
+.py4{ padding: 0.25rem 0 }
 .py8{ padding: 0.5rem 0 }
 .py16{ padding: 1rem 0 }
+
+.mx4{ margin: 0 0.25rem }
+.mx8{ margin: 0 0.5rem }
+.mx16{ margin: 0 1rem }
+
+.my4{ margin: 0.25rem 0 }
+.my8{ margin: 0.5rem 0 }
+.my16{ margin: 1rem 0 }
 
 
 /* Аватар */
