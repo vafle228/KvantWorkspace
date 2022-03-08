@@ -91,6 +91,9 @@ header{
 .tableCell.email{
     width: 16rem;
 }
+.tableCell.name{
+    width: 14rem;
+}
 
 /* .tableCell input{
     height: 2rem; width: calc(100% - 1.5rem);

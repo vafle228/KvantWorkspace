@@ -683,7 +683,7 @@ body{
 
 
 /* Кнопки */
-button.disabled{
+button.disabledButton{
     opacity: 0.5;
     pointer-events: none;
 }
