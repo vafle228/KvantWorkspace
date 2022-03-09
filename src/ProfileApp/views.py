@@ -5,8 +5,7 @@ from django.contrib.auth import logout
 from . import services
 from .models import KvantAward
 from CoreApp.services.access import KvantWorkspaceAccessMixin
-from LoginApp.forms import KvantUserChangeForm
-from CoreApp.services.objects import CreateOrUpdateObject
+from LoginApp.forms import ImageChangeForm
 
 
 class SettingsPageTemplateView(KvantWorkspaceAccessMixin, generic.TemplateView):
@@ -34,7 +33,7 @@ class LogoutKvantUserView(KvantWorkspaceAccessMixin, generic.View):
 
 class KvantUserChangeView(KvantWorkspaceAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
-        object_manager = CreateOrUpdateObject(
-            [KvantUserChangeForm], request.user)
-        user_or_errors = object_manager.updateObject(request)
+        object_manager = services.UserChangeManipulationResponse(
+            [ImageChangeForm], object=request.user)
+        return object_manager.updateObject(request)
         

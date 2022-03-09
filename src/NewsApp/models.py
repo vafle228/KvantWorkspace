@@ -24,7 +24,6 @@ class KvantNews(models.Model):
     content         = models.TextField(blank=True)
     title           = models.CharField(max_length=100)
     date            = models.DateField(default=timezone.now)
-    tag             = models.CharField(max_length=20, default='Общее')
     files           = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)
     image           = models.ImageField(default=setDefaultImage, upload_to=getPath)
     author          = models.ForeignKey(to='LoginApp.KvantUser', on_delete=models.CASCADE)

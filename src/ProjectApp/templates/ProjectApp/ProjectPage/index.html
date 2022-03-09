@@ -8,7 +8,7 @@
 
     {% include "CoreApp/HeadSetup/index.html" %}
     <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
-    <link rel="stylesheet" href='{% static "ProjectApp/ProjectCatalog/style.css" %}'> <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "ProjectApp/ProjectPage/style.css" %}'> <!-- Стили страницы -->
     <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
     
     <title>Название проекта</title>
@@ -43,7 +43,7 @@
         <div class="Tab active" id="About">
 
             <section class="project column g16">
-                <img src="../../img/backgrounds/1.jpg" class="project__banner">
+                <img src="{% static 'ProjectApp/ProjectCatalog/img/shield.png' %}" class="project__banner">
 
                 <div class="flex space-between items-center" title="Редактировать проект">
                     <h1 class="project__title">Название проекта</h1>
@@ -54,43 +54,20 @@
                     </button>
                 </div>
                 
-
                 <div class="project__members row">
+                    {% for num in "12345"|make_list %}
                     <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <img src="{{ user.image.url }}" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__name">Фамилия Имя {{ num }}</p>
+                            {% if num == '1' %}
                             <p class="member__role">Лидер</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
+                            {% else %}
                             <p class="member__role">Участник</p>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
                 <p class="project__description">
@@ -120,41 +97,19 @@
                 <h1 class="project__title">Название проекта</h1>
 
                 <div class="project__members row">
+                    {% for num in "12345"|make_list %}
                     <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <img src="{{ user.image.url }}" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__name">Фамилия Имя {{ num }}</p>
+                            {% if num == '1' %}
                             <p class="member__role">Лидер</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
+                            {% else %}
                             <p class="member__role">Участник</p>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
                 <p class="project__description">
@@ -202,10 +157,10 @@
                                 </div>
                                 <div class="task__users row">
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                 </div>
                             </div>
@@ -244,10 +199,10 @@
                                 </div>
                                 <div class="task__users row">
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                 </div>
                             </div>
@@ -291,13 +246,13 @@
                                 </div>
                                 <div class="task__users row">
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +285,7 @@
                                 </div>
                                 <div class="task__users row">
                                     <div class="task__user" title="Фамилия Имя">
-                                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                                        <img src="{{ user.image.url }}" class="avatar">
                                     </div>
                                 </div>
                             </div>
@@ -352,31 +307,31 @@
             <section class="chat column g16">
                 <div class="chat__history column g16">
                     <div class="message row g8">
-                        <img src="../../img/avatars/Upstream-7.png" class="message__sender avatar">
+                        <img src="{{ user.image.url }}" class="message__sender avatar">
                         <span class="message__bubble">
                             <p class="message__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores atque distinctio ullam deleniti omnis quasi eaque non assumenda at praesentium?</p>
                         </span>
                     </div>
                     <div class="message myMessage row g8">
-                        <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
+                        <img src="{{ user.image.url }}" class="message__sender avatar">
                         <span class="message__bubble">
                             <p class="message__text">Lorem, ipsum dolor.</p>
                         </span>
                     </div>
                     <div class="message row g8">
-                        <img src="../../img/avatars/Upstream-2.png" class="message__sender avatar">
+                        <img src="{{ user.image.url }}" class="message__sender avatar">
                         <span class="message__bubble">
                             <p class="message__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum molestiae eligendi recusandae incidunt ut dolor dolore blanditiis a, at laboriosam pariatur aperiam veritatis nam?</p>
                         </span>
                     </div>
                     <div class="message myMessage row g8">
-                        <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
+                        <img src="{{ user.image.url }}" class="message__sender avatar">
                         <span class="message__bubble">
                             <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, amet?</p>
                         </span>
                     </div>
                     <div class="message row g8">
-                        <img src="../../img/avatars/Upstream-6.png" class="message__sender avatar">
+                        <img src="{{ user.image.url }}" class="message__sender avatar">
                         <span class="message__bubble">
                             <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum est incidunt, illo facere facilis cupiditate beatae corrupti non maxime, iure rerum id error itaque repudiandae? Ullam enim sunt, hic quisquam vero suscipit dicta debitis tempora? At ex rem provident reprehenderit.</p>
                         </span>
@@ -425,28 +380,28 @@
 
                 <div class="userSelect" id='userSelect'>
                     <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-8.png" class='userSelect__userImage'>
+                        <img src="{{ user.image.url }}" class='userSelect__userImage'>
                         <div class="userSelect__userInfo">
                             <h3 class="userSelect__userName">Каратаев Вадим</h3>
                             <p class="userSelect__userRole">Участник</p>
                         </div>
                     </div>
                     <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-4.png" class='userSelect__userImage'>
+                        <img src="{{ user.image.url }}" class='userSelect__userImage'>
                         <div class="userSelect__userInfo">
                             <h3 class="userSelect__userName">Павел Сергеевич</h3>
                             <p class="userSelect__userRole">Учитель</p>
                         </div>
                     </div>
                     <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-7.png" class='userSelect__userImage'>
+                        <img src="{{ user.image.url }}" class='userSelect__userImage'>
                         <div class="userSelect__userInfo">
                             <h3 class="userSelect__userName">Смышляев Дмитрий</h3>
                             <p class="userSelect__userRole">Лидер</p>
                         </div>
                     </div>
                     <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-13.png" class='userSelect__userImage'>
+                        <img src="{{ user.image.url }}" class='userSelect__userImage'>
                         <div class="userSelect__userInfo">
                             <h3 class="userSelect__userName">Александра Денисовна</h3>
                             <p class="userSelect__userRole">Администратор</p>
@@ -480,21 +435,21 @@
 
                 <div class="project__members row">
                     <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <img src="{{ user.image.url }}" class="avatar">
                         <div class="member__info column">
                             <p class="member__name">Фамилия Имя</p>
                             <p class="member__role">Лидер</p>
                         </div>
                     </div>
                     <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                        <img src="{{ user.image.url }}" class="avatar">
                         <div class="member__info column">
                             <p class="member__name">Фамилия Имя</p>
                             <p class="member__role">Участник</p>
                         </div>
                     </div>
                     <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                        <img src="{{ user.image.url }}" class="avatar">
                         <div class="member__info column">
                             <p class="member__name">Фамилия Имя</p>
                             <p class="member__role">Участник</p>
@@ -619,40 +574,20 @@
 
                 <h3>Участники</h3>
                 <div class="project__members expanded row">
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Лидер</p>
+                    <div class="project__members row">
+                        {% for num in "12345"|make_list %}
+                        <div class="project__member member row g8 items-center">
+                            <img src="{{ user.image.url }}" class="avatar">
+                            <div class="member__info column">
+                                <p class="member__name">Фамилия Имя {{ num }}</p>
+                                {% if num == '1' %}
+                                <p class="member__role">Лидер</p>
+                                {% else %}
+                                <p class="member__role">Участник</p>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
-                    </div>
-                    <div class="project__member member row g8 items-center">
-                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
-                        <div class="member__info column">
-                            <p class="member__name">Фамилия Имя</p>
-                            <p class="member__role">Участник</p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
 

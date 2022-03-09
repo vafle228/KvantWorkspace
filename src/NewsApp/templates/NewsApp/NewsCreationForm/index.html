@@ -89,7 +89,6 @@
         }
         
         news_form.append('author', '{{ user.id }}')
-        news_form.append('tag', '{{ user|get_news_tag }}')
         news_form.append('title', $('#news-title')[0].value) 
         news_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) 
         news_form.append('content', $('#editor .ql-editor')[0].innerHTML)
