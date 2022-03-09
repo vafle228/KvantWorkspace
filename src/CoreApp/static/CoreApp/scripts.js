@@ -127,7 +127,7 @@ function getCookie(name) {
 
 function sendInstanceData(form, post_url, btn){
 	btn.disabled = true;
-	$(btn).addClass('disabled')
+	$(btn).addClass('disabledButton')
 
 	$.ajax({
 		type: 'POST',
@@ -141,7 +141,7 @@ function sendInstanceData(form, post_url, btn){
 			if(response.status == 400){
 				
 				btn.disabled = false;
-				$(btn).removeClass('disabled')
+				$(btn).removeClass('disabledButton')
 				
 				errorAlert(response.errors);
 			}

@@ -1,0 +1,812 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    {% include "CoreApp/HeadSetup/index.html" %}
+    <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
+    <link rel="stylesheet" href='{% static "ProjectApp/ProjectCatalog/style.css" %}'> <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
+    
+    <title>Название проекта</title>
+</head>
+
+<body>
+
+    {% include "CoreApp/AsideMenu/index.html" with user=user active='project_page' %}
+
+    <div class="mainContainer column g24">
+
+        <header class="flex space-between items-center">
+            <button class="combinedButton" onclick="history.back();">
+                <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                    <g transform="translate(-5 -5)">
+                        <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                        <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                    </g>
+                </svg>
+                <span>Назад</span>
+            </button>
+            <div class="menu">
+                <button class="menu__button active" onclick="changeTab('About')">
+                    <p>Описание проекта</p>
+                </button>
+                <button class="menu__button" onclick="changeTab('Workspace')">
+                    <p>Доска задач</p>
+                </button>
+            </div>
+        </header>
+
+        <div class="Tab active" id="About">
+
+            <section class="project column g16">
+                <img src="../../img/backgrounds/1.jpg" class="project__banner">
+
+                <div class="flex space-between items-center" title="Редактировать проект">
+                    <h1 class="project__title">Название проекта</h1>
+                    <button class="combinedButton" onclick="open_form('#editProject')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+
+                <div class="project__members row">
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="project__description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non delectus ab iusto, consequatur inventore cumque repellat commodi itaque illo quos? Sapiente dolorum aspernatur laboriosam in quo! Iusto quaerat vitae harum illum neque eaque, eveniet laborum reiciendis, quis vel aut quos voluptates excepturi dolorum error tempore fugit nemo. Quasi sit animi, praesentium quo nihil iusto vel accusamus explicabo, blanditiis ut voluptatem omnis! Qui voluptates voluptatem debitis ea, sint possimus, enim eum maxime earum nisi nulla? Ab dolor nam possimus porro voluptas cum sed optio consequuntur, explicabo commodi fuga dolore. Adipisci quis quaerat neque in tenetur veniam eum, recusandae cupiditate velit magni.
+                </p>
+            </section>
+
+            <section class="application column g16">
+                <div class="application__header flex space-between items-center">
+                    <h2>Отправить заявку на участие в проекте</h2>
+                    <button class="secondaryButton">
+                        Отправить
+                        <svg viewBox="0 0 320 512">
+                            <path opacity='0.6' d="M232 160v328a24 24 0 0 1-24 24H12a12 12 0 0 1-8.48-20.48l56-56A12 12 0 0 1 68 432h84V160z"></path>
+                            <path d="M88 160c-20.94 0-31.76-25-17.6-40.33l104-112c.4-.43.82-.86 1.26-1.26a24 24 0 0 1 33.91 1.26l104 112C327.82 135 316.84 160 296 160z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="editor" class="application__textarea"></div>
+            </section>
+
+        </div>
+
+        <div class="Tab" id="Workspace">
+
+            <section class="project column g16">
+                <h1 class="project__title">Название проекта</h1>
+
+                <div class="project__members row">
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="project__description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Commodi excepturi architecto maxime dolorum adipisci laborum,
+                    corporis quibusdam non ipsam reprehenderit, deleniti assumenda,
+                    voluptas quasi delectus error ipsum tempore voluptate impedit
+                    quam repudiandae.
+                </p>
+            </section>
+
+            <section class="board row g16 items-stretch">
+                <div class="board__section column g16">
+                    <div class="board__sectionHeader flex space-between items-center">
+                        <p class="board__sectionTitle">Бэклог</p>
+                        <span class="board__sectionCounter">1</span>
+                    </div>
+                    <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <button class="secondaryButton" style="justify-content: center" onclick="open_form('#createTask')">
+                            Новая задача
+                        </button>
+                        <div class="task column g16" draggable="true" ondragstart="drag(event)" onclick="open_form('#taskView')">
+
+                            <div class="task__header flex space-between items-center">
+                                <div class="task__priority  row g8" data="low">
+                                    <span>
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                            <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p class="task__title">Заголовок задачи</p>
+                            <p class="task__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptas provident eligendi?</p>
+
+                            <div class="task__footer flex space-between items-center">
+                                <div class="task__deadline">
+                                    <svg viewBox="0 0 448 512">
+                                        <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
+                                        <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
+                                    </svg>
+                                    <p>24 февраля</p>
+                                </div>
+                                <div class="task__users row">
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                    </div>
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="board__section column g16">
+                    <div class="board__sectionHeader flex space-between items-center">
+                        <p class="board__sectionTitle">Задачи</p>
+                        <span class="board__sectionCounter">1</span>
+                    </div>
+                    <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="task column g16" draggable="true" ondragstart="drag(event)" onclick="open_form('#taskView')">
+
+                            <div class="task__header flex space-between items-center">
+                                <div class="task__priority  row g8" data="medium">
+                                    <span>
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                            <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p class="task__title">Заголовок задачи</p>
+                            <p class="task__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptas provident eligendi?</p>
+
+                            <div class="task__footer flex space-between items-center">
+                                <div class="task__deadline">
+                                    <svg viewBox="0 0 448 512">
+                                        <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
+                                        <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
+                                    </svg>
+                                    <p>20 февраля</p>
+                                </div>
+                                <div class="task__users row">
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                    </div>
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="board__section column g16">
+                    <div class="board__sectionHeader flex space-between items-center">
+                        <p class="board__sectionTitle">В прогрессе</p>
+                        <span class="board__sectionCounter">1</span>
+                    </div>
+                    <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="task column g16" draggable="true" ondragstart="drag(event)" onclick="open_form('#taskView')">
+
+                            <div class="task__header flex space-between items-center">
+                                <div class="task__priority  row g8" data="high">
+                                    <span>
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                            <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p class="task__title">Заголовок задачи</p>
+                            <p class="task__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptas provident eligendi?</p>
+
+                            <div class="task__progress scale">
+                                <div class="subscale" style="--percent: 21%"></div>
+                            </div>
+
+                            <div class="task__footer flex space-between items-center">
+                                <div class="task__deadline">
+                                    <svg viewBox="0 0 448 512">
+                                        <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
+                                        <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
+                                    </svg>
+                                    <p>18 февраля</p>
+                                </div>
+                                <div class="task__users row">
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                                    </div>
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                                    </div>
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="board__section column g16">
+                    <div class="board__sectionHeader flex space-between items-center">
+                        <p class="board__sectionTitle">Выполнено</p>
+                        <span class="board__sectionCounter">0</span>
+                    </div>
+                    <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="task column g16" draggable="true" ondragstart="drag(event)" onclick="open_form('#taskView')">
+
+                            <p class="task__title">Заголовок задачи</p>
+                            <p class="task__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptas provident eligendi?</p>
+
+                            <div class="task__progress scale">
+                                <div class="subscale" style="--percent: 100%"></div>
+                            </div>
+
+                            <div class="task__footer flex space-between items-center">
+                                <div class="task__deadline">
+                                    <svg viewBox="0 0 448 512">
+                                        <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
+                                        <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
+                                    </svg>
+                                    <p>16 февраля</p>
+                                </div>
+                                <div class="task__users row">
+                                    <div class="task__user" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="board__section column g16">
+                    <div class="board__sectionHeader flex space-between items-center">
+                        <p class="board__sectionTitle">Архив</p>
+                        <span class="board__sectionCounter">0</span>
+                    </div>
+                    <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
+    
+                    </div>
+                </div>
+            </section>
+            
+            <section class="chat column g16">
+                <div class="chat__history column g16">
+                    <div class="message row g8">
+                        <img src="../../img/avatars/Upstream-7.png" class="message__sender avatar">
+                        <span class="message__bubble">
+                            <p class="message__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores atque distinctio ullam deleniti omnis quasi eaque non assumenda at praesentium?</p>
+                        </span>
+                    </div>
+                    <div class="message myMessage row g8">
+                        <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
+                        <span class="message__bubble">
+                            <p class="message__text">Lorem, ipsum dolor.</p>
+                        </span>
+                    </div>
+                    <div class="message row g8">
+                        <img src="../../img/avatars/Upstream-2.png" class="message__sender avatar">
+                        <span class="message__bubble">
+                            <p class="message__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum molestiae eligendi recusandae incidunt ut dolor dolore blanditiis a, at laboriosam pariatur aperiam veritatis nam?</p>
+                        </span>
+                    </div>
+                    <div class="message myMessage row g8">
+                        <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
+                        <span class="message__bubble">
+                            <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, amet?</p>
+                        </span>
+                    </div>
+                    <div class="message row g8">
+                        <img src="../../img/avatars/Upstream-6.png" class="message__sender avatar">
+                        <span class="message__bubble">
+                            <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum est incidunt, illo facere facilis cupiditate beatae corrupti non maxime, iure rerum id error itaque repudiandae? Ullam enim sunt, hic quisquam vero suscipit dicta debitis tempora? At ex rem provident reprehenderit.</p>
+                        </span>
+                    </div>
+                </div>
+        
+                <div class="chat__input row g4">
+                    <input type="text" placeholder="Сообщение">
+                    <button>
+                        <svg viewBox="0 0 512 512">
+                            <path d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Форма редактирования проекта -->
+    <div class='modal' id='editProject'>
+        <div class="modal__viewport">
+            <form class="modal__content">
+                <div class='modal__block'>
+                    <h1 class="modal__title">Редактирование проекта</h1>
+                    <button class='secondaryButton' type="submit">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                        </svg>    
+                        Сохранить
+                    </button>
+                </div>
+
+                <h3>Название</h3>
+                <input class='text-field text-field-title' autocomplete="off" value=""/>
+
+                <h3>Участники</h3>
+
+                <div id="selectedUsers">
+                    <!-- Здесь появляются участники -->
+                </div>
+
+                <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
+
+                <div class="userSelect" id='userSelect'>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-8.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Каратаев Вадим</h3>
+                            <p class="userSelect__userRole">Участник</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-4.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Павел Сергеевич</h3>
+                            <p class="userSelect__userRole">Учитель</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-7.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Смышляев Дмитрий</h3>
+                            <p class="userSelect__userRole">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/avatars/Upstream-13.png" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Александра Денисовна</h3>
+                            <p class="userSelect__userRole">Администратор</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Описание</h3>
+                <div id="editor1" class='text-field'></div>
+
+                <button class='secondaryButton' type="button" style="margin-top: 1rem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                        <g transform="translate(-8.667 -8)">
+                            <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                            <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                        </g>
+                    </svg>
+                    Прикрепить файл
+                </button>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- Просмотр задачи -->
+    <div class='modal' id='taskView'>
+        <div class="modal__viewport">
+            <div class="modal__content">
+
+                <p class="task__title">Заголовок задачи</p>
+
+                <div class="project__members row">
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="task__description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id hic deserunt veniam, nihil sit corrupti voluptatibus inventore nemo molestias nesciunt exercitationem eius unde fugit laudantium velit maiores iure quasi nisi tempora et. Deleniti eum repellat tenetur dicta distinctio, molestias in laborum delectus consequatur explicabo dolorum neque omnis praesentium ipsam, ipsum, libero nam fuga. Dolorem expedita, doloremque natus tenetur quasi hic magni at. Dicta, facilis.</p>
+                
+                <div class='files'>
+                    <div class='file'>
+                        <i class='file-xlsx'></i>
+                        <div class="file__info">
+                            <h4 class='file__name'>Таблица.xlsx</h4>
+                            <p class="file__size">6.4 MB</p>
+                        </div>
+                        <div class="file__actions">
+                            <button>
+                                <svg viewBox="0 0 448 512">
+                                    <path opacity='0.3' d="M53.2 467L32 96h384l-21.2 371a48 48 0 0 1-47.9 45H101.1a48 48 0 0 1-47.9-45z"></path>
+                                    <path d="M0 80V48a16 16 0 0 1 16-16h120l9.4-18.7A23.72 23.72 0 0 1 166.8 0h114.3a24 24 0 0 1 21.5 13.3L312 32h120a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H16A16 16 0 0 1 0 80z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filteringList">
+                    <div class="filtering" style="width: 12rem">
+                        <div class="dropdownSelect">
+                            <h3 class="py8">Приоритет</h3>
+                            <div class="dropdownSelect__trigger">
+                                <div>
+                                    <div class="task__priority row g8" data="none">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Нет</p>
+                                    </div>
+                                </div>
+                                <div class="arrowDown"></div>
+                            </div>
+                            <div class="dropdownSelect__options">
+                                <span class='dropdownSelect__option selected'>
+                                    <div class="task__priority row g8" data="none">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Нет</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="low">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Низкий</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="medium">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Средний</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="high">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Высокий</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filtering">
+                        <h3 class="py8">Дата</h3>
+                        <input type="date" value="2022-02-20">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Создание задачи -->
+    <div class='modal' id='createTask'>
+        <div class="modal__viewport">
+            <div class="modal__content">
+                <div class="modal__block">
+                    <h1 class="modal__title">Новая задача</h1>
+                    <button class='secondaryButton' type="submit">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                        </svg>    
+                        Сохранить
+                    </button>
+                </div>
+
+                <h3>Задача</h3>
+                <input class='text-field text-field-title' autocomplete="off" value=""/>
+
+                <h3>Участники</h3>
+                <div class="project__members expanded row">
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Описание</h3>
+                <div id="editor2" class='text-field'></div>
+
+                <button class='secondaryButton' type="button" style="margin-top: 1rem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
+                        <g transform="translate(-8.667 -8)">
+                            <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                            <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                        </g>
+                    </svg>
+                    Прикрепить файл
+                </button>
+
+                <div class="filteringList">
+                    <div class="filtering" style="width: 12rem">
+                        <div class="dropdownSelect">
+                            <h3 class="py8">Приоритет</h3>
+                            <div class="dropdownSelect__trigger">
+                                <div>
+                                    <div class="task__priority row g8" data="none">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Нет</p>
+                                    </div>
+                                </div>
+                                <div class="arrowDown"></div>
+                            </div>
+                            <div class="dropdownSelect__options">
+                                <span class='dropdownSelect__option selected'>
+                                    <div class="task__priority row g8" data="none">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Нет</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="low">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Низкий</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="medium">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Средний</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="high">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Высокий</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filtering">
+                        <h3 class="py8">Дата</h3>
+                        <input type="date">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
+
+    <script>
+        function changeTab(tabId){
+            $('.Tab').removeClass('active');
+            $(`#${tabId}`).addClass('active');
+        }
+
+        $(".menu__button").on("click", function(){
+            $(this).parent().find(".menu__button").removeClass("active");
+            $(this).toggleClass("active", "inactive");
+        });
+    </script>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            if ($(event.target).hasClass('task')){
+                event.dataTransfer.setData("task", "dragged");
+                $(event.target).attr('id', "dragged");
+            }
+        }
+
+        function drop(event) {
+            event.preventDefault();
+
+            let board = event.target.closest('.board__sectionTasks');
+            let task = $(`#${event.dataTransfer.getData("task")}`);
+            
+            $(board).append(task);
+            task.attr('id', '');
+        }
+    </script>
+
+    <script>
+        let chat = $(".chat__history")[0];
+        chat.scrollTop = chat.scrollHeight;
+    </script>
+
+    <script>
+        $(".project__members.expanded .member").on("click", function(){
+            $(this).toggleClass("selected");
+        });
+    </script>
+
+    <script>
+        $('.userSelect__user').click( function() {
+            if ($(this).parent().attr('id') == 'userSelect') {
+                $('#selectedUsers').append($(this));
+                $('#userSearch').val('').focus();
+            } else {
+                $('#userSelect').append($(this));
+            }
+        });
+    </script>
+</body>
+
+</html>

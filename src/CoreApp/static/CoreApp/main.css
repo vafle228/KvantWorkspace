@@ -26,6 +26,7 @@ body[colorScheme='colorScheme__blue'].light__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
 }
+
 body[colorScheme='colorScheme__red'].dark__theme{
     --bgColor: #f1416c11;
     --currentColor: #f1416c;
@@ -665,7 +666,7 @@ body{
 
 
 /* Кнопки */
-button.disabled{
+button.disabledButton{
     opacity: 0.5;
     pointer-events: none;
 }

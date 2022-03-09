@@ -39,7 +39,7 @@ def get_path(instance, filename):
 class KvantUser(AbstractUser):
     name        = models.CharField(max_length=100)
     surname     = models.CharField(max_length=100)
-    patronymic  = models.CharField(max_length=100)
+    patronymic  = models.CharField(max_length=100, blank=True)
     permission  = models.CharField(choices=PERMISSION, max_length=20)
     color       = models.CharField(max_length=10, choices=COLOR, default='blue')
     theme       = models.CharField(max_length=10, choices=THEME, default='light')

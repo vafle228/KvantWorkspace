@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from re import template
+from django.views import generic
 
-# Create your views here.
+
+class ProjectCatalogTemplateView(generic.TemplateView):
+    template_name = 'ProjectApp/ProjectCatalog/index.html'
+
+
+class ProjectPageTemplateView(generic.TemplateView):
+    template_name = 'ProjectApp/ProjectPage/index.html'

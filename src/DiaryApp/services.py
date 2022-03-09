@@ -31,16 +31,10 @@ def getWorkById(work_id):
 
 class DiaryPaginator:
     def generateNext(self, period):
-        if period == 8:
-            return None
         return rl('diary_page') + f'?period={period % 12 + 1}'
     
     def generatePrev(self, period):
-        if period == 9:
-            return None
-        if period == 1:
-            return rl('diary_page') + f'?period={12}' 
-        return rl('diary_page') + f'?period={period - 1}' 
+        return rl('diary_page') + f'?period={(period - 1) + 12 * int(not period - 1)}' 
 
 
 class HomeWorkManipulationManager(ObjectManipulationManager):
