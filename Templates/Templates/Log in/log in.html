@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel='stylesheet' href='../log in/log in.css'/> <!-- Стили страницы -->
-    <link rel='stylesheet' href='../../uicons-regular-rounded.css' /> <!-- Иконки -->
-    <link rel="shortcut icon" href="../../img/google.svg" type="image/png" />  <!-- Логотип --> 
+    <link rel="shortcut icon" href="../../img/icon.svg" type="image/png" />  <!-- Логотип --> 
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -16,40 +15,32 @@
 
 <body>
 
-    <div class="form__container">
-        <form data-aos="fade-down" data-aos-easing="ease-in-sine">
-            <header>
-                <!-- Логотип -->
-                <div id="logo">
-                    <img src='../../img/Кванториум SPACE.svg' alt='logo' style="height: 64px"/>
-                </div>
-            </header>
+    <div class="container" data-aos="fade-down" data-aos-easing="ease-in-sine">
+        <form>
+            <div class="logo">
+                <img src='../../img/logotype.svg'/>
+            </div>
+
+            <h1>Вход</h1>
+            <p>Добро пожаловать! Пожалуйста введите свои данные.</p>
 
             <div id='flash-error'>
                 <h4>Неверный логин или пароль</h4><h4>&#8416 </h4>
             </div>
 
-            <label for="input">Логин</label>
-            <input name='login' autocomplete="off" placeholder="Введите ваш логин"/>
-            <label for="input">Пароль</label>
+            <label>Логин</label>
+            <input name='login' autocomplete="off" placeholder="Введите ваш логин" autofocus/>
+            <label>Пароль</label>
             <input name="password" type="password" autocomplete="off" placeholder="Введите ваш пароль"/>
 
-            <footer>
-                <h4 
-                data-tippy-content="Обратитесь к администратору."
-                data-tippy-trigger="click"
-                data-tippy-placement="right"
-                data-tippy-arrow="false"
-                >Забыли пароль?</h4>
-                <button type="submit">
-                    <h4>Войти</h4>
-                </button>
-            </footer>
-            
+            <button type="submit">
+                <h4>Войти</h4>
+            </button>
         </form>
+        <img class='banner' src="../../img/backgrounds/13.jpg">
     </div>
 
-    <div id="blob"></div>
+    <!-- <div id="blob"></div> -->
 
     <script src="../../JS/script.js"></script> <!-- JavaScript -->
 
