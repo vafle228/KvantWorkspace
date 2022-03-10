@@ -27,14 +27,16 @@ body{
     border-radius: 1rem;
     overflow: hidden;
 }
-.logo img{
-    height: 6rem;
+.logo{
+    height: 6rem; width: min-content;
     margin-bottom: 2rem;
 }
 .banner{
-    width: 24rem; height: calc(100% + 4rem);
+    width: 21rem; height: calc(100% + 4rem);
     margin: -2rem -2rem -2rem 0;
-    object-fit: cover;
+    background: #111926;
+    overflow: hidden;
+    position: relative;
 }
 form{
     display: flex; flex-direction: column; gap: 1rem;
@@ -45,7 +47,7 @@ h1{
     font-weight: 500;
     font-size: 2.5rem;
 }
-p{
+form > p{
     font-size: 1.125rem;
     font-weight: 400;
     color: #70757D;
@@ -53,22 +55,29 @@ p{
     margin-top: -0.75rem;
 }
 
-#flash-error{
-    display: none;
-    justify-content: space-between;
-    padding: 0.5rem 1.5rem 0.5rem 1rem;
+.flashError{
+    display: flex; justify-content: space-between; align-items: center;
+    height: 3.5rem;
+    padding: 0 1.5rem 0 1rem;
     background-color: #D9302511;
     border-radius: 0.5rem;
+    border: #D9302588 solid 0.125rem;
+    box-shadow: 0 0 0 0.25rem #D9302544;
 }
-#flash-error h4{
-    font-size: 24px;
-    font-weight: 500;
+.flashError p{
+    font-size: 1.25rem;
+    font-weight: 300;
     color: #D93025;
-    text-align: right;
 }
 
-form input{
-    height: 60px; width: 100%;
+label{
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-left: 0.125rem;
+    margin-bottom: -0.25rem;
+}
+input{
+    height: 3.5rem; width: 100%;
     border-radius: 0.5rem;
     padding: 0 1.5rem;
     outline: none;
@@ -79,43 +88,37 @@ form input{
     transition-duration: .3s;
     transition-property: border-color box-shadow;
 }
-form input:focus{
+input:focus{
     border: #239AFF88 solid 0.125rem;
     box-shadow: 0 0 0 0.25rem #239aff44;
 }
-form input::placeholder{
+input::placeholder{
     font-size: 1.25rem;
     opacity: 0.5;
-}
-form label{
-    font-weight: 500;
-    font-size: 1.25rem;
-    margin-left: 0.125rem;
-    margin-bottom: -0.25rem;
 }
 
 
 button{
     margin-top: 1rem;
-    height: 3rem; width: 100%;
+    height: 3.5rem; width: 100%;
     padding: 0 20px; margin-left: auto;
     border-radius: 0.5rem; border: none;
-    background-color: #4486f6;
+    background-color: #434ce6;
     color: #fff;
     cursor: pointer;
+    transition: background-color .1s;
 }
 button:hover{
-    background-color: #4079db;
+    background-color: #222d92;
 }
-button h4{
-    font-size: 1.2rem;
+button p{
+    font-size: 1.25rem;
     font-weight: 400;
-    line-height: 1;
 }
 
 
 /* Анимация фона */
-/* #blob {
+/* #blob{
     position: fixed;
     z-index: -1;
     top: 0;
@@ -124,28 +127,71 @@ button h4{
 } */
 
 @media screen and (max-width: 992px){
-    .banner{
-        display: none;
+    body{
+        background-color: #111926;
     }
     .container{
-        width: 36rem;
+        width: 36rem; height: auto;
+    }
+    .banner{
+        position: fixed; top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        z-index: -1;
     }
 }
+
 @media screen and (max-width: 576px){
     body{
         zoom: 80%;
         height: calc(100vh * 1.25);
+        width: calc(100vw * 1.25);
+    }
+    .banner{
+        position: fixed; top: 0; left: 0;
+        width: calc(100vw * 1.25); height: calc(100vh * 1.25);
+        z-index: -1;
+    }
+    h1{
+        font-size: 2rem;
+    }
+    .logo{
+        height: 4rem;
+        margin-bottom: 1rem;
+    }
+    .container{
+        position: fixed; left: 0; bottom: 0;
+        width: 100%;
+        box-shadow: 0 -2rem 2rem #0006;
+        overflow: visible;
+        padding: 0;
+    }
+    .container::before{
+        content: "";
+        background-color: #fff8;
+        width: 4rem; height: 0.25rem;
+        border-radius: 0.125rem;
+        position: absolute; left: calc(50% - 2rem); top: -0.5rem;
+    }
+    .container form{
+        width: 100%;
+        background-color: #fff;
+        padding: 2rem 2.5rem;
+        border-radius: 2rem 2rem 0 0;
     }
 }
-@media screen and (max-width: 456px){
-    body{
-        zoom: 60%;
-        height: calc(100vh * 1.75);
-    }
-}
+
 @media screen and (max-width: 380px){
     body{
-        zoom: 50%;
-        height: calc(100vh * 2);
+        zoom: 60%;
+        height: calc(100vh * 1.67);
+        width: calc(100vw * 1.67);
     }
+    .banner{
+        width: calc(100vw * 1.67); height: calc(100vh * 1.67);
+
+    }
+}
+
+::selection{
+    background-color: #239aff44;
 }

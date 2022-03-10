@@ -8,8 +8,6 @@
     <link rel='stylesheet' href='../log in/log in.css'/> <!-- Стили страницы -->
     <link rel="shortcut icon" href="../../img/icon.svg" type="image/png" />  <!-- Логотип --> 
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <title>Вход</title>
 </head>
 
@@ -17,39 +15,32 @@
 
     <div class="container" data-aos="fade-down" data-aos-easing="ease-in-sine">
         <form>
-            <div class="logo">
-                <img src='../../img/logotype.svg'/>
-            </div>
+            <img src='../../img/logotype.svg' class='logo'/>
 
             <h1>Вход</h1>
             <p>Добро пожаловать! Пожалуйста введите свои данные.</p>
 
-            <div id='flash-error'>
-                <h4>Неверный логин или пароль</h4><h4>&#8416 </h4>
-            </div>
-
+            <!-- <div class='flashError'>
+                <p>Неверный логин или пароль</p>
+                <p>&#8416 </p>
+            </div> -->
+            
             <label>Логин</label>
-            <input name='login' autocomplete="off" placeholder="Введите ваш логин" autofocus/>
+            <input name='login' autocomplete="off" placeholder="Введите ваш логин" spellcheck="false" autofocus/>
+            
             <label>Пароль</label>
-            <input name="password" type="password" autocomplete="off" placeholder="Введите ваш пароль"/>
+            <input name="password" type="password" autocomplete="off" placeholder="Введите ваш пароль" spellcheck="false"/>
 
             <button type="submit">
-                <h4>Войти</h4>
+                <p>Войти</p>
             </button>
         </form>
-        <img class='banner' src="../../img/backgrounds/13.jpg">
+        <div class="banner" id="blob"></div>
     </div>
-
-    <!-- <div id="blob"></div> -->
-
-    <script src="../../JS/script.js"></script> <!-- JavaScript -->
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<script>AOS.init()</script>
 
     <script>
         window.addEventListener("load",function() {
-        const SPEED_ANIM = 0.15;
+        const SPEED_ANIM = 0.05;
         let canv, ctx; 
         let maxx, maxy;
         let events;
@@ -72,7 +63,7 @@
         const msqrt = Math.sqrt;
         const rac3   = msqrt(3);
         const rac3s2 = rac3 / 2;
-        const bcontainer = document.getElementById( 'blob' );
+        const bcontainer = document.getElementById('blob');
         function alea (mini, maxi) {
             if (typeof(maxi) == 'undefined') return mini * mrandom();
             return mini + mrandom() * (maxi - mini);
