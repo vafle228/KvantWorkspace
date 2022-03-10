@@ -28,7 +28,7 @@ class ImageManagerMixin(ImageThumbnailBaseMixin, FileMoveBaseMixin):
 class KvantNewsSaveForm(forms.ModelForm, ImageManagerMixin):
     class Meta:
         model = KvantNews
-        fields = ['title', 'content', 'image', 'author', 'tag']
+        fields = ['title', 'content', 'image', 'author']
     
     def __init__(self, *args, **kwargs):
         super(KvantNewsSaveForm, self).__init__(*args, **kwargs)

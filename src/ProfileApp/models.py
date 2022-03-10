@@ -11,4 +11,4 @@ class KvantAward(models.Model):
     user = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'???????: {self.user.__str__()}'
+        return f'Грамота: {self.user.__str__()}'

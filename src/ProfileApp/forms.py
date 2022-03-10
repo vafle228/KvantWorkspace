@@ -1,88 +1,37 @@
-from CoreApp.services.m2m import FileM2MBaseMixin, ManyToManyObjectCreateMixin
-from CoreApp.services.utils import buildDate
 from django import forms
-from django.core.exceptions import ValidationError
-from LoginApp.services import getUserById, isUserExists
-
-from .models import KvantMessage, MailReceiver
-
-
-class MailReceiverSaveForm(forms.ModelForm):
-    class Meta:
-        model = MailReceiver
-        fields = ('receiver', 'is_read')
+from .services import PDFToImageManager
+from django.core import validators as v
+from os.path import splitext
+from .models import KvantAward
 
 
-class KvantMailSaveForm(forms.ModelForm):
-    class Meta:
-        model = KvantMessage
-        fields = ('sender', 'text', 'title')
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.fields['title'].error_messages.update({
-            'invalid': u'Заголовок невалиден.',
-            'required': u'Заголовок не может быть пустым.',
-            'max_length': u'Заголовок не может превышать %(limit_value)d (сейчас %(show_value)d).',
-        })
+class KvantAwardPDFToImageManager(PDFToImageManager):
+    def clean_image(self):
+        if not self.errors:
+            return self._manageFile()
+        return self.cleaned_data.get('image')
     
-    def clean_title(self):
-        if not self.cleaned_data.get('title').isprintable():
-            raise forms.ValidationError('Заголовок содержит невалидые символы')
-        if '/' in self.cleaned_data.get('title'):
-            raise forms.ValidationError('Заголовок не может содержать символ "/".')
-        return self.cleaned_data.get('title')
+    def _manageFile(self):
+        ext = splitext(self.cleaned_data['image'].name)[1][1::]
+        if self._isValidFile(ext):
+            return self.makeImageThumbnail(self.cleaned_data.get('image'))
+        raise forms.ValidationError('Загруженный файл не является картинкой или pdf-файлом')
+            
+    def _isValidFile(self, ext):
+        return ext == 'pdf' or ext in v.get_available_image_extensions()
 
 
-class KvantMailFileSaveForm(FileM2MBaseMixin):
+class KvantAwardSaveForm(forms.ModelForm, KvantAwardPDFToImageManager):
     class Meta:
-        model = KvantMessage
-        fields = ('files',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__('files', *args, **kwargs)
-
-        self.fields['files'].error_messages.update({
-            'max_upload_count': u'Объект не может содеражть более 16 файлов',
-            'max_upload_weight': u'Суммарный объем файлов не может превышать 32mB.',
-        })
+        model = KvantAward
+        fields = ['user', 'image']
     
-    def getFileUploadPath(self):
-        return f'mail/{buildDate(self.instance.date)}/{self.instance.title}'
-
-
-class KvantMailReceiversForm(ManyToManyObjectCreateMixin):
-    class Meta:
-        model = KvantMessage
-        fields = ('receivers',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__('receivers', *args, **kwargs)
-
-        self.fields['receivers'].error_messages.update({
-            'invalid_choice': u'Выбранный пользователь не существует.',
-            'required': u'Письмо должно содержать хотя бы одного получателя.',
-        })
+    def __init__(self, *args, **kwargs):      
+        super(KvantAwardSaveForm, self).__init__(*args, **kwargs)
+        super(KvantAwardPDFToImageManager, self).__init__(coef=0.35)
     
-    def getData(self):
-        return self.data.getlist('receivers')
-    
-    def validateValue(self, values):
-        if not values:
-            raise ValidationError(self.fields['receivers'].error_messages['required'])
-        if not self._validateUsers(values):
-            raise ValidationError(self.fields['receivers'].error_messages['invalid_choice'])
-
-    def createObjects(self, values):
-        receivers_user = []
-        for user in values:
-            form = MailReceiverSaveForm({'receiver': getUserById(user)})
-            receivers_user.append(str(form.save().id)) if form.is_valid() else None
-        return receivers_user
-
-    def _validateUsers(self, users):
-        """ Валидация пользователей на существование """
-        for user in users:
-            if not isUserExists(user): return False
-        return True
+    def clean_image(self):
+        try:
+            return super().clean_image()
+        except forms.ValidationError as e:
+            self.add_error('image', e)

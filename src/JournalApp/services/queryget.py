@@ -15,8 +15,8 @@ def getJournalLessonQuery(course, period):
     """ Возвращает уроки пользователя по заданному course и period """
     if period in ['1', '2']:
         return {
-            '1': lambda course: KvantLesson.objects.filter(course=course, date__month__lte=6),
-            '2': lambda course: KvantLesson.objects.filter(course=course, date__month__gte=7),
+            '1': lambda course: KvantLesson.objects.filter(course=course, date__month__gte=7),
+            '2': lambda course: KvantLesson.objects.filter(course=course, date__month__lte=6),
         }[period](course)
     return KvantLesson.objects.none()
 

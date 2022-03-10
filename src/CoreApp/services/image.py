@@ -1,8 +1,9 @@
-from PIL import Image
 from io import BytesIO
-from sys import getsizeof
 from os.path import splitext
+from sys import getsizeof
+
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from PIL import Image
 
 
 class ImageThumbnailBaseMixin:

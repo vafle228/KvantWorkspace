@@ -36,6 +36,7 @@ def set_default_image():
 def get_path(instance, filename):
     return f'user/{instance.username}/{filename}'
 
+
 class KvantUser(AbstractUser):
     name        = models.CharField(max_length=100)
     surname     = models.CharField(max_length=100)
@@ -49,4 +50,6 @@ class KvantUser(AbstractUser):
         db_table = 'kvant_user'
 
     def __str__(self):
+        if self.patronymic == '':
+            return f'{self.permission} {self.surname} {self.name[0]}'
         return f'{self.permission} {self.surname} {self.name[0]}.{self.patronymic[0]}.'
