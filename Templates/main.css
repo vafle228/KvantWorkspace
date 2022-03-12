@@ -1203,8 +1203,18 @@ td{
     justify-content: space-between;
     align-items: center;
 }
+
 .modal__block .file{
     width: 16rem !important;
+}
+@media screen and (max-width: 740px){
+    .modal__block{
+        flex-direction: column; gap: 0.75rem;
+        align-items: flex-start;
+    }
+    .modal__content .file{
+        width: 100% !important;
+    }
 }
 
 /* Текстовые поля в форме */
@@ -1278,7 +1288,7 @@ td{
 /* Уведомления */
 .notifications{
     position: fixed; left: 6.5rem;
-    width: 24rem; height: 33rem;
+    width: 24rem;
     background-color: var(--item-bg-color);
     border: var(--theme-light-alpha) solid 1px;
     padding: 0.5rem;
@@ -1296,7 +1306,7 @@ td{
 .notifications__container{
     display: flex; flex-direction: column;
     overflow: auto;
-    height: 100%;
+    max-height: 32rem;
 }
 .notification{
     display: flex; flex-direction: row; gap: 0.5rem;
@@ -1355,7 +1365,7 @@ td{
 /* Повестка дня */
 .agenda{
     position: fixed; left: 6.5rem;
-    width: 24rem; height: 48rem;
+    width: 24rem;
     background-color: var(--item-bg-color);
     border: var(--theme-light-alpha) solid 1px;
     padding: 0.5rem;
@@ -1373,7 +1383,7 @@ td{
 .agenda__container{
     display: flex; flex-direction: column;
     overflow: auto;
-    height: 100%;
+    max-height: 48rem;
 }
 .agenda__lesson{
     display: flex; flex-direction: row; gap: 1rem;

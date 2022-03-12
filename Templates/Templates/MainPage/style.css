@@ -155,17 +155,21 @@ header h3:not(.active):hover{
     cursor: pointer;
     transition: transform .1s;
     padding: 0 1rem;
-    border: 1px solid var(--theme-light);
+    border: var(--theme-light) solid 1px;
 }
 .course:active{
-    transform: scale(0.98);
+    transform: scale(0.99);
 }
 .form .course{
     pointer-events: none;
 }
 .course__illustration{
-    width: 4rem; height: 4rem;
-    margin: 0.5rem 0;
+    width: 3rem; height: 3rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--theme-light);
+    fill: var(--currentColor);
+    margin: 1rem 0;
 }
 .course__title{
     font-size: 1.25rem; font-weight: 500;
@@ -175,7 +179,7 @@ header h3:not(.active):hover{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.course svg{
+.course > svg:not(.course__illustration){
     width: 1rem; height: 1rem;
     fill: var(--text-primary-color);
     margin: 0 0.5rem;
@@ -304,14 +308,14 @@ header h3:not(.active):hover{
 
 @media screen and (max-width: 740px){
     .mainContainer{
-        padding: 1rem;
+        padding: 1.5rem;
     }
     .newsItem{
         width: 100%;
     }
-    #scheduleWidget, #eventsWidget, #today{
+    /* #scheduleWidget, #eventsWidget, #today{
         padding: 1rem;
-    }
+    } */
 }
 
 @media screen and (max-width: 576px){
