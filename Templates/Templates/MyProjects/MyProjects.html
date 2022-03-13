@@ -16,7 +16,7 @@
     <title>Мои проекты</title>
 </head>
 
-<body class='light__theme' colorScheme="colorScheme__blue">
+<body class='dark__theme' colorScheme="colorScheme__blue">
 
     <!-- Навигационное меню -->
     <nav class='navigation'>
@@ -146,7 +146,7 @@
     <div class="mainContainer">
         <section class="myProjectsPage column g24">
 
-            <header>
+            <header class="header">
                 <button class="combinedButton" onclick="history.back();">
                     <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                         <g transform="translate(-5 -5)">
@@ -156,44 +156,51 @@
                     </svg>
                     <span>Назад</span>
                 </button>
+                <button class="secondaryButton" onclick="open_form('#createProject')">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/>
+                    </svg>
+                    Создать проект
+                </button>
             </header>
 
             <header class="header">
-                <div class="menu">
-                    <div class="menu__button active">
-                        <p>Все</p>
-                    </div>
-                    <div class="menu__button">
-                        <p>Текущие</p>
-                    </div>
-                    <div class="menu__button">
-                        <p>Завершенные</p>
+                <h1>Мои проекты</h1>
+                <div class="filtering" style="width: 12rem">
+                    <div class="dropdownSelect">
+                        <div class="dropdownSelect__trigger">
+                            <div>
+                                Все
+                            </div>
+                            <div class="arrowDown"></div>
+                        </div>
+                        <div class="dropdownSelect__options">
+                            <span class='dropdownSelect__option selected'>Все</span>
+                            <span class='dropdownSelect__option'>Активные</span>
+                            <span class='dropdownSelect__option'>Завершенные</span>
+                        </div>
                     </div>
                 </div>
-                <button class="secondaryButton" onclick="open_form('#createProject')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/></svg>
-                    Создать проект
-                </button>
             </header>
     
             <section class="projects">
                 <div class="project">
-                    <img src="../../img/goal.png" class="project__illustration">
+                    <img src="../../img/telescope.png" class="project__illustration">
                     <div class="project__content">
-                        <!-- <div class="project__tags">
-                            <span class="tag">ХайТек</span>
-                            <span class="tag">Набор участников</span>
-                        </div> -->
                         <p class="project__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, aliquam.</p>
                         <p class="project__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sint voluptatibus modi hic debitis quos, id quidem aspernatur deserunt voluptates dicta perferendis ratione rem aperiam laboriosam, fugiat expedita? Numquam quos sunt unde facere autem natus, tempore, veritatis, est eveniet ipsum quod omnis aperiam quo reiciendis. Libero eos minus obcaecati et.</p>
                         <div class="project__info">
                             <div class="column g8">
                                 <p>Направление</p>
-                                <span class="tag">ХайТек</span>
+                                <span class="tag">Направление</span>
                             </div>
                             <div class="column g8">
                                 <p>Статус</p>
                                 <span class="tag">Активный</span>
+                            </div>
+                            <div class="column g8">
+                                <p>Набор участников</p>
+                                <span class="tag">Открыт</span>
                             </div>
                             <div class="column g8">
                                 <p>Участники</p>
@@ -210,10 +217,45 @@
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>
+                </div>
+                <div class="project">
+                    <img src="../../img/telescope.png" class="project__illustration">
+                    <div class="project__content">
+                        <p class="project__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, aliquam. ырщырв9аыр0ф ывфывфывфывф ыв</p>
+                        <p class="project__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sint voluptatibus modi hic debitis quos, id quidem aspernatur deserunt voluptates dicta perferendis ratione rem aperiam laboriosam, fugiat expedita? Numquam quos sunt unde facere autem natus, tempore, veritatis, est eveniet ipsum quod omnis aperiam quo reiciendis. Libero eos minus obcaecati et.</p>
+                        <div class="project__info">
+                            <div class="column g8">
+                                <p>Направление</p>
+                                <span class="tag">Направление</span>
+                            </div>
+                            <div class="column g8">
+                                <p>Статус</p>
+                                <span class="tag">Активный</span>
+                            </div>
+                            <div class="column g8">
+                                <p>Набор участников</p>
+                                <span class="tag">Открыт</span>
+                            </div>
+                            <div class="column g8">
+                                <p>Участники</p>
+                                <div class="project__members members">
+                                    <div class="member" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                                    </div>
+                                    <div class="member" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                                    </div>
+                                    <div class="member" title="Фамилия Имя">
+                                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
         </section>
 
     </div>
@@ -313,6 +355,8 @@
             }
         });
     </script>
+
+    <script src="../../JS/dropdownSelect.js"></script> <!-- Выпадающие меню -->
 </body>
 
 </html>

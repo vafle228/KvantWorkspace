@@ -26,13 +26,13 @@
 }
 .lesson{
     width: 100%;
-    background-color: var(--item-bg-color);
-    border-radius: 0.75rem;
-    transition: transform .1s;
-    position: relative;
-    border: var(--theme-light) solid 1px;
     padding: 1rem;
+    position: relative;
+    border-radius: 0.75rem;
+    border: var(--theme-light) solid 1px;
+    background-color: var(--item-bg-color);
     display: flex; flex-direction: row; gap: 0;
+    transition: transform .1s;
 }
 .light__theme .lesson{
     background-color: var(--theme-light-alpha);
@@ -40,6 +40,7 @@
 .lesson:active{
     transform: scale(0.99);
 }
+
 .lesson__illustration{
     width: 3rem; height: 3rem;
     min-width: 3rem;
@@ -79,15 +80,15 @@
 .lesson::before{
     pointer-events: none;
     content: "";
-    width: 0.25rem; height: calc(100% + 0.5rem);
+    width: 0.25rem; height: calc(100% + 0.5rem + 2px);
     background-color: var(--currentColor);
     position: absolute; top: -0.25rem; left: -2.375rem;
 }
 .lesson:first-of-type::before{
-    height: calc(50% + 0.25rem); top: 50%;
+    height: calc(50% + 0.25rem + 1px); top: 50%;
 }
 .lesson:last-of-type::before{
-    height: calc(50% + 0.25rem);
+    height: calc(50% + 0.25rem + 1px);
 }
 .lesson::after{
     pointer-events: none;
@@ -218,10 +219,9 @@
 
 .tasks .menu{
     padding: 0;
-    min-height: 3rem;
-    height: 3rem;
+    min-height: 3rem; height: 3rem;
     border-radius: 0.5rem 0.5rem 0 0;
-    background-color: var(--theme-light-alpha);
+    background-color: var(--theme-light);
     gap: 0;
 }
 .tasks .menu__button{

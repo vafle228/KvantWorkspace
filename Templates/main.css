@@ -17,8 +17,10 @@ body[colorScheme='colorScheme__green']{
     --illustration: url(../../img/backgrounds/6.jpg);
 }
 body[colorScheme='colorScheme__green'].dark__theme{
-    --bgColor: #66cd0311;
-    --currentColor: #66cd03;
+    /* --bgColor: #66cd0311;
+    --currentColor: #66cd03; */
+    --bgColor: #35a75511;
+    --currentColor: #35a755;
 }
 body[colorScheme='colorScheme__green'].light__theme{
     --bgColor: #35a75511;
@@ -29,8 +31,10 @@ body[colorScheme='colorScheme__blue']{
     --illustration: url(../../img/backgrounds/1.jpg);
 }
 body[colorScheme='colorScheme__blue'].dark__theme{
-    --bgColor: #00b2ff11;
-    --currentColor: #00b2ff;
+    /* --bgColor: #00b2ff11;
+    --currentColor: #00b2ff; */
+    --bgColor: #4486f611;
+    --currentColor: #4486f6;
 }
 body[colorScheme='colorScheme__blue'].light__theme{
     --bgColor: #4486f611;
@@ -41,8 +45,10 @@ body[colorScheme='colorScheme__red']{
     --illustration: url(../../img/backgrounds/5.jpg);
 }
 body[colorScheme='colorScheme__red'].dark__theme{
-    --bgColor: #f1416c11;
-    --currentColor: #f1416c;
+    /* --bgColor: #f1416c11;
+    --currentColor: #f1416c; */
+    --bgColor: #f1747311;
+    --currentColor: #f17473;
 }
 body[colorScheme='colorScheme__red'].light__theme{
     --bgColor: #f1747311;
@@ -53,8 +59,10 @@ body[colorScheme='colorScheme__purple']{
     --illustration: url(../../img/backgrounds/11.jpg);
 }
 body[colorScheme='colorScheme__purple'].dark__theme{
-    --bgColor: #6c63ff11;
-    --currentColor: #6c63ff;
+    /* --bgColor: #6c63ff11;
+    --currentColor: #6c63ff; */
+    --bgColor: #6f4bff11;
+    --currentColor: #6f4bff;
 }
 body[colorScheme='colorScheme__purple'].light__theme{
     --bgColor: #6f4bff11;
@@ -154,7 +162,7 @@ body{
 }
 @media screen and (max-width: 740px){
     .mainContainer{
-        padding: 0.5rem;
+        padding: 1rem;
         border-radius: 0;
     }
 }
@@ -271,6 +279,7 @@ body{
     object-fit: cover;
 }
 
+
 /* Навигационное меню для смартфонов */
 .navigationBar{
     width: 100%; height: 4rem;
@@ -331,6 +340,15 @@ body{
     .navigation{ display: none }
     .navigationBar{ display: flex }
 }
+@media screen and (max-height: 420px){
+    body{
+        padding-left: 0;
+        padding-bottom: 4rem;
+    }
+    .navigation{ display: none }
+    .navigationBar{ display: flex }
+}
+
 
 /* Формы просмотра и заполнения информации */
 .form{
@@ -457,7 +475,7 @@ body{
 .file i{
     width: 3rem; height: 3rem;
     padding: 0 0.75rem;
-    background-color: var(--theme-light);
+    background-color: var(--theme-light-alpha);
     display: flex; align-items: center;
 }
 .file i::before{

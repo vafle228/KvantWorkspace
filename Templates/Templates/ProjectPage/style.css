@@ -284,9 +284,6 @@
     font-size: 1.125rem;
     font-weight: 400;
 }
-/* .chat__input input::placeholder{
-    font-weight: 500 !important;
-} */
 .light__theme .chat__input input{
     background-color: #f1f3f5;
 }
