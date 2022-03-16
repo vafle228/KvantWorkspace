@@ -157,9 +157,17 @@
             </button>
             <div class="menu">
                 <button class="menu__button active" onclick="changeTab('About')">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M256 192c17.67 0 32-14.33 32-32c0-17.67-14.33-32-32-32S224 142.3 224 160C224 177.7 238.3 192 256 192zM296 336h-16V248C280 234.8 269.3 224 256 224H224C210.8 224 200 234.8 200 248S210.8 272 224 272h8v64h-16C202.8 336 192 346.8 192 360S202.8 384 216 384h80c13.25 0 24-10.75 24-24S309.3 336 296 336z"/>
+                        <path style='opacity: .4' d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/>
+                    </svg>
                     <p>Описание проекта</p>
                 </button>
                 <button class="menu__button" onclick="changeTab('Workspace')">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M81.84 152.1C77.43 156.9 71.21 159.8 64.63 159.1C58.05 160.2 51.69 157.6 47.03 152.1L7.029 112.1C-2.343 103.6-2.343 88.4 7.029 79.03C16.4 69.66 31.6 69.66 40.97 79.03L63.08 101.1L118.2 39.94C127 30.09 142.2 29.29 152.1 38.16C161.9 47.03 162.7 62.2 153.8 72.06L81.84 152.1zM81.84 312.1C77.43 316.9 71.21 319.8 64.63 319.1C58.05 320.2 51.69 317.6 47.03 312.1L7.029 272.1C-2.343 263.6-2.343 248.4 7.029 239C16.4 229.7 31.6 229.7 40.97 239L63.08 261.1L118.2 199.9C127 190.1 142.2 189.3 152.1 198.2C161.9 207 162.7 222.2 153.8 232.1L81.84 312.1zM0 416C0 389.5 21.49 368 48 368C74.51 368 96 389.5 96 416C96 442.5 74.51 464 48 464C21.49 464 0 442.5 0 416z"/>
+                        <path style='opacity: .4' d="M192 384H480C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384zM256 224H480C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224zM256 128C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H480C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H256z"/>
+                    </svg>
                     <p>Доска задач</p>
                 </button>
             </div>
@@ -292,7 +300,7 @@
             </section>
 
             <section class="board row g16 items-stretch">
-                <div class="board__section column g16">
+                <div class="board__section">
                     <div class="board__sectionHeader flex space-between items-center">
                         <p class="board__sectionTitle">Бэклог</p>
                         <span class="board__sectionCounter">1</span>
@@ -337,7 +345,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="board__section column g16">
+                <div class="board__section">
                     <div class="board__sectionHeader flex space-between items-center">
                         <p class="board__sectionTitle">Задачи</p>
                         <span class="board__sectionCounter">1</span>
@@ -380,7 +388,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="board__section column g16">
+                <div class="board__section">
                     <div class="board__sectionHeader flex space-between items-center">
                         <p class="board__sectionTitle">В прогрессе</p>
                         <span class="board__sectionCounter">1</span>
@@ -430,7 +438,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="board__section column g16">
+                <div class="board__section">
                     <div class="board__sectionHeader flex space-between items-center">
                         <p class="board__sectionTitle">Выполнено</p>
                         <span class="board__sectionCounter">0</span>
@@ -463,7 +471,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="board__section column g16">
+                <div class="board__section">
                     <div class="board__sectionHeader flex space-between items-center">
                         <p class="board__sectionTitle">Архив</p>
                         <span class="board__sectionCounter">0</span>
@@ -474,51 +482,64 @@
                 </div>
             </section>
             
-            <section class="chat column g16">
-                <div class="chat__history column g16">
-                    <div class="message row g8">
-                        <img src="../../img/avatars/Upstream-7.png" class="message__sender avatar">
-                        <span class="message__bubble">
-                            <p class="message__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores atque distinctio ullam deleniti omnis quasi eaque non assumenda at praesentium?</p>
-                        </span>
-                    </div>
-                    <div class="message myMessage row g8">
-                        <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
-                        <span class="message__bubble">
-                            <p class="message__text">Lorem, ipsum dolor.</p>
-                        </span>
-                    </div>
-                    <div class="message row g8">
-                        <img src="../../img/avatars/Upstream-2.png" class="message__sender avatar">
-                        <span class="message__bubble">
-                            <p class="message__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum molestiae eligendi recusandae incidunt ut dolor dolore blanditiis a, at laboriosam pariatur aperiam veritatis nam?</p>
-                        </span>
-                    </div>
-                    <div class="message myMessage row g8">
-                        <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
-                        <span class="message__bubble">
-                            <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, amet?</p>
-                        </span>
-                    </div>
-                    <div class="message row g8">
-                        <img src="../../img/avatars/Upstream-6.png" class="message__sender avatar">
-                        <span class="message__bubble">
-                            <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum est incidunt, illo facere facilis cupiditate beatae corrupti non maxime, iure rerum id error itaque repudiandae? Ullam enim sunt, hic quisquam vero suscipit dicta debitis tempora? At ex rem provident reprehenderit.</p>
-                        </span>
-                    </div>
-                </div>
-        
-                <div class="chat__input row g4">
-                    <input type="text" placeholder="Сообщение">
-                    <button>
-                        <svg viewBox="0 0 512 512">
-                            <path d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"/>
-                        </svg>
-                    </button>
-                </div>
-            </section>
-
+            <button id="openChatButton" onclick="$('.chat').toggle()">
+                <svg viewBox="0 0 512 512">
+                    <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"/>
+                </svg>
+            </button>
         </div>
+
+        <section class="chat column g16">
+            <div class="chat__header">
+                <button class="combinedButton" onclick="$('.chat').toggle()">
+                    <svg viewBox="0 0 320 512">
+                        <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/>
+                    </svg>
+                    <span>Закрыть чат</span>
+                </button>
+            </div>
+            <div class="chat__history column g16">
+                <div class="message row g8">
+                    <img src="../../img/avatars/Upstream-7.png" class="message__sender avatar">
+                    <span class="message__bubble">
+                        <p class="message__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores atque distinctio ullam deleniti omnis quasi eaque non assumenda at praesentium?</p>
+                    </span>
+                </div>
+                <div class="message myMessage row g8">
+                    <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
+                    <span class="message__bubble">
+                        <p class="message__text">Lorem, ipsum dolor.</p>
+                    </span>
+                </div>
+                <div class="message row g8">
+                    <img src="../../img/avatars/Upstream-2.png" class="message__sender avatar">
+                    <span class="message__bubble">
+                        <p class="message__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum molestiae eligendi recusandae incidunt ut dolor dolore blanditiis a, at laboriosam pariatur aperiam veritatis nam?</p>
+                    </span>
+                </div>
+                <div class="message myMessage row g8">
+                    <img src="../../img/avatars/Upstream-8.png" class="message__sender avatar">
+                    <span class="message__bubble">
+                        <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, amet?</p>
+                    </span>
+                </div>
+                <div class="message row g8">
+                    <img src="../../img/avatars/Upstream-6.png" class="message__sender avatar">
+                    <span class="message__bubble">
+                        <p class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum est incidunt, illo facere facilis cupiditate beatae corrupti non maxime, iure rerum id error itaque repudiandae? Ullam enim sunt, hic quisquam vero suscipit dicta debitis tempora? At ex rem provident reprehenderit.</p>
+                    </span>
+                </div>
+            </div>
+    
+            <div class="chat__input row g4">
+                <input type="text" placeholder="Сообщение">
+                <button>
+                    <svg viewBox="0 0 512 512">
+                        <path d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
     </div>
 
     <!-- Форма редактирования проекта -->
@@ -595,7 +616,6 @@
         </div>
     </div>
     
-
     <!-- Просмотр задачи -->
     <div class='modal' id='taskView'>
         <div class="modal__viewport">
