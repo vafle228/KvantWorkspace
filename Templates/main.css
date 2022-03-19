@@ -950,24 +950,26 @@ button[class$='Button']:active{
 
 /* Выбор пользователя */
 .userSelect{
-    width: 32rem;
+    width: 100%; max-width: 100%;
     background-color: var(--aside-bg-color);
     border-radius: 12px;
     display: flex; flex-direction: column;
-    max-height: 16rem;
+    max-height: 14rem;
     overflow: auto;
     box-shadow: 0 0 1rem #0001;
+    padding: 0.5rem;
 }
 .userSelect::-webkit-scrollbar{
-    width: 6px;
+    width: 3px;
 }
 .userSelect::-webkit-scrollbar-thumb{
-    background-color: var(--theme-light-alpha);
+    background-color: var(--theme-light);
     border-radius: 3px;
 }
 .userSelect__user{
+    border-radius: 0.5rem;
     height: 4rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     transition: padding .2s, height .2s;
     display: flex; flex-direction: row; gap: 1rem;
 }
@@ -983,7 +985,7 @@ button[class$='Button']:active{
     object-fit: cover; object-position: center;
 }
 .userSelect__userInfo{
-    display: flex; flex-direction: column; gap: 4px;
+    display: flex; flex-direction: column; gap: 2px;
 }
 .userSelect__userName{
     color: var(--text-primary-color);

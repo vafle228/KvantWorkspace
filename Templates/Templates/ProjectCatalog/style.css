@@ -202,4 +202,12 @@
     font-size: 1rem;
 }
 
-
+.pagination{
+    width: 100%;
+    justify-content: center;
+}
+.pagination .combinedButton{
+    width: 2.5rem; height: 2.5rem;
+    padding: 0.75rem;
+    border-radius: 1.5rem;
+}

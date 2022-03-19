@@ -24,7 +24,7 @@ $(document).mouseup(function (e) {
 		$(".form").removeClass("active");
 		$(".mainContainer").css("overflow-y", "scroll");
 		$(".userSelect").hide();
-		$("menu").removeClass("active");
+		// $("menu").removeClass("active");
 		$(".list").hide();
 		$(".modal").removeClass("active");
 	}
@@ -82,7 +82,6 @@ function switch_theme() {
 
 // Сменить цветовую схему
 function switch_color_scheme() {
-
 	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red', 'colorScheme__purple'];
 
 	let currentSchemeIndex = schemes.indexOf($('body').attr("colorScheme"));
