@@ -163,11 +163,16 @@
 #search svg{
     height: 3rem; width: 3rem;
     padding: 1rem;
-    fill: var(--text-primary-color);
+    fill: var(--currentColor);
+    background-color: var(--bgColor);
+}
+#search svg:hover{
+    fill: #fff;
+    background-color: var(--currentColor);
 }
 #search input{
-    height: 3rem; width: 16rem;
-    padding-right: 1rem;
+    height: 3rem; width: calc(100% - 3rem);
+    padding-left: 1rem;
     font-size: 1.125rem;
     background-color: unset;
     color: var(--text-primary-color);

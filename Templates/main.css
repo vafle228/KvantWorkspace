@@ -524,11 +524,11 @@ body{
 
 /* Пользователи */
 .users{
-    display: flex; gap: 0.5rem;
+    display: flex; gap: 0.25rem;
     flex-wrap: wrap;
 }
 .user{
-    width: calc((100% - 1.5rem) / 4);
+    width: calc((100% - 0.5rem) / 3);
     padding: 0.5rem;
     border-radius: 2rem;
     transition: background-color .2s;
@@ -553,18 +553,11 @@ body{
 }
 
 /* Адаптивность для пользователей */
-@media screen and (max-width: 768px){
-    .user{
-        width: calc((100% - 1rem) / 3);
-    }
-}
-
 @media screen and (max-width: 576px){
     .user{
-        width: calc((100% - 0.5rem) / 2);
+        width: calc((100% - 0.25rem) / 2);
     }
 }
-
 @media screen and (max-width: 400px){
     .user{
         width: 100%;
@@ -973,7 +966,7 @@ button[class$='Button']:active{
     border-radius: 3px;
 }
 .userSelect__user{
-    height: 5rem;
+    height: 4rem;
     padding: 1rem 1.5rem;
     transition: padding .2s, height .2s;
     display: flex; flex-direction: row; gap: 1rem;
@@ -985,7 +978,7 @@ button[class$='Button']:active{
     color: var(--currentColor);
 }
 .userSelect__userImage{
-    width: 3rem; height: 3rem;
+    width: 2.5rem; height: 2.5rem;
     border-radius: 1.5rem;
     object-fit: cover; object-position: center;
 }

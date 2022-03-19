@@ -52,7 +52,7 @@
 
         <div class='navigation__group column g8'>
             <button onclick="switch_theme()" class='navigation__link'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <svg viewBox="0 0 16 16">
                     <g id="eclipse" transform="translate(-8 -8)">
                         <path opacity='0.3' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
                         <g>
@@ -67,7 +67,7 @@
                 </svg>
             </button>
             <button onclick="switch_color_scheme()" class='navigation__link'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <svg viewBox="0 0 16 16">
                     <g id="roller" transform="translate(-8 -8)">
                         <path d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
                         <path opacity='0.3' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
@@ -157,11 +157,11 @@
         <div class="projectCatalog">
             <div class="filter">
                 <div id="search">
-                    <svg viewBox="0 0 512 512">
-                        <path style='opacity: .8' d="M500.3 443.7l-119.7-119.7c-15.03 22.3-34.26 41.54-56.57 56.57l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7z"/>
-                        <path style='opacity: .6' d="M207.1 0C93.12 0-.0002 93.13-.0002 208S93.12 416 207.1 416s208-93.13 208-208S322.9 0 207.1 0zM207.1 336c-70.58 0-128-57.42-128-128c0-70.58 57.42-128 128-128s128 57.42 128 128C335.1 278.6 278.6 336 207.1 336z"/>
-                    </svg>
                     <input autocomplete="off" placeholder="Поиск">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M500.3 443.7l-119.7-119.7c-15.03 22.3-34.26 41.54-56.57 56.57l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7z"/>
+                        <path style='opacity: .8' d="M207.1 0C93.12 0-.0002 93.13-.0002 208S93.12 416 207.1 416s208-93.13 208-208S322.9 0 207.1 0zM207.1 336c-70.58 0-128-57.42-128-128c0-70.58 57.42-128 128-128s128 57.42 128 128C335.1 278.6 278.6 336 207.1 336z"/>
+                    </svg>
                 </div>
 
                 <div class="menu">
@@ -234,13 +234,14 @@
                         </div>
                         <div class="dropdownSelect__options">
                             <span class='dropdownSelect__option selected'>Все</span>
+                            <span class='dropdownSelect__option'>Набирающие участников</span>
                             <span class='dropdownSelect__option'>Активные</span>
                             <span class='dropdownSelect__option'>Завершенные</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="filtering">
+                <!-- <div class="filtering">
                     <div class="dropdownSelect">
                         <h3>Набор участников</h3>
                         <div class="dropdownSelect__trigger">
@@ -255,7 +256,7 @@
                             <span class='dropdownSelect__option'>Закрыт</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -272,12 +273,12 @@
                             </div>
                             <div class="column g8">
                                 <p>Статус</p>
-                                <span class="tag">Активный</span>
+                                <span class="tag">Набор участников</span>
                             </div>
-                            <div class="column g8">
+                            <!-- <div class="column g8">
                                 <p>Набор участников</p>
                                 <span class="tag">Открыт</span>
-                            </div>
+                            </div> -->
                             <div class="column g8">
                                 <p>Участники</p>
                                 <div class="project__members members">
@@ -298,7 +299,7 @@
                 <div class="project">
                     <img src="../../img/telescope.png" class="project__illustration">
                     <div class="project__content">
-                        <p class="project__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, aliquam. ырщырв9аыр0ф ывфывфывфывф ыв</p>
+                        <p class="project__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, aliquam.</p>
                         <p class="project__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sint voluptatibus modi hic debitis quos, id quidem aspernatur deserunt voluptates dicta perferendis ratione rem aperiam laboriosam, fugiat expedita? Numquam quos sunt unde facere autem natus, tempore, veritatis, est eveniet ipsum quod omnis aperiam quo reiciendis. Libero eos minus obcaecati et.</p>
                         <div class="project__info">
                             <div class="column g8">
@@ -309,10 +310,10 @@
                                 <p>Статус</p>
                                 <span class="tag">Активный</span>
                             </div>
-                            <div class="column g8">
+                            <!-- <div class="column g8">
                                 <p>Набор участников</p>
                                 <span class="tag">Открыт</span>
-                            </div>
+                            </div> -->
                             <div class="column g8">
                                 <p>Участники</p>
                                 <div class="project__members members">
