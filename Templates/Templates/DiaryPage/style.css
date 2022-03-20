@@ -49,6 +49,11 @@
     background-color: var(--theme-light);
     fill: var(--currentColor);
 }
+img.lesson__illustration{
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+}
 .lesson__info{
     width: calc(100% - 3rem);
     display: flex; flex-direction: column; gap: 0.125rem;

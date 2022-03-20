@@ -109,6 +109,11 @@ header h3:not(.active):hover{
     fill: var(--currentColor);
     margin: 1rem 0;
 }
+img.course__illustration{
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+}
 .course__title{
     font-size: 1.25rem; font-weight: 500;
     color: var(--text-primary-color);
