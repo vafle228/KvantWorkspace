@@ -41,19 +41,24 @@
     transform: scale(0.99);
 }
 
-.lesson__illustration{
+img.lesson__illustration:not([src$='svg']){
     width: 3rem; height: 3rem;
     min-width: 3rem;
-    border-radius: 0.75rem;
-    padding: 0.75rem;
-    background-color: var(--theme-light);
-    fill: var(--currentColor);
-}
-img.lesson__illustration{
     padding: 0;
     object-fit: cover;
     object-position: center;
+    border-radius: 0.75rem;
+    background-color: var(--theme-light);
 }
+img.lesson__illustration[src$='svg'], svg.lesson__illustration{
+    width: 3rem; height: 3rem;
+    min-width: 3rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--theme-light);
+    fill: var(--currentColor);
+}
+
 .lesson__info{
     width: calc(100% - 3rem);
     display: flex; flex-direction: column; gap: 0.125rem;
