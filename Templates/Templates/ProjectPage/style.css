@@ -405,8 +405,8 @@
     width: 100%;
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
-    padding: 1rem;
-
+    padding: 1rem 1.25rem;
+    border: var(--theme-light) solid 1px;
     display: flex; flex-direction: column; gap: 0.75rem;
 }
 .application__header{
@@ -416,13 +416,20 @@
 
 .application__user{
     display: flex; flex-direction: row; gap: 0.5rem;
+    padding: 0.375rem;
+    width: 16rem;
+    border-radius: 1.5rem;
 }
-.application__user .column{
-    padding: 0.125rem 0;
+.application__user:hover{
+    background-color: var(--theme-light);
+}
+.application__user .avatar{
+    width: 2.25rem; height: 2.25rem;
 }
 .application__userName{
     font-weight: 500;
     color: var(--text-primary-color);
+    margin-bottom: -0.0625rem;
 }
 .application__userRole{
     font-size: 0.875rem;
