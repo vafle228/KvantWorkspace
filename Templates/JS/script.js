@@ -16,31 +16,33 @@ $(window).ready(() => page_adaptation());
 $(window).resize(() => page_adaptation());
 
 
+function hideAll() {
+	$(".form").removeClass("active");
+	$(".mainContainer").css("overflow-y", "scroll");
+	$(".userSelect").hide();
+	$(".list").hide();
+	$(".modal").removeClass("active");
+}
+
 // Закрытие форм при клике вне
 $(document).mouseup(function (e) {
 	let exceptions = [$(".form-wrapper"), $(".alert"), $(".trigger"), $(".modal__viewport")]
 
 	if(!(exceptions.filter(exception => exception.has(e.target).length !== 0).length)){
-		$(".form").removeClass("active");
-		$(".mainContainer").css("overflow-y", "scroll");
-		$(".userSelect").hide();
-		// $("menu").removeClass("active");
-		$(".list").hide();
-		$(".modal").removeClass("active");
+		hideAll();
 	}
 });
 
 // Горячие клавиши
 $('body').keyup((event) => {
 	if (event.keyCode == 27){
-		$(".form").removeClass("active");
-		$(".modal").removeClass("active");
-		$(".mainContainer").css("overflow-y", "scroll");
+		hideAll();
 	} 
 });
 
 // Открыть форму по ID
 function open_form(form_id) {
+	hideAll();
 	$(".mainContainer").css("overflow", "hidden");
 	$(form_id).addClass("active");
 }

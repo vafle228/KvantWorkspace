@@ -160,12 +160,11 @@ img.course__illustration{
     color: var(--text-primary-color);
     font-size: 1.125rem;
 }
-
 .newsContainer{
     display: flex; flex-wrap: wrap; gap: 1rem;
 }
 
-/* Элемент новости */
+/* Новость */
 .newsItem{
     width: calc((100% - 3rem) / 4); height: 24rem;
     border-radius: 1rem;
@@ -178,7 +177,6 @@ img.course__illustration{
     text-decoration: underline;
     text-decoration-color: #eee;
 }
-
 
 .newsItem__author{
     display: flex; flex-direction: row; gap: 0.5rem; align-items: center;
@@ -229,10 +227,15 @@ img.course__illustration{
     #widgets{
         flex-direction: column; gap: 2rem;
     }
-    #scheduleWidget, #eventsWidget{
+    #scheduleWidget,
+    #eventsWidget{
         width: 100%;
     }
-    #eventsWidget, #eventsWidget .carousel__slide, #eventsWidget .carousel, #eventsWidget .carousel__viewport, #eventsWidget .carousel__track{
+    #eventsWidget,
+    #eventsWidget .carousel__slide,
+    #eventsWidget .carousel,
+    #eventsWidget .carousel__viewport,
+    #eventsWidget .carousel__track{
         height: 32rem !important;
     }
     .event{
@@ -257,11 +260,7 @@ img.course__illustration{
     .newsItem{
         width: 100%;
     }
-    /* #scheduleWidget, #eventsWidget, #today{
-        padding: 1rem;
-    } */
 }
-
 @media screen and (max-width: 576px){
     .lesson.inactive{
         display: none;
@@ -269,6 +268,7 @@ img.course__illustration{
 }
 
 
+/* Карусель */
 .carousel{
     color: var(--text-primary-color);
 
@@ -284,7 +284,6 @@ img.course__illustration{
     opacity: 0;
     transition: all .4s;
 }
-
 #eventCarousel .carousel__slide {
     height: 22rem; width: 100% !important;
     border-radius: 0.5rem;
@@ -297,7 +296,6 @@ img.course__illustration{
 .carousel__dots{
     transform: translate(0, -0.5rem);
 }
-
 .carousel__dot::after{
     width: 1.125rem !important;
     border-radius: 0.2rem !important;

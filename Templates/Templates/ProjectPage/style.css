@@ -349,11 +349,6 @@
     fill: #fff;
 }
 
-.modal__content .task__title{
-    font-size: 2rem;
-    font-weight: 500;
-}
-
 
 #userSearch{
     background-color: var(--theme-light-alpha);
@@ -506,7 +501,6 @@ tbody tr td:last-of-type .relativeBox > button{
     min-width: 2rem !important;
     padding: 0 0.5rem;
 }
-
 td, th{
     background-color: unset;
     border-radius: 0;
@@ -517,8 +511,6 @@ tbody tr:last-of-type td:first-of-type{
 tbody tr:last-of-type td:last-of-type{
     border-radius: 0 0 0.5rem 0;
 }
-
-
 td p{
     font-weight: 500;
     color: var(--text-primary-color);
@@ -530,7 +522,6 @@ td h3{
     line-height: 1.5rem;
     color: var(--text-primary-color);
 }
-
 td.student{
     display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
     min-width: 16rem;
@@ -554,4 +545,10 @@ td.student .student__name{
     th.student{
         width: calc(100% - 13rem);
     }
+}
+
+
+
+.modal__content:not(:first-of-type){
+    display: none;
 }
