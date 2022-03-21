@@ -48,7 +48,6 @@ img.lesson__illustration:not([src$='svg']){
     object-fit: cover;
     object-position: center;
     border-radius: 0.75rem;
-    background-color: var(--theme-light);
 }
 img.lesson__illustration[src$='svg'], svg.lesson__illustration{
     width: 3rem; height: 3rem;

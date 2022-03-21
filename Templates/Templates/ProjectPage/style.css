@@ -31,14 +31,24 @@
     font-weight: 500;
 }
 
-.application__textarea{
-    background-color: var(--theme-light-alpha);
+/* Заявка */
+.applicationForm{
+    background-color: var(--item-bg-color);
+    padding: 1rem;
+    border-radius: 1rem;
 }
-.application__header h2{
+.applicationForm__header{
+    display: flex; justify-content: space-between; align-items: center;
+}
+.applicationForm__header h2{
     font-weight: 500;
     font-size: 2rem;
 }
+.applicationForm__textarea{
+    background-color: var(--theme-light-alpha);
+}
 
+/* Участник */
 .member{
     height: 3rem;
     border-radius: 1.5rem;
@@ -117,6 +127,7 @@
     padding-bottom: 16rem;
 }
 
+/* Задача */
 .task{
     border-radius: 0.5rem;
     padding: 1rem;
@@ -237,6 +248,7 @@
 }
 
 
+/* Чат */
 .chat{
     position: fixed; top: 0; right: 0;
     width: 32rem; height: calc(100% - 3rem);
@@ -257,6 +269,7 @@
     overflow: auto;
 }
 
+/* Сообщение */
 .message{
     align-items: flex-start;
 }
@@ -397,17 +410,17 @@
 }
 
 
+/* Заявки */
 .applications{
-    display: flex; flex-direction: column; gap: 1rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
 }
-
 .application{
     width: 100%;
     background-color: var(--item-bg-color);
     border-radius: 0.5rem;
-    padding: 1rem 1.25rem;
+    padding: 1rem;
     border: var(--theme-light) solid 1px;
-    display: flex; flex-direction: column; gap: 0.75rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
 }
 .application__header{
     width: 100%;
@@ -417,7 +430,7 @@
 .application__user{
     display: flex; flex-direction: row; gap: 0.5rem;
     padding: 0.375rem;
-    width: 16rem;
+    width: 16rem; height: 3rem;
     border-radius: 1.5rem;
 }
 .application__user:hover{
@@ -434,13 +447,9 @@
 .application__userRole{
     font-size: 0.875rem;
 }
-
-
 .application__text{
     font-size: 1.125rem;
 }
-
-
 .application__buttons .combinedButton p{
     color: var(--text-primary-color);
     font-size: 1.125rem;
@@ -459,3 +468,90 @@
     }
 }
 
+
+table{
+    border-spacing: 0 0;
+    border: var(--theme-light)  solid 1px;
+    border-radius: 0.5rem;
+}
+thead tr{
+    background-color: var(--currentColor);
+}
+thead tr th:not(:last-of-type){
+    min-width: 8rem;
+}
+thead tr th p{
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+}
+thead tr th:first-of-type{
+    border-radius: 0.5rem 0 0 0;
+}
+thead tr th:last-of-type{
+    border-radius: 0 0.5rem 0 0;
+}
+tr, td, th{
+    height: 3rem;
+}
+
+tbody tr td{
+    background-color: var(--item-bg-color);
+}
+tbody tr td:last-of-type{
+    padding: 0.5rem;
+}
+tbody tr td:last-of-type .relativeBox > button{
+    width: 2rem; height: 2rem;
+    min-width: 2rem !important;
+    padding: 0 0.5rem;
+}
+
+td, th{
+    background-color: unset;
+    border-radius: 0;
+}
+tbody tr:last-of-type td:first-of-type{
+    border-radius: 0 0 0 0.5rem;
+}
+tbody tr:last-of-type td:last-of-type{
+    border-radius: 0 0 0.5rem 0;
+}
+
+
+td p{
+    font-weight: 500;
+    color: var(--text-primary-color);
+    line-height: 1.5rem;
+    white-space: nowrap;
+}
+td h3{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: var(--text-primary-color);
+}
+
+td.student{
+    display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
+    min-width: 16rem;
+}
+td.student .avatar{
+    width: 1.5rem; height: 1.5rem;
+}
+td.student .student__name{
+    color: var(--text-primary-color);
+}
+
+@media screen and (max-width: 660px){
+    tr td:nth-of-type(3),
+    tr th:nth-of-type(3),
+    tr td:nth-of-type(4),
+    tr th:nth-of-type(4),
+    tr td:nth-of-type(5),
+    tr th:nth-of-type(5){
+        display: none;
+    }
+    th.student{
+        width: calc(100% - 13rem);
+    }
+}

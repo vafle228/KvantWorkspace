@@ -999,24 +999,38 @@ button[class$='Button']:active{
     display: flex; flex-wrap: wrap; gap: 0.25rem;
 }
 #selectedUsers .userSelect__user{
+    height: 2rem;
     background-color: var(--bgColor);
     color: var(--currentColor);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    height: 27.2px;
-    display: flex; align-items: center;
+    padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+    border-radius: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    position: relative;
 }
 #selectedUsers .userSelect__user::after{
     content: "×";
-    font-size: 1.5rem;
-    margin-left: -0.5rem;
+    font-size: 1.5rem; line-height: 1.375rem;
+    height: 1.5rem; width: 1.5rem;
+    text-align: center;
+    position: absolute; top: 0.25rem; left: 0.25rem;
+    display: none;
+    color: #fff;
 }
+#selectedUsers .userSelect__user:hover::after{
+    display: block;
+}
+#selectedUsers .userSelect__user:hover .userSelect__userImage{
+    filter: brightness(0.5);
+}
+
 #selectedUsers .userSelect__user .userSelect__userName{
     font-weight: 400;
     font-size: 1rem;
     color: var(--currentColor);
 }
-#selectedUsers .userSelect__user .userSelect__userImage,
+#selectedUsers .userSelect__user .userSelect__userImage{
+    width: 1.5rem; height: 1.5rem;
+}
 #selectedUsers .userSelect__user .userSelect__userRole{
     display: none;
 }
@@ -1144,6 +1158,9 @@ td{
 }
 .listButton:hover{
     background-color: var(--theme-light);
+}
+.listButton:hover svg{
+    fill: var(--currentColor);
 }
 .listButton:active{
     transform: none !important;

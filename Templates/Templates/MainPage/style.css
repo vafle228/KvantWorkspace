@@ -55,6 +55,7 @@ header h3:not(.active):hover{
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    line-height: 1.375;
 }
 .event__button{
     margin-top: auto;
