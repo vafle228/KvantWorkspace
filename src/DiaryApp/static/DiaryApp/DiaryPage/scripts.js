@@ -2,7 +2,7 @@ let file_array = Array();
 
 function sendWorkData(form, post_url, btn){
 	btn.disabled = true;
-	$(btn).addClass('disabled')
+	$(btn).addClass('disabledButton')
 
 	$.ajax({
 		type: 'POST',
@@ -16,7 +16,7 @@ function sendWorkData(form, post_url, btn){
 			if(response.status == 400){
 				
 				btn.disabled = false;
-				$(btn).removeClass('disabled')
+				$(btn).removeClass('disabledButton')
 				
 				errorAlert(response.errors);
 			}

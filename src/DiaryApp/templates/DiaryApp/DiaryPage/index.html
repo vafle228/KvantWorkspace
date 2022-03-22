@@ -58,15 +58,15 @@
 
             <div class="container column g8">
                 {% for lesson in lessons %}
-                <div class="lesson row" onclick="getDetailLesson(`{% url 'lesson_detail' lesson.id %}`)">
+                <div class="lesson" onclick="getDetailLesson(`{% url 'lesson_detail' lesson.id %}`)">
                     <img src="{{ lesson.course.type.image.url }}" class="lesson__illustration">
-                    <div class="lesson__info column g12">
-                        <div class="flex space-between">
+                    <div class="lesson__info">
+                        <div class="flex space-between items-center">
                             <h2 class='lesson__title'>{{ lesson.course }}</h2>
                             <p class='lesson__date'>{{ lesson.date|date:"j.m.Y" }}</p>
                         </div>
                         <p class="lesson__topic">{{ lesson.base.title }}</p>
-                        <div class="row g4" style='margin-top: auto'>
+                        <div class="lesson__marks">
                             
                             {% if lesson.base|has_mark:user %}
                             <span class="{{ lesson.base|get_mark_class:user }}">{{ lesson.base|get_mark:user }}</span>

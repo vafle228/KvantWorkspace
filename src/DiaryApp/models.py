@@ -1,8 +1,5 @@
-from AdminApp.models import KvantCourse
-from CoreApp.models import FileStorage
 from django.db import models
 from django.utils import timezone
-from LoginApp.models import KvantUser
 
 
 MARKS = (
@@ -14,20 +11,20 @@ MARKS = (
 
 class KvantTaskMark(models.Model):
     mark    = models.CharField(max_length=10, choices=MARKS)
-    student = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
+    student = models.ForeignKey(to='LoginApp.KvantUser', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'lesson_mark'
 
     def __str__(self):
-        return f'Отметка {self.mark} {self.student.__str__()}'
+        return f'Отметка {self.mark} {self.student}'
 
 
 class KvantTaskBase(models.Model):
     description = models.TextField(null=False)
     title       = models.CharField(max_length=100)
-    files       = models.ManyToManyField(FileStorage, blank=True)
     marks       = models.ManyToManyField(KvantTaskMark, blank=True)
+    files       = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)
 
     class Meta:
         db_table = 'lesson_base'
@@ -39,8 +36,8 @@ class KvantTaskBase(models.Model):
 
 class KvantHomeWork(models.Model):
     text    = models.TextField(null=False)
-    files   = models.ManyToManyField(FileStorage, blank=True)
-    sender  = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
+    files   = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)
+    sender  = models.ForeignKey(to='LoginApp.KvantUser', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'task_work'
@@ -64,7 +61,7 @@ class KvantLesson(models.Model):
     date    = models.DateField(default=timezone.now)
     tasks   = models.ManyToManyField(KvantHomeTask, blank=True)
     base    = models.OneToOneField(KvantTaskBase, on_delete=models.CASCADE)
-    course  = models.ForeignKey(KvantCourse, on_delete=models.CASCADE, blank=False)    
+    course  = models.ForeignKey(to='AdminApp.KvantCourse', on_delete=models.CASCADE, blank=False)    
 
     class Meta:
         db_table = 'kvant_lesson'

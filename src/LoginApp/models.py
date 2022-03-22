@@ -46,6 +46,10 @@ class KvantUser(AbstractUser):
     theme       = models.CharField(max_length=10, choices=THEME, default='light')
     image       = models.ImageField(upload_to=get_path, default=set_default_image)
 
+    first_name, last_name = None, None
+
+    REQUIRED_FIELDS = ['email', 'name', 'surname', 'permission']
+
     class Meta:
         db_table = 'kvant_user'
 

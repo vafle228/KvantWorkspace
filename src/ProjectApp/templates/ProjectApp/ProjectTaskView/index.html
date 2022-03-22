@@ -1,0 +1,75 @@
+{% load static %}
+{% load base_tags %}
+
+<body>
+    <!-- Просмотр задачи -->
+    <div class="modal__viewport">
+        <div class="modal__content">
+            
+            <div class="modal__block">
+                <h1 class="modal__title">{{ task.title }}</h1>
+                <button class="combinedButton" onclick="
+                    $(this).closest('.modal__content').hide();
+                    $(this).closest('.modal__content').next().css('display', 'flex');
+                ">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                    </svg>
+                    Редактировать
+                </button>
+            </div>
+
+            <h3>Участники</h3>
+            <div class="project__members row">
+                {% for member in task.participants|get_objects %}
+                <div class="project__member member row g8 items-center">
+                    <img src="{{ member.image.url }}" class="avatar">
+                    <div class="member__info column">
+                        <p class="member__name">{{ member.surname }} {{ member.name }}</p>
+                        <p class="member__role">Участник</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h3>Описание</h3>
+            <div class="ql-snow">
+                <div class="ql-editor">
+                    <p class="modal__text">{{ task.description|safe }}</p>
+                </div>
+            </div>
+            
+            <div class='files'>
+                {% include "CoreApp/FileView/index.html" with files=task.files %}
+            </div>
+
+            <div class="filteringList">
+                {% include "ProjectApp/ProjectTaskPriority/index.html" with task=task %}
+                <div class="filtering">
+                    <h3 class="py8">Дата</h3>
+                    <input type="date" value="{{ task.deadline|date:'Y-m-d' }}">
+                </div>
+            </div>
+            
+        </div>
+        {% include "ProjectApp/ProjectTaskForm/index.html" with team=team|get_objects teamleader=teamleader %}
+    </div>
+    <script>
+        file_update_array = Array();
+        update_participants = Array();
+        
+        initDropdown(); initQuill('#taskEditor')
+    </script>
+    
+    <script>
+        old_files = [
+            {% for file in task.files|get_objects %}
+            {'name': '{{ file|get_file_name }}', 'id': '{{ file.id }}', 'size': '{{ file.file.size }}'},
+            {% endfor %}
+        ]
+        
+        for(let i = 0; i < old_files.length; i++){
+            addNewFile(old_files[i], old_files, "#editFileContainer")
+        }
+    </script>
+</body>

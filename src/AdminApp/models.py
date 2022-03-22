@@ -1,8 +1,7 @@
 from django.db import models
-from LoginApp.models import KvantUser
 
 
-week_days = (
+WEEK_DAYS = (
     ('Пн', 'Понедельник'),
     ('Вт', 'Вторник'),
     ('Ср', 'Среда'),
@@ -30,7 +29,7 @@ class KvantCourseType(models.Model):
 
 
 class KvantCourseShedule(models.Model):
-    week_day    = models.CharField(max_length=20, choices=week_days)
+    week_day    = models.CharField(max_length=20, choices=WEEK_DAYS)
     time        = models.TimeField(auto_now=False, auto_now_add=False)
 
     def __str__(self):
@@ -44,8 +43,8 @@ class KvantCourse(models.Model):
     name        = models.CharField(max_length=20)
     schedule    = models.ManyToManyField(KvantCourseShedule, blank=False)
     type        = models.ForeignKey(KvantCourseType, on_delete=models.CASCADE)
-    students    = models.ManyToManyField(KvantUser, blank=True, related_name="student")
-    teacher     = models.ForeignKey(KvantUser, on_delete=models.CASCADE, related_name="teacher")
+    students    = models.ManyToManyField(to='LoginApp.KvantUser', blank=True, related_name="student")
+    teacher     = models.ForeignKey(to='LoginApp.KvantUser', on_delete=models.CASCADE, related_name="teacher")
 
     def __str__(self):
         return f'{self.type.name} {self.name}'

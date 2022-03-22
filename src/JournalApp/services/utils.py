@@ -1,11 +1,13 @@
 from json import loads
 
-from CoreApp.services.utils import ObjectManipulationManager, ObjectManipulationResponse
+from CoreApp.services.utils import (ObjectManipulationManager,
+                                    ObjectManipulationResponse)
 from DiaryApp.models import KvantHomeTask, KvantTaskBase, KvantTaskMark
 from django.urls import reverse_lazy as rl
 from JournalApp.forms import KvantMarkSaveForm
 from LoginApp.services import getUserById
-from .queryget import getBaseType, getBaseStudents
+
+from .queryget import getBaseStudents, getBaseType
 
 
 class KvantTaskManager(ObjectManipulationManager):
@@ -34,7 +36,7 @@ class KvantBaseMarksUpdate(ObjectManipulationResponse):
     def createKvantMarks(self, base):
         """ 
         Иттерирует все переданные отметки.
-        Вызывает JSON Response с перенаправлением на checking_page
+        Вызывает getResponse для перенаправления на checking_page
         """
         for student_id in self.marks.keys():
             self._manageMark(student_id, base)

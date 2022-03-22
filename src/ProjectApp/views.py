@@ -1,10 +1,60 @@
-from re import template
+from AdminApp.models import KvantCourseType
 from django.views import generic
 
+from . import services
+from .models import KvantProject, KvantProjectTask
 
-class ProjectCatalogTemplateView(generic.TemplateView):
-    template_name = 'ProjectApp/ProjectCatalog/index.html'
+
+class ProjectCatalogTemplateView(generic.ListView):
+    model               = KvantProject
+    ordering            = ['-date', '-id']
+    paginate_by         = 10
+    template_name       = 'ProjectApp/ProjectCatalog/index.html'
+    context_object_name = 'projects'
+
+    def get_queryset(self):
+        return services.KvantProjectQuerySelector(self.request).getCatalogQuery()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(subjects=KvantCourseType.objects.all())
+        return context
 
 
-class ProjectPageTemplateView(generic.TemplateView):
-    template_name = 'ProjectApp/ProjectPage/index.html'
+class ProjectInfoDetailView(generic.DetailView):
+    model               = KvantProject
+    pk_url_kwarg        = 'project_identifier'
+    context_object_name = 'project'
+    template_name       = 'ProjectApp/ProjectInfo/index.html'
+
+
+class ProjectWorkspaceDetailView(generic.DetailView):
+    model               = KvantProject
+    pk_url_kwarg        = 'project_identifier'
+    context_object_name = 'project'
+    template_name       = 'ProjectApp/ProjectWorkspace/index.html'
+
+    def get_object(self, queryset=None):
+        return services.getActiveProject(super().get_object(queryset))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(services.updateTaskContext(kwargs.get('object').project))
+        return context
+
+
+class ProjectTaskDetailView(generic.DetailView):
+    model               = KvantProjectTask
+    pk_url_kwarg        = 'task_identifier'
+    context_object_name = 'task'
+    template_name       = 'ProjectApp/ProjectTaskView/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(services.getProjectTeam(kwargs.get('object')))
+        return context
+
+
+class ProjectTaskUpdateView(generic.View):
+    def post(self, request, *args, **kwargs):
+        pass

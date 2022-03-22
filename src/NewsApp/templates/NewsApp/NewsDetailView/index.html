@@ -25,14 +25,14 @@
 
             <!-- Кнопки -->
             <div class="row g8">
-                <button class="primaryButton" onclick="location.href=`{% url 'main_page' %}`">
+                <button class="combinedButton" onclick="location.href=`{% url 'main_page' %}`">
                     <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                         <g transform="translate(-5 -5)">
                             <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
                             <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
                         </g>
                     </svg>
-                    Назад
+                    <span>Назад</span>
                 </button>
 
                 {% if news.author == user %}
@@ -101,9 +101,7 @@
             </div>
             {% else %}
             <!-- Если есть только одно изображение -->
-            <div class="newsView__preview">
-                <img src="{{ news.image.url }}">
-            </div>
+            <img src="{{ news.image.url }}" class="newsView__preview">
             {% endif %}
 
             <!-- Информация новости -->
@@ -111,13 +109,11 @@
 
                 <p class="newsView__infoTitle">{{ news.title }}</p>
                 
-                <div class='row space-between'>
-                    <div class="row g8">
-                        <img src="{{ news.author.image.url }}" class="avatar">
-                        <div class='column'>
-                            <p style='color: var(--text-primary-color)'>{{ news.author.surname }} {{ news.author.name }}</p>
-                            <p>{{ news.author.permission }}</p>
-                        </div>
+                <div class="row g8">
+                    <img src="{{ news.author.image.url }}" class="avatar">
+                    <div class='column'>
+                        <p style='color: var(--text-primary-color)'>{{ news.author.surname }} {{ news.author.name }}</p>
+                        <p>{{ news.author.permission }}</p>
                     </div>
                 </div>
 
@@ -134,7 +130,7 @@
                 </div>
                 {% endif %}
 
-                <p class="mailView__date">{{ news.date|date:"j F Y" }}</p>
+                <p>{{ news.date|date:"j F Y" }}</p>
             </div>
         </section>
     </div>

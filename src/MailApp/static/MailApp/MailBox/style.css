@@ -95,7 +95,6 @@
     height: 100%; width: 36rem;
     overflow: hidden;
     position: relative;
-    /* box-shadow: inset 0 0 1rem var(--theme-light); */
     border: var(--theme-light) solid 1px;
 }
 .mails__header{
@@ -108,7 +107,7 @@
 }
 .inputGroup__input{
     width: calc(100% - 3rem); height: 3rem;
-    background-color: var(--aside-bg-color);
+    background-color: var(--bg-color);
     padding: 0.5rem 1rem;
     color: var(--text-primary-color);
     font-size: 1.1rem;
@@ -119,12 +118,13 @@
 .inputGroup__svg{
     height: 3rem; width: 3rem;
     padding: 0.75rem;
-    fill: var(--text-primary-color);
-    background-color: var(--aside-bg-color);
+    fill: var(--currentColor);
+    background-color: var(--bgColor);
     transition: all .2s;
 }
 .inputGroup__svg:hover{
-    fill: var(--currentColor);
+    fill: #fff;
+    background-color: var(--currentColor);
 }
 
 .pagination__page{
@@ -135,12 +135,17 @@
     display: none;
 }
 
+.mails__header .actionButton{
+    background-color: var(--bg-color);
+}
+
 .mails__container{
     height: calc(100% - 7.5rem);
     overflow: auto;
     scroll-behavior: smooth;
     padding: 0 1rem;
 }
+
 
 /* Сообщение */
 .mailItem{
@@ -157,20 +162,20 @@
 .mailItem:hover{
     background-color: var(--theme-light);
 }
-.mailItem::after{
+/* .mailItem::after{
     content: "";
     position: absolute; bottom: calc(-0.25rem - 0.5px);
     width: calc(100% - 1rem); height: 1px; left: 0.5rem;
     background-color: var(--theme-light);
-}
-.mailItem:last-of-type::after{
+} */
+/* .mailItem:last-of-type::after{
     content: none;
-}
+} */
 .mailItem.new{
-    background-color: var(--aside-bg-color);
+    background-color: var(--bg-color);
 }
-.light__theme .mailItem.new{
-    box-shadow: 0 0 2rem var(--theme-light);
+.light__theme{
+    border: var(--theme-light) solid 1px;
 }
 
 /* Отправитель */
@@ -178,8 +183,8 @@
     display: flex; flex-direction: row; gap: 1rem;
 }
 .senderInfo__img{
-    width: 39px; height: 39px;
-    border-radius: 20px;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 1.25rem;
     object-fit: cover; object-position: center;
 }
 .senderInfo__name{
@@ -189,7 +194,7 @@
     text-overflow: ellipsis;
 }
 
-/* Тема, текст, файлы и теги */
+/* Содержание письма */
 .mailItem__title{
     overflow: hidden;
     display: -webkit-box;
@@ -244,13 +249,14 @@
     font-weight: 500;
 }
 .mailView__text{
-    font-size: 1.1rem;
+    font-size: 1.125rem;
 }
 .mailView .file{
     width: auto;
     max-width: 100%;
 }
 
+/* Отметить как важное */
 #markAsImportant{
     padding: 0.75rem;
 }
@@ -292,7 +298,7 @@
 #newMailItemForm.fullscreen{
     display: flex; align-items: center;
     width: 100%; height: 100%;
-    padding: 4rem 4rem 4rem 9.5rem;
+    padding: 4rem 8rem 4rem 13.5rem;
 }
 #newMailItemForm.fullscreen::before{
     opacity: 0.75;
@@ -305,6 +311,7 @@
     border-radius: 0.75rem;
     transition-duration: .4s;
     transition-property: width height;
+    position: relative;
 }
 #newMailItemForm.fullscreen form{
     width: calc(100% - 5.5rem);
@@ -386,17 +393,15 @@
 
 
 #newMailItem__userSelect{
-    position: absolute; top: 9rem; left: 5rem;
+    width: calc(100% - 2rem);
+    margin: 0.25rem 1rem;
 }
-#newMailItemForm.fullscreen #newMailItem__userSelect{
-    position: absolute; top: 16rem; left: 16rem;
-}
+
 
 @media screen and (max-width: 1100px){
     .mails{
         width: calc(100% - 18rem - 1.5rem);
     }
-
     .mailView{
         display: flex;
         width: calc(100% - 6rem); height: 100%;
@@ -405,7 +410,6 @@
         padding: 0.5rem 1.5rem;
         transition: left .4s;
     }
-
     .mailView.active{
         left: 6rem;
     }
@@ -413,11 +417,9 @@
         visibility: visible;
         margin-left: -1rem;
     }
-
     .mailView__empty{
         display: none;
     }
-
     #newMailItemForm.fullscreen{
         padding: 1rem;
     }
@@ -427,14 +429,12 @@
 }
 
 @media screen and (max-width: 740px){
-
     .mailView{
         width: 100%;
     }
     .mailView.active{
         left: 0;
     }
-
     .mainContainer{
         flex-direction: column;
         padding: 1rem 1rem 0 !important;
@@ -473,7 +473,7 @@
         display: block;
         margin: 0 auto;
     }
-    .mails__header .inputGroup__input, .mails__header .inputGroup__svg{
+    .mails__header .inputGroup__input{
         background-color: var(--item-bg-color);
     }
     .mails__container{
@@ -483,7 +483,6 @@
     .mailItem.new, .mailItem:hover{
         background-color: var(--item-bg-color);
     }
-
     #newMailItemForm{
         padding: 0 0 4rem;
     }

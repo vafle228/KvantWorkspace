@@ -1,6 +1,6 @@
-from django import forms
-from .models import KvantTaskBase, KvantTaskMark, KvantHomeTask
 from CoreApp.services.m2m import FileM2MBaseMixin
+from DiaryApp.models import KvantTaskBase, KvantTaskMark
+from django import forms
 
 
 class KvantMarkSaveForm(forms.ModelForm):

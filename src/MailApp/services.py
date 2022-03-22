@@ -21,18 +21,18 @@ def makeMailImportant(user, mail_id):
 
 class MailBoxQuerySelector:
     """ Класс получения множества писем по box_type и search """
-    def __init__(self, box_type, search=None):
-        self.box_type = box_type
-        self.search_param = search
+    def __init__(self, request):
+        self.box_type = request.GET.get('type')
+        self.search_param = request.GET.get('search')
     
     def getBoxQuery(self, user):
         """
         Получает отфильтрованное множество.
         Если имеется параметр search_param, то фильрует дважды.
         """
-        if self.search_param:
-            return self._applySearchFilter(self._getMessagesQuery(user))
-        return self._getMessagesQuery(user)
+        if self.search_param is None:
+            return self._getMessagesQuery(user)
+        return self._getMessagesQuery(user).filter(title__contains=self.search_param)
 
     def _getMessagesQuery(self, user):
         """ 
@@ -46,10 +46,6 @@ class MailBoxQuerySelector:
         if self.box_type in box_data.keys():
             return box_data[self.box_type](user)
         return KvantMessage.objects.none()
-
-    def _applySearchFilter(self, query):
-        """ Фильтрует множество по заголовку с title__contains=param """
-        return query.filter(title__contains=self.search_param)
 
 
 class MailObjectManipulationManager(ObjectManipulationManager):

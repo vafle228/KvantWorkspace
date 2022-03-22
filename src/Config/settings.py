@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'CoreApp.apps.CoreAppConfig',
+    'ChatApp.apps.ChatAppConfig',
     'NewsApp.apps.NewsAppConfig',
     'MailApp.apps.MailAppConfig',
     'AdminApp.apps.AdminAppConfig',
@@ -48,8 +49,9 @@ INSTALLED_APPS = [
     'JournalApp.apps.JournalAppConfig',
     'ProjectApp.apps.ProjectAppConfig',
     'ProfileApp.apps.ProfileAppConfig',
+    'RegisterApp.apps.RegisterAppConfig',
 
-    'django_cleanup', 'storages',
+    'django_cleanup', 'storages', 'channels',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +83,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Config.wsgi.application'
+ASGI_APPLICATION = 'Config.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -155,3 +167,4 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # S3 default image location
 NEWS_DEFAULT_IMAGE = '/default/news.jpeg'
 USER_DEFAULT_IMAGE = '/default/user.png'
+PROJECT_DEFAULT_IMAGE = '/default/project.png'

@@ -1,6 +1,6 @@
 function page_adaptation(){
 
-	let ratio = window.innerWidth / 1920 < 0.75 ? 0.75 : window.innerWidth / 1920;
+	let ratio = window.innerWidth / 2160 < 0.75 ? 0.75 : window.innerWidth / 2160;
 
 	$("body").css({
 		"zoom": ratio,

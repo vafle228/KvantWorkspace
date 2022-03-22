@@ -29,8 +29,8 @@
             <div class="filtering" style="width: 16rem">
                 <div class="dropdownSelect">
                     <h3 class="py8">Группа</h3>
-                    <div class="dropdownSelect__trigger">
-                        <span>Не выбрано</span>
+                    <div class="dropdownSelect__trigger active">
+                        <div>Не выбрано</div>
                         <div class="arrowDown"></div>
                     </div>
                     <div class="dropdownSelect__options" id="course">
@@ -41,11 +41,12 @@
                     </div>
                 </div>
             </div>
+            
             <div class="filtering" style="width: 16rem">
                 <div class="dropdownSelect">
                     <h3 class="py8">Период</h3>
-                    <div class="dropdownSelect__trigger">
-                        <span>Не выбрано</span>
+                    <div class="dropdownSelect__trigger active">
+                        <div>Не выбрано</div>
                         <div class="arrowDown"></div>
                     </div>
                     <div class="dropdownSelect__options" id="period">
@@ -68,9 +69,9 @@
             <!-- Спавн для журнала -->
         </div>
 
-        <!-- <section class="hints row g24">
+        <section class="hints row g24">
             <div class="hint row g24" style="animation-delay: 1s">
-                <img src="{% static 'DiaryApp/JournalPage/imgs/figures.png' %}" class="hint__illustration">
+                <img src="{% static 'JournalApp/JournalPage/imgs/figures.png' %}" class="hint__illustration">
                 <div class="hint__info column g8">
                     <h3 class="hint__subtitle">Работа с журналом</h3>
                     <h2 class="hint__title">Для просмотра журнала</h2>
@@ -98,7 +99,7 @@
                     </ul>
                 </div>
             </div>
-        </section> -->
+        </section>
     </div>
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->

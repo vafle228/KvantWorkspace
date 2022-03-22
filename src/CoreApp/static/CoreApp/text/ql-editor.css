@@ -674,8 +674,12 @@
   box-sizing: border-box;
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   padding: 0.25rem;
+  margin-bottom: -0.5rem;
   background-color: var(--theme-light-alpha);
 }
+/* .modal .ql-toolbar.ql-snow{
+  background-color: var(--theme-light-alpha);
+} */
 .ql-toolbar.ql-snow .ql-formats {
   display: flex;
   flex-direction: row;

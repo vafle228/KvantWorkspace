@@ -1,5 +1,4 @@
 from django.db import models
-from LoginApp.models import KvantUser
 
 
 def get_path(instance, filename):
@@ -8,7 +7,10 @@ def get_path(instance, filename):
 
 class KvantAward(models.Model):
     image = models.FileField(upload_to=get_path)
-    user = models.ForeignKey(KvantUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(to='LoginApp.KvantUser', on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'kvant_awards'
 
     def __str__(self):
         return f'Грамота: {self.user.__str__()}'

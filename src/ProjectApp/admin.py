@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (ActiveKvantProject, ClosedKvantProject, KvantProject,
+                     KvantProjectMembershipRequest, KvantProjectTask,
+                     MemberHiringKvantProject)
+
+admin.site.register(KvantProject)
+admin.site.register(KvantProjectTask)
+admin.site.register(ClosedKvantProject)
+admin.site.register(ActiveKvantProject)
+admin.site.register(MemberHiringKvantProject)
+admin.site.register(KvantProjectMembershipRequest)
+

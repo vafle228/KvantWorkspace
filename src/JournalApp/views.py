@@ -5,7 +5,7 @@ from django.views import generic
 
 from JournalApp.forms import KvantBaseSaveForm, KvantTaskFilesSaveForm, KvantLessonFilesSaveForm
 from JournalApp.services import access, queryget, utils
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 
 class JournalPageTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
@@ -85,7 +85,7 @@ class CreateTaskView(access.KvantLessonAccessMixin, generic.View):
 class DeleteTaskView(access.KvantBaseAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         queryget.getBaseById(kwargs.get('base_identifier')).delete()
-        return JsonResponse({'status': 200})
+        return HttpResponse({'status': 200})
 
 
 class UpdateMarksView(access.KvantBaseAccessMixin, generic.View):
