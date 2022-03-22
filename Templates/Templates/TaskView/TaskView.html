@@ -10,14 +10,13 @@
 
     <link rel="shortcut icon" href="../../img/icon.svg" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
-    
+
     <link href="../../ql-editor.css" rel="stylesheet" /> <!-- Стили панели инструментов -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/> <!-- Кастомные слайдеры -->
     
-    <title>Заголовок новости</title>
+    <title>Заголовок задачи</title>
 </head>
 
-<body class='light__theme' colorScheme="colorScheme__blue">
+<body class='dark__theme' colorScheme="colorScheme__blue">
 
     <!-- Навигационное меню -->
     <nav class='navigation'>
@@ -27,7 +26,7 @@
         </div>
 
         <div class='navigation__group column g8'>
-            <button class='navigation__link active'>
+            <button class='navigation__link'>
                 <svg viewBox="0 0 576 512">
                     <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
                     <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
@@ -39,7 +38,7 @@
                     <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
                 </svg>
             </button>
-            <button class='navigation__link'>
+            <button class='navigation__link active'>
                 <svg viewBox="0 0 512 512">
                     <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
                     <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
@@ -100,14 +99,14 @@
 
             <!-- Профиль -->
             <div class="navigation__profile">
-                <img src='../../img/Kaelthas.jpg'>
+                <img src='../../img/avatars/Upstream-8.png'>
             </div>
         </div>
     </nav>
 
     <!-- Навигационное меню для смартфонов -->
     <nav class='navigationBar'>
-        <button class='navigation__link active'>
+        <button class='navigation__link'>
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
                 <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
@@ -121,7 +120,7 @@
             </svg>
             Задания
         </button>
-        <button class='navigation__link'>
+        <button class='navigation__link active'>
             <svg viewBox="0 0 512 512">
                 <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
                 <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
@@ -145,7 +144,7 @@
     </nav>
 
     <div class="mainContainer">
-        <section class="newsView">
+        <section class="taskView">
 
             <div class="flex space-between items-center">
                 <button class="combinedButton" onclick="history.back()">
@@ -166,7 +165,7 @@
                         </svg>
                     </button>
                     <div class="list">
-                        <button class="listButton" onclick="open_form('#editNewsItemForm')">
+                        <button class="listButton" onclick="open_form('#editTaskForm')">
                             Редактировать
                             <svg viewBox="0 0 576 512">
                                 <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
@@ -187,8 +186,8 @@
                 <div class='modal' id='confirmDeletion'>
                     <div class="modal__viewport" style="width: 48rem">
                         <form class='modal__content'>
-                            <h1 class="modal__title">Удаление новости</h1>
-                            <p>Вы уверены, что хотите удалить эту новость?</p>
+                            <h1 class="modal__title">Удаление задачи</h1>
+                            <p>Вы уверены, что хотите удалить эту задачу?</p>
                             <div class='modal__block'>
                                 <div class='row g8' style='margin-left: auto'>
                                     <button class='secondaryButton'>
@@ -208,101 +207,140 @@
                 </div>
 
             </div>
+
+            <hr class="divider" style="margin-top: -0.5rem">
+
+            <div class="row g32">
+                <div class="task__priority  row g8" data="medium">
+                    <span>
+                        <svg viewBox="0 0 448 512">
+                            <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                            <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                        </svg>
+                    </span>
+                    <h3>Средняя</h3>
+                </div>
     
-            <!-- Если есть только одно изображение -->
-            <!-- <img src="../../img/comp.png" class="newsView__preview"> -->
-    
-            <!-- Галерея новости -->
-            <div id="newsView__Carousel" class="carousel">
-                <div class="carousel__slide" style="background-image: url('../../img/comp.png')"></div>
-                <div class="carousel__slide" style="background-image: url('../../img/comp.png')"></div>
-                <div class="carousel__slide" style="background-image: url('../../img/comp.png')"></div>
+                <div class="task__deadline">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
+                        <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
+                    </svg>
+                    <h3>22 марта</h3>
+                </div>
             </div>
-    
-            <!-- Информация новости -->
-            <div class="newsView__info column g20">
-    
-                <p class="newsView__infoTitle">Заголовок новости</p>
+            
 
-                <div class="flex space-between items-center">
-                    <div class='row g8'>
-                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
-                        <div class='column'>
-                            <p style='color: var(--text-primary-color)'>Фамилия Имя</p>
-                            <p>Учитель</p>
-                        </div>
-                    </div>
-                    <p>24 февраля 2022</р>
-                </div>
-                
-    
-                <p class="newsView__infoText">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus debitis laborum aliquid, exercitationem aspernatur quod aperiam porro cupiditate recusandae omnis cumque repellat. Esse ex assumenda nemo! Quidem ratione, rem dolores illo soluta consequuntur at impedit hic laborum sapiente quae accusamus quasi doloribus quisquam modi, repudiandae officiis corporis sunt accusantium dolorum aut culpa magnam earum! Velit debitis accusamus ab ea, eveniet hic animi fugit doloribus quaerat recusandae labore tempore? Voluptates optio sunt odio consequuntur perferendis voluptatem quisquam vitae, tenetur quidem labore quae eum quia minima alias sequi, temporibus itaque dolore? Nostrum omnis cupiditate perspiciatis explicabo ab sunt natus ipsam, ducimus recusandae!
-                </p>
+            <h1 class="title">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h1>
 
-                <div class='files'>
-                    <div class='file'>
-                        <i class='file-xml'></i>
-                        <div class="file__info">
-                            <h4 class='file__name'>Таблица.xml</h4>
-                            <p class="file__size">45 KB</p>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <i class='file-pptx'></i>
-                        <div class="file__info">
-                            <h4 class='file__name'>Презентация.pptx</h4>
-                            <p class="file__size">45 KB</p>
-                        </div>
-                    </div>
-                    <div class='file'>
-                        <i class='file-doc'></i>
-                        <div class="file__info">
-                            <h4 class='file__name'>Документ.doc</h4>
-                            <p class="file__size">45 KB</p>
-                        </div>
+            <div class="project__members row">
+                <div class="project__member member row g8 items-center">
+                    <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                    <div class="member__info column">
+                        <p class="member__name">Фамилия Имя</p>
+                        <p class="member__role">Лидер</p>
                     </div>
                 </div>
+                <div class="project__member member row g8 items-center">
+                    <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                    <div class="member__info column">
+                        <p class="member__name">Фамилия Имя</p>
+                        <p class="member__role">Участник</p>
+                    </div>
+                </div>
+                <div class="project__member member row g8 items-center">
+                    <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                    <div class="member__info column">
+                        <p class="member__name">Фамилия Имя</p>
+                        <p class="member__role">Участник</p>
+                    </div>
+                </div>
+            </div>
 
+            <p class="description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque laborum eaque temporibus quas, hic debitis commodi ad, ullam dolorem accusantium? Assumenda dolore totam voluptas qui exercitationem. Dolores odit saepe culpa modi, id, quis inventore eius nemo obcaecati est facere cum voluptas laborum aliquam molestiae accusamus sequi et! Vero minima consequuntur amet, nulla tempora et iusto consequatur molestias dolor totam quisquam commodi inventore recusandae neque quam magni aliquid cum odio eum. Pariatur eius ullam aperiam excepturi unde minima debitis expedita officia! Voluptates officia quasi magni, error ratione accusamus nam commodi, quaerat assumenda placeat ipsam blanditiis. Nemo, repellat dolorum. Repellendus, deserunt!
+            </p>
+            
+            <div class='files'>
+                <div class='file'>
+                    <i class='file-pptx'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Презентация.pptx</h4>
+                        <p class="file__size">12 MB</p>
+                    </div>
+                </div>
+                <div class='file'>
+                    <i class='file-doc'></i>
+                    <div class="file__info">
+                        <h4 class='file__name'>Документ.doc</h4>
+                        <p class="file__size">45 KB</p>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
-    
-    <!-- Форма редактирования новости -->
-    <div class='modal' id='editNewsItemForm'>
-        <div class="modal__viewport">
 
-            <form class="modal__content">
-                <div class='modal__block'>
-                    <h1 class="modal__title">Редактирование новости</h1>
-                    <div class='row g8'>
-                        <button class='secondaryButton' type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
-                                <g transform="translate(-8.001 -9.667)">     
-                                    <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
-                                    <path opacity='0.3' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
-                                    <path d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
-                                </g>
-                            </svg>
-                            Добавить обложку
-                        </button>
-                        <button class='secondaryButton' type="submit">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M10,17H7.329a2.978,2.978,0,0,1-2.122-.879L.052,10.966C.023,11.308,0,11.651,0,12A12.009,12.009,0,0,0,11,23.949V18A1,1,0,0,0,10,17Z"/>
-                                <path d="M20.436,3.478l-1.79,1.79A2.516,2.516,0,0,1,16.879,6H15.5a.5.5,0,0,0-.5.5v1A2.5,2.5,0,0,1,12.5,10a.5.5,0,0,0-.5.5V11a1,1,0,0,0,1,1h3a3,3,0,0,1,3,3v.962a.5.5,0,0,0,.146.353l2.625,2.626A11.949,11.949,0,0,0,20.436,3.478Z"/>
-                                <path opacity='0.6' d="M17,15.962V15a1,1,0,0,0-1-1H13a3,3,0,0,1-3-3v-.5A2.5,2.5,0,0,1,12.5,8a.5.5,0,0,0,.5-.5v-1A2.5,2.5,0,0,1,15.5,4h1.379a.507.507,0,0,0,.353-.146l1.661-1.661A11.974,11.974,0,0,0,.5,8.587l6.12,6.12A1,1,0,0,0,7.329,15H10a3,3,0,0,1,3,3v5.949a11.962,11.962,0,0,0,7.483-3.469l-2.751-2.751A2.516,2.516,0,0,1,17,15.962Z"/>
-                            </svg>
-                            Опубликовать
-                        </button>
+    <!-- Редактирование задачи -->
+    <div class='modal' id='editTaskForm'>
+        <div class="modal__viewport">
+            <div class="modal__content">
+                <div class="modal__block">
+                    <h1 class="modal__title">Редактирование задачи</h1>
+                    <button class='secondaryButton' type="submit">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                        </svg>    
+                        Сохранить
+                    </button>
+                </div>
+
+                <h3>Задача</h3>
+                <input class='text-field text-field-title' autocomplete="off" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit"/>
+
+                <h3>Участники</h3>
+                <div class="project__members expanded row">
+                    <div class="project__member member row g8 items-center selected">
+                        <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Лидер</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-7.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center selected">
+                        <img src="../../img/avatars/Upstream-5.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center selected">
+                        <img src="../../img/avatars/Upstream-6.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
+                    </div>
+                    <div class="project__member member row g8 items-center">
+                        <img src="../../img/avatars/Upstream-2.png" class="avatar">
+                        <div class="member__info column">
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
+                        </div>
                     </div>
                 </div>
 
-                <h3>Заголовок</h3>
-                <input class='text-field text-field-title' autocomplete="off" placeholder="Заголовок" value="Заголовок новости"/>
-
-                <h3>Текст</h3>
+                <h3>Описание</h3>
                 <div id="editor" class='text-field'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus accusantium, dolorem aperiam molestiae, eligendi iure ipsa, quibusdam repudiandae veniam excepturi. Alias ipsum in laboriosam officiis impedit voluptatem nobis nesciunt, magnam vero asperiores distinctio suscipit illo dolorem quasi. Sed, corporis odio impedit autem provident aspernatur facilis minus quis, quo nam quasi sequi. Provident, excepturi? Minus architecto beatae libero minima doloribus. Iste eius ullam laboriosam dignissimos praesentium, illo non tenetur odit architecto fuga incidunt ipsum soluta consectetur ad hic nam deleniti, vel corrupti aliquid, modi aperiam! Eius ea at ad consequuntur rem, laudantium, doloribus maxime quae aut id vero officia autem.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque laborum eaque temporibus quas, hic debitis commodi ad, ullam dolorem accusantium? Assumenda dolore totam voluptas qui exercitationem. Dolores odit saepe culpa modi, id, quis inventore eius nemo obcaecati est facere cum voluptas laborum aliquam molestiae accusamus sequi et! Vero minima consequuntur amet, nulla tempora et iusto consequatur molestias dolor totam quisquam commodi inventore recusandae neque quam magni aliquid cum odio eum. Pariatur eius ullam aperiam excepturi unde minima debitis expedita officia! Voluptates officia quasi magni, error ratione accusamus nam commodi, quaerat assumenda placeat ipsam blanditiis. Nemo, repellat dolorum. Repellendus, deserunt!
                 </div>
 
                 <button class='secondaryButton' type="button" style="margin-top: 1rem">
@@ -314,21 +352,13 @@
                     </svg>
                     Прикрепить файл
                 </button>
-                
-                <!-- Файлы -->
+
                 <div class='files'>
-                    <div class='file'>
-                        <i class='file-xml'></i>
-                        <div class="file__info">
-                            <h4 class='file__name'>Таблица.xml</h4>
-                            <p class="file__size">45 KB</p>
-                        </div>
-                    </div>
                     <div class='file'>
                         <i class='file-pptx'></i>
                         <div class="file__info">
                             <h4 class='file__name'>Презентация.pptx</h4>
-                            <p class="file__size">45 KB</p>
+                            <p class="file__size">12 MB</p>
                         </div>
                     </div>
                     <div class='file'>
@@ -339,35 +369,91 @@
                         </div>
                     </div>
                 </div>
-            </form>
+
+                <div class="filteringList">
+                    <div class="filtering" style="width: 12rem">
+                        <div class="dropdownSelect">
+                            <h3 class="py8">Приоритет</h3>
+                            <div class="dropdownSelect__trigger">
+                                <div>
+                                    <div class="task__priority row g8" data="medium">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Средний</p>
+                                    </div>
+                                </div>
+                                <div class="arrowDown"></div>
+                            </div>
+                            <div class="dropdownSelect__options">
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="none">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Нет</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="low">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Низкий</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option selected'>
+                                    <div class="task__priority row g8" data="medium">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Средний</p>
+                                    </div>
+                                </span>
+                                <span class='dropdownSelect__option'>
+                                    <div class="task__priority row g8" data="high">
+                                        <span>
+                                            <svg viewBox="0 0 448 512">
+                                                <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                                                <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                                            </svg>
+                                        </span>
+                                        <p>Высокий</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filtering">
+                        <h3 class="py8">Дата</h3>
+                        <input type="date" value="2022-03-22">
+                    </div>
+                </div>
+                
+            </div>
         </div>
     </div>
 
-    <!-- <div class="alertsContainer column" id='alertsContainer'>
-        <div class='alert' data-aos="fade-up">
-            <svg viewBox="0 0 448 512">
-                <path opacity='0.6' d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 384a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 233.52 288h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 201.68 128h44.64a16 16 0 0 1 15.92 17.59z"></path>
-                <path d="M246.32 128h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 214.48 288h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 246.32 128zM224 320a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path>
-            </svg>
-            <p>Пример оповещения об ошибке</p>
-            <button onclick='$(this).parent().remove()'>×</button>
-        </div>
-    </div> -->
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
     <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-    <script>
-        const myCarousel = new Carousel(document.querySelector("#newsView__Carousel"), {
-                Dots: false,
-                infinite : false
-            }
-        );
-    </script>
+    <script src="../../JS/dropdownSelect.js"></script> <!-- Выпадающие меню -->
+
 </body>
 
 </html>

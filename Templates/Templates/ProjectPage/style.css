@@ -471,6 +471,10 @@ table{
 }
 thead tr{
     background-color: var(--currentColor);
+    height: 2.25rem;
+}
+thead tr th{
+    padding: 0 0.75rem;
 }
 thead tr th:not(:last-of-type){
     min-width: 8rem;
@@ -486,7 +490,7 @@ thead tr th:first-of-type{
 thead tr th:last-of-type{
     border-radius: 0 0.5rem 0 0;
 }
-tr, td, th{
+tr, td{
     height: 3rem;
 }
 

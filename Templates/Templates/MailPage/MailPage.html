@@ -531,7 +531,7 @@
             <div class="form__cell row g8" style='align-items: flex-start'>
                 <p style='line-height: 2rem'>Кому:</p>
                 <div id="selectedUsers">
-                    <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
+                    <input type="text" onkeyup="filterFunction(this)" id='userSearch' style='line-height: 2rem'>
                 </div>
             </div>
             
@@ -655,6 +655,7 @@
             if ($(this).parent().hasClass('userSelect')){
                 $(this).detach();
                 $('#userSearch').before($(this));
+                $('.userSelect').hide();
             } else {
                 $(this).detach();
                 $(this).appendTo($('.userSelect'));
