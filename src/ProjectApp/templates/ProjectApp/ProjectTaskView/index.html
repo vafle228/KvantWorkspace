@@ -1,64 +1,161 @@
 {% load static %}
 {% load base_tags %}
 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    {% include "CoreApp/HeadSetup/index.html" %}
+    
+    <link rel="stylesheet" href="{% static 'ProjectApp/ProjectTaskView/style.css' %}">
+    <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
+    <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
+    
+    <title>{{ task.title }}</title>
+</head>
+
 <body>
-    <!-- Просмотр задачи -->
-    <div class="modal__viewport">
-        <div class="modal__content">
-            
-            <div class="modal__block">
-                <h1 class="modal__title">{{ task.title }}</h1>
-                <button class="combinedButton" onclick="
-                    $(this).closest('.modal__content').hide();
-                    $(this).closest('.modal__content').next().css('display', 'flex');
-                ">
-                    <svg viewBox="0 0 512 512">
-                        <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+
+    {% include "CoreApp/AsideMenu/index.html" with user=user active='project_page' %}
+
+    <div class="mainContainer">
+        <section class="taskView">
+
+            <div class="flex space-between items-center">
+                <button class="combinedButton" onclick="history.back()">
+                    <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                        <g transform="translate(-5 -5)">
+                            <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                            <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                        </g>
                     </svg>
-                    Редактировать
+                    <span>Назад</span>
                 </button>
+
+                <div class='relativeBox' style='margin-left: auto'>
+                    <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
+                        <svg viewBox="0 0 192 512">
+                            <path opacity='0.8' d="M96 184a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path>
+                            <path d="M96 152a72 72 0 1 0-72-72 72 72 0 0 0 72 72zm0 208a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path>
+                        </svg>
+                    </button>
+                    <div class="list">
+                        <button class="listButton" onclick="open_form('#editTaskForm')">
+                            Редактировать
+                            <svg viewBox="0 0 576 512">
+                                <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
+                                <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                            </svg>  
+                        </button>
+                        <button class="listButton" onclick="open_form('#confirmDeletion')">
+                            Удалить
+                            <svg viewBox="0 0 448 512">
+                                <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Форма подтверждения удаления новости -->
+                <div class='modal' id='confirmDeletion'>
+                    <div class="modal__viewport" style="width: 48rem">
+                        <form class='modal__content'>
+                            <h1 class="modal__title">Удаление задачи</h1>
+                            <p>Вы уверены, что хотите удалить эту задачу?</p>
+                            <div class='modal__block'>
+                                <div class='row g8' style='margin-left: auto'>
+                                    <button class='secondaryButton'>
+                                        Отмена
+                                    </button>
+                                    <button class='dangerButton' type="submit">
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                            <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                                        </svg>
+                                        Удалить
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
 
-            <h3>Участники</h3>
+            <hr class="divider" style="margin-top: -0.5rem">
+
+            <div class="row g32">
+                <div class="task__priority  row g8" data="{{ task.priority }}">
+                    <span>
+                        <svg viewBox="0 0 448 512">
+                            <path d="M32 480C14.33 480 0 465.7 0 448V63.1C0 46.33 14.33 32 31.1 32S64 46.33 64 63.1V448C64 465.7 49.67 480 32 480z"/>
+                            <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
+                        </svg>
+                    </span>
+                    <h3>{{ task.get_priority_display }}</h3>
+                </div>
+    
+                <div class="task__deadline">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
+                        <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
+                    </svg>
+                    <h3>{{ task.deadline|date:"j M" }}</h3>
+                </div>
+            </div>
+            
+
+            <h1 class="title">{{ task.title }}</h1>
+
             <div class="project__members row">
                 {% for member in task.participants|get_objects %}
                 <div class="project__member member row g8 items-center">
                     <img src="{{ member.image.url }}" class="avatar">
                     <div class="member__info column">
-                        <p class="member__name">{{ member.surname }} {{ member.name }}</p>
+                        <p class="member__name">{{ memebr.surname }}  {{ member.name }}</p>
+                        
+                        {% if member == teamleader %}
+                        <p class="member__role">Лидер</p>
+                        {% else %}
                         <p class="member__role">Участник</p>
+                        {% endif %}
+                    
                     </div>
                 </div>
                 {% endfor %}
             </div>
 
-            <h3>Описание</h3>
             <div class="ql-snow">
                 <div class="ql-editor">
-                    <p class="modal__text">{{ task.description|safe }}</p>
+                    <p class="description">{{ task.description|safe }}</p>
                 </div>
             </div>
             
             <div class='files'>
                 {% include "CoreApp/FileView/index.html" with files=task.files %}
             </div>
-
-            <div class="filteringList">
-                {% include "ProjectApp/ProjectTaskPriority/index.html" with task=task %}
-                <div class="filtering">
-                    <h3 class="py8">Дата</h3>
-                    <input type="date" value="{{ task.deadline|date:'Y-m-d' }}">
-                </div>
-            </div>
-            
-        </div>
-        {% include "ProjectApp/ProjectTaskForm/index.html" with team=team|get_objects teamleader=teamleader %}
+        </section>
     </div>
+
+    <!-- Редактирование задачи -->
+    <div class='modal' id='editTaskForm'>
+        <div class="modal__viewport">
+            {% include "ProjectApp/ProjectTaskForm/index.html" with team=team teamleader=teamleader %}
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
+    
+    <script src="{% static 'ProjectApp/ProjectPage/scripts.js' %}"></script>
+    <script src="{% static 'CoreApp/text/options.js' %}"></script> <!-- Настройки панели -->
+    <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+
     <script>
-        file_update_array = Array();
-        update_participants = Array();
-        
-        initDropdown(); initQuill('#taskEditor')
+        file_array = Array();
     </script>
     
     <script>
@@ -72,4 +169,23 @@
             addNewFile(old_files[i], old_files, "#editFileContainer")
         }
     </script>
+
+    <script>
+        function getUpdateTaskForm(){
+            task_form = getTaskFormData()
+
+            for(let i = 0; i < old_files.length; i++){
+                task_form.append('files', old_files[i].id)
+            }
+
+            return task_form
+        }
+    </script>
+
 </body>
+
+</html>
+
+
+    
+

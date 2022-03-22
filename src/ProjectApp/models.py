@@ -20,8 +20,8 @@ TYPES = (
 
 class KvantProjectTask(models.Model):
     description     = models.TextField(blank=True)
-    deadline        = models.DateField(blank=True)
     title           = models.CharField(max_length=255)
+    deadline        = models.DateField(blank=True, null=True)
     participants    = models.ManyToManyField(to='LoginApp.KvantUser', blank=True)
     files           = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)
     type            = models.CharField(max_length=100, choices=TYPES, default='Бэклог')

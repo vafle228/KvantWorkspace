@@ -1,8 +1,5 @@
-let file_create_array = Array();
-let file_update_array = Array();
-
-let create_participants = Array();
-let update_participants = Array();
+let file_array = Array();
+let participants = Array();
 
 
 function allowDrop(event) {
@@ -24,4 +21,15 @@ function drop(event) {
     
     $(board).append(task);
     task.attr('id', '');
+}
+
+function addTaskFileHandler(event){
+	for(let i = 0; i < event.target.files.length; i++){
+		file_array.push(event.target.files[i])
+		addNewFile(event.target.files[i], file_array, "#editFileContainer");
+	}
+}
+
+function createOrUpdate(array, element){
+    array.indexOf(element) === -1 ? array.push(element) : array.splice(array.indexOf(element), 1)
 }

@@ -1,3 +1,4 @@
+{% load project_tags %}
 
 <body>   
     <div class="modal__content">
@@ -9,7 +10,8 @@
             <h1 class="modal__title">Новая задача</h1>
             {% endif %}
             
-            <button class='secondaryButton' type="submit">
+            {% if task %}
+            <button class='secondaryButton' type="button" onclick="sendInstanceData(getUpdateTaskForm(), `{% url 'update_task' task.id %}`, this)">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="14" r="2" opacity='0.6'/>
                     <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -17,18 +19,30 @@
                 </svg>    
                 Сохранить
             </button>
+            {% else %}
+            <button class='secondaryButton' type="button" onclick="sendInstanceData(getTaskFormData(), `{% url 'create_task' %}`, this)">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                    <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                    <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                </svg>    
+                Сохранить
+            </button>
+            {% endif %}
         </div>
 
         <h3>Задача</h3>
         {% if task %}
-        <input class='text-field text-field-title' autocomplete="off" value="{{ task.title }}"/>
+        <input class='text-field text-field-title' autocomplete="off" id='taskTitle' value="{{ task.title }}"/>
         {% else %}
-        <input class='text-field text-field-title' autocomplete="off" value=""/>
+        <input class='text-field text-field-title' autocomplete="off" value="" id='taskTitle'/>
         {% endif %}
 
         <h3>Участники</h3>
+
+        {% if task %}
         <div class="project__members expanded row">
-            <div class="project__member member row g8 items-center">
+            <div class="project__member member row g8 items-center {{ teamleader|get_selected_user:task.participants }}" value="{{ teamleader.id }}">
                 <img src="{{ teamleader.image.url }}" class="avatar">
                 <div class="member__info column">
                     <p class="member__name">{{ teamleader.surname }} {{ teamleader.name }}</p>
@@ -37,7 +51,7 @@
             </div>
             
             {% for member in team %}
-            <div class="project__member member row g8 items-center">
+            <div class="project__member member row g8 items-center {{ member|get_selected_user:task.participants }}" value="{{ member.id }}">
                 <img src="{{ member.image.url }}" class="avatar">
                 <div class="member__info column">
                     <p class="member__name">{{ member.surname }} {{ member.name }}</p>
@@ -46,16 +60,37 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="project__members expanded row">
+            <div class="project__member member row g8 items-center" value="{{ teamleader.id }}">
+                <img src="{{ teamleader.image.url }}" class="avatar">
+                <div class="member__info column">
+                    <p class="member__name">{{ teamleader.surname }} {{ teamleader.name }}</p>
+                    <p class="member__role">Лидер</p>
+                </div>
+            </div>
+            
+            {% for member in team %}
+            <div class="project__member member row g8 items-center" value="{{ member.id }}">
+                <img src="{{ member.image.url }}" class="avatar">
+                <div class="member__info column">
+                    <p class="member__name">{{ member.surname }} {{ member.name }}</p>
+                    <p class="member__role">Участник</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
 
         <h3>Описание</h3>
         
         {% if task %}
-        <div id="taskEditor" class='text-field'>{{ task.description|safe }}</div>
+        <div id="editor" class='text-field'>{{ task.description|safe }}</div>
         {% else %}
         <div id="editor" class='text-field'></div>
         {% endif %}
 
-        <button class='secondaryButton' type="button" style="margin-top: 1rem">
+        <button class='secondaryButton' type="button" style="margin-top: 1rem" onclick="openFileDialog('#file-input')">
             <svg xmlns="http://www.w3.org/2000/svg" width="14.666" height="16" viewBox="0 0 14.666 16">
                 <g transform="translate(-8.667 -8)">
                     <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
@@ -64,7 +99,9 @@
             </svg>
             Прикрепить файл
         </button>
-        
+
+        <input id="file-input" type="file" style="display: none;" onchange='addTaskFileHandler(event)' multiple/>
+
         <div class='files' id='editFileContainer'></div>
 
         <div class="filteringList">
@@ -79,13 +116,45 @@
                 <h3 class="py8">Дата</h3>
                 
                 {% if task %}
-                <input type="date" value="{{ task.deadline|date:'Y-m-d' }}">
+                <input type="date" id="taskDeadline" value="{{ task.deadline|date:'Y-m-d' }}">
                 {% else %}
-                <input type="date">
+                <input type="date" id="taskDeadline">
                 {% endif %}
 
             </div>
         </div>
         
     </div>
+
+    <script>
+        function getTaskFormData(){
+            let task_form = new FormData();
+
+            for(let i = 0; i < file_array.length; i++){
+                task_form.append('files', file_array[i])
+            }
+
+            for(let i = 0; i < participants.length; i++){
+                task_form.append('participants', participants[i])
+            }
+
+            for(let i = 0; i < $('.project__member.selected').length; i++){
+                task_form.append('participants', $('.project__member.selected')[i].getAttribute('value'))
+            }
+            
+            task_form.append('title', $('#taskTitle').val())
+            task_form.append('deadline', $('#taskDeadline').val())
+            task_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            task_form.append('description', $('#editor .ql-editor')[0].innerHTML)
+            task_form.append('priority', $('.dropdownSelect__option.selected div').attr('data'))
+            
+            return task_form
+        }
+    </script>
+
+    <script>
+        $(".project__members.expanded .member").on("click", function(){
+            $(this).toggleClass("selected");
+        });
+    </script>
 </body>

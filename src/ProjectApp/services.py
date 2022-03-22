@@ -1,5 +1,8 @@
-from .models import (ActiveKvantProject, ClosedKvantProject, KvantProject,
+from .models import (ActiveKvantProject, ClosedKvantProject, KvantProject, KvantProjectTask,
                      MemberHiringKvantProject)
+
+from CoreApp.services.utils import ObjectManipulationManager
+from django.urls import reverse_lazy as rl
 
 
 class KvantProjectQuerySelector:
@@ -37,6 +40,11 @@ class KvantProjectQuerySelector:
         return query.all() if self.subject == 'all' else query.filter(course_subject__name=self.subject)
 
 
+class TaskObjectManipulationManager(ObjectManipulationManager):
+    def _constructRedirectUrl(self, obj):
+        return rl('task_view', kwargs={'task_identifier': obj.id})
+
+
 def updateTaskContext(project):
     return {
         'backlog': project.tasks.filter(type='Бэклог'),
@@ -45,6 +53,10 @@ def updateTaskContext(project):
         'completed': project.tasks.filter(type='Выполнено'),
         'archive': project.tasks.filter(type='Архив'),
     }
+
+
+def getTaskById(task_id):
+    return KvantProjectTask.objects.get(id=task_id)
 
 
 def getActiveProject(project):

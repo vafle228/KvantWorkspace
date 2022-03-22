@@ -2,6 +2,8 @@ from AdminApp.models import KvantCourseType
 from django.views import generic
 
 from . import services
+from .forms import (KvantProjectFilesSaveForm,
+                    KvantProjectParticipantsSaveForm, KvantProjectSaveForm)
 from .models import KvantProject, KvantProjectTask
 
 
@@ -57,4 +59,14 @@ class ProjectTaskDetailView(generic.DetailView):
 
 class ProjectTaskUpdateView(generic.View):
     def post(self, request, *args, **kwargs):
-        pass
+        task = services.getTaskById(kwargs.get('task_identifier'))
+        object_manager = services.TaskObjectManipulationManager(
+            [KvantProjectSaveForm, KvantProjectParticipantsSaveForm, KvantProjectFilesSaveForm], object=task)
+        return object_manager.updateObject(request)
+
+
+class ProjectTaskCreateView(generic.View):
+    def post(self, request, *args, **kwargs):
+        object_manager = services.TaskObjectManipulationManager(
+            [KvantProjectSaveForm, KvantProjectParticipantsSaveForm, KvantProjectFilesSaveForm])
+        return object_manager.createObject(request)

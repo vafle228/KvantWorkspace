@@ -161,9 +161,6 @@
 
         {% include "ChatApp/ProjectChat/index.html" with project=project %}
     </div>
-    
-    <!-- Просмотр задачи -->
-    <div class='modal' id='taskView'></div>
 
     <!-- Создание задачи -->
     <div class='modal' id='createTask'>
@@ -178,20 +175,6 @@
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     <script src="{% static 'ProjectApp/ProjectPage/scripts.js' %}"></script>
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
-
-    <script>
-        function taskDetailView(task_url){
-            $.ajax({
-                type: "GET",
-                url: task_url,
-                cache: false,
-                success: function(response){
-                    $("#taskView").html(response)
-                    open_form('#taskView')
-                }
-            })
-        }
-    </script>
 </body>
 
 </html>

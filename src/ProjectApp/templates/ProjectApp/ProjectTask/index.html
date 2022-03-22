@@ -2,7 +2,7 @@
 
 <body>
     {% for task in tasks %}
-    <div class="task column g16" draggable="true" ondragstart="drag(event)" onclick="taskDetailView(`{% url 'task_view' task.id %}`)">
+    <div class="task column g16" draggable="true" ondragstart="drag(event)" onclick="location.href=`{% url 'task_view' task.id %}`">
 
         {% if task.priority != 'none' %}
         <div class="task__header flex space-between items-center">
