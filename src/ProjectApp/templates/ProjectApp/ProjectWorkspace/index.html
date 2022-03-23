@@ -165,7 +165,7 @@
     <!-- Создание задачи -->
     <div class='modal' id='createTask'>
         <div class="modal__viewport">
-        {% include "ProjectApp/ProjectTaskForm/index.html" with team=project.project.team|get_objects teamleader=project.project.teamleader %}
+        {% include "ProjectApp/ProjectTaskForm/index.html" with team=project.project.team|get_objects teamleader=project.project.teamleader prid=project.project.id %}
         </div>
     </div>
 

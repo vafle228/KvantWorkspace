@@ -67,6 +67,7 @@ class ProjectTaskUpdateView(generic.View):
 
 class ProjectTaskCreateView(generic.View):
     def post(self, request, *args, **kwargs):
+        project = services.getProjectById(kwargs.get('project_identifier'))
         object_manager = services.TaskObjectManipulationManager(
             [KvantProjectSaveForm, KvantProjectParticipantsSaveForm, KvantProjectFilesSaveForm])
-        return object_manager.createObject(request)
+        return object_manager.createTaskProject(request, project)

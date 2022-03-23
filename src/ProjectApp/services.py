@@ -41,6 +41,12 @@ class KvantProjectQuerySelector:
 
 
 class TaskObjectManipulationManager(ObjectManipulationManager):
+    def createTaskProject(self, request, project):
+        task_or_errors = self._getCreatedObject(request)
+        if isinstance(task_or_errors, KvantProjectTask):
+            project.tasks.add(task_or_errors)
+        return self.getResponse(task_or_errors)
+
     def _constructRedirectUrl(self, obj):
         return rl('task_view', kwargs={'task_identifier': obj.id})
 
