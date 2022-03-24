@@ -98,9 +98,11 @@
                     </div>
                     
                     <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        {% if user == project.project.teamleader or user == project.project.tutor %}
                         <button class="secondaryButton" style="justify-content: center" onclick="open_form('#createTask')">
                             Новая задача
                         </button>
+                        {% endif %}
                         
                         {% include "ProjectApp/ProjectTask/index.html" with tasks=backlog %}
                     </div>
@@ -154,13 +156,17 @@
             </button>
         </div>
 
-        {% include "ChatApp/ProjectChat/index.html" with project=project %}
+        {% if project.project|get_project_type != 'Закрытый' %}
+
+            {% include "ChatApp/ProjectChat/index.html" with project=project %}
+        
+        {% endif %}
     </div>
 
     <!-- Создание задачи -->
     <div class='modal' id='createTask'>
         <div class="modal__viewport">
-        {% include "ProjectApp/ProjectTaskForm/index.html" with team=project.project.team|get_objects teamleader=project.project.teamleader prid=project.project.id %}
+        {% include "ProjectApp/ProjectTaskForm/index.html" with project=project.project %}
         </div>
     </div>
 
@@ -170,6 +176,40 @@
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     <script src="{% static 'ProjectApp/ProjectPage/scripts.js' %}"></script>
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+
+    <script>
+        function drop(event) {
+            event.preventDefault();
+
+            let task = $(`#${event.dataTransfer.getData("task")}`);
+            
+            let from_board = $(task).closest('.board__sectionTasks');
+            let to_board = event.target.closest('.board__sectionTasks');
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "task_status" %}',
+                data: {
+                    'task_identifier': $(task).attr('value'),
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                    'type': $(to_board).prev().find('.board__sectionTitle').text(),
+                },
+                cache: false,
+                success: function(response) {
+                    if(response.status == 200){
+                        let from_counter = $(from_board).prev().find('.board__sectionCounter');
+                        $(from_counter).text(parseFloat($(from_counter).text()) - 1);
+
+                        let to_counter = $(to_board).prev().find('.board__sectionCounter');
+                        $(to_counter).text(parseFloat($(to_counter).text()) + 1);
+
+                        $(to_board).append(task);
+                        task.attr('id', '');
+                    }
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>

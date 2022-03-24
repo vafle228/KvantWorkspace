@@ -1,3 +1,4 @@
+{% load base_tags %}
 {% load project_tags %}
 
 <body>   
@@ -20,7 +21,7 @@
                 Сохранить
             </button>
             {% else %}
-            <button class='secondaryButton' type="button" onclick="sendInstanceData(getTaskFormData(), `{% url 'create_task' prid %}`, this)">
+            <button class='secondaryButton' type="button" onclick="sendInstanceData(getTaskFormData(), `{% url 'create_task' %}`, this)">
                 <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="14" r="2" opacity='0.6'/>
                     <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -41,16 +42,17 @@
         <h3>Участники</h3>
 
         {% if task %}
+        
         <div class="project__members expanded row">
-            <div class="project__member member row g8 items-center {{ teamleader|get_selected_user:task.participants }}" value="{{ teamleader.id }}">
-                <img src="{{ teamleader.image.url }}" class="avatar">
+            <div class="project__member member row g8 items-center {{ project.teamleader|get_selected_user:task.participants }}" value="{{ project.teamleader.id }}">
+                <img src="{{ project.teamleader.image.url }}" class="avatar">
                 <div class="member__info column">
-                    <p class="member__name">{{ teamleader.surname }} {{ teamleader.name }}</p>
+                    <p class="member__name">{{ project.teamleader.surname }} {{ project.teamleader.name }}</p>
                     <p class="member__role">Лидер</p>
                 </div>
             </div>
             
-            {% for member in team %}
+            {% for member in project.team|get_objects %}
             <div class="project__member member row g8 items-center {{ member|get_selected_user:task.participants }}" value="{{ member.id }}">
                 <img src="{{ member.image.url }}" class="avatar">
                 <div class="member__info column">
@@ -60,17 +62,19 @@
             </div>
             {% endfor %}
         </div>
+        
         {% else %}
+        
         <div class="project__members expanded row">
-            <div class="project__member member row g8 items-center" value="{{ teamleader.id }}">
-                <img src="{{ teamleader.image.url }}" class="avatar">
+            <div class="project__member member row g8 items-center" value="{{ project.teamleader.id }}">
+                <img src="{{ project.teamleader.image.url }}" class="avatar">
                 <div class="member__info column">
-                    <p class="member__name">{{ teamleader.surname }} {{ teamleader.name }}</p>
+                    <p class="member__name">{{ project.teamleader.surname }} {{ project.teamleader.name }}</p>
                     <p class="member__role">Лидер</p>
                 </div>
             </div>
             
-            {% for member in team %}
+            {% for member in project.team|get_objects %}
             <div class="project__member member row g8 items-center" value="{{ member.id }}">
                 <img src="{{ member.image.url }}" class="avatar">
                 <div class="member__info column">
@@ -80,6 +84,7 @@
             </div>
             {% endfor %}
         </div>
+
         {% endif %}
 
         <h3>Описание</h3>
@@ -134,16 +139,13 @@
                 task_form.append('files', file_array[i])
             }
 
-            for(let i = 0; i < participants.length; i++){
-                task_form.append('participants', participants[i])
-            }
-
             for(let i = 0; i < $('.project__member.selected').length; i++){
                 task_form.append('participants', $('.project__member.selected')[i].getAttribute('value'))
             }
             
             task_form.append('title', $('#taskTitle').val())
             task_form.append('deadline', $('#taskDeadline').val())
+            task_form.append('project_identifier', '{{ project.id }}')
             task_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
             task_form.append('description', $('#editor .ql-editor')[0].innerHTML)
             task_form.append('priority', $('.dropdownSelect__option.selected div').attr('data'))

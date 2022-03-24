@@ -3,10 +3,17 @@ from CoreApp.services.m2m import FileM2MBaseMixin
 from .models import KvantProjectTask
 
 
+
 class KvantProjectSaveForm(forms.ModelForm):
     class Meta:
         model = KvantProjectTask
         fields = ['title', 'description', 'deadline', 'priority']
+
+
+class KvantProjectTypeSaveForm(forms.ModelForm):
+    class Meta:
+        model = KvantProjectTask
+        fields = ['type',]
 
 
 class KvantProjectParticipantsSaveForm(forms.ModelForm):

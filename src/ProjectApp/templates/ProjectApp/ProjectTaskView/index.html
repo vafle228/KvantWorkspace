@@ -24,7 +24,7 @@
         <section class="taskView">
 
             <div class="flex space-between items-center">
-                <button class="combinedButton" onclick="history.back()">
+                <button class="combinedButton" onclick="location.href=`{% url 'project_tasks' project.id %}`">
                     <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
                         <g transform="translate(-5 -5)">
                             <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
@@ -34,6 +34,7 @@
                     <span>Назад</span>
                 </button>
 
+                {% if user == project.teamleader or user == project.tutor  %}
                 <div class='relativeBox' style='margin-left: auto'>
                     <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
                         <svg viewBox="0 0 192 512">
@@ -58,6 +59,7 @@
                         </button>
                     </div>
                 </div>
+                {% endif %}
                 
                 <!-- Форма подтверждения удаления новости -->
                 <div class='modal' id='confirmDeletion'>
@@ -70,7 +72,7 @@
                                     <button class='secondaryButton'>
                                         Отмена
                                     </button>
-                                    <button class='dangerButton' type="submit">
+                                    <button class='dangerButton' type="button">
                                         <svg viewBox="0 0 448 512">
                                             <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
                                             <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
@@ -143,7 +145,7 @@
     <!-- Редактирование задачи -->
     <div class='modal' id='editTaskForm'>
         <div class="modal__viewport">
-            {% include "ProjectApp/ProjectTaskForm/index.html" with team=team teamleader=teamleader %}
+            {% include "ProjectApp/ProjectTaskForm/index.html" with project=project %}
         </div>
     </div>
 

@@ -1,6 +1,6 @@
 from LoginApp.services import getUserById
 from ProjectApp.models import KvantProject
-from ProjectApp.services import getActiveProject, getProjectById
+from ProjectApp.services.services import getActiveProject, getProjectById
 
 from .forms import ChatMessageSaveForm
 

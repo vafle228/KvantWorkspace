@@ -62,6 +62,7 @@
 
         <div class="Tab active" id="About">
             
+            {% if user == project.teamleader or user == project.tutor %}
             <div class="row g16">
                 <button class="combinedButton" onclick="open_form('#editProject')">
                     <svg viewBox="0 0 512 512">
@@ -77,6 +78,7 @@
                     Завершить проект
                 </button>
             </div>
+            {% endif %}
 
             <section class="project column g16">
                 <img src="{{ project.image.url }}" class="project__banner">
@@ -112,9 +114,9 @@
                 </div>
             </section>
 
-            <section class="application column g16">
-                <div class="application__header flex space-between items-center">
-                    <h2>Отправить заявку на участие в проекте</h2>
+            <section class="applicationForm column g16">
+                <div class="applicationForm__header">
+                    <h2>Заявка на участие в проекте</h2>
                     <button class="secondaryButton">
                         Отправить
                         <svg viewBox="0 0 320 512">
@@ -123,7 +125,7 @@
                         </svg>
                     </button>
                 </div>
-                <div id="editor" class="application__textarea"></div>
+                <div id="editor" class="applicationForm__textarea"></div>
             </section>
 
         </div>

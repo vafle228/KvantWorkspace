@@ -58,6 +58,7 @@
                         <p class="message__text">${data.message}</p>
                     </span>
                 </div>`)
+            $(".chat__history")[0].scrollTop = $(".chat__history")[0].scrollHeight;
         };
 
         $('#chatSubmit').on('click', function(event) {

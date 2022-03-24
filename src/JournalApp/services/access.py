@@ -2,7 +2,7 @@ from DiaryApp.models import KvantLesson, KvantTaskBase
 from CoreApp.services.access import KvantObjectExistsMixin
 from AdminApp.models import KvantCourse
 from AdminApp.services import getCourseById
-from .queryget import getLessonById, getBaseType
+from .queryget import getLessonById, getBaseType, getBaseById
 
 
 class KvantLessonAccessMixin(KvantObjectExistsMixin):
@@ -46,7 +46,7 @@ class KvantBaseAccessMixin(KvantObjectExistsMixin):
     
     def accessTest(self, **kwargs):
         if super().accessTest(**kwargs):
-            base = KvantTaskBase.objects.get(id=kwargs.get(self.request_object_arg))
+            base = getBaseById(id=kwargs.get(self.request_object_arg))
             return self._teacherAccessTest(kwargs.get('user'), base)
         return False
 

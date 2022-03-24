@@ -1,8 +1,8 @@
-from .models import (ActiveKvantProject, ClosedKvantProject, KvantProject, KvantProjectTask,
-                     MemberHiringKvantProject)
-
 from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
+from ProjectApp.models import (ActiveKvantProject, ClosedKvantProject,
+                               KvantProject, KvantProjectTask,
+                               MemberHiringKvantProject)
 
 
 class KvantProjectQuerySelector:
@@ -71,6 +71,10 @@ def getActiveProject(project):
 
 def getProjectById(project_id):
     return KvantProject.objects.get(id=project_id)
+
+
+def getProjectByTaskId(task_id):
+    return KvantProject.objects.get(tasks__id=task_id)
 
 
 def getProjectTeam(task):
