@@ -1011,13 +1011,20 @@
         function drop(event) {
             event.preventDefault();
 
-            let board = event.target.closest('.board__sectionTasks');
             let task = $(`#${event.dataTransfer.getData("task")}`);
+            let from_board = $(task).closest('.board__sectionTasks');
+            let to_board = event.target.closest('.board__sectionTasks');
+
+            let from_counter = $(from_board).prev().find('.board__sectionCounter');
+            $(from_counter).text(parseFloat($(from_counter).text()) - 1);
+
+            let to_counter = $(to_board).prev().find('.board__sectionCounter');
+            $(to_counter).text(parseFloat($(to_counter).text()) + 1);
             
-            $(board).append(task);
+            $(to_board).append(task);
             task.attr('id', '');
 
-            alert($(board).prev().find('.board__sectionTitle').text())
+            // alert($(to_board).prev().find('.board__sectionTitle').text())
         }
     </script>
 
