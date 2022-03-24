@@ -396,13 +396,10 @@
                 <input class='text-field text-field-title' autocomplete="off" value=""/>
 
                 <h3>Лидер</h3>
-
-                <div id="selectedUsers">
+                <div id="selectedUsers" class="selectedUsers">
                     <!-- Здесь появляются участники -->
                 </div>
-
-                <input type="text" onkeyup="filterFunction(this)" id='userSearch'>
-
+                <input type="text" onkeyup="filterFunction(this, $('#userSelect'))" id='userSearch'>
                 <div class="userSelect" id='userSelect'>
                     <div class="userSelect__user row">
                         <img src="../../img/avatars/Upstream-8.png" class='userSelect__userImage'>
@@ -476,8 +473,10 @@
                 $('#selectedUsers').append($(this));
                 $('#userSearch').val('').focus();
                 $('.userSelect').hide();
+                $('#userSearch').hide();
             } else {
                 $('#userSelect').append($(this));
+                $('#userSearch').show();
             }
         });
     </script>

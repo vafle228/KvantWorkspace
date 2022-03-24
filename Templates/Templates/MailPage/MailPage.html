@@ -530,8 +530,8 @@
 
             <div class="form__cell row g8" style='align-items: flex-start'>
                 <p style='line-height: 2rem'>Кому:</p>
-                <div id="selectedUsers">
-                    <input type="text" onkeyup="filterFunction(this)" id='userSearch' style='line-height: 2rem'>
+                <div id="selectedUsers" class="selectedUsers">
+                    <input type="text" onkeyup="filterFunction(this, $('#newMailItem__userSelect'))" id='userSearch' style='line-height: 2rem'>
                 </div>
             </div>
             
