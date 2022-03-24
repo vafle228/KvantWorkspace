@@ -46,7 +46,7 @@ class KvantBaseAccessMixin(KvantObjectExistsMixin):
     
     def accessTest(self, **kwargs):
         if super().accessTest(**kwargs):
-            base = getBaseById(id=kwargs.get(self.request_object_arg))
+            base = getBaseById(kwargs.get(self.request_object_arg))
             return self._teacherAccessTest(kwargs.get('user'), base)
         return False
 
