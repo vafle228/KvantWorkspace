@@ -1,6 +1,6 @@
 from LoginApp.services import getUserById
 from ProjectApp.models import KvantProject
-from ProjectApp.services.services import getActiveProject, getProjectById
+from ProjectApp.services.services import getClassedProject, getProjectById
 
 from .forms import ChatMessageSaveForm
 
@@ -37,7 +37,7 @@ def addProjectChatMessage(message, user_id, project_id):
     if form.is_valid():
         chat_instance = form.save()
         project = getProjectById(project_id)
-        getActiveProject(project).chat.add(chat_instance)
+        getClassedProject(project).chat.add(chat_instance)
 
         return chat_instance
     return form.errors

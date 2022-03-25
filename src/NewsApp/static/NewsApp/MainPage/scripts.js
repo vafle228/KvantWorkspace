@@ -6,7 +6,7 @@ let page = 1;
 $("#scheduleWidget .course").click(function(event){
 	$('#widgets .course').each(function(i, item){
 		if(item == event.delegateTarget || item == event.target){
-			$($('#widgets .form')[i]).addClass("active");
+			$($('#widgets .modal')[i]).addClass("active");
 			$("body").css("overflow", "hidden");
 		}
 	})

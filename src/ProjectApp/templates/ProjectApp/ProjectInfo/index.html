@@ -1,5 +1,6 @@
 {% load static %}
 {% load base_tags %}
+{% load project_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href='{% static "ProjectApp/ProjectPage/style.css" %}'> <!-- Стили страницы -->
     <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
     
-    <title>{{ project.title }}</title>
+    <title>{{ project.project.title }}</title>
 </head>
 
 <body>
@@ -34,15 +35,17 @@
             </button>
             
             <div class="menu">
-                <button class="menu__button active" onclick="location.href=`{% url 'project_info' project.id %}`">
+                <button class="menu__button active" onclick="location.href=`{% url 'project_info' project.project.id %}`">
                     <svg viewBox="0 0 512 512">
                         <path d="M256 192c17.67 0 32-14.33 32-32c0-17.67-14.33-32-32-32S224 142.3 224 160C224 177.7 238.3 192 256 192zM296 336h-16V248C280 234.8 269.3 224 256 224H224C210.8 224 200 234.8 200 248S210.8 272 224 272h8v64h-16C202.8 336 192 346.8 192 360S202.8 384 216 384h80c13.25 0 24-10.75 24-24S309.3 336 296 336z"/>
                         <path style='opacity: .4' d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/>
                     </svg>
                     <p>Описание проекта</p>
                 </button>
+
+                {% if user|project_related:project.project or project.project|get_type == 'Закрытый' %}
                 
-                <button class="menu__button" onclick="location.href=`{% url 'project_tasks' project.id %}`">
+                <button class="menu__button" onclick="location.href=`{% url 'project_tasks' project.project.id %}`">
                     <svg viewBox="0 0 512 512">
                         <path d="M81.84 152.1C77.43 156.9 71.21 159.8 64.63 159.1C58.05 160.2 51.69 157.6 47.03 152.1L7.029 112.1C-2.343 103.6-2.343 88.4 7.029 79.03C16.4 69.66 31.6 69.66 40.97 79.03L63.08 101.1L118.2 39.94C127 30.09 142.2 29.29 152.1 38.16C161.9 47.03 162.7 62.2 153.8 72.06L81.84 152.1zM81.84 312.1C77.43 316.9 71.21 319.8 64.63 319.1C58.05 320.2 51.69 317.6 47.03 312.1L7.029 272.1C-2.343 263.6-2.343 248.4 7.029 239C16.4 229.7 31.6 229.7 40.97 239L63.08 261.1L118.2 199.9C127 190.1 142.2 189.3 152.1 198.2C161.9 207 162.7 222.2 153.8 232.1L81.84 312.1zM0 416C0 389.5 21.49 368 48 368C74.51 368 96 389.5 96 416C96 442.5 74.51 464 48 464C21.49 464 0 442.5 0 416z"/>
                         <path style='opacity: .4' d="M192 384H480C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384zM256 224H480C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224zM256 128C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H480C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H256z"/>
@@ -50,52 +53,60 @@
                     <p>Доска задач</p>
                 </button>
                 
-                <button class="menu__button" onclick="location.href=`{% url 'project_info' project.id %}`">
+                <button class="menu__button" onclick="location.href=`{% url 'project_team' project.project.id %}`">
                     <svg viewBox="0 0 640 512">
                         <path d="M616 200h-48v-48C568 138.8 557.3 128 544 128s-24 10.75-24 24v48h-48C458.8 200 448 210.8 448 224s10.75 24 24 24h48v48C520 309.3 530.8 320 544 320s24-10.75 24-24v-48h48C629.3 248 640 237.3 640 224S629.3 200 616 200z"/>
                         <path style='opacity: .6' d="M224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
                     </svg>
                     <p>Набор участников</p>
                 </button>
+
+                {% endif %}
             </div>
         </header>
 
         <div class="Tab active" id="About">
             
-            {% if user == project.teamleader or user == project.tutor %}
-            <div class="row g16">
-                <button class="combinedButton" onclick="open_form('#editProject')">
-                    <svg viewBox="0 0 512 512">
-                        <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
-                    </svg>
-                    Редактировать проект
-                </button>
-                <button class="combinedButton" onclick="open_form('#finishProject')">
-                    <svg viewBox="0 0 576 512">
-                        <path d="M432 118.8V26.05c-48.43 12.27-80.11 3.695-112-6.801v84.8c30.2 7.961 60.4 15.92 96 15.92C420.8 119.1 426.2 119.5 432 118.8zM544 176V88c-35.87 14.48-80.42 27.22-112 30.84v88C463.6 203.2 508.1 190.5 544 176zM524.1 360.9C536.3 355.9 544 344.4 544 332.1V264c-35.87 14.48-80.42 27.22-112 30.84v88.55C458.8 381.6 488.8 375.1 524.1 360.9zM96 208V120c44.12-20.34 80.23-28.89 112-31.04V1.602C178.2 4.316 142.3 12.93 96 32.38V32c0-17.75-14.25-32-32-32S32 14.25 32 32L31.96 496c0 8.75 7.25 16 16 16H80C88.75 512 96 504.8 96 496V296c44.12-20.34 80.23-28.89 112-31.04v-88C176.2 179.1 140.1 187.7 96 208zM320 192v-88c-34.56-9.109-69.3-17.97-112-15.08v88C250.7 174.1 285.4 182.9 320 192zM416 207.1c-35.6 0-65.8-7.961-96-15.92v88c30.2 7.961 60.4 15.92 96 15.92c4.758 0 10.23-.4609 16-1.125v-88C426.2 207.5 420.8 207.1 416 207.1zM208 264.1v88.15c42.65-2.867 77.47 5.812 112 14.91V280C285.4 270.9 250.7 262.1 208 264.1z"/>
-                        <path style='opacity: .4' d="M96 384c44.17-20.37 80.2-28.75 112-30.88V264.1C176.2 267.1 140.1 275.7 96 296V384zM96 120V208c44.12-20.34 80.23-28.89 112-31.04v-88C176.2 91.11 140.1 99.66 96 120zM208 176.1v88c42.7-2.887 77.44 5.973 112 15.08v-88C285.4 182.9 250.7 174.1 208 176.1zM320 104V19.25c-31.41-10.34-63.49-22.05-112-17.64v87.36C250.7 86.08 285.4 94.94 320 104zM320 280v87.98c34.62 9.125 69.24 18.23 112 15.36V294.8c-5.766 .6641-11.24 1.125-16 1.125C380.4 295.1 350.2 288 320 280zM416 119.1c-35.6 0-65.8-7.961-96-15.92v88c30.2 7.961 60.4 15.92 96 15.92c4.758 0 10.23-.4609 16-1.125v-88C426.2 119.5 420.8 119.1 416 119.1zM544 264V176c-35.87 14.48-80.42 27.22-112 30.84v88C463.6 291.2 508.1 278.5 544 264zM544 30.74c0-25-28.81-37.99-53.17-26.49C468.5 14.8 449.2 21.68 432 26.05v92.8C463.6 115.2 508.1 102.5 544 88V30.74z"/>
-                    </svg>
-                    Завершить проект
-                </button>
-            </div>
+            {% if user == project.project.teamleader or user == project.project.tutor %}
+
+                {% if project.project|get_type != 'Закрытый' %}
+                <div class="row g16">
+                    <!-- <button class="combinedButton" onclick="open_form('#editProject')">
+                        <svg viewBox="0 0 512 512">
+                            <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                        </svg>
+                        Редактировать проект
+                    </button> -->
+                    <button class="combinedButton" onclick="open_form('#finishProject')">
+                        <svg viewBox="0 0 576 512">
+                            <path d="M432 118.8V26.05c-48.43 12.27-80.11 3.695-112-6.801v84.8c30.2 7.961 60.4 15.92 96 15.92C420.8 119.1 426.2 119.5 432 118.8zM544 176V88c-35.87 14.48-80.42 27.22-112 30.84v88C463.6 203.2 508.1 190.5 544 176zM524.1 360.9C536.3 355.9 544 344.4 544 332.1V264c-35.87 14.48-80.42 27.22-112 30.84v88.55C458.8 381.6 488.8 375.1 524.1 360.9zM96 208V120c44.12-20.34 80.23-28.89 112-31.04V1.602C178.2 4.316 142.3 12.93 96 32.38V32c0-17.75-14.25-32-32-32S32 14.25 32 32L31.96 496c0 8.75 7.25 16 16 16H80C88.75 512 96 504.8 96 496V296c44.12-20.34 80.23-28.89 112-31.04v-88C176.2 179.1 140.1 187.7 96 208zM320 192v-88c-34.56-9.109-69.3-17.97-112-15.08v88C250.7 174.1 285.4 182.9 320 192zM416 207.1c-35.6 0-65.8-7.961-96-15.92v88c30.2 7.961 60.4 15.92 96 15.92c4.758 0 10.23-.4609 16-1.125v-88C426.2 207.5 420.8 207.1 416 207.1zM208 264.1v88.15c42.65-2.867 77.47 5.812 112 14.91V280C285.4 270.9 250.7 262.1 208 264.1z"/>
+                            <path style='opacity: .4' d="M96 384c44.17-20.37 80.2-28.75 112-30.88V264.1C176.2 267.1 140.1 275.7 96 296V384zM96 120V208c44.12-20.34 80.23-28.89 112-31.04v-88C176.2 91.11 140.1 99.66 96 120zM208 176.1v88c42.7-2.887 77.44 5.973 112 15.08v-88C285.4 182.9 250.7 174.1 208 176.1zM320 104V19.25c-31.41-10.34-63.49-22.05-112-17.64v87.36C250.7 86.08 285.4 94.94 320 104zM320 280v87.98c34.62 9.125 69.24 18.23 112 15.36V294.8c-5.766 .6641-11.24 1.125-16 1.125C380.4 295.1 350.2 288 320 280zM416 119.1c-35.6 0-65.8-7.961-96-15.92v88c30.2 7.961 60.4 15.92 96 15.92c4.758 0 10.23-.4609 16-1.125v-88C426.2 119.5 420.8 119.1 416 119.1zM544 264V176c-35.87 14.48-80.42 27.22-112 30.84v88C463.6 291.2 508.1 278.5 544 264zM544 30.74c0-25-28.81-37.99-53.17-26.49C468.5 14.8 449.2 21.68 432 26.05v92.8C463.6 115.2 508.1 102.5 544 88V30.74z"/>
+                        </svg>
+                        Завершить проект
+                    </button>
+                </div>
+                {% endif %}
+
             {% endif %}
 
             <section class="project column g16">
-                <img src="{{ project.image.url }}" class="project__banner">
+                <img src="{{ project.project.image.url }}" class="project__banner">
 
-                <h1 class="project__title">{{ project.title }}</h1>
+                <h1 class="project__title">{{ project.project.title }}</h1>
                 
                 <div class="project__members row">
                     
                     <div class="project__member member row g8 items-center">
-                        <img src="{{ project.teamleader.image.url }}" class="avatar">
+                        <img src="{{ project.project.teamleader.image.url }}" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">{{ project.teamleader.surname }} {{ project.teamleader.name }}</p>
+                            <p class="member__name">
+                                {{ project.project.teamleader.surname }} 
+                                {{ project.project.teamleader.name }}</p>
                             <p class="member__role">Лидер</p>
                         </div>
                     </div>
                     
-                    {% for member in project.team|get_objects %}
+                    {% for member in project.project.team|get_objects %}
                     <div class="project__member member row g8 items-center">
                         <img src="{{ member.image.url }}" class="avatar">
                         <div class="member__info column">
@@ -109,25 +120,82 @@
 
                 <div class="ql-snow">
                     <div class="ql-editor">
-                        <p class="project__description">{{ project.description|safe }}</p>
+                        <p class="project__description">{{ project.project.description|safe }}</p>
                     </div>
                 </div>
-            </section>
 
-            <section class="applicationForm column g16">
-                <div class="applicationForm__header">
-                    <h2>Заявка на участие в проекте</h2>
-                    <button class="secondaryButton">
-                        Отправить
-                        <svg viewBox="0 0 320 512">
-                            <path opacity='0.6' d="M232 160v328a24 24 0 0 1-24 24H12a12 12 0 0 1-8.48-20.48l56-56A12 12 0 0 1 68 432h84V160z"></path>
-                            <path d="M88 160c-20.94 0-31.76-25-17.6-40.33l104-112c.4-.43.82-.86 1.26-1.26a24 24 0 0 1 33.91 1.26l104 112C327.82 135 316.84 160 296 160z"></path>
-                        </svg>
-                    </button>
+                <div class='files'>
+                    {% include "CoreApp/FileView/index.html" with files=project.project.files %}
                 </div>
-                <div id="editor" class="applicationForm__textarea"></div>
             </section>
 
+            {% if not user|project_related:project.project and user.permission == 'Ученик' %}
+
+                {% if project.project|get_type == 'Набор участников' %}
+
+                    {% if project.memberhiringkvantproject|application_exists:user %}
+
+                    <section class="applicationForm column g16">
+                        <div class="applicationForm__header">
+                            <h2>Заявка на участие в проекте</h2>
+                            <div class="row g8">
+                                <!-- <button class="secondaryButton" onclick="toForm(this)">
+                                    Редактировать
+                                </button> -->
+                                <div class="primaryButton" style='color: var(--currentColor)'>
+                                    <svg viewBox="0 0 512 512">
+                                        <path opacity='0.6' d="M504.5 144.42L264.75 385.5 192 312.59l240.11-241a25.49 25.49 0 0 1 36.06-.14l.14.14L504.5 108a25.86 25.86 0 0 1 0 36.42z"></path>
+                                        <path d="M264.67 385.59l-54.57 54.87a25.5 25.5 0 0 1-36.06.14l-.14-.14L7.5 273.1a25.84 25.84 0 0 1 0-36.41l36.2-36.41a25.49 25.49 0 0 1 36-.17l.16.17z"></path>
+                                    </svg>
+                                    Отправлено
+                                </div>
+                            </div>
+                        </div>
+
+                        {% with application=project.memberhiringkvantproject|get_application:user %}
+                        <div class="ql-snow">
+                            <div class="ql-editor">
+                                <p class="project__description">{{ application.text|safe }}</p>
+                            </div>
+                        </div>
+                        {% endwith %}
+                    </section>
+        
+
+                    {% else %}
+
+                    <section class="applicationForm column g16">
+                        <div class="applicationForm__header">
+                            <h2>Заявка на участие в проекте</h2>
+                            <button class="secondaryButton" onclick="sendInstanceData(getApplicationFormData(), `{% url 'create_application' %}`, this)">
+                                Отправить
+                                <svg viewBox="0 0 320 512">
+                                    <path opacity='0.6' d="M232 160v328a24 24 0 0 1-24 24H12a12 12 0 0 1-8.48-20.48l56-56A12 12 0 0 1 68 432h84V160z"></path>
+                                    <path d="M88 160c-20.94 0-31.76-25-17.6-40.33l104-112c.4-.43.82-.86 1.26-1.26a24 24 0 0 1 33.91 1.26l104 112C327.82 135 316.84 160 296 160z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="editor" class="applicationForm__textarea"></div>
+                    </section>
+
+                    <script>
+                        function getApplicationFormData(){
+                            let application_form = new FormData();
+
+                            application_form.append('sender', '{{ user.id }}')
+                            application_form.append('text', $('#editor .ql-editor')[0].innerHTML)
+                            application_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+                            application_form.append('project_identifier', '{{ project.project.id }}')
+
+                            return application_form
+                        }
+                    </script>
+                    
+                    {% endif %}
+
+                {% endif %}
+            
+            {% endif %}
         </div>
 
     </div>
@@ -214,10 +282,10 @@
                 <p>Вы уверены, что хотите завершить это проект?</p>
                 <div class='modal__block'>
                     <div class='row g8' style='margin-left: auto'>
-                        <button class='secondaryButton'>
+                        <button class='secondaryButton' type="submit">
                             Отмена
                         </button>
-                        <button class='secondaryButton' type="submit">
+                        <button class='secondaryButton' onclick="closeProject()">
                             <svg viewBox="0 0 576 512">
                                 <path d="M432 118.8V26.05c-48.43 12.27-80.11 3.695-112-6.801v84.8c30.2 7.961 60.4 15.92 96 15.92C420.8 119.1 426.2 119.5 432 118.8zM544 176V88c-35.87 14.48-80.42 27.22-112 30.84v88C463.6 203.2 508.1 190.5 544 176zM524.1 360.9C536.3 355.9 544 344.4 544 332.1V264c-35.87 14.48-80.42 27.22-112 30.84v88.55C458.8 381.6 488.8 375.1 524.1 360.9zM96 208V120c44.12-20.34 80.23-28.89 112-31.04V1.602C178.2 4.316 142.3 12.93 96 32.38V32c0-17.75-14.25-32-32-32S32 14.25 32 32L31.96 496c0 8.75 7.25 16 16 16H80C88.75 512 96 504.8 96 496V296c44.12-20.34 80.23-28.89 112-31.04v-88C176.2 179.1 140.1 187.7 96 208zM320 192v-88c-34.56-9.109-69.3-17.97-112-15.08v88C250.7 174.1 285.4 182.9 320 192zM416 207.1c-35.6 0-65.8-7.961-96-15.92v88c30.2 7.961 60.4 15.92 96 15.92c4.758 0 10.23-.4609 16-1.125v-88C426.2 207.5 420.8 207.1 416 207.1zM208 264.1v88.15c42.65-2.867 77.47 5.812 112 14.91V280C285.4 270.9 250.7 262.1 208 264.1z"/>
                                 <path style='opacity: .4' d="M96 384c44.17-20.37 80.2-28.75 112-30.88V264.1C176.2 267.1 140.1 275.7 96 296V384zM96 120V208c44.12-20.34 80.23-28.89 112-31.04v-88C176.2 91.11 140.1 99.66 96 120zM208 176.1v88c42.7-2.887 77.44 5.973 112 15.08v-88C285.4 182.9 250.7 174.1 208 176.1zM320 104V19.25c-31.41-10.34-63.49-22.05-112-17.64v87.36C250.7 86.08 285.4 94.94 320 104zM320 280v87.98c34.62 9.125 69.24 18.23 112 15.36V294.8c-5.766 .6641-11.24 1.125-16 1.125C380.4 295.1 350.2 288 320 280zM416 119.1c-35.6 0-65.8-7.961-96-15.92v88c30.2 7.961 60.4 15.92 96 15.92c4.758 0 10.23-.4609 16-1.125v-88C426.2 119.5 420.8 119.1 416 119.1zM544 264V176c-35.87 14.48-80.42 27.22-112 30.84v88C463.6 291.2 508.1 278.5 544 264zM544 30.74c0-25-28.81-37.99-53.17-26.49C468.5 14.8 449.2 21.68 432 26.05v92.8C463.6 115.2 508.1 102.5 544 88V30.74z"/>
@@ -229,12 +297,25 @@
             </form>
         </div>
     </div>
-    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
+
+    <script>
+        function closeProject(){
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+                url: '{% url "close_project" project.project.id %}',
+                cache: false,
+                success: location.reload()
+            })
+        }
+    </script>
 </body>
 
 </html>

@@ -41,11 +41,11 @@ function addMailFileHandler(event){
 }
 
 // Поиск пользователя
-function filterFunction(input) {
+function filterFunction(input, select) {
 	let substr = input.value.toUpperCase();
 	if (substr.trim()) {
-		$('.userSelect').show();
-		let users = $('.userSelect .userSelect__user');
+		$(select).show();
+		let users = $(select).find('.userSelect__user');
 
 		// Сортируем
 		users.sort((a, b) => {
@@ -58,11 +58,13 @@ function filterFunction(input) {
 		});
 
 		// Перезаполняем
-		$('.userSelect').find('.userSelect__user').detach();
-		users.map(index => $('.userSelect').append(users[index]));
+		$(select).find('.userSelect__user').detach();
+		users.map(index => $(select).append(users[index]));
 		
 		// Скрываем пользователей неудолетворяющих поиску
-		users.map((index) => $(users[index]).find('h3')[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide());
+		users.map(
+			(index) => $(users[index]).find('h3')[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide()
+		);
 	}
-	else { $('.userSelect').hide(); }
+	else { $(select).hide(); }
 }

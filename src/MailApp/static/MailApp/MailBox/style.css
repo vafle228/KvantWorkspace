@@ -392,6 +392,9 @@
 }
 
 
+#userSearch{
+    line-height: 1.5rem;
+}
 #newMailItem__userSelect{
     width: calc(100% - 2rem);
     margin: 0.25rem 1rem;

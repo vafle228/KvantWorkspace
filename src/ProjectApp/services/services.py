@@ -2,11 +2,12 @@ from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
 from ProjectApp.models import (ActiveKvantProject, ClosedKvantProject,
                                KvantProject, KvantProjectTask,
-                               MemberHiringKvantProject)
+                               MemberHiringKvantProject, KvantProjectMembershipRequest)
 
 
 class KvantProjectQuerySelector:
     def __init__(self, request):
+        self.user = request.user
         self.search_param = request.GET.get('search')
 
         self.subject = request.GET.get('subject') or 'all'
@@ -37,10 +38,20 @@ class KvantProjectQuerySelector:
     
     
     def _subjectQueryFilter(self, query):
-        return query.all() if self.subject == 'all' else query.filter(course_subject__name=self.subject)
+        if self.subject == 'all':
+            return query.all()
+        
+        elif self.subject == 'mine':
+            tutor = query.filter(tutor=self.user)
+            teamleader = query.filter(teamleader=self.user)
+            team = query.filter(team__id=self.user.id)
+            
+            return (tutor | teamleader | team).distinct()
+        
+        return query.filter(course_subject__name=self.subject)
 
 
-class TaskObjectManipulationManager(ObjectManipulationManager):
+class TaskManipulationManager(ObjectManipulationManager):
     def createTaskProject(self, request, project):
         task_or_errors = self._getCreatedObject(request)
         if isinstance(task_or_errors, KvantProjectTask):
@@ -49,6 +60,33 @@ class TaskObjectManipulationManager(ObjectManipulationManager):
 
     def _constructRedirectUrl(self, obj):
         return rl('task_view', kwargs={'task_identifier': obj.id})
+
+
+class ProjectManipulationManager(ObjectManipulationManager):
+    def createProject(self, request):
+        project_or_errors = self._getCreatedObject(request)
+        if isinstance(project_or_errors, KvantProject):
+            ActiveKvantProject.objects.create(project=project_or_errors)
+        return self.getResponse(project_or_errors)
+
+    def _constructRedirectUrl(self, obj):
+        return rl('project_info', kwargs={'project_identifier': obj.id})
+
+
+class ApplicationManipulationManager(ObjectManipulationManager):
+    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
+    def __init__(self, forms, project, object=None):
+        super().__init__(forms, object)
+        self.project = project
+    
+    def createProjectApplication(self, request):
+        app_or_errors = self._getCreatedObject(request)
+        if isinstance(app_or_errors, KvantProjectMembershipRequest):
+            self.project.requests.add(app_or_errors)
+        return self.getResponse(app_or_errors)
+    
+    def _constructRedirectUrl(self, obj):
+        return rl('project_info', kwargs={'project_identifier': self.project.project.project.id})
 
 
 def updateTaskContext(project):
@@ -65,8 +103,10 @@ def getTaskById(task_id):
     return KvantProjectTask.objects.get(id=task_id)
 
 
-def getActiveProject(project):
-    return project.activekvantproject
+def getClassedProject(project):
+    if hasattr(project, 'activekvantproject'):
+        return project.activekvantproject
+    return project.closedkvantproject
 
 
 def getProjectById(project_id):
@@ -80,3 +120,7 @@ def getProjectByTaskId(task_id):
 def getProjectTeam(task):
     project = KvantProject.objects.get(tasks__id=task.id)
     return {'team': project.team.all(), 'teamleader': project.teamleader}
+
+
+def getRequestById(request_id):
+    return KvantProjectMembershipRequest.objects.get(id=request_id)

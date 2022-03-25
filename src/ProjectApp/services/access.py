@@ -14,11 +14,14 @@ class ProjectWorkspaceAccessMixin(KvantProjectExistsMixin):
     def accessTest(self, **kwargs):
         if super().accessTest(**kwargs):
             project = getProjectById(kwargs.get(self.request_object_arg))
-            return self._projectAccessTest(project, kwargs.get('user'))
+            return self._projectAccessTest(project, kwargs.get('user')) or self._isClosedProjectTest(project)
         return False
 
     def _projectAccessTest(self, project, user):
         return (project.tutor == user) or (project.teamleader == user) or (user in project.team.all())
+    
+    def _isClosedProjectTest(self, project):
+        return hasattr(project, 'closedkvantproject')
 
 
 class ProjectTaskAccessMixin(KvantObjectExistsMixin):
@@ -27,7 +30,7 @@ class ProjectTaskAccessMixin(KvantObjectExistsMixin):
     def accessTest(self, **kwargs):
         if super().accessTest(**kwargs):
             project = getProjectByTaskId(kwargs.get(self.request_object_arg))
-            return self._projectAccessTest(project, kwargs.get('user'))
+            return self._projectAccessTest(project, kwargs.get('user')) or self._isClosedProjectTest(project)
         return False
     
     def _objectExiststTest(self, object_id):
@@ -35,6 +38,9 @@ class ProjectTaskAccessMixin(KvantObjectExistsMixin):
 
     def _projectAccessTest(self, project, user):
         return (project.tutor == user) or (project.teamleader == user) or (user in project.team.all())
+    
+    def _isClosedProjectTest(self, project):
+        return hasattr(project, 'closedkvantproject')
 
 
 class ProjectTaskCreateMixin(KvantObjectExistsMixin):

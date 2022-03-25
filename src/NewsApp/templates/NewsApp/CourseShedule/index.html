@@ -48,9 +48,9 @@
     </div>
 
     {% for course in courses %}
-    <div class='form'>
-        <div class="form-wrapper">
-            <form>
+    <div class='modal' id="courseAbout">
+        <div class="modal__viewport">
+            <form class="modal__content">
                 <div class='course row g16'>
                     <img src="{{ course.type.image.url }}" class='course__illustration'/>
                     <div class="course__info column g4">

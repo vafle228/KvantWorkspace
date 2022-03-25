@@ -35,7 +35,7 @@ class KvantProjectTask(models.Model):
 
 
 class KvantProjectMembershipRequest(models.Model):
-    text    = models.TextField()
+    text    = models.TextField(blank=True)
     sender  = models.ForeignKey(to='LoginApp.KvantUser', on_delete=models.CASCADE)
 
     class Meta:

@@ -1,0 +1,260 @@
+{% load static %}
+{% load base_tags %}
+{% load project_tags %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    {% include "CoreApp/HeadSetup/index.html" %}
+    <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
+    <link rel="stylesheet" href='{% static "ProjectApp/ProjectPage/style.css" %}'> <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
+    
+    <title>{{ project.project.title }}</title>
+</head>
+
+<body>
+
+    {% include "CoreApp/AsideMenu/index.html" with user=user active='project_page' %}
+
+    <div class="mainContainer column g24">
+
+        <header class="flex space-between items-center">
+            
+            <button class="combinedButton" onclick="location.href=`{% url 'project_catalog' %}?subject=all&filter=all`">
+                <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                    <g transform="translate(-5 -5)">
+                        <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                        <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                    </g>
+                </svg>
+                <span>Назад</span>
+            </button>
+            
+            <div class="menu">
+                <button class="menu__button" onclick="location.href=`{% url 'project_info' project.project.id %}`">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M256 192c17.67 0 32-14.33 32-32c0-17.67-14.33-32-32-32S224 142.3 224 160C224 177.7 238.3 192 256 192zM296 336h-16V248C280 234.8 269.3 224 256 224H224C210.8 224 200 234.8 200 248S210.8 272 224 272h8v64h-16C202.8 336 192 346.8 192 360S202.8 384 216 384h80c13.25 0 24-10.75 24-24S309.3 336 296 336z"/>
+                        <path style='opacity: .4' d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/>
+                    </svg>
+                    <p>Описание проекта</p>
+                </button>
+                
+                <button class="menu__button" onclick="location.href=`{% url 'project_tasks' project.project.id %}`">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M81.84 152.1C77.43 156.9 71.21 159.8 64.63 159.1C58.05 160.2 51.69 157.6 47.03 152.1L7.029 112.1C-2.343 103.6-2.343 88.4 7.029 79.03C16.4 69.66 31.6 69.66 40.97 79.03L63.08 101.1L118.2 39.94C127 30.09 142.2 29.29 152.1 38.16C161.9 47.03 162.7 62.2 153.8 72.06L81.84 152.1zM81.84 312.1C77.43 316.9 71.21 319.8 64.63 319.1C58.05 320.2 51.69 317.6 47.03 312.1L7.029 272.1C-2.343 263.6-2.343 248.4 7.029 239C16.4 229.7 31.6 229.7 40.97 239L63.08 261.1L118.2 199.9C127 190.1 142.2 189.3 152.1 198.2C161.9 207 162.7 222.2 153.8 232.1L81.84 312.1zM0 416C0 389.5 21.49 368 48 368C74.51 368 96 389.5 96 416C96 442.5 74.51 464 48 464C21.49 464 0 442.5 0 416z"/>
+                        <path style='opacity: .4' d="M192 384H480C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384zM256 224H480C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224zM256 128C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H480C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H256z"/>
+                    </svg>
+                    <p>Доска задач</p>
+                </button>
+                
+                <button class="menu__button active" onclick="location.href=`{% url 'project_team' project.project.id %}`">
+                    <svg viewBox="0 0 640 512">
+                        <path d="M616 200h-48v-48C568 138.8 557.3 128 544 128s-24 10.75-24 24v48h-48C458.8 200 448 210.8 448 224s10.75 24 24 24h48v48C520 309.3 530.8 320 544 320s24-10.75 24-24v-48h48C629.3 248 640 237.3 640 224S629.3 200 616 200z"/>
+                        <path style='opacity: .6' d="M224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                    </svg>
+                    <p>Набор участников</p>
+                </button>
+            </div>
+        </header>
+
+        <div class="Tab active">
+
+            <h1>Участники</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: calc(100% - 37rem)"><p>Фамилия Имя</p></th>
+                        <th style="width: 10rem"><p>Роль</p></th>
+                        <th style="width: 8rem"><p>Задачи</p></th>
+                        <th style="width: 8rem"><p>В прогрессе</p></th>
+                        <th style="width: 8rem"><p>Выполнено</p></th>
+                        <th style="width: 3rem"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="student">
+                            <img src="{{ project.project.teamleader.image.url }}" class="avatar">
+                            <p class="student__name">
+                                {{ project.project.teamleader.surname }} 
+                                {{ project.project.teamleader.name }}
+                            </p>
+                        </td>
+                        <td><p>Лидер</p></td>
+                        
+                        <td><h3>{{ project.project|get_current:project.project.teamleader }}</h3></td>
+                        <td><h3>{{ project.project|get_inprogress:project.project.teamleader }}</h3></td>
+                        <td><h3>{{ project.project|get_completed:project.project.teamleader }}</h3></td>
+                        
+                        <td></td>
+                    </tr>
+                    
+                    {% for member in project.project.team|get_objects %}
+                    <tr>
+                        <td class="student">
+                            <img src="{{ member.image.url }}" class="avatar">
+                            <p class="student__name">{{ member.surname }} {{ member.name }}</p>
+                        </td>
+                        <td><p>Участник</p></td>
+                        
+                        <td><h3>{{ project.project|get_current:member }}</h3></td>
+                        <td><h3>{{ project.project|get_inprogress:member }}</h3></td>
+                        <td><h3>{{ project.project|get_completed:member }}</h3></td>
+
+                        <td>
+                            {% if user == project.project.tutor and project.project|get_type != 'Закрытый' %}
+                            <div class='relativeBox' style='margin-left: auto'>
+                                <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
+                                    <svg viewBox="0 0 448 512">
+                                        <path d="M336 256C336 229.5 357.5 208 384 208C410.5 208 432 229.5 432 256C432 282.5 410.5 304 384 304C357.5 304 336 282.5 336 256zM176 256C176 229.5 197.5 208 224 208C250.5 208 272 229.5 272 256C272 282.5 250.5 304 224 304C197.5 304 176 282.5 176 256zM112 256C112 282.5 90.51 304 64 304C37.49 304 16 282.5 16 256C16 229.5 37.49 208 64 208C90.51 208 112 229.5 112 256z"/>
+                                    </svg>
+                                </button>
+                                <div class="list">
+                                    <!-- <button class="listButton">
+                                        Сделать лидером
+                                        <svg viewBox="0 0 576 512">
+                                            <path d="M39.1 176c.2461 0 .459-.1164 .7051-.1203C40.46 175.9 40.25 176 39.1 176zM535.3 175.9C535.5 175.9 535.8 176 536 176C535.8 176 535.5 175.9 535.3 175.9zM504.5 159.6l-89.63 71.7c-15.91 12.73-39.5 7.546-48.61-10.68l-57.6-115.2C302.6 109.2 295.7 112 287.1 112S273.4 109.2 267.3 105.4L209.7 220.6c-9.111 18.22-32.71 23.4-48.61 10.68l-89.63-71.7C64.3 169.1 53.48 175.6 40.71 175.9l50.52 277.8C93.99 468.9 107.2 480 122.7 480h330.6c15.46 0 28.72-11.06 31.48-26.27l50.52-277.9C522.5 175.6 511.7 169.1 504.5 159.6z"/>
+                                            <path style='opacity: .4' d="M288 32C265.9 32 247.1 49.91 247.1 72s17.91 40 40 40s40-17.91 40-40S310.1 32 288 32zM39.1 96c-22.09 0-40 17.91-40 40s17.91 40 40 40s40-17.91 40-40S62.09 96 39.1 96zM536 96c-22.09 0-40 17.91-40 40s17.91 40 40 40S576 158.1 576 136S558.1 96 536 96z"/>
+                                        </svg>
+                                    </button> -->
+                                    <button class="listButton" onclick="kickUser('{{ member.id }}')">
+                                        Исключить
+                                        <svg viewBox="0 0 640 512">
+                                            <path d="M616 200h-144C458.8 200 448 210.8 448 224s10.75 24 24 24h144C629.3 248 640 237.3 640 224S629.3 200 616 200z"/>
+                                            <path style='opacity: .6' d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                        
+            </table>
+
+            
+            {% with project_type=project.project|get_type %}
+            
+                {% if project_type != 'Закрытый' %}
+                    
+                    <div class="flex space-between items-center">
+                        <h1>Заявки</h1>
+                        {% if project_type == 'Набор участников' %}
+                        <button class="combinedButton" onclick="hiringManipulate('off')">Закрыть набор</button>
+                        {% else %}
+                        <button class="combinedButton" onclick="hiringManipulate('on')">Открыть набор</button>
+                        {% endif %}
+                    </div>
+
+                    {% if project_type == 'Набор участников' %}
+                    
+                    <section class="applications">
+                        {% for application in project.memberhiringkvantproject.requests|get_objects %}
+                        <div class="application">
+                            <div class="application__header">
+                                <div class="application__user">
+                                    <img src="{{ application.sender.image.url }}" class="avatar">
+                                    <div class='column'>
+                                        <p class="application__userName">
+                                            {{ application.sender.surname }} 
+                                            {{ application.sender.name }}
+                                        </p>
+                                        <p class="application__userRole">Ученик</p>
+                                    </div>
+                                </div>
+                                <div class="application__buttons row g8">
+                                    <button class="dismiss combinedButton" onclick="manipulateApplication('decline', '{{ application.id }}')">
+                                        <svg viewBox="0 0 320 512">
+                                            <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/>
+                                        </svg>
+                                        <p>Отклонить</p>
+                                    </button>
+                                    <button class="accept combinedButton" onclick="manipulateApplication('accept', '{{ application.id }}')">
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"/>
+                                        </svg>
+                                        <p>Принять</p>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="ql-snow">
+                                <div class="ql-editor">
+                                    <p class="project__description">{{ application.text|safe }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                    
+                    {% endif %}
+
+                {% endif %}
+            
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+    
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+    <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+
+    <script>
+        function manipulateApplication(choise, request){
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'choise': choise,
+                    'project_identifier': '{{ project.project.id }}',
+                    'request_identifier': request,
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+                url: '{% url "manipulate_application" %}',
+                cache: false,
+                success: location.reload()
+            })
+        }
+    </script>
+
+    <script>
+        function hiringManipulate(choise){
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'choise': choise,
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+                url: '{% url "manipulate_hiring" project.project.id %}',
+                cache: false,
+                success: location.reload()
+            })
+        }
+    </script>
+
+    <script>
+        function kickUser(user){
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'user_identifier': user,
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+                url: '{% url "kick_member" project.project.id %}',
+                cache: false,
+                success: location.reload()
+            })
+        }
+    </script>
+</body>
+
+</html>
