@@ -1,6 +1,6 @@
 from django.views import generic
-from LoginApp.models import KvantUser
-from .models import KvantCourse, KvantCourseType
+
+from . import services
 
 
 class AdminsTableTemplateView(generic.TemplateView):
@@ -8,7 +8,7 @@ class AdminsTableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(admins=KvantUser.objects.filter(permission='Администратор'))
+        context.update(admins=services.allUsers('Администратор'))
 
         return context
 
@@ -18,7 +18,7 @@ class TeachersTableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(teachers=KvantUser.objects.filter(permission='Учитель'))
+        context.update(teachers=services.allUsers('Учитель'))
 
         return context
 
@@ -28,7 +28,7 @@ class StudentsTableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(students=KvantUser.objects.filter(permission='Ученик'))
+        context.update(students=services.allUsers('Ученик'))
 
         return context
 
@@ -38,7 +38,7 @@ class CoursesTableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(courses=KvantCourse.objects.all())
+        context.update(courses=services.allCourses())
 
         return context
 
@@ -48,6 +48,6 @@ class SubjectsTableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(subjects=KvantCourseType.objects.all())
+        context.update(subjects=services.allSubjects())
 
         return context

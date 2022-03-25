@@ -1,5 +1,6 @@
-from this import d
-from .models import KvantCourse
+from .models import KvantCourse, KvantCourseType
+from LoginApp.models import KvantUser
+
 
 
 def getCourseById(course_id):
@@ -14,3 +15,8 @@ def getCourseQuery(user):
         'Учитель': lambda user: KvantCourse.objects.filter(teacher=user),
         'Администратор': lambda user: KvantCourse.objects.all(),
     }[user.permission](user)
+
+
+allCourses = lambda: KvantCourse.objects.all()
+allSubjects = lambda: KvantCourseType.objects.all()
+allUsers = lambda permission: KvantUser.objects.filter(permission=permission)

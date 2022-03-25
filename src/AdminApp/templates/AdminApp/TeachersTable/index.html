@@ -18,59 +18,38 @@
     {% include "CoreApp/AsideMenu/index.html" with user=user active='admin_page' %}
 
     <main class="mainContainer">
-        <header class="flex space-between">
-            <h1>Поиск</h1>
-            <section class="menu">
-                <button class="menu__button active" onclick="location.href=`{% url 'students_table' %}`">
-                    <svg viewBox="0 0 512 512">
-                        <path opacity="0.6" d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
-                        <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>
-                    </svg>
-                    <p>Ученики</p>
-                </button>
-                <button class="menu__button" onclick="location.href=`{% url 'teachers_table' %}`">
-                    <svg viewBox="0 0 512 512">
-                        <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
-                        <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
-                    </svg>
-                    <p>Учителя</p>
-                </button>
-                <button class="menu__button" onclick="location.href=`{% url 'admins_table' %}`">
-                    <svg viewBox="0 0 576 512">
-                        <path d="M39.1 176c.2461 0 .459-.1164 .7051-.1203C40.46 175.9 40.25 176 39.1 176zM535.3 175.9C535.5 175.9 535.8 176 536 176C535.8 176 535.5 175.9 535.3 175.9zM504.5 159.6l-89.63 71.7c-15.91 12.73-39.5 7.546-48.61-10.68l-57.6-115.2C302.6 109.2 295.7 112 287.1 112S273.4 109.2 267.3 105.4L209.7 220.6c-9.111 18.22-32.71 23.4-48.61 10.68l-89.63-71.7C64.3 169.1 53.48 175.6 40.71 175.9l50.52 277.8C93.99 468.9 107.2 480 122.7 480h330.6c15.46 0 28.72-11.06 31.48-26.27l50.52-277.9C522.5 175.6 511.7 169.1 504.5 159.6z"/>
-                        <path style='opacity: .4' d="M288 32C265.9 32 247.1 49.91 247.1 72s17.91 40 40 40s40-17.91 40-40S310.1 32 288 32zM39.1 96c-22.09 0-40 17.91-40 40s17.91 40 40 40s40-17.91 40-40S62.09 96 39.1 96zM536 96c-22.09 0-40 17.91-40 40s17.91 40 40 40S576 158.1 576 136S558.1 96 536 96z"/>
-                    </svg>
-                    <p>Администраторы</p>
-                </button>
-                <button class="menu__button" onclick="location.href=`{% url 'subjects_table' %}`">
-                    <svg viewBox="0 0 448 512">
-                        <path d="M255.1 255.1c0 17.63-14.38 32-32 32s-32-14.37-32-32c0-17.62 14.38-32.03 32-32.03S255.1 238.3 255.1 255.1z"/>
-                        <path style='opacity: .6' d="M423.1 56.87C379.1 12.86 300.3 31.62 224 79.12C147.6 31.62 68.87 12.86 24.87 56.87C-19.14 100.9-.3849 179.6 47.12 256c-47.5 76.38-66.25 155.1-22.25 199.1C66.12 496.4 140.4 484.5 224 432.5c83.25 51.88 157.8 64 199.1 22.63c44-44 25.25-122.8-22.25-199.1C448.4 179.6 467.1 100.9 423.1 56.87zM70.12 102.1c9.316-9.316 39.67-12.54 97.26 17.88c-29 23.75-55.5 50.25-79.13 79.13C63.37 151.9 57.74 114.5 70.12 102.1zM70.12 409.9c-12.38-12.38-6.751-49.75 18.13-97.01c28.75 34.88 53 57.38 79.13 78.88C119.1 416.6 82.49 422.3 70.12 409.9zM224 355c-44.88-34.25-73-65-98.88-99.01C153.4 218.5 186.6 184.1 224 156.6c37.38 28.38 70.63 61.88 99 99.38C288.8 300.9 258 329 224 355zM377.9 409.9c-12.38 12.38-49.88 6.75-97.26-18.13c26-21.5 50.25-43.88 79.13-78.88C384.6 360.1 390.3 397.5 377.9 409.9zM359.8 199.1c-23.62-28.88-50.13-55.38-79.13-79.13c57.33-30.29 87.89-27.24 97.26-17.88C390.3 114.5 384.6 151.9 359.8 199.1z"/>
-                    </svg>
-                    <p>Направления</p>
-                </button>
-                <button class="menu__button" onclick="location.href=`{% url 'courses_table' %}`">
-                    <svg viewBox="0 0 640 512">
-                        <path d="M319.9 320c57.41 0 103.1-46.56 103.1-104c0-57.44-46.54-104-103.1-104c-57.41 0-103.1 46.56-103.1 104C215.9 273.4 262.5 320 319.9 320zM369.9 352H270.1C191.6 352 128 411.7 128 485.3C128 500.1 140.7 512 156.4 512h327.2C499.3 512 512 500.1 512 485.3C512 411.7 448.4 352 369.9 352z"/>
-                        <path style='opacity: .6' d="M128 160c44.18 0 80-35.82 80-80S172.2 0 128 0C83.82 0 48 35.82 48 80S83.82 160 128 160zM512 160c44.18 0 80-35.82 80-80S556.2 0 512 0c-44.18 0-80 35.82-80 80S467.8 160 512 160zM551.9 192h-61.84c-12.8 0-24.88 3.037-35.86 8.24C454.8 205.5 455.8 210.6 455.8 216c0 33.71-12.78 64.21-33.16 88h199.7C632.1 304 640 295.6 640 285.3C640 233.8 600.6 192 551.9 192zM185.5 200.1C174.6 194.1 162.6 192 149.9 192H88.08C39.44 192 0 233.8 0 285.3C0 295.6 7.887 304 17.62 304h199.5c-20.38-23.79-33.16-54.29-33.16-88C183.9 210.6 184.9 205.4 185.5 200.1z"/>
-                    </svg>
-                    <p>Группы</p>
-                </button>
-            </section>
-        </header>
+        {% include "AdminApp/HeadMenu/index.html" with active='teachers' %}
 
-
-        <section class="Tab" id="admins">
+        <section class="Tab active">
 
             <nav>
                 <div class="column g8">
-                    <h3>Поиск по администраторам</h3>
+                    <h3>Поиск по учителям</h3>
                     <input type="text" placeholder="Введите ФИО">
                 </div>
                 <div class="column g8">
+                    <h3>Направление</h3>
+                    <div class="filtering" style="width: 12rem">
+                        <div class="dropdownSelect">
+                            <div class="dropdownSelect__trigger">
+                                <div>Все</div>
+                                <div class="arrowDown"></div>
+                            </div>
+                            <div class="dropdownSelect__options">
+                                <span class='dropdownSelect__option selected'>Все</span>
+                                <span class='dropdownSelect__option'>IT</span>
+                                <span class='dropdownSelect__option'>Энерджи</span>
+                                <span class='dropdownSelect__option'>Хайтек</span>
+                                <span class='dropdownSelect__option'>ПромДизайн</span>
+                                <span class='dropdownSelect__option'>ПромРобо</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column g8">
                     <h3>Добавление</h3>
-                    <button class="secondaryButton" onclick="open_form('#createAdmin')">
-                        Добавить администратора
+                    <button class="secondaryButton" onclick="open_form('#createTeacher')">
+                        Добавить учителя
                     </button>
                 </div>
             </nav>
@@ -87,21 +66,22 @@
             <div class="table scrollbarX">
                 <div class="tableHeader">
                     <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
-                    <p style="width: 20rem">Администратор</p>
+                    <p style="width: 20rem">Учитель</p>
                     <p style="width: 9.5rem">Дата рождения</p>
                     <p style="width: 16rem">Электронная почта</p>
                     <p style="width: 9.5rem">Телефон</p>
                 </div>
-                
-                {% for admin in admins %}
+
+                {% for teacher in teachers %}
                 <div class="tableRow">
                     <input type="checkbox">
-
                     <div class="tableUser row g8" title="Перейти в профиль">
-                        <img src="{{ admin.image.url }}" class="tableUser__avatar avatar">
+                        <img src="{{ teacher.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
-                            <p class="tableUser__name">{{ admin.surname }} }{ admin.name }} {{ admin.patronymic }}</p>
-                            <p class="tableUser__role">Администратор</p>
+                            <p class="tableUser__name">
+                                {{ teacher.surname }} {{ teacher.name }} {{ teacher.patronymic }}
+                            </p>
+                            <p class="tableUser__role">Учитель</p>
                         </div>
                     </div>
                     <div class="tableCell">
@@ -115,7 +95,7 @@
                             <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
                             <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
                         </svg>
-                        <p>{{ admin.email }}</p>
+                        <p>{{ teacher.email }}</p>
                     </div>
                     <div class="tableCell">
                         <svg viewBox="0 0 512 512">
@@ -126,7 +106,6 @@
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
 
         </section>
