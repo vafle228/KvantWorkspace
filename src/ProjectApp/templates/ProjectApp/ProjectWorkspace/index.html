@@ -192,7 +192,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '{% url "task_status" project.project.id %}',
+                url: '{% url "task_status" %}',
                 data: {
                     'task_identifier': $(task).attr('value'),
                     'csrfmiddlewaretoken': getCookie('csrftoken'),

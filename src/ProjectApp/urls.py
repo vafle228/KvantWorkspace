@@ -18,9 +18,9 @@ urlpatterns = [
     
     # Функционал заданий
     path('task/status', views.ProjectStatusUpdateView.as_view(), name='task_status'),
+    path('task/update/<int:task_identifier>', views.ProjectTaskUpdateView.as_view(), name='update_task'),
     path('<int:project_identifier>/task/create', views.ProjectTaskCreateView.as_view(), name='create_task'),
     path('<int:project_identifier>/task/info/<int:task_identifier>', views.ProjectTaskDetailView.as_view(), name='task_view'),
-    path('<int:project_identifier>/task/update/<int:task_identifier>', views.ProjectTaskUpdateView.as_view(), name='update_task'),
 
     # Манипуляции командой
     path('kick/<int:project_identifier>', views.KickMemberView.as_view(), name='kick_member'),

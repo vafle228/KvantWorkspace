@@ -1192,9 +1192,9 @@ td{
 .modal__content .dropdownSelect__option{
     padding: 0.25rem 1rem;
 }
-.modal__content .dropdownSelect__option.selected{
+/* .modal__content .dropdownSelect__option.selected{
     background-color: var(--theme-light);
-}
+} */
 
 .modal input[type=date]{
     height: 3rem; width: 12rem;

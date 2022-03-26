@@ -86,11 +86,9 @@ class ProjectTaskDetailView(access.ProjectTaskAccessMixin, generic.DetailView):
 
 
 class ProjectStatusUpdateView(access.ProjectTaskChangeStatusMixin, generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
     def dispatch(self, request, *args, **kwargs):
         kwargs.update({
-            'task_identifier': request.POST.get('task_identifier')
-        })
+            'task_identifier': request.POST.get('task_identifier')})
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -109,13 +107,6 @@ class ProjectTaskUpdateView(access.ProjectTaskUpdateMixin, generic.View):
 
 
 class ProjectTaskCreateView(access.ProjectTaskCreateMixin, generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
-    def dispatch(self, request, *args, **kwargs):
-        kwargs.update({
-            'project_identifier': request.POST.get('project_identifier')
-        })
-        return super().dispatch(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         project = services.getProjectById(kwargs.get('project_identifier'))
         object_manager = services.TaskManipulationManager(
