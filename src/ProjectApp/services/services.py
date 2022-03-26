@@ -3,6 +3,7 @@ from django.urls import reverse_lazy as rl
 from ProjectApp.models import (ActiveKvantProject, ClosedKvantProject,
                                KvantProject, KvantProjectTask,
                                MemberHiringKvantProject, KvantProjectMembershipRequest)
+from LoginApp.services import getUserById
 
 
 class KvantProjectQuerySelector:
@@ -53,10 +54,16 @@ class TaskManipulationManager(ObjectManipulationManager):
         task_or_errors = self._getCreatedObject(request)
         if isinstance(task_or_errors, KvantProjectTask):
             project.tasks.add(task_or_errors)
-        return self.getResponse(task_or_errors)
+        return self.getResponse(task_or_errors, project=project)
+    
+    def updateTaskProject(self, request, project):
+        return self.getResponse(self._getUpdatedObject(request), project=project)
 
-    def _constructRedirectUrl(self, obj):
-        return rl('task_view', kwargs={'task_identifier': obj.id})
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('task_view', kwargs={
+            'task_identifier': kwargs.get('obj').id,
+            'project_identifier': kwargs.get('project').id
+        })
 
 
 class ProjectManipulationManager(ObjectManipulationManager):
@@ -66,24 +73,72 @@ class ProjectManipulationManager(ObjectManipulationManager):
             ActiveKvantProject.objects.create(project=project_or_errors)
         return self.getResponse(project_or_errors)
 
-    def _constructRedirectUrl(self, obj):
-        return rl('project_info', kwargs={'project_identifier': obj.id})
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('project_info', kwargs={'project_identifier': kwargs.get('obj').id})
 
 
-class ApplicationManipulationManager(ObjectManipulationManager):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
-    def __init__(self, forms, project, object=None):
-        super().__init__(forms, object)
-        self.project = project
-    
-    def createProjectApplication(self, request):
+class ApplicationManipulationManager(ObjectManipulationManager):    
+    def createProjectApplication(self, request, project):
         app_or_errors = self._getCreatedObject(request)
         if isinstance(app_or_errors, KvantProjectMembershipRequest):
-            self.project.requests.add(app_or_errors)
-        return self.getResponse(app_or_errors)
+            project.requests.add(app_or_errors)
+        return self.getResponse(app_or_errors, project=project.project.project)
     
-    def _constructRedirectUrl(self, obj):
-        return rl('project_info', kwargs={'project_identifier': self.project.project.project.id})
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('project_info', kwargs={'project_identifier': kwargs.get('project').id})
+    
+
+class ApplicationManipulationManager:
+    def __init__(self, project, application):
+        self.project = project
+        self.application = application
+    
+    def manageApplication(self, choise):
+        if choise == 'accept':
+            self.project.team.add(self.application.sender)
+        self.application.delete()
+
+
+class ProjectStatusManager:
+    def __init__(self, project):
+        self.project = project
+    
+    def hiringStatusManager(self, choise):
+        if choise == 'on' and isinstance(self.project, ActiveKvantProject):
+            return MemberHiringKvantProject.objects.create(project=self.project)
+        elif MemberHiringKvantProject.objects.filter(project=self.project).exists():
+            return MemberHiringKvantProject.objects.get(project=self.project).delete()
+    
+    def closeProjectManager(self):
+        project_instance = self._getProjectInstance()
+        self._deleteProjectStatus()
+        
+        return ClosedKvantProject.objects.create(project=project_instance)
+    
+    def _getProjectInstance(self):
+        if isinstance(self.project, MemberHiringKvantProject):
+            return self.project.project.project
+        return self.project.project
+    
+    def _deleteProjectStatus(self):
+        if isinstance(self.project, MemberHiringKvantProject):
+            return self.project.project.delete()
+        return self.project.delete()
+
+
+class ProjectTeamManager:
+    def __init__(self, project):
+        self.project = project
+    
+    def projectMemberKick(self, user_id):
+        user = getUserById(user_id)
+        if user is not None:
+            self.project.team.remove(user)
+            self._cleanUserTasks(user)
+            
+    def _cleanUserTasks(self, user):
+        for task in self.project.tasks.filter(participants__id=user.id):
+            task.participants.remove(user)
 
 
 def updateTaskContext(project):
@@ -96,27 +151,18 @@ def updateTaskContext(project):
     }
 
 
-def getTaskById(task_id):
-    return KvantProjectTask.objects.get(id=task_id)
-
-
 def getClassedProject(project):
     if hasattr(project, 'activekvantproject'):
         return project.activekvantproject
     return project.closedkvantproject
 
 
+def getTaskById(task_id):
+    return KvantProjectTask.objects.get(id=task_id)
+
+
 def getProjectById(project_id):
     return KvantProject.objects.get(id=project_id)
-
-
-def getProjectByTaskId(task_id):
-    return KvantProject.objects.get(tasks__id=task_id)
-
-
-def getProjectTeam(task):
-    project = KvantProject.objects.get(tasks__id=task.id)
-    return {'team': project.team.all(), 'teamleader': project.teamleader}
 
 
 def getRequestById(request_id):

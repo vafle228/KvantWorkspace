@@ -1,19 +1,17 @@
 from AdminApp.models import KvantCourseType
-from CoreApp.services.access import KvantWorkspaceAccessMixin
+from AdminApp.services import allUsers
+from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
+                                     KvantWorkspaceAccessMixin)
 from django.http import HttpResponse
 from django.views import generic
-from LoginApp.models import KvantUser
 from LoginApp.services import getUserById
-
-from AdminApp.services import allUsers
 
 from .forms import (KvantApplicationSaveForm, KvantProjectFilesSaveForm,
                     KvantProjectSaveForm, KvantProjectSubjectSaveForm,
                     KvantProjectTaskFilesSaveForm,
                     KvantProjectTaskParticipantsSaveForm,
                     KvantProjectTaskSaveForm, KvantProjectTypeSaveForm)
-from .models import (ClosedKvantProject, KvantProject, KvantProjectTask,
-                     MemberHiringKvantProject)
+from .models import KvantProject, KvantProjectTask
 from .services import access, services
 
 
@@ -80,12 +78,12 @@ class ProjectTaskDetailView(access.ProjectTaskAccessMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(project=services.getProjectById(kwargs.get('project_identifier')))
+        context.update(project=services.getProjectById(self.kwargs.get('project_identifier')))
         
         return context
 
 
-class ProjectStatusUpdateView(access.ProjectTaskChangeStatusMixin, generic.View):
+class ProjectStatusUpdateView(access.ProjectTaskManipulationMixin, generic.View):
     def dispatch(self, request, *args, **kwargs):
         kwargs.update({
             'task_identifier': request.POST.get('task_identifier')})
@@ -93,86 +91,77 @@ class ProjectStatusUpdateView(access.ProjectTaskChangeStatusMixin, generic.View)
 
     def post(self, request, *args, **kwargs):
         task = services.getTaskById(kwargs.get('task_identifier'))
+        project = services.getProjectById(kwargs.get('project_identifier'))
         object_manager = services.TaskManipulationManager(
             [KvantProjectTypeSaveForm], object=task)
-        return object_manager.updateObject(request)
+        return object_manager.updateTaskProject(request, project)
 
 
-class ProjectTaskUpdateView(access.ProjectTaskUpdateMixin, generic.View):
+class ProjectTaskUpdateView(access.ProjectTaskManipulationMixin, generic.View):
     def post(self, request, *args, **kwargs):
         task = services.getTaskById(kwargs.get('task_identifier'))
+        project = services.getProjectById(kwargs.get('project_identifier'))
         object_manager = services.TaskManipulationManager(
             [KvantProjectTaskSaveForm, KvantProjectTaskParticipantsSaveForm, KvantProjectTaskFilesSaveForm], object=task)
-        return object_manager.updateObject(request)
+        return object_manager.updateTaskProject(request, project)
 
 
-class ProjectTaskCreateView(access.ProjectTaskCreateMixin, generic.View):
+class ProjectTaskCreateView(access.ProjectTaskManipulationMixin, generic.View):
     def post(self, request, *args, **kwargs):
         project = services.getProjectById(kwargs.get('project_identifier'))
         object_manager = services.TaskManipulationManager(
             [KvantProjectTaskSaveForm, KvantProjectTaskParticipantsSaveForm, KvantProjectTaskFilesSaveForm])
         return object_manager.createTaskProject(request, project)
+    
+    def _taskExiststTest(self, object_id): return True
 
 
-class ProjectApplicationSaveView(access.KvantProjectExistsMixin, generic.View):
+class ProjectApplicationSaveView(access.ProjectApplicationCreateMixin, generic.View):
     def post(self, request, *args, **kwargs):
         project = services.getClassedProject(
             services.getProjectById(kwargs.get('project_identifier')))
-        object_manager = services.ApplicationManipulationManager(
-            [KvantApplicationSaveForm], project.memberhiringkvantproject)
-        return object_manager.createProjectApplication(request)
+        object_manager = services.ApplicationManipulationManager([KvantApplicationSaveForm])
+        return object_manager.createProjectApplication(request, project.memberhiringkvantproject)
 
 
-class MemberRequestManipulationView(generic.View):
+class MemberRequestManipulationView(access.ProjectApplicationManageMixin, generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        kwargs.update(application_identifier=request.POST.get('application_identifier'))
+        return super().dispatch(request, *args, **kwargs)
+    
     def post(self, request, *args, **kwargs):
-        project = services.getProjectById(kwargs.get('project_identifier'))
-        mem_request = services.getRequestById(request.POST.get('request_identifier'))
-
-        if request.POST.get('choise') == 'accept':
-            project.team.add(mem_request.sender)
-        mem_request.delete()
+        services.ApplicationManipulationManager(
+            services.getProjectById(kwargs.get('project_identifier')),
+            services.getRequestById(request.POST.get('application_identifier')),
+        ).manageApplication(request.POST.get('choise'))
         return HttpResponse('Ok')
 
 
-class HiringManipulationView(generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
+class HiringManipulationView(access.KvantProjectManageMixin, generic.View):
     def post(self, request, *args, **kwargs):
-        project = services.getClassedProject(
-            services.getProjectById(kwargs.get('project_identifier')))
-
-        if request.POST.get('choise') == 'on':
-            MemberHiringKvantProject.objects.create(project=project)
-        
-        elif MemberHiringKvantProject.objects.filter(project__project=project.project).exists():
-            MemberHiringKvantProject.objects.get(project__project=project.project).delete()
+        services.ProjectStatusManager(services.getClassedProject(
+            services.getProjectById(kwargs.get('project_identifier'))
+        )).hiringStatusManager(request.POST.get('choise'))
         return HttpResponse('Ok')
 
 
-class KickMemberView(generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
+class KickMemberView(access.KvantProjectManageMixin, generic.View):
     def post(self, request, *args, **kwargs):
-        project = services.getProjectById(kwargs.get('project_identifier'))
-        user = getUserById(request.POST.get('user_identifier'))
-
-        project.team.remove(user)
-
+        services.ProjectTeamManager(
+            services.getProjectById(kwargs.get('project_identifier'))
+        ).projectMemberKick(request.POST.get('user_identifier'))
         return HttpResponse('OK')
 
 
-class FinishProject(generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
+class ProjectFinishView(access.KvantProjectManageMixin, generic.View):
     def post(self, request, *args, **kwargs):
-        project = services.getClassedProject(
-            services.getProjectById(kwargs.get('project_identifier')))
-        project_instance = project.project
-
-        project.delete()
-        ClosedKvantProject.objects.create(project=project_instance)
-
+        services.ProjectStatusManager(services.getClassedProject(
+            services.getProjectById(kwargs.get('project_identifier'))
+        )).closeProjectManager()
         return HttpResponse('OK')
 
 
-class ProjectCreateView(generic.View):
+class ProjectCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         object_manager = services.ProjectManipulationManager(
             [KvantProjectSaveForm, KvantProjectSubjectSaveForm, KvantProjectFilesSaveForm])

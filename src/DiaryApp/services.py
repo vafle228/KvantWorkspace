@@ -46,9 +46,9 @@ class HomeWorkManipulationManager(ObjectManipulationManager):
             task.works.add(work_or_errors)
         return self.getResponse(work_or_errors)
 
-    def _constructRedirectUrl(self, obj):
+    def _constructRedirectUrl(self, **kwargs):
         return rl('task_detail', kwargs={
-            'task_identifier': KvantHomeTask.objects.get(works__id=obj.id).id
+            'task_identifier': KvantHomeTask.objects.get(works__id=kwargs.get('obj').id).id
         })
 
 class DiaryMonthValidateMixin(KvantStudentAccessMixin):

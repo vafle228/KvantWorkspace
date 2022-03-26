@@ -14,16 +14,16 @@ urlpatterns = [
 
     # Изменение статуса проекта
     path('hiring/<int:project_identifier>', views.HiringManipulationView.as_view(), name='manipulate_hiring'),
-    path('close/<int:project_identifier>', views.FinishProject.as_view(), name='close_project'),
+    path('close/<int:project_identifier>', views.ProjectFinishView.as_view(), name='close_project'),
     
     # Функционал заданий
-    path('task/status', views.ProjectStatusUpdateView.as_view(), name='task_status'),
-    path('task/update/<int:task_identifier>', views.ProjectTaskUpdateView.as_view(), name='update_task'),
     path('<int:project_identifier>/task/create', views.ProjectTaskCreateView.as_view(), name='create_task'),
+    path('<int:project_identifier>/task/status', views.ProjectStatusUpdateView.as_view(), name='task_status'),
     path('<int:project_identifier>/task/info/<int:task_identifier>', views.ProjectTaskDetailView.as_view(), name='task_view'),
+    path('<int:project_identifier>/task/update/<int:task_identifier>', views.ProjectTaskUpdateView.as_view(), name='update_task'),
 
     # Манипуляции командой
-    path('kick/<int:project_identifier>', views.KickMemberView.as_view(), name='kick_member'),
-    path('application/create/<int:project_identifier>', views.ProjectApplicationSaveView.as_view(), name='create_application'),
-    path('application/manipulate/<int:project_identifier>', views.MemberRequestManipulationView.as_view(), name='manipulate_application'),
+    path('<int:project_identifier>/kick', views.KickMemberView.as_view(), name='kick_member'),
+    path('<int:project_identifier>/application/create', views.ProjectApplicationSaveView.as_view(), name='create_application'),
+    path('<int:project_identifier>/application/manipulate', views.MemberRequestManipulationView.as_view(), name='manipulate_application'),
 ]

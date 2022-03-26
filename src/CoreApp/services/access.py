@@ -64,11 +64,11 @@ class KvantStudentAccessMixin(KvantWorkspaceAccessMixin):
 
 
 class KvantObjectExistsMixin(KvantWorkspaceAccessMixin):
-    request_object_arg = 'object'
+    request_object_arg = None
 
     def dispatch(self, request, *args, **kwargs):
-        if hasattr(self, 'pk_url_kwarg'):
-            self.request_object_arg = self.pk_url_kwarg
+        if self.request_object_arg is None:
+            self.request_object_arg = getattr(self, 'pk_url_kwarg', 'object')
         return super().dispatch(request, *args, **kwargs)
     
     def accessTest(self, **kwargs):

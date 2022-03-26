@@ -58,7 +58,7 @@ def setDefaultImage():
 
 
 def getPath(instance, filename):
-    return f'projects/{instance.date}/{instance.title}/{filename}'
+    return f'projects/img/{instance.date}/{instance.title}/{filename}'
 
 
 class KvantProject(models.Model):

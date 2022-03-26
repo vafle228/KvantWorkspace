@@ -42,8 +42,8 @@ class KvantBaseMarksUpdate(ObjectManipulationResponse):
             self._manageMark(student_id, base)
         return self.getResponse(base)
     
-    def _constructRedirectUrl(self, obj):
-        return rl('checking_page', kwargs={'base_identifier': obj.id})
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('checking_page', kwargs={'base_identifier': kwargs.get('obj').id})
 
     def _manageMark(self, student_id, base):
         """ Создает отметки. Если отметка - '', удаляет ее """
