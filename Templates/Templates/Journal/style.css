@@ -1,11 +1,12 @@
 #journal{
-    width: min-content;
+    width: min-content; height: min-content;
     max-width: 100%;
-    overflow: auto;
+    overflow-x: auto;
 }
 
 td{
     text-align: center;
+    height: max-content;
 }
 
 .light__theme td,
@@ -191,5 +192,15 @@ td{
         opacity: 1;
         transform: translate(0, 0);
         filter: blur(0);
+    }
+}
+
+
+@media screen and (max-width: 740px){
+    .filteringList{
+        flex-direction: column; gap: 0.5rem;
+    }
+    .filtering{
+        width: 100% !important;
     }
 }

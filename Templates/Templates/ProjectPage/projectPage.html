@@ -264,9 +264,6 @@
                 <div class="applicationForm__header">
                     <h2>Заявка на участие в проекте</h2>
                     <div class="row g8">
-                        <button class="secondaryButton" onclick="toForm(this)">
-                            Редактировать
-                        </button>
                         <div class="primaryButton" style='color: var(--currentColor)'>
                             <svg viewBox="0 0 512 512">
                                 <path opacity='0.6' d="M504.5 144.42L264.75 385.5 192 312.59l240.11-241a25.49 25.49 0 0 1 36.06-.14l.14.14L504.5 108a25.86 25.86 0 0 1 0 36.42z"></path>
@@ -1055,41 +1052,6 @@
                 // Тут пихаешь отправку сообщения
             } 
         });
-    </script>
-
-    <script>
-        function toForm(button){
-            let application = $(button).closest('.applicationForm');
-
-            $(application).html(`
-                <div class="applicationForm__header">
-                    <h2>Заявка на участие в проекте</h2>
-                    <button class="secondaryButton">
-                        Отправить
-                        <svg viewBox="0 0 320 512">
-                            <path opacity='0.6' d="M232 160v328a24 24 0 0 1-24 24H12a12 12 0 0 1-8.48-20.48l56-56A12 12 0 0 1 68 432h84V160z"></path>
-                            <path d="M88 160c-20.94 0-31.76-25-17.6-40.33l104-112c.4-.43.82-.86 1.26-1.26a24 24 0 0 1 33.91 1.26l104 112C327.82 135 316.84 160 296 160z"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div id="editor3" class="applicationForm__textarea">
-                    ${$(application).find('p').text()}    
-                </div>
-            `);
-            
-            var quill = new Quill('#editor3', {
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{ 'header': 1 }, { 'header': 2 }],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        [{ 'indent': '-1'}, { 'indent': '+1' }],
-                        ['link']
-                    ],
-                },
-                theme: 'snow',
-            });
-        }
     </script>
 
 </body>

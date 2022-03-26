@@ -23,6 +23,7 @@
     }
 }
 
+
 table .menu{
     background-color: var(--aside-bg-color);
     gap: 0.25rem;
@@ -75,4 +76,19 @@ table .menu__button.active{
     color: #ec4137;
     background-color: #ec413722;
     border: #ec4137 solid 1px;
+}
+
+
+@media screen and (max-width: 992px){
+    .statistics{
+        display: none;
+    }
+    .taskInfo{
+        width: 100% !important;
+    }
+    .taskInfo > div:first-of-type{
+        justify-content: unset;
+        align-items: unset;
+        flex-direction: column; gap: 1rem;
+    }
 }

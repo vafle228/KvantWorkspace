@@ -60,7 +60,7 @@
 
         <div class='navigation__group column g8'>
             <button onclick="switch_theme()" class='navigation__link'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <svg viewBox="0 0 16 16">
                     <g id="eclipse" transform="translate(-8 -8)">
                         <path opacity='0.3' d="M12,24a4,4,0,1,1,4-4A4,4,0,0,1,12,24Z"/>
                         <g>
@@ -75,7 +75,7 @@
                 </svg>
             </button>
             <button onclick="switch_color_scheme()" class='navigation__link'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <svg viewBox="0 0 16 16">
                     <g id="roller" transform="translate(-8 -8)">
                         <path d="M19.5,8H9.833A1.835,1.835,0,0,0,8,9.833v2.333A1.835,1.835,0,0,0,9.833,14H19.5a1.835,1.835,0,0,0,1.833-1.833V9.834A1.835,1.835,0,0,0,19.5,8Z"/>
                         <path opacity='0.3' d="M22.333,10.333h-1v1.333h1a.333.333,0,0,1,.333.333v3a.334.334,0,0,1-.333.333H15.666a2,2,0,0,0-2,2V18H15v-.667a.668.668,0,0,1,.667-.667h6.667A1.667,1.667,0,0,0,24,15V12A1.668,1.668,0,0,0,22.333,10.333Z"/>
@@ -531,7 +531,7 @@
             <div class="form__cell row g8" style='align-items: flex-start'>
                 <p style='line-height: 2rem'>Кому:</p>
                 <div id="selectedUsers" class="selectedUsers">
-                    <input type="text" onkeyup="filterFunction(this, $('#newMailItem__userSelect'))" id='userSearch' style='line-height: 2rem'>
+                    <input type="text" onkeyup="filterFunction(input=this, select=$('#newMailItem__userSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='userSearch' style='line-height: 2rem'>
                 </div>
             </div>
             
