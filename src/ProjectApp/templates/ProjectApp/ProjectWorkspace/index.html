@@ -61,7 +61,7 @@
             </div>
         </header>
 
-        <div class="Tab active" id="Workspace">
+        <div class="Tab active">
 
             <section class="project column g16">
                 <h1 class="project__title">{{ project.project.title }}</h1>
@@ -109,7 +109,7 @@
 
                         {% endif %}
                         
-                        {% include "ProjectApp/ProjectTask/index.html" with tasks=backlog %}
+                        {% include "ProjectApp/ProjectTask/index.html" with tasks=backlog project=project.project %}
                     </div>
                 </div>
                 
@@ -119,7 +119,7 @@
                         <span class="board__sectionCounter">{{ tasks|length }}</span>
                     </div>
                     <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        {% include "ProjectApp/ProjectTask/index.html" with tasks=tasks %}
+                        {% include "ProjectApp/ProjectTask/index.html" with tasks=tasks project=project.project %}
                     </div>
                 </div>
                 
@@ -129,7 +129,7 @@
                         <span class="board__sectionCounter">{{ in_progress|length }}</span>
                     </div>
                     <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        {% include "ProjectApp/ProjectTask/index.html" with tasks=in_progress %}
+                        {% include "ProjectApp/ProjectTask/index.html" with tasks=in_progress project=project.project %}
                     </div>
                 </div>
                 
@@ -139,7 +139,7 @@
                         <span class="board__sectionCounter">{{ completed|length }}</span>
                     </div>
                     <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        {% include "ProjectApp/ProjectTask/index.html" with tasks=completed %}
+                        {% include "ProjectApp/ProjectTask/index.html" with tasks=completed project=project.project %}
                     </div>
                 </div>
                 
@@ -149,7 +149,7 @@
                         <span class="board__sectionCounter">{{ archive|length }}</span>
                     </div>
                     <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        {% include "ProjectApp/ProjectTask/index.html" with tasks=archive %}
+                        {% include "ProjectApp/ProjectTask/index.html" with tasks=archive project=project.project %}
                     </div>
                 </div>
             </section>
@@ -187,13 +187,12 @@
             event.preventDefault();
 
             let task = $(`#${event.dataTransfer.getData("task")}`);
-            
             let from_board = $(task).closest('.board__sectionTasks');
             let to_board = event.target.closest('.board__sectionTasks');
 
             $.ajax({
                 type: 'POST',
-                url: '{% url "task_status" %}',
+                url: '{% url "task_status" project.project.id %}',
                 data: {
                     'task_identifier': $(task).attr('value'),
                     'csrfmiddlewaretoken': getCookie('csrftoken'),
@@ -208,8 +207,7 @@
                         let to_counter = $(to_board).prev().find('.board__sectionCounter');
                         $(to_counter).text(parseFloat($(to_counter).text()) + 1);
 
-                        $(to_board).append(task);
-                        task.attr('id', '');
+                        $(to_board).append(task); task.attr('id', '');
                     }
                 }
             })

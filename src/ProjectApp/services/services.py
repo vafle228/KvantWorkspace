@@ -41,13 +41,10 @@ class KvantProjectQuerySelector:
         if self.subject == 'all':
             return query.all()
         
-        elif self.subject == 'mine':
-            tutor = query.filter(tutor=self.user)
-            teamleader = query.filter(teamleader=self.user)
-            team = query.filter(team__id=self.user.id)
-            
-            return (tutor | teamleader | team).distinct()
-        
+        elif self.subject == 'mine':           
+            return (query.filter(tutor=self.user) | \
+                    query.filter(teamleader=self.user) | \
+                    query.filter(team__id=self.user.id)).distinct()
         return query.filter(course_subject__name=self.subject)
 
 

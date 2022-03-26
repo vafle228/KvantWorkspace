@@ -5,6 +5,8 @@ from django.views import generic
 from LoginApp.models import KvantUser
 from LoginApp.services import getUserById
 
+from AdminApp.services import allUsers
+
 from .forms import (KvantApplicationSaveForm, KvantProjectFilesSaveForm,
                     KvantProjectSaveForm, KvantProjectSubjectSaveForm,
                     KvantProjectTaskFilesSaveForm,
@@ -27,9 +29,10 @@ class ProjectCatalogTemplateView(KvantWorkspaceAccessMixin, generic.ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
-            subjects=KvantCourseType.objects.all(),
-            students=KvantUser.objects.filter(permission='Ученик'))
+        context.update({
+            'students': allUsers('Ученик'),
+            'subjects': KvantCourseType.objects.all(),
+        })
         return context
 
 
@@ -55,6 +58,7 @@ class ProjectWorkspaceDetailView(access.ProjectWorkspaceAccessMixin, generic.Det
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(services.updateTaskContext(kwargs.get('object').project))
+        
         return context
 
 
@@ -69,7 +73,6 @@ class ProjectTeamManagerDetailView(access.ProjectWorkspaceAccessMixin, generic.D
 
 
 class ProjectTaskDetailView(access.ProjectTaskAccessMixin, generic.DetailView):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
     model               = KvantProjectTask
     pk_url_kwarg        = 'task_identifier'
     context_object_name = 'task'
@@ -77,8 +80,8 @@ class ProjectTaskDetailView(access.ProjectTaskAccessMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
-            project=services.getProjectByTaskId(kwargs.get('object').id),)
+        context.update(project=services.getProjectById(kwargs.get('project_identifier')))
+        
         return context
 
 
@@ -121,13 +124,6 @@ class ProjectTaskCreateView(access.ProjectTaskCreateMixin, generic.View):
 
 
 class ProjectApplicationSaveView(access.KvantProjectExistsMixin, generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
-    def dispatch(self, request, *args, **kwargs):
-        kwargs.update({
-            'project_identifier': request.POST.get('project_identifier')
-        })
-        return super().dispatch(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         project = services.getClassedProject(
             services.getProjectById(kwargs.get('project_identifier')))
@@ -137,9 +133,8 @@ class ProjectApplicationSaveView(access.KvantProjectExistsMixin, generic.View):
 
 
 class MemberRequestManipulationView(generic.View):
-    """ КОСТЫЛЬ! ПЕРЕДЕЛАЙ! """
     def post(self, request, *args, **kwargs):
-        project = services.getProjectById(request.POST.get('project_identifier'))
+        project = services.getProjectById(kwargs.get('project_identifier'))
         mem_request = services.getRequestById(request.POST.get('request_identifier'))
 
         if request.POST.get('choise') == 'accept':
