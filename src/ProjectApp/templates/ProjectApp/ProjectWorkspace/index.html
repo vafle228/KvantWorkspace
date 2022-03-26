@@ -42,6 +42,8 @@
                     </svg>
                     <p>Описание проекта</p>
                 </button>
+
+                {% if user|project_related:project.project or project.project|get_type == 'Закрытый' %}
                 
                 <button class="menu__button active" onclick="location.href=`{% url 'project_tasks' project.project.id %}`">
                     <svg viewBox="0 0 512 512">
@@ -58,6 +60,8 @@
                     </svg>
                     <p>Набор участников</p>
                 </button>
+
+                {% endif %}
             </div>
         </header>
 
@@ -99,14 +103,11 @@
                     </div>
                     
                     <div class="board__sectionTasks column g16" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        {% if user == project.project.teamleader or user == project.project.tutor %}
 
-                            {% if project.project|get_type != 'Закрытый' %}
-                            <button class="secondaryButton" style="justify-content: center" onclick="open_form('#createTask')">
-                                Новая задача
-                            </button>
-                            {% endif %}
-
+                        {% if project.project|get_type != 'Закрытый' %}
+                        <button class="secondaryButton" style="justify-content: center" onclick="open_form('#createTask')">
+                            Новая задача
+                        </button>
                         {% endif %}
                         
                         {% include "ProjectApp/ProjectTask/index.html" with tasks=backlog project=project.project %}
@@ -192,7 +193,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '{% url "task_status" %}',
+                url: '{% url "task_status" project.project.id %}',
                 data: {
                     'task_identifier': $(task).attr('value'),
                     'csrfmiddlewaretoken': getCookie('csrftoken'),

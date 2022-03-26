@@ -31,7 +31,7 @@ class KvantUserChangeForm(UserChangeForm, UserImageManagerMixin):
         fields = ('username', 'email', 'password', 'name', 'surname', 'patronymic', 'image')
 
 
-class ImageChangeForm(forms.ModelForm ,UserImageManagerMixin):
+class ImageChangeForm(forms.ModelForm, UserImageManagerMixin):
         def __init__(self, *args, **kwargs):
             super(ImageChangeForm, self).__init__(*args, **kwargs)
             super(UserImageManagerMixin, self).__init__(coef=0.35)

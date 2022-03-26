@@ -42,6 +42,8 @@
                     </svg>
                     <p>Описание проекта</p>
                 </button>
+
+                {% if user|project_related:project.project or project.project|get_type == 'Закрытый' %}
                 
                 <button class="menu__button" onclick="location.href=`{% url 'project_tasks' project.project.id %}`">
                     <svg viewBox="0 0 512 512">
@@ -58,6 +60,8 @@
                     </svg>
                     <p>Набор участников</p>
                 </button>
+
+                {% endif %}
             </div>
         </header>
 
@@ -108,30 +112,34 @@
                         <td><h3>{{ project.project|get_completed:member }}</h3></td>
 
                         <td>
-                            {% if user == project.project.tutor and project.project|get_type != 'Закрытый' %}
-                            <div class='relativeBox' style='margin-left: auto'>
-                                <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
-                                    <svg viewBox="0 0 448 512">
-                                        <path d="M336 256C336 229.5 357.5 208 384 208C410.5 208 432 229.5 432 256C432 282.5 410.5 304 384 304C357.5 304 336 282.5 336 256zM176 256C176 229.5 197.5 208 224 208C250.5 208 272 229.5 272 256C272 282.5 250.5 304 224 304C197.5 304 176 282.5 176 256zM112 256C112 282.5 90.51 304 64 304C37.49 304 16 282.5 16 256C16 229.5 37.49 208 64 208C90.51 208 112 229.5 112 256z"/>
-                                    </svg>
-                                </button>
-                                <div class="list">
-                                    <!-- <button class="listButton">
-                                        Сделать лидером
-                                        <svg viewBox="0 0 576 512">
-                                            <path d="M39.1 176c.2461 0 .459-.1164 .7051-.1203C40.46 175.9 40.25 176 39.1 176zM535.3 175.9C535.5 175.9 535.8 176 536 176C535.8 176 535.5 175.9 535.3 175.9zM504.5 159.6l-89.63 71.7c-15.91 12.73-39.5 7.546-48.61-10.68l-57.6-115.2C302.6 109.2 295.7 112 287.1 112S273.4 109.2 267.3 105.4L209.7 220.6c-9.111 18.22-32.71 23.4-48.61 10.68l-89.63-71.7C64.3 169.1 53.48 175.6 40.71 175.9l50.52 277.8C93.99 468.9 107.2 480 122.7 480h330.6c15.46 0 28.72-11.06 31.48-26.27l50.52-277.9C522.5 175.6 511.7 169.1 504.5 159.6z"/>
-                                            <path style='opacity: .4' d="M288 32C265.9 32 247.1 49.91 247.1 72s17.91 40 40 40s40-17.91 40-40S310.1 32 288 32zM39.1 96c-22.09 0-40 17.91-40 40s17.91 40 40 40s40-17.91 40-40S62.09 96 39.1 96zM536 96c-22.09 0-40 17.91-40 40s17.91 40 40 40S576 158.1 576 136S558.1 96 536 96z"/>
-                                        </svg>
-                                    </button> -->
-                                    <button class="listButton" onclick="kickUser('{{ member.id }}')">
-                                        Исключить
-                                        <svg viewBox="0 0 640 512">
-                                            <path d="M616 200h-144C458.8 200 448 210.8 448 224s10.75 24 24 24h144C629.3 248 640 237.3 640 224S629.3 200 616 200z"/>
-                                            <path style='opacity: .6' d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256z"/>
+                            {% if user == project.project.tutor or user == project.project.teamleader %}
+
+                                {% if project.project|get_type != 'Закрытый' %}
+                                <div class='relativeBox' style='margin-left: auto'>
+                                    <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M336 256C336 229.5 357.5 208 384 208C410.5 208 432 229.5 432 256C432 282.5 410.5 304 384 304C357.5 304 336 282.5 336 256zM176 256C176 229.5 197.5 208 224 208C250.5 208 272 229.5 272 256C272 282.5 250.5 304 224 304C197.5 304 176 282.5 176 256zM112 256C112 282.5 90.51 304 64 304C37.49 304 16 282.5 16 256C16 229.5 37.49 208 64 208C90.51 208 112 229.5 112 256z"/>
                                         </svg>
                                     </button>
+                                    <div class="list">
+                                        <!-- <button class="listButton">
+                                            Сделать лидером
+                                            <svg viewBox="0 0 576 512">
+                                                <path d="M39.1 176c.2461 0 .459-.1164 .7051-.1203C40.46 175.9 40.25 176 39.1 176zM535.3 175.9C535.5 175.9 535.8 176 536 176C535.8 176 535.5 175.9 535.3 175.9zM504.5 159.6l-89.63 71.7c-15.91 12.73-39.5 7.546-48.61-10.68l-57.6-115.2C302.6 109.2 295.7 112 287.1 112S273.4 109.2 267.3 105.4L209.7 220.6c-9.111 18.22-32.71 23.4-48.61 10.68l-89.63-71.7C64.3 169.1 53.48 175.6 40.71 175.9l50.52 277.8C93.99 468.9 107.2 480 122.7 480h330.6c15.46 0 28.72-11.06 31.48-26.27l50.52-277.9C522.5 175.6 511.7 169.1 504.5 159.6z"/>
+                                                <path style='opacity: .4' d="M288 32C265.9 32 247.1 49.91 247.1 72s17.91 40 40 40s40-17.91 40-40S310.1 32 288 32zM39.1 96c-22.09 0-40 17.91-40 40s17.91 40 40 40s40-17.91 40-40S62.09 96 39.1 96zM536 96c-22.09 0-40 17.91-40 40s17.91 40 40 40S576 158.1 576 136S558.1 96 536 96z"/>
+                                            </svg>
+                                        </button> -->
+                                        <button class="listButton" onclick="kickUser('{{ member.id }}')">
+                                            Исключить
+                                            <svg viewBox="0 0 640 512">
+                                                <path d="M616 200h-144C458.8 200 448 210.8 448 224s10.75 24 24 24h144C629.3 248 640 237.3 640 224S629.3 200 616 200z"/>
+                                                <path style='opacity: .6' d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                                {% endif %}
+                                
                             {% endif %}
                         </td>
                     </tr>
@@ -210,16 +218,15 @@
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
 
     <script>
-        function manipulateApplication(choise, request){
+        function manipulateApplication(choise, application_id){
             $.ajax({
                 type: 'POST',
+                url: '{% url "manipulate_application" project.project.id %}',
                 data: {
                     'choise': choise,
-                    'project_identifier': '{{ project.project.id }}',
-                    'request_identifier': request,
+                    'application_identifier': application_id,
                     'csrfmiddlewaretoken': getCookie('csrftoken'),
                 },
-                url: '{% url "manipulate_application" %}',
                 cache: false,
                 success: location.reload()
             })

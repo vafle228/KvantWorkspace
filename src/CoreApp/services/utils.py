@@ -35,14 +35,14 @@ def buildDate(date):
 
 class ObjectManipulationResponse:
     """ Генерирует JsonResponse на ajax запрос """
-    def getResponse(self, obj_or_errors):
+    def getResponse(self, obj_or_errors, **kwargs):
         """ Генерирует ответ основываясь на newsOrError объекте """
         if isinstance(obj_or_errors, ErrorDict):
             return JsonResponse({'status': 400, 'errors': obj_or_errors})
-        return JsonResponse({'status': 200, 'link': self._constructRedirectUrl(obj_or_errors)})
+        return JsonResponse({'status': 200, 'link': self._constructRedirectUrl(obj=obj_or_errors, **kwargs)})
     
     @abstractmethod
-    def _constructRedirectUrl(self, obj):
+    def _constructRedirectUrl(self, **kwargs):
         """ Генерирует редирект ссылку """
         raise NotImplementedError
 

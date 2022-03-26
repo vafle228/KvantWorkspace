@@ -49,7 +49,7 @@ class MailBoxQuerySelector:
 
 
 class MailObjectManipulationManager(ObjectManipulationManager):
-    def _constructRedirectUrl(self, obj):
+    def _constructRedirectUrl(self, **kwargs):
         return rl('mail_box') + '?type=received'
 
 

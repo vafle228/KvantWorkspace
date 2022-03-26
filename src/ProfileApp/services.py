@@ -18,7 +18,7 @@ def getUserAwardsQuery(user):
 
 
 class UserChangeManipulationResponse(ObjectManipulationManager):
-    def _constructRedirectUrl(self, obj):
+    def _constructRedirectUrl(self, **kwargs):
         return rl('settings_page')
 
 
