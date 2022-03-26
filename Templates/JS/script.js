@@ -77,6 +77,20 @@ function filterFunction(input, select, option, parameter, hide) {
 	}
 }
 
+function filterApplying(substr, select, option, parameter){
+	let users = $(select).find(option);
+	users.map(
+		(index) => {
+			let flag = false
+			$(users[index]).find(parameter).toArray().forEach(element => {
+				if (element.textContent.indexOf(substr) !== -1)
+					flag = true
+			});
+			flag ? $(users[index]).show() : $(users[index]).hide()
+		}
+	);
+}
+
 // Сменить тему оформления
 function switch_theme() {
 	$('body').toggleClass('light__theme dark__theme');

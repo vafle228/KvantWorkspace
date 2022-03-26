@@ -198,19 +198,20 @@
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
-                    <div class="filtering" style="width: 12rem">
+                    <div class="filtering" style="width: 20rem">
                         <div class="dropdownSelect">
                             <div class="dropdownSelect__trigger">
                                 <div>Все</div>
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected'>Все</span>
-                                <span class='dropdownSelect__option'>IT</span>
-                                <span class='dropdownSelect__option'>Энерджи</span>
-                                <span class='dropdownSelect__option'>Хайтек</span>
-                                <span class='dropdownSelect__option'>ПромДизайн</span>
-                                <span class='dropdownSelect__option'>ПромРобо</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Все</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Информационные технологии</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Энерджи</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Хайтек</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">ПромДизайн</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">ПромРобо</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Математика</span>
                             </div>
                         </div>
                     </div>
@@ -259,7 +260,7 @@
                                 <path d="M255.1 255.1c0 17.63-14.38 32-32 32s-32-14.37-32-32c0-17.62 14.38-32.03 32-32.03S255.1 238.3 255.1 255.1z"/>
                                 <path style='opacity: .6' d="M423.1 56.87C379.1 12.86 300.3 31.62 224 79.12C147.6 31.62 68.87 12.86 24.87 56.87C-19.14 100.9-.3849 179.6 47.12 256c-47.5 76.38-66.25 155.1-22.25 199.1C66.12 496.4 140.4 484.5 224 432.5c83.25 51.88 157.8 64 199.1 22.63c44-44 25.25-122.8-22.25-199.1C448.4 179.6 467.1 100.9 423.1 56.87zM70.12 102.1c9.316-9.316 39.67-12.54 97.26 17.88c-29 23.75-55.5 50.25-79.13 79.13C63.37 151.9 57.74 114.5 70.12 102.1zM70.12 409.9c-12.38-12.38-6.751-49.75 18.13-97.01c28.75 34.88 53 57.38 79.13 78.88C119.1 416.6 82.49 422.3 70.12 409.9zM224 355c-44.88-34.25-73-65-98.88-99.01C153.4 218.5 186.6 184.1 224 156.6c37.38 28.38 70.63 61.88 99 99.38C288.8 300.9 258 329 224 355zM377.9 409.9c-12.38 12.38-49.88 6.75-97.26-18.13c26-21.5 50.25-43.88 79.13-78.88C384.6 360.1 390.3 397.5 377.9 409.9zM359.8 199.1c-23.62-28.88-50.13-55.38-79.13-79.13c57.33-30.29 87.89-27.24 97.26-17.88C390.3 114.5 384.6 151.9 359.8 199.1z"/>
                             </svg>
-                            <p>IT 3-1</p>
+                            <p>Информационные технологии 3-1</p>
                         </div>
                     </div>
                     <div class="tableCell">
@@ -413,19 +414,20 @@
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
-                    <div class="filtering" style="width: 12rem">
+                    <div class="filtering" style="width: 20rem">
                         <div class="dropdownSelect">
                             <div class="dropdownSelect__trigger">
                                 <div>Все</div>
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected'>Все</span>
-                                <span class='dropdownSelect__option'>IT</span>
-                                <span class='dropdownSelect__option'>Энерджи</span>
-                                <span class='dropdownSelect__option'>Хайтек</span>
-                                <span class='dropdownSelect__option'>ПромДизайн</span>
-                                <span class='dropdownSelect__option'>ПромРобо</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">Все</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">Информационные технологии</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">Энерджи</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">Хайтек</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">ПромДизайн</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">ПромРобо</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">Математика</span>
                             </div>
                         </div>
                     </div>
@@ -466,12 +468,12 @@
                             <p class="tableUser__role">Учитель</p>
                         </div>
                     </div>
-                    <div class="tableCell">
+                    <div class="tableCell direction">
                         <svg viewBox="0 0 448 512">
                             <path d="M255.1 255.1c0 17.63-14.38 32-32 32s-32-14.37-32-32c0-17.62 14.38-32.03 32-32.03S255.1 238.3 255.1 255.1z"/>
                             <path style='opacity: .6' d="M423.1 56.87C379.1 12.86 300.3 31.62 224 79.12C147.6 31.62 68.87 12.86 24.87 56.87C-19.14 100.9-.3849 179.6 47.12 256c-47.5 76.38-66.25 155.1-22.25 199.1C66.12 496.4 140.4 484.5 224 432.5c83.25 51.88 157.8 64 199.1 22.63c44-44 25.25-122.8-22.25-199.1C448.4 179.6 467.1 100.9 423.1 56.87zM70.12 102.1c9.316-9.316 39.67-12.54 97.26 17.88c-29 23.75-55.5 50.25-79.13 79.13C63.37 151.9 57.74 114.5 70.12 102.1zM70.12 409.9c-12.38-12.38-6.751-49.75 18.13-97.01c28.75 34.88 53 57.38 79.13 78.88C119.1 416.6 82.49 422.3 70.12 409.9zM224 355c-44.88-34.25-73-65-98.88-99.01C153.4 218.5 186.6 184.1 224 156.6c37.38 28.38 70.63 61.88 99 99.38C288.8 300.9 258 329 224 355zM377.9 409.9c-12.38 12.38-49.88 6.75-97.26-18.13c26-21.5 50.25-43.88 79.13-78.88C384.6 360.1 390.3 397.5 377.9 409.9zM359.8 199.1c-23.62-28.88-50.13-55.38-79.13-79.13c57.33-30.29 87.89-27.24 97.26-17.88C390.3 114.5 384.6 151.9 359.8 199.1z"/>
                         </svg>
-                        <p>Направление</p>
+                        <p>ПромРобо</p>
                     </div>
                     <div class="tableCell">
                         <svg viewBox="0 0 448 512">
@@ -626,19 +628,20 @@
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
-                    <div class="filtering" style="width: 12rem">
+                    <div class="filtering" style="width: 20rem">
                         <div class="dropdownSelect">
                             <div class="dropdownSelect__trigger">
                                 <div>Все</div>
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected'>Все</span>
-                                <span class='dropdownSelect__option'>IT</span>
-                                <span class='dropdownSelect__option'>Энерджи</span>
-                                <span class='dropdownSelect__option'>Хайтек</span>
-                                <span class='dropdownSelect__option'>ПромДизайн</span>
-                                <span class='dropdownSelect__option'>ПромРобо</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">Все</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">Информационные технологии</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">Энерджи</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">Хайтек</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">ПромДизайн</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">ПромРобо</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">Математика</span>
                             </div>
                         </div>
                     </div>
@@ -670,10 +673,10 @@
                 </div>
                 <div class="tableRow">
                     <input type="checkbox">
-                    <div class="tableUser row g8">
+                    <div class="tableUser row g8 group">
                         <img src="../../img/3d/computer-dynamic-color.png" class="tableUser__avatar avatar">
                         <div class='column'>
-                            <p class="tableUser__name">IT 1-4</p>
+                            <p class="tableUser__name">Информационные технологии 1-4</p>
                             <p class="tableUser__role">Группа</p>
                         </div>
                     </div>
