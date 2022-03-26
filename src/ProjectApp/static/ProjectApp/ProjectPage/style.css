@@ -47,6 +47,20 @@
 .applicationForm__textarea{
     background-color: var(--theme-light-alpha);
 }
+.applicationForm p{
+    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 576px){
+    .applicationForm__header{
+        justify-content: unset;
+        align-items: unset;
+        flex-direction: column; gap: 1rem;
+    }
+    .applicationForm__header button{
+        width: min-content;
+    }
+}
 
 /* Участник */
 .member{

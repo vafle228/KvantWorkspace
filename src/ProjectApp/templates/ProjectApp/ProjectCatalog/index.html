@@ -106,21 +106,19 @@
                     <div class="project__content">
                         <p class="project__title">{{ project.title }}</p>
                         
-                        <div class="ql-snow">
-                            <div class="ql-editor">
-                                <p class="project__description">{{ project.description|get_text }}</p>
-                            </div>
-                        </div>
+                        <p class="project__description">{{ project.description|get_text }}</p>
 
                         <div class="project__info">
                             <div class="column g8">
                                 <p>Направление</p>
                                 
-                                {% for subject in project.course_subject|get_objects %}
-                                <span class="tag">{{ subject.name }}</span>
-                                {% endfor %}
-
+                                <div class="row g8">
+                                    {% for subject in project.course_subject|get_objects %}
+                                    <span class="tag">{{ subject.name }}</span>
+                                    {% endfor %}
+                                </div>
                             </div>
+                            
                             <div class="column g8">
                                 <p>Статус</p>
                                 <span class="tag">{{ project|get_type }}</span>
@@ -140,6 +138,7 @@
                                     {% endfor %}
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

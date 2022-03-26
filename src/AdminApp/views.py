@@ -1,5 +1,7 @@
 from django.views import generic
 
+from AdminApp.forms import KvantCourseTypeSaveForm
+
 from . import services
 
 
@@ -38,7 +40,12 @@ class CoursesTableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(courses=services.allCourses())
+        context.update({
+            'courses': services.allCourses(),
+            'subjects': services.allSubjects(),
+            'teachers': services.allUsers('Учитель'),
+            'students': services.allUsers('Ученик'),
+        })
 
         return context
 
@@ -51,3 +58,9 @@ class SubjectsTableTemplateView(generic.TemplateView):
         context.update(subjects=services.allSubjects())
 
         return context
+
+
+class SubjectsCreateView(generic.View):
+    def post(self, request, *args, **kwargs):
+        object_manager = services.CourseSubjectManipulationManager([KvantCourseTypeSaveForm])
+        return object_manager.createObject(request)

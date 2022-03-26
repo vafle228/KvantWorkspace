@@ -37,11 +37,12 @@
             </nav>
 
             <div class="row">
-                <button class="danger combinedButton" title="Удалить выбранные направления">
+                <button class="danger combinedButton">
                     <svg viewBox="0 0 448 512">
-                        <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
-                        <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                        <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM143 207C152.4 197.7 167.6 197.7 176.1 207L223.1 254.1L271 207C280.4 197.7 295.6 197.7 304.1 207C314.3 216.4 314.3 231.6 304.1 240.1L257.9 287.1L304.1 335C314.3 344.4 314.3 359.6 304.1 368.1C295.6 378.3 280.4 378.3 271 368.1L223.1 321.9L176.1 368.1C167.6 378.3 152.4 378.3 143 368.1C133.7 359.6 133.7 344.4 143 335L190.1 287.1L143 240.1C133.7 231.6 133.7 216.4 143 207V207z"/>
+                        <path style='opacity: .3' d="M394.6 466.8C393.1 492.2 372.1 512 346.7 512H101.3C75.87 512 54.86 492.2 53.39 466.8L32 96H416L394.6 466.8zM143 240.1L190.1 287.1L143 335C133.7 344.4 133.7 359.6 143 368.1C152.4 378.3 167.6 378.3 176.1 368.1L223.1 321.9L271 368.1C280.4 378.3 295.6 378.3 304.1 368.1C314.3 359.6 314.3 344.4 304.1 335L257.9 287.1L304.1 240.1C314.3 231.6 314.3 216.4 304.1 207C295.6 197.7 280.4 197.7 271 207L223.1 254.1L176.1 207C167.6 197.7 152.4 197.7 143 207C133.7 216.4 133.7 231.6 143 240.1V240.1z"/>
                     </svg>
+                    Удалить выбранные направление
                 </button>
             </div>
 
@@ -84,7 +85,7 @@
             <form class="modal__content">
                 <div class='modal__block'>
                     <h1 class="modal__title">Создание направления</h1>
-                    <button class='secondaryButton' type="submit">
+                    <button class='secondaryButton' type="button" onclick="sendInstanceData(getSubjectFormData(), `{% url 'subjects_create' %}`, this)">
                         <svg viewBox="0 0 24 24">
                             <circle cx="12" cy="14" r="2" opacity='0.6'/>
                             <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -95,10 +96,10 @@
                 </div>
 
                 <h3>Название</h3>
-                <input class='text-field text-field-title' autocomplete="off" type='text'/>
+                <input class='text-field text-field-title' id="subjectName" autocomplete="off" type='text'/>
 
                 <h3>Изображение</h3>
-                <button class='secondaryButton' type="button">
+                <button class='secondaryButton' type="button" id="subjectButton" onclick="openFileDialog('#subject-input')">
                     <svg width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
                         <g transform="translate(-8.001 -9.667)">     
                             <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
@@ -108,48 +109,31 @@
                     </svg>
                     Выбрать изображение
                 </button>
+                <input id="subject-input" type="file" style="display: none;" onchange="addProjectPreviewHandler(event)" accept="image/*"/>
             </form>
         </div>
     </div>
 
-    <div class="alertsContainer column" id='alertsContainer'>
-    </div>
+    <div class="alertsContainer column" id='alertsContainer'></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+    <script src="{% static 'AdminApp/SubjectsTable/scripts.js' %}"></script>
 
     <script>
-        $(".tableCell p").attr('title', 'Скопировать');
-        $(".tableCell p").on("click", function(){
-            copytext($(this));
-        });
+        function getSubjectFormData(){
+            let subject_form = new FormData();
+    
+            subject_form.append('name', $('#subjectName').val())
+            subject_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            subject_form.append('image', subject_preview !== undefined ? subject_preview : '')
+
+            return subject_form
+        }
     </script>
 
-    <script>
-        $('#teacherSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'teacherSelect') {
-                $('#selectedTeachers').append($(this));
-                $('#teacherSearch').val('').focus();
-                $('.userSelect').hide();
-                $('#teacherSearch').hide();
-            } else {
-                $('#teacherSelect').append($(this));
-                $('#teacherSearch').show();
-            }
-        });
-
-        $('#studentSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'studentSelect') {
-                $('#selectedStudents').append($(this));
-                $('#studentSearch').val('').focus();
-                $('.userSelect').hide();
-            } else {
-                $('#studentSelect').append($(this));
-            }
-        });
-    </script>
 </body>
 
 </html>

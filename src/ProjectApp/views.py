@@ -4,7 +4,6 @@ from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
                                      KvantWorkspaceAccessMixin)
 from django.http import HttpResponse
 from django.views import generic
-from LoginApp.services import getUserById
 
 from .forms import (KvantApplicationSaveForm, KvantProjectFilesSaveForm,
                     KvantProjectSaveForm, KvantProjectSubjectSaveForm,
@@ -23,7 +22,9 @@ class ProjectCatalogTemplateView(KvantWorkspaceAccessMixin, generic.ListView):
     context_object_name = 'projects'
 
     def get_queryset(self):
-        return services.KvantProjectQuerySelector(self.request).getCatalogQuery()
+        return services.KvantProjectQuerySelector(
+            self.request.user, self.request.GET
+        ).getCatalogQuery()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

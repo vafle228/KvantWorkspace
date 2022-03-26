@@ -21,7 +21,7 @@
 
     <section class="profilePage mainContainer">
 
-        {% include "ProfileApp/AccountView/index.html" with user=user %}
+        {% include "ProfileApp/AccountView/index.html" with requested_user=requested_user %}
 
         <div class="profileContent column g24">
             <section class="menu">
@@ -53,7 +53,33 @@
             </section>
             
             <div class="profile__tabs">
-                <div class="profile__tab active" id='portfolioTab'>
+                <div class="profile__tab active">
+                    {% if user.permission != 'Ученик' %}
+                    <header>
+                        <button class="secondaryButton" id="portfolio-btn" onclick="openFileDialog('#portfolio-input')">
+                            <svg viewBox="0 0 384 512">
+                                <path d="M86.63 342.6L160 269.3V448c0 17.69 14.31 32 32 32s32-14.31 32-32V269.3l73.38 73.38C303.6 348.9 311.8 352 320 352s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25l-128-128c-12.5-12.5-32.75-12.5-45.25 0l-128 128c-12.5 12.5-12.5 32.75 0 45.25S74.13 355.1 86.63 342.6zM32 96h320c17.69 0 32-14.31 32-32s-14.31-32-32-32H32C14.31 32 0 46.31 0 64S14.31 96 32 96z"/>
+                            </svg>
+                            Загрузить
+                        </button>
+                    </header>
+                    
+                    <input id="portfolio-input" type="file" style="display: none;" onchange='portfolioAddHandler(event)'/>
+                    <script>
+                        function portfolioAddHandler(event){
+                            if(event.target.files[0] !== undefined){
+                                let portfolio_form = new FormData();
+
+                                portfolio_form.append('image', event.target.files[0])
+                                portfolio_form.append('user', '{{ requested_user.id }}')
+                                portfolio_form.append('csrfmiddlewaretoken', getCookie('csrftoken')) 
+                                
+                                sendInstanceData(portfolio_form, '{% url "add_portfolio" %}', $('#portfolio-btn')[0])
+                            }
+                        }
+                    </script>
+                    {% endif %}
+
                     <div class="galleryBox">
                         {% for award in awards %}
                         <a data-fancybox="gallery" href="{{ award.image.url }}">
@@ -66,6 +92,7 @@
         </div>
     </section>
     
+    <div class="alertsContainer column" id='alertsContainer'></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
