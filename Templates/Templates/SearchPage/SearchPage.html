@@ -1011,6 +1011,14 @@
             }
         });
     </script>
+
+    <script>
+        function scheduleScanner(){
+            $('#createGroup').find('input[type=time]').toArray().forEach((input)  => {
+                console.log(`День недели: ${$(input).prev().text()} Время: ${$(input).val()}`);
+            });
+        }
+    </script>
 </body>
 
 </html>
