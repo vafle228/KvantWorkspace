@@ -78,7 +78,7 @@ class KvantMailReceiversForm(ManyToManyObjectCreateMixin):
         receivers_user = []
         for user in values:
             form = MailReceiverSaveForm({'receiver': getUserById(user)})
-            receivers_user.append(str(form.save().id)) if form.is_valid() else None
+            if form.is_valid(): receivers_user.append(str(form.save().id)) 
         return receivers_user
 
     def _validateUsers(self, users):

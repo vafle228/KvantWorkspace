@@ -21,8 +21,8 @@ class KvantTaskMark(models.Model):
 
 
 class KvantTaskBase(models.Model):
-    description = models.TextField(null=False)
     title       = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
     marks       = models.ManyToManyField(KvantTaskMark, blank=True)
     files       = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)
 
@@ -65,6 +65,7 @@ class KvantLesson(models.Model):
 
     class Meta:
         db_table = 'kvant_lesson'
+        ordering = ['date', '-id']
 
     def __str__(self):
         return f'Урок {self.base.title} на {self.date}'

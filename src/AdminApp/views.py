@@ -1,11 +1,13 @@
 from django.views import generic
 
-from AdminApp.forms import KvantCourseTypeSaveForm
+from AdminApp.forms import (CourseSheduleSaveForm, KvantCourseSaveForm,
+                            KvantCourseTypeSaveForm)
+from CoreApp.services.access import KvantTeacherAndAdminAccessMixin
 
 from . import services
 
 
-class AdminsTableTemplateView(generic.TemplateView):
+class AdminsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
     template_name = "AdminApp/AdminsTable/index.html"
 
     def get_context_data(self, **kwargs):
@@ -15,7 +17,7 @@ class AdminsTableTemplateView(generic.TemplateView):
         return context
 
 
-class TeachersTableTemplateView(generic.TemplateView):
+class TeachersTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
     template_name = "AdminApp/TeachersTable/index.html"
 
     def get_context_data(self, **kwargs):
@@ -25,7 +27,7 @@ class TeachersTableTemplateView(generic.TemplateView):
         return context
 
 
-class StudentsTableTemplateView(generic.TemplateView):
+class StudentsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
     template_name = "AdminApp/StudentsTable/index.html"
 
     def get_context_data(self, **kwargs):
@@ -35,7 +37,7 @@ class StudentsTableTemplateView(generic.TemplateView):
         return context
 
 
-class CoursesTableTemplateView(generic.TemplateView):
+class CoursesTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
     template_name = "AdminApp/CoursesTable/index.html"
 
     def get_context_data(self, **kwargs):
@@ -50,7 +52,7 @@ class CoursesTableTemplateView(generic.TemplateView):
         return context
 
 
-class SubjectsTableTemplateView(generic.TemplateView):
+class SubjectsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
     template_name = "AdminApp/SubjectsTable/index.html"
 
     def get_context_data(self, **kwargs):
@@ -60,7 +62,14 @@ class SubjectsTableTemplateView(generic.TemplateView):
         return context
 
 
-class SubjectsCreateView(generic.View):
+class SubjectsCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         object_manager = services.CourseSubjectManipulationManager([KvantCourseTypeSaveForm])
         return object_manager.createObject(request)
+
+
+class CourseCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        object_manager = services.CourseManipulationManager(
+            [KvantCourseSaveForm, CourseSheduleSaveForm])
+        return object_manager.createCourse(request)

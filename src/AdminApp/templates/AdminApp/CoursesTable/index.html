@@ -112,7 +112,7 @@
             <form class="modal__content">
                 <div class='modal__block'>
                     <h1 class="modal__title">Создание группы</h1>
-                    <button class='secondaryButton' type="submit">
+                    <button class='secondaryButton' type="button" onclick="sendInstanceData(getCourseFormData(), `{% url 'course_create' %}`, this)">
                         <svg viewBox="0 0 24 24">
                             <circle cx="12" cy="14" r="2" opacity='0.6'/>
                             <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -129,10 +129,10 @@
                             <div>Не выбрано</div>
                             <div class="arrowDown"></div>
                         </div>
-                        <div class="dropdownSelect__options">
+                        <div class="dropdownSelect__options" id="courseSubject">
                             <span class='dropdownSelect__option selected'>Не выбрано</span>
                             {% for subject in subjects %}
-                            <span class='dropdownSelect__option'>{{ subject.name }}</span>
+                            <span class='dropdownSelect__option' value="{{ subject.id }}">{{ subject.name }}</span>
                             {% endfor %}
                         </div>
                     </div>
@@ -140,7 +140,7 @@
 
 
                 <h3>Название</h3>
-                <input class='text-field text-field-title' autocomplete="off" type='text'/>
+                <input class='text-field text-field-title' autocomplete="off" type='text' id="courseTitle"/>
 
                 <h3>Распиcание</h3>
 
@@ -179,10 +179,10 @@
                 <div id="selectedTeachers" class="selectedUsers">
                     <!-- Здесь появляются учителя -->
                 </div>
-                <input type="text" onkeyup="filterFunction(this, $('#teacherSelect'))" id='teacherSearch' placeholder="Введите ФИО">
+                <input type="text" onkeyup="filterFunction(input=this, select=$('#teacherSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='teacherSearch' placeholder="Введите ФИО">
                 <div class="userSelect" id='teacherSelect'>
                     {% for teacher in teachers %}
-                    <div class="userSelect__user row">
+                    <div class="userSelect__user row" value="{{ teacher.id }}">
                         <img src="{{ teacher.image.url }}" class='userSelect__userImage'>
                         <div class="userSelect__userInfo">
                             <h3 class="userSelect__userName">{{ teacher.surname }} {{ teacher.name }}</h3>
@@ -196,10 +196,10 @@
                 <div id="selectedStudents" class="selectedUsers">
                     <!-- Здесь появляются ученики -->
                 </div>
-                <input type="text" onkeyup="filterFunction(this, $('#studentSelect'))" id='studentSearch' placeholder="Введите ФИО">
+                <input type="text" onkeyup="filterFunction(input=this, select=$('#studentSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='studentSearch' placeholder="Введите ФИО">
                 <div class="userSelect" id='studentSelect'>
                     {% for student in students %}
-                    <div class="userSelect__user row">
+                    <div class="userSelect__user row" value="{{ student.id }}">
                         <img src="{{ student.image.url }}" class='userSelect__userImage'>
                         <div class="userSelect__userInfo">
                             <h3 class="userSelect__userName">{{ student.surname }} {{ student.name }}</h3>
@@ -220,6 +220,24 @@
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
     <script src="{% static 'AdminApp/CoursesTable/scripts.js' %}"></script>
+
+    <script>
+        function getCourseFormData(){
+            let course_form = new FormData();
+            
+            $('#selectedStudents .userSelect__user.row').toArray().forEach((user)  => {
+                course_form.append('students', $(user).attr('value'))
+            })
+
+            course_form.append('name', $('#courseTitle').val())
+            course_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            course_form.append('schedule', JSON.stringify(scheduleScanner()))
+            course_form.append('type', $('#courseSubject .selected').attr('value'))
+            course_form.append('teacher', $('#selectedTeachers .userSelect__user').attr('value'))
+
+            return course_form
+        }
+    </script>
 
     <script>
         $('#teacherSelect .userSelect__user').click( function() {
