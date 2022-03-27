@@ -9,7 +9,11 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.urls import reverse_lazy as rl
 from PIL import Image
 
+from LoginApp.models import KvantUser
+from LoginApp.services import getUserById
+
 from .models import KvantAward
+from CoreApp.services.access import KvantObjectExistsMixin
 
 
 def getUserAwardsQuery(user):
@@ -17,9 +21,18 @@ def getUserAwardsQuery(user):
     return KvantAward.objects.filter(user=user)
 
 
-class UserChangeManipulationResponse(ObjectManipulationManager):
+class UserManipulationManager(ObjectManipulationManager):
     def _constructRedirectUrl(self, **kwargs):
-        return rl('settings_page')
+        return rl('settings_page', kwargs={'user_identifier': kwargs.get('obj').id})
+
+
+class PortfolioManipulationManager(ObjectManipulationManager):
+    def createPortfolioInstance(self, request):
+        user_id = request.POST.get('user')
+        return self.getResponse(self._getCreatedObject(request), user_id=user_id)
+    
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('portfolio_page', kwargs={'user_identifier': kwargs.get('user_id')})
 
 
 class PDFToImageManager(ImageThumbnailBaseMixin):
@@ -47,3 +60,19 @@ class PDFToImageManager(ImageThumbnailBaseMixin):
         ) 
     
 
+class UserExistsMixin(KvantObjectExistsMixin):
+    request_object_arg = 'user_identifier'
+
+    def _objectExiststTest(self, object_id):
+        return KvantUser.objects.filter(id=object_id).exists()
+
+
+class UserManipulationMixin(UserExistsMixin):
+    def accessTest(self, **kwargs):
+        if super().accessTest(**kwargs):
+            requested_user = getUserById(kwargs.get(self.request_object_arg))
+            return self._profileAccessTest(kwargs.get('user'), requested_user)
+        return False
+    
+    def _profileAccessTest(self, user, requested_user):
+        return user == requested_user or user.permission == 'Администратор'

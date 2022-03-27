@@ -12,7 +12,7 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
     
-    <title>Личный кабинет</title>
+    <title>{{ requested_user.username }}</title>
 </head>
 
 <body>
@@ -21,40 +21,15 @@
     
     <section class="profilePage mainContainer">
 
-        {% include "ProfileApp/AccountView/index.html" with user=user %}
+        {% include "ProfileApp/AccountView/index.html" with requested_user=requested_user %}
 
         <div class="profileContent column g24">
-            <section class="menu">
-                <button class="menu__button active" onclick="location.href = `{% url 'settings_page' %}`">
-                    <svg viewBox="0 0 512 512">
-                        <path opacity="0.6" d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
-                        <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>
-                    </svg>
-                    <p>Учетная запись</p>
-                </button>
-                <button class="menu__button" onclick="location.href = `{% url 'portfolio_page' %}`">
-                    <svg viewBox="0 0 576 512">
-                        <path opacity="0.6" d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
-                        <path d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
-                    </svg>
-                    <p>Портфолио</p>
-                </button>
-                <button class="menu__button" onclick="location.href = `{% url 'statistics_page' %}`">
-                    <svg viewBox="0 0 18 16">
-                        <g transform="translate(-3 -4)">
-                            <rect opacity="0.6" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
-                            <rect width="3" height="11" rx="1.5" transform="translate(8 9)"/>
-                            <rect width="3" height="9" rx="1.5" transform="translate(18 11)"/>
-                            <rect width="3" height="7" rx="1.5" transform="translate(3 13)"/>
-                        </g>
-                    </svg> 
-                    <p>Статистика</p>
-                </button>
-            </section>
+            {% include "ProfileApp/HeadMenu/index.html" with active='settings' requested_user=requested_user %}
             
             <div class="profile__tabs">
                 <div class="profile__tab active" id='profileTab'>
 
+                    {% if requested_user == user %}
                     <h1>Персонализация</h1>
                     <div class="row g16">
                         <button class="secondaryButton" style="width: min-content" onclick="switch_theme()">
@@ -86,6 +61,7 @@
                         </button>
                         <h3>Цветовая схема</h3>
                     </div>
+                    {% endif %}
 
                     <h1>Данные учетной записи</h1>
                     <div class="profile__data">

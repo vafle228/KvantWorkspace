@@ -71,7 +71,7 @@
                 <h1 class="project__title">{{ project.project.title }}</h1>
 
                 <div class="project__members row">
-                    <div class="project__member member row g8 items-center">
+                    <div class="project__member member row g8 items-center" onclick="location.href=`{% url 'settings_page' project.project.teamleader.id %}`">
                         <img src="{{ project.project.teamleader.image.url }}" class="avatar">
                         <div class="member__info column">
                             <p class="member__name">
@@ -83,7 +83,7 @@
                     </div>
                     
                     {% for member in project.project.team|get_objects %}
-                    <div class="project__member member row g8 items-center">
+                    <div class="project__member member row g8 items-center" onclick="location.href=`{% url 'settings_page' member.id %}`">
                         <img src="{{ member.image.url }}" class="avatar">
                         <div class="member__info column">
                             <p class="member__name">{{ member.surname }} {{ member.name }}</p>

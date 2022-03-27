@@ -7,12 +7,12 @@ from LoginApp.services import getUserById
 
 
 class KvantProjectQuerySelector:
-    def __init__(self, request):
-        self.user = request.user
-        self.search_param = request.GET.get('search')
-
-        self.subject = request.GET.get('subject') or 'all'
-        self.filter_type = request.GET.get('filter') or 'all'
+    def __init__(self, user, params):
+        self.user = user
+        
+        self.search_param = params.get('search')
+        self.subject = params.get('subject') or 'all'
+        self.filter_type = params.get('filter') or 'all'
         
     def getCatalogQuery(self):
         if self.search_param is None:

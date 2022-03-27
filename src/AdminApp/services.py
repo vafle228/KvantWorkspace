@@ -1,6 +1,12 @@
 from .models import KvantCourse, KvantCourseType
 from LoginApp.models import KvantUser
+from CoreApp.services.utils import ObjectManipulationManager
+from django.urls import reverse_lazy as rl
 
+
+class CourseSubjectManipulationManager(ObjectManipulationManager):
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('subjects_table')
 
 
 def getCourseById(course_id):

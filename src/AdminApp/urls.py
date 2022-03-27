@@ -8,4 +8,6 @@ urlpatterns = [
     path('teachers', views.TeachersTableTemplateView.as_view(), name='teachers_table'),
     path('subjects', views.SubjectsTableTemplateView.as_view(), name='subjects_table'),
     path('courses', views.CoursesTableTemplateView.as_view(), name='courses_table'),
+
+    path('subjects/create', views.SubjectsCreateView.as_view(), name='subjects_create'),
 ]

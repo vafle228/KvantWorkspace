@@ -12,6 +12,7 @@
 .profileCard__profile{
     display: flex; flex-direction: column;
     gap: 1rem;
+    position: relative;
 }
 .profileCard__imgBox{
     width: 6rem; height: 6rem;
@@ -41,11 +42,11 @@
 
 .profileCard__profileName{
     font-size: 1.5rem; font-weight: 500;
-    color: #fff;
+    color: #eee;
 }
 .profileCard__profileRole{
     font-size: 1rem; font-weight: 400;
-    color: #eee;    
+    color: #eee;
 }
 .profileCard__description{
     color: #eee;
@@ -57,18 +58,21 @@
 .tag__groupName{
     font-size: 1.25rem;
     font-weight: 500;
-    color: #fff;
+    color: #eee;
 }
 .tag{
-    display: flex; flex-direction: row; gap: 0.25rem; align-items: center;
-    height: 2rem;
+    display: flex; flex-direction: row; gap: 0.5rem; align-items: center;
+    height: 2.5rem;
+    background-color: var(--item-bg-color);
+    padding: 0 1rem;
+    border-radius: 0.75rem;
+}
+.tag:hover{
     background-color: var(--theme-light-alpha);
-    padding: 0 0.75rem;
-    border-radius: 1rem;
 }
 .tag p{
     margin-top: 2px;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-primary-color);
 }
@@ -77,7 +81,7 @@
     fill: var(--text-primary-color);
 }
 
-.profileCard .dangerButton{
+.profileCard .primaryButton{
     background-color: unset;
     width: 100%;
     text-align: center;
@@ -85,22 +89,22 @@
     height: 3rem;
     margin-top: auto;
 }
-.profileCard .dangerButton p{
+.profileCard .primaryButton p{
     color: #fff;
     font-size: 1rem;
     font-weight: 500;
 }
-.profileCard .dangerButton svg{
+.profileCard .primaryButton svg{
     margin-left: auto;
     fill: #fff;
 }
-.profileCard .dangerButton:hover{
+.profileCard .primaryButton:hover{
     background-color: var(--theme-light-alpha);
 }
-.profileCard .dangerButton:hover p{
+.profileCard .primaryButton:hover p{
     color: var(--text-primary-color);
 }
-.profileCard .dangerButton:hover svg{
+.profileCard .primaryButton:hover svg{
     fill: var(--text-primary-color);
 }
 
@@ -185,23 +189,27 @@
         height: 4rem; width: 4rem;
         min-height: 4rem;
     }
+    .profileCard__imgBox svg{
+        height: 4rem; width: 4rem;
+        padding: 1.25rem;
+    }
     .tag__groupName{
         margin-bottom: -0.75rem;
     }
 
-    .profileCard .dangerButton{
+    .profileCard .primaryButton{
         position: absolute; right: 1rem; top: 1.5rem;
         width: 3rem;
         border-radius: 1.5rem;
         background-color: var(--theme-light-alpha);
     }
-    .profileCard .dangerButton svg{
+    .profileCard .primaryButton svg{
         fill: var(--text-primary-color);
     }
-    .profileCard .dangerButton:hover svg{
+    .profileCard .primaryButton:hover svg{
         fill: var(--currentColor);
     }
-    .profileCard .dangerButton p{
+    .profileCard .primaryButton p{
         display: none;
     }
 
@@ -211,12 +219,12 @@
 }
 
 
+/* Вкладка "Проектная деятельность" */
 .projects{
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-
 .project{
     width: 100%; height: 16rem;
     display: flex; flex-direction: row; gap: 1.5rem;
@@ -362,7 +370,6 @@
 .dark__theme .tableRow:hover{
     background-color: var(--aside-bg-color);
 }
-
 .tableRow > p{
     width: 16rem;
 }
@@ -372,7 +379,6 @@
     display: flex; flex-direction: row; gap: 0.5rem;
     align-items: center;
 }
-
 .tableCell p{
     width: calc(100% - 1.5rem);
     overflow: hidden;
@@ -395,7 +401,6 @@
 .tableCell:hover svg{
     fill: var(--currentColor);
 }
-
 .tableCell input{
     height: 2rem; width: calc(100% - 1.5rem);
     padding: 0 0.5rem;
@@ -404,8 +409,6 @@
     color: var(--text-primary-color);
     font-size: 1.125rem;
 }
-
-
 
 @media screen and (max-width: 576px){
     .tableRow{
@@ -421,6 +424,8 @@
     }
 }
 
+
+/* Вкладка "Статистика" */
 .statisticsCards{
     width: 100%;
     overflow: auto;

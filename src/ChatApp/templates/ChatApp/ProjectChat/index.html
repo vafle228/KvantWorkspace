@@ -16,14 +16,14 @@
 
                 {% if message.sender == user %}
                 <div class="message myMessage row g8">
-                    <img src="{{ message.sender.image.url }}" class="message__sender avatar">
+                    <img src="{{ message.sender.image.url }}" class="message__sender avatar" onclick="location.href=`{% url 'settings_page' message.sender.id %}`">
                     <span class="message__bubble">
                         <p class="message__text">{{ message.message }}</p>
                     </span>
                 </div>
                 {% else %}
                 <div class="message row g8">
-                    <img src="{{ message.sender.image.url }}" class="message__sender avatar">
+                    <img src="{{ message.sender.image.url }}" class="message__sender avatar" onclick="location.href=`{% url 'settings_page' message.sender.id %}`">
                     <span class="message__bubble">
                         <p class="message__text">{{ message.message }}</p>
                     </span>

@@ -185,7 +185,7 @@
             {% for student in students %}
             <tr>
                 <td>
-                    <div class="student row g8">
+                    <div class="student row g8" onclick="location.href=`{% url 'settings_page' student.id %}`">
                         <img src="{{ student.image.url }}" class="avatar">
                         <div class='column'>
                             <p class="student__name">{{ student.surname }} {{ student.name }}</p>

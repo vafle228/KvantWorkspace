@@ -1,7 +1,7 @@
 from CoreApp.services.access import (KvantObjectExistsMixin,
                                      KvantStudentAccessMixin)
 from ProjectApp.models import (KvantProject, KvantProjectTask,
-                               MemberHiringKvantProject)
+                               KvantProjectMembershipRequest)
 
 from .services import getProjectById
 
@@ -76,4 +76,4 @@ class ProjectApplicationManageMixin(KvantProjectManageMixin):
         return False
 
     def _requestExiststTest(self, object_id):
-        return MemberHiringKvantProject.objects.filter(id=object_id).exists() 
+        return KvantProjectMembershipRequest.objects.filter(id=object_id).exists() 

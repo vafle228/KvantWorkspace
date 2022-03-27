@@ -9,7 +9,7 @@
         </th>
 
         {% for student in students|get_objects %}
-        <th class="student">
+        <th class="student" onclick="location.href=`{% url 'settings_page' student.id %}`">
             <img src="{{ student.image.url }}" class="avatar">
             <p class="student__name">{{ student.surname }} {{ student.name|slice:"1" }}.</p>
         </th>

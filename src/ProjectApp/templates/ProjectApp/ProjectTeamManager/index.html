@@ -83,7 +83,7 @@
 
                 <tbody>
                     <tr>
-                        <td class="student">
+                        <td class="student" onclick="location.href=`{% url 'settings_page' project.project.teamleader.id %}`">
                             <img src="{{ project.project.teamleader.image.url }}" class="avatar">
                             <p class="student__name">
                                 {{ project.project.teamleader.surname }} 
@@ -101,7 +101,7 @@
                     
                     {% for member in project.project.team|get_objects %}
                     <tr>
-                        <td class="student">
+                        <td class="student" onclick="location.href=`{% url 'settings_page' member.id %}`">
                             <img src="{{ member.image.url }}" class="avatar">
                             <p class="student__name">{{ member.surname }} {{ member.name }}</p>
                         </td>
@@ -168,7 +168,7 @@
                         {% for application in project.memberhiringkvantproject.requests|get_objects %}
                         <div class="application">
                             <div class="application__header">
-                                <div class="application__user">
+                                <div class="application__user" onclick="location.href=`{% url 'settings_page' application.sender.id %}`">
                                     <img src="{{ application.sender.image.url }}" class="avatar">
                                     <div class='column'>
                                         <p class="application__userName">
