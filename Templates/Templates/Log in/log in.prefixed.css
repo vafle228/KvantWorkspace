@@ -1,0 +1,246 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+@import url("fonts/Google font/stylesheet.css");
+
+::-webkit-scrollbar{ width: 0 }
+*{ margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box }
+
+body{
+    font-family: "Google Sans";
+    height: 100vh;
+
+    /* Запрещает выделять текст */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
+    background-color: #d8dde9;
+}
+.container{
+    height: 48rem; width: 64rem;
+    padding: 2rem;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+    background-color: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.logo{
+    height: 6rem; width: -webkit-min-content; width: -moz-min-content; width: min-content;
+    margin-bottom: 2rem;
+}
+.banner{
+    width: 21rem; height: calc(100% + 4rem);
+    margin: -2rem -2rem -2rem 0;
+    background: #111926;
+    overflow: hidden;
+    position: relative;
+}
+form{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1rem;
+    width: 32rem;
+    padding: 0 2rem;
+}
+h1{
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+form > p{
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #70757D;
+    margin-bottom: 1rem;
+    margin-top: -0.75rem;
+}
+
+.flashError{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+    height: 3.5rem;
+    padding: 0 1.5rem 0 1rem;
+    background-color: #D9302511;
+    border-radius: 0.5rem;
+    border: #D9302588 solid 0.125rem;
+    -webkit-box-shadow: 0 0 0 0.25rem #D9302544;
+            box-shadow: 0 0 0 0.25rem #D9302544;
+}
+.flashError p{
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #D93025;
+}
+
+label{
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-left: 0.125rem;
+    margin-bottom: -0.25rem;
+}
+input{
+    height: 3.5rem; width: 100%;
+    border-radius: 0.5rem;
+    padding: 0 1.5rem;
+    outline: none;
+    font-size: 1.25rem;
+    border: #f3f3f4 solid 0.125rem;
+    position: relative;
+
+    -webkit-transition-duration: .3s;
+
+         -o-transition-duration: .3s;
+
+            transition-duration: .3s;
+    -webkit-transition-property: border-color box-shadow;
+    -o-transition-property: border-color box-shadow;
+    transition-property: border-color box-shadow;
+}
+input:focus{
+    border: #239AFF88 solid 0.125rem;
+    -webkit-box-shadow: 0 0 0 0.25rem #239aff44;
+            box-shadow: 0 0 0 0.25rem #239aff44;
+}
+input::-webkit-input-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input::-moz-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input:-ms-input-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input::-ms-input-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input::placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+
+
+button{
+    margin-top: 1rem;
+    height: 3.5rem; width: 100%;
+    padding: 0 20px; margin-left: auto;
+    border-radius: 0.5rem; border: none;
+    background-color: #434ce6;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: background-color .1s;
+    -o-transition: background-color .1s;
+    transition: background-color .1s;
+}
+button:hover{
+    background-color: #222d92;
+}
+button p{
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+
+/* Анимация фона */
+/* #blob{
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    background: #111926;
+    width: 100%; height: 100%;
+} */
+
+@media screen and (max-width: 992px){
+    body{
+        background-color: #111926;
+    }
+    .container{
+        width: 36rem; height: auto;
+    }
+    .banner{
+        position: fixed; top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        z-index: -1;
+    }
+}
+
+@media screen and (max-width: 576px){
+    body{
+        zoom: 80%;
+        -moz-zoom: 80%;
+        height: calc(100vh * 1.25);
+        width: calc(100vw * 1.25);
+    }
+    .banner{
+        position: fixed; top: 0; left: 0;
+        width: calc(100vw * 1.25); height: calc(100vh * 1.25);
+        z-index: -1;
+    }
+    h1{
+        font-size: 2rem;
+    }
+    .logo{
+        height: 4rem;
+        margin-bottom: 1rem;
+    }
+    .container{
+        position: fixed; left: 0; bottom: 0;
+        width: 100%;
+        -webkit-box-shadow: 0 -2rem 2rem #0006;
+                box-shadow: 0 -2rem 2rem #0006;
+        overflow: visible;
+        padding: 0;
+    }
+    .container::before{
+        content: "";
+        background-color: #fff8;
+        width: 4rem; height: 0.25rem;
+        border-radius: 0.125rem;
+        position: absolute; left: calc(50% - 2rem); top: -0.5rem;
+    }
+    .container form{
+        width: 100%;
+        background-color: #fff;
+        padding: 2rem 2.5rem;
+        border-radius: 2rem 2rem 0 0;
+    }
+}
+
+@media screen and (max-width: 380px){
+    body{
+        zoom: 60%;
+        -moz-zoom: 60%;
+        height: calc(100vh * 1.67);
+        width: calc(100vw * 1.67);
+    }
+    .banner{
+        width: calc(100vw * 1.67); height: calc(100vh * 1.67);
+
+    }
+}
+
+::-moz-selection{
+    background-color: #239aff44;
+}
+
+::selection{
+    background-color: #239aff44;
+}

@@ -1,0 +1,314 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+
+#lessons{
+    background-color: var(--aside-bg-color);
+    border-radius: 1rem;
+    width: 40rem;
+    border: var(--theme-light) solid 1px;
+}
+
+.header{
+    height: 5rem;
+}
+
+.pagination__page{
+    background-color: var(--theme-light-alpha);
+    height: 3rem; width: calc(100% - 7rem);
+    border-radius: 0.5rem;
+    color: var(--text-primary-color); font-size: 1.25rem;
+    line-height: 3rem;
+}
+
+.container{
+    padding: 0 1rem 0 5rem;
+    height: calc(100% - 7.5rem);
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+.lesson{
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+    border-radius: 0.75rem;
+    border: var(--theme-light) solid 1px;
+    background-color: var(--item-bg-color);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0;
+    -webkit-transition: -webkit-transform .1s;
+    transition: -webkit-transform .1s;
+    -o-transition: transform .1s;
+    transition: transform .1s;
+    transition: transform .1s, -webkit-transform .1s;
+}
+.light__theme .lesson{
+    background-color: var(--theme-light-alpha);
+}
+.lesson:active{
+    -webkit-transform: scale(0.99);
+        -ms-transform: scale(0.99);
+            transform: scale(0.99);
+}
+
+img.lesson__illustration:not([src$='svg']){
+    width: 3rem; height: 3rem;
+    min-width: 3rem;
+    padding: 0;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    border-radius: 0.75rem;
+}
+img.lesson__illustration[src$='svg'], svg.lesson__illustration{
+    width: 3rem; height: 3rem;
+    min-width: 3rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--theme-light);
+    fill: var(--currentColor);
+}
+
+.lesson__info{
+    width: calc(100% - 3rem);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 0.125rem;
+    padding: 0 0 0 1rem;
+}
+.lesson__title{
+    color: var(--text-primary-color);
+    font-size: 1.125rem;
+    font-weight: 500;
+    width: 80%;
+}
+.lesson__date{
+    width: 20%;
+    text-align: right;
+}
+.lesson__topic{
+    font-size: 1.125rem;
+}
+.lesson__info p, .lesson__title{
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    overflow: hidden;
+}
+.lesson__marks{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0.25rem;
+    margin-top: 1rem;
+}
+
+.lesson::before{
+    pointer-events: none;
+    content: "";
+    width: 0.25rem; height: calc(100% + 0.5rem + 2px);
+    background-color: var(--currentColor);
+    position: absolute; top: -0.25rem; left: -2.375rem;
+}
+.lesson:first-of-type::before{
+    height: calc(50% + 0.25rem + 1px); top: 50%;
+}
+.lesson:last-of-type::before{
+    height: calc(50% + 0.25rem + 1px);
+}
+.lesson::after{
+    pointer-events: none;
+    content: "";
+    width: 1.5rem; height: 1.5rem;
+    border-radius: 1rem; border: var(--currentColor) solid 0.25rem;
+    background-color: var(--aside-bg-color);
+    position: absolute; top: calc(50% - 1rem); left: -3.25rem;
+}
+
+#lessonView{
+    display: none;
+    width: calc(100% - 40rem);
+}
+#lessonView.active{
+    display: block;
+}
+.lessonView__content{
+    height: calc(100% - 6.5rem);
+    overflow: auto;
+}
+.lessonView__content h1{
+    font-size: 1.75rem; font-weight: 500;
+}
+.lessonView__content > p{
+    font-size: 1.125rem;
+}
+.lessonView__content .editor{
+    min-height: 12rem; max-height: 12rem;
+    background-color: var(--theme-light-alpha);
+}
+#lessonView .closeButton{
+    display: none;
+    margin-left: -1rem;
+}
+
+.lessons__empty{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+.lessons__empty svg{
+    width: 4rem; height: 4rem;
+    fill: var(--text-primary-color);
+}
+
+
+@media screen and (max-width: 1100px){
+    #lessons{
+        width: 100%;
+    }
+    #lessonView{
+        display: block;
+        width: calc(100% - 6rem); height: 100%;
+        position: fixed; top: 0; left: 100%;
+        background-color: var(--bg-color);
+        padding: 1.5rem;
+        -webkit-transition: left .4s;
+        -o-transition: left .4s;
+        transition: left .4s;
+        border-radius: 1rem;
+    }
+    #lessonView.active{
+        left: 6rem;
+    }
+    #lessonView .closeButton{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .lessonView__empty{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 740px){
+    #lessonView{
+        width: 100%; height: calc(100% - 4rem);
+    }
+    #lessonView.active{
+        left: 0;
+    }
+    .menu__button p{
+        display: block !important;
+        max-width: 8rem !important;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .container{
+        padding-left: 1rem;
+    }
+    .lesson::before, .lesson::after{
+        display: none;
+    }
+    .work > div:first-of-type{
+        -webkit-box-pack: unset;
+            -ms-flex-pack: unset;
+                justify-content: unset;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        gap: 1rem;
+        -webkit-box-align: unset;
+            -ms-flex-align: unset;
+                align-items: unset;
+    }
+}
+
+
+/* Îöåíêè */
+.mark{
+    min-width: 2rem;
+    font-weight: 400; font-size: 1.25rem;
+    line-height: 1.5rem;
+    background-color: var(--theme-light);
+    padding: 0.095rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--currentColor);
+    border: var(--bgColor) solid 0.5px;
+    text-align: center;
+}
+
+.mark.excellent{
+    color: #35a755;
+    background-color: #35a75511;
+    border: #35a75511 solid 0.5px;
+}
+.mark.fine{
+    color: #4486f6;
+    background-color: #4486f611;
+    border: #4486f611 solid 0.5px;
+}
+.mark.badly{
+    padding: 0.095rem 0.55rem;
+    color: #fbbc07;
+    background-color: #fbbc0711;
+    border: #fbbc0711 solid 0.5px;
+}
+.mark.poor{
+    padding: 0.095rem 0.65rem 0.095rem 0.55rem;
+    color: #ec4137;
+    background-color: #ec413711;
+    border: #ec413711 solid 0.5px;
+}
+
+.tasks .menu{
+    padding: 0;
+    min-height: 3rem; height: 3rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: var(--theme-light);
+    gap: 0;
+}
+.tasks .menu__button{
+    height: 3rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0 1rem;
+}
+.tasks .menu__button p{
+    max-width: 12rem;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.tasks .menu__button.active{
+    background-color: var(--item-bg-color);
+}
+.task{
+    display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1rem;
+    padding: 1rem;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    background-color: var(--item-bg-color);
+}
+.task.active{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.task > p{
+    font-size: 1.125rem;
+}

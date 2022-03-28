@@ -1,0 +1,66 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+.newsView{
+    width: 80rem;
+    max-width: 100%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1.5rem;
+}
+.newsView:after{
+    content: "_";
+    opacity: 0;
+}
+
+@media screen and (max-width: 740px){
+    .mainContainer{
+        padding: 1rem;
+        border-radius: 0;
+    }
+}
+
+/* Обложка новости */
+.newsView__preview{
+    width: 100%; max-height: 32rem;
+    border-radius: 1rem;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+}
+
+/* Информационный блок новости */
+.newsView__infoTitle{
+    font-size: 2.25rem;
+    font-weight: 500;
+    color: var(--text-primary-color);
+}
+.newsView__infoText{
+    text-align: justify;
+    font-size: 1.25rem;
+}
+
+.carousel {
+    color: var(--text-primary-color);
+    --carousel-button-bg: var(--item-bg-color);
+    --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0
+            0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+            
+    --carousel-button-svg-width: 1rem;
+    --carousel-button-svg-height: 1rem;
+    --carousel-button-svg-stroke-width: 3;
+}
+  
+.carousel__slide {
+    height: 384px;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    background-size: cover;
+    background-position: center;
+}

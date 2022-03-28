@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel='stylesheet' href='../../main.css' /> <!-- Основные стили -->
-    <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
+    <link rel='stylesheet' href='../../main.prefixed.css' /> <!-- Основные стили -->
+    <link rel="stylesheet" href="style.prefixed.css"> <!-- Стили страницы -->
 
     <link rel="shortcut icon" href="../../img/icon.svg" type="image/png" /> <!-- Логотип -->
     <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css' /> <!-- Иконки расширений файлов -->
@@ -154,7 +154,7 @@
 
         <div class="filteringList">
             <div class="filtering" style="width: 16rem">
-                <div class="dropdownSelect">
+                <div class="dropdownSelect" id="groupSelect">
                     <h3 class="py8">Группа</h3>
                     <div class="dropdownSelect__trigger">
                         <div>
@@ -174,7 +174,7 @@
                 </div>
             </div>
             <div class="filtering" style="width: 16rem">
-                <div class="dropdownSelect">
+                <div class="dropdownSelect" id="preiodSelect">
                     <h3 class="py8">Период</h3>
                     <div class="dropdownSelect__trigger">
                         <div>
@@ -509,6 +509,20 @@
         $('.lesson__svg').click(function() {
             $(this).parent().parent().next().toggle();
             $(this).parent().parent().toggleClass('active');
+        });
+    </script>
+
+    <script>
+        // Сохранение последних параметров журнала
+        $(window).ready(() => {
+            $('#groupSelect .dropdownSelect__trigger div')[0].textContent = localStorage.getItem('group') || 'Не выбрано';
+            $('#preiodSelect .dropdownSelect__trigger div')[0].textContent = localStorage.getItem('period') || 'Не выбрано';
+        });
+        $('#groupSelect .dropdownSelect__option').click(function() {
+            localStorage.setItem('group', $(this).text());
+        });
+        $('#preiodSelect .dropdownSelect__option').click(function() {
+            localStorage.setItem('period', $(this).text());
         });
     </script>
 </body>
