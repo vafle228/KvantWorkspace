@@ -61,7 +61,7 @@
                     <div class="tableUser row g8" title="Перейти в профиль" onclick="location.href=`{% url 'settings_page' admin.id %}`">
                         <img src="{{ admin.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
-                            <p class="tableUser__name">{{ admin.surname }} }{ admin.name }} {{ admin.patronymic }}</p>
+                            <p class="tableUser__name">{{ admin.surname }} {{ admin.name }} {{ admin.patronymic }}</p>
                             <p class="tableUser__role">Администратор</p>
                         </div>
                     </div>

@@ -1,8 +1,17 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .newsView{
     width: 80rem;
     max-width: 100%;
     margin: 0 auto;
-    display: flex; flex-direction: column; gap: 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1.5rem;
 }
 .newsView:after{
     content: "_";
@@ -20,8 +29,10 @@
 .newsView__preview{
     width: 100%; max-height: 32rem;
     border-radius: 1rem;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
 }
 
 /* Информационный блок новости */

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 
 #lessons{
     background-color: var(--aside-bg-color);
@@ -31,24 +38,33 @@
     border-radius: 0.75rem;
     border: var(--theme-light) solid 1px;
     background-color: var(--item-bg-color);
-    display: flex; flex-direction: row; gap: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0;
+    -webkit-transition: -webkit-transform .1s;
+    transition: -webkit-transform .1s;
+    -o-transition: transform .1s;
     transition: transform .1s;
+    transition: transform .1s, -webkit-transform .1s;
 }
 .light__theme .lesson{
     background-color: var(--theme-light-alpha);
 }
 .lesson:active{
-    transform: scale(0.99);
+    -webkit-transform: scale(0.99);
+        -ms-transform: scale(0.99);
+            transform: scale(0.99);
 }
 
 img.lesson__illustration:not([src$='svg']){
     width: 3rem; height: 3rem;
     min-width: 3rem;
     padding: 0;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
     border-radius: 0.75rem;
-    background-color: var(--theme-light);
 }
 img.lesson__illustration[src$='svg'], svg.lesson__illustration{
     width: 3rem; height: 3rem;
@@ -61,7 +77,9 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
 
 .lesson__info{
     width: calc(100% - 3rem);
-    display: flex; flex-direction: column; gap: 0.125rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 0.125rem;
     padding: 0 0 0 1rem;
 }
 .lesson__title{
@@ -79,11 +97,14 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
 }
 .lesson__info p, .lesson__title{
     white-space: nowrap;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     overflow: hidden;
 }
 .lesson__marks{
-    display: flex; flex-direction: row; gap: 0.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0.25rem;
     margin-top: 1rem;
 }
 
@@ -136,9 +157,16 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
 }
 
 .lessons__empty{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     gap: 1rem;
     padding: 2rem 0;
 }
@@ -158,6 +186,8 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
         position: fixed; top: 0; left: 100%;
         background-color: var(--bg-color);
         padding: 1.5rem;
+        -webkit-transition: left .4s;
+        -o-transition: left .4s;
         transition: left .4s;
         border-radius: 1rem;
     }
@@ -165,6 +195,8 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
         left: 6rem;
     }
     #lessonView .closeButton{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
     .lessonView__empty{
@@ -179,6 +211,10 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
     #lessonView.active{
         left: 0;
     }
+    .menu__button p{
+        display: block !important;
+        max-width: 8rem !important;
+    }
 }
 
 @media screen and (max-width: 576px){
@@ -187,6 +223,19 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
     }
     .lesson::before, .lesson::after{
         display: none;
+    }
+    .work > div:first-of-type{
+        -webkit-box-pack: unset;
+            -ms-flex-pack: unset;
+                justify-content: unset;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        gap: 1rem;
+        -webkit-box-align: unset;
+            -ms-flex-align: unset;
+                align-items: unset;
     }
 }
 
@@ -242,19 +291,22 @@ img.lesson__illustration[src$='svg'], svg.lesson__illustration{
 .tasks .menu__button p{
     max-width: 12rem;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     white-space: nowrap;
 }
 .tasks .menu__button.active{
     background-color: var(--item-bg-color);
 }
 .task{
-    display: none; flex-direction: column; gap: 1rem;
+    display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1rem;
     padding: 1rem;
     border-radius: 0 0.5rem 0.5rem 0.5rem;
     background-color: var(--item-bg-color);
 }
 .task.active{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 .task > p{

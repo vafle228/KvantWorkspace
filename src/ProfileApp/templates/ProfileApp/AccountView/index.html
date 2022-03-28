@@ -108,7 +108,7 @@
             </span>
         </div>
 
-        {% if user == requested_user or user.permission == 'Администратор' %}
+        {% if user == requested_user %}
         <button class="primaryButton" onclick="location.href = `{% url 'logout_user' %}`">
             <p>Выйти из учетной записи</p>
             <svg viewBox="0 0 512 512">

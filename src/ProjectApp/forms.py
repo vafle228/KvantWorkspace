@@ -40,7 +40,7 @@ class KvantProjectSaveForm(forms.ModelForm, ProjectPreviewManagerMixin):
     
     def __init__(self, *args, **kwargs):
         super(KvantProjectSaveForm, self).__init__(*args, **kwargs)
-        super(ProjectPreviewManagerMixin, self).__init__(coef=0.4)
+        super(ProjectPreviewManagerMixin, self).__init__(coef=0.6)
         
         self.fields['title'].error_messages.update({
             'invalid': u'Заголовок невалиден.',

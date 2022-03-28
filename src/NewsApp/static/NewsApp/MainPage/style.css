@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 
 /* Основной контейнер */
 .mainContainer{
@@ -23,12 +30,15 @@ header h3:not(.active):hover{
 
 .event{
     height: 22rem; width: 100%;
-    display: flex; flex-direction: row;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;
     border-radius: 0.5rem;
 }
 .event__banner{
     width: calc(100% - 32rem); height: 22rem;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 .event__content{
     width: 32rem; height: 22rem;
@@ -68,10 +78,12 @@ header h3:not(.active):hover{
     font-weight: 600;
 }
 .light__theme .event__button:hover{
-    filter: brightness(0.9);
+    -webkit-filter: brightness(0.9);
+            filter: brightness(0.9);
 }
 .dark__theme .event__button:hover{
-    filter: brightness(1.25);
+    -webkit-filter: brightness(1.25);
+            filter: brightness(1.25);
 }
 
 
@@ -92,12 +104,18 @@ header h3:not(.active):hover{
     border-radius: 0.5rem;
     background-color: var(--item-bg-color);
     cursor: pointer;
+    -webkit-transition: -webkit-transform .1s;
+    transition: -webkit-transform .1s;
+    -o-transition: transform .1s;
     transition: transform .1s;
+    transition: transform .1s, -webkit-transform .1s;
     padding: 0 1rem;
     border: var(--theme-light) solid 1px;
 }
 .course:active{
-    transform: scale(0.99);
+    -webkit-transform: scale(0.99);
+        -ms-transform: scale(0.99);
+            transform: scale(0.99);
 }
 .form .course{
     pointer-events: none;
@@ -112,8 +130,10 @@ header h3:not(.active):hover{
 }
 img.course__illustration{
     padding: 0;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
 }
 .course__title{
     font-size: 1.25rem; font-weight: 500;
@@ -121,7 +141,8 @@ img.course__illustration{
     width: 12rem;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
 }
 .course > svg:not(.course__illustration){
     width: 1rem; height: 1rem;
@@ -161,7 +182,9 @@ img.course__illustration{
     font-size: 1.125rem;
 }
 .newsContainer{
-    display: flex; flex-wrap: wrap; gap: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; gap: 1rem;
 }
 
 /* Новость */
@@ -170,16 +193,21 @@ img.course__illustration{
     border-radius: 1rem;
     overflow: hidden;
     padding: 2rem;
-    display: flex; flex-direction: column; gap: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1rem;
     background-size: cover;
 }
 .newsItem:hover .newsItem__title{
     text-decoration: underline;
-    text-decoration-color: #eee;
+    -webkit-text-decoration-color: #eee;
+            text-decoration-color: #eee;
 }
 
 .newsItem__author{
-    display: flex; flex-direction: row; gap: 0.5rem; align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0.5rem; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
 }
 .newsItem__author img{
     width: 2rem; height: 2rem;
@@ -225,7 +253,10 @@ img.course__illustration{
 }
 @media screen and (max-width: 820px){
     #widgets{
-        flex-direction: column; gap: 2rem;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column; gap: 2rem;
     }
     #scheduleWidget,
     #eventsWidget{
@@ -240,7 +271,10 @@ img.course__illustration{
     }
     .event{
         height: 32rem;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
     }
     .event__banner{
         width: 100%; height: 10rem;
@@ -249,6 +283,8 @@ img.course__illustration{
         width: 100%;
     }
     .lesson.inactive{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
 }
@@ -282,6 +318,8 @@ img.course__illustration{
 }
 .carousel__button{
     opacity: 0;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
     transition: all .4s;
 }
 #eventCarousel .carousel__slide {
@@ -294,7 +332,9 @@ img.course__illustration{
     border: 1px solid var(--theme-light);
 }
 .carousel__dots{
-    transform: translate(0, -0.5rem);
+    -webkit-transform: translate(0, -0.5rem);
+        -ms-transform: translate(0, -0.5rem);
+            transform: translate(0, -0.5rem);
 }
 .carousel__dot::after{
     width: 1.125rem !important;

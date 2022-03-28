@@ -20,13 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o$7w4ngqrd#3q%za!pz6&drr+_ccfgf(^v#g4rac6ud=c%vc@*'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.4']
 
 
 # Application definition
@@ -149,7 +146,9 @@ USE_TZ = True
 # Setup медиа и статик файлов
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 # AWS S3 Setup
 AWS_STORAGE_BUCKET_NAME = 'kvant-journal'  # Имя бакета

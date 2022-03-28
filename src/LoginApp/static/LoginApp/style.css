@@ -1,5 +1,14 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+@import url("fonts/Google font/stylesheet.css");
+
 ::-webkit-scrollbar{ width: 0 }
-*{ margin: 0; padding: 0; box-sizing: border-box }
+*{ margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box }
 
 body{
     font-family: "Google Sans";
@@ -8,25 +17,30 @@ body{
     /* Запрещает выделять текст */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 
-    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
     background-color: #d8dde9;
 }
 .container{
     height: 48rem; width: 64rem;
     padding: 2rem;
     margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
     background-color: #fff;
     border-radius: 1rem;
     overflow: hidden;
 }
 .logo{
-    height: 6rem; width: min-content;
+    height: 6rem; width: -webkit-min-content; width: -moz-min-content; width: min-content;
     margin-bottom: 2rem;
 }
 .banner{
@@ -37,7 +51,9 @@ body{
     position: relative;
 }
 form{
-    display: flex; flex-direction: column; gap: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1rem;
     width: 32rem;
     padding: 0 2rem;
 }
@@ -54,13 +70,16 @@ form > p{
 }
 
 .flashError{
-    display: flex; justify-content: space-between; align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
     height: 3.5rem;
     padding: 0 1.5rem 0 1rem;
     background-color: #D9302511;
     border-radius: 0.5rem;
     border: #D9302588 solid 0.125rem;
-    box-shadow: 0 0 0 0.25rem #D9302544;
+    -webkit-box-shadow: 0 0 0 0.25rem #D9302544;
+            box-shadow: 0 0 0 0.25rem #D9302544;
 }
 .flashError p{
     font-size: 1.25rem;
@@ -83,12 +102,35 @@ input{
     border: #f3f3f4 solid 0.125rem;
     position: relative;
 
-    transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+
+         -o-transition-duration: .3s;
+
+            transition-duration: .3s;
+    -webkit-transition-property: border-color box-shadow;
+    -o-transition-property: border-color box-shadow;
     transition-property: border-color box-shadow;
 }
 input:focus{
     border: #239AFF88 solid 0.125rem;
-    box-shadow: 0 0 0 0.25rem #239aff44;
+    -webkit-box-shadow: 0 0 0 0.25rem #239aff44;
+            box-shadow: 0 0 0 0.25rem #239aff44;
+}
+input::-webkit-input-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input::-moz-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input:-ms-input-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+input::-ms-input-placeholder{
+    font-size: 1.25rem;
+    opacity: 0.5;
 }
 input::placeholder{
     font-size: 1.25rem;
@@ -104,6 +146,8 @@ button{
     background-color: #434ce6;
     color: #fff;
     cursor: pointer;
+    -webkit-transition: background-color .1s;
+    -o-transition: background-color .1s;
     transition: background-color .1s;
 }
 button:hover{
@@ -159,7 +203,8 @@ button p{
     .container{
         position: fixed; left: 0; bottom: 0;
         width: 100%;
-        box-shadow: 0 -2rem 2rem #0006;
+        -webkit-box-shadow: 0 -2rem 2rem #0006;
+                box-shadow: 0 -2rem 2rem #0006;
         overflow: visible;
         padding: 0;
     }
@@ -188,6 +233,10 @@ button p{
         width: calc(100vw * 1.67); height: calc(100vh * 1.67);
 
     }
+}
+
+::-moz-selection{
+    background-color: #239aff44;
 }
 
 ::selection{

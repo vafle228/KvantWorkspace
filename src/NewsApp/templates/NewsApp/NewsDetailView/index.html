@@ -35,7 +35,7 @@
                     <span>Назад</span>
                 </button>
 
-                {% if news.author == user %}
+                {% if news.author == user or user.permission == 'Администратор' %}
                 <div class='relativeBox' style='margin-left: auto'>
                     <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
                         <svg viewBox="0 0 192 512">

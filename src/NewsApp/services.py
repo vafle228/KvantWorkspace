@@ -38,4 +38,4 @@ class NewsAccessMixin(NewsExistsMixin):
     
     def _newsAccessTest(self, news, user):
         """ Тест на авторство """
-        return news.author == user
+        return news.author == user or user.permission == 'Администратор'

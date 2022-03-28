@@ -26,10 +26,9 @@ class CourseManipulationManager(ObjectManipulationManager):
 
                 dates = self._generateLessonsDates(today + dt.timedelta(days=days_delta))
                 for i in range(len(dates)):
-                    self._createLesson(dates[i], f'Урок на {dates[i]} #{i}', course_or_errors)
+                    self._createLesson(dates[i], f'Урок на {dates[i].date()} #{i}', course_or_errors)
         return self.getResponse(course_or_errors)
 
-    
     def _getWeekDayNumber(self, weekday):
         return {'ПН': 0, 'ВТ': 1,
                 'СР': 2, 'ЧТ': 3,

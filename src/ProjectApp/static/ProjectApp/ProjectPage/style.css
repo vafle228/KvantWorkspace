@@ -1,14 +1,23 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .mainContainer > header{
     width: calc(100% - 32rem - 1.5rem);
 }
 
 .Tab{
-    display: none; flex-direction: column; gap: 1.5rem;
+    display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1.5rem;
     width: calc(100% - 32rem - 1.5rem);
     padding-bottom: 1.5rem;
     position: relative;
 }
 .Tab.active{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -23,8 +32,10 @@
 .project__banner{
     height: 32rem;
     border-radius: 1rem;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
 }
 .project__title{
     font-size: 2.5rem;
@@ -38,7 +49,9 @@
     border-radius: 1rem;
 }
 .applicationForm__header{
-    display: flex; justify-content: space-between; align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
 }
 .applicationForm__header h2{
     font-weight: 500;
@@ -53,11 +66,20 @@
 
 @media screen and (max-width: 576px){
     .applicationForm__header{
-        justify-content: unset;
-        align-items: unset;
-        flex-direction: column; gap: 1rem;
+        -webkit-box-pack: unset;
+            -ms-flex-pack: unset;
+                justify-content: unset;
+        -webkit-box-align: unset;
+            -ms-flex-align: unset;
+                align-items: unset;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column; gap: 1rem;
     }
     .applicationForm__header button{
+        width: -webkit-min-content;
+        width: -moz-min-content;
         width: min-content;
     }
 }
@@ -75,6 +97,8 @@
 .member__info{
     width: 0;
     overflow: hidden;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
     transition: all .5s;
     opacity: 0;
 }
@@ -89,7 +113,8 @@
     font-weight: 500;
     font-size: 1.25rem;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
 }
 
 .project__members.expanded .member{
@@ -114,7 +139,9 @@
 } */
 .board__section{
     width: calc((100% - 4rem) / 5);
-    display: flex; flex-direction: column; gap: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1rem;
 }
 .board__sectionHeader{
     height: 3rem; width: 100%;
@@ -147,14 +174,21 @@
     padding: 1rem;
     background-color: var(--item-bg-color);
     border: var(--theme-light) solid 1px;
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    -o-transition: transform .2s;
     transition: transform .2s;
+    transition: transform .2s, -webkit-transform .2s;
     cursor: pointer;
 }
 .task:hover{
-    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+        -ms-transform: scale(1.02);
+            transform: scale(1.02);
 }
 .light__theme .task:hover{
-    box-shadow: 0 0 1rem var(--theme-light);
+    -webkit-box-shadow: 0 0 1rem var(--theme-light);
+            box-shadow: 0 0 1rem var(--theme-light);
 }
 
 .task__title{
@@ -186,8 +220,12 @@
 }
 
 .task__deadline{
-    display: flex; flex-direction: row; gap: 0.5rem;
-    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0.5rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .task__deadline svg{
     width: 1rem; height: 1rem;
@@ -285,7 +323,9 @@
 
 /* Сообщение */
 .message{
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 .message__sender{
     width: 2rem; height: 2rem;
@@ -305,7 +345,10 @@
 }
 
 .message.myMessage{
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
 }
 .message.myMessage .message__bubble{
     border-radius: 0.75rem 0 0.75rem 0.75rem;
@@ -337,11 +380,15 @@
     width: 4rem; height: 4rem;
     background-color: var(--bgColor);
     padding: 1.375rem;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
     transition: all 0.2s;
 }
 .chat__input button svg{
     width: 1.25rem; height: 1.25rem;
     fill: var(--currentColor);
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
     transition: all 0.2s;
 }
 .chat__input button:hover{
@@ -397,7 +444,8 @@
     .board{
         width: 100%;
         overflow: auto;
-        scroll-snap-type: x mandatory;
+        -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
     }
     .board__section{
         scroll-snap-align: start;
@@ -421,7 +469,9 @@
 
 /* Заявки */
 .applications{
-    display: flex; flex-direction: column; gap: 0.75rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 0.75rem;
 }
 .application{
     width: 100%;
@@ -429,15 +479,21 @@
     border-radius: 0.5rem;
     padding: 1rem;
     border: var(--theme-light) solid 1px;
-    display: flex; flex-direction: column; gap: 0.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 0.5rem;
 }
 .application__header{
     width: 100%;
-    display: flex; align-items: center; justify-content: space-between;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;
 }
 
 .application__user{
-    display: flex; flex-direction: row; gap: 0.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0.5rem;
     padding: 0.375rem;
     width: 16rem; height: 3rem;
     border-radius: 1.5rem;
@@ -541,7 +597,9 @@ td h3{
     color: var(--text-primary-color);
 }
 td.student{
-    display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; gap: 0.75rem; -webkit-box-align: center; -ms-flex-align: center; align-items: center;
     min-width: 16rem;
 }
 td.student .avatar{

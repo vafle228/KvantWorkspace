@@ -32,7 +32,7 @@ class KvantNewsSaveForm(forms.ModelForm, ImageManagerMixin):
     
     def __init__(self, *args, **kwargs):
         super(KvantNewsSaveForm, self).__init__(*args, **kwargs)
-        super(ImageManagerMixin, self).__init__(coef=0.4)
+        super(ImageManagerMixin, self).__init__(coef=0.6)
         
         self.fields['title'].error_messages.update({
             'invalid': u'Заголовок невалиден.',
