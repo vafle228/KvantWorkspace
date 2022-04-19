@@ -17,8 +17,6 @@ body[colorScheme='colorScheme__green']{
     --illustration: url(../../img/backgrounds/6.jpg);
 }
 body[colorScheme='colorScheme__green'].dark__theme{
-    /* --bgColor: #66cd0311;
-    --currentColor: #66cd03; */
     --bgColor: #35a75511;
     --currentColor: #35a755;
 }
@@ -31,8 +29,6 @@ body[colorScheme='colorScheme__blue']{
     --illustration: url(../../img/backgrounds/1.jpg);
 }
 body[colorScheme='colorScheme__blue'].dark__theme{
-    /* --bgColor: #00b2ff11;
-    --currentColor: #00b2ff; */
     --bgColor: #4486f611;
     --currentColor: #4486f6;
 }
@@ -45,8 +41,6 @@ body[colorScheme='colorScheme__red']{
     --illustration: url(../../img/backgrounds/5.jpg);
 }
 body[colorScheme='colorScheme__red'].dark__theme{
-    /* --bgColor: #f1416c11;
-    --currentColor: #f1416c; */
     --bgColor: #f1747311;
     --currentColor: #f17473;
 }
@@ -59,8 +53,6 @@ body[colorScheme='colorScheme__purple']{
     --illustration: url(../../img/backgrounds/11.jpg);
 }
 body[colorScheme='colorScheme__purple'].dark__theme{
-    /* --bgColor: #6c63ff11;
-    --currentColor: #6c63ff; */
     --bgColor: #6f4bff11;
     --currentColor: #6f4bff;
 }
@@ -74,7 +66,8 @@ body[colorScheme='colorScheme__purple'].light__theme{
 .light__theme{
     --aside-bg-color: #fff;
     --item-bg-color: #fff;
-    --bg-color: #f6f8fa;
+    /* --bg-color: #f6f8fa; */
+    --bg-color: #f0f2f5;
 
     --text-primary-color: #2b292e;
     --text-secondary-color: #eee;
@@ -1227,10 +1220,25 @@ td{
     opacity: 0;
     bottom: -64rem;
     transition: opacity 0.4s, bottom 0.4s;
+    z-index: 999999;
 }
 .notifications.active{
     opacity: 1;
     bottom: 1rem;
+}
+.notifications__header{
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.5rem;
+}
+.notifications__header span{
+    text-align: center;
+    height: 2rem; min-width: 2rem;
+    border-radius: 1rem;
+    background-color: var(--currentColor);
+    font-weight: 600; font-size: 1.125rem;
+    color: #fff;
+    line-height: 2rem;
+    padding: 0 0.5rem;
 }
 .notifications__container{
     display: flex; flex-direction: column;

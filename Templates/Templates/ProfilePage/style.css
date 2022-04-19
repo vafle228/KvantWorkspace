@@ -198,7 +198,7 @@
     }
 
     .profileCard .primaryButton{
-        position: absolute; right: 1rem; top: 1.5rem;
+        position: absolute; right: 1rem; top: 2rem;
         width: 3rem;
         border-radius: 1.5rem;
         background-color: var(--theme-light-alpha);
