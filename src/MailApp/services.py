@@ -6,6 +6,9 @@ from LoginApp.models import KvantUser
 from .forms import MailReceiverSaveForm
 from .models import ImportantMail, KvantMessage, MailReceiver
 
+from NotificationApp.services import NotificationBaseManger
+from NotificationApp.forms import MailNotificationSaveForm
+
 
 def getMailById(mail_id):
     """ Получает письмо по его id """
@@ -48,7 +51,24 @@ class MailBoxQuerySelector:
         return KvantMessage.objects.none()
 
 
-class MailObjectManipulationManager(ObjectManipulationManager):
+class MailObjectManipulationManager(ObjectManipulationManager, NotificationBaseManger):
+    def createObject(self, request):
+        mail_or_errors = super()._getCreatedObject(request)
+        
+        if isinstance(mail_or_errors, KvantMessage):
+            for receiver in mail_or_errors.receivers.all():
+                self.broadcastNotification(obj=mail_or_errors, receiver=receiver)
+        return self.getResponse(mail_or_errors)
+    
+    def buildNotification(self, **kwargs):
+        mail = kwargs.get('obj')
+        form = MailNotificationSaveForm({
+            'mail_obj': mail,
+            'receiver': kwargs.get('receiver').receiver,
+            'redirect_link': f"{rl('mail_box')}?type=received&mail={mail.id}",
+        })
+        return form.save() if form.is_valid() else None
+    
     def _constructRedirectUrl(self, **kwargs):
         return rl('mail_box') + '?type=received'
 

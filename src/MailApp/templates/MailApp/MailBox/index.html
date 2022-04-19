@@ -204,13 +204,22 @@
                 url: mail_url,
                 cache: false,
                 success: function(response){
-                    $("#mailDetailView").html(response)
-                    if ($(mail).hasClass('new')) { $(mail).removeClass('new') }
-                    $('.mailView').addClass('active'); $('.mailView__empty').hide();
+                    console.log(response.message)
+                    if(response.status != 'Error'){
+                        $("#mailDetailView").html(response)
+                        if ($(mail).hasClass('new')) { $(mail).removeClass('new') }
+                        $('.mailView').addClass('active'); $('.mailView__empty').hide();
+                    }
+                    else{errorAlert({'message': response.message})}
                 }
             })
         }
     </script>
+    {% if request.GET.mail %}
+    <script>
+        window.onload = (event) => {
+            getDetailMail("{% url 'mail_detail' request.GET.mail %}", $('<div>'))
+        }
+    </script>
+    {% endif %}
 </body>
-
-</html>

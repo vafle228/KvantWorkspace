@@ -6,11 +6,14 @@ from DiaryApp.models import KvantHomeTask, KvantTaskBase, KvantTaskMark
 from django.urls import reverse_lazy as rl
 from JournalApp.forms import KvantMarkSaveForm
 from LoginApp.services import getUserById
+from NotificationApp.forms import TaskNotificationSaveForm
+from NotificationApp.services import NotificationBaseManger
 
 from .queryget import getBaseStudents, getBaseType
+from datetime import datetime
 
 
-class KvantTaskManager(ObjectManipulationManager):
+class KvantTaskManager(ObjectManipulationManager, NotificationBaseManger):
     """ 
     Создает задание для урока, наследуя ObjectManipulationManager.
     Реализует закрепление за уроком, по средствам проверки сущности.
@@ -18,8 +21,20 @@ class KvantTaskManager(ObjectManipulationManager):
     def createKvantTask(self, request, lesson):
         base_or_error = self._getCreatedObject(request)
         if isinstance(base_or_error, KvantTaskBase):
-            lesson.tasks.add(KvantHomeTask.objects.create(base=base_or_error))
+            task = KvantHomeTask.objects.create(base=base_or_error)
+            lesson.tasks.add(task)
+            
+            for student in lesson.course.students.all():
+                self.broadcastNotification(task=task, receiver=student)
         return self.getResponse(base_or_error)
+    
+    def buildNotification(self, **kwargs):
+        form = TaskNotificationSaveForm({
+            'task_obj': kwargs.get('task'),
+            'receiver': kwargs.get('receiver'),
+            'redirect_link': f"{rl('diary_page')}?period={datetime.now().month}",
+        })
+        return form.save() if form.is_valid() else None
     
     def _constructRedirectUrl(self, obj):
         return rl('checking_page', kwargs={'base_identifier': obj.id})
