@@ -710,13 +710,46 @@ button.primaryButton:hover{
     fill: tomato;
 }
 
+.standartButton{
+    background-color: var(--bg-color);
+    display: flex; flex-direction: row; gap: 0.75rem; align-items: center;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    color: var(--text-primary-color);
+    padding: 0 1rem;
+    border: #0000 solid 1px;
+}
+.standartButton span{
+    white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+    font-weight: 500;
+}
+.standartButton svg{
+    width: 1rem; height: 1rem;
+    fill: #70757D;
+}
+.standartButton:hover{
+    background-color: var(--theme-light);
+    border-color: var(--currentColor);
+    color: var(--currentColor);
+}
+.standartButton:hover svg{
+    fill: var(--currentColor);
+}
+.standartButton:active{
+    background-color: var(--currentColor);
+    color: #fff;
+}
+.standartButton:active svg{
+    fill: #fff;
+}
+
 button[class$='Button']{
     font-size: 1.1rem;
     transition: all .1s;
 }
 button[class$='Button']:active{
     transition: transform .2s;
-    transform: scale(0.96);
+    transform: scale(0.98);
 }
 
 
@@ -748,7 +781,7 @@ button[class$='Button']:active{
 }
 .light__theme .menu__button:not(.active) p{
     color: var(--currentColor);
-    opacity: 0.5;
+    opacity: 0.75;
 }
 .light__theme .menu__button:not(.active):hover p{
     color: var(--currentColor);
@@ -780,7 +813,7 @@ button[class$='Button']:active{
 }
 
 /* Адаптивность для меню */
-@media screen and (max-width: 992px){
+@media screen and (max-width: 740px){
     .menu .menu__button:not(.active) p{
         display: none;
     }

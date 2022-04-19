@@ -1,6 +1,6 @@
 
 #lessons{
-    background-color: var(--aside-bg-color);
+    background-color: var(--item-bg-color);
     border-radius: 1rem;
     width: 40rem;
     border: var(--theme-light) solid 1px;
@@ -29,17 +29,20 @@
     padding: 1rem;
     position: relative;
     border-radius: 0.75rem;
-    border: var(--theme-light) solid 1px;
-    background-color: var(--item-bg-color);
+    border: #0000 solid 1px;
+    background-color: var(--bg-color);
     display: flex; flex-direction: row; gap: 0;
     transition: transform .1s;
 }
-.light__theme .lesson{
+.lesson:hover{
+    border: var(--currentColor) solid 1px;
+}
+/* .light__theme .lesson{
     background-color: var(--theme-light-alpha);
-}
-.lesson:active{
+} */
+/* .lesson:active{
     transform: scale(0.99);
-}
+} */
 
 img.lesson__illustration:not([src$='svg']){
     width: 3rem; height: 3rem;

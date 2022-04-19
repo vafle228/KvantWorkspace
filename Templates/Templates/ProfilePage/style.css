@@ -1,13 +1,52 @@
+.menu{
+    flex-direction: column;
+    width: 16rem; height: auto;
+    background-color: unset;
+}
+.menu__button{
+    height: 3rem;
+    padding: 0 1rem;
+}
+.menu__button:hover{
+    background-color: var(--item-bg-color);
+}
+.menu__button p{
+    font-size: 1.125rem;
+}
+.menu__button svg{
+    height: 1.25rem; width: 1.25rem;
+    margin: 0.125rem;
+    padding: 0;
+}
+.menu__button.active{
+    background-color: var(--aside-bg-color);
+}
+.menu__button .avatar{
+    width: 1.5rem; height: 1.5rem;
+}
+.menu__button .avatar + p{
+    position: relative;
+    color: var(--text-primary-color) !important;
+    opacity: 1 !important;
+}
+
 .profileCard{
-    background: var(--illustration);
-    background-size: cover;
-    width: 24rem; height: 100%; 
-    border-radius: 1rem;
-    padding: 1.5rem;
+    background-color: var(--item-bg-color);
+    width: 100%;
+    border-radius: 1.5rem;
+    padding: 7.5rem 1.5rem 1.5rem 1.5rem;
     position: relative;
     display: flex; flex-direction: column; gap: 1rem;
     min-width: 24rem;
     overflow: hidden;
+}
+.profileCard__banner{
+    background: var(--illustration);
+    background-size: cover;
+    background-position: 100%;
+    width: calc(100% + 3rem); height: 12rem;
+    position: absolute; top: -7.5rem; left: -1.5rem;
+    border-radius: 1.5rem;
 }
 .profileCard__profile{
     display: flex; flex-direction: column;
@@ -15,11 +54,12 @@
     position: relative;
 }
 .profileCard__imgBox{
-    width: 6rem; height: 6rem;
-    min-height: 6rem;
+    width: 8.75rem; height: 8.75rem;
     position: relative;
     overflow: hidden;
-    border-radius: 4rem;
+    border-radius: 4.375rem;
+    border: var(--item-bg-color) solid 2px;
+    background-color: var(--item-bg-color);
     cursor: pointer;
 }
 .profileCard__imgBox:hover svg{
@@ -27,48 +67,52 @@
 }
 .profileCard__imgBox svg{
     position: absolute; top: 0; left: 0;
-    width: 6rem; height: 6rem;
-    padding: 2rem;
-    fill: #eee;
+    width: 100%; height: 100%;
+    padding: 3rem;
+    fill: #fff;
     background-color: #0008;
     transition: opacity 0.2s;
     opacity: 0;
 }
 .profileCard__profileImg{
-    width: 100%; height: 100%;
+    position: absolute; top: -5%; left: -5%;
+    width: 110%; height: 110%;
     object-fit: cover;
     object-position: center;
 }
+.profileCard__profile .actions{
+    position: absolute; top: calc(4.5rem + 1rem); right: 0;
+}
 
 .profileCard__profileName{
-    font-size: 1.5rem; font-weight: 500;
-    color: #eee;
+    font-size: 2rem; font-weight: 500;
+    color: var(--text-primary-color);
 }
 .profileCard__profileRole{
-    font-size: 1rem; font-weight: 400;
-    color: #eee;
+    font-size: 1.125rem; font-weight: 400;
 }
 .profileCard__description{
-    color: #eee;
+    font-size: 1.125rem;
 }
 
 .tag__group{
     display: flex; flex-wrap: wrap; gap: 0.5rem;
 }
-.tag__groupName{
-    font-size: 1.25rem;
+.profileCard h3{
+    font-size: 1.5rem;
     font-weight: 500;
-    color: #eee;
+    color: var(--text-primary-color);
 }
 .tag{
     display: flex; flex-direction: row; gap: 0.5rem; align-items: center;
     height: 2.5rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--theme-light-alpha);
+    border: var(--theme-light) solid 1px;
     padding: 0 1rem;
     border-radius: 0.75rem;
 }
 .tag:hover{
-    background-color: var(--theme-light-alpha);
+    border-color: var(--currentColor);
 }
 .tag p{
     margin-top: 2px;
@@ -81,36 +125,9 @@
     fill: var(--text-primary-color);
 }
 
-.profileCard .primaryButton{
-    background-color: unset;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.5rem;
-    height: 3rem;
-    margin-top: auto;
-}
-.profileCard .primaryButton p{
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 500;
-}
-.profileCard .primaryButton svg{
-    margin-left: auto;
-    fill: #fff;
-}
-.profileCard .primaryButton:hover{
-    background-color: var(--theme-light-alpha);
-}
-.profileCard .primaryButton:hover p{
-    color: var(--text-primary-color);
-}
-.profileCard .primaryButton:hover svg{
-    fill: var(--text-primary-color);
-}
-
 
 .profileContent{
-    width: calc(100% - 24rem - 1.5rem);
+    width: 50%;
     height: 100%;
     overflow: auto;
 }
@@ -124,8 +141,15 @@
     gap: 1rem;
 }
 
+.card{
+    background-color: var(--item-bg-color);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+}
+
 .galleryBox{
-    column-count: 5;
+    column-count: 3;
 }
 .galleryBox img{
     width: 100%;
@@ -135,7 +159,7 @@
 }
 @media screen and (max-width: 1280px){
     .galleryBox{
-        column-count: 4;
+        column-count: 2;
     }
 }
 @media screen and (max-width: 992px){
@@ -164,57 +188,34 @@
     font-size: 1.125rem;
     padding: 0 1rem;
     border-radius: 0.5rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--bg-color);
     color: var(--text-primary-color);
 }
 
 
 /* Адаптивность */
 @media screen and (max-width: 1036px){
+    .menu{
+        flex-direction: row;
+        width: min-content;
+        max-width: 100%;
+        background-color: var(--item-bg-color);
+    }
+    .menu__button{
+        padding: 0 1.5rem;
+    }
     .mainContainer{
-        display: flex; flex-direction: column;
+        flex-direction: column;
         padding: 1.5rem;
         padding-bottom: 6rem;
         height: auto; min-height: 100%;
     }
-    .profileCard{
-        width: 100%;
-        gap: 1.5rem;
-    }
-    .profileCard__profile{
-        width: 100%;
-        flex-direction: row; align-items: center; gap: 1.5rem;
-    }
-    .profileCard__imgBox{
-        height: 4rem; width: 4rem;
-        min-height: 4rem;
-    }
-    .profileCard__imgBox svg{
-        height: 4rem; width: 4rem;
-        padding: 1.25rem;
-    }
-    .tag__groupName{
-        margin-bottom: -0.75rem;
-    }
-
-    .profileCard .primaryButton{
-        position: absolute; right: 1rem; top: 2rem;
-        width: 3rem;
-        border-radius: 1.5rem;
-        background-color: var(--theme-light-alpha);
-    }
-    .profileCard .primaryButton svg{
-        fill: var(--text-primary-color);
-    }
-    .profileCard .primaryButton:hover svg{
-        fill: var(--currentColor);
-    }
-    .profileCard .primaryButton p{
-        display: none;
-    }
-
     .profileContent{
         width: 100%;
+    }
+    .profileCard__imgBox{
+        height: 5.75rem; width: 5.75rem;
+        margin-bottom: 2rem;
     }
 }
 
@@ -226,28 +227,22 @@
     gap: 1rem;
 }
 .project{
-    width: 100%; height: 16rem;
-    display: flex; flex-direction: row; gap: 1.5rem;
+    width: 100%; height: auto;
+    display: flex; flex-direction: column; gap: 1.5rem;
     background-color: var(--item-bg-color);
     border-radius:  0.5rem;
     overflow: hidden;
-    padding: 1.5rem;
+    padding: 1rem;
     border: var(--theme-light) solid 1px;
-    transform: scale(1);
-    transition: transform .2s;
-    scroll-behavior: smooth;
-}
-.project:hover{
-    transform: scale(1.01);
 }
 .project__illustration{
-    height: 13rem; width: 23rem;
+    height: 13rem; width: 100%;
     object-fit: cover;
     object-position: center;
     border-radius: 0.5rem;
 }
 .project__content{
-    width: calc(100% - 23rem);
+    width: 100%;
     display: flex; flex-direction: column; gap: 0.75rem;
 }
 .project__title{
@@ -279,8 +274,9 @@
 
 .project__info{
     margin-top: auto;
-    width: 100%; height: 4rem;
-    display: flex; flex-direction: row; gap: 6rem;
+    width: 100%; height: auto;
+    display: flex; gap: 1.5rem;
+    flex-wrap: wrap;
 }
 .project__info p{
     font-weight: 500;
@@ -291,12 +287,6 @@
 }
 .project__info .column{
     position: relative;
-}
-.project__info .column:not(:first-of-type)::before{
-    content: "";
-    width: 0.125rem; height: 2rem;
-    position: absolute; top: 1rem; left: -1.5rem;
-    background-color: var(--theme-light-alpha);
 }
 .project .tag{
     height: 2rem; line-height: 2rem;
@@ -309,41 +299,6 @@
     background-color: var(--bgColor);
 }
 
-@media screen and (max-width: 1400px){
-    .project__info{
-        gap: 3rem;
-    }
-}
-@media screen and (max-width: 1200px){
-    .project__info{
-        gap: 1.5rem;
-    }
-    .project__info .column::before{
-        display: none;
-    }
-}
-@media screen and (max-width: 992px){
-    .project{
-        flex-direction: column;
-        height: auto;
-    }
-    .project__illustration{
-        width: 100%;
-    }
-    .project__content{
-        width: 100%;
-    }
-    .project{
-        padding: 1rem;
-    }
-    .project__info{
-        flex-direction: unset;
-        flex-wrap: wrap;
-        height: auto;
-    }
-}
-
-
 
 .table{
     overflow-x: auto;
@@ -351,12 +306,15 @@
 }
 .tableRow{
     width: 100%;  height: 2.5rem;
-    background-color: var(--item-bg-color);
+    background-color: var(--bg-color);
     display: flex; flex-direction: row; gap: 1.5rem;
     align-items: center;
     padding: 0 0.5rem 0 1.5rem;
     border: var(--theme-light) solid 1px;
     margin-bottom: -1px;
+}
+.tableRow:last-of-type{
+    border-bottom-width: 2px;
 }
 .tableRow:first-of-type{
     border-radius: 0.25rem 0.25rem 0 0;
@@ -429,7 +387,7 @@
 .statisticsCards{
     width: 100%;
     overflow: auto;
-    display: flex; flex-direction: row; gap: 1rem;
+    display: flex; flex-wrap: wrap; gap: 1rem;
     padding: 0.5rem;
 }
 .statisticsCard{
@@ -487,4 +445,17 @@ img.statisticsCard__illustration{
     position: absolute; left: 0; bottom: 0;
     height: 0.175rem;
     border-radius: 0;
+}
+
+
+
+.field-link{
+    height: 2.5rem; width: 100%;
+    background-color: unset;
+    border-bottom: var(--theme-light) solid 2px;
+    color: var(--currentColor);
+    font-size: 1.125rem;
+}
+.field-link:focus{
+    border-bottom-color: var(--currentColor);
 }
