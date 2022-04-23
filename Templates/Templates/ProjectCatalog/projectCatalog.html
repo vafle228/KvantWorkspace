@@ -396,19 +396,44 @@
                 <input class='text-field text-field-title' autocomplete="off" value=""/>
 
                 <h3>Направление</h3>
-                <div class="filtering" style="width: 16rem">
-                    <div class="dropdownSelect">
-                        <div class="dropdownSelect__trigger">
-                            <div>Не выбрано</div>
-                            <div class="arrowDown"></div>
+                <div id="selectedSubjects" class="selectedUsers">
+                    <!-- Здесь появляются направления -->
+                </div>
+                <input type="text" onkeyup="filterFunction(this, $('#subjectSelect'), '.userSelect__user', '.userSelect__userName', true)" id='subjectSearch'>
+                <div class="userSelect" id='subjectSelect'>
+                    <div class="userSelect__user row">
+                        <img src="../../img/illustrations/it.svg" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">IT</h3>
+                            <p class="userSelect__userRole">Направление</p>
                         </div>
-                        <div class="dropdownSelect__options">
-                            <span class='dropdownSelect__option selected'>Не выбрано</span>
-                            <span class='dropdownSelect__option'>IT</span>
-                            <span class='dropdownSelect__option'>Энерджи</span>
-                            <span class='dropdownSelect__option'>Хайтек</span>
-                            <span class='dropdownSelect__option'>ПромДизайн</span>
-                            <span class='dropdownSelect__option'>ПромРобо</span>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/illustrations/energy.svg" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Энерджи</h3>
+                            <p class="userSelect__userRole">Направление</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/illustrations/hightech.svg" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">Хайтек</h3>
+                            <p class="userSelect__userRole">Направление</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/illustrations/designer.svg" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">ПромДизайн</h3>
+                            <p class="userSelect__userRole">Направление</p>
+                        </div>
+                    </div>
+                    <div class="userSelect__user row">
+                        <img src="../../img/illustrations/robo.svg" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">ПромРобо</h3>
+                            <p class="userSelect__userRole">Направление</p>
                         </div>
                     </div>
                 </div>
@@ -477,7 +502,7 @@
             $(this).toggleClass("active", "inactive");
         });
 
-        $('.userSelect__user').click( function() {
+        $('#userSelect .userSelect__user').click( function() {
             if ($(this).parent().attr('id') == 'userSelect') {
                 $('#selectedUsers').append($(this));
                 $('#userSearch').val('').focus();
@@ -486,6 +511,16 @@
             } else {
                 $('#userSelect').append($(this));
                 $('#userSearch').show();
+            }
+        });
+
+        $('#subjectSelect .userSelect__user').click( function() {
+            if ($(this).parent().attr('id') == 'subjectSelect') {
+                $('#selectedSubjects').append($(this));
+                $('#subjectSearch').val('').focus();
+                $('#subjectSelect').hide();
+            } else {
+                $('#subjectSelect').append($(this));
             }
         });
     </script>

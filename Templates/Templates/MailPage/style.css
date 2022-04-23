@@ -162,15 +162,6 @@
 .mailItem:hover{
     background-color: var(--theme-light);
 }
-/* .mailItem::after{
-    content: "";
-    position: absolute; bottom: calc(-0.25rem - 0.5px);
-    width: calc(100% - 1rem); height: 1px; left: 0.5rem;
-    background-color: var(--theme-light);
-} */
-/* .mailItem:last-of-type::after{
-    content: none;
-} */
 .mailItem.new{
     background-color: var(--bg-color);
 }
@@ -258,7 +249,7 @@
 
 /* Отметить как важное */
 #markAsImportant{
-    padding: 0.75rem;
+    padding: 0 0.75rem;
 }
 #markAsImportant svg{
     height: 1.5rem; width: 1.5rem;
