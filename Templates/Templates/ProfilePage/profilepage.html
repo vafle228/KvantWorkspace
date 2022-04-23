@@ -224,40 +224,45 @@
     </nav>
 
     <section class="mainContainer">
+        <div class="profileNavigation column g16">
+            <h1>Личный кабинет</h1>
+            
+            <hr class="divider">
 
-        <section class="menu">
-            <button class="menu__button active" onclick="changeType('#profileTab')">
-                <img src="../../img/avatars/Upstream-8.png" class="avatar">
-                <p>Фамилия Имя</p>
-            </button>
-            <button class="menu__button" onclick="changeType('#projectTab')">
-                <svg viewBox="0 0 512 512">
-                    <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
-                    <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
-                </svg>
-                <p>Проекты</p>
-            </button>
-            <button class="menu__button" onclick="changeType('#portfolioTab')">
-                <svg viewBox="0 0 576 512">
-                    <path opacity="0.6" d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
-                    <path d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
-                </svg>
-                <p>Портфолио</p>
-            </button>
-            <button class="menu__button" onclick="changeType('#statisticsTab')">
-                <svg viewBox="0 0 18 16">
-                    <g transform="translate(-3 -4)">
-                        <rect opacity="0.6" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
-                        <rect width="3" height="11" rx="1.5" transform="translate(8 9)"/>
-                        <rect width="3" height="9" rx="1.5" transform="translate(18 11)"/>
-                        <rect width="3" height="7" rx="1.5" transform="translate(3 13)"/>
-                    </g>
-                </svg> 
-                <p>Статистика</p>
-            </button>
-        </section>
+            <section class="menu">
+                <button class="menu__button active" onclick="changeType('#profileTab')">
+                    <img src="../../img/avatars/Upstream-8.png" class="avatar">
+                    <p>Фамилия Имя</p>
+                </button>
+                <button class="menu__button" onclick="changeType('#projectTab')">
+                    <svg viewBox="0 0 512 512">
+                        <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
+                        <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
+                    </svg>
+                    <p>Проекты</p>
+                </button>
+                <button class="menu__button" onclick="changeType('#portfolioTab')">
+                    <svg viewBox="0 0 576 512">
+                        <path opacity="0.6" d="M192 432c-35.3 0-64 20.7-64 56v12a12 12 0 0 0 12 12h296a12 12 0 0 0 12-12v-12c0-35.3-28.7-56-64-56z"></path>
+                        <path d="M552 64H448V24a23.94 23.94 0 0 0-23.88-24H152a23.94 23.94 0 0 0-24 23.88V64H24A23.94 23.94 0 0 0 0 87.88V144c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h96v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88a23.94 23.94 0 0 0-23.88-24H552zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2a359 359 0 0 0 12.8 86.2 160.91 160.91 0 0 1-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8a161.68 161.68 0 0 1-41.8 21.4 359 359 0 0 0 12.8-86.2H512z"></path>
+                    </svg>
+                    <p>Портфолио</p>
+                </button>
+                <button class="menu__button" onclick="changeType('#statisticsTab')">
+                    <svg viewBox="0 0 18 16">
+                        <g transform="translate(-3 -4)">
+                            <rect opacity="0.6" width="3" height="16" rx="1.5" transform="translate(13 4)"/>
+                            <rect width="3" height="11" rx="1.5" transform="translate(8 9)"/>
+                            <rect width="3" height="9" rx="1.5" transform="translate(18 11)"/>
+                            <rect width="3" height="7" rx="1.5" transform="translate(3 13)"/>
+                        </g>
+                    </svg> 
+                    <p>Статистика</p>
+                </button>
+            </section>
+        </div>
 
-        <div class="profileContent column g24">
+        <div class="profileContent column g24 scrollbar">
             
             <div class="profile__tabs">
                 <div class="profile__tab active" id='profileTab'>
@@ -398,6 +403,15 @@
                     <div class="card">
                         <h1>Данные учетной записи</h1>
                         <div class="profile__data">
+                            <h3>Логин</h3>
+                            <div class="row g8">
+                                <input type="text" autocomplete="off" autocapitalize="off" value="ФамилияИ" disabled>
+                                <button class="secondaryButton disabledButton" onclick="editStart(this)">
+                                    <svg viewBox="0 0 512 512">
+                                        <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                                    </svg>
+                                </button>
+                            </div>
                             <h3>Пароль</h3>
                             <div class="row g8">
                                 <input type="text" autocomplete="off" autocapitalize="off" value="••••••••" disabled>
@@ -408,10 +422,12 @@
                                 </button>
                             </div>
                         </div>
-    
+                    </div>
+                    <div class="card">
+                        <h1>Личные данные</h1>
                         <div class="flex space-between items-center">
-                            <h2>Ученик</h2>
-                            <button class="combinedButton" onclick="editTableStart(this)">
+                            <h3>Ученик</h3>
+                            <button class="standartButton" onclick="editTableStart(this)">
                                 <svg viewBox="0 0 512 512">
                                     <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
                                 </svg>
@@ -501,8 +517,8 @@
                         </div>
     
                         <div class="flex space-between items-center">
-                            <h2>Отец</h2>
-                            <button class="combinedButton" onclick="editTableStart(this)">
+                            <h3>Отец</h3>
+                            <button class="standartButton" onclick="editTableStart(this)">
                                 <svg viewBox="0 0 512 512">
                                     <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
                                 </svg>
@@ -582,8 +598,8 @@
                         </div>
             
                         <div class="flex space-between items-center">
-                            <h2>Мать</h2>
-                            <button class="combinedButton" onclick="editTableStart(this)">
+                            <h3>Мать</h3>
+                            <button class="standartButton" onclick="editTableStart(this)">
                                 <svg viewBox="0 0 512 512">
                                     <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
                                 </svg>
@@ -742,21 +758,6 @@
                         </a>
                         <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
                             <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
                         </a>
                     </div>
                 </div>
@@ -1017,7 +1018,7 @@
             );
             
             $(button).replaceWith(`
-                <button class="combinedButton" onclick="editTableConfirm(this)">
+                <button class="standartButton" onclick="editTableConfirm(this)">
                     <svg viewBox="0 0 448 512">
                         <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"/>
                     </svg>
