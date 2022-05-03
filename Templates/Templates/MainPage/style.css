@@ -129,6 +129,10 @@ img.course__illustration{
     margin: 0 0.5rem;
 }
 
+.modal .course{
+    border: var(--theme-light) solid 1px;
+}
+
 /* Визуализация расписания */
 .lesson{
     background-color: var(--bgColor);

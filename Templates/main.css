@@ -566,24 +566,6 @@ body{
 }
 
 
-/* Вернуться в начало страницы */
-#arrowTop{
-    position: fixed;
-    bottom: 1rem; right: 1rem;
-    height: 3rem; width: 3rem;
-    background-color: var(--bgColor);
-    border-radius: 1rem;
-    padding: 0.875rem;
-    transform: rotate(-90deg);
-    opacity: 0.5;
-}
-#arrowTop:hover{
-    opacity: 1;
-}
-#arrowTop svg{
-    fill: var(--currentColor);
-}
-
 
 /* Кнопки */
 button.disabledButton{

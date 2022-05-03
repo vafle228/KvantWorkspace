@@ -1,103 +1,120 @@
 body{
     padding: 0;
-    background-color: var(--bgColor);
 }
 .mainContainer{
-    height: calc(100vh - 6rem);
-    width: calc(100vw - 12rem);
+    width: 100%; height: 100%;
     display: flex; flex-direction: row;
-    background-color: var(--item-bg-color);
-    margin: 3rem 6rem;
+    background-color: var(--bg-color);
     padding: 0;
-    border-radius: 1.5rem;
-    overflow: hidden;
     gap: 0;
 }
-.illustration{
-    height: 100%;
-    width: 24rem;
-    object-fit: cover;
-    object-position: left;
-}
 
-.wizard{
-    height: 100%; width: calc(100% - 24rem);
-    padding: 3rem;
+.wizard__progress{
+    width: 28rem;
+    background-color: var(--aside-bg-color);
+    padding: 4rem 6rem;
     display: flex; flex-direction: column; gap: 3rem;
 }
-.wizard__title{
-    font-size: 2.5rem;
-    font-weight: 500;
+.wizard__progress .logo{
+    width: 16rem; height: 4rem;
 }
 
 .progress{
-    display: flex; flex-direction: row; gap: 2rem;
-    margin-left: -1rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
 }
 .progress__stage{
-    width: 5rem;
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    display: flex; flex-direction: row; align-items: center; gap: 1rem;
     position: relative;
 }
 .progress__stage span{
     width: 3rem; height: 3rem;
-    line-height: 2.625rem;
+    line-height: 3rem;
     border-radius: 1.5rem;
     background-color: var(--theme-light-alpha);
-    border: #b7bdc7 solid 3.25px;
     text-align: center;
-    font-weight: 500;
-    z-index: 2;
+    font-weight: 600;
+    color: var(--text-primary-color);
 }
-.progress__stage::before{
-    content: "";
-    width: 7rem; height: 3px;
-    background-color: #b7bdc7;
-    position: absolute; top: calc(1.5rem - 1.5px); left: 1.5rem;
-    z-index: 1;
-}
-.progress__stage:last-of-type::before{
-    width: 0;
+.progress__stage .column{
+    height: 3rem;
+    padding: 0.25rem 0;
 }
 .progress__stage h3{
     text-transform: uppercase;
-    color: #b7bdc7;
-    font-weight: 500;
-    font-size: 0.875rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary-color);
+}
+.progress__stage p{
+    color: #9ca2ab;
 }
 .progress__stage.active span{
-    background-color: #fff;
+    background-color: var(--bgColor);
     color: var(--currentColor);
-    border-color: var(--currentColor);
 }
 .progress__stage.active h3{
     color: var(--currentColor);
 }
 .progress__stage.done span{
     background-color: var(--currentColor);
-    border-color: var(--currentColor);
     color: #fff;
 }
 .progress__stage.done::before{
     background-color: var(--currentColor);
 }
-.progress__stage.done h3{
-    color: var(--text-primary-color);
+
+.illustration{
+    width: 28rem; height: 16rem;
+    margin: auto -6rem -4rem -6rem;
+}
+
+
+.wizard{
+    height: 100%; width: calc(100% - 24rem);
+    padding: 6rem;
+    display: flex; flex-direction: column; gap: 6rem;
+}
+
+.wizard__info{
+    width: 32rem;
+    text-align: right;
+}
+.wizard__info b{
+    color: var(--currentColor);
 }
 
 .stage{
-    width: 100%;
-    display: flex; flex-direction: column; gap: 1.5rem;
+    width: 32rem;
+    display: flex; flex-direction: column; gap: 2rem;
 }
-.stage__question{
+.stage__title{
+    font-size: 2rem;
     font-weight: 500;
 }
+.stage__subtitle{
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #9ca2ab;
+}
+.stage h3{
+    font-size: 1rem;
+    color: var(--text-primary-color);
+}
 .stage__input{
-    background-color: var(--theme-light-alpha);
-    height: 3rem; width: 24rem;
+    background-color: var(--item-bg-color);
+    height: 3rem; width: 100%;
     padding: 0 1rem;
     font-size: 1.125rem;
     border-radius: 0.5rem;
+    color: var(--text-primary-color);
+}
+.stage__input::placeholder{
+    color: #9ca2ab;
+}
+
+.wizard__buttons{
+    display: flex;
+    justify-content: space-between;
 }
 .stage button{
     height: 3rem;
@@ -107,18 +124,17 @@ body{
     font-weight: 500;
 }
 #previousStage{
-    background-color: var(--theme-light-alpha);
+    background-color: var(--item-bg-color);
     color: #70757D;
 }
 #previousStage:hover{
-    /* background-color: var(--bgColor); */
     color: var(--text-ptimary-color);
 }
+
 #nextStage{
-    background-color: var(--bgColor);
-    color: var(--currentColor);
-}
-#nextStage:hover{
     background-color: var(--currentColor);
     color: #fff;
+}
+#nextStage:hover{
+    filter: brightness(0.9);
 }

@@ -68,8 +68,8 @@ function filterFunction(input, select, option, parameter, hide) {
 		users.map(index => $(select).append(users[index]));
 		
 		// Скрываем пользователей неудолетворяющих поиску
-		users.map(
-			(index) => $(users[index]).find(parameter)[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide()
+		users.map((index) => 
+			$(users[index]).find(parameter)[0].textContent.toUpperCase().indexOf(substr) !== -1 ? $(users[index]).show() : $(users[index]).hide()
 		);
 	}
 	else {
@@ -79,24 +79,20 @@ function filterFunction(input, select, option, parameter, hide) {
 
 function filterApplying(substr, select, option, parameter){
 	let users = $(select).find(option);
-	users.map(
-		(index) => {
-			let flag = false
-			$(users[index]).find(parameter).toArray().forEach(element => {
-				if (element.textContent.indexOf(substr) !== -1)
-					flag = true
-			});
-			flag ? $(users[index]).show() : $(users[index]).hide()
-		}
-	);
+	users.map((index) => {
+		let flag = false
+		$(users[index]).find(parameter).toArray().forEach(element => {
+			if (element.textContent.indexOf(substr) !== -1)
+				flag = true
+		});
+		flag ? $(users[index]).show() : $(users[index]).hide();
+	});
 }
 
 // Сменить тему оформления
 function switch_theme() {
 	$('body').toggleClass('light__theme dark__theme');
-	page_adaptation();
 }
-
 // Сменить цветовую схему
 function switch_color_scheme() {
 	schemes = ['colorScheme__green', 'colorScheme__blue', 'colorScheme__red', 'colorScheme__purple'];
@@ -105,17 +101,7 @@ function switch_color_scheme() {
 	let nextSchemeIndex = (currentSchemeIndex + 1) % schemes.length;
 
 	$('body').attr("colorScheme", schemes[nextSchemeIndex]);
-	page_adaptation();
 }
-
-
-// Кнопка вернуться в начало страницы
-arrowTop.onclick = function () {
-	window.scrollTo(pageXOffset, 0);
-};
-window.addEventListener('scroll', function () {
-	arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
-});
 
 
 // Копирование текста
@@ -139,5 +125,5 @@ function copytext(el) {
 		setTimeout(() => {
 			alert.detach();
 		}, 1000);
-	}, 1500)
-}
+	}, 1500);
+};
