@@ -1,0 +1,85 @@
+.schedule{
+    width: 100%;
+    display: flex; flex-direction: column;
+    background-color: var(--item-bg-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.schedule__body{
+    width: 100%;
+    display: flex; flex-direction: column;
+}
+.schedule__headers{
+    display: flex; flex-direction: row;
+}
+.schedule__header{
+    width: calc((100% - 20rem) / 7);
+    height: 3rem;
+    line-height: 2rem;
+    padding: 0.5rem 0;
+    color: var(--currentColor);
+    text-align: center;
+    border-left: var(--theme-light) solid 1px;
+    border-bottom: var(--theme-light) solid 1px;
+}
+.schedule__header:first-of-type{
+    width: 24rem;
+    border-left: none;
+}
+.schedule__row{
+    width: 100%;
+    display: flex; flex-direction: row;
+}
+.schedule__teacher{
+    width: 24rem;
+    padding: 1rem;
+    border-bottom: var(--theme-light) solid 1px;
+}
+.schedule__teacher .avatar{
+    width: 3rem; height: 3rem;
+    margin: 0.5rem 0 0.5rem 0.5rem;
+}
+.schedule__teacher .column{
+    height: 4rem;
+    padding: 0.5rem 0;
+}
+.schedule__teacher p:first-of-type{
+    color: var(--text-primary-color);
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+.schedule__week{
+    width: calc(100% - 20rem);
+    display: flex; flex-direction: row;
+}
+.schedule__weekDay{
+    width: calc(100% / 7);
+    padding: 0.5rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    border-left: var(--theme-light) solid 1px;
+    border-bottom: var(--theme-light) solid 1px;
+}
+
+.lesson{
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--bgColor);
+    display: flex; flex-direction: column; gap: 0.25rem;
+    transition: background-color .2s;
+}
+.lesson__group{
+    color: var(--currentColor);
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+.lesson__time{
+    color: var(--currentColor);
+}
+.lesson:hover{
+    background-color: var(--currentColor);
+}
+.lesson:hover .lesson__group,
+.lesson:hover .lesson__time{
+    color: #fff;
+}

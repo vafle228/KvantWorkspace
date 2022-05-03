@@ -89,12 +89,12 @@ header h3:not(.active):hover{
 /* Направление */
 .course{
     height: 5rem; width: 100%;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background-color: var(--item-bg-color);
     cursor: pointer;
     transition: transform .1s;
     padding: 0 1rem;
-    border: var(--theme-light) solid 1px;
+    /* border: var(--theme-light) solid 1px; */
 }
 .course:active{
     transform: scale(0.99);
@@ -286,12 +286,12 @@ img.course__illustration{
 }
 #eventCarousel .carousel__slide {
     height: 22rem; width: 100% !important;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     padding: 0 !important;
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    border: 1px solid var(--theme-light);
+    /* border: 1px solid var(--theme-light); */
 }
 .carousel__dots{
     transform: translate(0, -0.5rem);
