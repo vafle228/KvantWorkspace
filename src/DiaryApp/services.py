@@ -6,13 +6,12 @@ from django.urls import reverse_lazy as rl
 from CoreApp.services.access import KvantStudentAccessMixin
 
 from NotificationApp.services import NotificationBaseManger
-from NotificationApp.forms import TaskNotificationSaveForm
+from NotificationApp.models import WorkCreateNotification, WorkUpdateNotification
 
 
 def getTaskById(task_id):
     """ Возвращает задание по переданному task_id """
     return KvantHomeTask.objects.get(id=task_id)
-
 
 def getDiaryLessonQuery(user, period):
     """ Возвращает уроки ученика user за дату period """
@@ -27,7 +26,6 @@ def getUserWork(task, user):
     if task.works.all().filter(sender=user).exists():
         return task.works.all().get(sender=user)
     return None
-
 
 def getWorkById(work_id):
     """ Получает работу по work_id """
@@ -44,31 +42,44 @@ class DiaryPaginator:
 
 class HomeWorkManipulationManager(ObjectManipulationManager, NotificationBaseManger):
     def createTaskWork(self, request):
-        task = getTaskById(request.POST.get('task_id'))
         work_or_errors = self._getCreatedObject(request)
 
         if isinstance(work_or_errors, KvantHomeWork):
-            task.works.add(work_or_errors)
-            self.broadcastNotification(task=task)
+            task = getTaskById(request.POST.get('task_id')); task.works.add(work_or_errors)
+            
+            self.broadcastNotification(
+                work=work_or_errors, model=WorkCreateNotification,
+                receiver=KvantLesson.objects.get(tasks__base=task.base).course.teacher
+            )
         return self.getResponse(work_or_errors)
     
-    def buildNotification(self, **kwargs):
-        course = self._getCourseByTask(kwargs.get('task'))
-        form = TaskNotificationSaveForm({
-            'receiver': course.teacher,
-            'task_obj': kwargs.get('task'),
-            'redirect_link': rl('checking_page', kwargs={'base_identifier': kwargs.get('task').base.id}),
-        })
-        return form.save() if form.is_valid() else None
+    def updateObject(self, request):
+        work_or_errors = self._getUpdatedObject(request)
+
+        if isinstance(work_or_errors, KvantHomeWork):
+            task = KvantHomeTask.objects.get(works__id=work_or_errors.id)
+
+            self.broadcastNotification(
+                work=work_or_errors, model=WorkUpdateNotification,
+                receiver=KvantLesson.objects.get(tasks__base=task.base).course.teacher
+            )
+        return self.getResponse(work_or_errors)
     
-    def _getCourseByTask(self, task):
-        return KvantLesson.objects.get(tasks__id=task.id).course
+    def buildBase(self, **kwargs):
+        obj_args = {
+            'work': kwargs.get('work'),
+            'receiver': kwargs.get('receiver'),
+        }
+
+        if kwargs.get('model') == WorkUpdateNotification:
+            if WorkUpdateNotification.objects.filter(**obj_args).exists():
+                WorkUpdateNotification.objects.filter(**obj_args).first().delete()
+        return kwargs.get('model').objects.create(**obj_args)
 
     def _constructRedirectUrl(self, **kwargs):
         return rl('task_detail', kwargs={
             'task_identifier': KvantHomeTask.objects.get(works__id=kwargs.get('obj').id).id
         })
-
 
 class DiaryMonthValidateMixin(KvantStudentAccessMixin):
     def accessTest(self, **kwargs):
@@ -79,7 +90,6 @@ class DiaryMonthValidateMixin(KvantStudentAccessMixin):
         if month_num and month_num.isdigit():
             return 1 <= int(month_num) <= 12
         return False
-
 
 class LessonAccessMixin(KvantObjectExistsMixin):
     request_object_arg = 'lesson_identifier'

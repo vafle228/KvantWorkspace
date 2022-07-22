@@ -59,8 +59,6 @@ class MailChangeImportantStatusView(services.KvantMailAccessMixin, generic.View)
 class MailDeleteView(services.KvantMailAccessMixin, generic.View):
     """ Контроллер удаления писем """
     def post(self, request, *args, **kwargs):
-        mail = services.getMailById(kwargs.get('mail_identifier'))
-        if mail.sender == request.user: mail.delete()
-        else: mail.receivers.filter(receiver=request.user).delete()
-        
+        services.MailDeletionHandler().delteMail(
+            services.getMailById(kwargs.get('mail_identifier')), request.user)
         return HttpResponse({'status': 200})

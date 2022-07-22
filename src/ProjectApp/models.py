@@ -106,7 +106,7 @@ class MemberHiringKvantProject(models.Model):
 
 
 class ClosedKvantProject(models.Model):
-    data    = models.DateField(default=timezone.now)
+    date    = models.DateField(default=timezone.now)
     project = models.OneToOneField(KvantProject, on_delete=models.CASCADE)
 
     class Meta:

@@ -6,11 +6,11 @@ from DiaryApp.models import KvantHomeTask, KvantTaskBase, KvantTaskMark
 from django.urls import reverse_lazy as rl
 from JournalApp.forms import KvantMarkSaveForm
 from LoginApp.services import getUserById
-from NotificationApp.forms import TaskNotificationSaveForm
+from NotificationApp.models import (TaskCreateNotification,
+                                    TaskUpdateNotification)
 from NotificationApp.services import NotificationBaseManger
 
 from .queryget import getBaseStudents, getBaseType
-from datetime import datetime
 
 
 class KvantTaskManager(ObjectManipulationManager, NotificationBaseManger):
@@ -21,23 +21,34 @@ class KvantTaskManager(ObjectManipulationManager, NotificationBaseManger):
     def createKvantTask(self, request, lesson):
         base_or_error = self._getCreatedObject(request)
         if isinstance(base_or_error, KvantTaskBase):
-            task = KvantHomeTask.objects.create(base=base_or_error)
-            lesson.tasks.add(task)
+            task = KvantHomeTask.objects.create(base=base_or_error); lesson.tasks.add(task)
             
-            for student in lesson.course.students.all():
-                self.broadcastNotification(task=task, receiver=student)
+            for student in getBaseStudents(base_or_error):
+                self.broadcastNotification(receiver=student, model=TaskCreateNotification, task=task)
         return self.getResponse(base_or_error)
     
-    def buildNotification(self, **kwargs):
-        form = TaskNotificationSaveForm({
-            'task_obj': kwargs.get('task'),
-            'receiver': kwargs.get('receiver'),
-            'redirect_link': f"{rl('diary_page')}?period={datetime.now().month}",
-        })
-        return form.save() if form.is_valid() else None
+    def updateObject(self, request):
+        base_or_error = self._getUpdatedObject(request)
+        if isinstance(base_or_error, KvantTaskBase):
+            task = KvantHomeTask.objects.get(base=base_or_error)
+
+            for student in getBaseStudents(base_or_error):
+                self.broadcastNotification(receiver=student, model=TaskUpdateNotification, task=task)
+        return self.getResponse(base_or_error)       
     
     def _constructRedirectUrl(self, obj):
         return rl('checking_page', kwargs={'base_identifier': obj.id})
+    
+    def buildBase(self, **kwargs):
+        obj_args = {
+            'task': kwargs.get('task'),
+            'receiver': kwargs.get('receiver'),
+        }
+        
+        if kwargs.get('model') == TaskUpdateNotification:
+            if TaskUpdateNotification.objects.filter(**obj_args).exists():
+                TaskUpdateNotification.objects.filter(**obj_args).first().delete()
+        return kwargs.get('model').objects.create(**obj_args)
 
 
 class KvantBaseMarksUpdate(ObjectManipulationResponse):

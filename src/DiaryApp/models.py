@@ -33,7 +33,6 @@ class KvantTaskBase(models.Model):
         return f'Основа для {self.id}'
     
 
-
 class KvantHomeWork(models.Model):
     text    = models.TextField(null=False)
     files   = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)

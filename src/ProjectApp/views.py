@@ -4,6 +4,7 @@ from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
                                      KvantWorkspaceAccessMixin)
 from django.http import HttpResponse
 from django.views import generic
+from LoginApp.services import getUserById
 
 from .forms import (KvantApplicationSaveForm, KvantProjectFilesSaveForm,
                     KvantProjectSaveForm, KvantProjectSubjectSaveForm,
@@ -107,6 +108,12 @@ class ProjectTaskUpdateView(access.ProjectTaskManipulationMixin, generic.View):
         return object_manager.updateTaskProject(request, project)
 
 
+class ProjectTaskDeleteView(access.ProjectTaskManipulationMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        services.getTaskById(kwargs.get('task_identifier')).delete()
+        return HttpResponse('Ok')
+
+
 class ProjectTaskCreateView(access.ProjectTaskManipulationMixin, generic.View):
     def post(self, request, *args, **kwargs):
         project = services.getProjectById(kwargs.get('project_identifier'))
@@ -131,10 +138,18 @@ class MemberRequestManipulationView(access.ProjectApplicationManageMixin, generi
         return super().dispatch(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-        services.ApplicationManipulationManager(
-            services.getProjectById(kwargs.get('project_identifier')),
-            services.getRequestById(request.POST.get('application_identifier')),
-        ).manageApplication(request.POST.get('choise'))
+        services.ProjectTeamManager(
+            services.getProjectById(kwargs.get('project_identifier'))).projectMemeberJoin(
+            services.getRequestById(request.POST.get('application_identifier')), 
+            request.POST.get('choise'))
+        return HttpResponse('Ok')
+
+
+class ChangeProjectTeamleaderView(access.KvantProjectManageMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        services.ProjectTeamManager(
+            services.getProjectById(kwargs.get('project_identifier'))
+        ).changeTeamleader(getUserById(request.POST.get('user_identifier')))
         return HttpResponse('Ok')
 
 
@@ -167,3 +182,11 @@ class ProjectCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
         object_manager = services.ProjectManipulationManager(
             [KvantProjectSaveForm, KvantProjectSubjectSaveForm, KvantProjectFilesSaveForm])
         return object_manager.createProject(request)
+
+
+class ProjectUpdateView(access.KvantProjectManageMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        project = services.getProjectById(kwargs.get('project_identifier'))
+        object_manager = services.ProjectManipulationManager(
+            [KvantProjectSaveForm, KvantProjectSubjectSaveForm, KvantProjectFilesSaveForm], object=project)
+        return object_manager.updateObject(request)

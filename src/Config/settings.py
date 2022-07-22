@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.4', '127.0.0.1']
 
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'LoginApp.apps.LoginAppConfig',
     'JournalApp.apps.JournalAppConfig',
     'ProjectApp.apps.ProjectAppConfig',
-    'ProfileApp.apps.ProfileAppConfig',
+    'ProfileApp.apps.ProfileAppConfig',    
     'RegisterApp.apps.RegisterAppConfig',
     'NotificationApp.apps.NotificationAppConfig',
 

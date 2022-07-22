@@ -1,9 +1,13 @@
 from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
-from ProjectApp.models import (ActiveKvantProject, ClosedKvantProject,
-                               KvantProject, KvantProjectTask,
-                               MemberHiringKvantProject, KvantProjectMembershipRequest)
 from LoginApp.services import getUserById
+from NotificationApp.models import (ProjectApplication, ProjectTaskCreate,
+                                    ProjectTaskUpdate)
+from NotificationApp.services import NotificationBaseManger
+from ProjectApp.forms import KvantProjectTypeSaveForm
+from ProjectApp.models import (ActiveKvantProject, ClosedKvantProject,
+                               KvantProject, KvantProjectMembershipRequest,
+                               KvantProjectTask, MemberHiringKvantProject)
 
 
 class KvantProjectQuerySelector:
@@ -49,15 +53,50 @@ class KvantProjectQuerySelector:
         return query.filter(course_subject__name=self.subject)
 
 
-class TaskManipulationManager(ObjectManipulationManager):
+class TaskManipulationManager(ObjectManipulationManager, NotificationBaseManger):
+    def __init__(self, forms, object=None):
+        if KvantProjectTypeSaveForm in forms:
+            self._notify = lambda **x: x  # Чисто заглушка
+        super().__init__(forms, object)
+    
     def createTaskProject(self, request, project):
         task_or_errors = self._getCreatedObject(request)
+        
         if isinstance(task_or_errors, KvantProjectTask):
             project.tasks.add(task_or_errors)
+            self._notify(
+                task=task_or_errors, sender=request.user,
+                model=ProjectTaskCreate, project=project,
+            )  
         return self.getResponse(task_or_errors, project=project)
     
     def updateTaskProject(self, request, project):
-        return self.getResponse(self._getUpdatedObject(request), project=project)
+        task_or_errors = self._getUpdatedObject(request)
+
+        if isinstance(task_or_errors, KvantProjectTask):
+            self._notify(
+                task=task_or_errors, sender=request.user,
+                model=ProjectTaskUpdate, project=project
+            )
+        return self.getResponse(task_or_errors, project=project)
+    
+    def _notify(self, **kwargs):
+        for receiver in getProjectUsers(kwargs.get('project')):
+            if receiver == kwargs.get('sender'):
+                continue
+            self.broadcastNotification(**kwargs, receiver=receiver)
+    
+    def buildBase(self, **kwargs):
+        project_kwargs = {
+            'task': kwargs.get('task'),
+            'sender': kwargs.get('sender'),
+            'receiver': kwargs.get('receiver'),    
+        }
+
+        if kwargs.get('model') == ProjectTaskUpdate:
+            if ProjectTaskUpdate.objects.filter(**project_kwargs).exists():
+                ProjectTaskUpdate.objects.get(**project_kwargs).delete()
+        return kwargs.get('model').objects.create(**project_kwargs)
 
     def _constructRedirectUrl(self, **kwargs):
         return rl('task_view', kwargs={
@@ -77,26 +116,22 @@ class ProjectManipulationManager(ObjectManipulationManager):
         return rl('project_info', kwargs={'project_identifier': kwargs.get('obj').id})
 
 
-class ApplicationManipulationManager(ObjectManipulationManager):    
+class ApplicationManipulationManager(ObjectManipulationManager, NotificationBaseManger):    
     def createProjectApplication(self, request, project):
         app_or_errors = self._getCreatedObject(request)
         if isinstance(app_or_errors, KvantProjectMembershipRequest):
             project.requests.add(app_or_errors)
+            
+            for receiver in getProjectUsers(project.project.project):
+                self.broadcastNotification(application=app_or_errors, receiver=receiver)
+
         return self.getResponse(app_or_errors, project=project.project.project)
+    
+    def buildBase(self, **kwargs):
+        return ProjectApplication.objects.create(**kwargs)
     
     def _constructRedirectUrl(self, **kwargs):
         return rl('project_info', kwargs={'project_identifier': kwargs.get('project').id})
-    
-
-class ApplicationManipulationManager:
-    def __init__(self, project, application):
-        self.project = project
-        self.application = application
-    
-    def manageApplication(self, choise):
-        if choise == 'accept':
-            self.project.team.add(self.application.sender)
-        self.application.delete()
 
 
 class ProjectStatusManager:
@@ -130,6 +165,11 @@ class ProjectTeamManager:
     def __init__(self, project):
         self.project = project
     
+    def projectMemeberJoin(self, application, choise):
+        if choise == 'accept':
+            self.project.team.add(application.sender)
+        application.delete()
+    
     def projectMemberKick(self, user_id):
         user = getUserById(user_id)
         if user is not None:
@@ -139,6 +179,15 @@ class ProjectTeamManager:
     def _cleanUserTasks(self, user):
         for task in self.project.tasks.filter(participants__id=user.id):
             task.participants.remove(user)
+    
+    def changeTeamleader(self, user):
+        if user == self.project.teamleader: return 
+        
+        self.project.team.remove(user)
+        self.project.team.add(self.project.teamleader)
+        self.project.teamleader = user
+        
+        self.project.save()
 
 
 def updateTaskContext(project):
@@ -167,3 +216,9 @@ def getProjectById(project_id):
 
 def getRequestById(request_id):
     return KvantProjectMembershipRequest.objects.get(id=request_id)
+
+
+def getProjectUsers(project):
+    return [
+        project.tutor, project.teamleader,
+    ] + [student for student in project.team.all()]

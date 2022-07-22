@@ -19,9 +19,9 @@ class NotificationConsumer(WebsocketConsumer):
 
     def user_notification(self, event):
         self.send(text_data=json.dumps({
+            'id': event.get('id'),
             'title': event.get('title'),
             'image_url': event.get('image_url'),
             'description': event.get('description'),
-            'object_name': event.get('object_name'),
             'redirect_link': event.get('redirect_link'),
         }))

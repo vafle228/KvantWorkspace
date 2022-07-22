@@ -24,7 +24,7 @@ class KvantUserCreationForm(UserCreationForm, UserImageManagerMixin):
 class KvantUserChangeForm(UserChangeForm, UserImageManagerMixin):
     def __init__(self, *args, **kwargs):
         super(KvantUserChangeForm, self).__init__(*args, **kwargs)
-        super(UserImageManagerMixin, self).__init__(coef=0.35)
+        super(UserImageManagerMixin, self).__init__(coef=0.2)
     
     class Meta:
         model = KvantUser
@@ -34,7 +34,7 @@ class KvantUserChangeForm(UserChangeForm, UserImageManagerMixin):
 class ImageChangeForm(forms.ModelForm, UserImageManagerMixin):
         def __init__(self, *args, **kwargs):
             super(ImageChangeForm, self).__init__(*args, **kwargs)
-            super(UserImageManagerMixin, self).__init__(coef=0.35)
+            super(UserImageManagerMixin, self).__init__(coef=0.2)
         
         class Meta:
             model = KvantUser

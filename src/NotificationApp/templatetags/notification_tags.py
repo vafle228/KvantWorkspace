@@ -1,12 +1,16 @@
 from django import template
-from NotificationApp.models import TaskNotification, MailNotification
+
+from NotificationApp.models import KvantNotification
 
 
 register = template.Library()
 
 
 def getUserNotifications(user):
-    return list(TaskNotification.objects.filter(receiver=user)) + list(MailNotification.objects.filter(receiver=user))
+    return [
+        wrapper for wrapper in KvantNotification.objects.all() 
+        if wrapper.notification.receiver == user
+    ]
 
 
 register.filter('user_notifications', getUserNotifications)

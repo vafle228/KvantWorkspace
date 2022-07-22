@@ -2,12 +2,11 @@ from CoreApp.services.access import KvantObjectExistsMixin
 from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
 from LoginApp.models import KvantUser
+from NotificationApp.models import MailReceiveNotification
+from NotificationApp.services import NotificationBaseManger
 
 from .forms import MailReceiverSaveForm
 from .models import ImportantMail, KvantMessage, MailReceiver
-
-from NotificationApp.services import NotificationBaseManger
-from NotificationApp.forms import MailNotificationSaveForm
 
 
 def getMailById(mail_id):
@@ -57,20 +56,13 @@ class MailObjectManipulationManager(ObjectManipulationManager, NotificationBaseM
         
         if isinstance(mail_or_errors, KvantMessage):
             for receiver in mail_or_errors.receivers.all():
-                self.broadcastNotification(obj=mail_or_errors, receiver=receiver)
+                self.broadcastNotification(receiver=receiver.receiver, mail=mail_or_errors)
         return self.getResponse(mail_or_errors)
+
+    def buildBase(self, **kwargs):
+        return MailReceiveNotification.objects.create(**kwargs)
     
-    def buildNotification(self, **kwargs):
-        mail = kwargs.get('obj')
-        form = MailNotificationSaveForm({
-            'mail_obj': mail,
-            'receiver': kwargs.get('receiver').receiver,
-            'redirect_link': f"{rl('mail_box')}?type=received&mail={mail.id}",
-        })
-        return form.save() if form.is_valid() else None
-    
-    def _constructRedirectUrl(self, **kwargs):
-        return rl('mail_box') + '?type=received'
+    def _constructRedirectUrl(self, **kwargs): return rl('mail_box') + '?type=received'
 
 
 class KvantMailAccessMixin(KvantObjectExistsMixin): 
@@ -87,6 +79,18 @@ class KvantMailAccessMixin(KvantObjectExistsMixin):
     
     def _userReceiverTest(self, user, mail):
         return mail.receivers.filter(receiver=user).exists() or mail.sender == user
+
+
+class MailDeletionHandler:
+    def delteMail(self, mail, user):
+        if mail.sender != user:
+            self._cleanNotification(mail, user)
+            return mail.receivers.filter(receiver=user).delete()
+        return mail.delete()
+    
+    def _cleanNotification(self, mail, user):
+        if MailReceiveNotification.objects.filter(mail=mail, receiver=user).exists():
+            return MailReceiveNotification.objects.get(mail=mail, receiver=user).delete()
 
 
 class ChangeMailReadStatus:
@@ -111,6 +115,4 @@ class ChangeMailReadStatus:
 
 
 getReceivers = lambda user: KvantUser.objects.exclude(id=user.id)
-getSendMails = lambda user: len(KvantMessage.objects.filter(sender=user))
-getReceivedMails = lambda user: len(KvantMessage.objects.filter(receivers__receiver=user))
 getNewMails = lambda user: len(MailReceiver.objects.filter(receiver=user).filter(is_read=False))

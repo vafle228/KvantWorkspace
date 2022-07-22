@@ -12,12 +12,6 @@ urlpatterns = [
     path('admin/', include('AdminApp.urls')),
     path('journal/', include('JournalApp.urls')),
     path('profile/', include('ProfileApp.urls')),
-    path('projects/', include('ProjectApp.urls')), 
+    path('projects/', include('ProjectApp.urls')),
+    path('notifications/', include('NotificationApp.urls')),
 ]
-
-
-from django.conf import settings
-from django.conf.urls.static import static
-
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

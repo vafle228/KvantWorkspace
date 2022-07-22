@@ -204,10 +204,9 @@
                 url: mail_url,
                 cache: false,
                 success: function(response){
-                    console.log(response.message)
                     if(response.status != 'Error'){
                         $("#mailDetailView").html(response)
-                        if ($(mail).hasClass('new')) { $(mail).removeClass('new') }
+                        if ($(mail).hasClass('new')) { $(mail).removeClass('new'); }
                         $('.mailView').addClass('active'); $('.mailView__empty').hide();
                     }
                     else{errorAlert({'message': response.message})}
