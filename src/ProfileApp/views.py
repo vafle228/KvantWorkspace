@@ -63,8 +63,7 @@ class ProjectsPageTemplateView(services.UserExistsMixin, generic.DetailView):
 
 class LogoutKvantUserView(KvantWorkspaceAccessMixin, generic.View):
     def get(self, request, *args, **kwargs):
-        logout(request)
-        return redirect('login_page')
+        logout(request); return redirect('login_page')
 
 
 class KvantUserChangeView(services.UserManipulationMixin, generic.View):
