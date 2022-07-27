@@ -182,6 +182,9 @@
                                         <p class="application__userRole">Ученик</p>
                                     </div>
                                 </div>
+                                
+                                {% if user == project.project.tutor or user == project.project.teamleader %}
+                                
                                 <div class="application__buttons row g8">
                                     <button class="dismiss combinedButton" onclick="manipulateApplication('decline', '{{ application.id }}')">
                                         <svg viewBox="0 0 320 512">
@@ -196,6 +199,8 @@
                                         <p>Принять</p>
                                     </button>
                                 </div>
+
+                                {% endif %}
                             </div>
                             <div class="ql-snow">
                                 <div class="ql-editor">

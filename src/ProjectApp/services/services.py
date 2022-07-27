@@ -2,7 +2,8 @@ from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
 from LoginApp.services import getUserById
 from NotificationApp.models import (ProjectApplication, ProjectTaskCreate,
-                                    ProjectTaskUpdate)
+                                    ProjectTaskUpdate, TeamApplyNotification,
+                                    TeamKickNotification, TeamleaderChangeNotification)
 from NotificationApp.services import NotificationBaseManger
 from ProjectApp.forms import KvantProjectTypeSaveForm
 from ProjectApp.models import (ActiveKvantProject, ClosedKvantProject,
@@ -161,26 +162,39 @@ class ProjectStatusManager:
         return self.project.delete()
 
 
-class ProjectTeamManager:
+class ProjectTeamManager(NotificationBaseManger):
     def __init__(self, project):
         self.project = project
     
-    def projectMemeberJoin(self, application, choise):
-        if choise == 'accept':
+    def projectMemeberJoin(self, application, request):
+        if request.POST.get("choise") == 'accept':
             self.project.team.add(application.sender)
+        
+            for receiver in getProjectUsers(self.project):
+                self.broadcastNotification(
+                    receiver=receiver, sender=request.user, 
+                    manipulated=application.sender, model=TeamApplyNotification
+                )
         application.delete()
     
-    def projectMemberKick(self, user_id):
-        user = getUserById(user_id)
+    def projectMemberKick(self, request):
+        user = getUserById(request.POST.get("user_identifier"))
         if user is not None:
-            self.project.team.remove(user)
-            self._cleanUserTasks(user)
+            for receiver in getProjectUsers(self.project):
+                self.broadcastNotification(
+                    receiver=receiver, sender=request.user,
+                    manipulated=user, model=TeamKickNotification,
+                )
+            self.project.team.remove(user); self._cleanUserTasks(user)
             
     def _cleanUserTasks(self, user):
         for task in self.project.tasks.filter(participants__id=user.id):
             task.participants.remove(user)
     
-    def changeTeamleader(self, user):
+    def changeTeamleader(self, request):
+        user = getUserById(request.POST.get("user_identifier"))
+        
+        if user is None: return
         if user == self.project.teamleader: return 
         
         self.project.team.remove(user)
@@ -188,6 +202,24 @@ class ProjectTeamManager:
         self.project.teamleader = user
         
         self.project.save()
+
+        for receiver in getProjectUsers(self.project):
+            self.broadcastNotification(
+                receiver=receiver, sender=request.user,
+                manipulated=user, model=TeamleaderChangeNotification,
+            )
+
+    def buildBase(self, **kwargs):
+        obj_kwargs = {
+            "project": self.project,
+            "sender": kwargs.get("sender"),
+            "receiver": kwargs.get("receiver"),
+            "manipulated": kwargs.get("manipulated"),
+        }
+
+        if kwargs.get('model').objects.filter(**obj_kwargs).exists():
+            kwargs.get('model').objects.get(**obj_kwargs).delete()
+        return kwargs.get('model').objects.create(**obj_kwargs)
 
 
 def updateTaskContext(project):

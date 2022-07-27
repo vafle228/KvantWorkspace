@@ -8,6 +8,8 @@ from NotificationApp.notifications.inotification import *
 from NotificationApp.notifications.mail_receive import *
 from NotificationApp.notifications.project_application import *
 from NotificationApp.notifications.project_task import *
+from NotificationApp.notifications.project_team import *
+from NotificationApp.notifications.project_teamleader import *
 
 
 class KvantNotification(models.Model):

@@ -140,8 +140,7 @@ class MemberRequestManipulationView(access.ProjectApplicationManageMixin, generi
     def post(self, request, *args, **kwargs):
         services.ProjectTeamManager(
             services.getProjectById(kwargs.get('project_identifier'))).projectMemeberJoin(
-            services.getRequestById(request.POST.get('application_identifier')), 
-            request.POST.get('choise'))
+            services.getRequestById(request.POST.get('application_identifier')),  request)
         return HttpResponse('Ok')
 
 
@@ -149,7 +148,7 @@ class ChangeProjectTeamleaderView(access.KvantProjectManageMixin, generic.View):
     def post(self, request, *args, **kwargs):
         services.ProjectTeamManager(
             services.getProjectById(kwargs.get('project_identifier'))
-        ).changeTeamleader(getUserById(request.POST.get('user_identifier')))
+        ).changeTeamleader(request)
         return HttpResponse('Ok')
 
 
@@ -165,7 +164,7 @@ class KickMemberView(access.KvantProjectManageMixin, generic.View):
     def post(self, request, *args, **kwargs):
         services.ProjectTeamManager(
             services.getProjectById(kwargs.get('project_identifier'))
-        ).projectMemberKick(request.POST.get('user_identifier'))
+        ).projectMemberKick(request)
         return HttpResponse('OK')
 
 

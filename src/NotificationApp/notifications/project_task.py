@@ -22,14 +22,6 @@ class ProjectTask(INotification):
     @property
     def title(self):
         return self._project.title
-    
-    @property
-    def redirect_link(self):
-        rl_args = {
-            "task_identifier": self.task.id,
-            "project_identifier": self._project.id,
-        }
-        return f'{rl("task_view", kwargs=rl_args)}'
 
 
 class ProjectTaskCreate(ProjectTask):
@@ -42,6 +34,14 @@ class ProjectTaskCreate(ProjectTask):
             user = f'{user} {self.sender.patronymic}'
         return f'<strong>{user}</strong> добавил новое задание <strong>{self.task.title}</strong>'
 
+    @property
+    def redirect_link(self):
+        rl_args = {
+            "task_identifier": self.task.id,
+            "project_identifier": self._project.id,
+        }
+        return f'{rl("task_view", kwargs=rl_args)}'
+
 
 class ProjectTaskUpdate(ProjectTask):
     sender  = models.ForeignKey(to="LoginApp.KvantUser", related_name="upd_invoker", on_delete=models.CASCADE)
@@ -52,3 +52,11 @@ class ProjectTaskUpdate(ProjectTask):
         if self.sender.patronymic is not None:
             user = f'{user} {self.sender.patronymic}'
         return f'<strong>{user}</strong> изменил задание <strong>{self.task.title}</strong>'
+
+    @property
+    def redirect_link(self):
+        rl_args = {
+            "task_identifier": self.task.id,
+            "project_identifier": self._project.id,
+        }
+        return f'{rl("task_view", kwargs=rl_args)}'
