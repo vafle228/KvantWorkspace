@@ -1,0 +1,66 @@
+body{
+    padding: 0;
+    --bgColor: #00a9a422;
+    --currentColor: #00a9a4;
+}
+
+.header{
+    position: fixed; top: 0; left: 0;
+    z-index: 1000000;
+    width: 100%; height: 5rem;
+    padding: 1rem 8rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background-color: #fff;
+}
+.header__logo{
+    height: 3rem;
+}
+
+.header::after{
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 1px; width: var(--progress);
+    background-color: #00a9a4;
+}
+.header::before{
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 1px; width: 100%;
+    background-color: #00a9a422;
+}
+
+
+.mainContainer{
+    height: auto;
+    background-color: #fff;
+    margin-top: 5rem;
+    padding: 4rem 8rem;
+    display: flex; flex-direction: column;
+}
+.input{
+    width: 20rem; height: 4rem;
+    flex: none;
+    border: #00a9a4aa solid 0.125rem;
+    background-color: #00a9a411;
+    border-radius: 0.5rem;
+    transition: all .2s;
+}
+.input:required:invalid{
+    border-color: #e4e6ea;
+    background-color: #fff;
+}
+.input::placeholder{
+    font-weight: normal;
+    color: #99a1a9;
+}
+.dropdownSelect__trigger{
+    width: 20rem; height: 4rem;
+    border-radius: 0.5rem;
+    border: #e4e6ea solid 0.125rem;
+}
+.dropdownSelect__trigger.active{
+    border: #00a9a4aa solid 0.125rem;
+    background-color: #00a9a411;
+}

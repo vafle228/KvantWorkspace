@@ -7,7 +7,7 @@ function initDropdown(){
                 }
                 $(this).addClass('selected');
                 this.closest('.dropdownSelect').querySelector('.dropdownSelect__trigger div').innerHTML = this.innerHTML;
-    
+                
                 this.closest('.dropdownSelect').querySelector('.dropdownSelect__trigger').classList.add('active');
                 $(this).parents(".filtering").next().removeClass("disable");
             }
