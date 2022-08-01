@@ -17,14 +17,14 @@ class SettingsPageTemplateView(services.UserExistsMixin, generic.DetailView):
     model               = KvantUser
     pk_url_kwarg        = 'user_identifier'
     context_object_name = 'requested_user'
-    template_name       = 'ProfileApp/SettingsPage/index.html'
+    template_name       = 'ProfileApp/ProfileInfo/index.html'
 
 
 class PortfolioPageListView(services.UserExistsMixin, generic.DetailView):
     model               = KvantUser
     pk_url_kwarg        = 'user_identifier'
     context_object_name = 'requested_user'
-    template_name       = 'ProfileApp/PortfolioPage/index.html'
+    template_name       = 'ProfileApp/ProfilePortfolio/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,7 +37,7 @@ class StaticsPageTemplateView(services.UserExistsMixin, generic.DetailView):
     model               = KvantUser
     pk_url_kwarg        = 'user_identifier'
     context_object_name = 'requested_user'
-    template_name       = 'ProfileApp/StatisticsPage/index.html'
+    template_name       = 'ProfileApp/ProfileStatistics/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,7 +50,7 @@ class ProjectsPageTemplateView(services.UserExistsMixin, generic.DetailView):
     model               = KvantUser
     pk_url_kwarg        = 'user_identifier'
     context_object_name = 'requested_user'
-    template_name       = 'ProfileApp/ProjectsPage/index.html'
+    template_name       = 'ProfileApp/ProfileProjects/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

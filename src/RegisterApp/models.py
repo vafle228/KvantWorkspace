@@ -1,5 +1,4 @@
 # from django.db import models
-# from LoginApp.models import KvantUser
 
 
 # class KvantUserParantContactInfo(models.Model):
@@ -14,7 +13,7 @@
 
 
 # class KvantUserContactInfo(models.Model):
-#     user = models.OneToOneField(KvantUser, on_delete=models.CASCADE)
+#     user = models.OneToOneField(to="LoginApp.KvantUser", on_delete=models.CASCADE)
     
 #     mother = models.OneToOneField(
 #         KvantUserParantContactInfo, related_name='mother',
@@ -31,4 +30,3 @@
 
 #     school = models.CharField(max_length=255)
 #     grade = models.CharField(max_length=255)
-

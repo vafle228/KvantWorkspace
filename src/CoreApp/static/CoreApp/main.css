@@ -18,6 +18,7 @@ body[colorScheme='colorScheme__green'].light__theme{
     --bgColor: #35a75511;
     --currentColor: #35a755;
 }
+
 body[colorScheme='colorScheme__blue'].dark__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
@@ -26,6 +27,7 @@ body[colorScheme='colorScheme__blue'].light__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
 }
+
 body[colorScheme='colorScheme__red'].dark__theme{
     --bgColor: #f1747311;
     --currentColor: #f17473;
@@ -34,6 +36,7 @@ body[colorScheme='colorScheme__red'].light__theme{
     --bgColor: #f1747311;
     --currentColor: #f17473;
 }
+
 body[colorScheme='colorScheme__purple'].dark__theme{
     --bgColor: #6f4bff11;
     --currentColor: #6f4bff;
@@ -253,7 +256,7 @@ body{
 
 .navigation__profile img{
     width: 2.5rem; height: 2.5rem;
-    margin: 1.5rem 0.5rem;
+    margin: 0.5rem 0.5rem 1rem 0.5rem;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -547,24 +550,6 @@ body{
     transform: rotate(45deg);
 }
 
-
-/* Вернуться в начало страницы */
-#arrowTop{
-    position: fixed;
-    bottom: 1rem; right: 1rem;
-    height: 3rem; width: 3rem;
-    background-color: var(--bgColor);
-    border-radius: 1rem;
-    padding: 0.875rem;
-    transform: rotate(-90deg);
-    opacity: 0.5;
-}
-#arrowTop:hover{
-    opacity: 1;
-}
-#arrowTop svg{
-    fill: var(--currentColor);
-}
 
 
 /* Кнопки */

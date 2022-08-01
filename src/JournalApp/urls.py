@@ -6,6 +6,7 @@ from .views import *
 # URLs для журнала
 urlpatterns = [
     path('', JournalPageTemplateView.as_view(), name='journal_page'),
+    path('shedule', ShedulePageTemplateView.as_view(), name='shedule_page'),
     
     path('journal/get', JournalDetailView.as_view(), name='journal_view'),
     path('journal/create', CreateTaskView.as_view(), name='lesson_task'),

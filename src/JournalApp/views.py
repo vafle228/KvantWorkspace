@@ -1,4 +1,4 @@
-from AdminApp.services import getCourseById, getCourseQuery
+from AdminApp.services import getCourseById, getCourseQuery, allUsers
 from CoreApp.services.access import KvantTeacherAndAdminAccessMixin
 from DiaryApp.models import KvantTaskBase
 from django.views import generic
@@ -16,6 +16,16 @@ class JournalPageTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateV
         context = super().get_context_data(**kwargs)
         context.update({
             'courses': getCourseQuery(self.request.user),})
+        return context
+
+
+class ShedulePageTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
+    template_name = 'JournalApp/ShedulePage/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["teachers"] = allUsers('Учитель')
+        
         return context
 
 

@@ -23,7 +23,23 @@
 
     <div class="mainContainer column">
 
-        <h1>Журнал</h1>
+        <header class="header flex space-between">
+            <h1>Курсы</h1>
+            <div class="menu">
+                <button class="menu__button active" onclick="location.href = `{% url 'journal_page' %}`">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M448 32C483.3 32 512 60.65 512 96V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM224 256V160H64V256H224zM64 320V416H224V320H64zM288 416H448V320H288V416zM448 256V160H288V256H448z"/>
+                    </svg>
+                    <p>Журнал</p>
+                </button>
+                <button class="menu__button" onclick="location.href = `{% url 'shedule_page' %}`">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM80 256C71.16 256 64 263.2 64 272V336C64 344.8 71.16 352 80 352H368C376.8 352 384 344.8 384 336V272C384 263.2 376.8 256 368 256H80z"/>
+                    </svg>
+                    <p>Расписание</p>
+                </button>
+            </div>
+        </header>
 
         <div class="filteringList">
             <div class="filtering" style="width: 16rem">
