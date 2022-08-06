@@ -1,4 +1,7 @@
+import datetime as dt
 from django import template
+
+from AdminApp.models import KvantCourse
 
 
 register = template.Library()
@@ -45,8 +48,18 @@ def get_active_mark(mark, seeking):
     return 'active' if seeking == mark else None
 
 
+def get_schedules(teacher, day):
+    schedules, DELTA = {}, dt.timedelta(minutes=100)
+    for course in KvantCourse.objects.filter(teacher=teacher, schedule__week_day=day):
+        for schedule in course.schedule.all():
+            end_time = (dt.datetime.combine(dt.date(1,1,1),schedule.time) + DELTA)
+            schedules[f'{course}'] = f'{schedule.time.strftime("%H:%M")} - {end_time.time().strftime("%H:%M")}'
+    return schedules
+
+
 register.filter('has_mark', has_mark)
 register.filter('get_mark', get_mark)
+register.filter('get_shedules', get_schedules)
 register.filter('get_mark_class', get_mark_class)
 register.filter('get_active_mark', get_active_mark)
 register.filter('get_avarage_mark', get_avarage_mark)

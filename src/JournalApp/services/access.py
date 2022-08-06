@@ -1,8 +1,11 @@
-from DiaryApp.models import KvantLesson, KvantTaskBase
-from CoreApp.services.access import KvantObjectExistsMixin
 from AdminApp.models import KvantCourse
 from AdminApp.services import getCourseById
-from .queryget import getLessonById, getBaseType, getBaseById
+from CoreApp.services.access import (KvantObjectExistsMixin,
+                                     KvantTeacherAndAdminAccessMixin)
+from DiaryApp.models import KvantLesson, KvantTaskBase
+from LoginApp.models import KvantUser
+
+from .queryget import getBaseById, getBaseType, getLessonById
 
 
 class KvantLessonAccessMixin(KvantObjectExistsMixin):
@@ -20,6 +23,21 @@ class KvantLessonAccessMixin(KvantObjectExistsMixin):
     
     def _lessonAccessTest(self, user, lesson):
         return lesson.course.teacher == user or user.permission == 'Администратор'
+
+
+class KvantSheduleAccessMixin(KvantObjectExistsMixin, KvantTeacherAndAdminAccessMixin):
+    request_object_arg = 'teacher_identifier'
+
+    def accessTest(self, **kwargs):
+        if super().accessTest(**kwargs):
+            return self._sheduleAccessTest(kwargs.get(self.request_object_arg))
+        return False
+
+    def _sheduleAccessTest(self, choise):
+        return choise == 'all' or KvantUser.objects.get(id=choise).permission == 'Учитель'
+
+    def _objectExiststTest(self, object_id):
+        return object_id == 'all' or KvantUser.objects.filter(id=object_id).exists()
 
 
 class KvantJournalAccessMixin(KvantObjectExistsMixin):

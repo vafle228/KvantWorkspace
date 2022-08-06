@@ -45,14 +45,12 @@
                         </div>
                         <div class="arrowDown"></div>
                     </div>
-                    <div class="dropdownSelect__options">
-                        <span class='dropdownSelect__option selected'>Все</span>
+                    <div class="dropdownSelect__options" id='choise'>
+                        <span class='dropdownSelect__option' value='all'>Все</span>
 
                         {% for teacher in teachers %}
-                        <span class='dropdownSelect__option'>
-                            {{ teacher.surname }}
-                            {{ teacher.name }}
-                            {{ teacher.patronymic }}
+                        <span class='dropdownSelect__option' value={{ teacher.id }}>
+                            {{ teacher.surname }} {{ teacher.name }} {{ teacher.patronymic }}
                         </span>
                         {% endfor %}
 
@@ -60,132 +58,57 @@
                 </div>
             </div>
 
-            <button class="secondaryButton" style="margin-top: auto">
+            <button class="secondaryButton" style="margin-top: auto" onclick="getShedule()">
                 <svg viewBox="0 0 512 512">
                     <path d="M448 32C483.3 32 512 60.65 512 96V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM224 256V160H64V256H224zM64 320V416H224V320H64zM288 416H448V320H288V416zM448 256V160H288V256H448z"/>
                 </svg>
                 Построить таблицу
             </button>
         </div>
-
-        <div class="schedule">
-            <div class="schedule__headers">
-                <div class="schedule__header"></div>
-                <div class="schedule__header">ПН</div>
-                <div class="schedule__header">ВТ</div>
-                <div class="schedule__header">СР</div>
-                <div class="schedule__header">ЧТ</div>
-                <div class="schedule__header">ПТ</div>
-                <div class="schedule__header">СБ</div>
-                <div class="schedule__header">ВС</div>
-            </div>
-            <div class="schedule__body">
-                <div class="schedule__row">
-                    <div class="schedule__teacher">
-                        <div class="row g16 items-center">
-                            <img src='../../img/avatars/Upstream-8.png' class="avatar"/>
-                            <div class="column g4">
-                                <p>Чеканова Елена Амуровна</p>
-                                <p>Информационные технологии</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="schedule__week">
-                        <div class="schedule__weekDay">
-                            <div class="lesson">
-                                <p class="lesson__group">IT 2-1</p>
-                                <p class="lesson__time">16:30 - 18:10</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 3-1</p>
-                                <p class="lesson__time">16:30 - 18:10</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-4</p>
-                                <p class="lesson__time">18:20 - 20:00</p>
-                            </div>
-                        </div>
-                        <div class="schedule__weekDay">
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-3</p>
-                                <p class="lesson__time">9:15 - 10:55</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-1</p>
-                                <p class="lesson__time">16:30 - 18:10</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 2-2</p>
-                                <p class="lesson__time">18:20 - 20:00</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 3-2</p>
-                                <p class="lesson__time">18:20 - 20:00</p>
-                            </div>
-                        </div>
-                        <div class="schedule__weekDay">
-                            <div class="lesson">
-                                <p class="lesson__group">IT 2-3</p>
-                                <p class="lesson__time">9:15 - 10:55</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-2</p>
-                                <p class="lesson__time">16:30 - 18:10</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 3-1</p>
-                                <p class="lesson__time">16:30 - 18:10</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-4</p>
-                                <p class="lesson__time">18:20 - 20:00</p>
-                            </div>
-                        </div>
-                        <div class="schedule__weekDay">
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-3</p>
-                                <p class="lesson__time">9:15 - 10:55</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-1</p>
-                                <p class="lesson__time">16:30 - 18:10</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 2-2</p>
-                                <p class="lesson__time">18:20 - 20:00</p>
-                            </div>
-                        </div>
-                        <div class="schedule__weekDay">
-                        </div>
-                        <div class="schedule__weekDay">
-                        </div>
-                        <div class="schedule__weekDay">
-                            <div class="lesson">
-                                <p class="lesson__group">IT 2-1</p>
-                                <p class="lesson__time">14:00 - 15:40</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 2-3</p>
-                                <p class="lesson__time">14:00 - 15:40</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 1-2</p>
-                                <p class="lesson__time">16:00 - 17:40</p>
-                            </div>
-                            <div class="lesson">
-                                <p class="lesson__group">IT 3-2</p>
-                                <p class="lesson__time">18:00 - 19:00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="schedule" id="shedule">
 
         </div>
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+
+    <script>
+        // Сохранение последних параметров
+        $(window).ready(() => {
+            const teacherVal = localStorage.getItem('teacher') || 'Не выбрано';
+            
+            const groupSelect = $('#groupSelect .dropdownSelect__options')[0];
+            for (let i = 0; i < groupSelect.children.length; i++) {
+                if($(groupSelect.children[i]).attr('value') == teacherVal){
+                    $(groupSelect.children[i]).addClass('selected')
+                    $('#groupSelect .dropdownSelect__trigger div')[0].textContent = $(groupSelect.children[i]).text()
+                }
+            }
+            getShedule();
+        });
+        $('#groupSelect .dropdownSelect__option').click(function() {
+            localStorage.setItem('teacher', $(this).attr('value'));
+        });
+    </script>
+
+    <script>
+        function getShedule(){
+            $.ajax({
+                type: 'GET',
+                url: '{% url "shedule_view" %}',
+                data:{
+                    'shedule_choise': $('#choise .selected').attr('value'),
+                },
+                cache: false,
+                success: function(response){
+                    $('#shedule').html(response)
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>

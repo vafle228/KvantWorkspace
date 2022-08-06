@@ -1,4 +1,6 @@
 from DiaryApp.models import KvantLesson, KvantTaskBase
+from AdminApp.services import allUsers
+from LoginApp.models import KvantUser
 
 
 def getBaseById(base_id):
@@ -31,3 +33,9 @@ def getBaseStudents(base):
     if getBaseType(base) == 'lesson':
         return base.kvantlesson.course.students.all()
     return KvantLesson.objects.get(tasks__base=base).course.students.all()
+
+
+def getSheduleTeachers(choise):
+    if choise == 'all':
+        return allUsers('Учитель')
+    return KvantUser.objects.filter(id=choise)

@@ -29,6 +29,20 @@ class ShedulePageTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateV
         return context
 
 
+class SheduleDetailView(access.KvantSheduleAccessMixin, generic.TemplateView):
+    template_name = 'JournalApp/SheduleView/index.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        kwargs.update(teacher_identifier=self.request.GET.get('shedule_choise'))
+        return super(access.KvantSheduleAccessMixin, self).dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(teachers=queryget.getSheduleTeachers(self.request.GET.get('shedule_choise')))
+        
+        return context
+
+
 class JournalDetailView(access.KvantJournalAccessMixin, generic.TemplateView):
     """ Контроллер получения конкретного журнала """
     template_name = 'JournalApp/JournalView/index.html'

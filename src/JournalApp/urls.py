@@ -8,7 +8,9 @@ urlpatterns = [
     path('', JournalPageTemplateView.as_view(), name='journal_page'),
     path('shedule', ShedulePageTemplateView.as_view(), name='shedule_page'),
     
+    path('shedule/get', SheduleDetailView.as_view(), name='shedule_view'),
     path('journal/get', JournalDetailView.as_view(), name='journal_view'),
+    
     path('journal/create', CreateTaskView.as_view(), name='lesson_task'),
     path('update/<int:base_identifier>', UpdateBaseView.as_view(), name='update_base'),
     path('delete/<int:base_identifier>', DeleteTaskView.as_view(), name='delete_base'),

@@ -1,129 +1,61 @@
+{% load journal_tags %}
+
 <body>
 
-    <div class="schedule">
-        <div class="schedule__headers">
-            <div class="schedule__header"></div>
-            <div class="schedule__header">ПН</div>
-            <div class="schedule__header">ВТ</div>
-            <div class="schedule__header">СР</div>
-            <div class="schedule__header">ЧТ</div>
-            <div class="schedule__header">ПТ</div>
-            <div class="schedule__header">СБ</div>
-            <div class="schedule__header">ВС</div>
-        </div>
+    <div class="schedule__headers">
+        <div class="schedule__header"></div>
+        <div class="schedule__header">ПН</div>
+        <div class="schedule__header">ВТ</div>
+        <div class="schedule__header">СР</div>
+        <div class="schedule__header">ЧТ</div>
+        <div class="schedule__header">ПТ</div>
+        <div class="schedule__header">СБ</div>
+        <div class="schedule__header">ВС</div>
+    </div>
 
-        {% for course in courses %}
+    {% for teacher in teachers %}
 
-        <div class="schedule__body">
-            <div class="schedule__row">
-                <div class="schedule__teacher">
-                    <div class="row g16 items-center">
-                        <img src='{{ course.teacher.image.url }}' class="avatar"/>
-                        <div class="column g4">
-                            <p>
-                                {{ course.teacher.surname }}
-                                {{ course.teacher.name }}
-                                {{ course.teacher.patronymic }}
-                            </p>
-                            <p>{{ course.type.name }}</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="schedule__week">
-                    <div class="schedule__weekDay">
-                        <div class="lesson">
-                            <p class="lesson__group">IT 2-1</p>
-                            <p class="lesson__time">16:30 - 18:10</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 3-1</p>
-                            <p class="lesson__time">16:30 - 18:10</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-4</p>
-                            <p class="lesson__time">18:20 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="schedule__weekDay">
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-3</p>
-                            <p class="lesson__time">9:15 - 10:55</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-1</p>
-                            <p class="lesson__time">16:30 - 18:10</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 2-2</p>
-                            <p class="lesson__time">18:20 - 20:00</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 3-2</p>
-                            <p class="lesson__time">18:20 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="schedule__weekDay">
-                        <div class="lesson">
-                            <p class="lesson__group">IT 2-3</p>
-                            <p class="lesson__time">9:15 - 10:55</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-2</p>
-                            <p class="lesson__time">16:30 - 18:10</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 3-1</p>
-                            <p class="lesson__time">16:30 - 18:10</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-4</p>
-                            <p class="lesson__time">18:20 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="schedule__weekDay">
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-3</p>
-                            <p class="lesson__time">9:15 - 10:55</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-1</p>
-                            <p class="lesson__time">16:30 - 18:10</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 2-2</p>
-                            <p class="lesson__time">18:20 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="schedule__weekDay">
-                    </div>
-                    <div class="schedule__weekDay">
-                    </div>
-                    <div class="schedule__weekDay">
-                        <div class="lesson">
-                            <p class="lesson__group">IT 2-1</p>
-                            <p class="lesson__time">14:00 - 15:40</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 2-3</p>
-                            <p class="lesson__time">14:00 - 15:40</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 1-2</p>
-                            <p class="lesson__time">16:00 - 17:40</p>
-                        </div>
-                        <div class="lesson">
-                            <p class="lesson__group">IT 3-2</p>
-                            <p class="lesson__time">18:00 - 19:00</p>
-                        </div>
+    <div class="schedule__body">
+        <div class="schedule__row">
+            <div class="schedule__teacher">
+                <div class="row g16 items-center" onclick="location.href=`{% url 'settings_page' teacher.id %}`">
+                    <img src='{{ teacher.image.url }}' class="avatar"/>
+                    <div class="column g4">
+                        <p>{{ teacher.surname }} {{ teacher.name }} {{ teacher.patronymic }}</p>
+                        <p>Учитель</p>
                     </div>
                 </div>
             </div>
+            
+            <div class="schedule__week">
+
+                {% with 'ПН ВТ СР ЧТ ПТ СБ ВС' as week_days %}
+
+                    {% for day in week_days.split %}
+
+                    <div class="schedule__weekDay">
+                        {% with shedules=teacher|get_shedules:day %}
+
+                            {% for course, time in shedules.items %}
+                            <div class="lesson">
+                                <p class="lesson__group">{{ course }}</p>
+                                <p class="lesson__time">{{ time }}</p>
+                            </div>
+                            {% endfor %}
+
+                        {% endwith %}
+                    
+                    </div>
+
+                    {% endfor %}
+
+                {% endwith %}
+
+            </div>
         </div>
-
-        {% endfor %}
-
     </div>
+
+    {% endfor %}
 
 </body>
 
