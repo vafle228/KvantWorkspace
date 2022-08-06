@@ -36,11 +36,11 @@ class KvantApplicationSaveForm(forms.ModelForm):
 class KvantProjectSaveForm(forms.ModelForm, ProjectPreviewManagerMixin):
     class Meta:
         model = KvantProject
-        fields = ['tutor', 'title', 'description', 'image', 'teamleader']
+        fields = [ 'title', 'description', 'image']
     
     def __init__(self, *args, **kwargs):
         super(KvantProjectSaveForm, self).__init__(*args, **kwargs)
-        super(ProjectPreviewManagerMixin, self).__init__(coef=0.6)
+        super(ProjectPreviewManagerMixin, self).__init__(coef=0.5)
         
         self.fields['title'].error_messages.update({
             'invalid': u'Заголовок невалиден.',
@@ -56,6 +56,12 @@ class KvantProjectSubjectSaveForm(forms.ModelForm):
     class Meta:
         model = KvantProject
         fields = ['course_subject', ]
+
+
+class KvantProjectLeadersSaveForm(forms.ModelForm):
+    class Meta:
+        model = KvantProject
+        fields = ['tutor', 'teamleader', ]
 
 
 class KvantProjectFilesSaveForm(FileM2MBaseMixin):

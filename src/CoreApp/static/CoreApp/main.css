@@ -51,7 +51,6 @@ body[colorScheme='colorScheme__purple'].light__theme{
 .light__theme{
     --aside-bg-color: #fff;
     --item-bg-color: #fff;
-    /* --bg-color: #f6f8fa; */
     --bg-color: #f0f2f5;
 
     --text-primary-color: #2b292e;
@@ -108,7 +107,7 @@ html{
     /* Плавная прокрутка страницы */
     scroll-behavior: smooth;
 
-    /* Параметр, от которого зависит размер всех элементов */
+    /* Параметр, от которого зависит размер всех элементов */ 
     font-size: 16px;
 }
 
@@ -315,14 +314,6 @@ body{
 }
 
 @media screen and (max-width: 740px){
-    body{
-        padding-left: 0;
-        padding-bottom: 4rem;
-    }
-    .navigation{ display: none }
-    .navigationBar{ display: flex }
-}
-@media screen and (max-height: 420px){
     body{
         padding-left: 0;
         padding-bottom: 4rem;
@@ -1077,7 +1068,7 @@ td{
     background-color: #0006;
     visibility: hidden; opacity: 0;
     transition-property: visibility opacity;
-    transition-duration: .4s;
+    transition-duration: .25s;
     z-index: 999;
 }
 .modal.active::before{
@@ -1099,12 +1090,12 @@ td{
     border-radius: 0.75rem;
     border: 1px solid var(--theme-light);
     display: flex; flex-direction: column; gap: 0.75rem;
-    transform: translateY(160rem);
+    transform: scale(0.9);
     opacity: 0;
-    transition: transform .4s, opacity .4s;
+    transition: transform .25s, opacity .25s;
 }
 .modal.active .modal__content{
-    transform: translateY(0px);
+    transform: scale(1);
     opacity: 1;
 }
 
@@ -1125,6 +1116,7 @@ td{
 .modal__block .file{
     width: 16rem !important;
 }
+
 @media screen and (max-width: 740px){
     .modal__block{
         flex-direction: column; gap: 0.75rem;
@@ -1198,10 +1190,7 @@ td{
     color: var(--text-primary-color);
     font-size: 1rem;
 }
-.dark__theme .modal input[type=date]::-webkit-calendar-picker-indicator{
-    filter: invert();
-}
-
+.dark__theme .modal input[type=date]::-webkit-calendar-picker-indicator,
 .dark__theme .modal input[type=time]::-webkit-calendar-picker-indicator{
     filter: invert();
 }

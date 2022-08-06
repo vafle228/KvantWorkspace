@@ -13,6 +13,7 @@ urlpatterns = [
     path('workspace/<int:project_identifier>', views.ProjectWorkspaceDetailView.as_view(), name='project_tasks'),
 
     # Изменение проекта
+    path('update/<int:project_identifier>', views.ProjectUpdateView.as_view(), name='update_project'),
     path('hiring/<int:project_identifier>', views.HiringManipulationView.as_view(), name='manipulate_hiring'),
     path('close/<int:project_identifier>', views.ProjectFinishView.as_view(), name='close_project'),
     

@@ -7,8 +7,8 @@ from django.views import generic
 from LoginApp.services import getUserById
 
 from .forms import (KvantApplicationSaveForm, KvantProjectFilesSaveForm,
-                    KvantProjectSaveForm, KvantProjectSubjectSaveForm,
-                    KvantProjectTaskFilesSaveForm,
+                    KvantProjectLeadersSaveForm, KvantProjectSaveForm,
+                    KvantProjectSubjectSaveForm, KvantProjectTaskFilesSaveForm,
                     KvantProjectTaskParticipantsSaveForm,
                     KvantProjectTaskSaveForm, KvantProjectTypeSaveForm)
 from .models import KvantProject, KvantProjectTask
@@ -179,7 +179,8 @@ class ProjectFinishView(access.KvantProjectManageMixin, generic.View):
 class ProjectCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         object_manager = services.ProjectManipulationManager(
-            [KvantProjectSaveForm, KvantProjectSubjectSaveForm, KvantProjectFilesSaveForm])
+            [KvantProjectLeadersSaveForm, KvantProjectSaveForm, 
+            KvantProjectSubjectSaveForm, KvantProjectFilesSaveForm])
         return object_manager.createProject(request)
 
 
@@ -187,5 +188,5 @@ class ProjectUpdateView(access.KvantProjectManageMixin, generic.View):
     def post(self, request, *args, **kwargs):
         project = services.getProjectById(kwargs.get('project_identifier'))
         object_manager = services.ProjectManipulationManager(
-            [KvantProjectSaveForm, KvantProjectSubjectSaveForm, KvantProjectFilesSaveForm], object=project)
+            [KvantProjectSaveForm, KvantProjectFilesSaveForm], object=project)
         return object_manager.updateObject(request)
