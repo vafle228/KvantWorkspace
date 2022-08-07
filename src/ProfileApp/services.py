@@ -3,17 +3,17 @@ from os.path import splitext
 from sys import getsizeof
 
 import fitz
+from CoreApp.services.access import KvantObjectExistsMixin
 from CoreApp.services.image import ImageThumbnailBaseMixin
 from CoreApp.services.utils import ObjectManipulationManager
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.forms.utils import ErrorDict
 from django.urls import reverse_lazy as rl
-from PIL import Image
-
 from LoginApp.models import KvantUser
 from LoginApp.services import getUserById
+from PIL import Image
 
-from .models import KvantAward
-from CoreApp.services.access import KvantObjectExistsMixin
+from .models import KvantAward, SocialInfo
 
 
 def getUserAwardsQuery(user):
@@ -22,7 +22,13 @@ def getUserAwardsQuery(user):
 
 
 class UserManipulationManager(ObjectManipulationManager):
+    def updateObject(self, request):
+        obj_or_errors = self._getUpdatedObject(request)
+        return self.getResponse(obj_or_errors), not isinstance(obj_or_errors, ErrorDict)
+    
     def _constructRedirectUrl(self, **kwargs):
+        if isinstance(kwargs.get('obj'), SocialInfo):
+            kwargs['obj'] = kwargs.get('obj').user
         return rl('settings_page', kwargs={'user_identifier': kwargs.get('obj').id})
 
 
@@ -75,4 +81,4 @@ class UserManipulationMixin(UserExistsMixin):
         return False
     
     def _profileAccessTest(self, user, requested_user):
-        return user == requested_user or user.permission == 'Администратор'
+        return user == requested_user or user.permission != 'Ученик'

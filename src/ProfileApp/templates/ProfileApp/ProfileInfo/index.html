@@ -1,4 +1,5 @@
 {% load static %}
+{% load profile_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -14,30 +15,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
     
     <title>Личный кабинет</title>
-
-    <style>
-		body[colorScheme='colorScheme__blue']{
-		    --illustration: url({% static 'ProfileApp/imgs/1.jpeg' %});
-		}
-
-		body[colorScheme='colorScheme__red']{
-		    --illustration: url({% static 'ProfileApp/imgs/5.jpeg' %});
-		}
-
-		body[colorScheme='colorScheme__purple']{
-		    --illustration: url({% static 'ProfileApp/imgs/11.jpeg' %});
-		}
-		body[colorScheme='colorScheme__green']{
-		    --illustration: url({% static 'ProfileApp/imgs/6.jpeg' %});
-		}
-	</style>
 </head>
 
 <body>
     {% include "CoreApp/AsideMenu/index.html" with user=user %}
     
     <section class="mainContainer">
-        {% include "ProfileApp/ProfileBar/index.html" with user=user %}
+        {% include "ProfileApp/ProfileBar/index.html" with requested_user=requested_user %}
 
         <div class="profileContent column g24 scrollbar">
             
@@ -47,71 +31,144 @@
                     <div class="profileCard">
 
                         <div class="profileCard__profile">
-                            <div class="profileCard__banner"></div>
-            
-                            <div class="profileCard__imgBox">
-                                <img src="{{ user.image.url }}" alt="profileImg" class='profileCard__profileImg'>
+                            
+                            {% if requested_user == user or user.permission != 'Ученик' %}
+                            
+                            <div class="profileCard__banner editable" onclick="openFileDialog('#profileBanner-input')">
+                                <img src="{{ requested_user.socialinfo.banner.url }}" alt="bannerImg">
+                                <svg viewBox="0 0 512 512">
+                                    <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                                </svg>
+                            </div>
+                            
+                            <input id="profileBanner-input" type="file" style="display: none;" onchange='ImageChangeHandler(event, "banner")' accept="image/*"/>
+
+                            <div class="profileCard__imgBox editable" onclick="openFileDialog('#profileImg-input')">
+                                <img src="{{ requested_user.image.url }}" alt="profileImg" class='profileCard__profileImg'>
                                 <svg viewBox="0 0 512 512">
                                     <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
                                 </svg>
                             </div>
-                
-                            <div class="column g4">
-                                <p class="profileCard__profileName">{{ user.surname }} {{ user.name }}</p>
-                                <p class="profileCard__profileRole">{{ user.permission }}</p>
+
+                            <input id="profileImg-input" type="file" style="display: none;" onchange='ImageChangeHandler(event, "image")' accept="image/*"/>
+
+                            <script>
+                                function ImageChangeHandler(event, type){
+                                    if(event.target.files[0] !== undefined){
+                                        let user_form = new FormData();
+                        
+                                        user_form.append(type, event.target.files[0])
+                                        user_form.append('vk', '{{ requested_user.socialinfo.vk }}')
+                                        user_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+                                        user_form.append('github', '{{ requested_user.socialinfo.github }}')
+                                        user_form.append('telegram', '{{ requested_user.socialinfo.telegram }}')
+                                        user_form.append('description', '{{ requested_user.socialinfo.description|safe }}')
+                                        
+                                        sendInstanceData(user_form, '{% url "update_user" requested_user.id %}', $('<button/>'))
+                                    }
+                                }
+                            </script>
+
+                            {% else %}
+
+                            <div class="profileCard__banner">
+                                <img src="{{ requested_user.socialinfo.banner.url }}" alt="bannerImg">
+                                <svg viewBox="0 0 512 512">
+                                    <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
+                                </svg>
                             </div>
 
+                            <div class="profileCard__imgBox">
+                                <img src="{{ requested_user.image.url }}" alt="profileImg" class='profileCard__profileImg'>
+                                <svg viewBox="0 0 512 512">
+                                    <path d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path>
+                                </svg>
+                            </div>
+
+                            {% endif %}
+                
+                            <div class="column g4">
+                                <p class="profileCard__profileName">{{ requested_user.surname }} {{ requested_user.name }}</p>
+                                <p class="profileCard__profileRole">{{ requested_user.permission }}</p>
+                            </div>
+
+                            {% if requested_user == user %}
+                            
                             <div class="actions row g8">
-                                <button class="standartButton" id="log_out">
+                                <button class="standartButton" id="log_out" onclick="location.href=`{% url 'logout_user' %}`">
                                     <svg viewBox="0 0 512 512">
                                         <path d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z"/>
                                     </svg>
                                     Выйти
                                 </button>
                             </div>
+
+                            {% endif %}
+
                         </div>
                         
                         <div class="flex space-between items-center">
                             <h3>Описание</h3>
+
+                            {% if requested_user == user or user.permission != 'Ученик' %}
+
                             <button class="standartButton" onclick="open_form('#editDescriptionForm')">
                                 <svg viewBox="0 0 512 512">
                                     <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
                                 </svg>
                                 Редактировать
                             </button>
+                            
+                            {% endif %}
+
                         </div>
-                        <p class='profileCard__description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut nisi officiis nemo error voluptatem iure numquam quasi. Delectus dolore earum blanditiis corporis consectetur autem non. Laboriosam, aliquam qui molestias, inventore consequuntur porro impedit obcaecati quidem, at delectus error consectetur perspiciatis placeat accusamus soluta quos nihil. Doloribus deserunt inventore commodi quaerat ipsa maxime! Quo qui veniam nihil dignissimos commodi ex at autem, odio optio porro magnam consequuntur, eligendi laudantium harum et? Iste aperiam facilis, pariatur praesentium saepe quibusdam. Explicabo commodi corporis, harum id a ut consequatur quod sapiente neque? Fugit veniam magni quidem repellat facilis assumenda itaque qui illo laudantium cumque.</p>
-            
-                        <h3>Направления</h3>
-                        <div class="tag__group">
-                            <span class="tag">
-                                <p>Информационные технологии</p>
-                            </span>
-                            <span class="tag">
-                                <p>Математика</p>
-                            </span>
-                            <span class="tag">
-                                <p>Технический английский</p>
-                            </span>
+                        
+                        <div class="ql-snow">
+                            <div class="ql-editor">
+                                <p class="profileCard__description">{{ requested_user.socialinfo.description|safe }}</p>
+                            </div>
                         </div>
+                        
+                        {% with courses=requested_user|get_user_courses %}
+                            {% if courses|length != 0 %}
+                        
+                            <h3>Направления</h3>
+                            <div class="tag__group">
+                                
+                                {% for course in courses %}
+                                <span class="tag">
+                                    <p>{{ course }}</p>
+                                </span>
+                                {% endfor %}
+
+                            </div>
+
+                            {% endif %}
+                        {% endwith %}
             
                         <div class="flex space-between items-center">
                             <h3>Ссылки</h3>
+
+                            {% if requested_user == user or user.permission != 'Ученик' %}
+                            
                             <button class="standartButton" onclick="open_form('#editLinksForm')">
                                 <svg viewBox="0 0 512 512">
                                     <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
                                 </svg>
                                 Редактировать
                             </button>
+
+                            {% endif %}
+
                         </div>
                         <div class="tag__group">
-                            <span class="tag">
+                            <span class="tag" onclick="location.href = '{{ requested_user.socialinfo.github }}'">
                                 <svg viewBox="0 0 24 24">
                                     <path fill='var(--text-primary-color)' d="M12,2.2467A10.00042,10.00042,0,0,0,8.83752,21.73419c.5.08752.6875-.21247.6875-.475,0-.23749-.01251-1.025-.01251-1.86249C7,19.85919,6.35,18.78423,6.15,18.22173A3.636,3.636,0,0,0,5.125,16.8092c-.35-.1875-.85-.65-.01251-.66248A2.00117,2.00117,0,0,1,6.65,17.17169a2.13742,2.13742,0,0,0,2.91248.825A2.10376,2.10376,0,0,1,10.2,16.65923c-2.225-.25-4.55-1.11254-4.55-4.9375a3.89187,3.89187,0,0,1,1.025-2.6875,3.59373,3.59373,0,0,1,.1-2.65s.83747-.26251,2.75,1.025a9.42747,9.42747,0,0,1,5,0c1.91248-1.3,2.75-1.025,2.75-1.025a3.59323,3.59323,0,0,1,.1,2.65,3.869,3.869,0,0,1,1.025,2.6875c0,3.83747-2.33752,4.6875-4.5625,4.9375a2.36814,2.36814,0,0,1,.675,1.85c0,1.33752-.01251,2.41248-.01251,2.75,0,.26251.1875.575.6875.475A10.0053,10.0053,0,0,0,12,2.2467Z"/>
                                 </svg>
                                 <p>GitHub</p>
                             </span>
-                            <span class="tag">
+                            <span class="tag" onclick="location.href = '{{ requested_user.socialinfo.telegram }}'">
                                 <svg viewBox="0 0 48 48">
                                     <rect width="48" height="48" fill="#419FD9" rx="24"/>
                                     <rect width="48" height="48" fill="url(#paint0_linear)" rx="24"/>
@@ -119,28 +176,19 @@
                                 </svg>
                                 <p>Telegram</p>
                             </span>
-                            <span class="tag">
+                            <span class="tag" onclick="location.href = '{{ requested_user.socialinfo.vk }}'">
                                 <svg viewBox="0 0 48 48">
                                     <path d="M0 23.04C0 12.1788 0 6.74826 3.37413 3.37413C6.74826 0 12.1788 0 23.04 0H24.96C35.8212 0 41.2517 0 44.6259 3.37413C48 6.74826 48 12.1788 48 23.04V24.96C48 35.8212 48 41.2517 44.6259 44.6259C41.2517 48 35.8212 48 24.96 48H23.04C12.1788 48 6.74826 48 3.37413 44.6259C0 41.2517 0 35.8212 0 24.96V23.04Z" fill="#0077FF"/>
                                     <path d="M25.54 34.5801C14.6 34.5801 8.3601 27.0801 8.1001 14.6001H13.5801C13.7601 23.7601 17.8 27.6401 21 28.4401V14.6001H26.1602V22.5001C29.3202 22.1601 32.6398 18.5601 33.7598 14.6001H38.9199C38.0599 19.4801 34.4599 23.0801 31.8999 24.5601C34.4599 25.7601 38.5601 28.9001 40.1201 34.5801H34.4399C33.2199 30.7801 30.1802 27.8401 26.1602 27.4401V34.5801H25.54Z" fill="white"/>
                                 </svg>
                                 <p>Вконтакте</p>
                             </span>
-                            <!-- <span class="tag">
-                                <svg viewBox="0 0 1024 1024">
-                                    <path fill="#1877f2" d="M1024,512C1024,229.23016,794.76978,0,512,0S0,229.23016,0,512c0,255.554,187.231,467.37012,432,505.77777V660H302V512H432V399.2C432,270.87982,508.43854,200,625.38922,200,681.40765,200,740,210,740,210V336H675.43713C611.83508,336,592,375.46667,592,415.95728V512H734L711.3,660H592v357.77777C836.769,979.37012,1024,767.554,1024,512Z"/>
-                                    <path fill="#fff" d="M711.3,660,734,512H592V415.95728C592,375.46667,611.83508,336,675.43713,336H740V210s-58.59235-10-114.61078-10C508.43854,200,432,270.87982,432,399.2V512H302V660H432v357.77777a517.39619,517.39619,0,0,0,160,0V660Z"/>
-                                </svg>
-                                <p>Facebook</p>
-                            </span>
-                            <span class="tag">
-                                <svg viewBox="0 0 102 102"><defs><radialGradient id="a" cx="6.601" cy="99.766" r="129.502" gradientUnits="userSpaceOnUse"><stop offset=".09" stop-color="#fa8f21"/><stop offset=".78" stop-color="#d82d7e"/></radialGradient><radialGradient id="b" cx="70.652" cy="96.49" r="113.963" gradientUnits="userSpaceOnUse"><stop offset=".64" stop-color="#8c3aaa" stop-opacity="0"/><stop offset="1" stop-color="#8c3aaa"/></radialGradient></defs><path fill="url(#a)" d="M25.865,101.639A34.341,34.341,0,0,1,14.312,99.5a19.329,19.329,0,0,1-7.154-4.653A19.181,19.181,0,0,1,2.5,87.694,34.341,34.341,0,0,1,.364,76.142C.061,69.584,0,67.617,0,51s.067-18.577.361-25.14A34.534,34.534,0,0,1,2.5,14.312,19.4,19.4,0,0,1,7.154,7.154,19.206,19.206,0,0,1,14.309,2.5,34.341,34.341,0,0,1,25.862.361C32.422.061,34.392,0,51,0s18.577.067,25.14.361A34.534,34.534,0,0,1,87.691,2.5a19.254,19.254,0,0,1,7.154,4.653A19.267,19.267,0,0,1,99.5,14.309a34.341,34.341,0,0,1,2.14,11.553c.3,6.563.361,8.528.361,25.14s-.061,18.577-.361,25.14A34.5,34.5,0,0,1,99.5,87.694,20.6,20.6,0,0,1,87.691,99.5a34.342,34.342,0,0,1-11.553,2.14c-6.557.3-8.528.361-25.14.361s-18.577-.058-25.134-.361" data-name="Path 16"/><path fill="url(#b)" d="M25.865,101.639A34.341,34.341,0,0,1,14.312,99.5a19.329,19.329,0,0,1-7.154-4.653A19.181,19.181,0,0,1,2.5,87.694,34.341,34.341,0,0,1,.364,76.142C.061,69.584,0,67.617,0,51s.067-18.577.361-25.14A34.534,34.534,0,0,1,2.5,14.312,19.4,19.4,0,0,1,7.154,7.154,19.206,19.206,0,0,1,14.309,2.5,34.341,34.341,0,0,1,25.862.361C32.422.061,34.392,0,51,0s18.577.067,25.14.361A34.534,34.534,0,0,1,87.691,2.5a19.254,19.254,0,0,1,7.154,4.653A19.267,19.267,0,0,1,99.5,14.309a34.341,34.341,0,0,1,2.14,11.553c.3,6.563.361,8.528.361,25.14s-.061,18.577-.361,25.14A34.5,34.5,0,0,1,99.5,87.694,20.6,20.6,0,0,1,87.691,99.5a34.342,34.342,0,0,1-11.553,2.14c-6.557.3-8.528.361-25.14.361s-18.577-.058-25.134-.361" data-name="Path 17"/><path fill="#fff" d="M461.114,477.413a12.631,12.631,0,1,1,12.629,12.632,12.631,12.631,0,0,1-12.629-12.632m-6.829,0a19.458,19.458,0,1,0,19.458-19.458,19.457,19.457,0,0,0-19.458,19.458m35.139-20.229a4.547,4.547,0,1,0,4.549-4.545h0a4.549,4.549,0,0,0-4.547,4.545m-30.99,51.074a20.943,20.943,0,0,1-7.037-1.3,12.547,12.547,0,0,1-7.193-7.19,20.923,20.923,0,0,1-1.3-7.037c-.184-3.994-.22-5.194-.22-15.313s.04-11.316.22-15.314a21.082,21.082,0,0,1,1.3-7.037,12.54,12.54,0,0,1,7.193-7.193,20.924,20.924,0,0,1,7.037-1.3c3.994-.184,5.194-.22,15.309-.22s11.316.039,15.314.221a21.082,21.082,0,0,1,7.037,1.3,12.541,12.541,0,0,1,7.193,7.193,20.926,20.926,0,0,1,1.3,7.037c.184,4,.22,5.194.22,15.314s-.037,11.316-.22,15.314a21.023,21.023,0,0,1-1.3,7.037,12.547,12.547,0,0,1-7.193,7.19,20.925,20.925,0,0,1-7.037,1.3c-3.994.184-5.194.22-15.314.22s-11.316-.037-15.309-.22m-.314-68.509a27.786,27.786,0,0,0-9.2,1.76,19.373,19.373,0,0,0-11.083,11.083,27.794,27.794,0,0,0-1.76,9.2c-.187,4.04-.229,5.332-.229,15.623s.043,11.582.229,15.623a27.793,27.793,0,0,0,1.76,9.2,19.374,19.374,0,0,0,11.083,11.083,27.813,27.813,0,0,0,9.2,1.76c4.042.184,5.332.229,15.623.229s11.582-.043,15.623-.229a27.8,27.8,0,0,0,9.2-1.76,19.374,19.374,0,0,0,11.083-11.083,27.716,27.716,0,0,0,1.76-9.2c.184-4.043.226-5.332.226-15.623s-.043-11.582-.226-15.623a27.786,27.786,0,0,0-1.76-9.2,19.379,19.379,0,0,0-11.08-11.083,27.748,27.748,0,0,0-9.2-1.76c-4.041-.185-5.332-.229-15.621-.229s-11.583.043-15.626.229" data-name="Path 18" transform="translate(-422.637 -426.196)"/></svg>
-                                <p>Instagram</p>
-                            </span> -->
                         </div>
 
                     </div>
 
+                    {% if requested_user == user %}
+                    
                     <!-- Персонализация -->
                     <div class="card">
                         <h1>Персонализация</h1>
@@ -191,6 +239,11 @@
                             </div>
                         </div>
                     </div>
+
+                    {% endif %}
+                    
+                    {% if requested_user == user or user.permission != 'Ученик' %}
+                    
                     <div class="card">
                         <h1>Личные данные</h1>
                         <div class="flex space-between items-center">
@@ -447,161 +500,8 @@
                         </div>
                     </div>
 
-                </div>
-                <div class="profile__tab" id='projectTab'>  
-                    <section class="projects">
-                        <div class="project">
-                            <img src="../../img/drone.png" class="project__illustration">
-                            <div class="project__content">
-                                <p class="project__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, aliquam.</p>
-                                <p class="project__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sint voluptatibus modi hic debitis quos, id quidem aspernatur deserunt voluptates dicta perferendis ratione rem aperiam laboriosam, fugiat expedita? Numquam quos sunt unde facere autem natus, tempore, veritatis, est eveniet ipsum quod omnis aperiam quo reiciendis. Libero eos minus obcaecati et.</p>
-                                <div class="project__info">
-                                    <div class="column g8">
-                                        <p>Направление</p>
-                                        <div class="row g8">
-                                            <span class="tag">Направление</span>
-                                            <span class="tag">Направление</span>
-                                        </div>
-                                    </div>
-                                    <div class="column g8">
-                                        <p>Статус</p>
-                                        <span class="tag">Активный</span>
-                                    </div>
-                                    <div class="column g8">
-                                        <p>Набор участников</p>
-                                        <span class="tag">Открыт</span>
-                                    </div>
-                                    <div class="column g8">
-                                        <p>Участники</p>
-                                        <div class="project__members members">
-                                            <div class="member" title="Фамилия Имя">
-                                                <img src="../../img/avatars/Upstream-8.png" class="avatar">
-                                            </div>
-                                            <div class="member" title="Фамилия Имя">
-                                                <img src="../../img/avatars/Upstream-7.png" class="avatar">
-                                            </div>
-                                            <div class="member" title="Фамилия Имя">
-                                                <img src="../../img/avatars/Upstream-5.png" class="avatar">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="profile__tab" id='portfolioTab'>
-                    <header>
-                        <button class="secondaryButton">
-                            <svg viewBox="0 0 384 512">
-                                <path d="M86.63 342.6L160 269.3V448c0 17.69 14.31 32 32 32s32-14.31 32-32V269.3l73.38 73.38C303.6 348.9 311.8 352 320 352s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25l-128-128c-12.5-12.5-32.75-12.5-45.25 0l-128 128c-12.5 12.5-12.5 32.75 0 45.25S74.13 355.1 86.63 342.6zM32 96h320c17.69 0 32-14.31 32-32s-14.31-32-32-32H32C14.31 32 0 46.31 0 64S14.31 96 32 96z"/>
-                            </svg>
-                            Загрузить
-                        </button>
-                    </header>
-                    <div class="galleryBox">
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кванториада.png">
-                            <img src="../../img/Портфолио/Кванториада.png" />
-                        </a>
-                        <a data-fancybox="gallery" href="../../img/Портфолио/Кампус (палка).png">
-                            <img src="../../img/Портфолио/Кампус (палка).png" />
-                        </a>
-                    </div>
-                </div>
-                <div class="profile__tab" id='statisticsTab'>
-                    <h1>Статистика</h1>
-                    <div class="statisticsCards">
-                        <div class="statisticsCard">
-                            <svg viewBox="0 0 640 512" class="statisticsCard__illustration">
-                                <path d="M518.6 121.4L630.6 233.4C643.1 245.9 643.1 266.1 630.6 278.6L518.6 390.6C506.1 403.1 485.9 403.1 473.4 390.6C460.9 378.1 460.9 357.9 473.4 345.4L562.7 256L473.4 166.6C460.9 154.1 460.9 133.9 473.4 121.4C485.9 108.9 506.1 108.9 518.6 121.4V121.4zM166.6 166.6L77.25 256L166.6 345.4C179.1 357.9 179.1 378.1 166.6 390.6C154.1 403.1 133.9 403.1 121.4 390.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4L121.4 121.4C133.9 108.9 154.1 108.9 166.6 121.4C179.1 133.9 179.1 154.1 166.6 166.6V166.6z"/>
-                                <path style='opacity: .4' d="M414.8 40.79L286.8 488.8C281.9 505.8 264.2 515.6 247.2 510.8C230.2 505.9 220.4 488.2 225.2 471.2L353.2 23.21C358.1 6.216 375.8-3.624 392.8 1.232C409.8 6.087 419.6 23.8 414.8 40.79z"/>
-                            </svg>
-                            <p class="statisticsCard__title">Информационные технологии</p>
-                            <div class="statisticsCard__points">
-                                <div class="statisticsCard__point">
-                                    <p>Успеваемость</p>
-                                    <p>3.75</p>
-                                    <div class="scale">
-                                        <div class="subscale" style="--percent: calc(((3.75 - 1) / 3) * 100%)"></div>
-                                    </div>
-                                </div>
-                                <div class="statisticsCard__point">
-                                    <p>Посещаемость</p>
-                                    <p>86%</p>
-                                    <div class="scale">
-                                        <div class="subscale" style="--percent: 86%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="statisticsCard">
-                            <svg viewBox="0 0 640 512" class="statisticsCard__illustration">
-                                <path d="M192 .0146L160 .0098c-52.94 0-96 43.07-96 96v96H32c-17.67 0-32 14.31-32 32s14.33 32 32 32h32v128c0 17.66-14.36 31.1-32 31.1c-17.67 0-32 14.32-32 32s14.33 32 32 32c52.94 0 96-43.06 96-96v-128h32c17.67 0 32-14.31 32-32s-14.33-32-32-32H128v-96C128 78.36 142.4 64.01 160 64.01l32 .0049c17.67 0 32-14.31 32-32S209.7 .0146 192 .0146zM477.3 320l33.38-33.38c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0L432 274.8l-33.38-33.38c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25l33.38 33.38l-33.38 33.38c-12.5 12.5-12.5 32.75 0 45.25c6.25 6.25 14.44 9.375 22.62 9.375s16.38-3.125 22.62-9.375L432 365.3l33.38 33.38c6.25 6.25 14.44 9.375 22.62 9.375s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L477.3 320z"/>
-                                <path style='opacity: .4' d="M321.2 133C306.3 123.5 286.5 127.1 276.1 142.9c-70.48 110.9-70.48 243.4 0 354.3c6.109 9.594 16.47 14.84 27.05 14.84c5.875 0 11.81-1.625 17.12-5c14.92-9.469 19.33-29.25 9.859-44.16c-57.69-90.78-57.69-194.9 0-285.7C340.5 162.3 336.1 142.5 321.2 133zM587 142.9c-9.516-14.91-29.28-19.31-44.17-9.844c-14.92 9.469-19.33 29.25-9.859 44.16c57.69 90.78 57.69 194.9 0 285.7c-9.469 14.91-5.062 34.69 9.859 44.16c5.312 3.406 11.25 5 17.12 5c10.58 0 20.94-5.25 27.05-14.84C657.5 386.2 657.5 253.8 587 142.9z"/>
-                            </svg>
-                            <p class="statisticsCard__title">Математика</p>
-                            <div class="statisticsCard__points">
-                                <div class="statisticsCard__point">
-                                    <p>Успеваемость</p>
-                                    <p>4.00</p>
-                                    <div class="scale">
-                                        <div class="subscale" style="--percent: calc(((4.00 - 1) / 3) * 100%)"></div>
-                                    </div>
-                                </div>
-                                <div class="statisticsCard__point">
-                                    <p>Посещаемость</p>
-                                    <p>96%</p>
-                                    <div class="scale">
-                                        <div class="subscale" style="--percent: 96%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="statisticsCard">
-                            <svg viewBox="0 0 640 512" class="statisticsCard__illustration">
-                                <path d="M640 384C640 419.3 611.3 448 576 448H320V64H576C611.3 64 640 92.65 640 128V384zM500 184C500 172.1 491 164 480 164C468.1 164 460 172.1 460 184V188H408C396.1 188 388 196.1 388 208C388 219 396.1 228 408 228H515.1C507.8 244.7 497.7 259.9 485.3 272.1L484.7 272.4L470.1 257.9C462.3 250 449.7 250 441.9 257.9C434 265.7 434 278.3 441.9 286.1L454 298.3C448.1 301.1 441.9 305.2 435.5 308.1L431.9 309.7C421.8 314.2 417.2 326 421.7 336.1C426.2 346.2 438 350.8 448.1 346.3L451.8 344.7C463.8 339.3 475.2 332.8 485.7 325.3C489.1 328.3 494.4 331.1 498.8 333.8L517.7 345.1C527.2 350.8 539.5 347.8 545.2 338.3C550.8 328.8 547.8 316.5 538.3 310.9L519.4 299.5C518.5 298.1 517.6 298.4 516.7 297.9C533.9 279.1 547.5 256.1 556.4 232.5L558 228H560C571 228 580 219 580 208C580 196.1 571 188 560 188H500V184zM160 164C167.9 164 175.1 168.7 178.3 175.9L242.3 319.9C246.8 329.1 242.2 341.8 232.1 346.3C222 350.8 210.2 346.2 205.7 336.1L196.8 315.1H123.2L114.3 336.1C109.8 346.2 97.97 350.8 87.88 346.3C77.78 341.8 73.24 329.1 77.72 319.9L141.7 175.9C144.9 168.7 152.1 164 160 164H160zM140.1 276H179L160 233.2L140.1 276z"/>
-                                <path style='opacity: .4' d="M160 233.2L179 276H140.1L160 233.2zM0 128C0 92.65 28.65 64 64 64H320V448H64C28.65 448 0 419.3 0 384V128zM141.7 175.9L77.72 319.9C73.24 329.1 77.78 341.8 87.88 346.3C97.97 350.8 109.8 346.2 114.3 336.1L123.2 315.1H196.8L205.7 336.1C210.2 346.2 222 350.8 232.1 346.3C242.2 341.8 246.8 329.1 242.3 319.9L178.3 175.9C175.1 168.7 167.9 164 160 164C152.1 164 144.9 168.7 141.7 175.9H141.7z"/>
-                            </svg>
-                            <p class="statisticsCard__title">Технический английский</p>
-                            <div class="statisticsCard__points">
-                                <div class="statisticsCard__point">
-                                    <p>Успеваемость</p>
-                                    <p>2.40</p>
-                                    <div class="scale">
-                                        <div class="subscale" style="--percent: calc(((2.40 - 1) / 3) * 100%)"></div>
-                                    </div>
-                                </div>
-                                <div class="statisticsCard__point">
-                                    <p>Посещаемость</p>
-                                    <p>78%</p>
-                                    <div class="scale">
-                                        <div class="subscale" style="--percent: 78%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
@@ -613,7 +513,7 @@
             <form class="modal__content">
                 <div class="modal__block">
                     <h1 class="modal__title">Расскажите о себе</h1>
-                    <button class='secondaryButton' type="submit">
+                    <button class='secondaryButton' type="button" onclick="updateUserDescription()">
                         <svg viewBox="0 0 24 24">
                             <circle cx="12" cy="14" r="2" opacity='0.6'/>
                             <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -624,7 +524,7 @@
                 </div>
                 
                 <h3>Описание</h3>
-                <div id="editor" class='text-field'></div>
+                <div id="editor" class='text-field'>{{ requested_user.socialinfo.description|safe }}</div>
             </form>
         </div>
     </div>
@@ -635,7 +535,7 @@
             <form class="modal__content">
                 <div class="modal__block">
                     <h1 class="modal__title">Ссылки</h1>
-                    <button class='secondaryButton' type="submit">
+                    <button class='secondaryButton' type="button" onclick="updateUserLinks()">
                         <svg viewBox="0 0 24 24">
                             <circle cx="12" cy="14" r="2" opacity='0.6'/>
                             <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
@@ -652,7 +552,7 @@
                         </svg>
                         <p>GitHub</p>
                     </span>
-                    <input type="text" class="field-link">
+                    <input type="text" class="field-link" id="github" value="{{ requested_user.socialinfo.github }}">
                 </div>
                 <div class="modal__block g16">
                     <span class="tag">
@@ -662,7 +562,7 @@
                         </svg>
                         <p>Вконтакте</p>
                     </span>
-                    <input type="text" class="field-link">
+                    <input type="text" class="field-link" id="vk" value="{{ requested_user.socialinfo.vk }}">
                 </div>
                 <div class="modal__block g16">
                     <span class="tag">
@@ -673,7 +573,7 @@
                         </svg>
                         <p>Telegram</p>
                     </span>
-                    <input type="text" class="field-link">
+                    <input type="text" class="field-link" id="telegram" value="{{ requested_user.socialinfo.telegram }}">
                 </div>
             
             </form>
@@ -733,76 +633,43 @@
 
     <div class="alertsContainer column" id='alertsContainer'>
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
-    <script src='../../JS/script.js'></script> <!-- JavaScript -->
+
+    <script src="{% static 'ProfileApp/script.js' %}"></script>
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
-    <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
     <script>
-        // Меню
-        $(".menu__button").on("click", function(){
-            $(this).parent().find(".menu__button").removeClass("active");
-            $(this).toggleClass("active", "inactive");
-        });
-        function changeType(tabId){
-            $('.profile__tabs').find(".profile__tab").removeClass("active");
-            $('.profile__tabs').find(tabId).addClass("active");
-        }
+        function updateUserDescription(){
+            let user_form = new FormData();   
 
-        // Редактирование пароля
-        function editStart(button){
-            $(button).prev().prop('disabled', false);
-            $(button).replaceWith(`
-                <button class="secondaryButton" onclick="editConfirm(this)">
-                    <svg viewBox="0 0 448 512">
-                        <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"/>
-                    </svg>
-                </button>
-            `);
+            user_form.append('vk', '{{ requested_user.socialinfo.vk }}')
+            user_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            user_form.append('github', '{{ requested_user.socialinfo.github }}')
+            user_form.append('description', $('#editor .ql-editor')[0].innerHTML)
+            user_form.append('telegram', '{{ requested_user.socialinfo.telegram }}')
+                                        
+            sendInstanceData(user_form, '{% url "update_user" requested_user.id %}', $('<button/>'))
         }
-        function editConfirm(button){
-            $(button).prev().prop('disabled', true);
-            $(button).replaceWith(`
-                <button class="secondaryButton" onclick="editStart(this)">
-                    <svg viewBox="0 0 512 512">
-                        <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
-                    </svg>
-                </button>
-            `);
-        }
+    </script>
 
-        // Редактирование полей таблицы
-        function editTableStart(button){
-            let fields = $(button).parent().next().find('.tableCell p').toArray();
-            console.log(fields);
-            fields.forEach(el => 
-                $(el).replaceWith(`
-                    <input value='${$(el).text()}'>
-                `)
-            );
+    <script>
+        function updateUserLinks(){
+            let user_form = new FormData();   
+
+            user_form.append('vk', $('#vk')[0].value)
+            user_form.append('github', $('#github')[0].value)
+            user_form.append('telegram', $('#telegram')[0].value)
+            user_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            user_form.append('description', '{{ requested_user.socialinfo.description|safe }}')
             
-            $(button).replaceWith(`
-                <button class="standartButton" onclick="editTableConfirm(this)">
-                    <svg viewBox="0 0 448 512">
-                        <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"/>
-                    </svg>
-                    Сохранить
-                </button>
-            `);
+                                        
+            sendInstanceData(user_form, '{% url "update_user" requested_user.id %}', $('<button/>'))
         }
-        function editTableConfirm(button){
-            location.reload();
-        }
-
-        // Копирование данный ячейки в буфер обмена
-        $(".tableCell p").attr('title', 'Скопировать');
-        $(".tableCell p").on("click", function(){
-            copytext($(this));
-        });
     </script>
 </body>
 

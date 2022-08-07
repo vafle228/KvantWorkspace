@@ -73,7 +73,7 @@ def getCourseQuery(user):
     return {
         'Ученик': lambda user: KvantCourse.objects.filter(students=user),
         'Учитель': lambda user: KvantCourse.objects.filter(teacher=user),
-        'Администратор': lambda user: KvantCourse.objects.all(),
+        'Администратор': lambda user: KvantCourse.objects.none(),
     }[user.permission](user)
 
 

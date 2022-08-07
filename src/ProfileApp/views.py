@@ -10,7 +10,7 @@ from LoginApp.services import getUserById
 from ProjectApp.services.services import KvantProjectQuerySelector
 
 from . import services
-from .forms import KvantAwardSaveForm
+from .forms import KvantAwardSaveForm, SocialInfoSaveForm
 
 
 class SettingsPageTemplateView(services.UserExistsMixin, generic.DetailView):
@@ -67,10 +67,20 @@ class LogoutKvantUserView(KvantWorkspaceAccessMixin, generic.View):
 
 
 class KvantUserChangeView(services.UserManipulationMixin, generic.View):
+    change_options = [
+        (ImageChangeForm, lambda user: user),
+        (SocialInfoSaveForm, lambda user: user.socialinfo)
+    ]
+
     def post(self, request, *args, **kwargs):
         user = getUserById(self.kwargs.get('user_identifier'))
-        object_manager = services.UserManipulationManager([ImageChangeForm], object=user)
-        return object_manager.updateObject(request)
+
+        for form, instance in self.change_options:
+            result, is_valid = services.UserManipulationManager(
+                [form], object=instance(user)).updateObject(request)
+            if not is_valid: return result
+        return result
+
 
 
 class PortfolioAddForm(services.UserExistsMixin, KvantTeacherAndAdminAccessMixin, generic.View):

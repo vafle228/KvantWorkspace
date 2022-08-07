@@ -1,8 +1,11 @@
-from django import forms
-from .services import PDFToImageManager
-from django.core import validators as v
 from os.path import splitext
-from .models import KvantAward
+
+from CoreApp.services.image import ImageThumbnailBaseMixin
+from django import forms
+from django.core import validators as v
+
+from .models import KvantAward, SocialInfo
+from .services import PDFToImageManager
 
 
 class KvantAwardPDFToImageManager(PDFToImageManager):
@@ -26,7 +29,7 @@ class KvantAwardSaveForm(forms.ModelForm, KvantAwardPDFToImageManager):
         model = KvantAward
         fields = ['user', 'image']
     
-    def __init__(self, *args, **kwargs):      
+    def __init__(self, *args, **kwargs):
         super(KvantAwardSaveForm, self).__init__(*args, **kwargs)
         super(KvantAwardPDFToImageManager, self).__init__(coef=0.35)
     
@@ -35,3 +38,30 @@ class KvantAwardSaveForm(forms.ModelForm, KvantAwardPDFToImageManager):
             return super().clean_image()
         except forms.ValidationError as e:
             self.add_error('image', e)
+
+
+class SocialInfoBannerImageManager(ImageThumbnailBaseMixin):
+    def clean_banner(self):
+        if self.instance.banner == self.cleaned_data.get('banner'):
+            return self.instance.banner
+        return self.makeImageThumbnail(self.cleaned_data.get('banner'))
+
+
+class SocialInfoSaveForm(forms.ModelForm, SocialInfoBannerImageManager):
+    def __init__(self, *args, **kwargs):
+        super(SocialInfoSaveForm, self).__init__(*args, **kwargs)
+        super(SocialInfoBannerImageManager, self).__init__(coef=0.4)
+    
+    class Meta:
+        model = SocialInfo
+        fields = ['vk', 'telegram', 'github', 'description', 'banner', ]
+
+
+class SocialInfoCreateForm(forms.ModelForm, SocialInfoBannerImageManager):
+    def __init__(self, *args, **kwargs):
+        super(SocialInfoCreateForm, self).__init__(*args, **kwargs)
+        super(SocialInfoBannerImageManager, self).__init__(coef=0.4)
+    
+    class Meta:
+        model = SocialInfo
+        fields = '__all__'
