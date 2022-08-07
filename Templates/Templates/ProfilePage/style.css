@@ -80,6 +80,7 @@
     object-fit: cover; object-position: center;
 }
 .profileCard__banner svg{
+    display: none;
     position: absolute; right: 1rem; top: 1rem;
     width: 2rem; height: 2rem;
     padding: 0 0.5rem;
@@ -91,6 +92,12 @@
 }
 .profileCard__banner:hover svg{
     opacity: 1;
+}
+.profileCard__banner.editable{
+    cursor: pointer;
+}
+.profileCard__banner.editable svg{
+    display: block;
 }
 .profileCard__profile{
     display: flex; flex-direction: column;
