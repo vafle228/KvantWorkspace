@@ -523,7 +523,7 @@ body{
 }
 .dropdownSelect__option.selected {
     color: #fff;
-    background-color: var(--currentColor);
+    background-color: var(--theme-light);
 }
 
 .arrowDown {
