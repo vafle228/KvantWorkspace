@@ -63,7 +63,6 @@
                 </div>
                 {% endif %}
                 
-                <!-- Форма подтверждения удаления новости -->
                 <div class='modal' id='confirmDeletion'>
                     <div class="modal__viewport" style="width: 48rem">
                         <form class='modal__content'>
@@ -116,7 +115,7 @@
 
             <div class="project__members row">
                 {% for member in task.participants|get_objects %}
-                <div class="project__member member row g8 items-center">
+                <div class="project__member member row g8 items-center" onclick="location.href = `{% url 'info_page' member.id %}`">
                     <img src="{{ member.image.url }}" class="avatar">
                     <div class="member__info column">
                         <p class="member__name">{{ member.surname }}  {{ member.name }}</p>

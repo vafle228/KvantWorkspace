@@ -8,9 +8,11 @@ from LoginApp.forms import ImageChangeForm
 from LoginApp.models import KvantUser
 from LoginApp.services import getUserById
 from ProjectApp.services.services import KvantProjectQuerySelector
+from RegisterApp.forms import *
 
 from . import services
-from .forms import KvantAwardSaveForm, SocialInfoSaveForm
+from .forms import (KvantAwardSaveForm, SocialInfoBannerSaveForm,
+                    SocialInfoSaveForm)
 
 
 class SettingsPageTemplateView(services.UserExistsMixin, generic.DetailView):
@@ -67,20 +69,22 @@ class LogoutKvantUserView(KvantWorkspaceAccessMixin, generic.View):
 
 
 class KvantUserChangeView(services.UserManipulationMixin, generic.View):
-    change_options = [
-        (ImageChangeForm, lambda user: user),
-        (SocialInfoSaveForm, lambda user: user.socialinfo)
-    ]
+    def dispatch(self, request, *args, **kwargs):
+        self.forms, self.u_func = {
+            'image': ([ImageChangeForm], lambda u: u),
+            'social': ([SocialInfoSaveForm], lambda u: u.socialinfo),
+            'banner': ([SocialInfoBannerSaveForm], lambda u: u.socialinfo),
+            'student': ([StudentPersonalInfoSaveForm], lambda u: u.studentpersonalinfo),
+            'father': ([StudentParentSaveForm], lambda u: u.studentpersonalinfo.father),
+            'mother': ([StudentParentSaveForm], lambda u: u.studentpersonalinfo.mother),
+            'staff': ([StudyDocumentSaveForm, StaffPersonalInfoSaveForm], lambda u: u.staffpersonalinfo),
+        }.get(request.POST.get('type'), (None, None))
+        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         user = getUserById(self.kwargs.get('user_identifier'))
-
-        for form, instance in self.change_options:
-            result, is_valid = services.UserManipulationManager(
-                [form], object=instance(user)).updateObject(request)
-            if not is_valid: return result
-        return result
-
+        object_manager = services.UserManipulationManager(self.forms, object=self.u_func(user))
+        return object_manager.updateUserObj(request, user)
 
 
 class PortfolioAddForm(services.UserExistsMixin, KvantTeacherAndAdminAccessMixin, generic.View):

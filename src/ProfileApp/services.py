@@ -7,13 +7,12 @@ from CoreApp.services.access import KvantObjectExistsMixin
 from CoreApp.services.image import ImageThumbnailBaseMixin
 from CoreApp.services.utils import ObjectManipulationManager
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.forms.utils import ErrorDict
 from django.urls import reverse_lazy as rl
 from LoginApp.models import KvantUser
 from LoginApp.services import getUserById
 from PIL import Image
 
-from .models import KvantAward, SocialInfo
+from .models import KvantAward
 
 
 def getUserAwardsQuery(user):
@@ -22,14 +21,12 @@ def getUserAwardsQuery(user):
 
 
 class UserManipulationManager(ObjectManipulationManager):
-    def updateObject(self, request):
+    def updateUserObj(self, request, user):
         obj_or_errors = self._getUpdatedObject(request)
-        return self.getResponse(obj_or_errors), not isinstance(obj_or_errors, ErrorDict)
+        return self.getResponse(obj_or_errors, user=user)
     
     def _constructRedirectUrl(self, **kwargs):
-        if isinstance(kwargs.get('obj'), SocialInfo):
-            kwargs['obj'] = kwargs.get('obj').user
-        return rl('settings_page', kwargs={'user_identifier': kwargs.get('obj').id})
+        return rl('settings_page', kwargs={'user_identifier': kwargs.get('user').id})
 
 
 class PortfolioManipulationManager(ObjectManipulationManager):

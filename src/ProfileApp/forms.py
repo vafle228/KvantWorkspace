@@ -47,14 +47,20 @@ class SocialInfoBannerImageManager(ImageThumbnailBaseMixin):
         return self.makeImageThumbnail(self.cleaned_data.get('banner'))
 
 
-class SocialInfoSaveForm(forms.ModelForm, SocialInfoBannerImageManager):
+class SocialInfoBannerSaveForm(forms.ModelForm, SocialInfoBannerImageManager):
     def __init__(self, *args, **kwargs):
-        super(SocialInfoSaveForm, self).__init__(*args, **kwargs)
+        super(SocialInfoBannerSaveForm, self).__init__(*args, **kwargs)
         super(SocialInfoBannerImageManager, self).__init__(coef=0.4)
     
     class Meta:
         model = SocialInfo
-        fields = ['vk', 'telegram', 'github', 'description', 'banner', ]
+        fields = ['banner', ]
+
+
+class SocialInfoSaveForm(forms.ModelForm):    
+    class Meta:
+        model = SocialInfo
+        fields = ['vk', 'telegram', 'github', 'description',]
 
 
 class SocialInfoCreateForm(forms.ModelForm, SocialInfoBannerImageManager):

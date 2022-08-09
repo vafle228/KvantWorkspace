@@ -83,7 +83,7 @@
                 {% for student in students %}
                 <div class="tableRow">
                     <input type="checkbox">
-                    <div class="tableUser row g8" title="Перейти в профиль" onclick="location.href=`{% url 'settings_page' student.id %}`">
+                    <div class="tableUser row g8" title="Перейти в профиль" onclick="location.href=`{% url 'info_page' student.id %}`">
                         <img src="{{ student.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
                             <p class="tableUser__name">{{ student.surname }} {{ student.name }} {{ student.patronymic }}</p>

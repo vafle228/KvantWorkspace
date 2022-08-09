@@ -29,7 +29,7 @@
     <div class="mailView__content column g24">
         <h1 class="mailView__title">{{ mail.title }}</h1>
         <div class='row space-between'>
-            <div class="senderInfo">
+            <div class="senderInfo" onclick="location.href = `{% url 'info_page' mail.sender.id %}`">
                 <img src="{{ mail.sender.image.url }}" class="senderInfo__img">
                 <div>
                     <p class="senderInfo__name">{{ mail.sender.surname }} {{ mail.sender.name }}</p>

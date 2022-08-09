@@ -109,7 +109,7 @@
 
                 <p class="newsView__infoTitle">{{ news.title }}</p>
                 
-                <div class="row g8">
+                <div class="row g8" onclick="location.href = `{% url 'info_page' news.author.id %}`">
                     <img src="{{ news.author.image.url }}" class="avatar">
                     <div class='column'>
                         <p style='color: var(--text-primary-color)'>{{ news.author.surname }} {{ news.author.name }}</p>

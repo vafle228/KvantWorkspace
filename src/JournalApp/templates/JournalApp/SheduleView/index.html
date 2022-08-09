@@ -18,7 +18,7 @@
     <div class="schedule__body">
         <div class="schedule__row">
             <div class="schedule__teacher">
-                <div class="row g16 items-center" onclick="location.href=`{% url 'settings_page' teacher.id %}`">
+                <div class="row g16 items-center" onclick="location.href=`{% url 'info_page' teacher.id %}`">
                     <img src='{{ teacher.image.url }}' class="avatar"/>
                     <div class="column g4">
                         <p>{{ teacher.surname }} {{ teacher.name }} {{ teacher.patronymic }}</p>

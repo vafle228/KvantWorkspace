@@ -39,7 +39,7 @@
 
             <div class="task__users row">
                 {% for member in task.participants|get_objects %}
-                <div class="task__user" title="Фамилия Имя">
+                <div class="task__user" title="Фамилия Имя" onclick="location.href = `{% url 'info_page' member.id %}`">
                     <img src="{{ member.image.url }}" class="avatar">
                 </div>
                 {% endfor %}

@@ -14,8 +14,8 @@
                     </g>
                 </svg>
             </button>
-            <img src="{{ lesson.course.teacher.image.url }}" class="avatar">
-            <div class='column'>
+            <img src="{{ lesson.course.teacher.image.url }}" class="avatar" onclick="location.href = `{% url 'info_page' lesson.course.teacher.id %}`">
+            <div class='column' onclick="location.href = `{% url 'info_page' lesson.course.teacher.id %}`">
                 <p style='color: var(--text-primary-color)'>{{ lesson.course.teacher.surname }} {{ lesson.course.teacher.name }}</p>
                 <p>{{ lesson.course.teacher.permission }}</p>
             </div>

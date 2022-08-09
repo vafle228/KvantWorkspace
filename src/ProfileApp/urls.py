@@ -7,8 +7,8 @@ urlpatterns = [
     path('portfolio/add', views.PortfolioAddForm.as_view(), name='add_portfolio'),
     path('<int:user_identifier>/update', views.KvantUserChangeView.as_view(), name='update_user'),
 
+    path('<int:user_identifier>/info', views.SettingsPageTemplateView.as_view(), name='info_page'),
     path('<int:user_identifier>/portfolio', views.PortfolioPageListView.as_view(), name='portfolio_page'),
     path('<int:user_identifier>/projects', views.ProjectsPageTemplateView.as_view(), name='projects_page'),
-    path('<int:user_identifier>/settings', views.SettingsPageTemplateView.as_view(), name='settings_page'),
     path('<int:user_identifier>/statistics', views.StaticsPageTemplateView.as_view(), name='statistics_page'),
 ]

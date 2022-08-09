@@ -83,7 +83,7 @@
                             <p class="tableUser__role">Группа</p>
                         </div>
                     </div>
-                    <div class="tableUser row g8" title="Перейти в профиль" onclick="location.href=`{% url 'settings_page' course.teacher.id %}`">
+                    <div class="tableUser row g8" title="Перейти в профиль" onclick="location.href=`{% url 'info_page' course.teacher.id %}`">
                         <img src="{{ course.teacher.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
                             <p class="tableUser__name">

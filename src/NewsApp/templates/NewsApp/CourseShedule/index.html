@@ -91,7 +91,7 @@
                 <div class="users">
                     {% for user in course.students|get_objects %}
 
-                        <div class="user row g8 items-center" onclick="location.href=`{% url 'settings_page' user.id %}`">
+                        <div class="user row g8 items-center" onclick="location.href=`{% url 'info_page' user.id %}`">
                             <img src="{{ user.image.url }}" class='user__img avatar'/>
                             <div class="user__info column">
                                 <p class='user__name'>
