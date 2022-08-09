@@ -34,17 +34,12 @@
                     {% for day in week_days.split %}
 
                     <div class="schedule__weekDay">
-                        {% with shedules=teacher|get_shedules:day %}
-
-                            {% for course, time in shedules.items %}
+                        {% for course, schedule in teacher|get_shedules:day %}
                             <div class="lesson">
                                 <p class="lesson__group">{{ course }}</p>
-                                <p class="lesson__time">{{ time }}</p>
+                                <p class="lesson__time">{{ schedule }}</p>
                             </div>
-                            {% endfor %}
-
-                        {% endwith %}
-                    
+                        {% endfor %}
                     </div>
 
                     {% endfor %}

@@ -123,6 +123,14 @@
            })
         }
     </script>
+
+    {% if request.GET.lesson %}
+    <script>
+        window.onload = (event) => {
+            getDetailLesson("{% url 'lesson_detail' request.GET.lesson %}", $('<div>'))
+        }
+    </script>
+    {% endif %}
 </body>
 
 </html>

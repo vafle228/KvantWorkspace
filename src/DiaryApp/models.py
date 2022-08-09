@@ -57,6 +57,7 @@ class KvantHomeTask(models.Model):
 
 
 class KvantLesson(models.Model):
+    time    = models.TimeField(default=timezone.now)
     date    = models.DateField(default=timezone.now)
     tasks   = models.ManyToManyField(KvantHomeTask, blank=True)
     base    = models.OneToOneField(KvantTaskBase, on_delete=models.CASCADE)

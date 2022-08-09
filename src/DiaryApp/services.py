@@ -15,8 +15,10 @@ def getTaskById(task_id):
 
 def getDiaryLessonQuery(user, period):
     """ Возвращает уроки ученика user за дату period """
-    return KvantLesson.objects.filter(course__students=user, date__month=period)
-
+    return sorted(
+        KvantLesson.objects.filter(course__students=user, date__month=period), 
+        key=lambda item: (item.date, item.time)
+    )
 
 def getUserWork(task, user):
     """ 

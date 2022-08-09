@@ -18,7 +18,6 @@ body[colorScheme='colorScheme__green'].light__theme{
     --bgColor: #35a75511;
     --currentColor: #35a755;
 }
-
 body[colorScheme='colorScheme__blue'].dark__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
@@ -27,7 +26,6 @@ body[colorScheme='colorScheme__blue'].light__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
 }
-
 body[colorScheme='colorScheme__red'].dark__theme{
     --bgColor: #f1747311;
     --currentColor: #f17473;
@@ -36,7 +34,6 @@ body[colorScheme='colorScheme__red'].light__theme{
     --bgColor: #f1747311;
     --currentColor: #f17473;
 }
-
 body[colorScheme='colorScheme__purple'].dark__theme{
     --bgColor: #6f4bff11;
     --currentColor: #6f4bff;
@@ -1209,7 +1206,8 @@ td{
     opacity: 0;
     bottom: -64rem;
     transition: opacity 0.4s, bottom 0.4s;
-    z-index: 999999;
+
+    z-index: 998;
 }
 .notifications.active{
     opacity: 1;
@@ -1301,6 +1299,8 @@ td{
     opacity: 0;
     bottom: -64rem;
     transition: opacity 0.4s, bottom 0.4s;
+
+    z-index: 998;
 }
 .agenda.active{
     opacity: 1;

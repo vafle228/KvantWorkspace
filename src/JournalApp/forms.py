@@ -67,4 +67,4 @@ class KvantTaskFilesSaveForm(KvantBaseFilesSaveForm):
 class KvantLessonSaveForm(forms.ModelForm):
     class Meta:
         model = KvantLesson
-        fields = ['date', 'course', 'base']
+        fields = ['date', 'course', 'base', 'time']

@@ -17,17 +17,17 @@ class CourseManipulationManager(ObjectManipulationManager):
         course_or_errors = self._getCreatedObject(request)
         
         if isinstance(course_or_errors, KvantCourse):
-            lesson_days = [self._getWeekDayNumber(schedule.week_day) for schedule in course_or_errors.schedule.all()]
-            for lesson_day in lesson_days:
-                if today.weekday() >= lesson_day:
-                    days_delta = (lesson_day + 7) - today.weekday()
-                else:
-                    days_delta = lesson_day - today.weekday()
-
+            for schedule in course_or_errors.schedule.all():
+                days_delta = self._getDaysDelta(today, self._getWeekDayNumber(schedule.week_day))
                 dates = self._generateLessonsDates(today + dt.timedelta(days=days_delta))
                 for i in range(len(dates)):
-                    self._createLesson(dates[i], f'Урок на {dates[i].date()} #{i}', course_or_errors)
+                    self._createLesson(dates[i], f'Урок на {dates[i].date()} #{i}', course_or_errors, schedule.time)
         return self.getResponse(course_or_errors)
+    
+    def _getDaysDelta(self, today, lesson_day):
+        if today.weekday() >= lesson_day:
+            return (lesson_day + 7) - today.weekday()
+        return lesson_day - today.weekday()
 
     def _getWeekDayNumber(self, weekday):
         return {'ПН': 0, 'ВТ': 1,
@@ -46,12 +46,13 @@ class CourseManipulationManager(ObjectManipulationManager):
             next_lesson = next_lesson + dt.timedelta(days=7)
         return lessons
     
-    def _createLesson(self, date, name, course):
+    def _createLesson(self, date, name, course, time):
         base = self._createLessonBase(name)
         
         if base is not None:
             form = KvantLessonSaveForm({
-                'date': date, 'base': base, 'course': course,
+                'date': date, 'base': base, 
+                'course': course, 'time': time,
             })
             return form.save() if form.is_valid() else None
     
