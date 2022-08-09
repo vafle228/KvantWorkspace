@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel='stylesheet' href='../../main.css'/> <!-- РћСЃРЅРѕРІРЅС‹Рµ СЃС‚РёР»Рё -->
-    <link rel="stylesheet" href="style.css"> <!-- РЎС‚РёР»Рё СЃС‚СЂР°РЅРёС†С‹ -->
+    <link rel='stylesheet' href='../../main.css'/> <!-- Основные стили -->
+    <link rel="stylesheet" href="style.css"> <!-- Стили страницы -->
 
-    <link rel="shortcut icon" href="../../img/icon.svg" type="image/png"/> <!-- Р›РѕРіРѕС‚РёРї -->
-    <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css'/> <!-- РРєРѕРЅРєРё СЂР°СЃС€РёСЂРµРЅРёР№ С„Р°Р№Р»РѕРІ -->
+    <link rel="shortcut icon" href="../../img/icon.svg" type="image/png"/> <!-- Логотип -->
+    <link rel='stylesheet' href='../../fonts/icon fonts/file icons/file icons.css'/> <!-- Иконки расширений файлов -->
 
-    <link href="../../ql-editor.css" rel="stylesheet"/> <!-- РЎС‚РёР»Рё РїР°РЅРµР»Рё РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ -->
+    <link href="../../ql-editor.css" rel="stylesheet"/> <!-- Стили панели инструментов -->
     
-    <title>Р—Р°РіРѕР»РѕРІРѕРє Р·Р°РґР°С‡Рё</title>
+    <title>Заголовок задачи</title>
 </head>
 
 <body class='dark__theme' colorScheme="colorScheme__blue">
 
-    <!-- РќР°РІРёРіР°С†РёРѕРЅРЅРѕРµ РјРµРЅСЋ -->
+    <!-- Навигационное меню -->
     <nav class='navigation'>
 
         <div class='navigation__logo'>
@@ -81,7 +81,7 @@
 
         <div class='navigation__group column g8'>
 
-            <!-- РЎРїРёСЃРѕРє Р·Р°РґР°С‡ -->
+            <!-- Список задач -->
             <button class='navigation__link'>
                 <svg viewBox="0 0 512 512">
                     <path opacity='0.3' d="M166.57 282.71L44 159.21a17.87 17.87 0 0 1 .18-25.2l42.1-41.77a17.87 17.87 0 0 1 25.2.18l68.23 68.77L336.87 5.11a17.88 17.88 0 0 1 25.21.18L404 47.41a17.88 17.88 0 0 1-.18 25.21L191.78 282.89a17.88 17.88 0 0 1-25.21-.18z"></path>
@@ -89,7 +89,7 @@
                 </svg>
             </button>
 
-            <!-- РЈРІРµРґРѕРјР»РµРЅРёСЏ -->
+            <!-- Уведомления -->
             <button class='navigation__link'>
                 <svg viewBox="0 0 448 512">
                     <path d="M448 384c-.1 16.4-13 32-32.1 32H32.08C13 416 .09 400.4 0 384a31.25 31.25 0 0 1 8.61-21.71c19.32-20.76 55.47-52 55.47-154.29 0-77.7 54.48-139.9 127.94-155.16V32a32 32 0 1 1 64 0v20.84C329.42 68.1 383.9 130.3 383.9 208c0 102.3 36.15 133.53 55.47 154.29A31.27 31.27 0 0 1 448 384z"></path>
@@ -97,49 +97,49 @@
                 </svg>
             </button>
 
-            <!-- РџСЂРѕС„РёР»СЊ -->
+            <!-- Профиль -->
             <div class="navigation__profile">
                 <img src='../../img/avatars/Upstream-8.png'>
             </div>
         </div>
     </nav>
 
-    <!-- РќР°РІРёРіР°С†РёРѕРЅРЅРѕРµ РјРµРЅСЋ РґР»СЏ СЃРјР°СЂС‚С„РѕРЅРѕРІ -->
+    <!-- Навигационное меню для смартфонов -->
     <nav class='navigationBar'>
         <button class='navigation__link'>
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"></path>
                 <path d="M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"></path>
             </svg>
-            Р“Р»Р°РІРЅР°СЏ
+            Главная
         </button>
         <button class='navigation__link'>
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M576 62.75v337.84c0 16.23-13.13 29.77-30 30.66-49.47 2.6-149.52 12.1-218.7 46.92-10.65 5.36-23.28-1.94-23.28-13.49V100.81a15.37 15.37 0 0 1 7.27-13.17c67.24-41.16 176.16-52.48 231-55.59C560.64 31 576 45 576 62.75z"></path>
                 <path d="M264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31 0 45 0 62.75V400.6c0 16.24 13.13 29.78 30 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63a15.05 15.05 0 0 0-7.25-12.99z"></path>
             </svg>
-            Р—Р°РґР°РЅРёСЏ
+            Задания
         </button>
         <button class='navigation__link active'>
             <svg viewBox="0 0 512 512">
                 <path opacity='0.3' d="M320 288h192v144c0 25.6-22.4 48-48 48H48c-25.6 0-48-22.4-48-48V288h192v48a16 16 0 0 0 16 16h96a16 16 0 0 0 16-16z"></path>
                 <path d="M464 128h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128z"></path>
             </svg>
-            РџСЂРѕРµРєС‚С‹
+            Проекты
         </button>
         <button class='navigation__link'>
             <svg viewBox="0 0 576 512">
                 <path opacity='0.3' d="M352 287.9H162.3L79.5 350a9.7 9.7 0 0 1-15.5-7.8V288a64.06 64.06 0 0 1-64-64V64A64.06 64.06 0 0 1 64 0h288a64.06 64.06 0 0 1 64 64v160a63.91 63.91 0 0 1-64 63.9z"></path>
                 <path d="M576 224v160a64.06 64.06 0 0 1-64 64h-32v54.3a9.7 9.7 0 0 1-15.5 7.8L381.7 448H256a64.06 64.06 0 0 1-64-64v-64h160a96.15 96.15 0 0 0 96-96v-64h64a64.06 64.06 0 0 1 64 64z"></path>
             </svg>
-            РЎРѕРѕР±С‰РµРЅРёСЏ
+            Сообщения
         </button>
         <button class='navigation__link'>
             <svg viewBox="0 0 512 512">
                 <path opacity='0.3' d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z"></path>
                 <path d="M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z"></path>
             </svg>
-            РџСЂРѕС„РёР»СЊ
+            Профиль
         </button>
     </nav>
 
@@ -154,7 +154,7 @@
                             <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
                         </g>
                     </svg>
-                    <span>РќР°Р·Р°Рґ</span>
+                    <span>Назад</span>
                 </button>
 
                 <div class='relativeBox' style='margin-left: auto'>
@@ -166,14 +166,14 @@
                     </button>
                     <div class="list">
                         <button class="listButton" onclick="open_form('#editTaskForm')">
-                            Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ
+                            Редактировать
                             <svg viewBox="0 0 576 512">
                                 <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
                                 <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
                             </svg>  
                         </button>
                         <button class="listButton" onclick="open_form('#confirmDeletion')">
-                            РЈРґР°Р»РёС‚СЊ
+                            Удалить
                             <svg viewBox="0 0 448 512">
                                 <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
                                 <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
@@ -182,23 +182,23 @@
                     </div>
                 </div>
                 
-                <!-- Р¤РѕСЂРјР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СѓРґР°Р»РµРЅРёСЏ РЅРѕРІРѕСЃС‚Рё -->
+                <!-- Форма подтверждения удаления новости -->
                 <div class='modal' id='confirmDeletion'>
                     <div class="modal__viewport" style="width: 48rem">
                         <form class='modal__content'>
-                            <h1 class="modal__title">РЈРґР°Р»РµРЅРёРµ Р·Р°РґР°С‡Рё</h1>
-                            <p>Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚Сѓ Р·Р°РґР°С‡Сѓ?</p>
+                            <h1 class="modal__title">Удаление задачи</h1>
+                            <p>Вы уверены, что хотите удалить эту задачу?</p>
                             <div class='modal__block'>
                                 <div class='row g8' style='margin-left: auto'>
                                     <button class='secondaryButton'>
-                                        РћС‚РјРµРЅР°
+                                        Отмена
                                     </button>
                                     <button class='dangerButton' type="submit">
                                         <svg viewBox="0 0 448 512">
                                             <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
                                             <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
                                         </svg>
-                                        РЈРґР°Р»РёС‚СЊ
+                                        Удалить
                                     </button>
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
                             <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
                         </svg>
                     </span>
-                    <h3>РЎСЂРµРґРЅСЏСЏ</h3>
+                    <h3>Средняя</h3>
                 </div>
     
                 <div class="task__deadline">
@@ -226,7 +226,7 @@
                         <path d="M160 64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64z"/>
                         <path style='opacity: .4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192z"/>
                     </svg>
-                    <h3>22 РјР°СЂС‚Р°</h3>
+                    <h3>22 марта</h3>
                 </div>
             </div>
             
@@ -237,22 +237,22 @@
                 <div class="project__member member row g8 items-center">
                     <img src="../../img/avatars/Upstream-8.png" class="avatar">
                     <div class="member__info column">
-                        <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                        <p class="member__role">Р›РёРґРµСЂ</p>
+                        <p class="member__name">Фамилия Имя</p>
+                        <p class="member__role">Лидер</p>
                     </div>
                 </div>
                 <div class="project__member member row g8 items-center">
                     <img src="../../img/avatars/Upstream-5.png" class="avatar">
                     <div class="member__info column">
-                        <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                        <p class="member__role">РЈС‡Р°СЃС‚РЅРёРє</p>
+                        <p class="member__name">Фамилия Имя</p>
+                        <p class="member__role">Участник</p>
                     </div>
                 </div>
                 <div class="project__member member row g8 items-center">
                     <img src="../../img/avatars/Upstream-6.png" class="avatar">
                     <div class="member__info column">
-                        <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                        <p class="member__role">РЈС‡Р°СЃС‚РЅРёРє</p>
+                        <p class="member__name">Фамилия Имя</p>
+                        <p class="member__role">Участник</p>
                     </div>
                 </div>
             </div>
@@ -265,14 +265,14 @@
                 <div class='file'>
                     <i class='file-pptx'></i>
                     <div class="file__info">
-                        <h4 class='file__name'>РџСЂРµР·РµРЅС‚Р°С†РёСЏ.pptx</h4>
+                        <h4 class='file__name'>Презентация.pptx</h4>
                         <p class="file__size">12 MB</p>
                     </div>
                 </div>
                 <div class='file'>
                     <i class='file-doc'></i>
                     <div class="file__info">
-                        <h4 class='file__name'>Р”РѕРєСѓРјРµРЅС‚.doc</h4>
+                        <h4 class='file__name'>Документ.doc</h4>
                         <p class="file__size">45 KB</p>
                     </div>
                 </div>
@@ -280,65 +280,65 @@
         </section>
     </div>
 
-    <!-- Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РґР°С‡Рё -->
+    <!-- Редактирование задачи -->
     <div class='modal' id='editTaskForm'>
         <div class="modal__viewport">
             <div class="modal__content">
                 <div class="modal__block">
-                    <h1 class="modal__title">Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РґР°С‡Рё</h1>
+                    <h1 class="modal__title">Редактирование задачи</h1>
                     <button class='secondaryButton' type="submit">
                         <svg viewBox="0 0 24 24">
                             <circle cx="12" cy="14" r="2" opacity='0.6'/>
                             <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
                             <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
                         </svg>    
-                        РЎРѕС…СЂР°РЅРёС‚СЊ
+                        Сохранить
                     </button>
                 </div>
 
-                <h3>Р—Р°РґР°С‡Р°</h3>
+                <h3>Задача</h3>
                 <input class='text-field text-field-title' autocomplete="off" value="Lorem, ipsum dolor sit amet consectetur adipisicing elit"/>
 
-                <h3>РЈС‡Р°СЃС‚РЅРёРєРё</h3>
+                <h3>Участники</h3>
                 <div class="project__members expanded row">
                     <div class="project__member member row g8 items-center selected">
                         <img src="../../img/avatars/Upstream-8.png" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                            <p class="member__role">Р›РёРґРµСЂ</p>
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Лидер</p>
                         </div>
                     </div>
                     <div class="project__member member row g8 items-center">
                         <img src="../../img/avatars/Upstream-7.png" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                            <p class="member__role">РЈС‡Р°СЃС‚РЅРёРє</p>
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
                         </div>
                     </div>
                     <div class="project__member member row g8 items-center selected">
                         <img src="../../img/avatars/Upstream-5.png" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                            <p class="member__role">РЈС‡Р°СЃС‚РЅРёРє</p>
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
                         </div>
                     </div>
                     <div class="project__member member row g8 items-center selected">
                         <img src="../../img/avatars/Upstream-6.png" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                            <p class="member__role">РЈС‡Р°СЃС‚РЅРёРє</p>
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
                         </div>
                     </div>
                     <div class="project__member member row g8 items-center">
                         <img src="../../img/avatars/Upstream-2.png" class="avatar">
                         <div class="member__info column">
-                            <p class="member__name">Р¤Р°РјРёР»РёСЏ РРјСЏ</p>
-                            <p class="member__role">РЈС‡Р°СЃС‚РЅРёРє</p>
+                            <p class="member__name">Фамилия Имя</p>
+                            <p class="member__role">Участник</p>
                         </div>
                     </div>
                 </div>
 
-                <h3>РћРїРёСЃР°РЅРёРµ</h3>
+                <h3>Описание</h3>
                 <div id="editor" class='text-field'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque laborum eaque temporibus quas, hic debitis commodi ad, ullam dolorem accusantium? Assumenda dolore totam voluptas qui exercitationem. Dolores odit saepe culpa modi, id, quis inventore eius nemo obcaecati est facere cum voluptas laborum aliquam molestiae accusamus sequi et! Vero minima consequuntur amet, nulla tempora et iusto consequatur molestias dolor totam quisquam commodi inventore recusandae neque quam magni aliquid cum odio eum. Pariatur eius ullam aperiam excepturi unde minima debitis expedita officia! Voluptates officia quasi magni, error ratione accusamus nam commodi, quaerat assumenda placeat ipsam blanditiis. Nemo, repellat dolorum. Repellendus, deserunt!
                 </div>
@@ -350,21 +350,21 @@
                             <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
                         </g>
                     </svg>
-                    РџСЂРёРєСЂРµРїРёС‚СЊ С„Р°Р№Р»
+                    Прикрепить файл
                 </button>
 
                 <div class='files'>
                     <div class='file'>
                         <i class='file-pptx'></i>
                         <div class="file__info">
-                            <h4 class='file__name'>РџСЂРµР·РµРЅС‚Р°С†РёСЏ.pptx</h4>
+                            <h4 class='file__name'>Презентация.pptx</h4>
                             <p class="file__size">12 MB</p>
                         </div>
                     </div>
                     <div class='file'>
                         <i class='file-doc'></i>
                         <div class="file__info">
-                            <h4 class='file__name'>Р”РѕРєСѓРјРµРЅС‚.doc</h4>
+                            <h4 class='file__name'>Документ.doc</h4>
                             <p class="file__size">45 KB</p>
                         </div>
                     </div>
@@ -373,7 +373,7 @@
                 <div class="filteringList">
                     <div class="filtering" style="width: 12rem">
                         <div class="dropdownSelect">
-                            <h3 class="py8">РџСЂРёРѕСЂРёС‚РµС‚</h3>
+                            <h3 class="py8">Приоритет</h3>
                             <div class="dropdownSelect__trigger">
                                 <div>
                                     <div class="task__priority row g8" data="medium">
@@ -383,7 +383,7 @@
                                                 <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
                                             </svg>
                                         </span>
-                                        <p>РЎСЂРµРґРЅРёР№</p>
+                                        <p>Средний</p>
                                     </div>
                                 </div>
                                 <div class="arrowDown"></div>
@@ -397,7 +397,7 @@
                                                 <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
                                             </svg>
                                         </span>
-                                        <p>РќРµС‚</p>
+                                        <p>Нет</p>
                                     </div>
                                 </span>
                                 <span class='dropdownSelect__option'>
@@ -408,7 +408,7 @@
                                                 <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
                                             </svg>
                                         </span>
-                                        <p>РќРёР·РєРёР№</p>
+                                        <p>Низкий</p>
                                     </div>
                                 </span>
                                 <span class='dropdownSelect__option selected'>
@@ -419,7 +419,7 @@
                                                 <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
                                             </svg>
                                         </span>
-                                        <p>РЎСЂРµРґРЅРёР№</p>
+                                        <p>Средний</p>
                                     </div>
                                 </span>
                                 <span class='dropdownSelect__option'>
@@ -430,14 +430,14 @@
                                                 <path style='opacity: .6' d="M448 48V384c-63.09 22.54-82.34 32-119.5 32c-62.82 0-86.6-32-149.3-32C158.6 384 142.6 387.6 128 392.2v-64C142.6 323.6 158.6 320 179.2 320c62.73 0 86.51 32 149.3 32C348.9 352 364.1 349 384 342.7v-208C364.1 141 348.9 144 328.5 144c-62.82 0-86.6-32-149.3-32C128.4 112 104.3 132.6 64 140.7v-64C104.3 68.63 128.4 48 179.2 48c62.73 0 86.51 32 149.3 32C365.7 80 384.9 70.54 448 48z"/>
                                             </svg>
                                         </span>
-                                        <p>Р’С‹СЃРѕРєРёР№</p>
+                                        <p>Высокий</p>
                                     </div>
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="filtering">
-                        <h3 class="py8">Р”Р°С‚Р°</h3>
+                        <h3 class="py8">Дата</h3>
                         <input type="date" value="2022-03-22">
                     </div>
                 </div>
@@ -449,10 +449,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- РџР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ -->
-    <script src='../../JS/toolbar_options.js'></script> <!-- РќР°СЃС‚СЂРѕР№РєРё РїР°РЅРµР»Рё -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> <!-- Панель инструментов -->
+    <script src='../../JS/toolbar_options.js'></script> <!-- Настройки панели -->
 
-    <script src="../../JS/dropdownSelect.js"></script> <!-- Р’С‹РїР°РґР°СЋС‰РёРµ РјРµРЅСЋ -->
+    <script src="../../JS/dropdownSelect.js"></script> <!-- Выпадающие меню -->
 
 </body>
 

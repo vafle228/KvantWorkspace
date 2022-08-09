@@ -1224,8 +1224,8 @@ td{
     opacity: 0;
     bottom: -64rem;
     transition: opacity 0.4s, bottom 0.4s;
-    
-    z-index: 999999;
+
+    z-index: 998;
 }
 .notifications.active{
     opacity: 1;
@@ -1318,7 +1318,7 @@ td{
     bottom: -64rem;
     transition: opacity 0.4s, bottom 0.4s;
 
-    z-index: 999999;
+    z-index: 998;
 }
 .agenda.active{
     opacity: 1;
