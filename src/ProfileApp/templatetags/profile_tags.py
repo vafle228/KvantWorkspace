@@ -1,7 +1,6 @@
-from django import template
-from AdminApp.services import getCourseQuery
+from AdminApp.services import getCourseQuery, getCourseTypeQuery
 from DiaryApp.models import KvantLesson
-
+from django import template
 
 register = template.Library()
 
@@ -12,3 +11,4 @@ def getLessonByCourse(course):
 
 register.filter('get_lesson', getLessonByCourse)
 register.filter('get_user_courses', getCourseQuery)
+register.filter('get_user_courses_types', getCourseTypeQuery)

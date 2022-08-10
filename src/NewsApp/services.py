@@ -15,6 +15,14 @@ def getNewsById(id):
     return KvantNews.objects.get(id=id)
 
 
+def createNewEvent(manager, request):
+    events = list(getNewsByType(news_type=True))
+    while len(events) >= 5:
+        last_event = events[0]
+        events.remove(last_event); last_event.delete()
+    return manager.createObject(request)
+
+
 class NewsObjectManipulationManager(ObjectManipulationManager):
     def _constructRedirectUrl(self, **kwargs):
         return rl('detail_news', kwargs={'news_identifier': kwargs.get('obj').id})
@@ -39,3 +47,6 @@ class NewsAccessMixin(NewsExistsMixin):
     def _newsAccessTest(self, news, user):
         """ Тест на авторство """
         return news.author == user or user.permission == 'Администратор'
+
+
+getNewsByType = lambda news_type: KvantNews.objects.filter(is_event=news_type)

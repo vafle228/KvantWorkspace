@@ -23,6 +23,7 @@ def getPath(instance, filename):
 class KvantNews(models.Model):
     content         = models.TextField(blank=True)
     title           = models.CharField(max_length=100)
+    is_event        = models.BooleanField(default=False)
     date            = models.DateField(default=timezone.now)
     files           = models.ManyToManyField(to='CoreApp.FileStorage', blank=True)
     image           = models.ImageField(default=setDefaultImage, upload_to=getPath)

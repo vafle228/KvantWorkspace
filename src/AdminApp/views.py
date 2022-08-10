@@ -3,6 +3,7 @@ from django.views import generic
 from AdminApp.forms import (CourseSheduleSaveForm, KvantCourseSaveForm,
                             KvantCourseTypeSaveForm)
 from CoreApp.services.access import KvantTeacherAndAdminAccessMixin
+from AdminApp.models import KvantCourseType
 
 from . import services
 
@@ -14,6 +15,8 @@ class AdminsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateV
         context = super().get_context_data(**kwargs)
         context.update(admins=services.allUsers('Администратор'))
 
+        services.PersonalInfoExcelImport().importPersonalInfo('Ученик')
+
         return context
 
 
@@ -22,7 +25,10 @@ class TeachersTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.Templat
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(teachers=services.allUsers('Учитель'))
+        context.update(
+            teachers=services.allUsers('Учитель'),
+            subjects=KvantCourseType.objects.all(),
+        )
 
         return context
 
@@ -32,7 +38,10 @@ class StudentsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.Templat
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(students=services.allUsers('Ученик'))
+        context.update(
+            students=services.allUsers('Ученик'),
+            subjects=KvantCourseType.objects.all(),
+        )
 
         return context
 

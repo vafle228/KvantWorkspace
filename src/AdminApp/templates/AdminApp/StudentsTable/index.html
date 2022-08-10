@@ -27,7 +27,7 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по ученикам</h3>
-                    <input type="text" placeholder="Введите ФИО">
+                    <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#studentsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -38,12 +38,10 @@
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected'>Все</span>
-                                <span class='dropdownSelect__option'>IT</span>
-                                <span class='dropdownSelect__option'>Энерджи</span>
-                                <span class='dropdownSelect__option'>Хайтек</span>
-                                <span class='dropdownSelect__option'>ПромДизайн</span>
-                                <span class='dropdownSelect__option'>ПромРобо</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Все</span>
+                                {% for subject in subjects %}
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">{{ subject.name }}</span>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -64,20 +62,22 @@
                     </svg>
                     Удалить выбранных пользователей
                 </button>
+                <button class="combinedButton">
+                    <img src="{% static 'AdminApp/img/excel.svg' %}" style="height: 1rem">
+                    Экпортировать в Excel
+                </button>
             </div>
 
-            <div class="table scrollbarX">
+            <div class="table scrollbarX" id="studentsTable">
                 <div class="tableHeader">
                     <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
                     <p style="width: 20rem">Ученик</p>
-                    <p style="width: 9.5rem">Группа</p>
+                    <p style="width: 20rem">Группы</p>
                     <p style="width: 9.5rem">Дата рождения</p>
                     <p style="width: 16rem">Электронная почта</p>
                     <p style="width: 9.5rem">Телефон</p>
-                    <p style="width: 14rem">ФИО отца</p>
-                    <p style="width: 9.5rem">Телефон отца</p>
-                    <p style="width: 14rem">ФИО матери</p>
-                    <p style="width: 9.5rem">Телефон матери</p>
+                    <p style="width: 14rem">Отец</p>
+                    <p style="width: 14rem">Мать</p>
                 </div>
 
                 {% for student in students %}
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="tableCell groups">
-                        {% for course in user|get_user_courses %}
+                        {% for course in student|get_user_courses %}
                         <div class="row g8">
                             <svg viewBox="0 0 448 512">
                                 <path d="M255.1 255.1c0 17.63-14.38 32-32 32s-32-14.37-32-32c0-17.62 14.38-32.03 32-32.03S255.1 238.3 255.1 255.1z"/>
@@ -105,7 +105,7 @@
                         <svg viewBox="0 0 448 512">
                             <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
                             <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
-                        <p>##.##.####</p>
+                        <p>{{ student.studentpersonalinfo.date }}</p>
                     </div>
                     <div class="tableCell email">
                         <svg viewBox="0 0 512 512">
@@ -119,35 +119,47 @@
                             <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
                             <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
                         </svg>
-                        <p># ### ### ## ##</p>
+                        <p>{{ student.studentpersonalinfo.telephone }}</p>
                     </div>
-                    <div class="tableCell name">
-                        <svg viewBox="0 0 448 512">
-                            <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                            <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
-                        </svg>
-                        <p>Фамилия Имя Отчество</p>
+                    <div class="tableCell parent">
+                        <div class="row g8">
+                            <svg viewBox="0 0 448 512">
+                                <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                                <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
+                            </svg>
+                            <p>
+                                {{ student.studentpersonalinfo.father.surname }}
+                                {{ student.studentpersonalinfo.father.name }}
+                                {{ student.studentpersonalinfo.father.patronymic }}
+                            </p>
+                        </div>
+                        <div class="row g8">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
+                                <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+                            </svg>
+                            <p>{{ student.studentpersonalinfo.father.telephone }}</p>
+                        </div>
                     </div>
-                    <div class="tableCell">
-                        <svg viewBox="0 0 512 512">
-                            <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
-                            <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
-                        </svg>
-                        <p># ### ### ## ##</p>
-                    </div>
-                    <div class="tableCell name">
-                        <svg viewBox="0 0 448 512">
-                            <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                            <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
-                        </svg>
-                        <p>Фамилия Имя Отчество</p>
-                    </div>
-                    <div class="tableCell">
-                        <svg viewBox="0 0 512 512">
-                            <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
-                            <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
-                        </svg>
-                        <p># ### ### ## ##</p>
+                    <div class="tableCell parent">
+                        <div class="row g8">
+                            <svg viewBox="0 0 448 512">
+                                <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                                <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
+                            </svg>
+                            <p>
+                                {{ student.studentpersonalinfo.mother.surname }}
+                                {{ student.studentpersonalinfo.mother.name }}
+                                {{ student.studentpersonalinfo.mother.patronymic }}
+                            </p>
+                        </div>
+                        <div class="row g8">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
+                                <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+                            </svg>
+                            <p>{{ student.studentpersonalinfo.mother.telephone }}</p>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -186,35 +198,12 @@
     
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+    <script src="{% static 'AdminApp/scripts.js' %}"></script>
 
     <script>
         $(".tableCell p").attr('title', 'Скопировать');
         $(".tableCell p").on("click", function(){
             copytext($(this));
-        });
-    </script>
-
-    <script>
-        $('#teacherSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'teacherSelect') {
-                $('#selectedTeachers').append($(this));
-                $('#teacherSearch').val('').focus();
-                $('.userSelect').hide();
-                $('#teacherSearch').hide();
-            } else {
-                $('#teacherSelect').append($(this));
-                $('#teacherSearch').show();
-            }
-        });
-
-        $('#studentSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'studentSelect') {
-                $('#selectedStudents').append($(this));
-                $('#studentSearch').val('').focus();
-                $('.userSelect').hide();
-            } else {
-                $('#studentSelect').append($(this));
-            }
         });
     </script>
 </body>

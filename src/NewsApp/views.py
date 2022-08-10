@@ -18,7 +18,8 @@ class MainPageTemplateView(KvantWorkspaceAccessMixin, generic.TemplateView):
 
         context.update({
             'max_news': services.getNewsCount(),
-            'courses': getCourseQuery(self.request.user)})
+            'courses': getCourseQuery(self.request.user),
+            'events': services.getNewsByType(news_type=True),})
         return context
 
 
@@ -37,6 +38,11 @@ class NewsListView(KvantWorkspaceAccessMixin, generic.ListView):
     paginate_by         = 8
     template_name       = 'NewsApp/NewsPreview/index.html'
     context_object_name = 'all_news'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update(all_news=services.getNewsByType(news_type=False),)
+        return ctx
 
 
 class NewsCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
@@ -60,4 +66,11 @@ class NewsDeleteView(services.NewsAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         services.getNewsById(kwargs.get('news_identifier')).delete()
         return JsonResponse({'status': 200})
+
+
+class EventCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        object_manager = services.NewsObjectManipulationManager(
+            [KvantNewsSaveForm, KvantNewsFilesSaveForm])
+        return services.createNewEvent(object_manager, request)
         

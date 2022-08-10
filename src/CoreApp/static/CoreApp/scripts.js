@@ -28,12 +28,18 @@ $(document).mouseup(function (e) {
 	}
 });
 
+function hideAll() {
+	$(".form").removeClass("active");
+	$(".mainContainer").css("overflow-y", "scroll");
+	$(".userSelect").hide();
+	$(".list").hide();
+	$(".modal").removeClass("active");
+}
+
 // Горячие клавиши
 $('body').keyup((event) => {
 	if (event.keyCode == 27){
-		$(".form").removeClass("active");
-		$(".modal").removeClass("active");
-		$(".mainContainer").css("overflow-y", "scroll");
+		hideAll();
 	} 
 });
 
@@ -217,3 +223,27 @@ function addFileWidget(file){
 			</div>
 		</div>`)[0]
 }
+
+// Копирование текста
+function copytext(el) {
+    var $tmp = $("<textarea>");
+    $("body").append($tmp);
+    $tmp.val($(el).text()).select();
+    document.execCommand("copy");
+    
+	let alert = $(`
+		<div class='alert good'>
+			<p>Скопировано</p>
+        </div>
+	`);
+
+	$tmp.remove();
+
+	$('.alertsContainer').append(alert);
+	setTimeout(() => {
+		alert.fadeOut();
+		setTimeout(() => {
+			alert.detach();
+		}, 1000);
+	}, 1500);
+};

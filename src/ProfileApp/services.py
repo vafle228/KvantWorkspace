@@ -26,7 +26,7 @@ class UserManipulationManager(ObjectManipulationManager):
         return self.getResponse(obj_or_errors, user=user)
     
     def _constructRedirectUrl(self, **kwargs):
-        return rl('settings_page', kwargs={'user_identifier': kwargs.get('user').id})
+        return rl('info_page', kwargs={'user_identifier': kwargs.get('user').id})
 
 
 class PortfolioManipulationManager(ObjectManipulationManager):

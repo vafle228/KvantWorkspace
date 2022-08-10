@@ -1,9 +1,15 @@
-from JournalApp.forms import KvantBaseSaveForm, KvantLessonSaveForm
-from .models import KvantCourse, KvantCourseType
-from LoginApp.models import KvantUser
+import datetime as dt
+
+import openpyxl as px
 from CoreApp.services.utils import ObjectManipulationManager
 from django.urls import reverse_lazy as rl
-import datetime as dt
+from JournalApp.forms import KvantBaseSaveForm, KvantLessonSaveForm
+from LoginApp.models import KvantUser
+from RegisterApp.models import StaffPersonalInfo, StudentPersonalInfo
+from RegisterApp.serializers import (StaffPersonalInfoSerializer,
+                                     StudentPersonalInfoSerializer)
+
+from .models import KvantCourse, KvantCourseType
 
 
 class CourseSubjectManipulationManager(ObjectManipulationManager):
@@ -64,6 +70,24 @@ class CourseManipulationManager(ObjectManipulationManager):
         return rl('courses_table')
 
 
+class PersonalInfoExcelImport:
+    def __init__(self):
+        self._wb = px.Workbook()
+        self._ws = self._wb.active
+    
+    def importPersonalInfo(self, user_type):
+        if user_type == 'Ученик':
+            return self._importStudentPersonalInfo()
+        return self._importStaffPersonalInfo()
+    
+    def _importStudentPersonalInfo(self):
+        for student in StudentPersonalInfo.objects.all():
+            print(StudentPersonalInfoSerializer(student).data)
+
+    def _importStaffPersonalInfo(self):
+        pass
+
+
 def getCourseById(course_id):
     """ Возвращает курс по его course_id """
     return KvantCourse.objects.get(id=course_id)
@@ -72,10 +96,17 @@ def getCourseById(course_id):
 def getCourseQuery(user):
     """ Получает множество курсов основываясь на user """
     return {
-        'Ученик': lambda user: KvantCourse.objects.filter(students=user),
+        'Ученик': lambda user: KvantCourse.objects.filter(students__in=[user]),
         'Учитель': lambda user: KvantCourse.objects.filter(teacher=user),
         'Администратор': lambda user: KvantCourse.objects.none(),
     }[user.permission](user)
+
+
+def getCourseTypeQuery(user):
+    types = []
+    for course in getCourseQuery(user):
+        types.append(course.type.name)
+    return set(types)
 
 
 allCourses = lambda: KvantCourse.objects.all()

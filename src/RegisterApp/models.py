@@ -28,6 +28,9 @@ class LivingAdress(models.Model):
     house_number    = models.CharField(max_length=255, blank=True)
     room            = models.CharField(max_length=255, blank=True)
 
+    def __str__(self):
+        return f'{self.city} {self.street} {self.house_number} {self.room}'
+
 
 class StudyDocument(models.Model):
     vpo_spo         = models.CharField(max_length=255, blank=True)

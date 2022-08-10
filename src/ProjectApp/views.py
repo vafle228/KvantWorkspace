@@ -4,7 +4,6 @@ from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
                                      KvantWorkspaceAccessMixin)
 from django.http import HttpResponse
 from django.views import generic
-from LoginApp.services import getUserById
 
 from .forms import (KvantApplicationSaveForm, KvantProjectFilesSaveForm,
                     KvantProjectLeadersSaveForm, KvantProjectSaveForm,

@@ -32,12 +32,18 @@ function editTableStart(button, func, type){
             Сохранить
         </button>
     `);
+    updateInputs();
 }
 
 // Копирование данных ячейки в буфер обмена
-$(".tableCell input[readonly][value]").attr('title', 'Скопировать');
-$(".tableCell input[readonly][value]").on("click", function(){
-    copytext(`
-        <p>${$(this).val()}</p>
-    `);
-});
+function updateInputs(){
+    $(".tableCell input").removeAttr('title');
+    $(".tableCell input").off('click');
+
+    $(".tableCell input[readonly][value]").attr('title', 'Скопировать');
+    $(".tableCell input[readonly][value]").on("click", function(){
+        copytext(`<p>${$(this).val()}</p>`);
+    });
+}
+
+updateInputs();

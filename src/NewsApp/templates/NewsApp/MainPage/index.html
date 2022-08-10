@@ -23,21 +23,32 @@
     
     <section class="mainContainer column">
 
+        <div class='row g24'>
+            <h1>Главная</h1>
+            {% if user.permission != 'Ученик' %}
+            <button class='secondaryButton' onclick="open_form('#newEventForm')">Добавить событие</button>
+            {% endif %}
+        </div>
+
         <!-- Виджеты -->
         <section id='widgets' class='row g16'>
 
             <!-- Виджет "Календарь" -->
+            
             <div id="eventsWidget">
+                
                 <div id="eventCarousel" class="carousel">
+                    {% for event in events %}
                     <div class="carousel__slide event">
-                        <img src="https://static.tildacdn.com/tild3465-6336-4830-b761-343637333836/hackathon_5.png" class='event__banner'>
+                        <img src="{{ event.image.url }}" class='event__banner'>
                         <div class="event__content column g16">
                             <p class="event__tag">Событие</p>
-                            <h2 class="event__title">Blockchain Founder. Хакатон блокчейн-разработчиков</h2>
-                            <p class="event__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quas, accusamus quaerat numquam dicta corporis perspiciatis amet quae. Voluptas itaque dolor facere ab! A, repudiandae reprehenderit at tempora nostrum laborum facilis ex repellat nemo quo temporibus, tenetur nobis magnam incidunt dolorum officiis. Aperiam perspiciatis quaerat ullam architecto suscipit! Qui ab ipsa itaque nam suscipit, dolor facere adipisci ad distinctio quibusdam, modi dolorum illo ut corporis velit? Provident, sapiente vel, autem dolore perspiciatis excepturi architecto nulla dolorum sunt natus maxime debitis odio, id fugiat rerum ea animi modi ex porro praesentium cumque. Temporibus similique sed possimus molestiae qui. Illum, temporibus impedit.</p>
-                            <button class="event__button">Подробнее</button>
+                            <h2 class="event__title">{{ event.title }}</h2>
+                            <p class="event__text">{{ event.content|get_text }}</p>
+                            <button class="event__button" onclick="location.href=`{% url 'detail_news' event.id %}`">Подробнее</button>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
             
@@ -51,7 +62,7 @@
             <div class='row g24'>
                 <h1>Новости</h1>
                 {% if user.permission != 'Ученик' %}
-                <button class='primaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
+                <button class='secondaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
                 {% endif %}
                 <!-- <input type="text" class='newsSearch' placeholder="🔍︎"> -->
             </div>
@@ -63,6 +74,7 @@
             
             <button onclick="getNewNews()" class='primaryButton' style='margin: 0 auto' id='more'>Больше новостей</button>
             {% include "NewsApp/NewsCreationForm/index.html" with form_status="create" %}
+            {% include "NewsApp/EventCreationForm/index.html" %}
         </section>
     </section>
     
@@ -70,12 +82,15 @@
     
     <script src="{% static 'NewsApp/MainPage/scripts.js' %}"></script>
     <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
+    <script src="{% static 'NewsApp/EventForm/scripts.js' %}"></script>
     
     <!-- Сама панель инструментов -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+    <script> initQuill('#event-editor') </script>
     
     <script>
         const news_per_page_num = 8;

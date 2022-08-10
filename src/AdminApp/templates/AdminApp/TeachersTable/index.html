@@ -1,4 +1,5 @@
 {% load static %}
+{% load profile_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по учителям</h3>
-                    <input type="text" placeholder="Введите ФИО">
+                    <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#teachersTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -36,12 +37,10 @@
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected'>Все</span>
-                                <span class='dropdownSelect__option'>IT</span>
-                                <span class='dropdownSelect__option'>Энерджи</span>
-                                <span class='dropdownSelect__option'>Хайтек</span>
-                                <span class='dropdownSelect__option'>ПромДизайн</span>
-                                <span class='dropdownSelect__option'>ПромРобо</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">Все</span>
+                                {% for subject in subjects %}
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#teachersTable'), option='.tableRow', parameter='.direction p')">{{ subject.name }}</span>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -53,7 +52,7 @@
                     </button>
                 </div>
             </nav>
-
+            
             <div class="row">
                 <button class="danger combinedButton">
                     <svg viewBox="0 0 448 512">
@@ -62,12 +61,17 @@
                     </svg>
                     Удалить выбранных пользователей
                 </button>
+                <button class="combinedButton">
+                    <img src="{% static 'AdminApp/img/excel.svg' %}" style="height: 1rem">
+                    Экпортировать в Excel
+                </button>
             </div>
 
-            <div class="table scrollbarX">
+            <div class="table scrollbarX" id="teachersTable">
                 <div class="tableHeader">
                     <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
                     <p style="width: 20rem">Учитель</p>
+                    <p style="width: 9.5rem">Направление</p>
                     <p style="width: 9.5rem">Дата рождения</p>
                     <p style="width: 16rem">Электронная почта</p>
                     <p style="width: 9.5rem">Телефон</p>
@@ -85,11 +89,20 @@
                             <p class="tableUser__role">Учитель</p>
                         </div>
                     </div>
+                    <div class="tableCell direction">
+                        {% for course_type in teacher|get_user_courses_types %}
+                        <svg viewBox="0 0 448 512">
+                            <path d="M255.1 255.1c0 17.63-14.38 32-32 32s-32-14.37-32-32c0-17.62 14.38-32.03 32-32.03S255.1 238.3 255.1 255.1z"/>
+                            <path style='opacity: .6' d="M423.1 56.87C379.1 12.86 300.3 31.62 224 79.12C147.6 31.62 68.87 12.86 24.87 56.87C-19.14 100.9-.3849 179.6 47.12 256c-47.5 76.38-66.25 155.1-22.25 199.1C66.12 496.4 140.4 484.5 224 432.5c83.25 51.88 157.8 64 199.1 22.63c44-44 25.25-122.8-22.25-199.1C448.4 179.6 467.1 100.9 423.1 56.87zM70.12 102.1c9.316-9.316 39.67-12.54 97.26 17.88c-29 23.75-55.5 50.25-79.13 79.13C63.37 151.9 57.74 114.5 70.12 102.1zM70.12 409.9c-12.38-12.38-6.751-49.75 18.13-97.01c28.75 34.88 53 57.38 79.13 78.88C119.1 416.6 82.49 422.3 70.12 409.9zM224 355c-44.88-34.25-73-65-98.88-99.01C153.4 218.5 186.6 184.1 224 156.6c37.38 28.38 70.63 61.88 99 99.38C288.8 300.9 258 329 224 355zM377.9 409.9c-12.38 12.38-49.88 6.75-97.26-18.13c26-21.5 50.25-43.88 79.13-78.88C384.6 360.1 390.3 397.5 377.9 409.9zM359.8 199.1c-23.62-28.88-50.13-55.38-79.13-79.13c57.33-30.29 87.89-27.24 97.26-17.88C390.3 114.5 384.6 151.9 359.8 199.1z"/>
+                        </svg>
+                        <p>{{ course_type }}</p>
+                        {% endfor %}
+                    </div>
                     <div class="tableCell">
                         <svg viewBox="0 0 448 512">
                             <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
                             <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
-                        <p>##.##.####</p>
+                        <p>{{ teacher.staffpersonalinfo.date }}</p>
                     </div>
                     <div class="tableCell email">
                         <svg viewBox="0 0 512 512">
@@ -103,7 +116,7 @@
                             <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
                             <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
                         </svg>
-                        <p># ### ### ## ##</p>
+                        <p>{{ teacher.staffpersonalinfo.telephone }}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -225,159 +238,6 @@
         </div>
     </div>
 
-    <!-- Форма создания направления -->
-    <div class='modal' id='createDirection'>
-        <div class="modal__viewport" style="width: 48rem">
-            <form class="modal__content">
-                <div class='modal__block'>
-                    <h1 class="modal__title">Создание направления</h1>
-                    <button class='secondaryButton' type="submit">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
-                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
-                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
-                        </svg>    
-                        Сохранить
-                    </button>
-                </div>
-
-                <h3>Название</h3>
-                <input class='text-field text-field-title' autocomplete="off" type='text'/>
-
-                <h3>Изображение</h3>
-                <button class='secondaryButton' type="button">
-                    <svg width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
-                        <g transform="translate(-8.001 -9.667)">     
-                            <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
-                            <path opacity='0.3' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
-                            <path d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
-                        </g>
-                    </svg>
-                    Выбрать изображение
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Форма создания группы -->
-    <div class='modal' id='createGroup'>
-        <div class="modal__viewport" style="width: 56rem">
-            <form class="modal__content">
-                <div class='modal__block'>
-                    <h1 class="modal__title">Создание группы</h1>
-                    <button class='secondaryButton' type="submit">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
-                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
-                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
-                        </svg>    
-                        Сохранить
-                    </button>
-                </div>
-
-                <h3>Направление</h3>
-                <div class="filtering" style="width: 16rem">
-                    <div class="dropdownSelect">
-                        <div class="dropdownSelect__trigger">
-                            <div>Не выбрано</div>
-                            <div class="arrowDown"></div>
-                        </div>
-                        <div class="dropdownSelect__options">
-                            <span class='dropdownSelect__option selected'>Не выбрано</span>
-                            <span class='dropdownSelect__option'>IT</span>
-                            <span class='dropdownSelect__option'>Энерджи</span>
-                            <span class='dropdownSelect__option'>Хайтек</span>
-                            <span class='dropdownSelect__option'>ПромДизайн</span>
-                            <span class='dropdownSelect__option'>ПромРобо</span>
-                        </div>
-                    </div>
-                </div>
-
-
-                <h3>Название</h3>
-                <input class='text-field text-field-title' autocomplete="off" type='text'/>
-
-                <h3>Распиcание</h3>
-
-                <div class="row g8">
-                    <div class="column g8">
-                        <h3>ПН</h3>
-                        <input type="time" step='300' class='text-field text-field-title'>
-                    </div>
-                    <div class="column g8">
-                        <h3>ВТ</h3>
-                        <input type="time" class='text-field text-field-title'>
-                    </div>
-                    <div class="column g8">
-                        <h3>СР</h3>
-                        <input type="time" class='text-field text-field-title'>
-                    </div>
-                    <div class="column g8">
-                        <h3>ЧТ</h3>
-                        <input type="time" class='text-field text-field-title'>
-                    </div>
-                    <div class="column g8">
-                        <h3>ПТ</h3>
-                        <input type="time" class='text-field text-field-title'>
-                    </div>
-                    <div class="column g8">
-                        <h3>СБ</h3>
-                        <input type="time" class='text-field text-field-title'>
-                    </div>
-                    <div class="column g8">
-                        <h3>ВС</h3>
-                        <input type="time" class='text-field text-field-title'>
-                    </div>
-                </div>
-
-                <h3>Учитель</h3>
-                <div id="selectedTeachers" class="selectedUsers">
-                    <!-- Здесь появляются учителя -->
-                </div>
-                <input type="text" onkeyup="filterFunction(this, $('#teacherSelect'))" id='teacherSearch' placeholder="Введите ФИО">
-                <div class="userSelect" id='teacherSelect'>
-                    <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-4.png" class='userSelect__userImage'>
-                        <div class="userSelect__userInfo">
-                            <h3 class="userSelect__userName">Павел Сергеевич</h3>
-                            <p class="userSelect__userRole">Учитель</p>
-                        </div>
-                    </div>
-                    <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-13.png" class='userSelect__userImage'>
-                        <div class="userSelect__userInfo">
-                            <h3 class="userSelect__userName">Александра Денисовна</h3>
-                            <p class="userSelect__userRole">Учитель</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Ученики</h3>
-                <div id="selectedStudents" class="selectedUsers">
-                    <!-- Здесь появляются ученики -->
-                </div>
-                <input type="text" onkeyup="filterFunction(this, $('#studentSelect'))" id='studentSearch' placeholder="Введите ФИО">
-                <div class="userSelect" id='studentSelect'>
-                    <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-8.png" class='userSelect__userImage'>
-                        <div class="userSelect__userInfo">
-                            <h3 class="userSelect__userName">Каратаев Вадим</h3>
-                            <p class="userSelect__userRole">Ученик</p>
-                        </div>
-                    </div>
-                    <div class="userSelect__user row">
-                        <img src="../../img/avatars/Upstream-7.png" class='userSelect__userImage'>
-                        <div class="userSelect__userInfo">
-                            <h3 class="userSelect__userName">Смышляев Дмитрий</h3>
-                            <p class="userSelect__userRole">Ученик</p>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
     <div class="alertsContainer column" id='alertsContainer'>
     </div>
 
@@ -385,35 +245,12 @@
     
     <script src="{% static 'CoreApp/text/options.js' %}"></script>
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+    <script src="{% static 'AdminApp/scripts.js' %}"></script>
 
     <script>
         $(".tableCell p").attr('title', 'Скопировать');
         $(".tableCell p").on("click", function(){
             copytext($(this));
-        });
-    </script>
-
-    <script>
-        $('#teacherSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'teacherSelect') {
-                $('#selectedTeachers').append($(this));
-                $('#teacherSearch').val('').focus();
-                $('.userSelect').hide();
-                $('#teacherSearch').hide();
-            } else {
-                $('#teacherSelect').append($(this));
-                $('#teacherSearch').show();
-            }
-        });
-
-        $('#studentSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'studentSelect') {
-                $('#selectedStudents').append($(this));
-                $('#studentSearch').val('').focus();
-                $('.userSelect').hide();
-            } else {
-                $('#studentSelect').append($(this));
-            }
         });
     </script>
 </body>
