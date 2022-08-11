@@ -522,7 +522,7 @@ body{
     background-color: var(--theme-light);
 }
 .dropdownSelect__option.selected {
-    color: #fff;
+    color: var(--text-primary-color);
     background-color: var(--theme-light);
 }
 
