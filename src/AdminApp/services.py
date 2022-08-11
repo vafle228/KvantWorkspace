@@ -163,7 +163,7 @@ class GenerateRegisterLink(ObjectManipulationManager):
             return '\n'.join([error.as_text() for error in links_or_errors.values()])
         
         for link_obj in links_or_errors:
-            self._out_string += request.build_absolute_uri(f"{rl('register')}?key={link_obj.key}") + '\n'
+            self._out_string += request.build_absolute_uri(f"{rl('register_page')}?key={link_obj.key}") + '\n'
         return self._out_string
 
     def _constructRedirectUrl(self, **kwargs): return

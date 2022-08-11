@@ -13,6 +13,7 @@ from LoginApp.services import getUserById
 from PIL import Image
 
 from .models import KvantAward
+from django.contrib.auth import login
 
 
 def getUserAwardsQuery(user):
@@ -27,6 +28,19 @@ class UserManipulationManager(ObjectManipulationManager):
     
     def _constructRedirectUrl(self, **kwargs):
         return rl('info_page', kwargs={'user_identifier': kwargs.get('user').id})
+
+
+class UserChangePasswordManager(ObjectManipulationManager):
+    def updateObject(self, request):
+        user_or_errors = self._getUpdatedObject(request)
+
+        if isinstance(user_or_errors, KvantUser):
+            if request.user == user_or_errors:
+                login(request, user_or_errors)
+        return self.getResponse(user_or_errors)
+    
+    def _constructRedirectUrl(self, **kwargs):
+        return rl('info_page', kwargs={'user_identifier': kwargs.get('obj').id})
 
 
 class PortfolioManipulationManager(ObjectManipulationManager):

@@ -4,7 +4,7 @@ from CoreApp.services.access import (KvantTeacherAndAdminAccessMixin,
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.views import generic
-from LoginApp.forms import ImageChangeForm
+from LoginApp.forms import ImageChangeForm, PasswordChangeForm
 from LoginApp.models import KvantUser
 from LoginApp.services import getUserById
 from ProjectApp.services.services import KvantProjectQuerySelector
@@ -95,4 +95,10 @@ class PortfolioAddForm(services.UserExistsMixin, KvantTeacherAndAdminAccessMixin
     def post(self, request, *args, **kwargs):
         object_manager = services.PortfolioManipulationManager([KvantAwardSaveForm])
         return object_manager.createPortfolioInstance(request)
-        
+
+
+class PasswordChangeView(services.UserManipulationMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        user = getUserById(kwargs.get('user_identifier'))
+        manager = services.UserChangePasswordManager([PasswordChangeForm], object=user)
+        return manager.updateObject(request)

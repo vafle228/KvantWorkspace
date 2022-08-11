@@ -1,10 +1,12 @@
-from django import forms
+import secrets
 
+from django import forms
+from LoginApp.forms import KvantUserCreationForm
 from LoginApp.models import KvantUser
-from .models import *
+
 from RegisterApp.services import getUserPersonalInfo
 
-import secrets
+from .models import *
 
 
 class PersonalityDocumentSaveForm(forms.ModelForm):
@@ -114,3 +116,13 @@ class TempRegisterLinkSaveForm(forms.ModelForm):
                 key=hex_val, permission=self.cleaned_data.get('permission')))
         return links
 
+
+class UserRegisterForm(KvantUserCreationForm):
+    password2 = forms.CharField(max_length=255)
+
+    def clean_password2(self):
+        if self.cleaned_data.get('password2') is None:
+            raise ValidationError('Подтвердите пароль')
+        if self.cleaned_data.get('password2') != self.cleaned_data.get('password'):
+            raise ValidationError('Пароли должны совпадать')
+        return super().clean_password2()

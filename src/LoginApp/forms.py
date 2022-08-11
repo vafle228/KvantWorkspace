@@ -2,6 +2,7 @@ from django import forms
 from .models import KvantUser
 from CoreApp.services.image import ImageThumbnailBaseMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import SetPasswordForm
 
 
 class UserImageManagerMixin(ImageThumbnailBaseMixin):
@@ -18,7 +19,7 @@ class KvantUserCreationForm(UserCreationForm, UserImageManagerMixin):
     
     class Meta:
         model = KvantUser
-        fields = ('username', 'email', 'password', 'name', 'surname', 'patronymic', 'image')
+        fields = ('username', 'email', 'name', 'surname', 'patronymic', 'permission', 'image')
 
 
 class KvantUserChangeForm(UserChangeForm, UserImageManagerMixin):
@@ -39,3 +40,8 @@ class ImageChangeForm(forms.ModelForm, UserImageManagerMixin):
         class Meta:
             model = KvantUser
             fields = ('image', )
+
+
+class PasswordChangeForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        user = kwargs.get('instance'); super().__init__(user, *args, **{})
