@@ -17,7 +17,7 @@ class KvantWorkspaceAccessMixinBase(View):
         """
         if not self.accessTest(**kwargs):
             if request.is_ajax():
-                return JsonResponse({'status': 'Error', 'message': 'Отказано в доступе!'})
+                return JsonResponse({'status': 400, 'errors': {'access': ['Отказано в доступе!']}})
             
             messages.error(self.request, 'Отказано в доступе!')
             return redirect(reverse_lazy('login_page'))

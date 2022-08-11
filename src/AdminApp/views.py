@@ -1,8 +1,11 @@
+from CoreApp.services.access import KvantTeacherAndAdminAccessMixin
+from django.http import HttpResponse, JsonResponse
 from django.views import generic
+from LoginApp.services import getUserById
+from RegisterApp.forms import TempRegisterLinkSaveForm
 
 from AdminApp.forms import (CourseSheduleSaveForm, KvantCourseSaveForm,
                             KvantCourseTypeSaveForm)
-from CoreApp.services.access import KvantTeacherAndAdminAccessMixin
 from AdminApp.models import KvantCourseType
 
 from . import services
@@ -71,14 +74,64 @@ class SubjectsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.Templat
         return context
 
 
-class SubjectsCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
+class SubjectsCreateView(services.KvantAdminAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         object_manager = services.CourseSubjectManipulationManager([KvantCourseTypeSaveForm])
         return object_manager.createObject(request)
 
 
-class CourseCreateView(KvantTeacherAndAdminAccessMixin, generic.View):
+class CourseCreateView(services.KvantAdminAccessMixin, generic.View):
     def post(self, request, *args, **kwargs):
         object_manager = services.CourseManipulationManager(
             [KvantCourseSaveForm, CourseSheduleSaveForm])
         return object_manager.createCourse(request)
+
+
+class ExcelImportDataView(KvantTeacherAndAdminAccessMixin, generic.View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(
+            services.PersonalInfoExcelImport().importPersonalInfo(request.GET.get('user')),
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+
+
+class GenerateUserCreateLink(services.KvantAdminAccessMixin, generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        request.POST = request.GET; return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        manager = services.GenerateRegisterLink([TempRegisterLinkSaveForm])
+        response = HttpResponse(manager.createRegisterLink(request), content_type="text/plain; charset=utf-8")
+        response['Content-Disposition'] = 'attachment; filename="links.txt";'
+        
+        return response
+
+
+class UserDeleteView(services.KvantUserDeleteAccessMixin, generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        kwargs.update(user_identifier=request.POST.get('user_identifier'))
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        getUserById(kwargs.get('user_identifier')).delete()
+        return JsonResponse({'status': 200})
+
+
+class CourseDeleteView(services.KvantCourseDeleteAccessMixin, generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        kwargs.update(course_identifier=request.POST.get('course_identifier'))
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        services.getCourseById(kwargs.get('course_identifier')).delete()
+        return JsonResponse({'status': 200})
+
+
+class SubjectsDeleteView(services.KvantCourseTypeDeleteAccessMixin, generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        kwargs.update(subject_identifier=request.POST.get('subject_identifier'))
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        services.getCourseTypeById(kwargs.get('subject_identifier')).delete()
+        return JsonResponse({'status': 200})

@@ -27,23 +27,27 @@
                     <h3>Поиск по администраторам</h3>
                     <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#adminsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
                 </div>
+                {% if user.permission == 'Администратор' %}
                 <div class="column g8">
                     <h3>Добавление</h3>
-                    <button class="secondaryButton" onclick="open_form('#createAdmin')">
-                        Добавить администратора
+                    <button class="secondaryButton" onclick="open_form('#genLinks')">
+                        Сгенерировать ссылки администраторам
                     </button>
                 </div>
+                {% endif %}
             </nav>
 
             <div class="row">
-                <button class="danger combinedButton">
+                {% if user.permission == 'Администратор' %}
+                <button class="danger combinedButton" onclick="open_form('#confirmDeletion')">
                     <svg viewBox="0 0 448 512">
                         <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM143 207C152.4 197.7 167.6 197.7 176.1 207L223.1 254.1L271 207C280.4 197.7 295.6 197.7 304.1 207C314.3 216.4 314.3 231.6 304.1 240.1L257.9 287.1L304.1 335C314.3 344.4 314.3 359.6 304.1 368.1C295.6 378.3 280.4 378.3 271 368.1L223.1 321.9L176.1 368.1C167.6 378.3 152.4 378.3 143 368.1C133.7 359.6 133.7 344.4 143 335L190.1 287.1L143 240.1C133.7 231.6 133.7 216.4 143 207V207z"/>
                         <path style='opacity: .3' d="M394.6 466.8C393.1 492.2 372.1 512 346.7 512H101.3C75.87 512 54.86 492.2 53.39 466.8L32 96H416L394.6 466.8zM143 240.1L190.1 287.1L143 335C133.7 344.4 133.7 359.6 143 368.1C152.4 378.3 167.6 378.3 176.1 368.1L223.1 321.9L271 368.1C280.4 378.3 295.6 378.3 304.1 368.1C314.3 359.6 314.3 344.4 304.1 335L257.9 287.1L304.1 240.1C314.3 231.6 314.3 216.4 304.1 207C295.6 197.7 280.4 197.7 271 207L223.1 254.1L176.1 207C167.6 197.7 152.4 197.7 143 207C133.7 216.4 133.7 231.6 143 240.1V240.1z"/>
                     </svg>
                     Удалить выбранных пользователей
                 </button>
-                <button class="combinedButton">
+                {% endif %}
+                <button class="combinedButton" onclick="location.href=`{% url 'excel_import' %}?user=Администратор`">
                     <img src="{% static 'AdminApp/img/excel.svg' %}" style="height: 1rem">
                     Экпортировать в Excel
                 </button>
@@ -60,7 +64,7 @@
                 
                 {% for admin in admins %}
                 <div class="tableRow">
-                    <input type="checkbox">
+                    <input type="checkbox" value="{{ admin.id }}">
 
                     <div class="tableUser row g8" title="Перейти в профиль" onclick="location.href=`{% url 'info_page' admin.id %}`">
                         <img src="{{ admin.image.url }}" class="tableUser__avatar avatar">
@@ -98,53 +102,8 @@
 
     </main>
 
-    <!-- Форма добавления администратора -->
-    <div class='modal' id='createAdmin'>
-        <div class="modal__viewport" style="width: 48rem">
-            <form class="modal__content">
-                <div class='modal__block'>
-                    <h1 class="modal__title">Добавление администратора</h1>
-                    <button class='secondaryButton' type="submit">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
-                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
-                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
-                        </svg>    
-                        Сохранить
-                    </button>
-                </div>
-
-                <h3>Логин</h3>
-                <input class='text-field text-field-title' autocomplete="off" type='text'/>
-
-                <h3>Электронная почта</h3>
-                <input class='text-field text-field-title' autocomplete="off" type="email"/>
-
-                <div class="row g16">
-                    <div class="column g8">
-                        <h3>Фамилия</h3>
-                        <input class='text-field text-field-title' autocomplete="off" type='text'/>
-                    </div>
-                    
-                    <div class="column g8">
-                        <h3>Имя</h3>
-                        <input class='text-field text-field-title' autocomplete="off" type='text'/>
-                    </div>
-                    
-                    <div class="column g8">
-                        <h3>Отчество</h3>
-                        <input class='text-field text-field-title' autocomplete="off" type='text'/>
-                    </div>
-                </div>
-                
-                <h3>Пароль</h3>
-                <input class='text-field text-field-title' autocomplete="off" type="password"/>
-            </form>
-        </div>
-    </div>
-
-    <div class="alertsContainer column" id='alertsContainer'>
-    </div>
+    {% include "AdminApp/UserCreateForm/index.html" %}
+    {% include "AdminApp/DeletionForm/index.html" %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     
@@ -158,29 +117,34 @@
         });
     </script>
 
-    <script>
-        $('#teacherSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'teacherSelect') {
-                $('#selectedTeachers').append($(this));
-                $('#teacherSearch').val('').focus();
-                $('.userSelect').hide();
-                $('#teacherSearch').hide();
-            } else {
-                $('#teacherSelect').append($(this));
-                $('#teacherSearch').show();
-            }
-        });
+    {% if user.permission == 'Администратор' %}
 
-        $('#studentSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'studentSelect') {
-                $('#selectedStudents').append($(this));
-                $('#studentSearch').val('').focus();
-                $('.userSelect').hide();
-            } else {
-                $('#studentSelect').append($(this));
-            }
-        });
+    <script>
+        function createUsersLinks(){
+            return `{% url 'user_create' %}?permission=Администратор&count=${$('#count').val()}`
+        }
     </script>
+
+    <script>
+        function delConfirm(){
+            $('.tableRow input[type=checkbox]').each(function(user){
+                if(this.checked){
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "user_delete" %}',
+                        data:{
+                            'confirm': true,
+                            'user_identifier': $(this).val(),
+                            'csrfmiddlewaretoken': getCookie('csrftoken'),
+                        },
+                    })
+                }   
+            })
+            location.reload()
+        }
+    </script>
+
+    {% endif %}
 </body>
 
 </html>

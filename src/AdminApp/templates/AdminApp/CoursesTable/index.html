@@ -26,7 +26,7 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по Направлениям</h3>
-                    <input type="text" placeholder="Введите группу">
+                    <input type="text" placeholder="Введите группу" onkeyup="filterFunction(input=this, select=$('#groupsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -37,26 +37,27 @@
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected'>Все</span>
-                                <span class='dropdownSelect__option'>IT</span>
-                                <span class='dropdownSelect__option'>Энерджи</span>
-                                <span class='dropdownSelect__option'>Хайтек</span>
-                                <span class='dropdownSelect__option'>ПромДизайн</span>
-                                <span class='dropdownSelect__option'>ПромРобо</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">Все</span>
+                                {% for subject in subjects %}
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#groupsTable'), option='.tableRow', parameter='.group .tableUser__name')">{{ subject.name }}</span>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
+                {% if user.permission == 'Администратор' %}
                 <div class="column g8">
                     <h3>Добавление</h3>
                     <button class="secondaryButton" onclick="open_form('#createGroup')">
                         Добавить группу
                     </button>
                 </div>
+                {% endif %}
             </nav>
 
+            {% if user.permission == 'Администратор' %}
             <div class="row">
-                <button class="danger combinedButton">
+                <button class="danger combinedButton" onclick="open_form('#confirmDeletion')">
                     <svg viewBox="0 0 448 512">
                         <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM143 207C152.4 197.7 167.6 197.7 176.1 207L223.1 254.1L271 207C280.4 197.7 295.6 197.7 304.1 207C314.3 216.4 314.3 231.6 304.1 240.1L257.9 287.1L304.1 335C314.3 344.4 314.3 359.6 304.1 368.1C295.6 378.3 280.4 378.3 271 368.1L223.1 321.9L176.1 368.1C167.6 378.3 152.4 378.3 143 368.1C133.7 359.6 133.7 344.4 143 335L190.1 287.1L143 240.1C133.7 231.6 133.7 216.4 143 207V207z"/>
                         <path style='opacity: .3' d="M394.6 466.8C393.1 492.2 372.1 512 346.7 512H101.3C75.87 512 54.86 492.2 53.39 466.8L32 96H416L394.6 466.8zM143 240.1L190.1 287.1L143 335C133.7 344.4 133.7 359.6 143 368.1C152.4 378.3 167.6 378.3 176.1 368.1L223.1 321.9L271 368.1C280.4 378.3 295.6 378.3 304.1 368.1C314.3 359.6 314.3 344.4 304.1 335L257.9 287.1L304.1 240.1C314.3 231.6 314.3 216.4 304.1 207C295.6 197.7 280.4 197.7 271 207L223.1 254.1L176.1 207C167.6 197.7 152.4 197.7 143 207C133.7 216.4 133.7 231.6 143 240.1V240.1z"/>
@@ -64,8 +65,9 @@
                     Удалить выбранные курсы
                 </button>
             </div>
+            {% endif %}
 
-            <div class="table scrollbarX">
+            <div class="table scrollbarX" id="groupsTable">
                 <div class="tableHeader">
                     <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
                     <p style="width: 20rem">Группа</p>
@@ -75,8 +77,8 @@
                 
                 {% for course in courses %}
                 <div class="tableRow">
-                    <input type="checkbox">
-                    <div class="tableUser row g8">
+                    <input type="checkbox" value="{{ course.id }}">
+                    <div class="tableUser row g8 group">
                         <img src="{{ course.type.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
                             <p class="tableUser__name">{{ course }}</p>
@@ -213,6 +215,8 @@
         </div>
     </div>
 
+    {% include "AdminApp/DeletionForm/index.html" %}
+
     <div class="alertsContainer column" id='alertsContainer'></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
@@ -221,6 +225,8 @@
     <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
     <script src="{% static 'AdminApp/CoursesTable/scripts.js' %}"></script>
     <script src="{% static 'AdminApp/scripts.js' %}"></script>
+
+    {% if user.permission == 'Администратор' %}
 
     <script>
         function getCourseFormData(){
@@ -241,28 +247,25 @@
     </script>
 
     <script>
-        $('#teacherSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'teacherSelect') {
-                $('#selectedTeachers').append($(this));
-                $('#teacherSearch').val('').focus();
-                $('.userSelect').hide();
-                $('#teacherSearch').hide();
-            } else {
-                $('#teacherSelect').append($(this));
-                $('#teacherSearch').show();
-            }
-        });
-
-        $('#studentSelect .userSelect__user').click( function() {
-            if ($(this).parent().attr('id') == 'studentSelect') {
-                $('#selectedStudents').append($(this));
-                $('#studentSearch').val('').focus();
-                $('.userSelect').hide();
-            } else {
-                $('#studentSelect').append($(this));
-            }
-        });
+        function delConfirm(){
+            $('.tableRow input[type=checkbox]').each(function(course){
+                if(this.checked){
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "course_delete" %}',
+                        data:{
+                            'confirm': true,
+                            'course_identifier': $(this).val(),
+                            'csrfmiddlewaretoken': getCookie('csrftoken'),
+                        },
+                    })
+                }   
+            })
+            location.reload()
+        }
     </script>
+
+    {% endif %}
 </body>
 
 </html>

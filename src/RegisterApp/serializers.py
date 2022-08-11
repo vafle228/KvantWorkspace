@@ -17,6 +17,9 @@ class LivingAdressSerializer(serializers.ModelSerializer):
 
 
 class StudentParentSerializer(serializers.ModelSerializer):
+    adress = LivingAdressSerializer()
+    document = PersonalityDocumentSerializer()
+
     class Meta:
         model = StudentParent
         exclude = ('id', )
@@ -43,7 +46,9 @@ class StudentPersonalInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentPersonalInfo
-        exclude = ('id', )
+        fields = (
+            'user', 'sex', 'snils', 'telephone', 'document', 
+            'adress', 'school', 'school_class', 'is_dzd', 'mother', 'father')
 
 
 class StaffPersonalInfoSerializer(serializers.ModelSerializer):

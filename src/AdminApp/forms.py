@@ -90,3 +90,4 @@ class CourseSheduleSaveForm(ManyToManyObjectCreateMixin):
     
     def _validateSchedule(self, schedule):
         return True
+ 

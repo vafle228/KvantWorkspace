@@ -77,7 +77,7 @@ class KvantUserChangeView(services.UserManipulationMixin, generic.View):
             'student': ([StudentPersonalInfoSaveForm], lambda u: u.studentpersonalinfo),
             'father': ([StudentParentSaveForm], lambda u: u.studentpersonalinfo.father),
             'mother': ([StudentParentSaveForm], lambda u: u.studentpersonalinfo.mother),
-            'staff': ([StudyDocumentSaveForm, StaffPersonalInfoSaveForm], lambda u: u.staffpersonalinfo),
+            'staff': ([StaffPersonalInfoSaveForm], lambda u: u.staffpersonalinfo),
         }.get(request.POST.get('type'), (None, None))
         return super().dispatch(request, *args, **kwargs)
 

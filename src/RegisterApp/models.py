@@ -2,16 +2,27 @@ from django.db import models
 from .validators import *
 
 
-sexes = (
+SEXES = (
     ('Мужской', 'Мужской'),
     ('Женский', 'Женский'),
 )
 
 
-commit = (
+COMMIT = (
     ('Да', 'Да'),
     ('Нет', 'Нет'),
 )
+
+PERMISSION = (
+    ("Ученик", "Ученик"),
+    ("Учитель", "Учитель"),
+    ("Администратор", "Администратор")
+)
+
+
+class TempRegisterLink(models.Model):
+    key         = models.CharField(max_length=255, unique=True)
+    permission  = models.CharField(max_length=255, choices=PERMISSION)
 
 
 class PersonalityDocument(models.Model):
@@ -58,8 +69,8 @@ class StudentPersonalInfo(models.Model):
     
     school          = models.CharField(max_length=255, blank=True)
     school_class    = models.CharField(max_length=255, blank=True)
-    sex             = models.CharField(max_length=255, choices=sexes, blank=True)
-    is_dzd          = models.CharField(max_length=255, choices=commit, blank=True)
+    sex             = models.CharField(max_length=255, choices=SEXES, blank=True)
+    is_dzd          = models.CharField(max_length=255, choices=COMMIT, blank=True)
     date            = models.CharField(max_length=255, blank=True, validators=[validate_date])
     snils           = models.CharField(max_length=255, validators=[validate_snils], blank=True)
     telephone       = models.CharField(max_length=255, validators=[validate_telephone], blank=True)
@@ -73,7 +84,7 @@ class StudentPersonalInfo(models.Model):
 class StaffPersonalInfo(models.Model):
     user            = models.OneToOneField(to='LoginApp.KvantUser', on_delete=models.CASCADE, blank=True)
 
-    sex             = models.CharField(max_length=255, choices=sexes, blank=True)
+    sex             = models.CharField(max_length=255, choices=SEXES, blank=True)
     date            = models.CharField(max_length=255, blank=True, validators=[validate_date])
     snils           = models.CharField(max_length=255, validators=[validate_snils], blank=True)
     telephone       = models.CharField(max_length=255, validators=[validate_telephone], blank=True)
