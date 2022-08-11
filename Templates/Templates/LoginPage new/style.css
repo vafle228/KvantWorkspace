@@ -3,7 +3,7 @@ body{
     padding: 0;
 }
 
-.registrationForm{
+main{
     width: 100%; height: 100%;
     display: flex; justify-content: space-between;
 }
@@ -24,7 +24,7 @@ body{
 }
 
 .input{
-    width: 100%; height: 3.75rem;
+    width: 100%; height: 4rem;
     flex: none;
     border: #99a1a944 solid 0.125rem;
     border-radius: 0.5rem;
@@ -52,7 +52,7 @@ button{
     background-color: #397ef6;
     color: #fff;
     font-size: 1.125rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     transition: all .2s;
 }
 button:hover{

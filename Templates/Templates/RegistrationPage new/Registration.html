@@ -16,7 +16,7 @@
 
 <body class="light__theme">
 
-    <main class="registrationForm">
+    <main>
 
         <div class="leftSide">
 
@@ -36,40 +36,26 @@
                 <h1 class="title">Регистрация</h1>
                 <h3>Уже зарегистрированы? <a href="#" style="color: #397ef6">Авторизоваться</a></h3>
 
-                <div class="firstStep">
-                    <div class="inputs column g8 my16">
-                        <h3 class="label">Фамилия</h3>
-                        <input class='input' type="text" placeholder="Фамилия">
-
-                        <h3 class="label">Имя</h3>
-                        <input class='input' type="text" placeholder="Имя">
-
-                        <h3 class="label">Отчество</h3>
-                        <input class='input' type="text" placeholder="Отчество">
+                <div class="inputs column g8 my16">
+                    <div class='flashError'>
+                        <p>Пароли не совпадают</p>
+                        <p>&#8416 </p>
                     </div>
-                    
-                    <button onclick="nextStep()">Дальше</button>
+
+                    <h3 class="label">ФИО</h3>
+
+                    <input class='input' type="text" placeholder="Фамилия">
+                    <input class='input' type="text" placeholder="Имя">
+                    <input class='input' type="text" placeholder="Отчество">
+
+                    <h3 class="label">Доступ к аккаунту</h3>
+
+                    <input class='input' type="text" placeholder="Логин">
+                    <input class='input' type="password" placeholder="Пароль">
+                    <input class='input' type="password" placeholder="Подтверждение пароля">
                 </div>
-
-                <div class="secondStep">
-                    <div class="inputs column g8 my16">
-                        <div class='flashError'>
-                            <p>Пароли не совпадают</p>
-                            <p>&#8416 </p>
-                        </div>
-
-                        <h3 class="label">Логин</h3>
-                        <input class='input' type="text" placeholder="Логин">
-
-                        <h3 class="label">Пароль</h3>
-                        <input class='input' type="password" placeholder="Пароль">
-
-                        <h3 class="label">Подтверждение пароля</h3>
-                        <input class='input' type="password" placeholder="Пароль">
-                    </div>
-                    
-                    <button>Зарегистрироваться</button>
-                </div>
+                
+                <button>Зарегистрироваться</button>
 
             </div>
         </div>
@@ -79,17 +65,7 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
-    <script>
-        function nextStep(){
-            $('.firstStep').animate({
-                opacity: 'toggle',
-                height: 'toggle'
-            });
-            $('.secondStep').animate({
-                opacity: 'toggle',
-            });
-        }
-    </script>
+    <script src='../../JS/script.js'></script> <!-- JavaScript -->
 
 </body>
 
