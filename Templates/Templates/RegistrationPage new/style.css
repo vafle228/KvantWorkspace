@@ -60,8 +60,8 @@ button:hover{
 }
 .flashError{
     display: flex; justify-content: space-between; align-items: center;
-    height: 3.5rem;
-    padding: 0 1.5rem 0 1rem;
+    min-height: 3.5rem;
+    padding: 0.5rem 1.5rem 0.5rem 1rem;
     background-color: #D9302511;
     border-radius: 0.5rem;
     border: #D9302588 solid 0.125rem;
