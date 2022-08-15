@@ -75,6 +75,9 @@ function filterFunction(input, select, option, parameter, hide) {
 	else {
 		hide ? $(select).hide() : $(select).find(option).show();
 	}
+
+	// Специально для SearchPage
+	resetCheckboxes();
 }
 
 function filterApplying(substr, select, option, parameter){
@@ -87,6 +90,9 @@ function filterApplying(substr, select, option, parameter){
 		});
 		flag ? $(users[index]).show() : $(users[index]).hide();
 	});
+
+	// Специально для SearchPage
+	resetCheckboxes();
 }
 
 // Сменить тему оформления

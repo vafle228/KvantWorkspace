@@ -194,7 +194,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по ученикам</h3>
-                    <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#studentsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите ФИО"
+                        onkeyup="filterFunction(input=this, select=$('#studentsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -212,6 +216,22 @@
                                 <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">ПромДизайн</span>
                                 <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">ПромРобо</span>
                                 <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Математика</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column g8">
+                    <h3>Группа</h3>
+                    <div class="filtering" style="width: 12rem">
+                        <div class="dropdownSelect">
+                            <div class="dropdownSelect__trigger">
+                                <div>Все</div>
+                                <div class="arrowDown"></div>
+                            </div>
+                            <div class="dropdownSelect__options">
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Все</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">3-1</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">3-2</span>
                             </div>
                         </div>
                     </div>
@@ -240,7 +260,11 @@
 
             <div class="table scrollbarX" id="studentsTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Ученик</p>
                     <p style="width: 20rem">Группы</p>
                     <p style="width: 9.5rem">Дата рождения</p>
@@ -414,7 +438,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по учителям</h3>
-                    <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#teachersTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите ФИО"
+                        onkeyup="filterFunction(input=this, select=$('#teachersTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -460,7 +488,11 @@
 
             <div class="table scrollbarX" id="teachersTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Учитель</p>
                     <p style="width: 9.5rem">Направление</p>
                     <p style="width: 9.5rem">Дата рождения</p>
@@ -513,7 +545,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по администраторам</h3>
-                    <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#adminsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите ФИО"
+                        onkeyup="filterFunction(input=this, select=$('#adminsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Добавление</h3>
@@ -539,7 +575,11 @@
 
             <div class="table scrollbarX" id="adminsTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Администратор</p>
                     <p style="width: 9.5rem">Дата рождения</p>
                     <p style="width: 16rem">Электронная почта</p>
@@ -584,7 +624,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по Направлениям</h3>
-                    <input type="text" placeholder="Введите Направление" onkeyup="filterFunction(input=this, select=$('#directionsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите Направление"
+                        onkeyup="filterFunction(input=this, select=$('#directionsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Добавление</h3>
@@ -610,7 +654,11 @@
 
             <div class="table scrollbarX" id="directionsTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Направление</p>
                     <p style="width: 12rem">Количество групп</p>
                     <p style="width: 12rem">Количество учеников</p>
@@ -640,7 +688,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по Направлениям</h3>
-                    <input type="text" placeholder="Введите группу" onkeyup="filterFunction(input=this, select=$('#groupsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите группу"
+                        onkeyup="filterFunction(input=this, select=$('#groupsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -686,7 +738,11 @@
 
             <div class="table scrollbarX" id="groupsTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Группа</p>
                     <p style="width: 20rem">Учитель</p>
                     <p style="width: 12rem">Количество учеников</p>
@@ -1065,7 +1121,19 @@
     </script>
 
     <script>
-        console.log($('#studentsTable .tableRow').has('input:checked').toArray());
+        console.log($('.tableRow').has('input:checked').toArray());
+    </script>
+
+    <script>
+        function selectAll(mainChecbox){
+            $('.tableRow').toArray().forEach((tableRow) => {
+                if ($(tableRow).css('display') !== 'none')
+                    $(tableRow).find('input[type=checkbox]').prop('checked', $(mainChecbox).prop('checked'))
+            });
+        }
+        function resetCheckboxes(){
+            $('input[type=checkbox]').prop('checked', false);
+        }
     </script>
 </body>
 
