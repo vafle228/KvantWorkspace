@@ -16,146 +16,56 @@
 
 <body class="light__theme">
 
-    <header class="header" style="--progress: 40%">
-        <svg viewBox="0 0 2444 615" class="header__logo">
-            <g transform="translate(-2146 2473)">
-              <g transform="translate(-416 -471)">
-                <path d="M0,0H256a0,0,0,0,1,0,0V96a32,32,0,0,1-32,32H32A32,32,0,0,1,0,96V0A0,0,0,0,1,0,0Z" transform="translate(2562 -1568)" fill="#00a9a4"/>
-                <path d="M32,0H224a32,32,0,0,1,32,32V319L128.492,218.765,0,319V32A32,32,0,0,1,32,0Z" transform="translate(2562 -1937)" fill="#00a9a488"/>
-              </g>
-              <text transform="translate(2594 -2473)" font-size="341" font-family="GoogleSans-Medium, Google Sans" font-weight="500"><tspan x="0" y="329">Кванториум</tspan></text>
-              <text transform="translate(2617 -2113)" font-size="204" font-family="GoogleSans-Medium, Google Sans" font-weight="500"><tspan x="0" y="197">WORKSPACE</tspan></text>
-            </g>
-        </svg>
-        <p>Шаг 2 из 5</p>
-        <button class="secondaryButton">
-            Авторизация
-            <svg viewBox="0 0 448 512">
-                <path d="M256 64C256 46.33 270.3 32 288 32H415.1C415.1 32 415.1 32 415.1 32C420.3 32 424.5 32.86 428.2 34.43C431.1 35.98 435.5 38.27 438.6 41.3C438.6 41.35 438.6 41.4 438.7 41.44C444.9 47.66 447.1 55.78 448 63.9C448 63.94 448 63.97 448 64V192C448 209.7 433.7 224 416 224C398.3 224 384 209.7 384 192V141.3L214.6 310.6C202.1 323.1 181.9 323.1 169.4 310.6C156.9 298.1 156.9 277.9 169.4 265.4L338.7 96H288C270.3 96 256 81.67 256 64V64zM0 128C0 92.65 28.65 64 64 64H160C177.7 64 192 78.33 192 96C192 113.7 177.7 128 160 128H64V416H352V320C352 302.3 366.3 288 384 288C401.7 288 416 302.3 416 320V416C416 451.3 387.3 480 352 480H64C28.65 480 0 451.3 0 416V128z"/>
+    <main>
+
+        <div class="leftSide">
+
+            <svg viewBox="0 0 2444 615" class="logo">
+                <g transform="translate(-2146 2473)">
+                    <g transform="translate(-416 -471)">
+                    <path d="M0,0H256a0,0,0,0,1,0,0V96a32,32,0,0,1-32,32H32A32,32,0,0,1,0,96V0A0,0,0,0,1,0,0Z" transform="translate(2562 -1568)" fill="#397ef6"/>
+                    <path d="M32,0H224a32,32,0,0,1,32,32V319L128.492,218.765,0,319V32A32,32,0,0,1,32,0Z" transform="translate(2562 -1937)" fill="#397ef688"/>
+                    </g>
+                    <text transform="translate(2594 -2473)" font-size="341" font-family="GoogleSans-Medium, Google Sans" font-weight="500"><tspan x="0" y="329">Кванториум</tspan></text>
+                    <text transform="translate(2617 -2113)" font-size="204" font-family="GoogleSans-Medium, Google Sans" font-weight="500"><tspan x="0" y="197">WORKSPACE</tspan></text>
+                </g>
             </svg>
-        </button>
-    </header>
 
-    <main class="mainContainer">
+            <div class="stepContainer column g16">
+                
+                <h1 class="title">Регистрация</h1>
+                <h3>Уже зарегистрированы? <a href="#" style="color: #397ef6">Авторизоваться</a></h3>
 
-        <h2>Заполните информацию о себе</h2>
-        <p>* Указывайте информацию в соответствии с документом удостоверяющем личность</p>
-
-        <div class="row g16">
-            <div class="column g16">
-                <h3>Фамилия</h3>
-                <input type="text" class="input" placeholder="Фамилия" required>
-            </div>
-            <div class="column g16">
-                <h3>Имя</h3>
-                <input type="text" class="input" placeholder="Имя" required>
-            </div>
-            <div class="column g16">
-                <h3>Отчество</h3>
-                <input type="text" class="input" placeholder="Отчество" required>
-            </div>
-        </div>
-
-        <div class="row g16">
-            <div class="column g16">
-                <h3>Пол</h3>
-                <div class="filtering" style="width: 20rem">
-                    <div class="dropdownSelect" id="groupSelect">
-                        <div class="dropdownSelect__trigger">
-                            <div>
-                                Не выбрано
-                            </div>
-                            <div class="arrowDown"></div>
-                        </div>
-                        <div class="dropdownSelect__options">
-                            <span class='dropdownSelect__option selected'>Не выбрано</span>
-                            <span class='dropdownSelect__option'>Мужской</span>
-                            <span class='dropdownSelect__option'>Женский</span>
-                        </div>
+                <div class="inputs column g8 my16">
+                    <div class='flashError'>
+                        <p>Пароли не совпадают</p>
+                        <p>&#8416 </p>
                     </div>
+
+                    <h3 class="label">ФИО</h3>
+
+                    <input class='input' type="text" placeholder="Фамилия">
+                    <input class='input' type="text" placeholder="Имя">
+                    <input class='input' type="text" placeholder="Отчество">
+
+                    <h3 class="label">Доступ к аккаунту</h3>
+
+                    <input class='input' type="text" placeholder="Логин">
+                    <input class='input' type="password" placeholder="Пароль">
+                    <input class='input' type="password" placeholder="Подтверждение пароля">
                 </div>
-            </div>
-            <div class="column g16">
-                <h3>Дата рождения</h3>
-                <input type="date" class="input" required>
+                
+                <button>Зарегистрироваться</button>
+
             </div>
         </div>
 
-        <h2>Образование</h2>
-        <div class="row g16">
-            <input type="text" class="input" placeholder="Образовательное учреждение" required>
-            <input type="number" class="input" placeholder="Класс" max="11" min="1" required>
-        </div>
-
-        <h2>Паспорт</h2>
-        <div class="row g16">
-            <div class="column g16">
-                <h3>Серия</h3>
-                <input type="text" class="input" placeholder="__ __" required maxlength="5" minlength="4">
-            </div>
-            <div class="column g16">
-                <h3>Номер</h3>
-                <input type="text" class="input" placeholder="______" required  maxlength="6" minlength="6">
-            </div>
-            <div class="column g16">
-                <h3>Дата выдачи</h3>
-                <input type="date" class="input" required>
-            </div>
-        </div>
-        <div class="row g16">
-            <div class="column g16">
-                <h3>Кем выдан</h3>
-                <input type="text" class="input" placeholder="Орган, выдавший паспорт" required>
-            </div>
-            <div class="column g16">
-                <h3>Код подразделения</h3>
-                <input type="text" class="input" placeholder="___-___" required maxlength="7" minlength="7">
-            </div>
-        </div>
-
-        <h2>Адрес проживания</h2>
-        <div class="row g16">
-            <div class="column g16">
-                <h3>Город</h3>
-                <input type="text" class="input" placeholder="Город" required>
-            </div>
-            <div class="column g16">
-                <h3>Улица</h3>
-                <input type="text" class="input" placeholder="Улица" required>
-            </div>
-            <div class="column g16">
-                <h3>Дом</h3>
-                <input type="text" class="input" placeholder="Дом" required>
-            </div>
-            <div class="column g16">
-                <h3>Квартира</h3>
-                <input type="text" class="input" placeholder="Квартира" required>
-            </div>
-        </div>
-        <h2>СНИЛС</h2>
-        <div class="column g16">
-            <h3>Номер</h3>
-            <input type="text" class="input" placeholder="___-___-___ __" required>
-        </div>
-
-        <h2>Контакты</h2>
-        <div class="row g16">
-            <div class="column g16">
-                <h3>Телефон</h3>
-                <input type="tel" class="input" placeholder="+7 ___ ___ __ __" required>
-            </div>
-            <div class="column g16">
-                <h3>Электронная почта</h3>
-                <input type="email" class="input" placeholder="Электронная почта" required>
-            </div>
-        </div>
-
+        <div class="rightSide"></div>
+        
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
     <script src='../../JS/script.js'></script> <!-- JavaScript -->
-
-    <script src="../../JS/dropdownSelect.js"></script> <!-- Выпадающие меню -->
 
 </body>
 

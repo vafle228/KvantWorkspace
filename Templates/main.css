@@ -415,15 +415,16 @@ body{
 
 /* Пользователи */
 .users{
-    display: flex; gap: 0.25rem;
+    display: flex; gap: 0.5rem;
     flex-wrap: wrap;
 }
 .user{
-    width: calc((100% - 0.5rem) / 3);
+    width: calc((100% - 1rem) / 3);
     padding: 0.5rem;
     border-radius: 2rem;
     transition: background-color .2s;
     overflow: hidden;
+    cursor: pointer;
 }
 .user:hover{
     background-color: var(--theme-light);
@@ -446,7 +447,7 @@ body{
 /* Адаптивность для пользователей */
 @media screen and (max-width: 576px){
     .user{
-        width: calc((100% - 0.25rem) / 2);
+        width: calc((100% - 0.5rem) / 2);
     }
 }
 @media screen and (max-width: 400px){

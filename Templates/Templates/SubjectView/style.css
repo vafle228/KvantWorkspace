@@ -1,0 +1,98 @@
+.subjectView{
+    width: 80rem;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex; flex-direction: column; gap: 1rem;
+}
+.subjectView:after{
+    content: "_";
+    opacity: 0;
+}
+
+@media screen and (max-width: 740px){
+    .mainContainer{
+        padding: 1rem;
+        border-radius: 0;
+    }
+}
+
+.card{
+    background-color: var(--item-bg-color);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    /* border: var(--theme-light) solid 1px; */
+}
+
+.subjectInfo{
+    width: 100%; height: 10rem;
+    display: flex; flex-direction: row; gap: 1.5rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+.subjectInfo__img{
+    width: 10rem; height: 10rem;
+    border-radius: 5rem;
+    object-fit: cover; object-position: center;
+}
+.subjectInfo__title{
+    font-size: 3rem;
+}
+.subjectInfo__subtitle{
+    font-size: 1.25rem;
+}
+
+.subjectDescription{
+    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 400px){
+    .subjectInfo{
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+    }
+}
+
+.groups{
+    width: 100%;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.group{
+    width: calc((100% - 3 * 0.5rem) / 4);
+    border-radius: 0.75rem;
+    background-color: var(--theme-light);
+    padding: 1rem;
+    cursor: pointer;
+}
+.group:hover{
+    background-color: var(--currentColor);
+}
+.group__title{
+    font-size: 1.5rem; font-weight: 500;
+    color: var(--currentColor);
+}
+.group__subtitle{
+    font-size: 1.25rem;
+    color: var(--currentColor);
+}
+.group:hover .group__title,
+.group:hover .group__subtitle{
+    color: #fff;
+}
+
+@media screen and (max-width: 740px){
+    .group{
+        width: calc((100% - 1rem) / 3);
+    }
+}
+@media screen and (max-width: 576px){
+    .group{
+        width: calc((100% - 0.5rem) / 2);
+    }
+}
+@media screen and (max-width: 400px){
+    .group{
+        width: 100%;
+    }
+}
