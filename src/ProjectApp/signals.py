@@ -16,7 +16,7 @@ def cleanProjectChat(sender, instance, **kwargs):
 
 
 @receiver(pre_delete, sender=KvantProject)
-def cleanProjectTasks(sender, instance, **kwargs):
+def cleanProject(sender, instance, **kwargs):
     for file in instance.files.all(): file.delete()
     for task in instance.tasks.all(): task.delete()
 

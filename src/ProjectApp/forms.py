@@ -4,6 +4,7 @@ from .models import KvantProject, KvantProjectTask, KvantProjectMembershipReques
 from CoreApp.services.image import ImageThumbnailBaseMixin
 from CoreApp.services.filemanager import FileMoveBaseMixin
 from CoreApp.services.utils import buildDate
+from django.conf import settings
 
 
 class ProjectPreviewManagerMixin(ImageThumbnailBaseMixin, FileMoveBaseMixin):
@@ -17,6 +18,7 @@ class ProjectPreviewManagerMixin(ImageThumbnailBaseMixin, FileMoveBaseMixin):
             return self.changeDirectory(
                 self.instance.image,
                 f'projects/img/{buildDate(self.instance.date)}/{self.cleaned_data.get("title")}',
+                settings.PROJECT_DEFAULT_IMAGE != self.instance.image.name
             )
         return self.makeImageThumbnail(self.cleaned_data.get('image')) 
 
@@ -73,7 +75,7 @@ class KvantProjectFilesSaveForm(FileM2MBaseMixin):
         super().__init__('files', *args, **kwargs)
     
     def getFileUploadPath(self):
-        return f'projects/{self.instance.title}'
+        return f'projects/files/{buildDate(self.instance.date)}/{self.instance.title}'
     
     def clean_files(self):
         """ Отчистка старых файлов """

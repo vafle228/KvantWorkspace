@@ -47,15 +47,15 @@
 
                     <h3 class="label">ФИО</h3>
 
-                    <input class='input' type="text" placeholder="Фамилия" id="surname">
-                    <input class='input' type="text" placeholder="Имя" id="name">
-                    <input class='input' type="text" placeholder="Отчество" id="patronymic">
+                    <input class='input' type="text" autocomplete="False" placeholder="Фамилия" id="surname">
+                    <input class='input' type="text" autocomplete="False" placeholder="Имя" id="name">
+                    <input class='input' type="text" autocomplete="False" placeholder="Отчество" id="patronymic">
 
                     <h3 class="label">Доступ к аккаунту</h3>
 
-                    <input class='input' type="text" placeholder="Логин" id="login">
-                    <input class='input' type="password" placeholder="Пароль" id="password1">
-                    <input class='input' type="password" placeholder="Подтверждение пароля" id="password2">
+                    <input class='input' type="text" autocomplete="False" placeholder="Логин" id="login">
+                    <input class='input' type="password" autocomplete="False" placeholder="Пароль" id="password1">
+                    <input class='input' type="password" autocomplete="False" placeholder="Подтверждение пароля" id="password2">
                 </div>
                 
                 <button onclick="sendInstanceData(getUserFormData(), `{% url 'register_user' %}`, this)" type="button">Зарегистрироваться</button>

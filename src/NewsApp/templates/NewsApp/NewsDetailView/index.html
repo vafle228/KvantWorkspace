@@ -150,15 +150,6 @@
     
     <script src="{% static 'NewsApp/NewsView/scripts.js' %}"></script>
     <script src="{% static 'NewsApp/Core/scripts.js' %}"></script>
-
-    <script> is_event = false </script>
-
-    {% if news.is_event %}
-    
-    <script> is_event = true </script>
-    
-    {% endif %}
-    
     <script>
         old_files = [
             {% for file in news.files|get_objects %}
@@ -177,7 +168,6 @@
             for(let i = 0; i < old_files.length; i++){ // Перебор старых файлов
                 news_form.append('files', old_files[i].id) // Добавление старых файлов в форму
             }
-            news_form.append('is_event', is_event)
             return news_form
         }
     </script>

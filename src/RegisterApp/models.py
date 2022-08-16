@@ -39,9 +39,6 @@ class LivingAdress(models.Model):
     house_number    = models.CharField(max_length=255, blank=True)
     room            = models.CharField(max_length=255, blank=True)
 
-    def __str__(self):
-        return f'{self.city} {self.street} {self.house_number} {self.room}'
-
 
 class StudyDocument(models.Model):
     vpo_spo         = models.CharField(max_length=255, blank=True)
@@ -64,6 +61,30 @@ class StudentParent(models.Model):
     document    = models.OneToOneField(PersonalityDocument, on_delete=models.SET_NULL, null=True, blank=True)
 
 
+def uploadPath(instance, filename):
+    if hasattr(instance, 'studentpersonalinfo'):
+        return f'{instance.studentpersonalinfo.user.username}/{filename}'
+    return f'user/{instance.staffpersonalinfo.user.username}/{filename}'
+
+
+class StudentDocumentFiles(models.Model):
+    pfdo            = models.FileField(upload_to=uploadPath, blank=True)
+    snils           = models.FileField(upload_to=uploadPath, blank=True)
+    document        = models.FileField(upload_to=uploadPath, blank=True)
+    agreement       = models.FileField(upload_to=uploadPath, blank=True)
+    mother_document = models.FileField(upload_to=uploadPath, blank=True)
+    father_document = models.FileField(upload_to=uploadPath, blank=True)
+    application     = models.FileField(upload_to=uploadPath, blank=True)
+    registration    = models.FileField(upload_to=uploadPath, blank=True)
+
+
+class StaffDocumentFiles(models.Model):
+    snils           = models.FileField(upload_to=uploadPath, blank=True)
+    document        = models.FileField(upload_to=uploadPath, blank=True)
+    surname_change  = models.FileField(upload_to=uploadPath, blank=True)
+    study           = models.FileField(upload_to=uploadPath, blank=True)
+
+
 class StudentPersonalInfo(models.Model):
     user            = models.OneToOneField(to='LoginApp.KvantUser', on_delete=models.CASCADE)
     
@@ -74,8 +95,10 @@ class StudentPersonalInfo(models.Model):
     date            = models.CharField(max_length=255, blank=True, validators=[validate_date])
     snils           = models.CharField(max_length=255, validators=[validate_snils], blank=True)
     telephone       = models.CharField(max_length=255, validators=[validate_telephone], blank=True)
+    
     adress          = models.OneToOneField(LivingAdress, on_delete=models.SET_NULL, null=True, blank=True)
     document        = models.OneToOneField(PersonalityDocument, on_delete=models.SET_NULL, null=True, blank=True)
+    scans           = models.OneToOneField(StudentDocumentFiles, on_delete=models.SET_NULL, null=True, blank=True)
 
     mother          = models.OneToOneField(StudentParent, on_delete=models.SET_NULL, null=True, blank=True, related_name='mother')
     father          = models.OneToOneField(StudentParent, on_delete=models.SET_NULL, null=True, blank=True, related_name='father')
@@ -88,6 +111,8 @@ class StaffPersonalInfo(models.Model):
     date            = models.CharField(max_length=255, blank=True, validators=[validate_date])
     snils           = models.CharField(max_length=255, validators=[validate_snils], blank=True)
     telephone       = models.CharField(max_length=255, validators=[validate_telephone], blank=True)
+    
     adress          = models.OneToOneField(LivingAdress, on_delete=models.SET_NULL, null=True, blank=True)
     study           = models.OneToOneField(StudyDocument, on_delete=models.SET_NULL, null=True, blank=True)
+    scans           = models.OneToOneField(StaffDocumentFiles, on_delete=models.SET_NULL, null=True, blank=True)
     document        = models.OneToOneField(PersonalityDocument, on_delete=models.SET_NULL, null=True, blank=True)

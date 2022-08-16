@@ -1,7 +1,6 @@
 import secrets
 
 from django import forms
-from LoginApp.forms import KvantUserCreationForm
 from LoginApp.models import KvantUser
 
 from RegisterApp.services import getUserPersonalInfo
@@ -98,6 +97,18 @@ class StaffPersonalInfoSaveForm(UserInfoSaveMixin):
         exclude = ['user', 'document', 'study', 'adress']
 
 
+class StudentScanSaveForm(forms.ModelForm):
+    class Meta:
+        model = StudentDocumentFiles
+        fields = '__all__'
+
+
+class StaffScanSaveForm(forms.ModelForm):
+    class Meta:
+        model = StaffDocumentFiles
+        fields = '__all__'
+
+
 class TempRegisterLinkSaveForm(forms.ModelForm):
     count = forms.IntegerField(min_value=0)
     
@@ -115,14 +126,3 @@ class TempRegisterLinkSaveForm(forms.ModelForm):
             links.append(TempRegisterLink.objects.create(
                 key=hex_val, permission=self.cleaned_data.get('permission')))
         return links
-
-
-class UserRegisterForm(KvantUserCreationForm):
-    password2 = forms.CharField(max_length=255)
-
-    def clean_password2(self):
-        if self.cleaned_data.get('password2') is None:
-            raise ValidationError('Подтвердите пароль')
-        if self.cleaned_data.get('password2') != self.cleaned_data.get('password'):
-            raise ValidationError('Пароли должны совпадать')
-        return super().clean_password2()

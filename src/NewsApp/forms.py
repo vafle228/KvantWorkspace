@@ -42,6 +42,9 @@ class KvantNewsSaveForm(forms.ModelForm, ImageManagerMixin):
         self.fields['image'].error_messages.update({
             'invalid': u'Превью новости повреждено или не является изображением'
         })
+    
+    def clean_is_event(self):
+        return self.instance.is_event
 
     def clean_title(self):
         if not self.cleaned_data.get('title').isprintable():

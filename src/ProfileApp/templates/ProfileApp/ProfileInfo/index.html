@@ -230,10 +230,6 @@
                     {% endif %}
                     
                     {% if requested_user == user or user.permission != 'Ученик' %}
-                    
-                    <div class="card">
-
-                        <h1>Личные данные</h1>
 
                         {% if requested_user.permission == 'Ученик' %}
 
@@ -245,7 +241,6 @@
 
                         {% endif %}
 
-                    </div>
 
                     {% endif %}
 

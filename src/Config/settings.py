@@ -167,5 +167,5 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # S3 default image location
 NEWS_DEFAULT_IMAGE = '/default/news.jpeg'
 USER_DEFAULT_IMAGE = '/default/user.png'
-PROJECT_DEFAULT_IMAGE = '/default/project.png'
+PROJECT_DEFAULT_IMAGE = '/default/project.jpg'
 USER_BANNER_DEFAULT_IMAGE = '/default/banner.jpg'

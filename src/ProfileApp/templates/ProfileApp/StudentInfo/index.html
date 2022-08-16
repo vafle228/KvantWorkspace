@@ -1,317 +1,473 @@
-<div class="flex space-between items-center">
-    <h3>Ученик</h3>
-    <button class="standartButton" onclick="editTableStart(this, updateUserPersonalInfo)">
-        <svg viewBox="0 0 512 512">
-            <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
-        </svg>
-        Редактировать
-    </button>
-</div>
-<div class="table">
-    <div class="tableRow">
-        <p>Фамилия Имя Отчество</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
-            </svg>
-            <input placeholder="Фамилия" readonly value="{{ requested_user.surname }}" id="student-surname">
-            <input placeholder="Имя" readonly value="{{ requested_user.name }}" id="student-name">
-            <input placeholder="Отчество" readonly value="{{ requested_user.patronymic }}" id="student-patronymic">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Дата рождения</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
-                <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
-            <input placeholder="__.__.____" readonly value="{{ requested_user.studentpersonalinfo.date }}" id="student-birth-date">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Пол</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 320 512">
-                <path d="M112 48C112 24.22 129.3 4.473 152 .6641V95.34C129.3 91.53 112 71.78 112 48V48zM152 480.2C151.9 497.8 137.6 512 120 512C102.3 512 88 497.7 88 480V384H70.2C59.28 384 51.57 373.3 55.02 362.9L93.28 248.1L59.43 304.5C50.33 319.6 30.67 324.5 15.52 315.4C.3696 306.3-4.531 286.7 4.573 271.5L58.18 182.3C78.06 149.2 113.5 128.8 152 128V480.2z"/>
-                <path style='opacity: .4' d="M174.9 128C208.6 128 239.8 145.7 257.2 174.6L315.4 271.5C324.5 286.7 319.6 306.3 304.5 315.4C289.3 324.5 269.7 319.6 260.6 304.5L232 256.9V480C232 497.7 217.7 512 200 512C182.3 512 168 497.7 168 480L168 128H174.9zM168 .6641C190.7 4.472 208 24.22 208 48C208 71.78 190.7 91.53 168 95.34V.6641z"/>
-            </svg>
-            <input placeholder="Пол" readonly value="{{ requested_user.studentpersonalinfo.sex }}" id="student-sex">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Документ</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M265.1 105.6C272.8 124.6 277.8 149 279.3 176h39.13C313.1 144.8 292.8 118.9 265.1 105.6zM129.6 208c5.25 31.25 25.62 57.13 53.25 70.38C175.3 259.4 170.3 235 168.8 208H129.6zM384 0H64C28.65 0 0 28.65 0 64v384c0 35.35 28.65 64 64 64h320c35.2 0 64-28.8 64-64V64C448 28.8 419.2 0 384 0zM336 416h-224C103.3 416 96 408.8 96 400S103.3 384 112 384h224c8.75 0 16 7.25 16 16S344.8 416 336 416zM224 320c-70.75 0-128-57.25-128-128s57.25-128 128-128s128 57.25 128 128S294.8 320 224 320zM129.6 176h39.13c1.5-27 6.5-51.38 14.12-70.38C155.3 118.9 134.9 144.8 129.6 176zM265.1 278.4c27.62-13.25 48-39.13 53.25-70.38h-39.13C277.8 235 272.8 259.4 265.1 278.4zM224 286.8C231.8 279.3 244.8 252.3 247.4 208H200.5C203.3 252.3 216.3 279.3 224 286.8zM200.6 176h46.88C244.7 131.8 231.8 104.8 224 97.25C216.3 104.8 203.2 131.8 200.6 176z"/>
-                <path style='opacity: .4' d="M224 64C153.3 64 96 121.3 96 192s57.25 128 128 128s128-57.25 128-128S294.8 64 224 64zM318.4 176h-39.13c-1.5-27-6.5-51.38-14.12-70.38C292.8 118.9 313.1 144.8 318.4 176zM129.6 208h39.13c1.5 27 6.5 51.38 14.12 70.38C155.3 265.1 134.9 239.3 129.6 208zM168.8 176H129.6c5.25-31.25 25.62-57.13 53.25-70.38C175.3 124.6 170.3 149 168.8 176zM224 286.8C216.3 279.3 203.3 252.3 200.5 208h46.84C244.8 252.3 231.8 279.3 224 286.8zM200.6 176C203.2 131.8 216.3 104.8 224 97.25C231.8 104.8 244.7 131.8 247.5 176H200.6zM265.1 278.4C272.8 259.4 277.8 235 279.3 208h39.13C313.1 239.3 292.8 265.1 265.1 278.4z"/>
-            </svg>
-            <input placeholder="Серия" readonly value="{{ requested_user.studentpersonalinfo.document.series }}" id="student-series">
-            <input placeholder="Номер" readonly value="{{ requested_user.studentpersonalinfo.document.number }}" id="student-number">
-            <input placeholder="Дата выдачи" readonly value="{{ requested_user.studentpersonalinfo.document.given_date }}" id="student-given_date">
-            <input placeholder="Кем выдан" readonly value="{{ requested_user.studentpersonalinfo.document.who_gave }}" id="student-who_gave">
-            <input placeholder="Код подразделения" readonly value="{{ requested_user.studentpersonalinfo.document.code }}" id="student-code">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Адрес проживания</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 384 512">
-                <path d="M240 192C240 218.5 218.5 240 192 240C165.5 240 144 218.5 144 192C144 165.5 165.5 144 192 144C218.5 144 240 165.5 240 192z"/>
-                <path style='opacity: .6' d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 272C236.2 272 272 236.2 272 192C272 147.8 236.2 112 192 112C147.8 112 112 147.8 112 192C112 236.2 147.8 272 192 272z"/>
-            </svg>
-            <input placeholder="Город" readonly value="{{ requested_user.studentpersonalinfo.adress.city }}" id="student-city">
-            <input placeholder="Улица" readonly value="{{ requested_user.studentpersonalinfo.adress.street }}" id="student-street">
-            <input placeholder="Дом" readonly value="{{ requested_user.studentpersonalinfo.adress.house_number }}" id="student-house_number">
-            <input placeholder="Квартира" readonly value="{{ requested_user.studentpersonalinfo.adress.room }}" id="student-room">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>СНИЛС</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 576 512">
-                <path d="M176 256c35.35 0 64-28.65 64-64s-28.65-64-64-64s-64 28.65-64 64S140.7 256 176 256zM208 288h-64C99.82 288 64 323.8 64 368C64 376.8 71.16 384 80 384h192c8.836 0 16-7.164 16-16C288 323.8 252.2 288 208 288z"/>
-                <path style='opacity: .4' d="M512 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h448c35.35 0 64-28.65 64-64V96C576 60.65 547.3 32 512 32zM176 128c35.35 0 64 28.65 64 64s-28.65 64-64 64s-64-28.65-64-64S140.7 128 176 128zM272 384h-192C71.16 384 64 376.8 64 368C64 323.8 99.82 288 144 288h64c44.18 0 80 35.82 80 80C288 376.8 280.8 384 272 384zM496 320h-128C359.2 320 352 312.8 352 304S359.2 288 368 288h128C504.8 288 512 295.2 512 304S504.8 320 496 320zM496 256h-128C359.2 256 352 248.8 352 240S359.2 224 368 224h128C504.8 224 512 231.2 512 240S504.8 256 496 256zM496 192h-128C359.2 192 352 184.8 352 176S359.2 160 368 160h128C504.8 160 512 167.2 512 176S504.8 192 496 192z"/>
-            </svg>
-            <input placeholder="___-___-___ __" readonly value="{{ requested_user.studentpersonalinfo.snils }}" id="student-snils">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Электронная почта</p>
-        <div class="tableCell">
+{% load base_tags %}
+{% load admin_tags %}
+
+<div class="card">
+
+    <h1>Личные данные</h1>
+    <div class="flex space-between items-center">
+        <h3>Ученик</h3>
+        <button class="standartButton" onclick="editTableStart(this, updateUserPersonalInfo)">
             <svg viewBox="0 0 512 512">
-                <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
-                <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
+                <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
             </svg>
-            <input placeholder="Электронная почта" readonly value="{{ requested_user.email }}" id="student-email">
+            Редактировать
+        </button>
+    </div>
+    <div class="table">
+        <div class="tableRow">
+            <p>Фамилия Имя Отчество</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                    <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
+                </svg>
+                <input placeholder="Фамилия" readonly value="{{ requested_user.surname }}" id="student-surname">
+                <input placeholder="Имя" readonly value="{{ requested_user.name }}" id="student-name">
+                <input placeholder="Отчество" readonly value="{{ requested_user.patronymic }}" id="student-patronymic">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Дата рождения</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
+                    <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
+                <input placeholder="__.__.____" readonly value="{{ requested_user.studentpersonalinfo.date }}" id="student-birth-date">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Пол</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 320 512">
+                    <path d="M112 48C112 24.22 129.3 4.473 152 .6641V95.34C129.3 91.53 112 71.78 112 48V48zM152 480.2C151.9 497.8 137.6 512 120 512C102.3 512 88 497.7 88 480V384H70.2C59.28 384 51.57 373.3 55.02 362.9L93.28 248.1L59.43 304.5C50.33 319.6 30.67 324.5 15.52 315.4C.3696 306.3-4.531 286.7 4.573 271.5L58.18 182.3C78.06 149.2 113.5 128.8 152 128V480.2z"/>
+                    <path style='opacity: .4' d="M174.9 128C208.6 128 239.8 145.7 257.2 174.6L315.4 271.5C324.5 286.7 319.6 306.3 304.5 315.4C289.3 324.5 269.7 319.6 260.6 304.5L232 256.9V480C232 497.7 217.7 512 200 512C182.3 512 168 497.7 168 480L168 128H174.9zM168 .6641C190.7 4.472 208 24.22 208 48C208 71.78 190.7 91.53 168 95.34V.6641z"/>
+                </svg>
+                <input placeholder="Пол" readonly value="{{ requested_user.studentpersonalinfo.sex }}" id="student-sex">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Документ</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M265.1 105.6C272.8 124.6 277.8 149 279.3 176h39.13C313.1 144.8 292.8 118.9 265.1 105.6zM129.6 208c5.25 31.25 25.62 57.13 53.25 70.38C175.3 259.4 170.3 235 168.8 208H129.6zM384 0H64C28.65 0 0 28.65 0 64v384c0 35.35 28.65 64 64 64h320c35.2 0 64-28.8 64-64V64C448 28.8 419.2 0 384 0zM336 416h-224C103.3 416 96 408.8 96 400S103.3 384 112 384h224c8.75 0 16 7.25 16 16S344.8 416 336 416zM224 320c-70.75 0-128-57.25-128-128s57.25-128 128-128s128 57.25 128 128S294.8 320 224 320zM129.6 176h39.13c1.5-27 6.5-51.38 14.12-70.38C155.3 118.9 134.9 144.8 129.6 176zM265.1 278.4c27.62-13.25 48-39.13 53.25-70.38h-39.13C277.8 235 272.8 259.4 265.1 278.4zM224 286.8C231.8 279.3 244.8 252.3 247.4 208H200.5C203.3 252.3 216.3 279.3 224 286.8zM200.6 176h46.88C244.7 131.8 231.8 104.8 224 97.25C216.3 104.8 203.2 131.8 200.6 176z"/>
+                    <path style='opacity: .4' d="M224 64C153.3 64 96 121.3 96 192s57.25 128 128 128s128-57.25 128-128S294.8 64 224 64zM318.4 176h-39.13c-1.5-27-6.5-51.38-14.12-70.38C292.8 118.9 313.1 144.8 318.4 176zM129.6 208h39.13c1.5 27 6.5 51.38 14.12 70.38C155.3 265.1 134.9 239.3 129.6 208zM168.8 176H129.6c5.25-31.25 25.62-57.13 53.25-70.38C175.3 124.6 170.3 149 168.8 176zM224 286.8C216.3 279.3 203.3 252.3 200.5 208h46.84C244.8 252.3 231.8 279.3 224 286.8zM200.6 176C203.2 131.8 216.3 104.8 224 97.25C231.8 104.8 244.7 131.8 247.5 176H200.6zM265.1 278.4C272.8 259.4 277.8 235 279.3 208h39.13C313.1 239.3 292.8 265.1 265.1 278.4z"/>
+                </svg>
+                <input placeholder="Серия" readonly value="{{ requested_user.studentpersonalinfo.document.series }}" id="student-series">
+                <input placeholder="Номер" readonly value="{{ requested_user.studentpersonalinfo.document.number }}" id="student-number">
+                <input placeholder="Дата выдачи" readonly value="{{ requested_user.studentpersonalinfo.document.given_date }}" id="student-given_date">
+                <input placeholder="Кем выдан" readonly value="{{ requested_user.studentpersonalinfo.document.who_gave }}" id="student-who_gave">
+                <input placeholder="Код подразделения" readonly value="{{ requested_user.studentpersonalinfo.document.code }}" id="student-code">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Адрес проживания</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 384 512">
+                    <path d="M240 192C240 218.5 218.5 240 192 240C165.5 240 144 218.5 144 192C144 165.5 165.5 144 192 144C218.5 144 240 165.5 240 192z"/>
+                    <path style='opacity: .6' d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 272C236.2 272 272 236.2 272 192C272 147.8 236.2 112 192 112C147.8 112 112 147.8 112 192C112 236.2 147.8 272 192 272z"/>
+                </svg>
+                <input placeholder="Город" readonly value="{{ requested_user.studentpersonalinfo.adress.city }}" id="student-city">
+                <input placeholder="Улица" readonly value="{{ requested_user.studentpersonalinfo.adress.street }}" id="student-street">
+                <input placeholder="Дом" readonly value="{{ requested_user.studentpersonalinfo.adress.house_number }}" id="student-house_number">
+                <input placeholder="Квартира" readonly value="{{ requested_user.studentpersonalinfo.adress.room }}" id="student-room">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>СНИЛС</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 576 512">
+                    <path d="M176 256c35.35 0 64-28.65 64-64s-28.65-64-64-64s-64 28.65-64 64S140.7 256 176 256zM208 288h-64C99.82 288 64 323.8 64 368C64 376.8 71.16 384 80 384h192c8.836 0 16-7.164 16-16C288 323.8 252.2 288 208 288z"/>
+                    <path style='opacity: .4' d="M512 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h448c35.35 0 64-28.65 64-64V96C576 60.65 547.3 32 512 32zM176 128c35.35 0 64 28.65 64 64s-28.65 64-64 64s-64-28.65-64-64S140.7 128 176 128zM272 384h-192C71.16 384 64 376.8 64 368C64 323.8 99.82 288 144 288h64c44.18 0 80 35.82 80 80C288 376.8 280.8 384 272 384zM496 320h-128C359.2 320 352 312.8 352 304S359.2 288 368 288h128C504.8 288 512 295.2 512 304S504.8 320 496 320zM496 256h-128C359.2 256 352 248.8 352 240S359.2 224 368 224h128C504.8 224 512 231.2 512 240S504.8 256 496 256zM496 192h-128C359.2 192 352 184.8 352 176S359.2 160 368 160h128C504.8 160 512 167.2 512 176S504.8 192 496 192z"/>
+                </svg>
+                <input placeholder="___-___-___ __" readonly value="{{ requested_user.studentpersonalinfo.snils }}" id="student-snils">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Электронная почта</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
+                    <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
+                </svg>
+                <input placeholder="Электронная почта" readonly value="{{ requested_user.email }}" id="student-email">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Телефон</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
+                    <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+                </svg>
+                <input placeholder="# ### ### ## ##" readonly value="{{ requested_user.studentpersonalinfo.telephone }}" id="student-telephone">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Образовательное учреждение</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 640 512">
+                    <path d="M320 128C328.8 128 336 135.2 336 144V160H352C360.8 160 368 167.2 368 176C368 184.8 360.8 192 352 192H320C311.2 192 304 184.8 304 176V144C304 135.2 311.2 128 320 128zM476.8 98.06L602.4 125.1C624.4 130.9 640 150.3 640 172.8V464C640 490.5 618.5 512 592 512H48C21.49 512 0 490.5 0 464V172.8C0 150.3 15.63 130.9 37.59 125.1L163.2 98.06L302.2 5.374C312.1-1.791 327-1.791 337.8 5.374L476.8 98.06zM256 512H384V416C384 380.7 355.3 352 320 352C284.7 352 256 380.7 256 416V512zM96 192C87.16 192 80 199.2 80 208V272C80 280.8 87.16 288 96 288H128C136.8 288 144 280.8 144 272V208C144 199.2 136.8 192 128 192H96zM496 272C496 280.8 503.2 288 512 288H544C552.8 288 560 280.8 560 272V208C560 199.2 552.8 192 544 192H512C503.2 192 496 199.2 496 208V272zM96 320C87.16 320 80 327.2 80 336V400C80 408.8 87.16 416 96 416H128C136.8 416 144 408.8 144 400V336C144 327.2 136.8 320 128 320H96zM496 400C496 408.8 503.2 416 512 416H544C552.8 416 560 408.8 560 400V336C560 327.2 552.8 320 544 320H512C503.2 320 496 327.2 496 336V400zM320 88C271.4 88 232 127.4 232 176C232 224.6 271.4 264 320 264C368.6 264 408 224.6 408 176C408 127.4 368.6 88 320 88z"/>
+                </svg>
+                <input placeholder="Образовательное учреждение" readonly value="{{ requested_user.studentpersonalinfo.school }}" id="student-school">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Класс</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M416 127.1h-58.23l-10.67 64H416c17.67 0 32-14.32 32-31.1C448 142.3 433.7 127.1 416 127.1zM0 352c0 17.67 14.33 31.1 32 31.1h58.23l10.67-64H32C14.33 319.1 0 334.3 0 352zM384 319.1H165.8l-10.67 64H384c17.67 0 32-14.33 32-31.1C416 334.3 401.7 319.1 384 319.1zM64 191.1h218.2l10.67-64H64c-17.67 0-32 14.33-32 32C32 177.7 46.33 191.1 64 191.1z"/>
+                    <path style='opacity: .6' d="M341.3 32.43c-17.53-2.875-33.92 8.891-36.83 26.3l-43.54 261.3h64.88l41.79-250.7C370.5 51.83 358.7 35.34 341.3 32.43zM240.4 442.7c-2.906 17.44 8.875 33.92 26.3 36.83C268.5 479.9 270.3 480 272 480c15.36 0 28.92-11.09 31.53-26.73l11.54-69.27h-64.88L240.4 442.7zM80.44 442.7c-2.906 17.44 8.875 33.92 26.3 36.83C108.5 479.9 110.3 480 112 480c15.36 0 28.92-11.09 31.53-26.73L187.1 191.1H122.2L80.44 442.7zM181.3 32.43c-17.53-2.875-33.92 8.891-36.83 26.3L132.9 127.1H197.8l9.789-58.74C210.5 51.83 198.7 35.34 181.3 32.43z"/>
+                </svg>
+                <input placeholder="Класс" readonly value="{{ requested_user.studentpersonalinfo.school_class }}" id="student-class">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Обучение в ДЖД</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M112 192C112 156.7 140.7 128 176 128H336C371.3 128 400 156.7 400 192V384C400 419.3 371.3 448 336 448H176C140.7 448 112 419.3 112 384V192zM160 296C160 309.3 170.7 320 184 320H216C229.3 320 240 309.3 240 296V216C240 202.7 229.3 192 216 192H184C170.7 192 160 202.7 160 216V296zM296 192C282.7 192 272 202.7 272 216V296C272 309.3 282.7 320 296 320H328C341.3 320 352 309.3 352 296V216C352 202.7 341.3 192 328 192H296zM184 352C170.7 352 160 362.7 160 376C160 389.3 170.7 400 184 400C197.3 400 208 389.3 208 376C208 362.7 197.3 352 184 352zM328 400C341.3 400 352 389.3 352 376C352 362.7 341.3 352 328 352C314.7 352 304 362.7 304 376C304 389.3 314.7 400 328 400z"/>
+                    <path style='opacity: .2' d="M512 256V448C512 483.3 483.3 512 448 512H406.6L342.3 447.7C374.7 444.5 400 417.2 400 384V192C400 156.7 371.3 128 336 128H176C140.7 128 112 156.7 112 192V384C112 417.2 137.3 444.5 169.7 447.7L105.4 512H64C28.65 512 0 483.3 0 448V256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM150.6 512L214.6 448H297.4L361.4 512H150.6zM216 192C229.3 192 240 202.7 240 216V296C240 309.3 229.3 320 216 320H184C170.7 320 160 309.3 160 296V216C160 202.7 170.7 192 184 192H216zM272 216C272 202.7 282.7 192 296 192H328C341.3 192 352 202.7 352 216V296C352 309.3 341.3 320 328 320H296C282.7 320 272 309.3 272 296V216z"/>
+                </svg>
+                <input placeholder="Да/Нет" readonly value="{{ requested_user.studentpersonalinfo.is_dzd }}" id="student-is_dzd">
+            </div>
         </div>
     </div>
-    <div class="tableRow">
-        <p>Телефон</p>
-        <div class="tableCell">
+
+
+    <div class="flex space-between items-center">
+        <h3>Отец</h3>
+        <button class="standartButton" onclick="editTableStart(this, updateUserFatherInfo)">
             <svg viewBox="0 0 512 512">
-                <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
-                <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+                <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
             </svg>
-            <input placeholder="# ### ### ## ##" readonly value="{{ requested_user.studentpersonalinfo.telephone }}" id="student-telephone">
+            Редактировать
+        </button>
+    </div>
+    <div class="table">
+        <div class="tableRow">
+            <p>Фамилия Имя Отчество</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                    <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
+                </svg>
+                <input placeholder="Фамилия" readonly value="{{ requested_user.studentpersonalinfo.father.surname }}" id="father-surname">
+                <input placeholder="Имя" readonly value="{{ requested_user.studentpersonalinfo.father.name }}" id="father-name">
+                <input placeholder="Отчество" readonly value="{{ requested_user.studentpersonalinfo.father.patronymic }}" id="father-patronymic">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Дата рождения</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
+                    <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
+                <input placeholder="__.__.____" readonly value="{{ requested_user.studentpersonalinfo.father.date }}" id="father-birth-date">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Электронная почта</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
+                    <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
+                </svg>
+                <input placeholder="Электронная почта" readonly value="{{ requested_user.studentpersonalinfo.father.email }}" id="father-email">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Телефон</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
+                    <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+                </svg>
+                <input placeholder="# ### ### ## ##" readonly value="{{ requested_user.studentpersonalinfo.father.telephone }}" id="father-telephone">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Место работы, должность</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M464 96H384V48C384 22.41 361.6 0 336 0h-160C150.4 0 128 22.41 128 48V96H48C22.41 96 0 118.4 0 144V288h512V144C512 118.4 489.6 96 464 96zM336 96h-160V48h160V96z"/>
+                    <path style='opacity: .4' d="M320 336c0 8.844-7.156 16-16 16h-96C199.2 352 192 344.8 192 336V288H0v144C0 457.6 22.41 480 48 480h416c25.59 0 48-22.41 48-48V288h-192V336z"/>
+                </svg>
+                <input placeholder="Место работы" readonly value="{{ requested_user.studentpersonalinfo.father.work_place }}" id="father-work_place">
+                <input placeholder="Должность" readonly value="{{ requested_user.studentpersonalinfo.father.work_title }}" id="father-work_title">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Документ</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M265.1 105.6C272.8 124.6 277.8 149 279.3 176h39.13C313.1 144.8 292.8 118.9 265.1 105.6zM129.6 208c5.25 31.25 25.62 57.13 53.25 70.38C175.3 259.4 170.3 235 168.8 208H129.6zM384 0H64C28.65 0 0 28.65 0 64v384c0 35.35 28.65 64 64 64h320c35.2 0 64-28.8 64-64V64C448 28.8 419.2 0 384 0zM336 416h-224C103.3 416 96 408.8 96 400S103.3 384 112 384h224c8.75 0 16 7.25 16 16S344.8 416 336 416zM224 320c-70.75 0-128-57.25-128-128s57.25-128 128-128s128 57.25 128 128S294.8 320 224 320zM129.6 176h39.13c1.5-27 6.5-51.38 14.12-70.38C155.3 118.9 134.9 144.8 129.6 176zM265.1 278.4c27.62-13.25 48-39.13 53.25-70.38h-39.13C277.8 235 272.8 259.4 265.1 278.4zM224 286.8C231.8 279.3 244.8 252.3 247.4 208H200.5C203.3 252.3 216.3 279.3 224 286.8zM200.6 176h46.88C244.7 131.8 231.8 104.8 224 97.25C216.3 104.8 203.2 131.8 200.6 176z"/>
+                    <path style='opacity: .4' d="M224 64C153.3 64 96 121.3 96 192s57.25 128 128 128s128-57.25 128-128S294.8 64 224 64zM318.4 176h-39.13c-1.5-27-6.5-51.38-14.12-70.38C292.8 118.9 313.1 144.8 318.4 176zM129.6 208h39.13c1.5 27 6.5 51.38 14.12 70.38C155.3 265.1 134.9 239.3 129.6 208zM168.8 176H129.6c5.25-31.25 25.62-57.13 53.25-70.38C175.3 124.6 170.3 149 168.8 176zM224 286.8C216.3 279.3 203.3 252.3 200.5 208h46.84C244.8 252.3 231.8 279.3 224 286.8zM200.6 176C203.2 131.8 216.3 104.8 224 97.25C231.8 104.8 244.7 131.8 247.5 176H200.6zM265.1 278.4C272.8 259.4 277.8 235 279.3 208h39.13C313.1 239.3 292.8 265.1 265.1 278.4z"/>
+                </svg>
+                <input placeholder="Серия" readonly value="{{ requested_user.studentpersonalinfo.father.document.series }}" id="father-series">
+                <input placeholder="Номер" readonly value="{{ requested_user.studentpersonalinfo.father.document.number }}" id="father-number">
+                <input placeholder="Дата выдачи" readonly value="{{ requested_user.studentpersonalinfo.father.document.given_date }}" id="father-given_date">
+                <input placeholder="Кем выдан" readonly value="{{ requested_user.studentpersonalinfo.father.document.who_gave }}" id="father-who_gave">
+                <input placeholder="Код подразделения" readonly value="{{ requested_user.studentpersonalinfo.father.document.code }}" id="father-code">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Адрес проживания</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 384 512">
+                    <path d="M240 192C240 218.5 218.5 240 192 240C165.5 240 144 218.5 144 192C144 165.5 165.5 144 192 144C218.5 144 240 165.5 240 192z"/>
+                    <path style='opacity: .6' d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 272C236.2 272 272 236.2 272 192C272 147.8 236.2 112 192 112C147.8 112 112 147.8 112 192C112 236.2 147.8 272 192 272z"/>
+                </svg>
+                <input placeholder="Город" readonly value="{{ requested_user.studentpersonalinfo.father.adress.city }}" id="father-city">
+                <input placeholder="Улица" readonly value="{{ requested_user.studentpersonalinfo.father.adress.street }}" id="father-street">
+                <input placeholder="Дом" readonly value="{{ requested_user.studentpersonalinfo.father.adress.house_number }}" id="father-house_number">
+                <input placeholder="Квартира" readonly value="{{ requested_user.studentpersonalinfo.father.adress.room }}" id="father-room">
+            </div>
         </div>
     </div>
-    <div class="tableRow">
-        <p>Образовательное учреждение</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 640 512">
-                <path d="M320 128C328.8 128 336 135.2 336 144V160H352C360.8 160 368 167.2 368 176C368 184.8 360.8 192 352 192H320C311.2 192 304 184.8 304 176V144C304 135.2 311.2 128 320 128zM476.8 98.06L602.4 125.1C624.4 130.9 640 150.3 640 172.8V464C640 490.5 618.5 512 592 512H48C21.49 512 0 490.5 0 464V172.8C0 150.3 15.63 130.9 37.59 125.1L163.2 98.06L302.2 5.374C312.1-1.791 327-1.791 337.8 5.374L476.8 98.06zM256 512H384V416C384 380.7 355.3 352 320 352C284.7 352 256 380.7 256 416V512zM96 192C87.16 192 80 199.2 80 208V272C80 280.8 87.16 288 96 288H128C136.8 288 144 280.8 144 272V208C144 199.2 136.8 192 128 192H96zM496 272C496 280.8 503.2 288 512 288H544C552.8 288 560 280.8 560 272V208C560 199.2 552.8 192 544 192H512C503.2 192 496 199.2 496 208V272zM96 320C87.16 320 80 327.2 80 336V400C80 408.8 87.16 416 96 416H128C136.8 416 144 408.8 144 400V336C144 327.2 136.8 320 128 320H96zM496 400C496 408.8 503.2 416 512 416H544C552.8 416 560 408.8 560 400V336C560 327.2 552.8 320 544 320H512C503.2 320 496 327.2 496 336V400zM320 88C271.4 88 232 127.4 232 176C232 224.6 271.4 264 320 264C368.6 264 408 224.6 408 176C408 127.4 368.6 88 320 88z"/>
-            </svg>
-            <input placeholder="Образовательное учреждение" readonly value="{{ requested_user.studentpersonalinfo.school }}" id="student-school">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Класс</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M416 127.1h-58.23l-10.67 64H416c17.67 0 32-14.32 32-31.1C448 142.3 433.7 127.1 416 127.1zM0 352c0 17.67 14.33 31.1 32 31.1h58.23l10.67-64H32C14.33 319.1 0 334.3 0 352zM384 319.1H165.8l-10.67 64H384c17.67 0 32-14.33 32-31.1C416 334.3 401.7 319.1 384 319.1zM64 191.1h218.2l10.67-64H64c-17.67 0-32 14.33-32 32C32 177.7 46.33 191.1 64 191.1z"/>
-                <path style='opacity: .6' d="M341.3 32.43c-17.53-2.875-33.92 8.891-36.83 26.3l-43.54 261.3h64.88l41.79-250.7C370.5 51.83 358.7 35.34 341.3 32.43zM240.4 442.7c-2.906 17.44 8.875 33.92 26.3 36.83C268.5 479.9 270.3 480 272 480c15.36 0 28.92-11.09 31.53-26.73l11.54-69.27h-64.88L240.4 442.7zM80.44 442.7c-2.906 17.44 8.875 33.92 26.3 36.83C108.5 479.9 110.3 480 112 480c15.36 0 28.92-11.09 31.53-26.73L187.1 191.1H122.2L80.44 442.7zM181.3 32.43c-17.53-2.875-33.92 8.891-36.83 26.3L132.9 127.1H197.8l9.789-58.74C210.5 51.83 198.7 35.34 181.3 32.43z"/>
-            </svg>
-            <input placeholder="Класс" readonly value="{{ requested_user.studentpersonalinfo.school_class }}" id="student-class">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Обучение в ДЖД</p>
-        <div class="tableCell">
+
+    <div class="flex space-between items-center">
+        <h3>Мать</h3>
+        <button class="standartButton" onclick="editTableStart(this, updateUserMotherInfo)">
             <svg viewBox="0 0 512 512">
-                <path d="M112 192C112 156.7 140.7 128 176 128H336C371.3 128 400 156.7 400 192V384C400 419.3 371.3 448 336 448H176C140.7 448 112 419.3 112 384V192zM160 296C160 309.3 170.7 320 184 320H216C229.3 320 240 309.3 240 296V216C240 202.7 229.3 192 216 192H184C170.7 192 160 202.7 160 216V296zM296 192C282.7 192 272 202.7 272 216V296C272 309.3 282.7 320 296 320H328C341.3 320 352 309.3 352 296V216C352 202.7 341.3 192 328 192H296zM184 352C170.7 352 160 362.7 160 376C160 389.3 170.7 400 184 400C197.3 400 208 389.3 208 376C208 362.7 197.3 352 184 352zM328 400C341.3 400 352 389.3 352 376C352 362.7 341.3 352 328 352C314.7 352 304 362.7 304 376C304 389.3 314.7 400 328 400z"/>
-                <path style='opacity: .2' d="M512 256V448C512 483.3 483.3 512 448 512H406.6L342.3 447.7C374.7 444.5 400 417.2 400 384V192C400 156.7 371.3 128 336 128H176C140.7 128 112 156.7 112 192V384C112 417.2 137.3 444.5 169.7 447.7L105.4 512H64C28.65 512 0 483.3 0 448V256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM150.6 512L214.6 448H297.4L361.4 512H150.6zM216 192C229.3 192 240 202.7 240 216V296C240 309.3 229.3 320 216 320H184C170.7 320 160 309.3 160 296V216C160 202.7 170.7 192 184 192H216zM272 216C272 202.7 282.7 192 296 192H328C341.3 192 352 202.7 352 216V296C352 309.3 341.3 320 328 320H296C282.7 320 272 309.3 272 296V216z"/>
+                <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
             </svg>
-            <input placeholder="Да/Нет" readonly value="{{ requested_user.studentpersonalinfo.is_dzd }}" id="student-is_dzd">
+            Редактировать
+        </button>
+    </div>
+    <div class="table">
+        <div class="tableRow">
+            <p>Фамилия Имя Отчество</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                    <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
+                </svg>
+                <input placeholder="Фамилия" readonly value="{{ requested_user.studentpersonalinfo.mother.surname }}" id="mother-surname">
+                <input placeholder="Имя" readonly value="{{ requested_user.studentpersonalinfo.mother.name }}" id="mother-name">
+                <input placeholder="Отчество" readonly value="{{ requested_user.studentpersonalinfo.mother.patronymic }}" id="mother-patronymic">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Дата рождения</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
+                    <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
+                <input placeholder="__.__.____" readonly value="{{ requested_user.studentpersonalinfo.mother.date }}" id="mother-birth-date">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Электронная почта</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
+                    <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
+                </svg>
+                <input placeholder="Электронная почта" readonly value="{{ requested_user.studentpersonalinfo.mother.email }}" id="mother-email">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Телефон</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
+                    <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+                </svg>
+                <input placeholder="# ### ### ## ##" readonly value="{{ requested_user.studentpersonalinfo.mother.telephone }}" id="mother-telephone">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Место работы, должность</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 512 512">
+                    <path d="M464 96H384V48C384 22.41 361.6 0 336 0h-160C150.4 0 128 22.41 128 48V96H48C22.41 96 0 118.4 0 144V288h512V144C512 118.4 489.6 96 464 96zM336 96h-160V48h160V96z"/>
+                    <path style='opacity: .4' d="M320 336c0 8.844-7.156 16-16 16h-96C199.2 352 192 344.8 192 336V288H0v144C0 457.6 22.41 480 48 480h416c25.59 0 48-22.41 48-48V288h-192V336z"/>
+                </svg>
+                <input placeholder="Место работы" readonly value="{{ requested_user.studentpersonalinfo.mother.work_place }}" id="mother-work_place">
+                <input placeholder="Должность" readonly value="{{ requested_user.studentpersonalinfo.mother.work_title }}" id="mother-work_title">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Документ</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 448 512">
+                    <path d="M265.1 105.6C272.8 124.6 277.8 149 279.3 176h39.13C313.1 144.8 292.8 118.9 265.1 105.6zM129.6 208c5.25 31.25 25.62 57.13 53.25 70.38C175.3 259.4 170.3 235 168.8 208H129.6zM384 0H64C28.65 0 0 28.65 0 64v384c0 35.35 28.65 64 64 64h320c35.2 0 64-28.8 64-64V64C448 28.8 419.2 0 384 0zM336 416h-224C103.3 416 96 408.8 96 400S103.3 384 112 384h224c8.75 0 16 7.25 16 16S344.8 416 336 416zM224 320c-70.75 0-128-57.25-128-128s57.25-128 128-128s128 57.25 128 128S294.8 320 224 320zM129.6 176h39.13c1.5-27 6.5-51.38 14.12-70.38C155.3 118.9 134.9 144.8 129.6 176zM265.1 278.4c27.62-13.25 48-39.13 53.25-70.38h-39.13C277.8 235 272.8 259.4 265.1 278.4zM224 286.8C231.8 279.3 244.8 252.3 247.4 208H200.5C203.3 252.3 216.3 279.3 224 286.8zM200.6 176h46.88C244.7 131.8 231.8 104.8 224 97.25C216.3 104.8 203.2 131.8 200.6 176z"/>
+                    <path style='opacity: .4' d="M224 64C153.3 64 96 121.3 96 192s57.25 128 128 128s128-57.25 128-128S294.8 64 224 64zM318.4 176h-39.13c-1.5-27-6.5-51.38-14.12-70.38C292.8 118.9 313.1 144.8 318.4 176zM129.6 208h39.13c1.5 27 6.5 51.38 14.12 70.38C155.3 265.1 134.9 239.3 129.6 208zM168.8 176H129.6c5.25-31.25 25.62-57.13 53.25-70.38C175.3 124.6 170.3 149 168.8 176zM224 286.8C216.3 279.3 203.3 252.3 200.5 208h46.84C244.8 252.3 231.8 279.3 224 286.8zM200.6 176C203.2 131.8 216.3 104.8 224 97.25C231.8 104.8 244.7 131.8 247.5 176H200.6zM265.1 278.4C272.8 259.4 277.8 235 279.3 208h39.13C313.1 239.3 292.8 265.1 265.1 278.4z"/>
+                </svg>
+                <input placeholder="Серия" readonly value="{{ requested_user.studentpersonalinfo.mother.document.series }}" id="mother-series">
+                <input placeholder="Номер" readonly value="{{ requested_user.studentpersonalinfo.mother.document.number }}" id="mother-number">
+                <input placeholder="Дата выдачи" readonly value="{{ requested_user.studentpersonalinfo.mother.document.given_date }}" id="mother-given_date">
+                <input placeholder="Кем выдан" readonly value="{{ requested_user.studentpersonalinfo.mother.document.who_gave }}" id="mother-who_gave">
+                <input placeholder="Код подразделения" readonly value="{{ requested_user.studentpersonalinfo.mother.document.code }}" id="mother-code">
+            </div>
+        </div>
+        <div class="tableRow">
+            <p>Адрес проживания</p>
+            <div class="tableCell">
+                <svg viewBox="0 0 384 512">
+                    <path d="M240 192C240 218.5 218.5 240 192 240C165.5 240 144 218.5 144 192C144 165.5 165.5 144 192 144C218.5 144 240 165.5 240 192z"/>
+                    <path style='opacity: .6' d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 272C236.2 272 272 236.2 272 192C272 147.8 236.2 112 192 112C147.8 112 112 147.8 112 192C112 236.2 147.8 272 192 272z"/>
+                </svg>
+                <input placeholder="Город" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.city }}" id="mother-city">
+                <input placeholder="Улица" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.street }}" id="mother-street">
+                <input placeholder="Дом" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.house_number }}" id="mother-house_number">
+                <input placeholder="Квартира" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.room }}" id="mother-room">
+            </div>
         </div>
     </div>
 </div>
 
-<div class="flex space-between items-center">
-    <h3>Отец</h3>
-    <button class="standartButton" onclick="editTableStart(this, updateUserFatherInfo)">
-        <svg viewBox="0 0 512 512">
-            <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
-        </svg>
-        Редактировать
-    </button>
-</div>
-<div class="table">
-    <div class="tableRow">
-        <p>Фамилия Имя Отчество</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
-            </svg>
-            <input placeholder="Фамилия" readonly value="{{ requested_user.studentpersonalinfo.father.surname }}" id="father-surname">
-            <input placeholder="Имя" readonly value="{{ requested_user.studentpersonalinfo.father.name }}" id="father-name">
-            <input placeholder="Отчество" readonly value="{{ requested_user.studentpersonalinfo.father.patronymic }}" id="father-patronymic">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Дата рождения</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
-                <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
-            <input placeholder="__.__.____" readonly value="{{ requested_user.studentpersonalinfo.father.date }}" id="father-birth-date">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Электронная почта</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 512 512">
-                <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
-                <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
-            </svg>
-            <input placeholder="Электронная почта" readonly value="{{ requested_user.studentpersonalinfo.father.email }}" id="father-email">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Телефон</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 512 512">
-                <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
-                <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
-            </svg>
-            <input placeholder="# ### ### ## ##" readonly value="{{ requested_user.studentpersonalinfo.father.telephone }}" id="father-telephone">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Место работы, должность</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 512 512">
-                <path d="M464 96H384V48C384 22.41 361.6 0 336 0h-160C150.4 0 128 22.41 128 48V96H48C22.41 96 0 118.4 0 144V288h512V144C512 118.4 489.6 96 464 96zM336 96h-160V48h160V96z"/>
-                <path style='opacity: .4' d="M320 336c0 8.844-7.156 16-16 16h-96C199.2 352 192 344.8 192 336V288H0v144C0 457.6 22.41 480 48 480h416c25.59 0 48-22.41 48-48V288h-192V336z"/>
-            </svg>
-            <input placeholder="Место работы" readonly value="{{ requested_user.studentpersonalinfo.father.work_place }}" id="father-work_place">
-            <input placeholder="Должность" readonly value="{{ requested_user.studentpersonalinfo.father.work_title }}" id="father-work_title">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Документ</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M265.1 105.6C272.8 124.6 277.8 149 279.3 176h39.13C313.1 144.8 292.8 118.9 265.1 105.6zM129.6 208c5.25 31.25 25.62 57.13 53.25 70.38C175.3 259.4 170.3 235 168.8 208H129.6zM384 0H64C28.65 0 0 28.65 0 64v384c0 35.35 28.65 64 64 64h320c35.2 0 64-28.8 64-64V64C448 28.8 419.2 0 384 0zM336 416h-224C103.3 416 96 408.8 96 400S103.3 384 112 384h224c8.75 0 16 7.25 16 16S344.8 416 336 416zM224 320c-70.75 0-128-57.25-128-128s57.25-128 128-128s128 57.25 128 128S294.8 320 224 320zM129.6 176h39.13c1.5-27 6.5-51.38 14.12-70.38C155.3 118.9 134.9 144.8 129.6 176zM265.1 278.4c27.62-13.25 48-39.13 53.25-70.38h-39.13C277.8 235 272.8 259.4 265.1 278.4zM224 286.8C231.8 279.3 244.8 252.3 247.4 208H200.5C203.3 252.3 216.3 279.3 224 286.8zM200.6 176h46.88C244.7 131.8 231.8 104.8 224 97.25C216.3 104.8 203.2 131.8 200.6 176z"/>
-                <path style='opacity: .4' d="M224 64C153.3 64 96 121.3 96 192s57.25 128 128 128s128-57.25 128-128S294.8 64 224 64zM318.4 176h-39.13c-1.5-27-6.5-51.38-14.12-70.38C292.8 118.9 313.1 144.8 318.4 176zM129.6 208h39.13c1.5 27 6.5 51.38 14.12 70.38C155.3 265.1 134.9 239.3 129.6 208zM168.8 176H129.6c5.25-31.25 25.62-57.13 53.25-70.38C175.3 124.6 170.3 149 168.8 176zM224 286.8C216.3 279.3 203.3 252.3 200.5 208h46.84C244.8 252.3 231.8 279.3 224 286.8zM200.6 176C203.2 131.8 216.3 104.8 224 97.25C231.8 104.8 244.7 131.8 247.5 176H200.6zM265.1 278.4C272.8 259.4 277.8 235 279.3 208h39.13C313.1 239.3 292.8 265.1 265.1 278.4z"/>
-            </svg>
-            <input placeholder="Серия" readonly value="{{ requested_user.studentpersonalinfo.father.document.series }}" id="father-series">
-            <input placeholder="Номер" readonly value="{{ requested_user.studentpersonalinfo.father.document.number }}" id="father-number">
-            <input placeholder="Дата выдачи" readonly value="{{ requested_user.studentpersonalinfo.father.document.given_date }}" id="father-given_date">
-            <input placeholder="Кем выдан" readonly value="{{ requested_user.studentpersonalinfo.father.document.who_gave }}" id="father-who_gave">
-            <input placeholder="Код подразделения" readonly value="{{ requested_user.studentpersonalinfo.father.document.code }}" id="father-code">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Адрес проживания</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 384 512">
-                <path d="M240 192C240 218.5 218.5 240 192 240C165.5 240 144 218.5 144 192C144 165.5 165.5 144 192 144C218.5 144 240 165.5 240 192z"/>
-                <path style='opacity: .6' d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 272C236.2 272 272 236.2 272 192C272 147.8 236.2 112 192 112C147.8 112 112 147.8 112 192C112 236.2 147.8 272 192 272z"/>
-            </svg>
-            <input placeholder="Город" readonly value="{{ requested_user.studentpersonalinfo.father.adress.city }}" id="father-city">
-            <input placeholder="Улица" readonly value="{{ requested_user.studentpersonalinfo.father.adress.street }}" id="father-street">
-            <input placeholder="Дом" readonly value="{{ requested_user.studentpersonalinfo.father.adress.house_number }}" id="father-house_number">
-            <input placeholder="Квартира" readonly value="{{ requested_user.studentpersonalinfo.father.adress.room }}" id="father-room">
-        </div>
-    </div>
-</div>
+<div class="card">
+    <h1>Загрузка документов</h1>
 
-<div class="flex space-between items-center">
-    <h3>Мать</h3>
-    <button class="standartButton" onclick="editTableStart(this, updateUserMotherInfo)">
-        <svg viewBox="0 0 512 512">
-            <path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/>
-        </svg>
-        Редактировать
-    </button>
-</div>
-<div class="table">
-    <div class="tableRow">
-        <p>Фамилия Имя Отчество</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                <path style='opacity: .4' d="M352 128c0 70.69-57.3 128-128 128C153.3 256 96 198.7 96 128s57.31-128 128-128C294.7 0 352 57.31 352 128z"/>
+    <h3>Заявление</h3>
+    {% if requested_user.studentpersonalinfo.scans.application %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.application|wrap delete=True file_selector='application' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-application')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
             </svg>
-            <input placeholder="Фамилия" readonly value="{{ requested_user.studentpersonalinfo.mother.surname }}" id="mother-surname">
-            <input placeholder="Имя" readonly value="{{ requested_user.studentpersonalinfo.mother.name }}" id="mother-name">
-            <input placeholder="Отчество" readonly value="{{ requested_user.studentpersonalinfo.mother.patronymic }}" id="mother-patronymic">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Дата рождения</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32z"/>
-                <path style='opacity: .4' d="M448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z"/></svg>
-            <input placeholder="__.__.____" readonly value="{{ requested_user.studentpersonalinfo.mother.date }}" id="mother-birth-date">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Электронная почта</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 512 512">
-                <path d="M16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"/>
-                <path style='opacity: .4' d="M511.1 120H512v280c0 26.51-21.49 48-48 48h-416C21.49 448 0 426.5 0 400V120h.9199c1.926 9.936 7.236 18.98 15.37 25.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C503.8 138.1 509.2 129.9 511.1 120z"/>
+            Прикрепить файл
+        </button>
+        <input id="document-application" type="file" style="display: none;" onchange='updateStudentScans(event, "application")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>Согласие</h3>
+    {% if requested_user.studentpersonalinfo.scans.agreement %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.agreement|wrap delete=True file_selector='agreement' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-agreement')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
             </svg>
-            <input placeholder="Электронная почта" readonly value="{{ requested_user.studentpersonalinfo.mother.email }}" id="mother-email">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Телефон</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 512 512">
-                <path d="M507.1 404.7l4.086-17.7c3.405-14.69-4.207-29.69-18.12-35.79L384.6 304.7c-12.78-5.436-27.69-1.774-36.47 8.975l-16.98 20.62L507.1 404.7zM0 54.5c-.0014 252.2 205.2 457.5 457.5 457.5c14.65 0 27.21-9.969 30.46-24.22l9.378-40.66l-193.3-79.63C234.8 333.5 178.5 277.2 144.5 207.1L64.88 14.67L24.22 24.05C9.967 27.32-.0014 39.83 0 54.5zM198.3 163.9c10.78-8.687 14.51-23.67 8.98-36.45L160.8 18.92C154.8 5.017 139.6-2.568 124.1 .8048L107.3 4.884L177.6 180.8L198.3 163.9z"/>
-                <path style='opacity: .4' d="M497.3 447.1l9.786-42.41l-175.1-70.4l-27.1 33.18L497.3 447.1zM144.5 207.1L177.6 180.8L107.3 4.884L64.88 14.67L144.5 207.1z"/>
+            Прикрепить файл
+        </button>
+        <input id="document-agreement" type="file" style="display: none;" onchange='updateStudentScans(event, "agreement")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>Документ (паспорт / свидетельство о рождении)</h3>
+    {% if requested_user.studentpersonalinfo.scans.document %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.document|wrap delete=True file_selector='document' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-document')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
             </svg>
-            <input placeholder="# ### ### ## ##" readonly value="{{ requested_user.studentpersonalinfo.mother.telephone }}" id="mother-telephone">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Место работы, должность</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 512 512">
-                <path d="M464 96H384V48C384 22.41 361.6 0 336 0h-160C150.4 0 128 22.41 128 48V96H48C22.41 96 0 118.4 0 144V288h512V144C512 118.4 489.6 96 464 96zM336 96h-160V48h160V96z"/>
-                <path style='opacity: .4' d="M320 336c0 8.844-7.156 16-16 16h-96C199.2 352 192 344.8 192 336V288H0v144C0 457.6 22.41 480 48 480h416c25.59 0 48-22.41 48-48V288h-192V336z"/>
+            Прикрепить файл
+        </button>
+        <input id="document-document" type="file" style="display: none;" onchange='updateStudentScans(event, "document")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>Регистрация</h3>
+    {% if requested_user.studentpersonalinfo.scans.registration %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.registration|wrap delete=True file_selector='registration' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-registration')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
             </svg>
-            <input placeholder="Место работы" readonly value="{{ requested_user.studentpersonalinfo.mother.work_place }}" id="mother-work_place">
-            <input placeholder="Должность" readonly value="{{ requested_user.studentpersonalinfo.mother.work_title }}" id="mother-work_title">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Документ</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 448 512">
-                <path d="M265.1 105.6C272.8 124.6 277.8 149 279.3 176h39.13C313.1 144.8 292.8 118.9 265.1 105.6zM129.6 208c5.25 31.25 25.62 57.13 53.25 70.38C175.3 259.4 170.3 235 168.8 208H129.6zM384 0H64C28.65 0 0 28.65 0 64v384c0 35.35 28.65 64 64 64h320c35.2 0 64-28.8 64-64V64C448 28.8 419.2 0 384 0zM336 416h-224C103.3 416 96 408.8 96 400S103.3 384 112 384h224c8.75 0 16 7.25 16 16S344.8 416 336 416zM224 320c-70.75 0-128-57.25-128-128s57.25-128 128-128s128 57.25 128 128S294.8 320 224 320zM129.6 176h39.13c1.5-27 6.5-51.38 14.12-70.38C155.3 118.9 134.9 144.8 129.6 176zM265.1 278.4c27.62-13.25 48-39.13 53.25-70.38h-39.13C277.8 235 272.8 259.4 265.1 278.4zM224 286.8C231.8 279.3 244.8 252.3 247.4 208H200.5C203.3 252.3 216.3 279.3 224 286.8zM200.6 176h46.88C244.7 131.8 231.8 104.8 224 97.25C216.3 104.8 203.2 131.8 200.6 176z"/>
-                <path style='opacity: .4' d="M224 64C153.3 64 96 121.3 96 192s57.25 128 128 128s128-57.25 128-128S294.8 64 224 64zM318.4 176h-39.13c-1.5-27-6.5-51.38-14.12-70.38C292.8 118.9 313.1 144.8 318.4 176zM129.6 208h39.13c1.5 27 6.5 51.38 14.12 70.38C155.3 265.1 134.9 239.3 129.6 208zM168.8 176H129.6c5.25-31.25 25.62-57.13 53.25-70.38C175.3 124.6 170.3 149 168.8 176zM224 286.8C216.3 279.3 203.3 252.3 200.5 208h46.84C244.8 252.3 231.8 279.3 224 286.8zM200.6 176C203.2 131.8 216.3 104.8 224 97.25C231.8 104.8 244.7 131.8 247.5 176H200.6zM265.1 278.4C272.8 259.4 277.8 235 279.3 208h39.13C313.1 239.3 292.8 265.1 265.1 278.4z"/>
+            Прикрепить файл
+        </button>
+        <input id="document-registration" type="file" style="display: none;" onchange='updateStudentScans(event, "registration")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>СНИЛС</h3>
+    {% if requested_user.studentpersonalinfo.scans.snils %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.snils|wrap delete=True file_selector='snils' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-snils')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
             </svg>
-            <input placeholder="Серия" readonly value="{{ requested_user.studentpersonalinfo.mother.document.series }}" id="mother-series">
-            <input placeholder="Номер" readonly value="{{ requested_user.studentpersonalinfo.mother.document.number }}" id="mother-number">
-            <input placeholder="Дата выдачи" readonly value="{{ requested_user.studentpersonalinfo.mother.document.given_date }}" id="mother-given_date">
-            <input placeholder="Кем выдан" readonly value="{{ requested_user.studentpersonalinfo.mother.document.who_gave }}" id="mother-who_gave">
-            <input placeholder="Код подразделения" readonly value="{{ requested_user.studentpersonalinfo.mother.document.code }}" id="mother-code">
-        </div>
-    </div>
-    <div class="tableRow">
-        <p>Адрес проживания</p>
-        <div class="tableCell">
-            <svg viewBox="0 0 384 512">
-                <path d="M240 192C240 218.5 218.5 240 192 240C165.5 240 144 218.5 144 192C144 165.5 165.5 144 192 144C218.5 144 240 165.5 240 192z"/>
-                <path style='opacity: .6' d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 272C236.2 272 272 236.2 272 192C272 147.8 236.2 112 192 112C147.8 112 112 147.8 112 192C112 236.2 147.8 272 192 272z"/>
+            Прикрепить файл
+        </button>
+        <input id="document-snils" type="file" style="display: none;" onchange='updateStudentScans(event, "snils")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>Паспорт отца</h3>
+    {% if requested_user.studentpersonalinfo.scans.father_document %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.father_document|wrap delete=True file_selector='father_document' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-father_document')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
             </svg>
-            <input placeholder="Город" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.city }}" id="mother-city">
-            <input placeholder="Улица" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.street }}" id="mother-street">
-            <input placeholder="Дом" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.house_number }}" id="mother-house_number">
-            <input placeholder="Квартира" readonly value="{{ requested_user.studentpersonalinfo.mother.adress.room }}" id="mother-room">
-        </div>
-    </div>
+            Прикрепить файл
+        </button>
+        <input id="document-father_document" type="file" style="display: none;" onchange='updateStudentScans(event, "father_document")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>Паспорт матери</h3>
+    {% if requested_user.studentpersonalinfo.scans.mother_document %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.mother_document|wrap delete=True file_selector='mother_document' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-mother_document')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
+            </svg>
+            Прикрепить файл
+        </button>
+        <input id="document-mother_document" type="file" style="display: none;" onchange='updateStudentScans(event, "mother_document")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
+    <h3>Сертификат ПФДО</h3>
+    {% if requested_user.studentpersonalinfo.scans.pfdo %}
+        {% include "CoreApp/FileView/index.html" with files=requested_user.studentpersonalinfo.scans.pfdo|wrap delete=True file_selector='pfdo' %}
+    {% else %}
+        <button class='secondaryButton' type="button" style="align-self: start" onclick="openFileDialog('#document-pfdo')">
+            <svg viewBox="0 0 14.666 16">
+                <g transform="translate(-8.667 -8)">
+                    <path opacity='0.3' d="M10.667,12.5a3.171,3.171,0,0,1,3.167-3.167h6.089A1.832,1.832,0,0,0,18.167,8H10.5A1.835,1.835,0,0,0,8.667,9.833V20.166A1.835,1.835,0,0,0,10.5,22h.167Z"/>
+                    <path d="M21.5,10.667H13.833A1.835,1.835,0,0,0,12,12.5v9.667A1.835,1.835,0,0,0,13.833,24H21.5a1.835,1.835,0,0,0,1.833-1.833V12.5A1.835,1.835,0,0,0,21.5,10.667ZM20.167,22h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.333h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Zm0-2.667h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z"/>
+                </g>
+            </svg>
+            Прикрепить файл
+        </button>
+        <input id="document-pfdo" type="file" style="display: none;" onchange='updateStudentScans(event, "pfdo")' accept="application/msword, application/pdf, image/*"/>
+    {% endif %}
+
 </div>
 
 <script>
     function editTableConfirm(button, func, type){
         sendInstanceData(func(type), '{% url "update_user" requested_user.id %}', button)
+    }
+</script>
+
+<script>
+    function deleteFunction(file_selector){
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'delete_scans' requested_user.id %}",
+            data: {
+                scan: file_selector,
+                csrfmiddlewaretoken: getCookie('csrftoken'),
+            },
+            cache: false,
+            success: function(respose){ location.reload() }
+        })
     }
 </script>
 
@@ -405,5 +561,19 @@
         user_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
 
         return user_form
+    }
+</script>
+
+<script>
+    function updateStudentScans(event, data){
+        if(event.target.files[0] !== undefined){
+            let user_form = new FormData(); 
+
+            user_form.append('type', 'student_scans')
+            user_form.append(data, event.target.files[0])
+            user_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+
+            sendInstanceData(user_form, '{% url "update_user" requested_user.id %}', $('<button/>'))
+        }
     }
 </script>
