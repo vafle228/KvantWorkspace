@@ -63,7 +63,7 @@
                 {% for subject in subjects %}
                 <div class="tableRow">
                     <input type="checkbox" value="{{ subject.id }}">
-                    <div class="tableUser row g8">
+                    <div class="tableUser row g8" onclick="location.href = `{% url 'subject_detail' subject.id %}`">
                         <img src="{{ subject.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
                             <p class="tableUser__name">{{ subject.name }}</p>
@@ -88,7 +88,7 @@
     <!-- Форма создания направления -->
     <div class='modal' id='createDirection'>
         <div class="modal__viewport" style="width: 48rem">
-            <form class="modal__content">
+            <form class="modal__content" id="subjectCreate">
                 <div class='modal__block'>
                     <h1 class="modal__title">Создание направления</h1>
                     <button class='secondaryButton' type="button" onclick="sendInstanceData(getSubjectFormData(), `{% url 'subjects_create' %}`, this)">
@@ -115,7 +115,7 @@
                     </svg>
                     Выбрать изображение
                 </button>
-                <input id="subject-input" type="file" style="display: none;" onchange="addProjectPreviewHandler(event)" accept="image/*"/>
+                <input id="subject-input" type="file" style="display: none;" onchange="addSubjectPreviewHandler(event)" accept="image/*"/>
             </form>
         </div>
     </div>

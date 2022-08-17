@@ -17,8 +17,9 @@ def getCoursePath(instance, filename):
 
 
 class KvantCourseType(models.Model):
-    name    = models.CharField(max_length=100, unique=True)
-    image   = models.ImageField(blank=False, upload_to=getCoursePath)
+    description = models.TextField(blank=True)
+    name        = models.CharField(max_length=100, unique=True)
+    image       = models.ImageField(blank=False, upload_to=getCoursePath)
 
     def __str__(self):
         return f'Тип курса: {self.name}'

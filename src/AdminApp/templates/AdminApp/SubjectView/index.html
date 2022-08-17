@@ -1,0 +1,220 @@
+{% load static %}
+{% load base_tags %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    {% include "CoreApp/HeadSetup/index.html" %}
+    <link rel="stylesheet" href='{% static "AdminApp/SubjectView/style.css" %}'> <!-- Стили страницы -->
+    <link rel="stylesheet" href='{% static "CoreApp/text/ql-editor.css" %}'>
+    <link rel='stylesheet' href='{% static "CoreApp/icons/files/file-icons.css" %}'/>
+    
+    <title>{{ subject.name }}</title>
+</head>
+
+<body>
+
+    {% include "CoreApp/AsideMenu/index.html" with user=user %}
+
+    <div class="mainContainer">
+        <section class="subjectView">
+
+            <header class="flex space-between items-center">
+                <button class="combinedButton" onclick="history.back()">
+                    <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                        <g transform="translate(-5 -5)">
+                            <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                            <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                        </g>
+                    </svg>
+                    <span>Назад</span>
+                </button>
+
+                {% if user.permission == 'Администратор' %}
+                <div class='relativeBox' style='margin-left: auto'>
+                    <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
+                        <svg viewBox="0 0 192 512">
+                            <path opacity='0.8' d="M96 184a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path>
+                            <path d="M96 152a72 72 0 1 0-72-72 72 72 0 0 0 72 72zm0 208a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path>
+                        </svg>
+                    </button>
+                    <div class="list">
+                        <button class="listButton" onclick="open_form('#editSubjectForm')">
+                            Редактировать
+                            <svg viewBox="0 0 576 512">
+                                <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
+                                <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                            </svg>  
+                        </button>
+                        <button class="listButton" onclick="open_form('#confirmSubjectDeletion')">
+                            Удалить
+                            <svg viewBox="0 0 448 512">
+                                <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Форма подтверждения удаления направления -->
+                <div class='modal' id='confirmSubjectDeletion'>
+                    <div class="modal__viewport" style="width: 48rem">
+                        <form class='modal__content'>
+                            <h1 class="modal__title">Удаление направления</h1>
+                            <p>Внимание! Удаляя направление, вы также навсегда удаляете информацию о группах этого направления</p>
+                            <div class='modal__block'>
+                                <div class='row g8' style='margin-left: auto'>
+                                    <button class='secondaryButton'>
+                                        Отмена
+                                    </button>
+                                    <button class='dangerButton' type="button" onclick="delConfirm()">
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                            <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                                        </svg>
+                                        Удалить
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </header>
+
+            <div class="card">
+                <div class="subjectInfo">
+                    <img src="{{ subject.image.url }}" class="subjectInfo__img">
+                    <div class="column g8">
+                        <p class="subjectInfo__subtitle">Направление</p>
+                        <h1 class="subjectInfo__title">{{ subject.name }}</h1>
+                        <p class="subjectInfo__subtitle">
+                            {{ students_count }} учеников &#183; 
+                            {{ teachers_count }} учителей &#183; 
+                            {{ courses_count }} групп
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ql-snow">
+                    <div class="ql-editor">
+                        <p class="subjectDescription">{{ subject.description|safe }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Учителя</h1>
+                <div class="users">
+                    {% for teacher in teachers %}
+                    <div class="user row g8 items-center" onclick="location.href = `{% url 'info_page' teacher.id %}`">
+                        <img src="{{ teacher.image.url }}" class='user__img avatar'/>
+                        <div class="user__info column">
+                            <p class='user__name'>{{ teacher.surname }} {{ teacher.name }}</p>
+                            <p class='user__type'>Учитель</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Группы</h1>
+                <div class="groups">
+                    {% for course in courses %}
+                    <div class="group">
+                        <p class="group__title">{{ course.name }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    {% if user.permission == 'Администратор' %}
+    <!-- Форма редактирования направления -->
+    <div class='modal' id='editSubjectForm'>
+        <div class="modal__viewport">
+
+            <form class="modal__content" id="subjectCreate">
+                <div class='modal__block'>
+                    <h1 class="modal__title">Редактирование направления</h1>
+                    <button class='secondaryButton' type="button" onclick="sendInstanceData(getSubjectFormData(), `{% url 'subject_update' subject.id %}`, this)">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                        </svg>    
+                        Сохранить
+                    </button>
+                </div>
+
+                <h3>Название</h3>
+                <input class='text-field text-field-title' autocomplete="off" id="subjectName" placeholder="Название" value="{{ subject.name }}"/>
+
+                <h3>Описание</h3>
+                <div id="editor" class='text-field'>{{ subject.description|safe }}</div>
+
+                <h3>Изображение</h3>
+                <button class='secondaryButton' type="button" id="subjectButton" onclick="openFileDialog('#preview-input')">
+                    <svg width="15.999" height="14.667" viewBox="0 0 15.999 14.667">
+                        <g transform="translate(-8.001 -9.667)">     
+                            <path opacity='0.3' d="M12.167,21.333a2.5,2.5,0,0,1-2.362-1.7l-.023-.077a2.449,2.449,0,0,1-.116-.723V14.287l-1.616,5.4a1.514,1.514,0,0,0,1.061,1.837L19.42,24.285a1.5,1.5,0,0,0,1.823-1.041l.6-1.91H12.167Z"/>
+                            <path opacity='0.3' d="M14,14.333A1.333,1.333,0,1,0,12.667,13,1.335,1.335,0,0,0,14,14.333Z"/>
+                            <path d="M22.333,9.667h-10a1.669,1.669,0,0,0-1.667,1.667v7.333a1.669,1.669,0,0,0,1.667,1.667h10A1.669,1.669,0,0,0,24,18.667V11.334A1.668,1.668,0,0,0,22.333,9.667ZM12.333,11h10a.333.333,0,0,1,.333.333v4.733L20.56,13.609a1.194,1.194,0,0,0-.894-.41,1.165,1.165,0,0,0-.891.421L16.3,16.592l-.806-.806a1.171,1.171,0,0,0-1.654,0L12,17.626V11.333A.333.333,0,0,1,12.333,11Z"/>
+                        </g>
+                    </svg>
+                    Выбрать изображение
+                </button>
+                <input id="preview-input" type="file" style="display: none;" onchange="addSubjectPreviewHandler(event)" accept="image/*"/>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="alertsContainer column" id='alertsContainer'></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+    <script src="{% static 'AdminApp/SubjectsTable/scripts.js' %}"></script>
+
+    {% if user.permission == 'Администратор' %}
+    <script> 
+        addSubjectPreview({'name': '{{ subject.image|get_file_name }}', 'size': '{{ subject.image.size }}'})
+    </script>
+
+    <script>
+        function getSubjectFormData(){
+            let subject_form = new FormData();
+    
+            subject_form.append('name', $('#subjectName').val())
+            subject_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            subject_form.append('description', $('#editor .ql-editor')[0].innerHTML)
+            subject_form.append('image', subject_preview !== undefined ? subject_preview : '')
+
+            return subject_form
+        }
+    </script>
+
+    <script>
+        function delConfirm(){
+            $.ajax({
+                type: 'POST',
+                url: '{% url "subjects_delete" %}',
+                data:{
+                    'confirm': true,
+                    'subject_identifier': '{{ subject.id }}',
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+            })  
+            location.href = `{% url 'subjects_table' %}`
+        }
+    </script>
+    {% endif %}
+</body>
+
+</html>

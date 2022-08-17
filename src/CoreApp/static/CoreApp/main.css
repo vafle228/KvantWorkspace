@@ -1,3 +1,6 @@
+/* Подключение шрифтов */
+@import url("fonts/Google font/stylesheet.css");
+
 :root{
     /* Брейкпоинты */
     --xsmall: 576px;
@@ -10,6 +13,9 @@
 }
 
 /* Темы оформления */
+body[colorScheme='colorScheme__green']{
+    --illustration: url(../../img/backgrounds/6.jpg);
+}
 body[colorScheme='colorScheme__green'].dark__theme{
     --bgColor: #35a75511;
     --currentColor: #35a755;
@@ -17,6 +23,10 @@ body[colorScheme='colorScheme__green'].dark__theme{
 body[colorScheme='colorScheme__green'].light__theme{
     --bgColor: #35a75511;
     --currentColor: #35a755;
+}
+
+body[colorScheme='colorScheme__blue']{
+    --illustration: url(../../img/backgrounds/1.jpg);
 }
 body[colorScheme='colorScheme__blue'].dark__theme{
     --bgColor: #4486f611;
@@ -26,6 +36,10 @@ body[colorScheme='colorScheme__blue'].light__theme{
     --bgColor: #4486f611;
     --currentColor: #4486f6;
 }
+
+body[colorScheme='colorScheme__red']{
+    --illustration: url(../../img/backgrounds/5.jpg);
+}
 body[colorScheme='colorScheme__red'].dark__theme{
     --bgColor: #f1747311;
     --currentColor: #f17473;
@@ -33,6 +47,10 @@ body[colorScheme='colorScheme__red'].dark__theme{
 body[colorScheme='colorScheme__red'].light__theme{
     --bgColor: #f1747311;
     --currentColor: #f17473;
+}
+
+body[colorScheme='colorScheme__purple']{
+    --illustration: url(../../img/backgrounds/11.jpg);
 }
 body[colorScheme='colorScheme__purple'].dark__theme{
     --bgColor: #6f4bff11;
@@ -397,15 +415,16 @@ body{
 
 /* Пользователи */
 .users{
-    display: flex; gap: 0.25rem;
+    display: flex; gap: 0.5rem;
     flex-wrap: wrap;
 }
 .user{
-    width: calc((100% - 0.5rem) / 3);
+    width: calc((100% - 1rem) / 3);
     padding: 0.5rem;
     border-radius: 2rem;
     transition: background-color .2s;
     overflow: hidden;
+    cursor: pointer;
 }
 .user:hover{
     background-color: var(--theme-light);
@@ -428,7 +447,7 @@ body{
 /* Адаптивность для пользователей */
 @media screen and (max-width: 576px){
     .user{
-        width: calc((100% - 0.25rem) / 2);
+        width: calc((100% - 0.5rem) / 2);
     }
 }
 @media screen and (max-width: 400px){
@@ -459,8 +478,10 @@ body{
     background-color: var(--item-bg-color);
     border: var(--theme-light) solid 1px;
     font-weight: 500;
-    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
     color: var(--text-primary-color);
+}
+.dropdownSelect__trigger > div:first-of-type{
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 }
 .filtering.disable .dropdownSelect__trigger{
     opacity: 0.5;
@@ -504,8 +525,8 @@ body{
     background-color: var(--theme-light);
 }
 .dropdownSelect__option.selected {
-    color: #fff;
-    background-color: var(--currentColor);
+    color: var(--text-primary-color);
+    background-color: var(--theme-light);
 }
 
 .arrowDown {

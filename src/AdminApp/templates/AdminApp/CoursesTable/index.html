@@ -78,7 +78,7 @@
                 {% for course in courses %}
                 <div class="tableRow">
                     <input type="checkbox" value="{{ course.id }}">
-                    <div class="tableUser row g8 group">
+                    <div class="tableUser row g8 group" onclick="location.href=`{% url 'course_detail' course.id %}`">
                         <img src="{{ course.type.image.url }}" class="tableUser__avatar avatar">
                         <div class='column'>
                             <p class="tableUser__name">{{ course }}</p>
@@ -181,7 +181,7 @@
                 <div id="selectedTeachers" class="selectedUsers">
                     <!-- Здесь появляются учителя -->
                 </div>
-                <input type="text" onkeyup="filterFunction(input=this, select=$('#teacherSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='teacherSearch' placeholder="Введите ФИО">
+                <input type="text" onkeyup="filterFunction(input=this, select=$('#teacherSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='teacherSearch' placeholder="Введите ФИО" autocomplete="off">
                 <div class="userSelect" id='teacherSelect'>
                     {% for teacher in teachers %}
                     <div class="userSelect__user row" value="{{ teacher.id }}">
@@ -198,7 +198,7 @@
                 <div id="selectedStudents" class="selectedUsers">
                     <!-- Здесь появляются ученики -->
                 </div>
-                <input type="text" onkeyup="filterFunction(input=this, select=$('#studentSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='studentSearch' placeholder="Введите ФИО">
+                <input type="text" onkeyup="filterFunction(input=this, select=$('#studentSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='studentSearch' placeholder="Введите ФИО" autocomplete="off">
                 <div class="userSelect" id='studentSelect'>
                     {% for student in students %}
                     <div class="userSelect__user row" value="{{ student.id }}">

@@ -1,0 +1,419 @@
+{% load static %}
+{% load admin_tags %}
+{% load base_tags %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    {% include "CoreApp/HeadSetup/index.html" %}
+    <link rel="stylesheet" href='{% static "AdminApp/CourseView/style.css" %}'> <!-- Стили страницы -->
+    
+    <title>{{ course }}</title>
+</head>
+
+<body>
+
+    {% include "CoreApp/AsideMenu/index.html" with user=user %}
+
+    <div class="mainContainer">
+        <section class="courseView">
+
+            <header class="flex space-between items-center">
+                <button class="combinedButton" onclick="history.back()">
+                    <svg viewBox="0 0 14 14" style='transform: rotate(180deg)'>
+                        <g transform="translate(-5 -5)">
+                            <rect width="2" height="14" rx="1" transform="translate(5 13) rotate(-90)" opacity='0.3'/>
+                            <path d="M9.707-15.707a1,1,0,0,0-1.414,0,1,1,0,0,0,0,1.414l6,6a1,1,0,0,0,1.383.03l6-5.5a1,1,0,0,0,.062-1.413,1,1,0,0,0-1.413-.061L15.03-10.384Z" transform="translate(27 27) rotate(-90)"/>
+                        </g>
+                    </svg>
+                    <span>Назад</span>
+                </button>
+
+                {% if user.permission == 'Администратор' %}
+                <div class='relativeBox' style='margin-left: auto'>
+                    <button class='trigger combinedButton' onclick="$(this).next('.list').toggle()" style='min-width: 3rem'>
+                        <svg viewBox="0 0 192 512">
+                            <path opacity='0.8' d="M96 184a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path>
+                            <path d="M96 152a72 72 0 1 0-72-72 72 72 0 0 0 72 72zm0 208a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path>
+                        </svg>
+                    </button>
+                    <div class="list">
+                        <button class="listButton" onclick="open_form('#createGroup')">
+                            Редактировать
+                            <svg viewBox="0 0 576 512">
+                                <path d="M564.6 60.2l-48.8-48.8a39.11 39.11 0 0 0-55.2 0l-35.4 35.4a9.78 9.78 0 0 0 0 13.8l90.2 90.2a9.78 9.78 0 0 0 13.8 0l35.4-35.4a39.11 39.11 0 0 0 0-55.2zM427.5 297.6l-40 40a12.3 12.3 0 0 0-3.5 8.5v101.8H64v-320h229.8a12.3 12.3 0 0 0 8.5-3.5l40-40a12 12 0 0 0-8.5-20.5H48a48 48 0 0 0-48 48v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V306.1a12 12 0 0 0-20.5-8.5z" opacity='0.6'></path>
+                                <path d="M492.8 173.3a9.78 9.78 0 0 1 0 13.8L274.4 405.5l-92.8 10.3a19.45 19.45 0 0 1-21.5-21.5l10.3-92.8L388.8 83.1a9.78 9.78 0 0 1 13.8 0z"></path>
+                            </svg>  
+                        </button>
+                        <button class="listButton" onclick="open_form('#confirmCourseDeletion')">
+                            Удалить
+                            <svg viewBox="0 0 448 512">
+                                <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Форма подтверждения удаления курса -->
+                <div class='modal' id='confirmCourseDeletion'>
+                    <div class="modal__viewport" style="width: 48rem">
+                        <form class='modal__content'>
+                            <h1 class="modal__title">Удаление курса</h1>
+                            <p>Вы уверены, что хотите удалить этот курс?</p>
+                            <div class='modal__block'>
+                                <div class='row g8' style='margin-left: auto'>
+                                    <button class='secondaryButton'>
+                                        Отмена
+                                    </button>
+                                    <button class='dangerButton' type="button" onclick="delConfirm()">
+                                        <svg viewBox="0 0 448 512">
+                                            <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                            <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                                        </svg>
+                                        Удалить
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                {% endif %}
+
+            </header>
+
+            <div class="card">
+                <div class="courseInfo">
+                    <img src="{{ course.type.image.url }}" class="courseInfo__img" onclick='location.href=`{% url "subject_detail" course.type.id %}`'>
+                    <div class="column g8">
+                        <p class="courseInfo__subtitle">Направление</p>
+                        <h1 class="courseInfo__title">{{ course }}</h1>
+                        <p class="courseInfo__subtitle">{{ course.students.count  }} учеников</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex space-between items-center">
+                    <h1>Расписание</h1>
+                    <div class="row g8">
+                        <button class="standartButton" onclick="open_form('#genLessonsForm')">Сгенерировать занятия</button>
+                        <button class="standartButton" onclick="open_form('#delLessonsForm')">Удалить все занятия курса</button>
+                    </div>
+                </div>
+                
+                <div class="row g4">
+                    {% with 'ПН ВТ СР ЧТ ПТ СБ ВС' as week_days %}
+    
+                        {% for week_day in week_days.split %}
+    
+                            {% with shedule=course|get_active_shedule:week_day %}
+    
+                                {% if shedule %}
+                                <div class="lesson column">
+                                    <p class="lesson__day">{{ week_day }}</p>
+                                    <p class='lesson__time'>{{ shedule.time|date:"G:i" }}</p>
+                                </div>
+                                {% else %}
+                                <div class="lesson column inactive">
+                                    <p class="lesson__day">{{ week_day }}</p>
+                                </div>
+                                {% endif %}
+                    
+                            {% endwith %}
+    
+                        {% endfor %}
+    
+                    {% endwith %}
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Учитель</h1>
+                <div class="users">
+                    <div class="user row g8 items-center">
+                        <img src="{{ course.teacher.image.url }}" class='user__img avatar'/>
+                        <div class="user__info column">
+                            <p class='user__name'>
+                                {{ course.teacher.surname }}
+                                {{ course.teacher.name }}
+                            </p>
+                            <p class='user__type'>{{ course.teacher.permission }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Ученики</h1>
+                <div class="users">
+                    {% for user in course.students|get_objects %}
+
+                        <div class="user row g8 items-center" onclick="location.href=`{% url 'info_page' user.id %}`">
+                            <img src="{{ user.image.url }}" class='user__img avatar'/>
+                            <div class="user__info column">
+                                <p class='user__name'>
+                                    {{ user.surname }} {{ user.name }}
+                                </p>
+                                <p class='user__type'>{{ user.permission }}</p>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    {% if user.permission == 'Администратор' %}
+    <!-- Форма редактирования курса -->
+    <div class='modal' id='createGroup'>
+        <div class="modal__viewport">
+
+            <form class="modal__content">
+                <div class='modal__block'>
+                    <h1 class="modal__title">Редактирование курса</h1>
+                    <button class='secondaryButton' type="button" onclick="sendInstanceData(getCourseFormData(), `{% url 'course_update' course.id %}`, this)">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="14" r="2" opacity='0.6'/>
+                            <path d="M22.536,4.122,19.878,1.464A4.99,4.99,0,0,0,19,.775V3a5.006,5.006,0,0,1-5,5H10A5.006,5.006,0,0,1,5,3V0A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7.657A4.966,4.966,0,0,0,22.536,4.122ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z"/>
+                            <path opacity='0.6' d="M10,6h4a3,3,0,0,0,3-3V.064A5.128,5.128,0,0,0,16.343,0H7V3A3,3,0,0,0,10,6Z"/>
+                        </svg>    
+                        Сохранить
+                    </button>
+                </div>
+
+                <h3>Направление</h3>
+                <div class="filtering" style="width: 16rem">
+                    <div class="dropdownSelect">
+                        <div class="dropdownSelect__trigger">
+                            <div>{{ course.type.name }}</div>
+                            <div class="arrowDown"></div>
+                        </div>
+                        <div class="dropdownSelect__options" id="courseSubject">
+                            <span class='dropdownSelect__option'>Не выбрано</span>
+                            <span class='dropdownSelect__option selected' value="{{ course.type.id }}">{{ course.type.name }}</span>
+                            {% for subject in subjects %}
+                            <span class='dropdownSelect__option' value="{{ subject.id }}">{{ subject.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Название</h3>
+                <input class='text-field text-field-title' id="courseTitle" autocomplete="off" type='text' value='{{ course.name }}'/>
+
+                <h3>Распиcание</h3>
+                
+                <div class="row g8" id="lessonsTime">
+
+                {% with 'ПН ВТ СР ЧТ ПТ СБ ВС' as week_days %}
+    
+                    {% for week_day in week_days.split %}
+
+                        {% with shedule=course|get_active_shedule:week_day %}
+                            <div class="column g8">
+                                <h3>{{ week_day }}</h3>
+                                <input type="time" class='text-field text-field-title' value='{{ shedule.time }}'>
+                            </div>
+                
+                        {% endwith %}
+
+                    {% endfor %}
+
+                {% endwith %}
+
+                </div>
+
+                <h3>Учитель</h3>
+                <div id="selectedTeachers" class="selectedUsers">
+                    <!-- Здесь появляются учителя -->
+                    <div class="userSelect__user row" value="{{ course.teacher.id }}" style="display: flex;">
+                        <img src="{{ course.teacher.image.url }}" class="userSelect__userImage">
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">
+                                {{ course.teacher.surname }}
+                                {{ course.teacher.name }}
+                            </h3>
+                            <p class="userSelect__userRole">{{ course.teacher.permission }}</p>
+                        </div>
+                    </div> 
+                </div>
+                <input type="text" onkeyup="filterFunction(input=this, select=$('#teacherSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='teacherSearch' placeholder="Введите ФИО" autocomplete="off">
+                <div class="userSelect" id='teacherSelect'>
+                    {% for teacher in teachers %}
+                    <div class="userSelect__user row" value="{{ teacher.id }}">
+                        <img src="{{ teacher.image.url }}" class='userSelect__userImage'>
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">
+                                {{ teacher.surname }} {{ teacher.name }}
+                            </h3>
+                            <p class="userSelect__userRole">{{ teacher.permission }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <h3>Ученики</h3>
+                <div id="selectedStudents" class="selectedUsers">
+                    <!-- Здесь появляются ученики -->
+                    {% for student in course.students|get_objects %}
+                    <div class="userSelect__user row" value="{{ student.id }}">
+                        <img src="{{ student.image.url }}" class="userSelect__userImage">
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">
+                                {{ student.surname }} {{ student.name }}
+                            </h3>
+                            <p class="userSelect__userRole">{{ student.permission }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <input type="text" onkeyup="filterFunction(input=this, select=$('#studentSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='studentSearch' placeholder="Введите ФИО" autocomplete="off">
+                <div class="userSelect" id='studentSelect'>
+                    {% for student in students %}
+                    <div class="userSelect__user row" value="{{ student.id }}">
+                        <img src="{{ student.image.url }}" class="userSelect__userImage">
+                        <div class="userSelect__userInfo">
+                            <h3 class="userSelect__userName">
+                                {{ student.surname }} {{ student.name }}
+                            </h3>
+                            <p class="userSelect__userRole">{{ student.permission }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Форма генерации занятий курса -->
+    <div class="modal" id="genLessonsForm">
+        <div class="modal__viewport">
+            <form class="modal__content">
+                <div class='modal__block'>
+                    <h1 class="modal__title">Сгенерировать занятия</h1>
+                    <button class='secondaryButton' type="button" onclick="lessonGenerate(this)">
+                        <svg viewBox="0 0 448 512">
+                            <path d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V192H0V112C0 85.49 21.49 64 48 64H96V32zM224 248C237.3 248 248 258.7 248 272V328H304C317.3 328 328 338.7 328 352C328 365.3 317.3 376 304 376H248V432C248 445.3 237.3 456 224 456C210.7 456 200 445.3 200 432V376H144C130.7 376 120 365.3 120 352C120 338.7 130.7 328 144 328H200V272C200 258.7 210.7 248 224 248z"/>
+                            <path opacity='0.4' d="M0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM200 272V328H144C130.7 328 120 338.7 120 352C120 365.3 130.7 376 144 376H200V432C200 445.3 210.7 456 224 456C237.3 456 248 445.3 248 432V376H304C317.3 376 328 365.3 328 352C328 338.7 317.3 328 304 328H248V272C248 258.7 237.3 248 224 248C210.7 248 200 258.7 200 272z"/>
+                        </svg>   
+                        Сгенерировать
+                    </button>
+                </div>
+                {% csrf_token %}
+                <div class="row g16">
+                    <div class="column g8">
+                        <h3>От</h3>
+                        <input class='text-field text-field-title' autocomplete="off" type='date' id="start_date"/>
+                    </div>
+                    <div class="column g8">
+                        <h3>До</h3>
+                        <input class='text-field text-field-title' autocomplete="off" type='date' id="end_date"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="delLessonsForm">
+        <div class="modal__viewport" style="width: 48rem">
+            <form class="modal__content">
+                <h1 class="modal__title">Удаление всех занятий курса</h1>
+                <p>Вы уверены, что хотите удалить все занятия этого курса?</p>
+                <div class="modal__block">
+                    <div class="row g8" style="margin-left: auto">
+                        <button class="secondaryButton">
+                            Отмена
+                        </button>
+                        <button class="dangerButton" type="button" onclick="lessonsDelConfirm(); $(this).addClass('disabledButton'); this.disabled = true">
+                            <svg viewBox="0 0 448 512">
+                                <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity="0.6"></path>
+                                <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                            </svg>
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="alertsContainer column" id='alertsContainer'></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!-- JQuery -->
+
+    <script src="{% static 'CoreApp/text/options.js' %}"></script>
+    <script src="{% static 'CoreApp/drop/dropdownSelect.js' %}"></script> <!-- Выпадающие меню -->
+    <script src="{% static 'AdminApp/CoursesTable/scripts.js' %}"></script>
+    <script src="{% static 'AdminApp/scripts.js' %}"></script>
+
+    {% if user.permission == 'Администратор' %}
+    <script>
+        function getCourseFormData(){
+            let course_form = new FormData();
+            
+            $('#selectedStudents .userSelect__user.row').toArray().forEach((user)  => {
+                course_form.append('students', $(user).attr('value'))
+            })
+
+            course_form.append('name', $('#courseTitle').val())
+            course_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+            course_form.append('schedule', JSON.stringify(scheduleScanner()))
+            course_form.append('type', $('#courseSubject .selected').attr('value'))
+            course_form.append('teacher', $('#selectedTeachers .userSelect__user').attr('value'))
+
+            return course_form
+        }
+    </script>
+
+    <script>
+        function lessonGenerate(btn){
+            let lessons_form = new FormData();
+            
+            lessons_form.append('end_date', $("#end_date").val())
+            lessons_form.append('start_date', $("#start_date").val())
+            lessons_form.append('csrfmiddlewaretoken', getCookie('csrftoken'))
+
+            sendInstanceData(lessons_form, "{% url 'lessons_create' course.id %}", btn); location.reload()
+        }
+    </script>
+
+    <script>
+        function delConfirm(){
+            $.ajax({
+                type: 'POST',
+                url: '{% url "course_delete" %}',
+                data:{
+                    'confirm': true,
+                    'course_identifier': '{{ course.id }}',
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+            })
+            location.href = '{% url "courses_table" %}'
+        }
+    </script>
+
+    <script>
+        function lessonsDelConfirm(){
+            $.ajax({
+                type: 'POST',
+                url: '{% url "lessons_delete" %}',
+                data:{
+                    'confirm': true,
+                    'course_identifier': '{{ course.id }}',
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+            })
+            location.reload()
+        }
+    </script>
+    {% endif %}
+</body>
+
+</html>

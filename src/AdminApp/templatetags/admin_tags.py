@@ -22,10 +22,14 @@ def getTypedCourseCount(subject):
 
 
 def getTypedStudentsCount(subject):
-    result = 0
-    for course in getTypedCourses(subject):
-        result += course.students.all().count()
-    return result
+    courses = getTypedCourses(subject)
+    return len(set([student for course in courses for student in course.students.all()]))
+
+
+def get_active_shedule(course, day):
+    if course.schedule.filter(week_day=day).exists():
+        return course.schedule.get(week_day=day)
+    return None
 
 
 def wrapScanObject(file):
@@ -35,3 +39,4 @@ def wrapScanObject(file):
 register.filter('wrap', wrapScanObject)
 register.filter('course_count', getTypedCourseCount)
 register.filter('student_count', getTypedStudentsCount)
+register.filter('get_active_shedule', get_active_shedule)

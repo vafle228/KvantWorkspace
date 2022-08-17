@@ -1,6 +1,8 @@
 {% load static %}
 {% load base_tags %}
+{% load admin_tags %}
 {% load news_tags %}
+
 <!DOCTYPE html>
 <html>
 
@@ -53,7 +55,49 @@
             </div>
             
             <!-- Виджет "Расписание" -->
-            {% include "NewsApp/CourseShedule/index.html" with courses=courses %}  
+            <div id="scheduleWidget">
+                <div class='courseList column scrollbar'>
+                    {% for course in courses %}
+                    <div class='course row g16' onclick="location.href=`{% url 'course_detail' course.id %}`">
+                        <img src="{{ course.type.image.url }}" class='course__illustration'/>
+                        <div class="course__info column g4">
+                            <p class='course__title'>{{ course }}</p>
+                            <p class='course__teacher'>
+                                {{ course.teacher.surname }} 
+                                {{ course.teacher.name|slice:"1" }}.
+                            </p>
+                        </div>
+                        <div class="row g4" style='margin-left: auto'>
+                            {% with 'ПН ВТ СР ЧТ ПТ СБ ВС' as week_days %}
+            
+                                {% for week_day in week_days.split %}
+            
+                                    {% with shedule=course|get_active_shedule:week_day %}
+            
+                                        {% if shedule %}
+                                        <div class="lesson column">
+                                            <p class="lesson__day">{{ week_day }}</p>
+                                            <p class='lesson__time'>{{ shedule.time|date:"G:i" }}</p>
+                                        </div>
+                                        {% else %}
+                                        <div class="lesson column inactive">
+                                            <p class="lesson__day">{{ week_day }}</p>
+                                        </div>
+                                        {% endif %}
+                            
+                                    {% endwith %}
+            
+                                {% endfor %}
+            
+                            {% endwith %}
+                        </div>
+                        <svg viewBox="0 0 256 512">
+                            <path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+                        </svg>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </section>
         
         <!-- Новости -->
@@ -64,7 +108,6 @@
                 {% if user.permission != 'Ученик' %}
                 <button class='secondaryButton' onclick="open_form('#newNewsItemForm')">Добавить новость</button>
                 {% endif %}
-                <!-- <input type="text" class='newsSearch' placeholder="🔍︎"> -->
             </div>
 
             <!-- Блок новостей -->

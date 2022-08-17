@@ -5,6 +5,7 @@ import openpyxl as px
 from CoreApp.services.access import (KvantObjectExistsMixin,
                                      KvantTeacherAndAdminAccessMixin)
 from CoreApp.services.utils import ObjectManipulationManager
+from DiaryApp.models import KvantLesson, KvantTaskBase
 from django.urls import reverse_lazy as rl
 from JournalApp.forms import KvantBaseSaveForm, KvantLessonSaveForm
 from LoginApp.models import KvantUser
@@ -29,76 +30,36 @@ class KvantUserDeleteAccessMixin(KvantAdminAccessMixin, KvantObjectExistsMixin):
         return KvantUser.objects.filter(id=object_id).exists()
 
 
-class KvantCourseDeleteAccessMixin(KvantAdminAccessMixin, KvantObjectExistsMixin):
-    request_object_arg = 'course_identifier'
-    
-    def _objectExiststTest(self, object_id):
-        return KvantCourse.objects.filter(id=object_id).exists()
-
-
-class KvantCourseTypeDeleteAccessMixin(KvantAdminAccessMixin, KvantObjectExistsMixin):
+class KvantCourseTypeAccessMixin(KvantObjectExistsMixin):
     request_object_arg = 'subject_identifier'
 
     def _objectExiststTest(self, object_id):
         return KvantCourseType.objects.filter(id=object_id).exists()
 
 
+class KvantCourseAccessMixin(KvantObjectExistsMixin):
+    request_object_arg = 'course_identifier'
+
+    def _objectExiststTest(self, object_id):
+        return KvantCourse.objects.filter(id=object_id).exists()
+
+
 class CourseSubjectManipulationManager(ObjectManipulationManager):
     def _constructRedirectUrl(self, **kwargs):
-        return rl('subjects_table')
+        return rl('subject_detail', kwargs={'subject_identifier': kwargs.get('obj').id})
 
 
-class CourseManipulationManager(ObjectManipulationManager):
-    def createCourse(self, request):
-        today = dt.datetime.now()
-        course_or_errors = self._getCreatedObject(request)
-        
+class CourseManipulationManager(ObjectManipulationManager):    
+    def updateObject(self, request):
+        schedules = list(self.object.schedule.all())
+        course_or_errors = self._getUpdatedObject(request)
+
         if isinstance(course_or_errors, KvantCourse):
-            for schedule in course_or_errors.schedule.all():
-                days_delta = self._getDaysDelta(today, self._getWeekDayNumber(schedule.week_day))
-                dates = self._generateLessonsDates(today + dt.timedelta(days=days_delta))
-                for i in range(len(dates)):
-                    self._createLesson(dates[i], f'Урок на {dates[i].date()} #{i}', course_or_errors, schedule.time)
+            [schedule.delete() for schedule in schedules]
         return self.getResponse(course_or_errors)
     
-    def _getDaysDelta(self, today, lesson_day):
-        if today.weekday() >= lesson_day:
-            return (lesson_day + 7) - today.weekday()
-        return lesson_day - today.weekday()
-
-    def _getWeekDayNumber(self, weekday):
-        return {'ПН': 0, 'ВТ': 1,
-                'СР': 2, 'ЧТ': 3,
-                'ПТ': 4, 'СБ': 5,
-                'ВС': 6}.get(weekday)
-    
-    def _generateLessonsDates(self, nearest_lesson):
-        if 6 <= nearest_lesson.month <= 8:
-            return [None]
-
-        lessons = [nearest_lesson]
-        next_lesson = nearest_lesson + dt.timedelta(days=7)
-        while next_lesson.month > 8 or next_lesson.month < 6:
-            lessons.append(next_lesson)
-            next_lesson = next_lesson + dt.timedelta(days=7)
-        return lessons
-    
-    def _createLesson(self, date, name, course, time):
-        base = self._createLessonBase(name)
-        
-        if base is not None:
-            form = KvantLessonSaveForm({
-                'date': date, 'base': base, 
-                'course': course, 'time': time,
-            })
-            return form.save() if form.is_valid() else None
-    
-    def _createLessonBase(self, name):
-        form = KvantBaseSaveForm({'title': name})
-        return form.save() if form.is_valid() else None
-
     def _constructRedirectUrl(self, **kwargs):
-        return rl('courses_table')
+        return rl('course_detail', kwargs={'course_identifier': kwargs.get('obj').id})
 
 
 class PersonalInfoExcelImport:
@@ -169,6 +130,45 @@ class GenerateRegisterLink(ObjectManipulationManager):
     def _constructRedirectUrl(self, **kwargs): return
 
 
+class GenerateCourseLessons:
+    def __init__(self, course):
+        self._course = course
+    
+    def generateLessons(self, start_date, end_date):
+        start_date = dt.datetime.strptime(start_date, '%Y-%m-%d') 
+        end_date = dt.datetime.strptime(end_date, '%Y-%m-%d')
+        
+        for schedule in self._course.schedule.all():
+            days_delta = self._getDaysDelta(start_date, self._getWeekDayNumber(schedule.week_day))
+            
+            lesson = start_date + dt.timedelta(days=days_delta); i = 0
+            if lesson > end_date or lesson < start_date:
+                return False
+            
+            while start_date <= lesson <= end_date:
+                self._createLesson(lesson, f'Урок на {lesson.date()} #{i}', self._course, schedule.time)
+                lesson = lesson + dt.timedelta(days=7); i += 1
+        return True
+
+    def _getWeekDayNumber(self, weekday):
+        return {'ПН': 0, 'ВТ': 1,
+                'СР': 2, 'ЧТ': 3,
+                'ПТ': 4, 'СБ': 5,
+                'ВС': 6}.get(weekday)
+    
+    def _getDaysDelta(self, start_day, lesson_day):
+        if start_day.weekday() >= lesson_day:
+            return (lesson_day + 7) - start_day.weekday()
+        return lesson_day - start_day.weekday()
+    
+    def _createLesson(self, date, name, course, time):
+        return KvantLesson.objects.create(
+            date=date, base=self._createLessonBase(name), course=course, time=time)
+    
+    def _createLessonBase(self, name):
+        return KvantTaskBase.objects.create(title=name)
+
+
 def getCourseById(course_id):
     """ Возвращает курс по его course_id """
     return KvantCourse.objects.get(id=course_id)
@@ -183,7 +183,7 @@ def getCourseQuery(user):
     return {
         'Ученик': lambda user: KvantCourse.objects.filter(students__in=[user]),
         'Учитель': lambda user: KvantCourse.objects.filter(teacher=user),
-        'Администратор': lambda user: KvantCourse.objects.none(),
+        'Администратор': lambda user: KvantCourse.objects.all(),
     }[user.permission](user)
 
 
@@ -192,6 +192,34 @@ def getCourseTypeQuery(user):
     for course in getCourseQuery(user):
         types.append(course.type.name)
     return set(types)
+
+
+def getSubjectById(id):
+    return KvantCourseType.objects.get(id=id)
+
+
+def getSubjectData(subject):
+    courses = KvantCourse.objects.filter(type=subject)
+    return {
+        'courses': courses,
+        'courses_count': len(courses),
+        'teachers': set([course.teacher for course in courses]),
+        'teachers_count': len(set([course.teacher for course in courses])),
+        'students_count': len(set([student for course in courses for student in course.students.all()])),
+    }
+
+
+def getCourseData(course):
+    return {
+        'subjects': allSubjects().exclude(id=course.type.id),
+        'students': allUsers('Ученик').exclude(
+            id__in=[student.id for student in course.students.all()]),
+        'teachers': allUsers('Учитель').exclude(id=course.teacher.id),
+    }
+
+
+def deleteCourseLessons(course):
+    [lesson.delete() for lesson in KvantLesson.objects.filter(course=course)]
 
 
 allCourses = lambda: KvantCourse.objects.all()
