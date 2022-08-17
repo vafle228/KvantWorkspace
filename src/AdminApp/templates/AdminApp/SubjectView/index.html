@@ -125,7 +125,7 @@
                 <div class="groups">
                     {% for course in courses %}
                     <div class="group">
-                        <p class="group__title">{{ course.name }}</p>
+                        <p class="group__title" onclick="location.href = `{% url 'course_detail' course.id %}`">{{ course.name }}</p>
                     </div>
                     {% endfor %}
                 </div>

@@ -1,3 +1,4 @@
+// Поиск пользователя
 function filterFunction(input, select, option, parameter, hide) {
 	let substr = input.value.toUpperCase();
 	if (substr.trim()) {
@@ -26,6 +27,9 @@ function filterFunction(input, select, option, parameter, hide) {
 	else {
 		hide ? $(select).hide() : $(select).find(option).show();
 	}
+
+	// Специально для SearchPage
+	resetCheckboxes();
 }
 
 function filterApplying(substr, select, option, parameter){
@@ -38,4 +42,17 @@ function filterApplying(substr, select, option, parameter){
 		});
 		flag ? $(users[index]).show() : $(users[index]).hide();
 	});
+
+	// Специально для SearchPage
+	resetCheckboxes();
+}
+
+function selectAll(mainChecbox){
+    $('.tableRow').toArray().forEach((tableRow) => {
+        if ($(tableRow).css('display') !== 'none')
+            $(tableRow).find('input[type=checkbox]').prop('checked', $(mainChecbox).prop('checked'))
+    });
+}
+function resetCheckboxes(){
+    $('input[type=checkbox]').prop('checked', false);
 }

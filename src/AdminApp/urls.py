@@ -9,6 +9,8 @@ urlpatterns = [
     path('subjects', views.SubjectsTableTemplateView.as_view(), name='subjects_table'),
     path('courses', views.CoursesTableTemplateView.as_view(), name='courses_table'),
 
+    path('groups', views.SubjectGroupView.as_view(), name='get_groups'),
+
     path('user/delete', views.UserDeleteView.as_view(), name='user_delete'),
     path('user/create', views.GenerateUserCreateLink.as_view(), name='user_create'),
     path('user/import', views.ExcelImportDataView.as_view(), name='excel_import'),

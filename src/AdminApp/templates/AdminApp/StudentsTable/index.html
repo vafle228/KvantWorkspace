@@ -27,7 +27,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по ученикам</h3>
-                    <input type="text" placeholder="Введите ФИО" onkeyup="filterFunction(input=this, select=$('#studentsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите ФИО"
+                        onkeyup="filterFunction(input=this, select=$('#studentsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -38,14 +42,15 @@
                                 <div class="arrowDown"></div>
                             </div>
                             <div class="dropdownSelect__options">
-                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">Все</span>
+                                <span class='dropdownSelect__option selected' onclick="filterApplying(substr='', select=$('#studentsTable'), option='.tableRow', parameter='.groups p'); getGroups('all')">Все</span>
                                 {% for subject in subjects %}
-                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p')">{{ subject.name }}</span>
+                                <span class='dropdownSelect__option' onclick="filterApplying(substr=$(this).text(), select=$('#studentsTable'), option='.tableRow', parameter='.groups p'); getGroups({{ subject.id }})">{{ subject.name }}</span>
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="column g8" id="groupsFilter"></div>
                 {% if user.permission == 'Администратор' %}
                 <div class="column g8">
                     <h3>Добавление</h3>
@@ -66,7 +71,7 @@
                     Удалить выбранных пользователей
                 </button>
                 {% endif %}
-                <button class="combinedButton" onclick="location.href=`{% url 'excel_import' %}?user=Ученик`">
+                <button class="combinedButton" onclick="excelImport()">
                     <img src="{% static 'AdminApp/img/excel.svg' %}" style="height: 1rem">
                     Экпортировать в Excel
                 </button>
@@ -74,7 +79,11 @@
 
             <div class="table scrollbarX" id="studentsTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Ученик</p>
                     <p style="width: 20rem">Группы</p>
                     <p style="width: 9.5rem">Дата рождения</p>
@@ -190,6 +199,37 @@
         $(".tableCell p").on("click", function(){
             copytext($(this));
         });
+    </script>
+
+    <script>
+        function getGroups(subject_identifier){
+            $.ajax({
+                type: 'GET',
+                url: '{% url "get_groups" %}',
+                data:{
+                    'subject_identifier': subject_identifier,
+                    'csrfmiddlewaretoken': getCookie('csrftoken'),
+                },
+                success: function(response){
+                    initDropdown()
+                    $("#groupsFilter").html(response)
+                    initDropdown()
+                },
+            })
+        }
+        getGroups('all')
+    </script>
+
+    <script>
+        function excelImport(){
+            users = ''
+            $('.tableRow input[type=checkbox]').each(function(user){
+                if(this.checked){
+                    users += `users[]=${$(this).val()}&`
+                }   
+            })
+            location.href = `{% url 'excel_import' %}?${users}user=Ученик`
+        }
     </script>
 
     {% if user.permission == 'Администратор' %}

@@ -100,10 +100,12 @@
             <div class="card">
                 <div class="flex space-between items-center">
                     <h1>Расписание</h1>
+                    {% if user.permission == 'Администратор' %}
                     <div class="row g8">
                         <button class="standartButton" onclick="open_form('#genLessonsForm')">Сгенерировать занятия</button>
                         <button class="standartButton" onclick="open_form('#delLessonsForm')">Удалить все занятия курса</button>
                     </div>
+                    {% endif %}
                 </div>
                 
                 <div class="row g4">
@@ -243,7 +245,7 @@
                         </div>
                     </div> 
                 </div>
-                <input type="text" onkeyup="filterFunction(input=this, select=$('#teacherSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='teacherSearch' placeholder="Введите ФИО" autocomplete="off">
+                <input type="text" style="display: none;" onkeyup="filterFunction(input=this, select=$('#teacherSelect'), option='.userSelect__user', parameter='.userSelect__userName', hide=true)" id='teacherSearch' placeholder="Введите ФИО" autocomplete="off">
                 <div class="userSelect" id='teacherSelect'>
                     {% for teacher in teachers %}
                     <div class="userSelect__user row" value="{{ teacher.id }}">

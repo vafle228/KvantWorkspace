@@ -3,7 +3,6 @@ from django.http import HttpResponse, JsonResponse
 from django.views import generic
 from LoginApp.services import getUserById
 from RegisterApp.forms import TempRegisterLinkSaveForm
-from django.shortcuts import redirect
 
 from AdminApp.forms import (CourseSheduleSaveForm, KvantCourseSaveForm,
                             KvantCourseTypeSaveForm)
@@ -18,8 +17,6 @@ class AdminsTableTemplateView(KvantTeacherAndAdminAccessMixin, generic.TemplateV
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(admins=services.allUsers('Администратор'))
-
-        services.PersonalInfoExcelImport().importPersonalInfo('Ученик')
 
         return context
 
@@ -152,7 +149,8 @@ class CourseLessonsDeleteView(services.KvantAdminAccessMixin, services.KvantCour
 class ExcelImportDataView(KvantTeacherAndAdminAccessMixin, generic.View):
     def get(self, request, *args, **kwargs):
         return HttpResponse(
-            services.PersonalInfoExcelImport().importPersonalInfo(request.GET.get('user')),
+            services.PersonalInfoExcelImport().importPersonalInfo(
+                request.GET.get('user'), request.GET.getlist('users[]')),
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
 
@@ -196,3 +194,12 @@ class SubjectsDeleteView(services.KvantCourseTypeAccessMixin, services.KvantAdmi
     def post(self, request, *args, **kwargs):
         services.getCourseTypeById(kwargs.get('subject_identifier')).delete()
         return JsonResponse({'status': 200})
+
+
+class SubjectGroupView(KvantTeacherAndAdminAccessMixin, generic.TemplateView):
+    template_name = 'AdminApp/GroupsView/index.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update(groups=services.getSubjectGroups(self.request.GET.get('subject_identifier')))
+        return ctx

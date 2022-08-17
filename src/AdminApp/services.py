@@ -7,7 +7,6 @@ from CoreApp.services.access import (KvantObjectExistsMixin,
 from CoreApp.services.utils import ObjectManipulationManager
 from DiaryApp.models import KvantLesson, KvantTaskBase
 from django.urls import reverse_lazy as rl
-from JournalApp.forms import KvantBaseSaveForm, KvantLessonSaveForm
 from LoginApp.models import KvantUser
 from openpyxl.utils import get_column_letter
 from openpyxl.writer.excel import save_virtual_workbook
@@ -67,14 +66,14 @@ class PersonalInfoExcelImport:
         self._wb = px.Workbook()
         self._ws = self._wb.active
     
-    def importPersonalInfo(self, user_type):
+    def importPersonalInfo(self, user_type, ids):
         if user_type == 'Ученик':
             return self._importUsersPersonalInfo(
                 serializer=StudentPersonalInfoSerializer,
-                users=StudentPersonalInfo.objects.filter(user__permission=user_type))
+                users=StudentPersonalInfo.objects.filter(user__permission=user_type, user__id__in=ids))
         return self._importUsersPersonalInfo(
             serializer=StaffPersonalInfoSerializer,
-            users=StaffPersonalInfo.objects.filter(user__permission=user_type)
+            users=StaffPersonalInfo.objects.filter(user__permission=user_type, user__id__in=ids)
         )
     
     def _importUsersPersonalInfo(self, users, serializer):
@@ -220,6 +219,12 @@ def getCourseData(course):
 
 def deleteCourseLessons(course):
     [lesson.delete() for lesson in KvantLesson.objects.filter(course=course)]
+
+
+def getSubjectGroups(subject):
+    if subject == 'all':
+        return set([course.name for course in allCourses()])
+    return set([course.name for course in allCourses().filter(type=getSubjectById(subject))])
 
 
 allCourses = lambda: KvantCourse.objects.all()

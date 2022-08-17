@@ -26,7 +26,11 @@
             <nav>
                 <div class="column g8">
                     <h3>Поиск по Направлениям</h3>
-                    <input type="text" placeholder="Введите группу" onkeyup="filterFunction(input=this, select=$('#groupsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)">
+                    <input
+                        type="text"
+                        placeholder="Введите группу"
+                        onkeyup="filterFunction(input=this, select=$('#groupsTable'), option='.tableRow', parameter='.tableUser__name', hide=false)"
+                    >
                 </div>
                 <div class="column g8">
                     <h3>Направление</h3>
@@ -69,7 +73,11 @@
 
             <div class="table scrollbarX" id="groupsTable">
                 <div class="tableHeader">
-                    <input type="checkbox" title='Выбрать все' onchange="$('.tableRow input[type=checkbox]').prop('checked', $(this).prop('checked'));">
+                    <input
+                        type="checkbox"
+                        title='Выбрать все'
+                        onchange="selectAll(this)"
+                    >
                     <p style="width: 20rem">Группа</p>
                     <p style="width: 20rem">Учитель</p>
                     <p style="width: 12rem">Количество учеников</p>

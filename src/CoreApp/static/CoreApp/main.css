@@ -1,6 +1,3 @@
-/* Подключение шрифтов */
-@import url("fonts/Google font/stylesheet.css");
-
 :root{
     /* Брейкпоинты */
     --xsmall: 576px;
