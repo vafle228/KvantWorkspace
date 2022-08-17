@@ -102,6 +102,11 @@ header{
     flex-direction: column; gap: 0.25rem;
     align-items: unset;
 }
+.tableCell.direction{
+    width: 9.5rem;
+    flex-direction: column; gap: 0.25rem;
+    align-items: unset;
+}
 .tableCell.parent{
     width: 14rem;
     flex-direction: column; gap: 0.5rem;
