@@ -222,7 +222,10 @@
             <div class="card">
                 <div class="flex space-between items-center">
                     <h1>Расписание</h1>
-                    <button class="standartButton" onclick="open_form('#genLessonsForm')">Сгенерировать занятия</button>
+                    <div class="row g8">
+                        <button class="standartButton" onclick="open_form('#genLessonsForm')">Сгенерировать занятия</button>
+                        <button class="standartButton" onclick="open_form('#delLessonsForm')">Удалить все занятия курса</button>
+                    </div>
                 </div>
                 
                 <div class="row g4">
@@ -463,6 +466,30 @@
                     <div class="column g8">
                         <h3>До</h3>
                         <input class='text-field text-field-title' autocomplete="off" type='date'/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Форма подтверждения удаления всех занятий курса -->
+    <div class='modal' id='delLessonsForm'>
+        <div class="modal__viewport" style="width: 48rem">
+            <form class='modal__content'>
+                <h1 class="modal__title">Удаление всех занятий курса</h1>
+                <p>Вы уверены, что хотите удалить все занятия этого курса?</p>
+                <div class='modal__block'>
+                    <div class='row g8' style='margin-left: auto'>
+                        <button class='secondaryButton'>
+                            Отмена
+                        </button>
+                        <button class='dangerButton' type="submit">
+                            <svg viewBox="0 0 448 512">
+                                <path d="M53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 96H32zm47.18-221.47l84-81.59c8.84-8.59 23.61-2.24" opacity='0.6'></path>
+                                <path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM208"></path>
+                            </svg>
+                            Удалить
+                        </button>
                     </div>
                 </div>
             </form>
