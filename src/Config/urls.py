@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
+# Настройка паттернов ссылок URL диспетчера
 urlpatterns = [
     path('django_admin/', admin.site.urls),
     path('system/', include('CoreApp.urls')),
