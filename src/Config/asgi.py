@@ -16,11 +16,15 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from ChatApp import routing as chat_routing
 from NotificationApp import routing as notification_routing
 
+# Маршрутизация. Задается приложение, передаваемое серверам протоколов
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Config.settings')
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
+    # Обработчик WebSocket
+    # WebSocket позволяет интерактивно связать клиента с сервером
     "websocket": AuthMiddlewareStack(
         URLRouter(
             chat_routing.websocket_urlpatterns +
