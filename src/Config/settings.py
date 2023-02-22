@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from .secret import *
+from secret import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['192.168.0.4', '127.0.0.1']
 
 # Application definition
 
+# Список активных приложений. Каждый элемент - имена модулей этих приложений
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'django_cleanup', 'storages', 'channels',
 ]
 
+# MiddleWare - плагин, обрабатывающий запросы и ответы
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,8 +64,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Определение используемого корневого модуля
 ROOT_URLCONF = 'Config.urls'
 
+# Шаблоны
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -83,6 +87,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Config.wsgi.application'
 ASGI_APPLICATION = 'Config.asgi.application'
 
+# Канал
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -96,6 +101,7 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# База данных
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -129,14 +135,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
+# Прост доп.настроечки
+# Язык веб-приложения
 LANGUAGE_CODE = 'ru'
 
+# Часовой веб-приложения
 TIME_ZONE = 'Europe/Moscow'
 
+# Необходимо для корректной работы параметра LANGUAGE_CODE
 USE_I18N = True
 
+# Будет ли локализованное форматирование. Используется формат текущей локалич
 USE_L10N = True
 
+# Использоваие временных интервалов с учетом часового пояса
 USE_TZ = True
 
 
